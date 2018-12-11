@@ -28,7 +28,16 @@ public interface MemberService {
 	//비밀번호 찾기
 	 public MemberVO getPw(Map<String, Object> paramMap);
 
-	int idCheck(String m_id);
+	 
+	//List<MemberVO> idcheck(String m_id);
+	
+	 //로그인 체크
+	public int loginCheck(String m_id, String m_pwd);
+
+		
+	 //아이디 중복체크
+	int checkMember(String m_id);
+
 
 	
 

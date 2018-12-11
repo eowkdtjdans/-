@@ -6,17 +6,18 @@
 <!-- mapper 태그의 namespace 속성 필수 작성  -->  
 <mapper namespace="MemberDAO">
 
-	<!-- 회원가입 -->
-	<insert id="insertMember" parameterType="member">
-		INSERT INTO MEMBER (M_ID, M_PWD, M_NAME, M_PHONE, M_GENDER, M_BIRTHDAY, LAT, LNG, M_REGDATE, M_ADDRESS) 
+		<insert id="insertMember" parameterType="member">
+		INSERT INTO MEMBER (M_ID, M_PWD, M_NAME, M_PHONE, M_GENDER, M_BIRTHDAY, LAT, LNG, M_REGDATE, M_ADDRESS ) 
 		VALUES ( #{m_id}, #{m_pwd}, #{m_name}, #{m_phone}, #{m_gender}, #{m_birthday}, #{lat}, #{lng}, SYSDATE, #{m_address})
 	</insert>
 	
+	
 	<!-- 로그인 -->
 	<select id="loginMember" resultType="member">
-		SELECT M_NAME, M_ID, M_PHONE FROM MEMBER
+		SELECT M_NAME, M_ID, M_PWD, M_PHONE FROM MEMBER
 		WHERE M_ID = #{m_id} AND M_PWD = #{m_pwd}
 	</select>
+	
 	
 	<!-- 비밀번호 변경 -->
 	<update id="update_pwd" parameterType="member">
@@ -24,20 +25,29 @@
 		WHERE M_ID = #{m_id}
 	</update>
 	
-	<!-- 아이디 중복검사 -->
-	<select id="idCheck" resultType="String">
-		SELECT COUNT(*) FROM MEMBER
-		WHERE M_ID = #{m_id}
-	</select>
 	
-		<!--parameterType="java.util.Map" resultType="member"  -->
 	<select id="getPw" parameterType="Map" resultType="member">
 		SELECT M_PWD FROM MEMBER
 		 WHERE M_ID= #{m_id} AND M_PHONE= #{m_phone}
 	</select>	
+	
+	
 	<select id="getId" parameterType="Map" resultType="member">
 		SELECT M_ID FROM MEMBER
 		 WHERE M_NAME= #{m_name} AND M_PHONE= #{m_phone}
 	</select>
+	
+	<!-- 아이디 중복검사 -->
+	<select id="checkMember" parameterType="String" resultType="Integer">
+		SELECT COUNT(*) FROM MEMBER
+		WHERE M_ID = #{m_id}
+	</select>
+	
+	
+	<select id="loginCheck" parameterType="String" resultType="Integer">
+		SELECT COUNT(*) FROM MEMBER 
+		WHERE M_ID = #{m_id} AND M_PWD = #{m_pwd}
+	</select>
+
 
 </mapper>
