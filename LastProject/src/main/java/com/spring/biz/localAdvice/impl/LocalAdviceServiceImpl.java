@@ -29,13 +29,14 @@ public class LocalAdviceServiceImpl implements LocalAdviceService {
 		localAdviceDAO.insertLocalAdvice(vo);
 		
 	}
-	/*
+	
 	@Override
 	public void updateLocalAdvice(LocalAdviceVO vo) {
-		// TODO Auto-generated method stub
+		localAdviceDAO.updateLocalAdvice(vo);
 		
 	}
 
+	/*
 	@Override
 	public void deleteLocalAdvice(LocalAdviceVO vo) {
 		// TODO Auto-generated method stub
@@ -51,6 +52,7 @@ public class LocalAdviceServiceImpl implements LocalAdviceService {
 	public ProfileImageVO getProfileImage(ProfileImageVO vo) {
 		return localAdviceDAO.getProfileImage(vo);
 	}
+
 
 
 	

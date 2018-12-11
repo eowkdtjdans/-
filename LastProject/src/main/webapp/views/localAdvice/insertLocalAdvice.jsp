@@ -51,14 +51,16 @@
 	function sendData(frm){
 		for (var i=0; i<frm.elements.length; i++){
 			if(frm.elements[i].value.trim() == ""){
+				alert();
+				alert(i);
 				alert(frm.elements[i].title + "을 입력해주세요");
 				frm.elements[i].focus();
-				return;
-			}
-		}
-		alert("스크립트");
-		frm.action="../insertLocalAdvice.do";
-		frm.submit();
+				return false;
+			}		
+		}		
+			alert("안녕하세요");
+			frm.action="../insertLocalAdvice.do";
+			frm.submit();
 	}
 	
 	function list_go() {
@@ -126,7 +128,7 @@
 <section id="about">
 <div class="container">
 	<div class="row from-group">	
-		<form id="frm" method="post">			
+		<form name="frm" method="post">			
 			<table class="table">
 				<h2><strong>Write LocalAdvice</strong></h2>
 				<tr>

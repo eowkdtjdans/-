@@ -1,6 +1,6 @@
  <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -45,7 +45,7 @@
 	a{
 		color:#5e7e9b;
 	}
-	#profileImage { width: 75px; height: 75px;} 
+	#profileImage { width: 80px; height: 80px;} 
 	td{
 		padding-right: 30px;
 	}
@@ -134,7 +134,7 @@
 					<td><strong>${getLocalAdvice.l_subject }</strong></td>
 					<td>					
 						<c:if test="${getProfileImage.m_id eq m_id }"> 
-							<a id="atag-size" href="../updateLocalAdvice.do">&nbsp;수정&nbsp;</a>|
+							<a id="atag-size" href="../updateLocalAdvice.do?l_idx=${getLocalAdvice.l_idx }">&nbsp;수정&nbsp;</a>|
 							<a id="atag-size" href="#" onclick="deleteokC('${vo.qc_idx}')">삭제&nbsp;</a>
 						</c:if>
 					</td>

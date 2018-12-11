@@ -91,13 +91,33 @@ public class LocalAdviceController {
 		return "views/localAdvice/getLocalAdvice.jsp";
 	}
 	
-	//localAdvice게시글 수정페이지로 단순 페이지이동
+	//localAdvice게시글 수정페이지로 페이지이동
 	@RequestMapping(value="/updateLocalAdvice.do", method=RequestMethod.GET)
-	public String updateLocalAdviceList() {	
+	public String updateLocalAdviceList(LocalAdviceVO vo, ProfileImageVO pvo, HttpSession session, Model model, @RequestParam("l_idx") String l_idx) {	
+		String m_id = (String)session.getAttribute("m_id");
+		System.out.println("m_id가무어니?" + m_id);
+		System.out.println("l_idx가무어니?" + l_idx);
+		vo.setL_idx(Integer.parseInt(l_idx));
+		pvo.setM_id(m_id);
 		
+		LocalAdviceVO getLocalAdvice = localAdviceService.getLocalAdvice(vo);
+		ProfileImageVO getProfileImage = localAdviceService.getProfileImage(pvo);
+		
+		model.addAttribute("getLocalAdvice", getLocalAdvice);
+		model.addAttribute("getProfileImage", getProfileImage);
 		return "views/localAdvice/updateLocalAdvice.jsp";
 	}
 	
+	//localAdvice게시글 수정
+	@RequestMapping(value="/updateLocalAdvice.do", method=RequestMethod.POST)
+	public String updateLocalAdviceList(LocalAdviceVO vo, @RequestParam("l_subject") String l_subject,  @RequestParam("l_content") String l_content, @RequestParam("l_idx") String l_idx) {
+		System.out.println("옙");
+		System.out.println("l_idx가몽미 : " + l_idx);
+		
+		localAdviceService.updateLocalAdvice(vo);
+		
+		return null;
+	}
 }
 
 

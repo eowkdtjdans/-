@@ -45,7 +45,7 @@
 	a{
 		color:#5e7e9b;
 	}
-	#profileImage { width: 75px; height: 75px;} 
+	#profileImage { width: 80px; height: 80px;} 
 	td{
 		padding-right: 30px;
 	}
@@ -53,11 +53,21 @@
 		width: 1100px;
 		height: 400px;
 	}
-
+	textarea{
+		overflow: hidden;
+	}
 
 </style>
 
-  
+<script>
+	function updatego(frm){
+		alert("하이");
+		frm.action="../updateLocalAdvice.do";
+		frm.submit();
+	}
+	
+	
+</script>  
  
 </head>
 
@@ -124,30 +134,32 @@
 			<div>${getLocalAdvice.l_content }</div>
 			<div>${getLocalAdvice.l_date }</div>
 			<div>${getLocalAdvice.l_upvote }</div>
-			<div>${getLocalAdvice.l_reviewcount }</div>
-			<div><img src="${getProfileImage.p_route }" class="rounded-circle"  id="profileImage"></div> --%>	
-		업데이트하는 페이지
+			<div>${getLocalAdvice.l_reviewcount }</div> --%>
+
 		<div id="tableDiv">
+		<form name="frm" method="post">
 			<table>				
 				<tr>
-					<td rowspan="3"><img src="${getProfileImage.p_route }" class="rounded-circle"  id="profileImage"></td>
-					<td><strong>${getLocalAdvice.l_subject }</strong></td>
+					<td><img src="${getProfileImage.p_route }" class="rounded-circle"  id="profileImage"></td>
+					<td><textarea class="form-control" rows="1" cols="90" name="l_subject">${getLocalAdvice.l_subject }</textarea></td>
 					<td>					
 						<c:if test="${getProfileImage.m_id eq m_id }"> 
-							<a id="atag-size" href="../updateLocalAdvice.do">&nbsp;수정&nbsp;</a>|
-							<a id="atag-size" href="#" onclick="deleteokC('${vo.qc_idx}')">삭제&nbsp;</a>
+							<input type="button" class="btn btn-outline-secondary" value="수정완료" onclick="updatego(this.form)">
+							<input type="button" class="btn btn-outline-secondary" value="삭제" onclick="deletego(this.form)">
+							<input type="hidden" name="l_idx" value="${getLocalAdvice.l_idx }">
 						</c:if>
 					</td>
 				</tr>
 				<tr>
-					<td>ㅁ${getLocalAdvice.l_date }</td>
+					<td colspan="3">
+						<textarea class="form-control" rows="10" cols="150" name="l_content">${getLocalAdvice.l_content }</textarea>
+					</td>
 				</tr>
-				<tr>
-					<td>ㅁ${getLocalAdvice.l_upvote } &nbsp;&nbsp; ${getLocalAdvice.l_reviewcount }</td>
-				</tr>				
-			</table>	
-				<div><p><br>${getLocalAdvice.l_content }</p></div>		
+			</table>			
+		</form>
 		</div>	
+				
+		
 		
 		<form>
 			<table>
