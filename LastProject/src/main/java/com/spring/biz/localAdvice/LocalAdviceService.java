@@ -1,6 +1,7 @@
 package com.spring.biz.localAdvice;
 
 import java.util.List;
+import java.util.Map;
 
 import com.spring.biz.profileImage.ProfileImageVO;
 
@@ -19,12 +20,14 @@ public interface LocalAdviceService {
 	//글 상세 조회
 	LocalAdviceVO getLocalAdvice(LocalAdviceVO vo);
 	//글 목록 전체 조회
-	List<LocalAdviceVO> getLocalAdviceList(String key);
+	List<LocalAdviceVO> getLocalAdviceList(Map<String, Object> map);
 	//(서울에 관련된)게시글 수
 	int countLocalAdvice (String key);
 	
 	//프로필이미지 조회
 	ProfileImageVO getProfileImage(ProfileImageVO vo);
+	
+	
 	
 }
 
