@@ -28,7 +28,7 @@ public class MemberDAO {
 	public MemberVO loginMember(MemberVO vo) throws Exception {
 		
 		System.out.println("======== loginMember() =========");
-		return mybatis.selectOne("loginMember", vo);
+		return (MemberVO) mybatis.selectOne("loginMember", vo);
 	}
 	
 	//로그아웃
@@ -37,7 +37,7 @@ public class MemberDAO {
 	}
 
 	//아이디 중복확인
-	public int idCheck(String m_id) {
+	public List<MemberVO> idCheck(String m_id) {
 		return mybatis.selectOne("idCheck", m_id);
 	}
 	
@@ -49,7 +49,15 @@ public class MemberDAO {
 	public MemberVO getId(Map<String, Object> paramMap) {
 		return mybatis.selectOne("getId", paramMap);
 	}
-	
+
+	public int loginCheck(String m_id, String m_pwd) {
+		return  mybatis.selectOne("loginCheck", m_id);
+	}
+
+	public int checkMember(String m_id) {
+		return mybatis.selectOne("checkMember", m_id);
+	}
+
 
 	
 }

@@ -5,15 +5,43 @@
 <html lang="en">
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<title>회원가입</title>
+<title>로그인</title>
 
 <script>
 	//로그인 값이 있던 없던 그냥 넘어가니까 JSON을 사용해서 데이터베이스에 있는지 체크하기.
 	function login(frm) {
-		frm.action = "../../loginMember.do"; //로그인 작업 처리
-		frm.submit();
+		var m_id = $("#m_id").val();
+		var m_pwd = $("#m_pwd").val();
+		
+		$.ajax({
+			async: true,
+			type : 'POST',
+			dataType : "json",
+			data : m_id,
+		    contentType: "application/json; charset=UTF-8",
+			url : '../../checkMember.do',
+			success : function(data) { 
+				console.log(data);
+				if (data.cnt > 0) {
+					 frm.action = "../../loginMember.do";
+					 frm.submit(); 
+					 return false;
+				} else {
+					alert("로그인 실패");
+					frm.m_id.value = "";
+					frm.m_pwd.value = "";
+					frm.m_id.focus();
+					
+				}
+				
+			}
+			
+		})
+	
+		 
 
 	};
+
 		
 </script>
 
@@ -40,13 +68,9 @@
 									<label for="email">아이디</label>
 									<input id="m_id" type="email" class="form-control" name="m_id" required autofocus>
 								</div>
-
+								
 								<div class="form-group">
-									<label for="password">비밀번호
-										<a href="../../findPwdMember.do" class="float-right">
-											비밀번호 찾기
-										</a>
-									</label>
+									<label for="password">비밀번호</label>
 									<input id="m_pwd" type="password" class="form-control" name="m_pwd" required data-eye>
 								</div>
 
@@ -55,6 +79,13 @@
 										Login
 									</button>
 								</div>
+								
+							
+										<a href="../../findPwdMember.do" class="float-right">
+											비밀번호 찾기
+										</a>
+									</label>
+								
 								<div class="mt-4 text-center">
 									아이디가 없으십니까? <a href="../../insertMember.do">회원가입</a>
 								</div>

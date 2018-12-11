@@ -1,4 +1,4 @@
- <%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -17,32 +17,43 @@
 	
  <script>
  function register(frm) {
-		alert("외않뒈");
-		frm.action = "../../insertMember.do"; //로그인 작업 처리
-		frm.submit();
+		if(confirm("회원가입을 하시겠습니까?")){
+	        if(idck==0){
+	            alert('아이디 중복체크를 해주세요');
+	            return false;
+	        }else{
+	        alert("회원가입을 축하합니다");
+	    	frm.action = "../../insertMember.do"; //로그인 작업 처리
+			frm.submit();
+	        }
+	    }
+	
 	};
 	
-/*  function idCheck(frm) {
+  function idCheck(frm) {
 	 var m_id = $('#m_id').val();
-	alert("m_id : " + m_id);
 	
 	$.ajax({
+		async: true,
 		type : 'POST',
+		dataType : "json",
 		data : m_id,
-		url : '../../idCheck.do',
-		dataType : 'JSON',
+	    contentType: "application/json; charset=UTF-8",
+		url : '../../checkMember.do',
+		
 		   success : function(data) {
+			   console.log(data);
                if (data.cnt > 0) {
                    
                    alert("아이디가 존재합니다. 다른 아이디를 입력해주세요.");
                    $("#m_id").focus();
+                   $("#m_id").val("");
                    
                
                } else {
                    alert("사용가능한 아이디입니다.");
                    //아이디가 중복하지 않으면  idck = 1 
                    idck = 1;
-                   
                }
            },
            error : function(error) {
@@ -50,16 +61,12 @@
                alert("error : " + error);
            }
        });
-}); */
-
-
+}; 
 var placeSearch, autocomplete;
-
 function initAutocomplete() {
   autocomplete = new google.maps.places.Autocomplete((document.getElementById('autocomplete')),{types: ['geocode']});
   autocomplete.addListener('place_changed', fillInAddress);
 }
-
 function fillInAddress() { //lat 와 lng 값을 넘겨줄 input 태그에 값 넣어주기
 	var place = autocomplete.getPlace();
 	document.getElementById("lat").value=place.geometry.location.lat();

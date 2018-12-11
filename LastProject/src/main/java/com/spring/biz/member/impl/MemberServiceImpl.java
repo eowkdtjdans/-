@@ -1,6 +1,5 @@
 package com.spring.biz.member.impl;
 
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -31,6 +30,7 @@ public class MemberServiceImpl implements MemberService{
 	public MemberVO loginMember(MemberVO vo, HttpSession session) throws Exception {
 	
 		session.setAttribute("m_id", vo.getM_id());
+		session.setAttribute("m_id", vo.getM_pwd());
 		
 	return memberDAO.loginMember(vo);
 }
@@ -51,10 +51,24 @@ public class MemberServiceImpl implements MemberService{
 			return memberDAO.getId(paramMap);
 		}
 
-	@Override
-	public int idCheck(String m_id) {
+	/*@Override
+	public List<MemberVO> idCheck(String m_id) {
 		return memberDAO.idCheck(m_id);
+	}*/
+
+
+	@Override
+	public int loginCheck(String m_id, String m_pwd) {
+		return memberDAO.loginCheck(m_id, m_pwd);
 	}
+
+
+	@Override
+	public int checkMember(String m_id) {
+		return memberDAO.checkMember(m_id);
+	}
+
+
 
 
 	

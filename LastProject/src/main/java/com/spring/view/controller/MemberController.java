@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -38,6 +39,12 @@ public class MemberController {
 	public MemberController() {
 		System.out.println("=======멤버 컨트롤러 시작");
 	}
+	
+	
+	
+
+	
+	
 	//======================================================================
 	//회원가입
 			@RequestMapping(value = "/insertMember.do", method=RequestMethod.GET)
@@ -55,20 +62,33 @@ public class MemberController {
 	}
 	
 	//======================================================================
-		
-		 @RequestMapping(value= "/idcheck.do", method=RequestMethod.GET)
-		    @ResponseBody
-		    public Map<Object, Object> idcheck(@RequestParam("m_id") String m_id) {
-		        System.out.println("m_id : " + m_id);
-		        int count = 0;
-		        Map<Object, Object> map = new HashMap<Object, Object>();
-		 
-		        count = memberService.idCheck(m_id);
-		        map.put("cnt", count);
-		 
-		        return map;
-		    }
+	//로그인 체크
+//		@RequestMapping(value= "/logincheck.do", method=RequestMethod.POST)
+//	    @ResponseBody
+//	    public Map<Object, Object> MemberList(@RequestBody String m_id, @RequestBody String m_pwd) {
+//			
+//			int count = 0;
+//			Map<Object, Object> map = new HashMap<Object, Object>();
+//			
+//			count = memberService.loginCheck(m_id, m_pwd);
+//			map.put("cnt", count);
+//			
+//		 return map;
+//	    }
 	
+	//멤버 체크
+	@RequestMapping("/checkMember.do")
+    @ResponseBody
+    public Map<Object, Object> checkMember(@RequestBody String m_id) {
+        
+        int count = 0;
+        Map<Object, Object> map = new HashMap<Object, Object>();
+ 
+        count = memberService.checkMember(m_id);
+        map.put("cnt", count);
+ 
+        return map;
+    }
 		//======================================================================
 	@RequestMapping(value="/loginMember.do", method=RequestMethod.GET) 
 	public String loginGet(MemberVO vo) {
@@ -76,19 +96,23 @@ public class MemberController {
 			return "views/member/MemberLogin.jsp";
 	}		
 	//로그인
-	@RequestMapping(value="/loginMember.do", method=RequestMethod.POST) 
-	public String loginPost(@RequestParam("m_id") String m_id, @RequestParam("m_pwd") String m_pwd, MemberVO vo, HttpSession session) throws Exception {
+	@RequestMapping(value="/loginMember.do", method=RequestMethod.POST) //@RequestParam("m_id") String m_id, @RequestParam("m_pwd") String m_pwd,
+	public String loginPost(MemberVO vo, HttpSession session) throws Exception {
 		System.out.println(">> 포스트방식 로그인처리");
-		System.out.println("m_id : " + m_id);
-		System.out.println("m_pwd : " + m_pwd);
+		/*String m_id = request.getParameter("m_id");
+		String m_pwd = request.getParameter("m_pwd");*/
+		System.out.println("m_id : " + vo.getM_id());
+		System.out.println("m_pwd : " + vo.getM_pwd());
 		MemberVO vo2 = memberService.loginMember(vo, session);
-		if (vo2.getM_id() != null && vo2.getM_id().equals(m_id)) {
-			System.out.println("있는 아이디");
+		System.out.println("vo2.getM_id : " + vo2.getM_id());
+		System.out.println("vo2.getM_pwd : " + vo2.getM_pwd());
+		if (vo2.getM_id() != null && vo2.getM_id().equals(vo.getM_id()) && vo2.getM_pwd() != null && vo2.getM_pwd().equals(vo.getM_pwd())) {
+			System.out.println("======있는 아이디======");
 			session.setAttribute("m_id", vo.getM_id());
 			return "/sub2.do";
 		} else {
-			System.out.println("없는 아이디");
-			return "views/test2.jsp";
+			System.out.println("=====없는 아이디=====");
+			return "/loginMember.do";
 		}
 	}	
 	
@@ -161,7 +185,6 @@ public class MemberController {
         
     }
     
-
 	
 	
 	
