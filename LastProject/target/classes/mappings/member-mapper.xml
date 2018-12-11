@@ -48,6 +48,11 @@
 		SELECT COUNT(*) FROM MEMBER 
 		WHERE M_ID = #{m_id} AND M_PWD = #{m_pwd}
 	</select>
+	
+	<select id="findPwdMemberJson" parameterType="String" resultType="Integer">
+		SELECT COUNT(*) FROM MEMBER
+		WHERE M_ID = #{m_id} AND M_PHONE = #{m_phone}
+	</select>
 
 
 </mapper>

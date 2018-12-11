@@ -69,6 +69,12 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 
+	@Override
+	public int findPwdMemberJson(MemberVO vo) {
+		return memberDAO.findPwdMemberJson(vo);
+	}
+
+
 
 
 	

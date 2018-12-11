@@ -38,6 +38,9 @@ public interface MemberService {
 	 //아이디 중복체크
 	int checkMember(String m_id);
 
+	//비밀번호 찾기 JSON
+	int findPwdMemberJson(MemberVO vo);
+
 
 	
 

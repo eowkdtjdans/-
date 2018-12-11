@@ -16,8 +16,23 @@
 <script>
 
 	function findPwd(frm) {
-		frm.action="../../findPwdMember.do";
-		frm.submit();
+		 var str = $("form").serialize();
+		alert(str);
+		 $.ajax({
+			async : true,
+			type : "POST",
+			dataType : "json",
+			data : str,
+			url : "../../findPwdMemberJson.do",
+			success : function(data) {
+				console.log(data);
+				alert(data);
+				frm.action="../../findPwdMember.do";
+				frm.submit(); 
+			},
+		}); 
+		
+		
 		return false;
 	};
 </script>	
@@ -35,7 +50,7 @@
 					<div class="card fat">
 						<div class="card-body">
 							<h4 class="card-title">비밀번호 찾기</h4>
-							<form method="POST" class="my-login-validation">
+							<form method="POST" class="my-login-validation" id="form">
 								<div class="form-group">
 									<label for="m_email">ID</label>
 									<input id="m_id" type="email" class="form-control" name="m_id" placeholder="아이디를 입력하세요." required autofocus>
@@ -52,7 +67,7 @@
 								</div>
 
 								<div class="form-group m-0">
-									<button type="submit" class="btn btn-primary btn-block" onclick="findPwd(this.form)">
+									<button type="button" class="btn btn-primary btn-block" onclick="findPwd(this.form)">
 										비밀번호 찾기
 									</button>
 								</div>

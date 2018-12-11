@@ -49,13 +49,19 @@ public class MemberDAO {
 	public MemberVO getId(Map<String, Object> paramMap) {
 		return mybatis.selectOne("getId", paramMap);
 	}
-
+	//로그인 체크
 	public int loginCheck(String m_id, String m_pwd) {
 		return  mybatis.selectOne("loginCheck", m_id);
 	}
-
+	
+	//아이디 체크
 	public int checkMember(String m_id) {
 		return mybatis.selectOne("checkMember", m_id);
+	}
+	
+	//비밀번호 체크
+	public int findPwdMemberJson(MemberVO vo) {
+		return mybatis.selectOne("findPwdMemberJson", vo);
 	}
 
 

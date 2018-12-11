@@ -75,6 +75,19 @@ public class MemberController {
 //			
 //		 return map;
 //	    }
+	@RequestMapping(value="/findPwdMemberJson.do", method=RequestMethod.POST)
+	@ResponseBody
+	public Map<Object, Object> findPwdMemberJson(MemberVO vo) {
+		int count = 0;
+		Map<Object, Object> map = new HashMap<Object, Object>();
+		
+		count = memberService.findPwdMemberJson(vo);
+		map.put("cnt",  count);
+		
+		
+		
+		return map;
+	}
 	
 	//멤버 체크
 	@RequestMapping("/checkMember.do")
