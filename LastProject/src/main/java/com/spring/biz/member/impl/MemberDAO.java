@@ -73,7 +73,6 @@ public class MemberDAO {
 		return mybatis.selectOne("findPwdMemberJson", vo);
 	}
 	
-	//비밀번호 중복확인
 	public int checkPhoneJson(String m_phone) {
 		return mybatis.selectOne("checkPhoneJson", m_phone);
 	}

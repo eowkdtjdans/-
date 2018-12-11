@@ -51,12 +51,6 @@ public class MemberServiceImpl implements MemberService{
 			return memberDAO.getId(paramMap);
 		}
 
-	/*@Override
-	public List<MemberVO> idCheck(String m_id) {
-		return memberDAO.idCheck(m_id);
-	}*/
-
-
 	@Override
 	public int loginCheck(String m_id, String m_pwd) {
 		return memberDAO.loginCheck(m_id, m_pwd);

@@ -89,15 +89,17 @@ public class MemberController {
 		return map;
 	}
 	//핸드폰 번호 체크
-	@RequestMapping(value="/checkPhoneJson.do", method=RequestMethod.POST)
+	@RequestMapping(value="/checkPhoneJson.do")
 	@ResponseBody
 	public Map<Object, Object> checkPhoneJson(@RequestBody String m_phone) {
 		int count = 0;
-		Map<Object, Object> map = new HashMap<Object, Object>();
+        Map<Object, Object> map = new HashMap<Object, Object>();
+	 
 		
 		count = memberService.checkPhoneJson(m_phone);
 		map.put("cnt", count);
-		return map;
+		 
+        return map;
 	}
 	//멤버 체크
 	@RequestMapping("/checkMemberJson.do")
