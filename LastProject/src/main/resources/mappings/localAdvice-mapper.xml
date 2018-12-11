@@ -6,10 +6,13 @@
 <!-- mapper 태그의 namespace 속성 필수 작성  -->  
 <mapper namespace="localAdviceDAO">
 	<!-- 키값으로 전체조회 -->
-	<select id="getLocalAdviceList" parameterType="String" resultType="localadvice">
-		SELECT * FROM LOCALADVICE 
+	<select id="getLocalAdviceList" parameterType="Map" resultType="localadvice">
+		<!-- SELECT * FROM LOCALADVICE 
 		WHERE UPPER(L_SUBJECT) LIKE '%' || UPPER(#{key}) || '%' 
-		ORDER BY L_IDX DESC
+		ORDER BY L_IDX DESC -->
+		SELECT R_NUM, L_IDX, M_ID, L_SUBJECT, L_CONTENT, L_DATE, L_UPVOTE, L_REVIEWCOUNT  
+		FROM (SELECT ROWNUM R_NUM, B.*FROM (SELECT *FROM LOCALADVICE ORDER BY L_IDX DESC) B) 
+		WHERE UPPER(L_SUBJECT) LIKE '%' || UPPER(#{key}) || '%'  AND (R_NUM BETWEEN #{begin} AND #{end}) 
 	</select>
 	
 	<!-- 키값에 해당하는 게시글수 조회 -->

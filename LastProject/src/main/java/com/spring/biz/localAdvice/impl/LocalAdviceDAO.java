@@ -1,6 +1,7 @@
 package com.spring.biz.localAdvice.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +16,8 @@ public class LocalAdviceDAO {
 	private SqlSessionTemplate mybatis;
 	
 	//현지정보 문의게시판 전체조회
-	public List<LocalAdviceVO> getLocalAdviceList(String key) {
-		return mybatis.selectList("getLocalAdviceList", key);
+	public List<LocalAdviceVO> getLocalAdviceList(Map<String, Object> map) {
+		return mybatis.selectList("getLocalAdviceList", map);
 	}
 	
 	//(서울)에 대한 게시글 수

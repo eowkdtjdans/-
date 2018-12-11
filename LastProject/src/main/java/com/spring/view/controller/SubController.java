@@ -28,7 +28,8 @@ public class SubController {
 		} else if(searchCondition == "find_event") {
 			path = "/getEventList.do";
 		} else if(searchCondition.equals("find_advice")) {
-			path = "/getLocalAdviceList.do";	
+			System.out.println("/getLocalAdviceList.do?cPage=1");
+			path = "/getLocalAdviceList.do?cPage=1";	
 		}
 		model.addAttribute("key", searchKeyword);
 		model.addAttribute("searchCondition", searchCondition);

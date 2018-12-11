@@ -11,9 +11,13 @@
 	<title>회원가입</title>
 	<link rel="stylesheet" type="text/css" href="views/bootstrapModal/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="views/cssModal/my-login.css">
-	<title>회원가입</title>
 	
+	<link rel="stylesheet" href="views/datepicker/public/theme/css/t-datepicker.min.css">
+	<link rel="stylesheet" href="views/datepicker/public/theme/css/themes/t-datepicker-bluegrey.css">
+	<!-- blue, bluegrey, cyan, green, lime, main, orange, purple, teal, yellow -->
 	
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<script src="views/datepicker/public/theme/js/t-datepicker.min.js"></script>
 	
  <script>
  function register(frm) {
@@ -72,9 +76,40 @@ function fillInAddress() { //lat 와 lng 값을 넘겨줄 input 태그에 값 �
 	document.getElementById("lat").value=place.geometry.location.lat();
 	document.getElementById("lng").value=place.geometry.location.lng();
 }
+
+
+/* picker만 생성 */
+$(document).ready(function(){
+	$('.t-datepicker').tDatePicker({
+	  autoClose:false,
+	  durationArrowTop:200,
+	  formatDate:'yyyy-mm-dd',
+	  startDate:document.getElementById("year").value + "-01-01",
+	  limitPrevMonth:900,
+	  limitDateRanges:68,
+	  numCalendar:1,
+	  titleMonthsLimitShow:12,
+	  dateRangesHover: false
+	})
+});
+
+function yearChange() {
+	$('.t-datepicker').tDatePicker({
+	  autoClose:false,
+	  durationArrowTop:200,
+	  formatDate:'yyyy-mm-dd',
+	  startDate:document.getElementById("year").value + "-01-01",
+	  limitPrevMonth:900,
+	  limitDateRanges:68,
+	  numCalendar:1,
+	  titleMonthsLimitShow:12,
+	  dateRangesHover: false
+	});
+}
+
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?v=3&sensor=false&libraries=places&callback=initAutocomplete&key=AIzaSyAfB2qQnvAuU2YFFqi8hrPWfjJNyxl5kWc" async defer></script>
-	
+
 </head>
 <body class="my-login-page">
 	<section class="h-100">
@@ -128,11 +163,20 @@ function fillInAddress() { //lat 와 lng 값을 넘겨줄 input 태그에 값 �
 									<label for="birthday">생년월일</label>
 									<input id="m_birthday" type="text" class="form-control" name="m_birthday" required data-eye> 
 								</div>
-						
-								<!-- <div class="form-group">
-									<label for="phone">주소</label>
-									<input id="m_address" type="text" class="form-control" name="m_address" required data-eye>
-								</div> -->
+								
+								<c:set var="yearStart" value="1899"/>
+								<select id="year" onchange="yearChange()">
+									<c:forEach begin="1900" end="2018" step="1">
+										<c:set var="yearStart" value="${yearStart + 1}"/>
+										<option>${yearStart}</option>
+									</c:forEach>
+								</select>
+								
+								<div class="form-group">
+									<div class="t-datepicker">
+										<div class="t-check-in t-picker-only"></div>
+									</div>
+								</div>
 								
 								<div id="locationField" class="form-group">
 									<label for="address">주소</label>
@@ -169,7 +213,7 @@ function fillInAddress() { //lat 와 lng 값을 넘겨줄 input 태그에 값 �
 			</div>
 		</div>
 	</section>
-
+	
 	<script src="js/jquery.min.js"></script>
 	<script src="bootstrap/js/bootstrap.min.js"></script>
 	<script src="js/my-login.js"></script>

@@ -61,7 +61,7 @@
 
 <script>
 	function updatego(frm){
-		alert("하이");
+		alert("../updateLocalAdvice.do 요청하는 스크립트");
 		frm.action="../updateLocalAdvice.do";
 		frm.submit();
 	}
