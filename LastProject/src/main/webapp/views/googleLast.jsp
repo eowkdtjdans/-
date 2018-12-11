@@ -85,7 +85,7 @@ function viewMarker() {
 				fnRemoveMarker();
 			 },
 			success: function (json) {
-				var markerList = $.parseJSON(json);
+				var markerList = json;
 				var listLen = markerList.length;
 				for(var i=0; i<listLen; i++){
 					if (parseFloat(startLat) <= parseFloat(markerList[i].lat) && parseFloat(startLng) <= parseFloat(markerList[i].lng) && parseFloat(endLat) >= parseFloat(markerList[i].lat) && parseFloat(endLng) >= parseFloat(markerList[i].lng))
@@ -149,7 +149,7 @@ function move() {
 <body>
 	<form action="#" onsubmit="move(); return false" name="frm1">
 		<div id="locationField">
-		  <input id="autocomplete" placeholder="Enter your address" type="text" value="Hawaii">
+		  <input id="autocomplete" placeholder="Enter your address" type="text">
 		</div>
 		<input type="submit" value="move"/>
 	</form>
