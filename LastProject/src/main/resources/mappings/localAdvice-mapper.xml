@@ -33,6 +33,10 @@
 		SELECT * FROM PROFILE_IMAGE WHERE M_ID=#{m_id}
 	</select>
 	
+	<!-- 게시글 수정 -->
+	<update id="updateLocalAdvice" parameterType="localadvice">
+		UPDATE LOCALADVICE SET L_SUBJECT=#{l_subject}, L_CONTENT=#{l_content} WHERE L_IDX=#{l_idx} 
+	</update>
 </mapper>
 
 

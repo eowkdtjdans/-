@@ -39,6 +39,11 @@ public class LocalAdviceDAO {
 		return mybatis.selectOne("getProfileImage", vo);
 	}
 	
+	//게시글 수정
+	public void updateLocalAdvice(LocalAdviceVO vo) {
+		mybatis.update("updateLocalAdvice", vo);
+	}
+	
 }
 
 
