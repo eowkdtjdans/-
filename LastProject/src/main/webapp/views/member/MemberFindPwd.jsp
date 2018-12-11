@@ -16,7 +16,7 @@
 <script>
 
 	function findPwd(frm) {
-		 var str = $("form").serialize();
+		 var str = $("#form").serialize();
 		alert(str);
 		 $.ajax({
 			async : true,
@@ -26,9 +26,18 @@
 			url : "../../findPwdMemberJson.do",
 			success : function(data) {
 				console.log(data);
-				alert(data);
-				frm.action="../../findPwdMember.do";
-				frm.submit(); 
+				if (data.cnt > 0) {
+					alert(data);
+					frm.action="../../findPwdMember.do";
+					frm.submit(); 
+					return false;
+				} else {
+					alert("회원정보가 없습니다. 다시 입력하세요.");
+					frm.m_id.value = "";
+					frm.m_phone.value = "";
+					frm.m_id.focus();
+				}
+				
 			},
 		}); 
 		

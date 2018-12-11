@@ -10,16 +10,15 @@
 <script>
 	//로그인 값이 있던 없던 그냥 넘어가니까 JSON을 사용해서 데이터베이스에 있는지 체크하기.
 	function login(frm) {
-		var m_id = $("#m_id").val();
-		var m_pwd = $("#m_pwd").val();
+	var str = $("#form").serialize();
+		alert(str); 
 		
 		$.ajax({
 			async: true,
-			type : 'POST',
+			type : "POST",
 			dataType : "json",
-			data : m_id,
-		    contentType: "application/json; charset=UTF-8",
-			url : '../../checkMember.do',
+			data : str,
+			url : '../../loginMemberJson.do',
 			success : function(data) { 
 				console.log(data);
 				if (data.cnt > 0) {
@@ -36,7 +35,7 @@
 				
 			}
 			
-		})
+		}) 
 	
 		 
 
@@ -63,7 +62,7 @@
 					<div class="card fat">
 						<div class="card-body">
 							<h4 class="card-title" style="text-align : center;">로그인</h4>
-							<form method="POST" class="my-login-validation">
+							<form method="POST" class="my-login-validation" id="form">
 								<div class="form-group">
 									<label for="email">아이디</label>
 									<input id="m_id" type="email" class="form-control" name="m_id" required autofocus>

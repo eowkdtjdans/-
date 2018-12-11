@@ -8,7 +8,6 @@ import javax.servlet.http.HttpSession;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.spring.biz.member.MemberVO;
 
@@ -55,13 +54,28 @@ public class MemberDAO {
 	}
 	
 	//아이디 체크
-	public int checkMember(String m_id) {
-		return mybatis.selectOne("checkMember", m_id);
+	public int checkMemberJson(String m_id) {
+		return mybatis.selectOne("checkMemberJson", m_id);
 	}
 	
-	//비밀번호 체크
+	
+
+	public int loginMemberJson(MemberVO vo) {
+		return mybatis.selectOne("loginMemberJson", vo);
+	}
+	
+	//아이디찾기 JSON
+	public int findIdMemberJson(MemberVO vo) {
+		return mybatis.selectOne("findIdMemberJson", vo);
+	}
+	//비밀번호찾기 JSON
 	public int findPwdMemberJson(MemberVO vo) {
 		return mybatis.selectOne("findPwdMemberJson", vo);
+	}
+	
+	//비밀번호 중복확인
+	public int checkPhoneJson(String m_phone) {
+		return mybatis.selectOne("checkPhoneJson", m_phone);
 	}
 
 

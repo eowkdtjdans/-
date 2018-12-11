@@ -16,9 +16,37 @@
 <script>
 
 	function findId(frm) {
-		frm.action="../../findIdMember.do";
-		frm.submit();
-		return false;
+		/* var str = $("#form").serialize();
+		alert(str); */
+		var obj = new Object(); // JSON형식으로 변환 할 오브젝트
+		   obj.m_name = frm.m_name.value; // form의 값을 오브젝트에 저장
+		   obj.m_phone = frm.m_phone.value;
+		   var json_data = JSON.stringify(obj); // form의 값을 넣은 오브젝트를 JSON형식으로 
+		$.ajax({
+			async : true,
+			type : "POST",
+			dataType : "json",
+			data : json_data,
+			url :  "../../findIdMemberJson.do",
+			contentType: "application/json; charset=UTF-8",
+			success : function(data) {
+				consoloe.log(data);
+				if (data.cnt > 0)  {
+					alert(data);
+					frm.action="../../findIdMember.do";
+					frm.submit();
+					return false;
+				} else {
+					alert("회원정보가 없습니다. 다시입력하세요.");
+					frm.m_tempId.value = "";
+					frm.m_name.value = "";
+					frm.m_phone.value = "";
+					frm.m_tempId.focus();
+				}
+					
+			}
+		})
+		
 	};
 </script>	
 	

@@ -61,11 +61,15 @@ public class MemberServiceImpl implements MemberService{
 	public int loginCheck(String m_id, String m_pwd) {
 		return memberDAO.loginCheck(m_id, m_pwd);
 	}
-
+	
 
 	@Override
-	public int checkMember(String m_id) {
-		return memberDAO.checkMember(m_id);
+	public int checkMemberJson(String m_id) {
+		return memberDAO.checkMemberJson(m_id);
+	}
+	@Override
+	public int checkPhoneJson(String m_phone) {
+		return memberDAO.checkPhoneJson(m_phone);
 	}
 
 
@@ -73,6 +77,22 @@ public class MemberServiceImpl implements MemberService{
 	public int findPwdMemberJson(MemberVO vo) {
 		return memberDAO.findPwdMemberJson(vo);
 	}
+
+
+	@Override
+	public int loginMemberJson(MemberVO vo) {
+		return memberDAO.loginMemberJson(vo);
+	}
+
+
+	@Override
+	public int findIdMemberJson(MemberVO vo) {
+		return memberDAO.findIdMemberJson(vo);
+	}
+
+
+	
+
 
 
 

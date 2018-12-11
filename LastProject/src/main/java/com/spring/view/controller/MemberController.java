@@ -40,11 +40,6 @@ public class MemberController {
 		System.out.println("=======멤버 컨트롤러 시작");
 	}
 	
-	
-	
-
-	
-	
 	//======================================================================
 	//회원가입
 			@RequestMapping(value = "/insertMember.do", method=RequestMethod.GET)
@@ -62,19 +57,6 @@ public class MemberController {
 	}
 	
 	//======================================================================
-	//로그인 체크
-//		@RequestMapping(value= "/logincheck.do", method=RequestMethod.POST)
-//	    @ResponseBody
-//	    public Map<Object, Object> MemberList(@RequestBody String m_id, @RequestBody String m_pwd) {
-//			
-//			int count = 0;
-//			Map<Object, Object> map = new HashMap<Object, Object>();
-//			
-//			count = memberService.loginCheck(m_id, m_pwd);
-//			map.put("cnt", count);
-//			
-//		 return map;
-//	    }
 	@RequestMapping(value="/findPwdMemberJson.do", method=RequestMethod.POST)
 	@ResponseBody
 	public Map<Object, Object> findPwdMemberJson(MemberVO vo) {
@@ -83,21 +65,49 @@ public class MemberController {
 		
 		count = memberService.findPwdMemberJson(vo);
 		map.put("cnt",  count);
+		return map;
+	}
+	@RequestMapping(value="/loginMemberJson.do", method=RequestMethod.POST)
+	@ResponseBody
+	public Map<Object, Object> loginMemberJson(MemberVO vo) {
+		int count = 0;
+		Map<Object, Object> map = new HashMap<Object, Object>();
 		
-		
-		
+		count = memberService.loginMemberJson(vo);
+		map.put("cnt",  count);
 		return map;
 	}
 	
+	@RequestMapping(value="/findIdMemberJson.do", method=RequestMethod.POST)
+	@ResponseBody
+	public Map<Object, Object> findIdMemberJson(MemberVO vo) {
+		int count = 0;
+		Map<Object, Object> map = new HashMap<Object, Object>();
+		
+		count = memberService.findIdMemberJson(vo);
+		map.put("cnt", count);
+		return map;
+	}
+	//핸드폰 번호 체크
+	@RequestMapping(value="/checkPhoneJson.do", method=RequestMethod.POST)
+	@ResponseBody
+	public Map<Object, Object> checkPhoneJson(@RequestBody String m_phone) {
+		int count = 0;
+		Map<Object, Object> map = new HashMap<Object, Object>();
+		
+		count = memberService.checkPhoneJson(m_phone);
+		map.put("cnt", count);
+		return map;
+	}
 	//멤버 체크
-	@RequestMapping("/checkMember.do")
+	@RequestMapping("/checkMemberJson.do")
     @ResponseBody
-    public Map<Object, Object> checkMember(@RequestBody String m_id) {
+    public Map<Object, Object> checkMemberJson(@RequestBody String m_id) {
         
         int count = 0;
         Map<Object, Object> map = new HashMap<Object, Object>();
  
-        count = memberService.checkMember(m_id);
+        count = memberService.checkMemberJson(m_id);
         map.put("cnt", count);
  
         return map;
@@ -112,8 +122,6 @@ public class MemberController {
 	@RequestMapping(value="/loginMember.do", method=RequestMethod.POST) //@RequestParam("m_id") String m_id, @RequestParam("m_pwd") String m_pwd,
 	public String loginPost(MemberVO vo, HttpSession session) throws Exception {
 		System.out.println(">> 포스트방식 로그인처리");
-		/*String m_id = request.getParameter("m_id");
-		String m_pwd = request.getParameter("m_pwd");*/
 		System.out.println("m_id : " + vo.getM_id());
 		System.out.println("m_pwd : " + vo.getM_pwd());
 		MemberVO vo2 = memberService.loginMember(vo, session);

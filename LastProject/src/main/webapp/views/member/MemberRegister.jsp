@@ -22,28 +22,64 @@
  <script>
  function register(frm) {
 		if(confirm("회원가입을 하시겠습니까?")){
-	        if(idck==0){
-	            alert('아이디 중복체크를 해주세요');
-	            return false;
-	        }else{
+			 if(idck == 1 || idck == 1) {
 	        alert("회원가입을 축하합니다");
-	    	frm.action = "../../insertMember.do"; //로그인 작업 처리
+	        frm.action = "../../insertMember.do"; //로그인 작업 처리
 			frm.submit();
+	        } else {
+	        	alert("중복체크 해라");
 	        }
 	    }
 	
 	};
-	
+</script>	
+
+<script>
+	 function phoneCheck(frm) {
+		 var m_phone = $('#m_phone').val();
+		var phonecheck = 0;
+		$.ajax({
+			async: true,
+			type : 'POST',
+			dataType : "json",
+			data : m_phone,
+			url : '../../checkPhoneJson.do',
+			
+			   success : function(data) {
+				   console.log(data);
+	               if (data.cnt > 0) {
+	                   
+	                   alert("핸드폰 번호가 존재합니다.");
+	                   alert(data);
+	                   $("#m_phone").focus();
+	                   $("#m_phone").val("");
+	                   idck = 1;
+	               } else {
+	                   alert("사용가능한 핸드폰 번호입니다.");
+	                   alert(data);
+	                   //아이디가 중복하지 않으면  idck = 1 
+	                   idck = 0;
+	               }
+	           },
+	           error : function(error) {
+	               
+	               alert("error : " + error);
+	           }
+	       });
+	 };
+</script>
+
+<script>
   function idCheck(frm) {
 	 var m_id = $('#m_id').val();
-	
+	 var idcheck = 0;
 	$.ajax({
 		async: true,
 		type : 'POST',
 		dataType : "json",
 		data : m_id,
 	    contentType: "application/json; charset=UTF-8",
-		url : '../../checkMember.do',
+		url : '../../checkMemberJson.do',
 		
 		   success : function(data) {
 			   console.log(data);
@@ -52,12 +88,11 @@
                    alert("아이디가 존재합니다. 다른 아이디를 입력해주세요.");
                    $("#m_id").focus();
                    $("#m_id").val("");
-                   
-               
+                   idck = 1;
                } else {
                    alert("사용가능한 아이디입니다.");
                    //아이디가 중복하지 않으면  idck = 1 
-                   idck = 1;
+                   idck = 0;
                }
            },
            error : function(error) {
@@ -66,6 +101,9 @@
            }
        });
 }; 
+</script>
+
+<script>
 var placeSearch, autocomplete;
 function initAutocomplete() {
   autocomplete = new google.maps.places.Autocomplete((document.getElementById('autocomplete')),{types: ['geocode']});
@@ -119,13 +157,13 @@ function yearChange() {
 					<div class="card fat">
 						<div class="card-body">
 							<h4 class="card-title" style="text-align : center;">회원가입</h4>
-							<form method="POST" class="my-login-validation">
+							<form method="POST" class="my-login-validation" id="form">
 								<div class="form-group">
 									<label for="email">아이디</label>
 									<input id="m_id" type="email" class="form-control" name="m_id" required autofocus>
 								</div>
 								
-									<div class="form-group m-0"> <!-- onclick="idCheck(this.form)" -->
+								<div class="form-group m-0"> <!-- onclick="idCheck(this.form)" -->
 									<button type="button" class="btn btn-default btn-block" onclick="idCheck(this.form)" >
 										아이디 중복확인
 									</button>
@@ -145,6 +183,11 @@ function yearChange() {
 								<div class="form-group">
 									<label for="phone">핸드폰</label>
 									<input id="m_phone" type="text" class="form-control" name="m_phone" required data-eye>
+								</div>
+								<div class="form-group m-0"> 
+									<button type="button" class="btn btn-default btn-block" onclick="phoneCheck(this.form)" >
+										핸드폰 중복확인
+									</button>
 								</div>
 						
 						         <div class="form-group" style="text-algin : center; margin : 0 auto">
