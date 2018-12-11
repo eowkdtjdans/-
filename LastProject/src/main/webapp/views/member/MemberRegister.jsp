@@ -18,21 +18,6 @@
 	
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script src="views/datepicker/public/theme/js/t-datepicker.min.js"></script>
-	
- <script>
- function register(frm) {
-		if(confirm("회원가입을 하시겠습니까?")){
-			 if(idck == 1 || idck == 1) {
-	        alert("회원가입을 축하합니다");
-	        frm.action = "../../insertMember.do"; //로그인 작업 처리
-			frm.submit();
-	        } else {
-	        	alert("중복체크 해라");
-	        }
-	    }
-	
-	};
-</script>	
 
 <script>
 	 function phoneCheck(frm) {
@@ -53,12 +38,12 @@
 	                   alert(data);
 	                   $("#m_phone").focus();
 	                   $("#m_phone").val("");
-	                   idck = 1;
+	                   phoneck = 0;
+	                   return false;
 	               } else {
 	                   alert("사용가능한 핸드폰 번호입니다.");
-	                   alert(data);
-	                   //아이디가 중복하지 않으면  idck = 1 
-	                   idck = 0;
+	                   phoneck = 1;
+	                   return false;
 	               }
 	           },
 	           error : function(error) {
@@ -88,11 +73,13 @@
                    alert("아이디가 존재합니다. 다른 아이디를 입력해주세요.");
                    $("#m_id").focus();
                    $("#m_id").val("");
-                   idck = 1;
+                   idck = 0;
+                   return false;
                } else {
                    alert("사용가능한 아이디입니다.");
                    //아이디가 중복하지 않으면  idck = 1 
-                   idck = 0;
+                   idck = 1;
+                   return false;
                }
            },
            error : function(error) {
@@ -102,6 +89,25 @@
        });
 }; 
 </script>
+
+ <script>
+ var idck = 0;
+ var phoneck = 0;
+ function register(frm) {
+		if(confirm("회원가입을 하시겠습니까?")){
+			 if(idck == 1 && phoneck == 1) {
+	        alert("회원가입을 축하합니다");
+	        frm.action = "../../insertMember.do"; //로그인 작업 처리
+			frm.submit();
+	        } else if (idck == 0){
+	        	alert("아이디중복체크 해라");
+	        } else if (phoneck == 0) {
+	        	alert("핸드폰 중복체크 해라");
+	        }
+	    }
+	
+	};
+</script>	
 
 <script>
 var placeSearch, autocomplete;
@@ -114,8 +120,6 @@ function fillInAddress() { //lat 와 lng 값을 넘겨줄 input 태그에 값 �
 	document.getElementById("lat").value=place.geometry.location.lat();
 	document.getElementById("lng").value=place.geometry.location.lng();
 }
-
-
 /* picker만 생성 */
 $(document).ready(function(){
 	$('.t-datepicker').tDatePicker({
@@ -130,7 +134,6 @@ $(document).ready(function(){
 	  dateRangesHover: false
 	})
 });
-
 function yearChange() {
 	$('.t-datepicker').tDatePicker({
 	  autoClose:false,
@@ -144,7 +147,6 @@ function yearChange() {
 	  dateRangesHover: false
 	});
 }
-
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?v=3&sensor=false&libraries=places&callback=initAutocomplete&key=AIzaSyAfB2qQnvAuU2YFFqi8hrPWfjJNyxl5kWc" async defer></script>
 
@@ -160,10 +162,10 @@ function yearChange() {
 							<form method="POST" class="my-login-validation" id="form">
 								<div class="form-group">
 									<label for="email">아이디</label>
-									<input id="m_id" type="email" class="form-control" name="m_id" required autofocus>
+									<input id="m_id" type="email" class="form-control" name="m_id">
 								</div>
 								
-								<div class="form-group m-0"> <!-- onclick="idCheck(this.form)" -->
+								<div class="form-group m-0">
 									<button type="button" class="btn btn-default btn-block" onclick="idCheck(this.form)" >
 										아이디 중복확인
 									</button>
@@ -172,17 +174,17 @@ function yearChange() {
 
 								<div class="form-group">
 									<label for="password">비밀번호</label>
-									<input id="m_pwd" type="password" class="form-control" name="m_pwd" required data-eye>
+									<input id="m_pwd" type="password" class="form-control" name="m_pwd">
 								</div>
 						
 								<div class="form-group">
 									<label for="name">성함</label>
-									<input id="m_name" type="text" class="form-control" name="m_name" required data-eye>
+									<input id="m_name" type="text" class="form-control" name="m_name">
 								</div>
 						
 								<div class="form-group">
 									<label for="phone">핸드폰</label>
-									<input id="m_phone" type="text" class="form-control" name="m_phone" required data-eye>
+									<input id="m_phone" type="text" class="form-control" name="m_phone">
 								</div>
 								<div class="form-group m-0"> 
 									<button type="button" class="btn btn-default btn-block" onclick="phoneCheck(this.form)" >
@@ -201,10 +203,10 @@ function yearChange() {
 						               </label>
 						            </div>
 						         </div>
-						
-								<div class="form-group">
+						         
+						         <div class="form-group">
 									<label for="birthday">생년월일</label>
-									<input id="m_birthday" type="text" class="form-control" name="m_birthday" required data-eye> 
+									<input id="m_birthday" type="text" class="form-control" name="m_birthday"> 
 								</div>
 								
 								<c:set var="yearStart" value="1899"/>
@@ -217,13 +219,13 @@ function yearChange() {
 								
 								<div class="form-group">
 									<div class="t-datepicker">
-										<div class="t-check-in t-picker-only"></div>
+										<div class="t-check-in t-picker-only" ></div>
 									</div>
 								</div>
 								
 								<div id="locationField" class="form-group">
 									<label for="address">주소</label>
-									<input id="autocomplete" type="text" class="form-control" name="m_address" required data-eye>
+									<input id="autocomplete" type="text" class="form-control" name="m_address">
 									<input class="field" id="lat" type="hidden" class="form-control" name="lat"/>
 									<input class="field" id="lng" type="hidden" class="form-control" name="lng"/>
 								</div>
