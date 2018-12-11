@@ -1,4 +1,4 @@
- <%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -11,38 +11,53 @@
 	<title>회원가입</title>
 	<link rel="stylesheet" type="text/css" href="views/bootstrapModal/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="views/cssModal/my-login.css">
-	<title>회원가입</title>
 	
+	<link rel="stylesheet" href="views/datepicker/public/theme/css/t-datepicker.min.css">
+	<link rel="stylesheet" href="views/datepicker/public/theme/css/themes/t-datepicker-bluegrey.css">
+	<!-- blue, bluegrey, cyan, green, lime, main, orange, purple, teal, yellow -->
 	
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<script src="views/datepicker/public/theme/js/t-datepicker.min.js"></script>
 	
  <script>
  function register(frm) {
-		alert("외않뒈");
-		frm.action = "../../insertMember.do"; //로그인 작업 처리
-		frm.submit();
+		if(confirm("회원가입을 하시겠습니까?")){
+	        if(idck==0){
+	            alert('아이디 중복체크를 해주세요');
+	            return false;
+	        }else{
+	        alert("회원가입을 축하합니다");
+	    	frm.action = "../../insertMember.do"; //로그인 작업 처리
+			frm.submit();
+	        }
+	    }
+	
 	};
 	
-/*  function idCheck(frm) {
+  function idCheck(frm) {
 	 var m_id = $('#m_id').val();
-	alert("m_id : " + m_id);
 	
 	$.ajax({
+		async: true,
 		type : 'POST',
+		dataType : "json",
 		data : m_id,
-		url : '../../idCheck.do',
-		dataType : 'JSON',
+	    contentType: "application/json; charset=UTF-8",
+		url : '../../checkMember.do',
+		
 		   success : function(data) {
+			   console.log(data);
                if (data.cnt > 0) {
                    
                    alert("아이디가 존재합니다. 다른 아이디를 입력해주세요.");
                    $("#m_id").focus();
+                   $("#m_id").val("");
                    
                
                } else {
                    alert("사용가능한 아이디입니다.");
                    //아이디가 중복하지 않으면  idck = 1 
                    idck = 1;
-                   
                }
            },
            error : function(error) {
@@ -50,24 +65,51 @@
                alert("error : " + error);
            }
        });
-}); */
-
-
+}; 
 var placeSearch, autocomplete;
-
 function initAutocomplete() {
   autocomplete = new google.maps.places.Autocomplete((document.getElementById('autocomplete')),{types: ['geocode']});
   autocomplete.addListener('place_changed', fillInAddress);
 }
-
 function fillInAddress() { //lat 와 lng 값을 넘겨줄 input 태그에 값 넣어주기
 	var place = autocomplete.getPlace();
 	document.getElementById("lat").value=place.geometry.location.lat();
 	document.getElementById("lng").value=place.geometry.location.lng();
 }
+
+
+/* picker만 생성 */
+$(document).ready(function(){
+	$('.t-datepicker').tDatePicker({
+	  autoClose:false,
+	  durationArrowTop:200,
+	  formatDate:'yyyy-mm-dd',
+	  startDate:document.getElementById("year").value + "-01-01",
+	  limitPrevMonth:900,
+	  limitDateRanges:68,
+	  numCalendar:1,
+	  titleMonthsLimitShow:12,
+	  dateRangesHover: false
+	})
+});
+
+function yearChange() {
+	$('.t-datepicker').tDatePicker({
+	  autoClose:false,
+	  durationArrowTop:200,
+	  formatDate:'yyyy-mm-dd',
+	  startDate:document.getElementById("year").value + "-01-01",
+	  limitPrevMonth:900,
+	  limitDateRanges:68,
+	  numCalendar:1,
+	  titleMonthsLimitShow:12,
+	  dateRangesHover: false
+	});
+}
+
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?v=3&sensor=false&libraries=places&callback=initAutocomplete&key=AIzaSyAfB2qQnvAuU2YFFqi8hrPWfjJNyxl5kWc" async defer></script>
-	
+
 </head>
 <body class="my-login-page">
 	<section class="h-100">
@@ -121,11 +163,20 @@ function fillInAddress() { //lat 와 lng 값을 넘겨줄 input 태그에 값 �
 									<label for="birthday">생년월일</label>
 									<input id="m_birthday" type="text" class="form-control" name="m_birthday" required data-eye> 
 								</div>
-						
-								<!-- <div class="form-group">
-									<label for="phone">주소</label>
-									<input id="m_address" type="text" class="form-control" name="m_address" required data-eye>
-								</div> -->
+								
+								<c:set var="yearStart" value="1899"/>
+								<select id="year" onchange="yearChange()">
+									<c:forEach begin="1900" end="2018" step="1">
+										<c:set var="yearStart" value="${yearStart + 1}"/>
+										<option>${yearStart}</option>
+									</c:forEach>
+								</select>
+								
+								<div class="form-group">
+									<div class="t-datepicker">
+										<div class="t-check-in t-picker-only"></div>
+									</div>
+								</div>
 								
 								<div id="locationField" class="form-group">
 									<label for="address">주소</label>
@@ -162,7 +213,7 @@ function fillInAddress() { //lat 와 lng 값을 넘겨줄 input 태그에 값 �
 			</div>
 		</div>
 	</section>
-
+	
 	<script src="js/jquery.min.js"></script>
 	<script src="bootstrap/js/bootstrap.min.js"></script>
 	<script src="js/my-login.js"></script>
