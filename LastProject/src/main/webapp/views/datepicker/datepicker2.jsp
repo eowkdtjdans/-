@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 
 <link rel="stylesheet" href="public/theme/css/t-datepicker.min.css">
-<link rel="stylesheet" href="public/theme/css/themes/t-datepicker-main.css">
+<link rel="stylesheet" href="public/theme/css/themes/t-datepicker-bluegrey.css">
 <!-- blue, bluegrey, cyan, green, lime, main, orange, purple, teal, yellow -->
 
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -35,10 +35,10 @@
 	/* picker만 생성 */
 	$(document).ready(function(){
 		$('.t-datepicker').tDatePicker({
-			autoClose: true,
+			autoClose: false,
 			limitNextMonth: 3,
-			numCalendar : 1,
-			dateRangesHover: false
+			numCalendar : 2,
+			dateRangesHover: true
 		});
 	});
 	
@@ -56,7 +56,6 @@
 	<div class="t-datepicker">
 		<div class="t-check-in t-picker-only"></div>
 	</div>
-
 
 </body>
 </html>
