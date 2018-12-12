@@ -150,8 +150,8 @@
 		</div>	
 		
 		<form>
-			<table>
-				
+			<table> 
+					
 			</table>
 		</form>
 	</div>

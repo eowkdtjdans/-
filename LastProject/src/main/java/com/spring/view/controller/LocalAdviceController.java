@@ -34,7 +34,7 @@ public class LocalAdviceController {
 		System.out.println("getLocalAdviceList.do로 왔습니다.");
 		PagingVO p = new PagingVO();
 		p.setNumPerPage(10);
-		p.setPagePerBlock(10);
+		p.setPagePerBlock(3);
 		int countLocalAdvice = localAdviceService.countLocalAdvice(key);
 		p.setTotalRecord(countLocalAdvice);
 		p.setTotalPage();
@@ -65,6 +65,52 @@ public class LocalAdviceController {
 		model.addAttribute("countLocalAdvice", countLocalAdvice);
 		model.addAttribute("pvo", p);
 		
+		session.setAttribute("cPage", cPage);
+		
+		return "views/localAdvice/localAdvice.jsp";
+	
+	}
+	
+	
+	
+	@RequestMapping(value="/getLocalAdviceList2.do" , method=RequestMethod.GET)
+	public String getLocalAdviceList2(Model model, @ModelAttribute("key") String key, @RequestParam("cPage") String cPage, HttpSession session) {
+		System.out.println("getLocalAdviceList.do로 왔습니다.");
+		PagingVO p = new PagingVO();
+		p.setNumPerPage(10);
+		p.setPagePerBlock(3);
+		int countLocalAdvice = localAdviceService.countLocalAdvice(key);
+		p.setTotalRecord(countLocalAdvice);
+		p.setTotalPage();
+		
+		if (cPage != null) {
+			p.setNowPage(Integer.parseInt(cPage));
+		}
+		
+		p.setEnd(p.getNowPage() * p.getNumPerPage());
+		p.setBegin(p.getEnd() - p.getNumPerPage() + 1);
+				
+		int nowPage = p.getNowPage();
+		p.setBeginPage((nowPage - 1) / p.getPagePerBlock() * p.getPagePerBlock() + 1);
+		p.setEndPage(p.getBeginPage() + p.getPagePerBlock() - 1);
+		
+		if (p.getEndPage() > p.getTotalPage()) {
+			p.setEndPage(p.getTotalPage());
+		}
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("begin", p.getBegin());
+		map.put("end", p.getEnd());
+		map.put("key", key);
+		
+		List<LocalAdviceVO> localAdviceList = localAdviceService.getLocalAdviceList(map);
+		
+		model.addAttribute("localAdviceList", localAdviceList);
+		model.addAttribute("countLocalAdvice", countLocalAdvice);
+		model.addAttribute("pvo", p);
+		
+		session.setAttribute("cPage", cPage);
+		
 		return "views/localAdvice/localAdvice.jsp";
 	
 	}
@@ -72,10 +118,18 @@ public class LocalAdviceController {
 	
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
 	//localAdvice게시판으로 단순 페이지이동
 	@RequestMapping(value="/getLocalAdviceList.do", method=RequestMethod.GET)
 	public String getLocalAdviceList() {
-		System.out.println("겟로컬어드바이스리스트");
+		System.out.println("겟로컬어드바이스리스트 GET방식");
 		return "views/localAdvice/localAdvice.jsp";
 	}
 	
@@ -106,6 +160,9 @@ public class LocalAdviceController {
 		return "/sub.do";
 	}
 	
+	
+	
+	
 	//로컬어드바이스 게시판에서 상세화면페이지로 이동
 	@RequestMapping(value="/getLocalAdvice.do")
 	public String moveGetLocalAdvice(LocalAdviceVO vo, ProfileImageVO pvo, Model model, @RequestParam("l_idx") String l_idx, @RequestParam("m_id") String m_id) {
@@ -114,7 +171,6 @@ public class LocalAdviceController {
 		vo.setL_idx(Integer.parseInt(l_idx));
 		LocalAdviceVO getLocalAdvice = localAdviceService.getLocalAdvice(vo);
 		
-		System.out.println("m_id :" + m_id);
 		pvo.setM_id(m_id);
 		ProfileImageVO getProfileImage = localAdviceService.getProfileImage(pvo);
 		
@@ -123,6 +179,10 @@ public class LocalAdviceController {
 		
 		return "views/localAdvice/getLocalAdvice.jsp";
 	}
+	
+	
+	
+	
 	
 	//localAdvice게시글 수정페이지로 페이지이동
 	@RequestMapping(value="/updateLocalAdvice.do", method=RequestMethod.GET)
@@ -144,14 +204,17 @@ public class LocalAdviceController {
 	
 	//localAdvice게시글 수정
 	@RequestMapping(value="/updateLocalAdvice.do", method=RequestMethod.POST)
-	public String updateLocalAdviceList(LocalAdviceVO vo, @RequestParam("l_subject") String l_subject,  @RequestParam("l_content") String l_content, @RequestParam("l_idx") String l_idx) {
+	public String updateLocalAdviceList(LocalAdviceVO vo, @RequestParam("l_subject") String l_subject,  @RequestParam("l_content") String l_content, @RequestParam("l_idx") int l_idx, HttpSession session ) {
 		System.out.println("/updateLocalAdvice.do 포스트방식");
 		System.out.println("옙");
 		System.out.println("l_idx가몽미 : " + l_idx);
 		
 		localAdviceService.updateLocalAdvice(vo);
 		
-		return "/getLocalAdviceList.do";
+		String m_id = (String)session.getAttribute("m_id");
+		System.out.println("m_id가몽미 : " + m_id);
+		//return "/getLocalAdviceList.do?cPage="+cPage;
+		return "getLocalAdvice.do?&m_id="+m_id;
 	}
 }
 

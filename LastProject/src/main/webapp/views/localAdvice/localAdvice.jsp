@@ -45,8 +45,41 @@
 	a{
 		color:#5e7e9b;
 	}
+	.paging { list-style: none; }
+	.paging li {
+		float: left;
+		margin-right: 30px;
+	}
+	.paging li a {
+		text-decoration: none;
+		 display: block;
+		padding: 3px 3px; 
+		color: black;
+	}
+
+	.paging .disable {
+		padding: 3px 3px;
+		color: silver;
+	}
+	.paging .now {
+		padding: 3px 3px;
+		font-weight: bold;
+	} 
 </style>
- 
+
+<script>
+	/*
+	function paging(frm){
+		alert("페이징");
+		frm.action="../getLocalAdviceList.do?cPage=${pvo.nowPage }"; 
+		href.location="../getLocalAdviceList.do?cPage=${pvo.nowPage }"; 
+		alert("페이징2");
+		frm.method="post";
+		frm.submit();
+	}  
+	*/
+	
+</script> 
  
 </head>
 
@@ -115,7 +148,7 @@
       	<h5>요청하신 키워드에 관한 게시글 수 : ${countLocalAdvice }</h5>
       	<div class="text-right"><a href="../writeLocalAdvice.do" class="btn btn-outline-secondary">게시글 작성</a></div>
       	<br>
-      	<form method="post">
+      	<form method="post" name="frm">
       	<table class="table">
       	<c:choose>
 	      	<c:when test="${empty localAdviceList}">
@@ -147,7 +180,7 @@
 				<%--사용가능(enable) : 두번째 이상(첫번째 아닌경우) --%>
 					<c:otherwise>
 						<li>
-							<a href="../getLocalAdviceList.do?cPage=${pvo.beginPage - 1 }">◀</a>
+							<a href="../getLocalAdviceList2.do?cPage=${pvo.beginPage - 1 }">◀</a>
 						</li>
 					</c:otherwise>	
 				</c:choose>
@@ -161,7 +194,7 @@
 					</c:when>
 					<c:otherwise>
 						<li>
-							<a href="../getLocalAdviceList.do?cPage=${k }">${k }</a>
+							<a href="../getLocalAdviceList2.do?cPage=${k }">${k }</a>
 						</li>
 					</c:otherwise>
 				</c:choose>
@@ -176,7 +209,7 @@
 					<%--사용가능(enable) --%>
 					<c:otherwise>
 						<li>
-							<a href="../getLocalAdviceList.do?cPage=${pvo.endPage + 1 }">▶</a>
+							<a href="../getLocalAdviceList2.do?cPage=${pvo.endPage + 1 }">▶</a>
 						</li>
 					</c:otherwise>
 				</c:choose>
