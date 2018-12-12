@@ -38,16 +38,37 @@
 	</select>
 	
 	<!-- 아이디 중복검사 -->
-	<select id="checkMember" parameterType="String" resultType="Integer">
+	<select id="checkMemberJson" parameterType="String" resultType="Integer">
 		SELECT COUNT(*) FROM MEMBER
 		WHERE M_ID = #{m_id}
 	</select>
+	
+	<select id="checkPhoneJson" parameterType="String" resultType="Integer">
+		SELECT COUNT(*) FROM MEMBER
+		WHERE M_PHONE = #{m_phone}
+	</select>
+	
 	
 	
 	<select id="loginCheck" parameterType="String" resultType="Integer">
 		SELECT COUNT(*) FROM MEMBER 
 		WHERE M_ID = #{m_id} AND M_PWD = #{m_pwd}
 	</select>
+	
+	<select id="findPwdMemberJson" parameterType="String" resultType="Integer">
+		SELECT COUNT(*) FROM MEMBER
+		WHERE M_ID = #{m_id} AND M_PHONE = #{m_phone}
+	</select>
 
-
+	<select id="loginMemberJson" parameterType="String" resultType="Integer">
+		SELECT COUNT(*) FROM MEMBER
+		WHERE M_ID = #{m_id} AND M_PWD = #{m_pwd}
+	</select>
+	
+	<select id="findIdMemberJson" parameterType="String" resultType="Integer">
+		SELECT COUNT(*) FROM MEMBER
+			WHERE M_NAME = #{m_name} AND M_PHONE = #{m_phone}
+	</select> 
+	
+	
 </mapper>

@@ -8,7 +8,6 @@ import javax.servlet.http.HttpSession;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.spring.biz.member.MemberVO;
 
@@ -49,13 +48,33 @@ public class MemberDAO {
 	public MemberVO getId(Map<String, Object> paramMap) {
 		return mybatis.selectOne("getId", paramMap);
 	}
-
+	//로그인 체크
 	public int loginCheck(String m_id, String m_pwd) {
 		return  mybatis.selectOne("loginCheck", m_id);
 	}
+	
+	//아이디 체크
+	public int checkMemberJson(String m_id) {
+		return mybatis.selectOne("checkMemberJson", m_id);
+	}
+	
+	
 
-	public int checkMember(String m_id) {
-		return mybatis.selectOne("checkMember", m_id);
+	public int loginMemberJson(MemberVO vo) {
+		return mybatis.selectOne("loginMemberJson", vo);
+	}
+	
+	//아이디찾기 JSON
+	public int findIdMemberJson(MemberVO vo) {
+		return mybatis.selectOne("findIdMemberJson", vo);
+	}
+	//비밀번호찾기 JSON
+	public int findPwdMemberJson(MemberVO vo) {
+		return mybatis.selectOne("findPwdMemberJson", vo);
+	}
+	
+	public int checkPhoneJson(String m_phone) {
+		return mybatis.selectOne("checkPhoneJson", m_phone);
 	}
 
 

@@ -1,6 +1,7 @@
 package com.spring.biz.localAdvice.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,8 +16,8 @@ public class LocalAdviceServiceImpl implements LocalAdviceService {
 	private LocalAdviceDAO localAdviceDAO;
 	
 	@Override
-	public List<LocalAdviceVO> getLocalAdviceList(String key) {		
-		return localAdviceDAO.getLocalAdviceList(key);
+	public List<LocalAdviceVO> getLocalAdviceList(Map<String, Object> map) {		
+		return localAdviceDAO.getLocalAdviceList(map);
 	}
 
 	@Override
