@@ -18,4 +18,8 @@ public class TravelersDAO {
 		System.out.println("TravelersDAO: getTravelersList()처리");
 		return mybatis.selectList("getTravelersList", key);
 	}
+	
+	public int countTravelers(String key) {
+		return mybatis.selectOne("countTravelers", key);
+	}
 }

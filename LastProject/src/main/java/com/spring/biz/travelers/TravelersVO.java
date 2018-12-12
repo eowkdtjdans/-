@@ -16,6 +16,8 @@ public class TravelersVO {
     private int t_visits;
     // 여행동기 
     private String t_motive;
+    // 프로필사진
+    private String p_route;
     
     
     
@@ -56,10 +58,17 @@ public class TravelersVO {
 	public void setT_motive(String t_motive) {
 		this.t_motive = t_motive;
 	}
+	public String getP_route() {
+		return p_route;
+	}
+	public void setP_route(String p_route) {
+		this.p_route = p_route;
+	}
 	@Override
 	public String toString() {
-		return "TravelPlanVO [m_id=" + m_id + ", t_country=" + t_country + ", t_sleepingnumber=" + t_sleepingnumber
-				+ ", t_dateofvisit=" + t_dateofvisit + ", t_visits=" + t_visits + ", t_motive=" + t_motive + "]";
+		return "TravelersVO [m_id=" + m_id + ", t_country=" + t_country + ", t_sleepingnumber=" + t_sleepingnumber
+				+ ", t_dateofvisit=" + t_dateofvisit + ", t_visits=" + t_visits + ", t_motive=" + t_motive
+				+ ", p_route=" + p_route + "]";
 	}
 	
     

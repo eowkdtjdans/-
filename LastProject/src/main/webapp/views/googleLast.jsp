@@ -146,6 +146,9 @@ function move() {
 }
 
 </SCRIPT>
+<style>
+	.rounded-circle { width: 80px; height: 70px;} 
+</style>
 <body>
 	<form action="#" onsubmit="move(); return false" name="frm1">
 		<div id="locationField">
