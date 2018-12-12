@@ -509,9 +509,9 @@
                     return '<span class="t-day-'+pr_class+'"> ' + check_num_10(d.getDate()) +'</span>'+
                     '<span class="t-month-'+pr_class+'"> '+ showMonths +' </span>'
                 } else {
-                    return '<span class="t-day-'+pr_class+'"> ' + check_num_10(d.getDate()) +'</span>'+
-                    '<span class="t-month-'+pr_class+'"> '+ showMonths +' </span>'+
-                    '<span class="t-year-'+pr_class+'"> '+check_num_10(d.getFullYear()) +'</span>'
+                    return '<span class="t-year-'+pr_class+'"> '+check_num_10(d.getFullYear()) +'</span>' +
+                    '<span class="t-month-'+pr_class+'"> '+ check_num_10(d.getMonth()) +' </span>' +
+                    '<span class="t-day-'+pr_class+'"> ' + check_num_10(d.getDate()) +'</span>'
                 }
             } else {
                 return '';

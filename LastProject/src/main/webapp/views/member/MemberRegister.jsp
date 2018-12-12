@@ -90,6 +90,9 @@ $(document).ready(function(){
 	  numCalendar:1,
 	  titleMonthsLimitShow:12,
 	  dateRangesHover: false
+	}).on('eventClickDay',function(e, dataDate){
+		var getDateInput = $('.t-datepicker').tDatePicker('getDateInput');
+		document.getElementById("m_birthday").value = getDateInput;
 	})
 });
 
@@ -104,8 +107,17 @@ function yearChange() {
 	  numCalendar:1,
 	  titleMonthsLimitShow:12,
 	  dateRangesHover: false
-	});
+	}).on('eventClickDay',function(e, dataDate){
+		var getDateInput = $('.t-datepicker').tDatePicker('getDateInput');
+		document.getElementById("m_birthday").value = getDateInput;
+	})
 }
+
+/* $('.t-datepicker').tDatePicker({
+}).on('clickDateCI',function(e, dateCI) {
+	var getDateInput = $('.t-datepicker').tDatePicker('getDateInput');
+	document.getElementById("m_birthday").value = getDateInput;
+}) */
 
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?v=3&sensor=false&libraries=places&callback=initAutocomplete&key=AIzaSyAfB2qQnvAuU2YFFqi8hrPWfjJNyxl5kWc" async defer></script>
@@ -159,18 +171,15 @@ function yearChange() {
 						            </div>
 						         </div>
 						
-								<div class="form-group">
-									<label for="birthday">생년월일</label>
-									<input id="m_birthday" type="text" class="form-control" name="m_birthday" required data-eye> 
-								</div>
-								
-								<c:set var="yearStart" value="1899"/>
+								<c:set var="yearStart" value="1969"/>
+								<label for="birthday">생년월일</label>
 								<select id="year" onchange="yearChange()">
-									<c:forEach begin="1900" end="2018" step="1">
+									<c:forEach begin="1969" end="1999" step="1">
 										<c:set var="yearStart" value="${yearStart + 1}"/>
 										<option>${yearStart}</option>
 									</c:forEach>
 								</select>
+								<input id="m_birthday" type="hidden" class="form-control" name="m_birthday" required data-eye> 
 								
 								<div class="form-group">
 									<div class="t-datepicker">
