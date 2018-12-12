@@ -11,7 +11,6 @@
 	//로그인 값이 있던 없던 그냥 넘어가니까 JSON을 사용해서 데이터베이스에 있는지 체크하기.
 	function login(frm) {
 	var str = $("#form").serialize();
-		alert(str); 
 		
 		$.ajax({
 			async: true,
@@ -20,7 +19,6 @@
 			data : str,
 			url : '../../loginMemberJson.do',
 			success : function(data) { 
-				console.log(data);
 				if (data.cnt > 0) {
 					 frm.action = "../../loginMember.do";
 					 frm.submit(); 
@@ -79,11 +77,10 @@
 									</button>
 								</div>
 								
-							
-										<a href="../../findPwdMember.do" class="float-right">
-											비밀번호 찾기
-										</a>
-									</label>
+					
+								<a href="../../findPwdMember.do" class="float-right">
+									비밀번호 찾기
+								</a>
 								
 								<div class="mt-4 text-center">
 									아이디가 없으십니까? <a href="../../insertMember.do">회원가입</a>

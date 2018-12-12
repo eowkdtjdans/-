@@ -101,8 +101,6 @@
            }
        });
 }; 
-
-
 function register(frm) {
 		if(confirm("회원가입을 하시겠습니까?")){
 	        if(idck==0){
@@ -128,8 +126,6 @@ function fillInAddress() { //lat 와 lng 값을 넘겨줄 input 태그에 값 �
 	document.getElementById("lat").value=place.geometry.location.lat();
 	document.getElementById("lng").value=place.geometry.location.lng();
 }
-
-
 /* picker만 생성 */
 $(document).ready(function(){
 	$('.t-datepicker').tDatePicker({
@@ -148,7 +144,6 @@ $(document).ready(function(){
 		document.getElementById("m_birthday").value = getDateInput;
 	})
 });
-
 function yearChange() {
 	$('.t-datepicker').tDatePicker({
 	  autoClose:false,
@@ -166,13 +161,11 @@ function yearChange() {
 		document.getElementById("m_birthday").value = getDateInput;
 	})
 }
-
  $('.t-datepicker').tDatePicker({
 }).on('clickDateCI',function(e, dateCI) {
 	var getDateInput = $('.t-datepicker').tDatePicker('getDateInput');
 	document.getElementById("m_birthday").value = getDateInput;
 }) 
-
 </script>
 
 <script src="https://maps.googleapis.com/maps/api/js?v=3&sensor=false&libraries=places&callback=initAutocomplete&key=AIzaSyAfB2qQnvAuU2YFFqi8hrPWfjJNyxl5kWc" async defer></script>

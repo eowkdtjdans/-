@@ -26,7 +26,7 @@ public interface MemberService {
 	//아이디 찾기
 	public MemberVO getId(Map<String, Object> paramMap);
 	//비밀번호 찾기
-	 public MemberVO getPw(Map<String, Object> paramMap);
+	public MemberVO getPw(Map<String, Object> paramMap);
 
 	 
 	//List<MemberVO> idcheck(String m_id);
@@ -45,7 +45,7 @@ public interface MemberService {
 	int checkPhoneJson(String m_phone);
 
 	 //아이디 중복체크
-		int checkMemberJson(String m_id);
+	int checkMemberJson(String m_id);
 
 	
 
