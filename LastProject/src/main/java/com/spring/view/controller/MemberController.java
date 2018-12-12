@@ -49,10 +49,12 @@ public class MemberController {
 		}
 	//회원가입
 	@RequestMapping(value = "/insertMember.do", method=RequestMethod.POST)
-	public String insertMemberPost(MemberVO vo) throws Exception {
+	public String insertMemberPost(MemberVO vo, HttpSession session) throws Exception {
 		System.out.println("=======인서트시작");
 		System.out.println("인서트두 컨트롤러 vo: " + vo);
 		memberService.insertMember(vo);
+		
+		session.setAttribute("m_id", vo.getM_id());
 		return "/sub2.do";
 	}
 	

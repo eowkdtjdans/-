@@ -27,7 +27,6 @@
 		
 		var phone = document.getElementById("m_phone").value;
 		var phoneCheck = /^((01[1|6|7|8|9])[1-9]+[0-9]{6,7})|(010[1-9][0-9]{7})$/;
-
 		$.ajax({
 			async: true,
 			type : 'POST',
@@ -62,31 +61,12 @@
 	           }
 	       });
 	 };
-</script>
-
- <script>
- function register(frm) {
-		if(confirm("회원가입을 하시겠습니까?")){
-	        if(idck==0){
-	            alert('아이디 중복체크를 해주세요');
-	            return false;
-	        }else{
-	        alert("회원가입을 축하합니다");
-	    	frm.action = "../../insertMember.do"; //로그인 작업 처리
-			frm.submit();
-	        }
-	    }
-	
-	};
-	
-<script>
   function idCheck(frm) {
 	 var idcheck = 0;
 	 var m_id = $('#m_id').val();
 	
 	 var email = document.getElementById("m_id").value;
 	 var emailCheck = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
-
 	$.ajax({
 		async: true,
 		type : 'POST',
@@ -121,8 +101,23 @@
            }
        });
 }; 
-</script>
 
+
+function register(frm) {
+		if(confirm("회원가입을 하시겠습니까?")){
+	        if(idck==0){
+	            alert('아이디 중복체크를 해주세요');
+	            return false;
+	        }else{
+	        alert("회원가입을 축하합니다");
+	    	frm.action = "../../insertMember.do"; //로그인 작업 처리
+			frm.submit();
+	        }
+	    }
+	
+	};
+</script>	
+<script>	
 var placeSearch, autocomplete;
 function initAutocomplete() {
   autocomplete = new google.maps.places.Autocomplete((document.getElementById('autocomplete')),{types: ['geocode']});
@@ -142,8 +137,9 @@ $(document).ready(function(){
 	  durationArrowTop:200,
 	  formatDate:'yyyy-mm-dd',
 	  startDate:document.getElementById("year").value + "-01-01",
-	  limitPrevMonth:900,
-	  limitDateRanges:68,
+	  limitPrevMonth:0, 
+	  limitNextMonth : 12,
+	  limitDateRanges:60,
 	  numCalendar:1,
 	  titleMonthsLimitShow:12,
 	  dateRangesHover: false
@@ -159,8 +155,9 @@ function yearChange() {
 	  durationArrowTop:200,
 	  formatDate:'yyyy-mm-dd',
 	  startDate:document.getElementById("year").value + "-01-01",
-	  limitPrevMonth:900,
-	  limitDateRanges:68,
+	  limitPrevMonth:0,
+	  limitNextMonth : 12,
+	  limitDateRanges:60,
 	  numCalendar:1,
 	  titleMonthsLimitShow:12,
 	  dateRangesHover: false
@@ -170,13 +167,14 @@ function yearChange() {
 	})
 }
 
-/* $('.t-datepicker').tDatePicker({
+ $('.t-datepicker').tDatePicker({
 }).on('clickDateCI',function(e, dateCI) {
 	var getDateInput = $('.t-datepicker').tDatePicker('getDateInput');
 	document.getElementById("m_birthday").value = getDateInput;
-}) */
+}) 
 
 </script>
+
 <script src="https://maps.googleapis.com/maps/api/js?v=3&sensor=false&libraries=places&callback=initAutocomplete&key=AIzaSyAfB2qQnvAuU2YFFqi8hrPWfjJNyxl5kWc" async defer></script>
 
 </head>
