@@ -24,7 +24,6 @@
 		var phonecheck = 0;
 		var m_phone = $('#m_phone').val();
 		alert("m_phone : " + m_phone);
-		
 		var phone = document.getElementById("m_phone").value;
 		var phoneCheck = /^((01[1|6|7|8|9])[1-9]+[0-9]{6,7})|(010[1-9][0-9]{7})$/;
 		$.ajax({
@@ -102,10 +101,30 @@
        });
 }; 
 function register(frm) {
+	 
 		if(confirm("회원가입을 하시겠습니까?")){
-	        if(idck==0){
+			if(idck==0){
 	            alert('아이디 중복체크를 해주세요');
 	            return false;
+	        } if(phoneck==0) {
+	            	alert("핸드폰 중복체크를 해주세요");
+	            	return false;
+	        } else if (frm.m_pwd.value == "" || frm.m_pwd.value == null) {
+				alert("비밀번호를 기입하세요.");
+				frm.m_pwd.value = ""; 
+				frm.m_pwd.focus();
+			} else if (frm.m_name.value == "" || frm.m_name.value == null) {
+				alert("성함을 기입하세요.");
+				frm.m_name.value = ""; 
+				frm.m_name.focus();
+			} else if (frm.m_birthday.value == "" || frm.m_birthday.value == null) {
+				alert("생년월일을 선택하세요..");
+				frm.m_birthday.value = ""; 
+				frm.m_birthday.focus();
+			} else if (frm.m_address.value == "" || frm.m_address.value == null) {
+				alert("주소를 기입하세요.");
+				frm.m_address.value = ""; 
+				frm.m_address.focus();
 	        }else{
 	        alert("회원가입을 축하합니다");
 	    	frm.action = "../../insertMember.do"; //로그인 작업 처리
