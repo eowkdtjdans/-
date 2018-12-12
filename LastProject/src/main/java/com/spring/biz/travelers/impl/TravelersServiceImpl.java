@@ -22,4 +22,9 @@ public class TravelersServiceImpl implements TravelersService{
       return travelersDAO.getTravelersList(key);
    }
 
+@Override
+public int countTravelers(String key) {
+	return travelersDAO.countTravelers(key);
+}
+
 }

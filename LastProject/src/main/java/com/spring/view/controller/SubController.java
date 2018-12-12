@@ -22,7 +22,7 @@ public class SubController {
 		String path = null;
 		System.out.println("sub.do ==== post방식");
 		if(searchCondition.equals("find_travler")) {
-			path = "/getTravelersList.do";
+			path = "/getTravelersList.do?cPage=1";
 		} else if(searchCondition == "find_host") {
 			path = "/getHostList.do";
 		} else if(searchCondition == "find_event") {
