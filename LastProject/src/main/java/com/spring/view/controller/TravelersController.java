@@ -18,7 +18,7 @@ import com.spring.biz.travelers.TravelersVO;
 import com.spring.pagination.PagingVO;
 
 @Controller
-@SessionAttributes({"key", "cPage"})
+@SessionAttributes({"key","cPage"})
 public class TravelersController {
 	@Autowired
 	private TravelersService travelersService;

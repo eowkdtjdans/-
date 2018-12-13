@@ -6,4 +6,19 @@
 <!-- mapper 태그의 namespace 속성 필수 작성  -->  
 <mapper namespace="hostDAO">
 
+	<select id="getHostList" parameterType="String" resultType="host">
+		SELECT H.*, PI.P_ROUTE, M.M_ADDRESS
+	    FROM HOST H, PROFILE_IMAGE PI, MEMBER M
+	    WHERE H.M_ID = PI.M_ID
+	    AND PI.M_ID = M.M_ID
+	    AND M.M_ADDRESS LIKE '%' || UPPER(#{key}) || '%'
+	</select>
+	
+	<select id="countHost" parameterType="String" resultType="int">
+		SELECT COUNT(H.M_ID)
+		FROM HOST H, MEMBER M
+		WHERE UPPER(M.M_ADDRESS) LIKE '%' || UPPER(#{key}) || '%'
+		AND H.M_ID = M.M_ID
+	</select>
+
 </mapper>
