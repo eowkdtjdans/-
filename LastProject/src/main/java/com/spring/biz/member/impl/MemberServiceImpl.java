@@ -42,14 +42,14 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 
-	 @Override
-	    public MemberVO getPw(Map<String, Object> paramMap) {
-	        return memberDAO.getPw(paramMap);
-	    }
-	 @Override
-		public MemberVO getId(Map<String, Object> paramMap) {
-			return memberDAO.getId(paramMap);
-		}
+ @Override
+    public MemberVO getPw(Map<String, Object> paramMap) {
+        return memberDAO.getPw(paramMap);
+    }
+ @Override
+	public MemberVO getId(Map<String, Object> paramMap) {
+		return memberDAO.getId(paramMap);
+	}
 
 	@Override
 	public int loginCheck(String m_id, String m_pwd) {

@@ -40,14 +40,7 @@ public class MemberDAO {
 		return mybatis.selectOne("idCheck", m_id);
 	}
 	
-	//비밀번호 찾기
-	public MemberVO getPw(Map<String, Object> paramMap) {
-		return mybatis.selectOne("getPw", paramMap);
-	}
-
-	public MemberVO getId(Map<String, Object> paramMap) {
-		return mybatis.selectOne("getId", paramMap);
-	}
+	
 	//로그인 체크
 	public int loginCheck(String m_id, String m_pwd) {
 		return  mybatis.selectOne("loginCheck", m_id);
@@ -72,7 +65,14 @@ public class MemberDAO {
 	public int findPwdMemberJson(MemberVO vo) {
 		return mybatis.selectOne("findPwdMemberJson", vo);
 	}
-	
+	//비밀번호 찾기
+	public MemberVO getPw(Map<String, Object> paramMap) {
+		return mybatis.selectOne("getPw", paramMap);
+	}
+	//아이디 찾기
+	public MemberVO getId(Map<String, Object> paramMap) {
+		return mybatis.selectOne("getId", paramMap);
+	}
 	public int checkPhoneJson(String m_phone) {
 		return mybatis.selectOne("checkPhoneJson", m_phone);
 	}
