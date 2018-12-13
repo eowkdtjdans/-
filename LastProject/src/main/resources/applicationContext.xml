@@ -48,8 +48,8 @@
         <property name="host" value="smtp.gmail.com" />
         <property name="port" value="587" />
         <property name="defaultEncoding" value="utf-8"/>
-        <property name="username" value="gukbong2459@gmail.com" />
-        <property name="password" value="a032003!" />
+        <property name="username" value="gukbongworld@gmail.com" />
+        <property name="password" value="bitcamp1!" />
         
         <property name="javaMailProperties">
             <props>

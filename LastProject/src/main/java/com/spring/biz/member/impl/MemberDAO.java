@@ -15,6 +15,7 @@ import com.spring.biz.member.MemberVO;
 public class MemberDAO {
 	@Autowired
 	private SqlSessionTemplate mybatis;
+	public Object memberDAO;
 	
 	//회원가입
 	public void insertMember(MemberVO vo) throws Exception {
@@ -28,6 +29,10 @@ public class MemberDAO {
 		
 		System.out.println("======== loginMember() =========");
 		return (MemberVO) mybatis.selectOne("loginMember", vo);
+	}
+	public void ModifyMember(MemberVO vo) {
+		System.out.println("비밀번호 수정DAO ===========");
+		 mybatis.update("ModifyMember", vo);
 	}
 	
 	//로그아웃
@@ -51,7 +56,9 @@ public class MemberDAO {
 		return mybatis.selectOne("checkMemberJson", m_id);
 	}
 	
-	
+	public int ModifyMemberPwdJson(MemberVO vo) {
+		return mybatis.selectOne("ModifyMemberPwdJson", vo);
+	}
 
 	public int loginMemberJson(MemberVO vo) {
 		return mybatis.selectOne("loginMemberJson", vo);
@@ -76,6 +83,9 @@ public class MemberDAO {
 	public int checkPhoneJson(String m_phone) {
 		return mybatis.selectOne("checkPhoneJson", m_phone);
 	}
+
+
+	
 
 
 	

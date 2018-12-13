@@ -5,33 +5,39 @@
 <html lang="en">
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<title>로그인</title>
+<title>비밀번호 수정</title>
 
 <script>
 	//로그인 값이 있던 없던 그냥 넘어가니까 JSON을 사용해서 데이터베이스에 있는지 체크하기.
-	function login(frm) {
-	var str = $("#form").serialize();
-		
+	function ModifyPwd(frm) {
+	
+	 	var str = $("#ModifyPwd").serialize();
+		alert("str : " + str); 
+		/*  var m_pwd = $("#m_pwd").val();
+		alert("m_pwd : " + m_pwd);  */
 		$.ajax({
-			async: true,
+			async : true,
 			type : "POST",
 			dataType : "json",
 			data : str,
-			url : '../../loginMemberJson.do',
-			success : function(data) { 
+			url : "../../MemberModifyPwdJson.do",
+			success : function(data) {
+				alert("data.cnt : " + data.cnt);
+				
 				if (data.cnt > 0) {
-					 frm.action = "../../loginMember.do";
-					 frm.submit(); 
-					 return false;
+					alert("변경 완료");
+					 frm.action = "../../ModifyPwdMember.do";
+				 	frm.submit();   
+				 	return false;
 				} else {
-					alert("로그인 실패");
-					frm.m_id.value = "";
+					alert("변경 실패");
 					frm.m_pwd.value = "";
-					frm.m_id.focus();
-					
+					frm.modifyM_pwd.value = "";
+					frm.m_pwd.focus();
 				}
 			}
-		}) 
+		})
+		
 
 	};
 
@@ -41,7 +47,7 @@
 	<meta charset="utf-8">
 	<meta name="author" content="Kodinger">
 	<meta name="viewport" content="width=device-width,initial-scale=1">
-	<title>로그인페이지</title>
+	<title>비밀번호 변경 페이지</title>
 	<link rel="stylesheet" type="text/css" href="views/bootstrapModal/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="views/cssModal/my-login.css">
 </head>
@@ -56,31 +62,32 @@
 					<div class="card fat">
 						<div class="card-body">
 							<h4 class="card-title" style="text-align : center;">로그인</h4>
-							<form method="POST" class="my-login-validation" id="form">
+							<form method="POST" class="my-login-validation" id="ModifyPwd">
 								<div class="form-group">
-									<label for="email">아이디</label>
-									<input id="m_id" type="email" class="form-control" name="m_id" required autofocus>
+									<label for="password">아이디</label>
+									<input id="m_id" type="text" class="form-control" name="m_id" value="${member.m_id }" required autofocus>
 								</div>
-								
 								<div class="form-group">
-									<label for="password">비밀번호</label>
-									<input id="m_pwd" type="password" class="form-control" name="m_pwd" required data-eye>
+									<label for="password">기존 비밀번호</label>
+									<input id="m_pwd" type="password" class="form-control" name="m_pwd" required autofocus>
 								</div>
 
+								<div class="form-group">
+									<label for="password">변경할 비밀번호</label>
+									<input id="modifyM_pwd" type="password" class="form-control" name="modifyM_pwd" required data-eye>
+								</div>
+									
+							<!-- 	<div class="form-group">
+									<label for="password">변경할 비밀번호 확인</label>
+									<input id="modifyM_pwd2" type="password" class="form-control" name="modifyM_pwd2" required data-eye>
+								</div> -->
+								
 								<div class="form-group m-0">
-									<button type="button" class="btn btn-primary btn-block" onclick="login(this.form)">
-										Login
+									<button type="button" class="btn btn-primary btn-block" onclick="ModifyPwd(this.form)">
+										비밀번호 변경
 									</button>
 								</div>
-								
 					
-								<a href="../../findPwdMember.do" class="float-right">
-									비밀번호 찾기
-								</a>
-								
-								<div class="mt-4 text-center">
-									아이디가 없으십니까? <a href="../../insertMember.do">회원가입</a>
-								</div>
 							</form>
 						</div>
 					</div>

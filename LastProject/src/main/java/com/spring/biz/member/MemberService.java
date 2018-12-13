@@ -16,6 +16,9 @@ public interface MemberService {
 	//로그인
 	public MemberVO loginMember(MemberVO vo, HttpSession session) throws Exception;
 	
+	//비밀번호 수정
+	void ModifyPwd(MemberVO vo) throws Exception;
+	
 	//로그아웃
 	public void logoutMember(HttpSession session) throws Exception;
 
@@ -46,6 +49,11 @@ public interface MemberService {
 
 	 //아이디 중복체크
 	int checkMemberJson(String m_id);
+	
+	//비밀번호 수정 
+	int ModifyMemberPwdJson(MemberVO vo);
+
+
 
 	
 
