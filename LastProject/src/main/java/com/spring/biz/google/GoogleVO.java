@@ -4,12 +4,18 @@ import java.util.Date;
 
 public class GoogleVO {
 	private double lat, lng;
-	private String p_route, m_id, h_maximumguest;
+	private String p_route, m_id, m_name, h_maximumguest;
+	public String getM_id() {
+		return m_id;
+	}
+	public String getH_maximumguest() {
+		return h_maximumguest;
+	}
 	private Date h_startdate, h_enddate;
 	
 	private String cont;
 	
-	private String icon = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+	private String icon = "/views/img/markerImg-blue.png";
 	
 	public String getLat() {
 		return Double.toString(lat);
@@ -48,6 +54,12 @@ public class GoogleVO {
 	}
 	public void setH_enddate(Date h_enddate) {
 		this.h_enddate = h_enddate;
+	}
+	public String getM_name() {
+		return m_name;
+	}
+	public void setM_name(String m_name) {
+		this.m_name = m_name;
 	}
 	
 }

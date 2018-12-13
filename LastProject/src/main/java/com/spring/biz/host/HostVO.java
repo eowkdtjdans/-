@@ -22,6 +22,9 @@ public class HostVO {
     // 자녀유무 
     private String h_haschild;
     
+    private String p_route;
+    private String m_address;
+    
     
     
 	public String getM_id() {
@@ -78,11 +81,24 @@ public class HostVO {
 	public void setH_haschild(String h_haschild) {
 		this.h_haschild = h_haschild;
 	}
+	public String getP_route() {
+		return p_route;
+	}
+	public void setP_route(String p_route) {
+		this.p_route = p_route;
+	}
+	public String getM_address() {
+		return m_address;
+	}
+	public void setM_address(String m_address) {
+		this.m_address = m_address;
+	}
 	@Override
 	public String toString() {
-		return "HouseVO [m_id=" + m_id + ", h_maximumguest=" + h_maximumguest + ", h_gender=" + h_gender + ", h_smoke="
+		return "HostVO [m_id=" + m_id + ", h_maximumguest=" + h_maximumguest + ", h_gender=" + h_gender + ", h_smoke="
 				+ h_smoke + ", h_roomtype=" + h_roomtype + ", h_rule=" + h_rule + ", h_availabledate=" + h_availabledate
-				+ ", h_haspet=" + h_haspet + ", h_haschild=" + h_haschild + "]";
+				+ ", h_haspet=" + h_haspet + ", h_haschild=" + h_haschild + ", p_route=" + p_route + ", m_address="
+				+ m_address + "]";
 	}
 	
     
