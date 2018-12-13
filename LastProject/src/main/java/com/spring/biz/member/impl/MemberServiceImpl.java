@@ -28,12 +28,15 @@ public class MemberServiceImpl implements MemberService{
 	
 	@Override
 	public MemberVO loginMember(MemberVO vo, HttpSession session) throws Exception {
-	
 		session.setAttribute("m_id", vo.getM_id());
 		session.setAttribute("m_id", vo.getM_pwd());
-		
 	return memberDAO.loginMember(vo);
-}
+	}
+	
+	@Override
+	public void ModifyPwd(MemberVO vo) throws Exception {
+		memberDAO.ModifyMember(vo);
+	}
 	
 	@Override
 	public void logoutMember(HttpSession session) {
@@ -83,6 +86,15 @@ public class MemberServiceImpl implements MemberService{
 	public int findIdMemberJson(MemberVO vo) {
 		return memberDAO.findIdMemberJson(vo);
 	}
+
+
+	@Override
+	public int ModifyMemberPwdJson(MemberVO vo) {
+		return memberDAO.ModifyMemberPwdJson(vo);
+	}
+
+
+	
 
 
 	

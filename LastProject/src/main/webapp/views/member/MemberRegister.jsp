@@ -101,7 +101,6 @@
        });
 }; 
 function register(frm) {
-	 
 		if(confirm("회원가입을 하시겠습니까?")){
 			if(idck==0){
 	            alert('아이디 중복체크를 해주세요');
@@ -112,6 +111,10 @@ function register(frm) {
 	        } else if (frm.m_pwd.value == "" || frm.m_pwd.value == null) {
 				alert("비밀번호를 기입하세요.");
 				frm.m_pwd.value = ""; 
+				frm.m_pwd.focus();
+	        } else if (frm.m_pwd.value.length <= 7) {
+	        	alert("비밀번호를 8자리 이상 적어주세요.");
+	        	frm.m_pwd.value = ""; 
 				frm.m_pwd.focus();
 			} else if (frm.m_name.value == "" || frm.m_name.value == null) {
 				alert("성함을 기입하세요.");

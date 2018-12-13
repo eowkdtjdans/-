@@ -15,6 +15,12 @@
 	
 <script>
 
+/* 
+
+*	버튼을클릭햇을떄 findPwd1.do - 여기서 기존 비밀벊를 입력하라고해요
+* 이게 있으면 - > findpwd2.do - 여기에서 변경할 비밀번호를 하라하고 
+*
+*/
 	function findPwd(frm) {
 		 var str = $("#form").serialize();
 		 $.ajax({
@@ -24,6 +30,7 @@
 			data : str,
 			url : "../../findPwdMemberJson.do",
 			success : function(data) {
+				console.log(data);
 				if (data.cnt > 0) {
 					alert("기입하신 이메일을 확인하세요!");
 					frm.action="../../findPwdMember.do";

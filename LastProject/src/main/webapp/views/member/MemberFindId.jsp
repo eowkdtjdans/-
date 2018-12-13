@@ -16,7 +16,7 @@
 <script>
 
 	function findId(frm) {
-		 var str = $("#gukbong").serialize();
+		 var str = $("#findId").serialize();
 		 $.ajax({
 			async : true,
 			type : "POST",
@@ -37,7 +37,7 @@
 					frm.m_id.focus();
 				}
 				
-			},
+			}
 		}); 
 		
 	};
@@ -56,7 +56,7 @@
                <div class="card fat">
                   <div class="card-body">
                      <h4 class="card-title">아이디 찾기</h4>
-                     <form method="POST" class="my-login-validation" id="gukbong">
+                     <form method="POST" class="my-login-validation" id="findId">
                     
 	                    <div class="form-group">
 							<label for="m_email">ID</label>

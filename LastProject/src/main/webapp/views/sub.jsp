@@ -63,12 +63,12 @@
 
       <nav id="nav-menu-container">
         <ul class="nav-menu">
-        <li class="menu-has-children"><a href="">Drop Down</a>
+        <li class="menu-has-children"><a href="#">내 정보</a>
             <ul>
-              <li><a href="#">Drop Down 1</a></li>
-              <li><a href="#">Drop Down 3</a></li>
-              <li><a href="#">Drop Down 4</a></li>
-              <li><a href="#">Drop Down 5</a></li>
+              <li><a href="../../ModifyPwdMember.do">비밀번호 변경</a></li> <!-- Ajax  -->
+              <li><a href="../../ModifyPhoneMember.do">핸드폰 변경</a></li> <!-- Ajax -->
+              <li><a href="../../ModifyAddressMember.do">주소 변경</a></li> <!-- 그냥 처리 -->
+              <li><a href="../../deleteMember.do">회원 탈퇴</a></li> <!-- 그냥 처리 -->
             </ul>
           </li>
           <li><a href="#about">쪽지</a></li>
@@ -114,9 +114,12 @@
 <section id="about">
       <div class="container">
         <header class="section-header">
-        	<p>${m_id }</p>
+        	<p>${member.m_id }</p>
+        	<p>${member.m_pwd }</p>
+        	<p>${member.m_name }</p>
+        	<p>${member.m_address }</p>
+				
           <h3>About Us</h3>
-          <p>${m_id }</p>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
         </header>
 
