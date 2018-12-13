@@ -137,6 +137,7 @@ function register(frm) {
 	
 	};
 </script>	
+
 <script>	
 var placeSearch, autocomplete;
 function initAutocomplete() {
@@ -148,7 +149,8 @@ function fillInAddress() { //lat 와 lng 값을 넘겨줄 input 태그에 값 �
 	document.getElementById("lat").value=place.geometry.location.lat();
 	document.getElementById("lng").value=place.geometry.location.lng();
 }
-/* picker만 생성 */
+
+/* picker만 생성  ==달력 ==*/
 $(document).ready(function(){
 	$('.t-datepicker').tDatePicker({
 	  autoClose:false,

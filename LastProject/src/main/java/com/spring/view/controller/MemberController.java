@@ -55,18 +55,55 @@ public class MemberController {
 		
 		//session.setAttribute("m_id", vo.getM_id());
 		session.setAttribute("member", vo);
-		return "/sub2.do";
+		return "redirect:/sub2.do";
 	}
 	//비밀번호 변경
 	@RequestMapping(value="ModifyPwdMember.do", method=RequestMethod.POST)
-	public String ModifyMemberPost(MemberVO vo, @RequestParam("modifyM_pwd") String modifyM_pwd, @RequestParam("m_id") String m_id, HttpSession session) throws Exception {
-		System.out.println("=====비밀번호 수정 시작=====");
-		System.out.println("modifyM_pwd : " + modifyM_pwd);
-		vo.setM_pwd(modifyM_pwd);
+	public String ModifyMemberPwdPost(MemberVO vo, @RequestParam("pwdModify") String pwdModify, @RequestParam("m_id") String m_id, HttpSession session) throws Exception {
+		System.out.println("=====비밀번호 변경 시작=====");
+		System.out.println("modifyM_pwd : " + pwdModify);
+		vo.setM_pwd(pwdModify);
 		vo.setM_id(m_id);
 		memberService.ModifyPwd(vo);	
 		session.setAttribute("member", vo);
-		return "/sub2.do";
+		return "redirect:/sub2.do";
+	}
+	//핸드폰 번호 변경
+	@RequestMapping(value="ModifyPhoneMember.do", method=RequestMethod.POST)
+	public String ModifyMemberPhonePost(MemberVO vo, @RequestParam("modifyM_phone") String modifyM_phone, @RequestParam("m_id") String m_id, HttpSession session) throws Exception {
+		System.out.println("=====핸드폰번호 변경 시작=====");
+		System.out.println("modifyM_pwd : " + modifyM_phone);
+		vo.setM_phone(modifyM_phone);
+		vo.setM_id(m_id);
+		memberService.ModifyPhone(vo);	
+		session.setAttribute("member", vo);
+		return "redirect:/sub2.do";
+	}
+	@RequestMapping(value="DeleteMember.do", method=RequestMethod.POST)
+	public String DeleteMember(MemberVO vo,  @RequestParam("m_id") String m_id, @RequestParam("m_pwd") String m_pwd, @RequestParam("m_phone") String m_phone, HttpSession session) throws Exception {
+		System.out.println("=====회원탈퇴 시작=====");
+		System.out.println("modifyM_pwd : " + m_pwd);
+		vo.setM_id(m_id);
+		vo.setM_pwd(m_pwd);
+		vo.setM_phone(m_phone);
+		memberService.DeleteMember(vo);	
+		session.invalidate();
+		return "redirect:/sub2.do";
+	}
+	@RequestMapping(value="ModifyAddressMember.do", method=RequestMethod.POST) 
+	public String ModifyAddressMember(MemberVO vo, @RequestParam("m_id") String m_id, @RequestParam("m_address") String m_address, 
+			@RequestParam("lat") Double lat, @RequestParam("lng") Double lng, HttpSession session) throws Exception {
+		System.out.println("=====주소 변경 시작=====");
+		System.out.println(lat);
+		System.out.println(lng);
+		vo.setM_id(m_id);
+		vo.setM_address(m_address);
+		vo.setLat(lat);
+		vo.setLng(lng);
+		
+		memberService.ModifyAddress(vo);
+		session.setAttribute("member", vo);
+		return "redirect:/sub2.do";
 	}
 	
 	
@@ -74,7 +111,43 @@ public class MemberController {
 	
 	//====================================================================== JSON
 	//====================================================================== JSON
-	//====================================================================== JSON
+	//====================================================================== JSON 
+	@RequestMapping(value="/MemberDeleteJson.do", method=RequestMethod.POST)
+    @ResponseBody
+    public Map<Object, Object> MemberDeleteJson(MemberVO vo) {
+        int count = 0;
+        Map<Object, Object> map = new HashMap<Object, Object>();
+        
+        count = memberService.MemberDeleteJson(vo);
+        map.put("cnt", count);
+ 
+        return map;
+    }
+	@RequestMapping(value="/MemberModifyPwdJson.do", method=RequestMethod.POST)
+    @ResponseBody
+    public Map<Object, Object> MemberModifyPwdJson(MemberVO vo) {
+        int count = 0;
+        Map<Object, Object> map = new HashMap<Object, Object>();
+        
+        count = memberService.ModifyMemberPwdJson(vo);
+        map.put("cnt", count);
+ 
+        return map;
+    }
+	
+	@RequestMapping(value="/MemberModifyPhoneJson.do", method=RequestMethod.POST)
+    @ResponseBody
+    public Map<Object, Object> MemberModifyPhoneJson(MemberVO vo) {
+        int count = 0;
+        Map<Object, Object> map = new HashMap<Object, Object>();
+        
+        count = memberService.ModifyMemberPhoneJson(vo);
+        map.put("cnt", count);
+ 
+        return map;
+    }
+	
+	
 	@RequestMapping(value="/findPwdMemberJson.do", method=RequestMethod.POST)
 	@ResponseBody
 	public Map<Object, Object> findPwdMemberJson(MemberVO vo) {
@@ -146,19 +219,6 @@ public class MemberController {
 	
 	
 	
-	@RequestMapping(value="/MemberModifyPwdJson.do", method=RequestMethod.POST)
-    @ResponseBody
-    public Map<Object, Object> MemberModifyPwdJson(MemberVO vo) {
-        int count = 0;
-        Map<Object, Object> map = new HashMap<Object, Object>();
-        
-        count = memberService.ModifyMemberPwdJson(vo);
-        map.put("cnt", count);
- 
-        return map;
-    }
-	
-	
 	
 		//======================================================================
 	@RequestMapping(value="/loginMember.do", method=RequestMethod.GET) 
@@ -184,10 +244,10 @@ public class MemberController {
 			//session.setAttribute("m_id", vo.getM_id());
 			session.setAttribute("member", vo);
 			
-			return "/sub2.do";
+			return "redirect:/sub2.do";
 		} else {
 			System.out.println("=====없는 아이디=====");
-			return "/loginMember.do";
+			return "redirect:/loginMember.do";
 		}
 	}	
 	
@@ -198,7 +258,7 @@ public class MemberController {
 	@RequestMapping(value="/logoutMember.do")
 	public String logoutMember(HttpSession session) throws Exception {
 		memberService.logoutMember(session);
-		return "/sub2.do";
+		return "redirect:/sub2.do";
 	}
 	
 	
@@ -222,10 +282,24 @@ public class MemberController {
 	
 	@RequestMapping(value="ModifyPwdMember.do", method=RequestMethod.GET)
 	public String ModifyPwd(MemberVO vo) {
-		System.out.println("비밀번호 수정 GET ====");
+		System.out.println("비밀번호 변경 GET ====");
 		return "views/member/MemberModifyPwd.jsp";
 	}
-	
+	@RequestMapping(value="ModifyPhoneMember.do", method=RequestMethod.GET)
+	public String ModifyPhone(MemberVO vo) {
+		System.out.println("핸드폰번호 변경 GET ====");
+		return "views/member/MemberModifyPhone.jsp";
+	}
+	@RequestMapping(value="DeleteMember.do", method=RequestMethod.GET)
+	public String DeleteMember(MemberVO vo) {
+		System.out.println("핸드폰번호 변경 GET ====");
+		return "views/member/MemberDelete.jsp";
+	}
+	@RequestMapping(value="ModifyAddressMember.do", method=RequestMethod.GET)
+	public String ModifyAddressMember(MemberVO vo) {
+		System.out.println("주소 변경 GET ====");
+		return "views/member/MemberModifyAddress.jsp";
+	}
 	
 	
 	//======================================================================
@@ -238,10 +312,10 @@ public class MemberController {
     		email.setReceiver(m_id);
     		email.setContent("아이디는 [ "+ vo.getM_id()+ "]입니다.");
     		emailSender.SendEmail(email);
-            return "/sub2.do";
+            return "redirect:/sub2.do";
     	}else {
     		System.out.println("회원정보가 없습니다.");
-    		return "/findIdMember.do";
+    		return "redirect:/findIdMember.do";
     	}
     }
 	
@@ -257,10 +331,10 @@ public class MemberController {
     		email.setReceiver(vo.getM_id());
     		email.setContent("비밀번호는 [ "+vo.getM_pwd()+ "]입니다.");
     		emailSender.SendEmail(email);
-            return "/sub2.do";
+            return "redirect:/sub2.do";
     	}else {
     		System.out.println("회원정보가 없습니다.");
-    		return "/findPwdMember.do";
+    		return "redirect:/findPwdMember.do";
     	}
     }
 	

@@ -1,20 +1,21 @@
- <%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<title>비밀번호 수정</title>
+<title>비밀번호 변경</title>
 
 <script>
-	//로그인 값이 있던 없던 그냥 넘어가니까 JSON을 사용해서 데이터베이스에 있는지 체크하기.
 	function ModifyPwd(frm) {
-	
+		var pwd = document.getElementById("m_pwd").value;
+	 	var pwdModify = document.getElementById("pwdModify").value;
+	 	
+	 	var pwdCheck = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,15}$/;
+
 	 	var str = $("#ModifyPwd").serialize();
-		alert("str : " + str); 
-		/*  var m_pwd = $("#m_pwd").val();
-		alert("m_pwd : " + m_pwd);  */
+
 		$.ajax({
 			async : true,
 			type : "POST",
@@ -22,25 +23,30 @@
 			data : str,
 			url : "../../MemberModifyPwdJson.do",
 			success : function(data) {
-				alert("data.cnt : " + data.cnt);
-				
-				if (data.cnt > 0) {
-					alert("변경 완료");
-					 frm.action = "../../ModifyPwdMember.do";
-				 	frm.submit();   
-				 	return false;
-				} else {
-					alert("변경 실패");
-					frm.m_pwd.value = "";
-					frm.modifyM_pwd.value = "";
-					frm.m_pwd.focus();
-				}
+				   if (data.cnt == 0) {
+					   alert("기존 비밀번호가 일치하지않습니다. 다시 입력하세요.");
+					   $("#m_id").focus();
+					   $("#m_pwd").val("");
+				   } else if(frm.pwdModify.value == "" || frm.m_pwd.value == null){
+					   alert("변경할 비밀번호를 기입하세요.");
+						frm.pwdModify.value="";
+						frm.pwdModify.focus();
+						return false; 
+				   } else if (frm.pwdModify.value.length<8 || frm.pwdModify.value.length>16) {
+						alert("비밀번호가 너무 짧습니다. 8~16자리로 설정해주세요.");
+			        	frm.pwdModify.value = ""; 
+						frm.pwdModify.focus();
+						return false;
+				   }  else {
+					    alert("변경이 완료되었습니다.");
+						frm.action = "../../ModifyPwdMember.do";
+					    frm.submit();    
+					    return false;
+				   }
 			}
 		})
 		
-
 	};
-
 		
 </script>
 
@@ -61,26 +67,18 @@
 					</div>
 					<div class="card fat">
 						<div class="card-body">
-							<h4 class="card-title" style="text-align : center;">로그인</h4>
+							<h4 class="card-title" style="text-align : center;">비밀번호 변경</h4>
 							<form method="POST" class="my-login-validation" id="ModifyPwd">
+									<input id="m_id" type="hidden" class="form-control" name="m_id" value="${member.m_id }" required autofocus>
 								<div class="form-group">
-									<label for="password">아이디</label>
-									<input id="m_id" type="text" class="form-control" name="m_id" value="${member.m_id }" required autofocus>
-								</div>
-								<div class="form-group">
-									<label for="password">기존 비밀번호</label>
+									<label for="m_pwd">기존 비밀번호</label>
 									<input id="m_pwd" type="password" class="form-control" name="m_pwd" required autofocus>
 								</div>
 
 								<div class="form-group">
-									<label for="password">변경할 비밀번호</label>
-									<input id="modifyM_pwd" type="password" class="form-control" name="modifyM_pwd" required data-eye>
+									<label for="pwdModify">변경할 비밀번호</label>
+									<input id="pwdModify" type="password" class="form-control" name="pwdModify" required data-eye>
 								</div>
-									
-							<!-- 	<div class="form-group">
-									<label for="password">변경할 비밀번호 확인</label>
-									<input id="modifyM_pwd2" type="password" class="form-control" name="modifyM_pwd2" required data-eye>
-								</div> -->
 								
 								<div class="form-group m-0">
 									<button type="button" class="btn btn-primary btn-block" onclick="ModifyPwd(this.form)">

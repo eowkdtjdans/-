@@ -24,7 +24,7 @@
 					 frm.submit(); 
 					 return false;
 				} else {
-					alert("로그인 실패");
+					alert("아이디 또는 비밀번호가 일치하지않습니다. 다시 입력해주세요.");
 					frm.m_id.value = "";
 					frm.m_pwd.value = "";
 					frm.m_id.focus();

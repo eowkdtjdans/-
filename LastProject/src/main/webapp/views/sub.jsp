@@ -68,7 +68,7 @@
               <li><a href="../../ModifyPwdMember.do">비밀번호 변경</a></li> <!-- Ajax  -->
               <li><a href="../../ModifyPhoneMember.do">핸드폰 변경</a></li> <!-- Ajax -->
               <li><a href="../../ModifyAddressMember.do">주소 변경</a></li> <!-- 그냥 처리 -->
-              <li><a href="../../deleteMember.do">회원 탈퇴</a></li> <!-- 그냥 처리 -->
+              <li><a href="../../DeleteMember.do">회원 탈퇴</a></li> <!-- 그냥 처리 -->
             </ul>
           </li>
           <li><a href="#about">쪽지</a></li>

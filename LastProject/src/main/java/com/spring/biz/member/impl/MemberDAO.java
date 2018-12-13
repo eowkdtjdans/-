@@ -30,10 +30,7 @@ public class MemberDAO {
 		System.out.println("======== loginMember() =========");
 		return (MemberVO) mybatis.selectOne("loginMember", vo);
 	}
-	public void ModifyMember(MemberVO vo) {
-		System.out.println("비밀번호 수정DAO ===========");
-		 mybatis.update("ModifyMember", vo);
-	}
+
 	
 	//로그아웃
 	public void logout(HttpSession session) throws Exception {
@@ -54,10 +51,6 @@ public class MemberDAO {
 	//아이디 체크
 	public int checkMemberJson(String m_id) {
 		return mybatis.selectOne("checkMemberJson", m_id);
-	}
-	
-	public int ModifyMemberPwdJson(MemberVO vo) {
-		return mybatis.selectOne("ModifyMemberPwdJson", vo);
 	}
 
 	public int loginMemberJson(MemberVO vo) {
@@ -83,8 +76,36 @@ public class MemberDAO {
 	public int checkPhoneJson(String m_phone) {
 		return mybatis.selectOne("checkPhoneJson", m_phone);
 	}
+	
+	public int ModifyMemberPwdJson(MemberVO vo) {
+		return mybatis.selectOne("ModifyMemberPwdJson", vo);
+	}
+	
+	public int ModifyMemberPhoneJson(MemberVO vo) {
+		return mybatis.selectOne("ModifyMemberPhoneJson", vo);
+	}
+	public int DeleteMemberJson(MemberVO vo) {
+		return mybatis.selectOne("DeleteMemberJson", vo);
+	}
 
+	public void ModifyPhoneMember(MemberVO vo) {
+		mybatis.update("ModifyPhoneMember", vo);
+	}
 
+	public void ModifyPwdMember(MemberVO vo) {
+		System.out.println("비밀번호 수정DAO ===========");
+		 mybatis.update("ModifyPwdMember", vo);
+	}
+
+	public void DeleteMember(MemberVO vo) {
+		mybatis.delete("DeleteMember", vo);
+	}
+
+	public void ModifyAddressMember(MemberVO vo) {
+		mybatis.update("ModifyAddressMember", vo);
+	}
+
+	
 	
 
 
