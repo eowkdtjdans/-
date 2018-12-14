@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.spring.biz.localAdvice.LocalAdviceService;
 import com.spring.biz.localAdvice.LocalAdviceVO;
+import com.spring.biz.localAdviceComment.LocalAdviceCommentService;
+import com.spring.biz.localAdviceComment.LocalAdviceCommentVO;
 import com.spring.biz.profileImage.ProfileImageVO;
 import com.spring.pagination.PagingVO;
 
@@ -27,6 +29,8 @@ public class LocalAdviceController {
 	HttpSession session;
 	@Autowired
 	private LocalAdviceService localAdviceService;
+	@Autowired
+	private LocalAdviceCommentService localAdviceCommentService;
 	
 	//키값을 받아 localAdvice게시판 전체조회
 	@RequestMapping(value="/getLocalAdviceList.do" , method=RequestMethod.POST)
@@ -115,15 +119,7 @@ public class LocalAdviceController {
 	
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	
 	
 	//localAdvice게시판으로 단순 페이지이동
@@ -165,17 +161,26 @@ public class LocalAdviceController {
 	
 	//로컬어드바이스 게시판에서 상세화면페이지로 이동
 	@RequestMapping(value="/getLocalAdvice.do")
-	public String moveGetLocalAdvice(LocalAdviceVO vo, ProfileImageVO pvo, Model model, @RequestParam("l_idx") String l_idx, @RequestParam("m_id") String m_id) {
+	public String moveGetLocalAdvice(LocalAdviceVO vo, ProfileImageVO pvo, LocalAdviceCommentVO cvo, Model model, @RequestParam("l_idx") String l_idx, @RequestParam("m_id") String m_id) {
+		System.out.println("상세페이지");
 		System.out.println("l_idx : " + l_idx);
 		System.out.println("m_id :" + m_id);
+		
 		vo.setL_idx(Integer.parseInt(l_idx));
 		LocalAdviceVO getLocalAdvice = localAdviceService.getLocalAdvice(vo);
 		
 		pvo.setM_id(m_id);
 		ProfileImageVO getProfileImage = localAdviceService.getProfileImage(pvo);
 		
+		
 		model.addAttribute("getLocalAdvice", getLocalAdvice);
 		model.addAttribute("getProfileImage", getProfileImage);
+		
+		List<LocalAdviceCommentVO> getLocalAdviceCommentList = localAdviceCommentService.getLocalAdviceCommentList(Integer.parseInt(l_idx));		
+		model.addAttribute("getLocalAdviceCommentList", getLocalAdviceCommentList);
+		System.out.println(getLocalAdviceCommentList);
+		
+		
 		
 		return "views/localAdvice/getLocalAdvice.jsp";
 	}
@@ -216,6 +221,45 @@ public class LocalAdviceController {
 		//return "/getLocalAdviceList.do?cPage="+cPage;
 		return "getLocalAdvice.do?&m_id="+m_id;
 	}
+	
+	
+	//댓글 입력
+	@RequestMapping(value="/insertLocalAdviceComment.do")
+	public String insertLocalAdviceComment(LocalAdviceCommentVO cvo, @RequestParam("l_idx") String l_idx, @RequestParam("lc_content") String lc_content, HttpSession session, @RequestParam("getProfileImage.m_id") String m_id) {
+		System.out.println("댓글입력 컨트롤러");
+		System.out.println(l_idx);
+		System.out.println(lc_content);
+		System.out.println(session.getAttribute("m_id"));
+		System.out.println(m_id);
+		
+		
+		String m_id2 = (String)session.getAttribute("m_id");
+		cvo.setL_idx(Integer.parseInt(l_idx));
+		cvo.setLc_content(lc_content);
+		cvo.setM_id(m_id2);
+		localAdviceCommentService.insertLocalAdviceComment(cvo);
+		System.out.println("잘되고 잉니?");
+		return "/getLocalAdvice.do?m_id="+m_id;
+	}
+	
+	
+	//댓글 수정
+	/*@RequestMapping(value="/updateLocalAdviceComment.do")
+	public String updateLocalAdviceComment(@RequestParam("lc_idx") String lc_idx, @RequestParam("m_id") String m_id) {
+		System.out.println("/updateLocalAdviceComment.do 요기");
+		System.out.println("lc_idx : " + lc_idx);
+		System.out.println("m_id : " + m_id);
+		return null;
+	}*/
+	
+/*	@RequestMapping(value="/updateLocalAdviceComment.do")
+	public String updateLocalAdviceComment() {
+		
+		return null;
+	}
+	*/
+	
+	
 }
 
 

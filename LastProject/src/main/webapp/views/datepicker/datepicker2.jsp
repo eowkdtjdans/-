@@ -36,7 +36,7 @@
 	$(document).ready(function(){
 		$('.t-datepicker').tDatePicker({
 			autoClose: false,
-			limitNextMonth: 3,
+			limitNextMonth: 12,
 			numCalendar : 2,
 			dateRangesHover: true
 		});
