@@ -141,7 +141,7 @@ public class LocalAdviceController {
 	//여기에는 localAdvice게시글작성하고 저장버튼 눌렀을때
 	//@RequestMapping(value="/insertLocalAdvice.do")
 	@RequestMapping(value="insertLocalAdvice.do")
-	public String moveInsertLocalAdvice(LocalAdviceVO vo, HttpSession session, @RequestParam("m_address") String m_address, @RequestParam("l_subject") String l_subject, @RequestParam("l_content") String l_content) {
+	public String moveInsertLocalAdvice(LocalAdviceVO vo, HttpSession session, @RequestParam("l_subject") String l_subject, @RequestParam("l_content") String l_content) {
 		System.out.println("게시글 등록");
 		
 		String m_id = (String)session.getAttribute("m_id");	
@@ -149,7 +149,6 @@ public class LocalAdviceController {
 		vo.setM_id(m_id);
 		vo.setL_subject(l_subject);
 		vo.setL_content(l_content);
-		vo.setM_address(m_address);
 		localAdviceService.insertLocalAdvice(vo);
 		
 		session.getAttribute("searchCondition");
@@ -227,6 +226,7 @@ public class LocalAdviceController {
 	//댓글 입력
 	@RequestMapping(value="/insertLocalAdviceComment.do")
 	public String insertLocalAdviceComment(LocalAdviceCommentVO cvo, @RequestParam("l_idx") String l_idx, @RequestParam("lc_content") String lc_content, HttpSession session, @RequestParam("getProfileImage.m_id") String m_id) {
+		
 		System.out.println("댓글입력 컨트롤러");
 		System.out.println(l_idx);
 		System.out.println(lc_content);
@@ -253,12 +253,12 @@ public class LocalAdviceController {
 		return null;
 	}*/
 	
-/*	@RequestMapping(value="/updateLocalAdviceComment.do")
+	@RequestMapping(value="/updateLocalAdviceComment.do")
 	public String updateLocalAdviceComment() {
 		
 		return null;
 	}
-	*/
+	
 	
 	
 }
