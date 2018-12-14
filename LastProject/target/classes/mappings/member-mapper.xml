@@ -31,8 +31,8 @@
 	
 	<!-- 로그인 -->
 	<select id="loginMember" resultType="member">
-		SELECT M_NAME, M_ID, M_PWD, M_PHONE FROM MEMBER
-		WHERE M_ID = #{m_id} AND M_PWD = #{m_pwd}
+		SELECT * FROM MEMBER
+		WHERE M_ID = #{m_id} AND M_PWD = #{m_pwd} 
 	</select>
 	
 	
