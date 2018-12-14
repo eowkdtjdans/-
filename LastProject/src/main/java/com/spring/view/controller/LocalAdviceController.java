@@ -141,7 +141,7 @@ public class LocalAdviceController {
 	//여기에는 localAdvice게시글작성하고 저장버튼 눌렀을때
 	//@RequestMapping(value="/insertLocalAdvice.do")
 	@RequestMapping(value="insertLocalAdvice.do")
-	public String moveInsertLocalAdvice(LocalAdviceVO vo, HttpSession session, @RequestParam("l_subject") String l_subject, @RequestParam("l_content") String l_content) {
+	public String moveInsertLocalAdvice(LocalAdviceVO vo, HttpSession session, @RequestParam("m_address") String m_address, @RequestParam("l_subject") String l_subject, @RequestParam("l_content") String l_content) {
 		System.out.println("게시글 등록");
 		
 		String m_id = (String)session.getAttribute("m_id");	
@@ -149,6 +149,7 @@ public class LocalAdviceController {
 		vo.setM_id(m_id);
 		vo.setL_subject(l_subject);
 		vo.setL_content(l_content);
+		vo.setM_address(m_address);
 		localAdviceService.insertLocalAdvice(vo);
 		
 		session.getAttribute("searchCondition");

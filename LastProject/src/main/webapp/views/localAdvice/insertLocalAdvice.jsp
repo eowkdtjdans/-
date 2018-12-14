@@ -51,7 +51,6 @@
 	function sendData(frm){
 		for (var i=0; i<frm.elements.length; i++){
 			if(frm.elements[i].value.trim() == ""){
-				alert();
 				alert(i);
 				alert(frm.elements[i].title + "을 입력해주세요");
 				frm.elements[i].focus();
@@ -153,6 +152,9 @@
 							onclick="list_go()">
 						<input type="hidden" name="searchCondition" value="${searchCondition }">
 						<input type="hidden" name="searchKeyword" value="${key }" >
+						<input type="hidden" name="m_address" value="${member.m_address}">
+						<input type="hidden" name="lat" value="${firstLat}">
+						<input type="hidden" name="lng" value="${firstLng}">
 					</td>
 				</tr>		
 			</table>			

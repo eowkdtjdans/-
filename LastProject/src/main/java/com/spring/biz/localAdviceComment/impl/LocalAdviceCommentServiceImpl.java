@@ -13,6 +13,10 @@ public class LocalAdviceCommentServiceImpl implements LocalAdviceCommentService 
 	@Autowired
 	private LocalAdviceCommentDAO localAdviceCommentDAO;
 	
+	public LocalAdviceCommentServiceImpl() {
+		System.out.println("LocalAdviceCommentServiceImpl 객체 생성");
+	}
+	
 	@Override
 	public List<LocalAdviceCommentVO> getLocalAdviceCommentList(int l_idx) {
 		return localAdviceCommentDAO.getLocalAdviceCommentList(l_idx);

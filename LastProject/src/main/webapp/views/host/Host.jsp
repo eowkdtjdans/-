@@ -1,6 +1,6 @@
- <%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
- <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,7 +31,7 @@
   <!-- Main Stylesheet File -->
   <link href="views/css/style.css" rel="stylesheet">
   
-  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?v=3&sensor=false&libraries=places&callback=initAutocomplete&key=AIzaSyAfB2qQnvAuU2YFFqi8hrPWfjJNyxl5kWc" async defer></script>
 
   <!-- =======================================================
@@ -90,11 +90,11 @@ function initialize() {
     var mapOptions = {
         zoom: 14, //지도 줌
         mapTypeId: google.maps.MapTypeId.ROADMAP, //지도 타입(변경 x)
-        center: new google.maps.LatLng(startLat, startLng) //맵이 로딩됬을때 시작지점
+        center: new google.maps.LatLng("${firstLat}", "${firstLng}") //맵이 로딩됬을때 시작지점
     };
     
     var addCircle = new google.maps.Circle({ //원형 그리기
-    	center: new google.maps.LatLng(startLat, startLng), //원형의 중앙점
+    	center: new google.maps.LatLng("${firstLat}", "${firstLng}"), //원형의 중앙점
     	radius: 1800,			//원형 범위
     	strokeColor: "GREEN",	//테두리 색
     	strokeOpacity: 0.8, 	//테두리 투명도
@@ -217,6 +217,7 @@ function move() {
 
 
 </SCRIPT>
+
 <style>
 	.rounded-circle { width: 80px; height: 70px;} 
 </style>
@@ -271,7 +272,11 @@ function move() {
 					<option value="find_event">이벤트검색
 					<option value="find_advice">현지정보검색
 				</select>
-				<input type="text" name="searchKeyword" value="${key}">
+				<input id="autocomplete" placeholder="Enter your address" type="text" name="searchKeyword">
+				
+				<input class="field" id="lat" type="hidden" name="lat"/>
+				<input class="field" id="lng" type="hidden" name="lng"/>
+				
 				<input type="submit" value="검색">
 			</td>
 		</tr>
@@ -364,20 +369,8 @@ function move() {
       	
       </div>
     </section><!-- #about -->
-    
-    <form action="#" onsubmit="move(); return false" name="frm1">
-			<div id="locationField">
-			  <input id="autocomplete" placeholder="Enter your address" type="text">
-			</div>
-			<input type="submit" value="move"/>
-		</form>
 		
-		<input class="field" id="lat" type="hidden"/>
-		<input class="field" id="lng" type="hidden"/>
-		<input class="field" id="lat2"/>
-		<input class="field" id="lng2"/>
-		
-		<div id="map" style="width:760px;height:400px;margin-top:20px;"></div>
+	<div id="map" style="width:760px;height:400px;margin-top:20px;"></div>
 
 
   

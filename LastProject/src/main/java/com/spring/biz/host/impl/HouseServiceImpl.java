@@ -1,6 +1,7 @@
 package com.spring.biz.host.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,8 +15,8 @@ public class HouseServiceImpl implements HostService {
 	private HostDAO hostDAO;
 
 	@Override
-	public List<HostVO> getHostList(String key) {
-		return hostDAO.getHostList(key);
+	public List<HostVO> getHostList(Map<String, Object> map) {
+		return hostDAO.getHostList(map);
 	}
 
 	@Override

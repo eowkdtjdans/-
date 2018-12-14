@@ -15,6 +15,10 @@ public class LocalAdviceServiceImpl implements LocalAdviceService {
 	@Autowired
 	private LocalAdviceDAO localAdviceDAO;
 	
+	public LocalAdviceServiceImpl() {
+		System.out.println("LocalAdviceService 객체생성");
+	}
+	
 	@Override
 	public List<LocalAdviceVO> getLocalAdviceList(Map<String, Object> map) {		
 		return localAdviceDAO.getLocalAdviceList(map);

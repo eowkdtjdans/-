@@ -30,6 +30,8 @@
 
   <!-- Main Stylesheet File -->
   <link href="views/css/style.css" rel="stylesheet">
+  
+  
 
   <!-- =======================================================
     Theme Name: BizPage
@@ -43,6 +45,24 @@
 		padding-top: 70px;
 	}
 </style>
+
+
+<script>
+var placeSearch, autocomplete;
+
+function initAutocomplete() {
+  autocomplete = new google.maps.places.Autocomplete((document.getElementById('autocomplete')),{types: ['geocode']});
+  autocomplete.addListener('place_changed', fillInAddress);
+}
+
+function fillInAddress() { //lat 와 lng 값을 넘겨줄 input 태그에 값 넣어주기
+  var place = autocomplete.getPlace();
+    document.getElementById("lat").value=place.geometry.location.lat();
+    document.getElementById("lng").value=place.geometry.location.lng();
+}
+</script>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?v=3&sensor=false&libraries=places&callback=initAutocomplete&key=AIzaSyAfB2qQnvAuU2YFFqi8hrPWfjJNyxl5kWc" async defer></script>
  
  
 </head>
@@ -101,9 +121,26 @@
 					<option value="find_event">이벤트검색
 					<option value="find_advice">현지정보검색
 				</select>
-				<input type="text" name="searchKeyword">
+				<input id="autocomplete" placeholder="Enter your address" type="text" name="searchKeyword">
+				
+				<input class="field" id="lat" type="hidden" name="lat"/>
+				<input class="field" id="lng" type="hidden" name="lng"/>
+				
 				<input type="submit" value="검색">
 			</td>
+			<%-- <td>
+				<select name="searchCondition">			
+					<c:forEach var="option" items="${conditionMap }">
+						<option value="${option.value }">${option.key }
+					</c:forEach>
+					<option value="find_travler">여행자검색
+					<option value="find_host">호스트검색
+					<option value="find_event">이벤트검색
+					<option value="find_advice">현지정보검색
+				</select>
+				<input type="text" name="searchKeyword" value="${key}">
+				<input type="submit" value="검색">
+			</td> --%>
 		</tr>
 	</table>
 </form>
@@ -117,8 +154,13 @@
         	<p>${member.m_id }</p>
         	<p>${member.m_pwd }</p>
         	<p>${member.m_name }</p>
+        	<p>${member.m_phone }</p>
+        	<p>${member.m_gender }</p>
+        	<p>${member.m_birthday }</p>
+        	<p>${member.m_regdate }</p>
+        	<p>${member.lat }</p>
+        	<p>${member.lng }</p>
         	<p>${member.m_address }</p>
-				
           <h3>About Us</h3>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
         </header>

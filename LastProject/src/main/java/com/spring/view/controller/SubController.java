@@ -10,13 +10,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 @Controller
-@SessionAttributes({"key", "searchCondition"})
+@SessionAttributes({"key", "searchCondition", "firstLat", "firstLng"})
 public class SubController {
 	
 	HttpSession session;
 	
 	@RequestMapping(value="/sub.do", method=RequestMethod.POST)
-	public String moveController(@RequestParam("searchCondition") String searchCondition, @RequestParam("searchKeyword") String searchKeyword, Model model) {
+	public String moveController(@RequestParam("searchCondition") String searchCondition, @RequestParam("searchKeyword") String searchKeyword, @RequestParam("lat") String lat, @RequestParam("lng") String lng, Model model) {
 		System.out.println("searchCondition : " + searchCondition);
 		System.out.println("searchKeyword : " + searchKeyword);
 		String path = null;
@@ -26,12 +26,15 @@ public class SubController {
 		} else if(searchCondition.equals("find_host")) {
 			System.out.println("host");
 			path = "/getHostList.do?cPage=1";
-		} else if(searchCondition == "find_event") {
-			path = "/getEventList.do";
+		} else if(searchCondition.equals("find_event")) {
+			path = "/getEventList.do?cPage=1";
 		} else if(searchCondition.equals("find_advice")) {
 			System.out.println("/getLocalAdviceList.do?cPage=1");
 			path = "/getLocalAdviceList.do?cPage=1";	
 		}
+		
+		model.addAttribute("firstLat", lat);
+		model.addAttribute("firstLng", lng);
 		model.addAttribute("key", searchKeyword);
 		model.addAttribute("searchCondition", searchCondition);
 		return path;
