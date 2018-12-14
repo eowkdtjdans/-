@@ -33,7 +33,7 @@
 						frm.pwdModify.focus();
 						return false; 
 				   } else if (frm.pwdModify.value.length<8 || frm.pwdModify.value.length>16) {
-						alert("비밀번호가 너무 짧습니다. 8~16자리로 설정해주세요.");
+						alert("비밀번호를 8~16자리로 설정해주세요.");
 			        	frm.pwdModify.value = ""; 
 						frm.pwdModify.focus();
 						return false;

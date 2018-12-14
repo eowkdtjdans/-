@@ -21,68 +21,46 @@
 
 <script>
     function phoneCheck(frm) {
-      var phonecheck = 0;
-      var m_phone = $('#m_phone').val();
-      alert("m_phone : " + m_phone);
-      
-      var phone = document.getElementById("m_phone").value;
-      var phoneCheck = /^((01[1|6|7|8|9])[1-9]+[0-9]{6,7})|(010[1-9][0-9]{7})$/;
-      $.ajax({
-         async: true,
-         type : 'POST',
-         dataType : "json",
-         data : m_phone,
-         contentType: "application/json; charset=UTF-8",
-         url : '../../checkPhoneJson.do',
-         
-            success : function(data) {
-              console.log("data.cnt : " + data.cnt);
-               if(phoneCheck.test(phone)==false || phone == ""){
-                  alert("핸드폰번호를 제대로 기입하세요.");
-                   $("#m_phone").focus();
-                       $("#m_phone").val("");
-                  return false;
-               } else if (data.cnt >= 1) {
-                      alert("핸드폰 번호가 존재합니다.");
-                      $("#m_phone").focus();
-                      $("#m_phone").val("");
-                      phoneck = 0;
-                      return false;
-                   } else if(data.cnt == 0) {
-                     alert("등록가능한 핸드폰 번호입니다.");
-                     //아이디가 중복하지 않으면  idck = 1 
-                     phoneck = 1;
-                    return false;
-                }
-              },
-              error : function(error) {
-                  
-                  alert("error : " + error);
-              }
-          });
-    };
-  function idCheck(frm) {
-    var idcheck = 0;
-    var m_id = $('#m_id').val();
-   
-    var email = document.getElementById("m_id").value;
-    var emailCheck = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
-   $.ajax({
-      async: true,
-      type : 'POST', 
-      dataType : "json",
-      data : m_id,
-       contentType: "application/json; charset=UTF-8",
-      url : '../../checkMemberJson.do',
-      
-         success : function(data) {
-            console.log("data.cnt : " + data.cnt);
-            if(emailCheck.test(email)==false || email == ""){
-               alert("이 메일형식이 올바르지 않습니다.");
-                $("#m_id").focus();
-                    $("#m_id").val("");
-               return false;
-            } else if (data.cnt >= 1) {
+		var phonecheck = 0;
+		var m_phone = $('#m_phone').val();
+		alert("m_phone : " + m_phone);
+		var phone = document.getElementById("m_phone").value;
+		var phoneCheck = /^((01[1|6|7|8|9])[1-9]+[0-9]{6,7})|(010[1-9][0-9]{7})$/;
+		$.ajax({
+			async: true,
+			type : 'POST',
+			dataType : "json",
+			data : m_phone,
+			contentType: "application/json; charset=UTF-8",
+			url : '../../checkPhoneJson.do',
+			
+			   success : function(data) {
+				  console.log("data.cnt : " + data.cnt);
+				   if(phoneCheck.test(phone)==false || phone == ""){
+						alert("핸드폰번호를 제대로 기입하세요.");
+						 $("#m_phone").focus();
+		                 $("#m_phone").val("");
+						return false;
+				   } else if (data.cnt >= 1) {
+	                   alert("핸드폰 번호가 존재합니다.");
+	                   $("#m_phone").focus();
+	                   $("#m_phone").val("");
+	                   phoneck = 0;
+	                   return false;
+	                } else if(data.cnt == 0) {
+	                  alert("등록가능한 핸드폰 번호입니다.");
+	                  //아이디가 중복하지 않으면  idck = 1 
+	                  phoneck = 1;
+	                 return false;
+	             }
+	           },
+	           error : function(error) {
+	               
+	               alert("error : " + error);
+	           }
+	       });
+	 };
+ function idCheck(frm) {
 	 var idcheck = 0;
 	 var m_id = $('#m_id').val();
 	
@@ -122,21 +100,44 @@
            }
        });
 }; 
-
-
+ 
+ 
 function register(frm) {
-      if(confirm("회원가입을 하시겠습니까?")){
-           if(idck==0){
-               alert('아이디 중복체크를 해주세요');
-               return false;
-           }else{
-           alert("회원가입을 축하합니다");
-          frm.action = "../../insertMember.do"; //로그인 작업 처리
-         frm.submit();
-           }
-       }
-   
-   };
+	if(confirm("회원가입을 하시겠습니까?")){
+		if(idck==0){
+            alert('아이디 중복체크를 해주세요');
+            return false;
+        } if(phoneck==0) {
+            	alert("핸드폰 중복체크를 해주세요");
+            	return false;
+        } else if (frm.m_pwd.value == "" || frm.m_pwd.value == null) {
+			alert("비밀번호를 기입하세요.");
+			frm.m_pwd.value = ""; 
+			frm.m_pwd.focus();
+        } else if (frm.m_pwd.value.length<8 || frm.m_pwd.value.length>16) {
+        	alert("비밀번호를 8~16자리로 설정해주세요.");
+        	frm.m_pwd.value = ""; 
+			frm.m_pwd.focus();
+		} else if (frm.m_name.value == "" || frm.m_name.value == null) {
+			alert("성함을 기입하세요.");
+			frm.m_name.value = ""; 
+			frm.m_name.focus();
+		} else if (frm.m_birthday.value == "" || frm.m_birthday.value == null) {
+			alert("생년월일을 선택하세요..");
+			frm.m_birthday.value = ""; 
+			frm.m_birthday.focus();
+		} else if (frm.m_address.value == "" || frm.m_address.value == null) {
+			alert("주소를 기입하세요.");
+			frm.m_address.value = ""; 
+			frm.m_address.focus();
+        }else{
+        alert("회원가입을 축하합니다");
+    	frm.action = "../../insertMember.do"; //로그인 작업 처리
+		frm.submit();
+        }
+    }
+
+};
 </script>   
 <script>   
 var placeSearch, autocomplete;
