@@ -51,7 +51,6 @@
 	function sendData(frm){
 		for (var i=0; i<frm.elements.length; i++){
 			if(frm.elements[i].value.trim() == ""){
-				alert();
 				alert(i);
 				alert(frm.elements[i].title + "을 입력해주세요");
 				frm.elements[i].focus();
@@ -132,7 +131,7 @@
 			<table class="table">
 				<h2><strong>Write LocalAdvice</strong></h2>
 				<tr>
-					<td>SUBJECT</td>
+					<td>SUBJECT${member}</td>
 					<td><textarea class="form-control" rows="1" cols="150" name="l_subject" title="제목"></textarea></td>
 				</tr>
 				<tr>
@@ -153,6 +152,7 @@
 							onclick="list_go()">
 						<input type="hidden" name="searchCondition" value="${searchCondition }">
 						<input type="hidden" name="searchKeyword" value="${key }" >
+						<input type="hidden" name="m_address" value="${member.m_address}">
 					</td>
 				</tr>		
 			</table>			

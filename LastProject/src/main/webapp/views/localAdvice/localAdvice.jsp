@@ -131,7 +131,11 @@
 					<option value="find_event">이벤트검색
 					<option value="find_advice">현지정보검색
 				</select>
-				<input type="text" name="searchKeyword">
+				<input id="autocomplete" placeholder="Enter your address" type="text" name="searchKeyword">
+				
+				<input class="field" id="lat" type="hidden" name="lat"/>
+				<input class="field" id="lng" type="hidden" name="lng"/>
+				
 				<input type="submit" value="검색">
 			</td>
 		</tr>

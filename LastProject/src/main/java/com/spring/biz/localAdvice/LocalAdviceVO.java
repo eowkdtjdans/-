@@ -19,6 +19,8 @@ public class LocalAdviceVO {
     // 게시글조회수 
     private int l_reviewcount;
     
+    private String m_address;
+    
     
     
 	public int getL_idx() {
@@ -63,11 +65,17 @@ public class LocalAdviceVO {
 	public void setL_reviewcount(int l_reviewcount) {
 		this.l_reviewcount = l_reviewcount;
 	}
+	public String getM_address() {
+		return m_address;
+	}
+	public void setM_address(String m_address) {
+		this.m_address = m_address;
+	}
 	@Override
 	public String toString() {
 		return "LocalAdviceVO [l_idx=" + l_idx + ", m_id=" + m_id + ", l_subject=" + l_subject + ", l_content="
-				+ l_content + ", l_date=" + l_date + ", l_uupvote=" + l_upvote + ", l_reviewcount=" + l_reviewcount
-				+ "]";
+				+ l_content + ", l_date=" + l_date + ", l_upvote=" + l_upvote + ", l_reviewcount=" + l_reviewcount
+				+ ", m_address=" + m_address + "]";
 	}
 	
     
