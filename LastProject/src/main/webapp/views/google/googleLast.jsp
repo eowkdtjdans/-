@@ -7,6 +7,7 @@
     <title>googlemap v3 </title>
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?v=3&sensor=false&libraries=places&callback=initAutocomplete&key=AIzaSyAfB2qQnvAuU2YFFqi8hrPWfjJNyxl5kWc" async defer></script>
+    <script src="/views/google/markerclusterer.js"></script>
 </head>
 <SCRIPT LANGUAGE="JavaScript">
 
@@ -71,7 +72,7 @@ function initialize() {
 	});
 	
     addCircle.setMap(map); //원형 생성
- 
+    
 }
 
 //마커생성 함수
@@ -80,7 +81,7 @@ function viewMarker() {
 	{
 		$.ajax({
 			type: "GET",
-			url: "../google.do",
+			url: "/google.do",
 			 beforeSend: function() {			
 				fnRemoveMarker();
 			 },
@@ -94,8 +95,15 @@ function viewMarker() {
 							position: new google.maps.LatLng(markerList[i].lat,markerList[i].lng),
 							map: map,
 							draggable: false,
-							icon: markerList[i].icon,
-							html: markerList[i].cont
+							html: markerList[i].cont,
+							label: {
+					            text: markerList[i].m_name, // $100,000
+					            color: 'black',
+					            fontWeight: 'bold'
+					        },
+					        icon: {
+					    		url: markerList[i].icon,
+					    	}
 						});
 						markers.push(marker);
 
@@ -146,7 +154,11 @@ function move() {
 }
 
 </SCRIPT>
+<style>
+	.rounded-circle { width: 80px; height: 70px;} 
+</style>
 <body>
+<div class="container">
 	<form action="#" onsubmit="move(); return false" name="frm1">
 		<div id="locationField">
 		  <input id="autocomplete" placeholder="Enter your address" type="text">
@@ -154,9 +166,10 @@ function move() {
 		<input type="submit" value="move"/>
 	</form>
 	
-	<input class="field" id="lat"/>
-	<input class="field" id="lng"/>
+	<input class="field" id="lat" type="hidden"/>
+	<input class="field" id="lng" type="hidden"/>
 	
 	<div id="map" style="width:760px;height:400px;margin-top:20px;"></div>
+</div>
 </body>
 </html>

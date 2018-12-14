@@ -15,6 +15,7 @@ import com.spring.biz.member.MemberVO;
 public class MemberDAO {
 	@Autowired
 	private SqlSessionTemplate mybatis;
+	public Object memberDAO;
 	
 	//회원가입
 	public void insertMember(MemberVO vo) throws Exception {
@@ -29,6 +30,7 @@ public class MemberDAO {
 		System.out.println("======== loginMember() =========");
 		return (MemberVO) mybatis.selectOne("loginMember", vo);
 	}
+
 	
 	//로그아웃
 	public void logout(HttpSession session) throws Exception {
@@ -40,14 +42,7 @@ public class MemberDAO {
 		return mybatis.selectOne("idCheck", m_id);
 	}
 	
-	//비밀번호 찾기
-	public MemberVO getPw(Map<String, Object> paramMap) {
-		return mybatis.selectOne("getPw", paramMap);
-	}
-
-	public MemberVO getId(Map<String, Object> paramMap) {
-		return mybatis.selectOne("getId", paramMap);
-	}
+	
 	//로그인 체크
 	public int loginCheck(String m_id, String m_pwd) {
 		return  mybatis.selectOne("loginCheck", m_id);
@@ -57,8 +52,6 @@ public class MemberDAO {
 	public int checkMemberJson(String m_id) {
 		return mybatis.selectOne("checkMemberJson", m_id);
 	}
-	
-	
 
 	public int loginMemberJson(MemberVO vo) {
 		return mybatis.selectOne("loginMemberJson", vo);
@@ -72,10 +65,48 @@ public class MemberDAO {
 	public int findPwdMemberJson(MemberVO vo) {
 		return mybatis.selectOne("findPwdMemberJson", vo);
 	}
-	
+	//비밀번호 찾기
+	public MemberVO getPw(Map<String, Object> paramMap) {
+		return mybatis.selectOne("getPw", paramMap);
+	}
+	//아이디 찾기
+	public MemberVO getId(Map<String, Object> paramMap) {
+		return mybatis.selectOne("getId", paramMap);
+	}
 	public int checkPhoneJson(String m_phone) {
 		return mybatis.selectOne("checkPhoneJson", m_phone);
 	}
+	
+	public int ModifyMemberPwdJson(MemberVO vo) {
+		return mybatis.selectOne("ModifyMemberPwdJson", vo);
+	}
+	
+	public int ModifyMemberPhoneJson(MemberVO vo) {
+		return mybatis.selectOne("ModifyMemberPhoneJson", vo);
+	}
+	public int DeleteMemberJson(MemberVO vo) {
+		return mybatis.selectOne("DeleteMemberJson", vo);
+	}
+
+	public void ModifyPhoneMember(MemberVO vo) {
+		mybatis.update("ModifyPhoneMember", vo);
+	}
+
+	public void ModifyPwdMember(MemberVO vo) {
+		System.out.println("비밀번호 수정DAO ===========");
+		 mybatis.update("ModifyPwdMember", vo);
+	}
+
+	public void DeleteMember(MemberVO vo) {
+		mybatis.delete("DeleteMember", vo);
+	}
+
+	public void ModifyAddressMember(MemberVO vo) {
+		mybatis.update("ModifyAddressMember", vo);
+	}
+
+	
+	
 
 
 	

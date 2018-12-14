@@ -12,12 +12,10 @@
 	<link rel="stylesheet" type="text/css" href="views/bootstrapModal/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="views/cssModal/my-login.css">
 	
-	
 <script>
 
 	function findPwd(frm) {
 		 var str = $("#form").serialize();
-		alert(str);
 		 $.ajax({
 			async : true,
 			type : "POST",
@@ -25,9 +23,8 @@
 			data : str,
 			url : "../../findPwdMemberJson.do",
 			success : function(data) {
-				console.log(data);
 				if (data.cnt > 0) {
-					alert(data);
+					alert("기입하신 이메일을 확인하세요!");
 					frm.action="../../findPwdMember.do";
 					frm.submit(); 
 					return false;
@@ -35,14 +32,13 @@
 					alert("회원정보가 없습니다. 다시 입력하세요.");
 					frm.m_id.value = "";
 					frm.m_phone.value = "";
+					frm.m_name.value = "";
 					frm.m_id.focus();
 				}
 				
 			},
 		}); 
 		
-		
-		return false;
 	};
 </script>	
 	
@@ -63,16 +59,16 @@
 								<div class="form-group">
 									<label for="m_email">ID</label>
 									<input id="m_id" type="email" class="form-control" name="m_id" placeholder="아이디를 입력하세요." required autofocus>
-
-									<div class="form-text text-muted">
-										By clicking "Reset Password" we will send a password reset link
-									</div>
 								</div>
 								
-									<div class="form-group">
+								<div class="form-group">
+									<label for="m_name">성함</label>
+									<input id="m_name" type="text" class="form-control" name="m_name" placeholder="이름을 입력하세요." required autofocus>
+								</div>
+								
+								<div class="form-group">
 									<label for="m_phone">전화번호</label>
 									<input id="m_phone" type="text" class="form-control" name="m_phone" placeholder="전화번호를 입력하세요." required autofocus>
-
 								</div>
 
 								<div class="form-group m-0">
@@ -80,6 +76,11 @@
 										비밀번호 찾기
 									</button>
 								</div>
+								
+								<a href="../../findIdMember.do" class="float-right">
+									아이디 찾기
+								</a>
+								
 							</form>
 						</div>
 					</div>

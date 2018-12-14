@@ -39,7 +39,7 @@
 			limitNextMonth: 12,
 			numCalendar : 2,
 			dateRangesHover: true
-		});
+		});  
 	});
 	
 	

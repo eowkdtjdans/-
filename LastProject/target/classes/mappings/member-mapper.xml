@@ -10,7 +10,24 @@
 		INSERT INTO MEMBER (M_ID, M_PWD, M_NAME, M_PHONE, M_GENDER, M_BIRTHDAY, LAT, LNG, M_REGDATE, M_ADDRESS ) 
 		VALUES ( #{m_id}, #{m_pwd}, #{m_name}, #{m_phone}, #{m_gender}, #{m_birthday}, #{lat}, #{lng}, SYSDATE, #{m_address})
 	</insert>
+	<update id="ModifyPwdMember" parameterType="member">
+		UPDATE MEMBER SET M_PWD = #{m_pwd} WHERE M_ID = #{m_id}
+	</update>
+	<update id="ModifyPhoneMember" parameterType="member">
+		UPDATE MEMBER SET M_PHONE = #{m_phone} WHERE M_ID = #{m_id}
+	</update>
 	
+	<update id="ModifyAddressMember" parameterType="member">
+		UPDATE MEMBER SET 
+		M_ADDRESS = #{m_address}, 
+		LAT = #{lat},
+		LNG = #{lng} 
+		WHERE M_ID = #{m_id}
+	</update>
+	
+	<delete id="DeleteMember" parameterType="member">
+		DELETE FROM MEMBER WHERE M_ID = #{m_id} AND M_PWD = #{m_pwd} AND M_PHONE = #{m_phone}
+	</delete>
 	
 	<!-- 로그인 -->
 	<select id="loginMember" resultType="member">
@@ -27,13 +44,13 @@
 	
 	
 	<select id="getPw" parameterType="Map" resultType="member">
-		SELECT M_PWD FROM MEMBER
-		 WHERE M_ID= #{m_id} AND M_PHONE= #{m_phone}
+		SELECT * FROM MEMBER
+		 WHERE M_ID= #{m_id} AND M_PHONE= #{m_phone} AND M_NAME = #{m_name}
 	</select>	
 	
 	
 	<select id="getId" parameterType="Map" resultType="member">
-		SELECT M_ID FROM MEMBER
+		SELECT * FROM MEMBER
 		 WHERE M_NAME= #{m_name} AND M_PHONE= #{m_phone}
 	</select>
 	
@@ -48,16 +65,23 @@
 		WHERE M_PHONE = #{m_phone}
 	</select>
 	
+	<select id="ModifyMemberPwdJson" parameterType="String" resultType="Integer">
+		SELECT COUNT(*) FROM MEMBER
+		WHERE M_PWD = #{m_pwd} AND M_ID = #{m_id}
+	</select>
+	<select id="DeleteMemberJson" parameterType="String" resultType="Integer">
+		SELECT COUNT(*) FROM MEMBER
+		WHERE M_PWD = #{m_pwd} AND M_ID = #{m_id} AND M_PHONE = #{m_phone}
+	</select>
 	
+	<select id="ModifyMemberPhoneJson" parameterType="String" resultType="Integer">
+		SELECT COUNT(*) FROM MEMBER
+		WHERE M_PHONE = #{m_phone} AND M_ID = #{m_id}
+	</select>
 	
 	<select id="loginCheck" parameterType="String" resultType="Integer">
 		SELECT COUNT(*) FROM MEMBER 
 		WHERE M_ID = #{m_id} AND M_PWD = #{m_pwd}
-	</select>
-	
-	<select id="findPwdMemberJson" parameterType="String" resultType="Integer">
-		SELECT COUNT(*) FROM MEMBER
-		WHERE M_ID = #{m_id} AND M_PHONE = #{m_phone}
 	</select>
 
 	<select id="loginMemberJson" parameterType="String" resultType="Integer">
@@ -67,8 +91,20 @@
 	
 	<select id="findIdMemberJson" parameterType="String" resultType="Integer">
 		SELECT COUNT(*) FROM MEMBER
-			WHERE M_NAME = #{m_name} AND M_PHONE = #{m_phone}
+		WHERE M_NAME = #{m_name} AND M_PHONE = #{m_phone}
 	</select> 
 	
+	<select id="findPwdMemberJson" parameterType="String" resultType="Integer">
+		SELECT COUNT(*) FROM MEMBER
+		WHERE M_ID = #{m_id} AND M_PHONE = #{m_phone} AND M_NAME = #{m_name}
+	</select>
 	
+	<select id="checkPwdMemberJson" parameterType="String" resultType="Integer">
+		SELECT COUNT(*) FROM MEMBER
+		WHERE M_PWD = #{m_pwd}
+	</select>
+		<select id="checkPhoneMemberJson" parameterType="String" resultType="Integer">
+		SELECT COUNT(*) FROM MEMBER
+		WHERE M_PHONE = #{m_phone}
+	</select>
 </mapper>

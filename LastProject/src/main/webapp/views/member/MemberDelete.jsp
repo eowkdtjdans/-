@@ -1,47 +1,46 @@
- <%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<title>로그인</title>
+<title>회원탈퇴</title>
 
 <script>
 	//로그인 값이 있던 없던 그냥 넘어가니까 JSON을 사용해서 데이터베이스에 있는지 체크하기.
-	function login(frm) {
-	var str = $("#form").serialize();
-		
+	function DeleteMember(frm) {
+	
+	 	var str = $("#DeleteMember").serialize();
 		$.ajax({
-			async: true,
+			async : true,
 			type : "POST",
 			dataType : "json",
 			data : str,
-			url : '../../loginMemberJson.do',
-			success : function(data) { 
+			url : "../../MemberDeleteJson.do",
+			success : function(data) {
 				if (data.cnt > 0) {
-					 frm.action = "../../loginMember.do";
-					 frm.submit(); 
-					 return false;
+					alert("회원탈퇴가 완료되었습니다.");
+					frm.action = "../../DeleteMember.do";
+				 	frm.submit();   
+				 	return false;
 				} else {
-					alert("아이디 또는 비밀번호가 일치하지않습니다. 다시 입력해주세요.");
-					frm.m_id.value = "";
-					frm.m_pwd.value = "";
-					frm.m_id.focus();
-					
+					alert("기존에 등록된 핸드폰번호가 일치하지않습니다. 다시 확인해주세요.");
+					frm.m_phone.value = "";
+					frm.modifyM_phone.value = "";
+					frm.m_phone.focus();
 				}
 			}
-		}) 
-
+		})
+		
 	};
-
 		
 </script>
 
 	<meta charset="utf-8">
 	<meta name="author" content="Kodinger">
 	<meta name="viewport" content="width=device-width,initial-scale=1">
-	<title>로그인페이지</title>
+	<title>회원탈퇴 페이지</title>
 	<link rel="stylesheet" type="text/css" href="views/bootstrapModal/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="views/cssModal/my-login.css">
 </head>
@@ -55,32 +54,26 @@
 					</div>
 					<div class="card fat">
 						<div class="card-body">
-							<h4 class="card-title" style="text-align : center;">로그인</h4>
-							<form method="POST" class="my-login-validation" id="form">
+							<h4 class="card-title" style="text-align : center;">회원 탈퇴</h4>
+							<form method="POST" class="my-login-validation" id="DeleteMember">
+									<input id="m_id" type="text" class="form-control" name="m_id" value="${member.m_id }" required autofocus>
 								<div class="form-group">
-									<label for="email">아이디</label>
-									<input id="m_id" type="email" class="form-control" name="m_id" required autofocus>
-								</div>
-								
-								<div class="form-group">
-									<label for="password">비밀번호</label>
+									<label for="text">비밀번호</label>
 									<input id="m_pwd" type="password" class="form-control" name="m_pwd" required data-eye>
 								</div>
+								
+								<div class="form-group">
+									<label for="text">핸드폰 번호</label>
+									<input id="m_phone" type="text" class="form-control" name="m_phone" required autofocus>
+								</div>
 
+								
 								<div class="form-group m-0">
-									<button type="button" class="btn btn-primary btn-block" onclick="login(this.form)">
-										Login
+									<button type="button" class="btn btn-primary btn-block" onclick="DeleteMember(this.form)">
+										회원 정보 삭제
 									</button>
 								</div>
-								
 					
-								<a href="../../findPwdMember.do" class="float-right">
-									비밀번호 찾기
-								</a>
-								
-								<div class="mt-4 text-center">
-									아이디가 없으십니까? <a href="../../insertMember.do">회원가입</a>
-								</div>
 							</form>
 						</div>
 					</div>

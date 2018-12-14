@@ -69,7 +69,7 @@
     var emailCheck = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
    $.ajax({
       async: true,
-      type : 'POST',
+      type : 'POST', 
       dataType : "json",
       data : m_id,
        contentType: "application/json; charset=UTF-8",
@@ -83,6 +83,27 @@
                     $("#m_id").val("");
                return false;
             } else if (data.cnt >= 1) {
+	 var idcheck = 0;
+	 var m_id = $('#m_id').val();
+	
+	 var email = document.getElementById("m_id").value;
+	 var emailCheck = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
+	$.ajax({
+		async: true,
+		type : 'POST',
+		dataType : "json",
+		data : m_id,
+	    contentType: "application/json; charset=UTF-8",
+		url : '../../checkMemberJson.do',
+		
+		   success : function(data) {
+			   console.log("data.cnt : " + data.cnt);
+			   if(emailCheck.test(email)==false || email == ""){
+					alert("이 메일형식이 올바르지 않습니다.");
+					 $("#m_id").focus();
+	                 $("#m_id").val("");
+					return false;
+			   } else if (data.cnt >= 1) {
                    alert("아이디가 존재합니다. 다른 아이디를 입력해주세요.");
                    $("#m_id").focus();
                    $("#m_id").val("");

@@ -22,9 +22,10 @@ public class SubController {
 		String path = null;
 		System.out.println("sub.do ==== post방식");
 		if(searchCondition.equals("find_travler")) {
-			path = "/getTravelersList.do";
-		} else if(searchCondition == "find_host") {
-			path = "/getHostList.do";
+			path = "/getTravelersList.do?cPage=1";
+		} else if(searchCondition.equals("find_host")) {
+			System.out.println("host");
+			path = "/getHostList.do?cPage=1";
 		} else if(searchCondition == "find_event") {
 			path = "/getEventList.do";
 		} else if(searchCondition.equals("find_advice")) {
@@ -41,7 +42,7 @@ public class SubController {
 	
 	@RequestMapping(value="/sub2.do", method=RequestMethod.GET)
 	public String moveController() {
-		System.out.println("sub2.do === g=et방식");
+		System.out.println("sub2.do === get방식");
 		return "views/sub.jsp";
 	}
 	
