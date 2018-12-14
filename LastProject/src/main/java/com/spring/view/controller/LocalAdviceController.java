@@ -20,11 +20,12 @@ import com.spring.biz.localAdvice.LocalAdviceService;
 import com.spring.biz.localAdvice.LocalAdviceVO;
 import com.spring.biz.localAdviceComment.LocalAdviceCommentService;
 import com.spring.biz.localAdviceComment.LocalAdviceCommentVO;
+import com.spring.biz.member.MemberVO;
 import com.spring.biz.profileImage.ProfileImageVO;
 import com.spring.pagination.PagingVO;
 
 @Controller
-@SessionAttributes("key")
+@SessionAttributes("key") 
 public class LocalAdviceController {
 	HttpSession session;
 	@Autowired
