@@ -57,6 +57,7 @@
 						<div class="card-body">
 							<h4 class="card-title" style="text-align : center;">로그인</h4>
 							<form method="POST" class="my-login-validation" id="form">
+							
 								<div class="form-group">
 									<label for="email">아이디</label>
 									<input id="m_id" type="email" class="form-control" name="m_id" required autofocus>
@@ -66,7 +67,8 @@
 									<label for="password">비밀번호</label>
 									<input id="m_pwd" type="password" class="form-control" name="m_pwd" required data-eye>
 								</div>
-
+								
+								
 								<div class="form-group m-0">
 									<button type="button" class="btn btn-primary btn-block" onclick="login(this.form)">
 										Login
