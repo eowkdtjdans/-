@@ -46,6 +46,7 @@
 		color:#5e7e9b;
 	}
 	#profileImage { width: 80px; height: 80px;} 
+	#profileImage2 { width: 60px; height: 60px;}
 	td{
 		padding-right: 30px;
 	}
@@ -57,7 +58,26 @@
 
 </style>
 
-  
+<script>
+function login_chk(frm){
+	if("${m_id}" == "") {
+		alert("로그인이 필요한 서비스입니다.");
+		location.href="";  /* 로그인을 안하고 댓글 쓰려고할 때 로그인페이지로 이동 */
+	} else{
+		if (frm.lc_content.value == ""){
+			alert("댓글을 입력해주세요");
+			frm.lc_content.focus();
+			return false;
+		} else {
+			alert("컨트롤러 이동");
+			frm.action = "../insertLocalAdviceComment.do?l_idx=${getLocalAdvice.l_idx }&getProfileImage.m_id=${getProfileImage.m_id}";
+			frm.submit();			
+		}
+	}	
+}
+
+
+</script>  
  
 </head>
 
@@ -118,19 +138,11 @@
 <section id="about">
 <div class="container">
 	<div class="row from-group">	
-			<%-- <div>${getLocalAdvice.l_idx }</div>	
-			<div>${getLocalAdvice.m_id}</div>
-			<div>${getLocalAdvice.l_subject }</div>
-			<div>${getLocalAdvice.l_content }</div>
-			<div>${getLocalAdvice.l_date }</div>
-			<div>${getLocalAdvice.l_upvote }</div>
-			<div>${getLocalAdvice.l_reviewcount }</div>
-			<div><img src="${getProfileImage.p_route }" class="rounded-circle"  id="profileImage"></div> --%>	
 	
 		<div id="tableDiv">
 			<table>				
 				<tr>
-					<td rowspan="3"><img src="${getProfileImage.p_route }" class="rounded-circle"  id="profileImage"></td>
+					<td rowspan="3"><img src="${getProfileImage.p_route }" class="rounded-circle"  id="profileImage" onerror='this.src="../views/img/people/fuckyou.jpg"'></td>
 					<td><strong>${getLocalAdvice.l_subject }</strong></td>
 					<td>					
 						<c:if test="${getProfileImage.m_id eq m_id }"> 
@@ -140,20 +152,80 @@
 					</td>
 				</tr>
 				<tr>
-					<td>${getLocalAdvice.l_date }</td>
+					<td>${getLocalAdvice.m_id}&emsp;&emsp; ${getLocalAdvice.l_date }</td>
 				</tr>
 				<tr>
 					<td>${getLocalAdvice.l_upvote } &nbsp;&nbsp; ${getLocalAdvice.l_reviewcount }</td>
 				</tr>				
 			</table>	
-				<div><p><br>${getLocalAdvice.l_content }</p></div>		
+				<div style="height: 300px"><p><br>${getLocalAdvice.l_content }</p></div>		
 		</div>	
 		
-		<form>
-			<table> 
-					
+		<%-- ${getLocalAdvice.l_idx } --%>
+	 
+      	<!-- 여기서부터 댓글폼 -->    
+      	<form>	
+			<table class="table" style="width: 1100px; /* height: 400px; */"> 
+				<c:forEach var="list" items="${getLocalAdviceCommentList}">
+					<tr>
+						<td>
+							<img src="${list.p_route }" class="rounded-circle" id="profileImage2" onerror='this.src="../views/img/people/fuckyou.jpg"'>
+								&nbsp;&nbsp;${list.m_id }&emsp;&emsp;${list.lc_date }
+								<c:if test="${list.m_id eq m_id }">    <!-- 조건에 로그인한아이디와 프로필의 m_id가 같으면 -->
+									<%-- <input type="hidden" name="lc_idx" value="${list.lc_idx }">
+									<input type="hidden" name="m_id" value="${getProfileImage.m_id}"> --%>
+									<%-- <a href="../updateLocalAdviceComment.do?lc_idx=${list.lc_idx }&m_id=${getProfileImage.m_id}">&nbsp;수정&nbsp;</a>| --%>
+									<!-- <input type="button" value="수정" onclick="updateJson(this.form)"> -->
+									<input type="button" id="update_button" value="수정">
+									<a href="#">삭제&nbsp;</a>
+								</c:if>
+							<br><br>
+							${list.lc_content }
+							<br>
+						</td>
+					</tr>	
+				</c:forEach>	
 			</table>
+		</form> 
+		
+<script>
+/* $(document).ready(function() {
+	$.ajax({
+		method: "POST",
+		url: "../updateLocalAdviceComment.do",
+		data: {
+			lc_idx="${getLocalAdviceCommentList.lc_idx}",
+			m_id="${getProfileImage.m_id}"
+		},
+		dataType: "json",
+		success: function(data) {
+			alert("ajax성공");
+		return;
+		}
+	});
+}); */
+
+
+
+</script>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<!-- 댓글 입력 폼 -->
+		<form method="post" name="frm">
+			<p>
+			<textarea name="lc_content" rows="3" cols="134"></textarea>
+			<input class="btn btn-outline-secondary" type="button" name="lc_content" value="댓글등록" onclick="login_chk(this.form)">			
+			</p>
 		</form>
+		
 	</div>
 </div>	   
 </section><!-- #about -->
@@ -217,12 +289,7 @@
         &copy; Copyright <strong>Couch Surfing</strong>. All Rights Reserved
       </div>
       <div class="credits">
-        <!--
-          All the links in the footer should remain intact.
-          You can delete the links only if you purchased the pro version.
-          Licensing information: https://bootstrapmade.com/license/
-          Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=BizPage
-        -->
+
         Best <a href="https://bootstrapmade.com/">Bootstrap Templates</a> by BootstrapMade
       </div>
     </div> 

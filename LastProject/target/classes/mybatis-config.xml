@@ -12,6 +12,7 @@
   	<typeAlias alias="travelers" type="com.spring.biz.travelers.TravelersVO"/>
   	<typeAlias alias="member" type="com.spring.biz.member.MemberVO"/>
   	<typeAlias alias="localadvice" type="com.spring.biz.localAdvice.LocalAdviceVO"/>
+  	<typeAlias alias="localadvicecomment" type="com.spring.biz.localAdviceComment.LocalAdviceCommentVO"/>
   	<typeAlias alias="google" type="com.spring.biz.google.GoogleVO"/>
   	<typeAlias alias="host" type="com.spring.biz.host.HostVO"/>
   </typeAliases>

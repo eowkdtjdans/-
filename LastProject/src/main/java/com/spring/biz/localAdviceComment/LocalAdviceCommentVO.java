@@ -16,8 +16,8 @@ public class LocalAdviceCommentVO {
     private String lc_content;
     // 게시글댓글수 
     private int lc_commentcount;
-
-    
+    // 사진경로
+    private String p_route;
     
     
 	public int getLc_idx() {
@@ -68,11 +68,21 @@ public class LocalAdviceCommentVO {
 		this.lc_commentcount = lc_commentcount;
 	}
 
+	public String getP_route() {
+		return p_route;
+	}
+
+	public void setP_route(String p_route) {
+		this.p_route = p_route;
+	}
+
 	@Override
 	public String toString() {
 		return "LocalAdviceCommentVO [lc_idx=" + lc_idx + ", l_idx=" + l_idx + ", m_id=" + m_id + ", lc_date=" + lc_date
-				+ ", lc_content=" + lc_content + ", lc_commentcount=" + lc_commentcount + "]";
+				+ ", lc_content=" + lc_content + ", lc_commentcount=" + lc_commentcount + ", p_route=" + p_route + "]";
 	}
+
+	
 
 	
 	
