@@ -28,7 +28,7 @@
 	
 	<!-- 게시글 상세보기 -->
 	<select id="getLocalAdvice" parameterType="localadvice" resultType="localadvice">
-		SELECT * FROM LOCALADVICE WHERE L_IDX=#{l_idx}
+		SELECT L.*, PI.P_ROUTE FROM LOCALADVICE L, PROFILE_IMAGE PI WHERE L_IDX=#{l_idx}
 	</select>
 
 	<!-- 프로필이미지 조회 -->
