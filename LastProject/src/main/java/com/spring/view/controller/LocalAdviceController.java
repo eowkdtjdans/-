@@ -20,6 +20,7 @@ import com.spring.biz.localAdvice.LocalAdviceService;
 import com.spring.biz.localAdvice.LocalAdviceVO;
 import com.spring.biz.localAdviceComment.LocalAdviceCommentService;
 import com.spring.biz.localAdviceComment.LocalAdviceCommentVO;
+import com.spring.biz.member.MemberVO;
 import com.spring.biz.profileImage.ProfileImageVO;
 import com.spring.pagination.PagingVO;
 
@@ -227,20 +228,21 @@ public class LocalAdviceController {
 	//댓글 입력
 	@RequestMapping(value="/insertLocalAdviceComment.do")
 	public String insertLocalAdviceComment(LocalAdviceCommentVO cvo, @RequestParam("l_idx") String l_idx, @RequestParam("lc_content") String lc_content, HttpSession session, @RequestParam("getProfileImage.m_id") String m_id) {
+		MemberVO mvo = (MemberVO)session.getAttribute("member");
 		System.out.println("댓글입력 컨트롤러");
 		System.out.println(l_idx);
 		System.out.println(lc_content);
-		System.out.println(session.getAttribute("m_id"));
-		System.out.println(m_id);
+		System.out.println("insertLocalAdviceComment.do에서 실행됨: " + mvo.getM_id());
+		System.out.println(mvo.getM_id());
 		
 		
-		String m_id2 = (String)session.getAttribute("m_id");
+		String m_id2 = mvo.getM_id();
 		cvo.setL_idx(Integer.parseInt(l_idx));
 		cvo.setLc_content(lc_content);
 		cvo.setM_id(m_id2);
 		localAdviceCommentService.insertLocalAdviceComment(cvo);
 		System.out.println("잘되고 잉니?");
-		return "/getLocalAdvice.do?m_id="+m_id;
+		return "/getLocalAdvice.do?m_id="+mvo.getM_id();
 	}
 	
 	

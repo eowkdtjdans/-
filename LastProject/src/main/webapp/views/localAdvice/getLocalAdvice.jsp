@@ -31,6 +31,9 @@
 
   <!-- Main Stylesheet File -->
   <link href="views/css/style.css" rel="stylesheet">
+  
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?v=3&sensor=false&libraries=places&callback=initAutocomplete&key=AIzaSyAfB2qQnvAuU2YFFqi8hrPWfjJNyxl5kWc" async defer></script>
 
   <!-- =======================================================
     Theme Name: BizPage
@@ -67,6 +70,7 @@ function login_chk(frm){
 	} else{
 		if (frm.lc_content.value == ""){
 			alert("댓글을 입력해주세요");
+			alert(frm.lc_content.value);
 			frm.lc_content.focus();
 			return false;
 		} else {
@@ -79,6 +83,24 @@ function login_chk(frm){
 
 
 </script>  
+
+<script>
+	function update_button(lc_idx) {
+		alert("update_button()함수로옴");
+	    var textareaTag = "<br><textarea id='textarea" + lc_idx + "'  rows='3' cols='134' name='update'></textarea>"+
+	    "<button type='button' class='btn btn-outline-secondary' onclick='json_update(this.form)'>수정완료</button>";
+	    var lc_content = $("#"+ lc_idx).text();
+	    alert(lc_idx);
+		//$("#"+ lc_idx).append(textareaTag);
+		
+		$("#"+lc_idx).empty();
+		$("#"+lc_idx).append(textareaTag);
+		alert("aa");
+		$("#textarea" + lc_idx).append(lc_content);
+	}
+	
+	
+</script>
  
 </head>
 
@@ -127,8 +149,12 @@ function login_chk(frm){
 					<option value="find_event">이벤트검색
 					<option value="find_advice">현지정보검색
 				</select>
-				<input type="text" name="searchKeyword">
-				<input type="submit" value="검색">				
+				<input id="autocomplete" placeholder="Enter your address" type="text" name="searchKeyword">
+				
+				<input class="field" id="lat" type="hidden" name="lat"/>
+				<input class="field" id="lng" type="hidden" name="lng"/>
+				
+				<input type="submit" value="검색">
 			</td>
 		</tr>
 	</table>
@@ -176,9 +202,8 @@ function login_chk(frm){
 									<%-- <a href="../updateLocalAdviceComment.do?lc_idx=${list.lc_idx }&m_id=${getProfileImage.m_id}">&nbsp;수정&nbsp;</a>| --%>
 					 				<button type="button" class="btn btn-outline-secondary" onclick="update_button('${list.lc_idx}')">수정</button>
 									<button type="button" class="btn btn-outline-secondary" onclick="delete_button(this.form)">삭제</button>
-<div class="lc_content" id="${list.lc_idx}"><br>${list.lc_content }<br>
-</div>
 								</c:if>
+<div id="${list.lc_idx}"><br>${list.lc_content }<br></div>
 						</td>
 					</tr>	
 				</c:forEach>	
@@ -186,44 +211,11 @@ function login_chk(frm){
 		</form> 
 
 
-<script>
-	function update_button(lc_idx) {
-		alert("update_button()함수로옴");
-	    var textareaTag = "<br><textarea id='textarea" + lc_idx + "'  rows='3' cols='134' name='update'></textarea>"+
-	    "<button type='button' class='btn btn-outline-secondary' onclick='json_update(this.form)'>수정완료</button>";
-	    var lc_content = $("#"+ lc_idx).text();
-	    alert(lc_idx);
-		//$("#"+ lc_idx).append(textareaTag);
-		
-		$("#"+lc_idx).empty();
-		$("#"+lc_idx).append(textareaTag);
-		alert("aa");
-		$("#textarea" + lc_idx).append(lc_content);
-	}
-	
-
-	
-	function json_update(frm) {
-		alert("제이슨 ㄱ");
-	}
-	
-	
-</script>
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 		<!-- 댓글 입력 폼 -->
 		<form method="post" name="frm">
 			<p>
 			<textarea name="lc_content" rows="3" cols="134"></textarea>
-			<input class="btn btn-outline-secondary" type="button" name="lc_content" value="댓글등록" onclick="login_chk(this.form)">			
+			<input class="btn btn-outline-secondary" type="button" value="댓글등록" onclick="login_chk(this.form)">			
 			</p>
 		</form>
 		
