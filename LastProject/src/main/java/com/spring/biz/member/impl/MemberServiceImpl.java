@@ -34,11 +34,6 @@ public class MemberServiceImpl implements MemberService{
 	}
 	
 	@Override
-	public void ModifyPwd(MemberVO vo) throws Exception {
-		memberDAO.ModifyMember(vo);
-	}
-	
-	@Override
 	public void logoutMember(HttpSession session) {
 		session.invalidate();
 		
@@ -92,6 +87,39 @@ public class MemberServiceImpl implements MemberService{
 	public int ModifyMemberPwdJson(MemberVO vo) {
 		return memberDAO.ModifyMemberPwdJson(vo);
 	}
+	@Override
+	public int MemberDeleteJson(MemberVO vo) {
+		return memberDAO.DeleteMemberJson(vo);
+	}
+
+	@Override
+	public int ModifyMemberPhoneJson(MemberVO vo) {
+		return memberDAO.ModifyMemberPhoneJson(vo);
+	}
+	
+	@Override
+	public void ModifyPwd(MemberVO vo) throws Exception {
+		memberDAO.ModifyPwdMember(vo);
+	}
+	@Override
+	public void ModifyPhone(MemberVO vo) {
+		 memberDAO.ModifyPhoneMember(vo);
+	}
+
+
+	@Override
+	public void DeleteMember(MemberVO vo) {
+		memberDAO.DeleteMember(vo);
+	}
+
+
+	@Override
+	public void ModifyAddress(MemberVO vo) {
+		memberDAO.ModifyAddressMember(vo);
+	}
+
+
+
 
 
 	
