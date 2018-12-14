@@ -25,7 +25,7 @@ import com.spring.biz.profileImage.ProfileImageVO;
 import com.spring.pagination.PagingVO;
 
 @Controller
-@SessionAttributes("key")
+@SessionAttributes("key") 
 public class LocalAdviceController {
 	HttpSession session;
 	@Autowired
@@ -142,7 +142,7 @@ public class LocalAdviceController {
 	//여기에는 localAdvice게시글작성하고 저장버튼 눌렀을때
 	//@RequestMapping(value="/insertLocalAdvice.do")
 	@RequestMapping(value="insertLocalAdvice.do")
-	public String moveInsertLocalAdvice(LocalAdviceVO vo, HttpSession session, @RequestParam("m_address") String m_address, @RequestParam("l_subject") String l_subject, @RequestParam("l_content") String l_content) {
+	public String moveInsertLocalAdvice(LocalAdviceVO vo, HttpSession session, @RequestParam("l_subject") String l_subject, @RequestParam("l_content") String l_content) {
 		System.out.println("게시글 등록");
 		
 		String m_id = (String)session.getAttribute("m_id");	
@@ -150,7 +150,6 @@ public class LocalAdviceController {
 		vo.setM_id(m_id);
 		vo.setL_subject(l_subject);
 		vo.setL_content(l_content);
-		vo.setM_address(m_address);
 		localAdviceService.insertLocalAdvice(vo);
 		
 		session.getAttribute("searchCondition");
@@ -228,21 +227,21 @@ public class LocalAdviceController {
 	//댓글 입력
 	@RequestMapping(value="/insertLocalAdviceComment.do")
 	public String insertLocalAdviceComment(LocalAdviceCommentVO cvo, @RequestParam("l_idx") String l_idx, @RequestParam("lc_content") String lc_content, HttpSession session, @RequestParam("getProfileImage.m_id") String m_id) {
-		MemberVO mvo = (MemberVO)session.getAttribute("member");
+		
 		System.out.println("댓글입력 컨트롤러");
 		System.out.println(l_idx);
 		System.out.println(lc_content);
-		System.out.println("insertLocalAdviceComment.do에서 실행됨: " + mvo.getM_id());
-		System.out.println(mvo.getM_id());
+		System.out.println(session.getAttribute("m_id"));
+		System.out.println(m_id);
 		
 		
-		String m_id2 = mvo.getM_id();
+		String m_id2 = (String)session.getAttribute("m_id");
 		cvo.setL_idx(Integer.parseInt(l_idx));
 		cvo.setLc_content(lc_content);
 		cvo.setM_id(m_id2);
 		localAdviceCommentService.insertLocalAdviceComment(cvo);
 		System.out.println("잘되고 잉니?");
-		return "/getLocalAdvice.do?m_id="+mvo.getM_id();
+		return "/getLocalAdvice.do?m_id="+m_id;
 	}
 	
 	
@@ -255,12 +254,12 @@ public class LocalAdviceController {
 		return null;
 	}*/
 	
-/*	@RequestMapping(value="/updateLocalAdviceComment.do")
+	@RequestMapping(value="/updateLocalAdviceComment.do")
 	public String updateLocalAdviceComment() {
 		
 		return null;
 	}
-	*/
+	
 	
 	
 }
