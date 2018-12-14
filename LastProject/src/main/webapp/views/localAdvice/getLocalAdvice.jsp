@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <meta charset="utf-8"> 
   <title>BizPage Bootstrap Template</title>
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -158,55 +159,55 @@ function login_chk(frm){
 					<td>${getLocalAdvice.l_upvote } &nbsp;&nbsp; ${getLocalAdvice.l_reviewcount }</td>
 				</tr>				
 			</table>	
-				<div style="height: 300px"><p><br>${getLocalAdvice.l_content }</p></div>		
+				<div style="height: 300px"><p><br>${getLocalAdvice.l_content }${m_id }${member.m_id }</p></div>		
 		</div>	
-		
+
 		<%-- ${getLocalAdvice.l_idx } --%>
 	 
       	<!-- 여기서부터 댓글폼 -->    
-      	<form>	
+      	<form method="post">	
 			<table class="table" style="width: 1100px; /* height: 400px; */"> 
 				<c:forEach var="list" items="${getLocalAdviceCommentList}">
 					<tr>
-						<td>
+						<td  class="update">
 							<img src="${list.p_route }" class="rounded-circle" id="profileImage2" onerror='this.src="../views/img/people/fuckyou.jpg"'>
-								&nbsp;&nbsp;${list.m_id }&emsp;&emsp;${list.lc_date }
-								<c:if test="${list.m_id eq m_id }">    <!-- 조건에 로그인한아이디와 프로필의 m_id가 같으면 -->
-									<%-- <input type="hidden" name="lc_idx" value="${list.lc_idx }">
-									<input type="hidden" name="m_id" value="${getProfileImage.m_id}"> --%>
+								&nbsp;&nbsp;${list.m_id }&emsp;&emsp;${list.lc_date }asdfasdfasdf${list.lc_idx }
+								<c:if test="${list.m_id eq member.m_id}">    <!-- 조건에 로그인한아이디와 프로필의 m_id가 같으면 -->									
 									<%-- <a href="../updateLocalAdviceComment.do?lc_idx=${list.lc_idx }&m_id=${getProfileImage.m_id}">&nbsp;수정&nbsp;</a>| --%>
-									<!-- <input type="button" value="수정" onclick="updateJson(this.form)"> -->
-									<input type="button" id="update_button" value="수정">
-									<a href="#">삭제&nbsp;</a>
+									<button type="button" class="btn btn-outline-secondary" onclick="update_button('${list.lc_idx}')">수정</button>
+									<button type="button" class="btn btn-outline-secondary" onclick="delete_button(this.form)">삭제</button>
+<div class="lc_content" id="${list.lc_idx}"><br>${list.lc_content }<br>
+</div>
 								</c:if>
-							<br><br>
-							${list.lc_content }
-							<br>
 						</td>
 					</tr>	
 				</c:forEach>	
 			</table>
 		</form> 
-		
+
+
 <script>
-/* $(document).ready(function() {
-	$.ajax({
-		method: "POST",
-		url: "../updateLocalAdviceComment.do",
-		data: {
-			lc_idx="${getLocalAdviceCommentList.lc_idx}",
-			m_id="${getProfileImage.m_id}"
-		},
-		dataType: "json",
-		success: function(data) {
-			alert("ajax성공");
-		return;
-		}
-	});
-}); */
+	function update_button(lc_idx) {
+		alert("update_button()함수로옴");
+	    var textareaTag = "<br><textarea id='textarea" + lc_idx + "'  rows='3' cols='134' name='update'></textarea>"+
+	    "<button type='button' class='btn btn-outline-secondary' onclick='json_update(this.form)'>수정완료</button>";
+	    var lc_content = $("#"+ lc_idx).text();
+	    alert(lc_idx);
+		//$("#"+ lc_idx).append(textareaTag);
+		
+		$("#"+lc_idx).empty();
+		$("#"+lc_idx).append(textareaTag);
+		alert("aa");
+		$("#textarea" + lc_idx).append(lc_content);
+	}
+	
 
-
-
+	
+	function json_update(frm) {
+		alert("제이슨 ㄱ");
+	}
+	
+	
 </script>
 		
 		
