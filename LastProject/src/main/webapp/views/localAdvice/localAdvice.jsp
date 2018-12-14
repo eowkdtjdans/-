@@ -30,6 +30,9 @@
 
   <!-- Main Stylesheet File -->
   <link href="views/css/style.css" rel="stylesheet">
+  
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?v=3&sensor=false&libraries=places&callback=initAutocomplete&key=AIzaSyAfB2qQnvAuU2YFFqi8hrPWfjJNyxl5kWc" async defer></script>
 
   <!-- =======================================================
     Theme Name: BizPage
@@ -78,6 +81,19 @@
 		frm.submit();
 	}  
 	*/
+	//주소를 좌표로 변환
+	var placeSearch, autocomplete;
+
+	function initAutocomplete() {
+	  autocomplete = new google.maps.places.Autocomplete((document.getElementById('autocomplete')),{types: ['geocode']});
+	  autocomplete.addListener('place_changed', fillInAddress);
+	}
+
+	function fillInAddress() { //lat 와 lng 값을 넘겨줄 input 태그에 값 넣어주기
+	  var place = autocomplete.getPlace();
+	    document.getElementById("lat").value=place.geometry.location.lat();
+	    document.getElementById("lng").value=place.geometry.location.lng();
+	}
 	
 </script> 
  

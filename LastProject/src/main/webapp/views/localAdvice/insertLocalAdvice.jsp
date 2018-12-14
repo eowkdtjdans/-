@@ -131,7 +131,7 @@
 			<table class="table">
 				<h2><strong>Write LocalAdvice</strong></h2>
 				<tr>
-					<td>SUBJECT${member}</td>
+					<td>SUBJECT</td>
 					<td><textarea class="form-control" rows="1" cols="150" name="l_subject" title="제목"></textarea></td>
 				</tr>
 				<tr>
@@ -153,6 +153,8 @@
 						<input type="hidden" name="searchCondition" value="${searchCondition }">
 						<input type="hidden" name="searchKeyword" value="${key }" >
 						<input type="hidden" name="m_address" value="${member.m_address}">
+						<input type="hidden" name="lat" value="${firstLat}">
+						<input type="hidden" name="lng" value="${firstLng}">
 					</td>
 				</tr>		
 			</table>			

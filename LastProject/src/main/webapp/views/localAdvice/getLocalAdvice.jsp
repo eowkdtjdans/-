@@ -161,7 +161,6 @@ function login_chk(frm){
 				<div style="height: 300px"><p><br>${getLocalAdvice.l_content }</p></div>		
 		</div>	
 		
-		<%-- ${getLocalAdvice.l_idx } --%>
 	 
       	<!-- 여기서부터 댓글폼 -->    
       	<form>	
@@ -171,11 +170,7 @@ function login_chk(frm){
 						<td>
 							<img src="${list.p_route }" class="rounded-circle" id="profileImage2" onerror='this.src="../views/img/people/fuckyou.jpg"'>
 								&nbsp;&nbsp;${list.m_id }&emsp;&emsp;${list.lc_date }
-								<c:if test="${list.m_id eq m_id }">    <!-- 조건에 로그인한아이디와 프로필의 m_id가 같으면 -->
-									<%-- <input type="hidden" name="lc_idx" value="${list.lc_idx }">
-									<input type="hidden" name="m_id" value="${getProfileImage.m_id}"> --%>
-									<%-- <a href="../updateLocalAdviceComment.do?lc_idx=${list.lc_idx }&m_id=${getProfileImage.m_id}">&nbsp;수정&nbsp;</a>| --%>
-									<!-- <input type="button" value="수정" onclick="updateJson(this.form)"> -->
+								<c:if test="${list.m_id eq m_id }">
 									<input type="button" id="update_button" value="수정">
 									<a href="#">삭제&nbsp;</a>
 								</c:if>
@@ -187,27 +182,6 @@ function login_chk(frm){
 				</c:forEach>	
 			</table>
 		</form> 
-		
-<script>
-/* $(document).ready(function() {
-	$.ajax({
-		method: "POST",
-		url: "../updateLocalAdviceComment.do",
-		data: {
-			lc_idx="${getLocalAdviceCommentList.lc_idx}",
-			m_id="${getProfileImage.m_id}"
-		},
-		dataType: "json",
-		success: function(data) {
-			alert("ajax성공");
-		return;
-		}
-	});
-}); */
-
-
-
-</script>
 		
 		
 		
