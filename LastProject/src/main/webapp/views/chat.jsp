@@ -1,22 +1,22 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c"   uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<title>Insert title here</title>
+<title>ì›¹ì†Œì¼“ ì±„íŒ…</title>
 </head>
-<body onload="openSocket()">
+<body onload="openSocket();">
     <div>
         <input type="text" id="sender" value="${member.m_name }" style="display: none;">
         <input type="text" id="messageinput">
     </div>
     <div>
-        <button type="button" onclick="send();">¸Ş¼¼Áö º¸³»±â</button>
-        <button type="button" onclick="closeSocket();">±×¸¸ ÇÏ±â</button>
+       <!--  <button type="button" onclick="openSocket();">ì›¹ì†Œì¼“ ì˜¤í”ˆ</button> -->
+        <button type="button" onclick="send();">ë©”ì„¸ì§€ ë³´ë‚´ê¸°</button>
+        <button type="button" onclick="closeSocket();">ê·¸ë§Œ í•˜ê¸°</button>
     </div>
-    <!-- Server responses get written here -->
     <div id="messages"></div>
     
     
@@ -27,10 +27,10 @@
         
         function openSocket(){
             if(ws!==undefined && ws.readyState!==WebSocket.CLOSED){
-                writeResponse("À¥¼ÒÄÏÀº ÀÌ¹Ì '¿ÀÇÂ'»óÅÂ ÀÔ´Ï´Ù");
+                writeResponse("ì›¹ì†Œì¼“ì€ ì´ë¯¸ 'ì˜¤í”ˆ'ìƒíƒœ ì…ë‹ˆë‹¤");
                 return;
             }
-            //À¥¼ÒÄÏ °´Ã¼ ¸¸µå´Â ÄÚµå
+            //ì›¹ì†Œì¼“ ê°ì²´ ë§Œë“œëŠ” ì½”ë“œ
             ws=new WebSocket("ws://localhost:8090/echo.do");
             
             ws.onopen=function(event){
@@ -44,7 +44,7 @@
                 writeResponse(event.data);
             };
             ws.onclose=function(event){
-                writeResponse("Ä¿³Ø¼Ç ¿¬°á Á¾·á");
+                writeResponse("ì»¤ë„¥ì…˜ ì—°ê²° ì¢…ë£Œ");
             }
         }
         
