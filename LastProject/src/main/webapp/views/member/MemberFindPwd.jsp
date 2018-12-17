@@ -16,6 +16,7 @@
 
 	function findPwd(frm) {
 		 var str = $("#form").serialize();
+		 alert(str);
 		 $.ajax({
 			async : true,
 			type : "POST",

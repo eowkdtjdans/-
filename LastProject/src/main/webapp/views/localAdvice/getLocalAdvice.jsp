@@ -85,7 +85,7 @@ function login_chk(frm){
 </script>  
 
 <script>
-	function update_button(lc_idx) {
+	function update_button(frm) {
 		alert("update_button()함수로옴");
 	    var textareaTag = "<br><textarea id='textarea" + lc_idx + "'  rows='3' cols='134' name='update'></textarea>"+
 	    "<button type='button' class='btn btn-outline-secondary' onclick='json_update(this.form)'>수정완료</button>";
@@ -95,7 +95,6 @@ function login_chk(frm){
 		
 		$("#"+lc_idx).empty();
 		$("#"+lc_idx).append(textareaTag);
-		alert("aa");
 		$("#textarea" + lc_idx).append(lc_content);
 	}
 	
@@ -200,7 +199,7 @@ function login_chk(frm){
 								&nbsp;&nbsp;${list.m_id }&emsp;&emsp;${list.lc_date }asdfasdfasdf${list.lc_idx }
 								<c:if test="${list.m_id eq member.m_id}">    <!-- 조건에 로그인한아이디와 프로필의 m_id가 같으면 -->									
 									<%-- <a href="../updateLocalAdviceComment.do?lc_idx=${list.lc_idx }&m_id=${getProfileImage.m_id}">&nbsp;수정&nbsp;</a>| --%>
-					 				<button type="button" class="btn btn-outline-secondary" onclick="update_button('${list.lc_idx}')">수정</button>
+					 				<button type="button" class="btn btn-outline-secondary" onclick="update_button(this.form)">수정</button>
 									<button type="button" class="btn btn-outline-secondary" onclick="delete_button(this.form)">삭제</button>
 								</c:if>
 <div id="${list.lc_idx}"><br>${list.lc_content }<br></div>

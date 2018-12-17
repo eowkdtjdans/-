@@ -16,6 +16,7 @@
   	<typeAlias alias="google" type="com.spring.biz.google.GoogleVO"/>
   	<typeAlias alias="host" type="com.spring.biz.host.HostVO"/>
   	<typeAlias alias="event" type="com.spring.biz.event.EventVO"/>
+  	<typeAlias alias="profile" type="com.spring.biz.profile.ProfileVO"/>
   </typeAliases>
   
   <mappers>

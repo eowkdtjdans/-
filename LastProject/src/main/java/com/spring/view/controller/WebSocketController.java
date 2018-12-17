@@ -50,11 +50,11 @@ public class WebSocketController {
      * @param message
      */
  
-    private void sendAllSessionToMessage(Session self,String message) {
+    private void sendAllSessionToMessage(Session ss,String message) {
         try {
             for(Session session : WebSocketController.sessionList) {
-                if(!self.getId().equals(session.getId())) {
-                    session.getBasicRemote().sendText(message.split(":")[1]+message);
+                if(!ss.getId().equals(session.getId())) {
+                    session.getBasicRemote().sendText(message);
                 }
             }
         }catch (Exception e) {

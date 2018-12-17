@@ -15,7 +15,7 @@
 	 	var pwdCheck = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,15}$/;
 
 	 	var str = $("#ModifyPwd").serialize();
-
+		alert("str : " + str);
 		$.ajax({
 			async : true,
 			type : "POST",

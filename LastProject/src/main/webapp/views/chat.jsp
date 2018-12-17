@@ -1,19 +1,19 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+ <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c"   uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>웹소켓 채팅</title>
 </head>
 <body onload="openSocket();">
     <div>
-        <input type="text" id="sender" value="${member.m_name }" style="display: none;">
+        <input type="hidden" id="sender" value="${member.m_id }" style="display: none;"> 
         <input type="text" id="messageinput">
     </div>
     <div>
-       <!--  <button type="button" onclick="openSocket();">웹소켓 오픈</button> -->
+        <!-- <button type="button" onclick="openSocket();">웹소켓 오픈</button> -->
         <button type="button" onclick="send();">메세지 보내기</button>
         <button type="button" onclick="closeSocket();">그만 하기</button>
     </div>
@@ -31,7 +31,7 @@
                 return;
             }
             //웹소켓 객체 만드는 코드
-            ws=new WebSocket("ws://localhost:8090/echo.do");
+            ws=new WebSocket("ws://203.236.209.187:8080/echo.do");
             
             ws.onopen=function(event){
                
@@ -47,11 +47,8 @@
                 writeResponse("커넥션 연결 종료");
             }
         }
-        
         function send(){
-            var text = document.getElementById("sender").value+" : "+document.getElementById("messageinput").value;
-          
-           
+             var text = document.getElementById("sender").value+" : "+document.getElementById("messageinput").value;  
             ws.send(text);
         }
         
@@ -63,4 +60,4 @@
         }
   </script>
 </body>
-</html>
+</html> 
