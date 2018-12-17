@@ -60,6 +60,8 @@
 	           }
 	       });
 	 };
+/* *******************************************************************************
+*************************************************************************************/ 
  function idCheck(frm) {
 	 var idcheck = 0;
 	 var m_id = $('#m_id').val();
@@ -71,7 +73,7 @@
 		type : 'POST',
 		dataType : "json",
 		data : m_id,
-	    contentType: "application/json; charset=UTF-8",
+	    contentType: "application/json; charset=UTF-8",  
 		url : '../../checkMemberJson.do',
 		
 		   success : function(data) {
@@ -100,8 +102,9 @@
            }
        });
 }; 
- 
- 
+/* *******************************************************************************
+*************************************************************************************/  
+
 function register(frm) {
 	if(confirm("회원가입을 하시겠습니까?")){
 		if(idck==0){

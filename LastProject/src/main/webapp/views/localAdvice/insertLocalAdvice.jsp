@@ -48,7 +48,7 @@
 </style>
 
 <script>	
-	function sendData(frm){
+	/* function sendData(frm){
 		for (var i=0; i<frm.elements.length; i++){
 			if(frm.elements[i].value.trim() == ""){
 				alert(i);
@@ -60,7 +60,24 @@
 			alert("안녕하세요");
 			frm.action="../insertLocalAdvice.do";
 			frm.submit();
+	} */
+	 
+	function sendData(frm){
+		if(frm.elements[0].value.trim()==""){
+			alert(frm.elements[0].title + "을 입력해주세요");
+			frm.elements[0].focus();
+			return false;
+		}
+		if(frm.elements[1].value.trim()==""){
+			alert(frm.elements[1].title + "을 입력해주세요");
+			frm.elements[1].focus();
+			return false;
+		}
+		alert("안녕하세요");
+		frm.action="../insertLocalAdvice.do";
+		frm.submit();
 	}
+	
 	
 	function list_go() {
 		location.href="../sub2.do";

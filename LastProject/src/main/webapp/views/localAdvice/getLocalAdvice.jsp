@@ -82,13 +82,10 @@ function login_chk(frm){
 }
 
 
-</script>  
-
-<script>
-	function update_button(lc_idx) {
+	/* function update_button(lc_idx) {
 		alert("update_button()함수로옴");
 	    var textareaTag = "<br><textarea id='textarea" + lc_idx + "'  rows='3' cols='134' name='update'></textarea>"+
-	    "<button type='button' class='btn btn-outline-secondary' onclick='json_update(this.form)'>수정완료</button>";
+	    "<button type='button' class='btn btn-outline-secondary'id='json_update' onclick='json_update(this.form)'>수정완료</button>";
 	    var lc_content = $("#"+ lc_idx).text();
 	    alert(lc_idx);
 		//$("#"+ lc_idx).append(textareaTag);
@@ -96,7 +93,16 @@ function login_chk(frm){
 		$("#"+lc_idx).empty();
 		$("#"+lc_idx).append(textareaTag);
 		alert("aa");
-		$("#textarea" + lc_idx).append(lc_content);
+		$("#textarea" + lc_idx).append(lc_content);		
+	}  */
+	
+	 
+	function update_button(lc_idx){
+		alert("asdf");
+	}
+
+	function json_update(){	
+		alert("json_update");		
 	}
 	
 	
@@ -169,7 +175,7 @@ function login_chk(frm){
 		<div id="tableDiv">
 			<table>				
 				<tr>
-					<td rowspan="3"><img src="${getProfileImage.p_route }" class="rounded-circle"  id="profileImage" onerror='this.src="../views/img/people/fuckyou.jpg"'></td>
+					<td rowspan="3"><img src="${getLocalAdvice.getP_route() }" class="rounded-circle"  id="profileImage" onerror='this.src="../views/img/people/fuckyou.jpg"'></td>
 					<td><strong>${getLocalAdvice.l_subject }</strong></td>
 					<td>					
 						<c:if test="${getProfileImage.m_id eq m_id }"> 
@@ -185,7 +191,7 @@ function login_chk(frm){
 					<td>${getLocalAdvice.l_upvote } &nbsp;&nbsp; ${getLocalAdvice.l_reviewcount }</td>
 				</tr>				
 			</table>	
-				<div style="height: 300px"><p><br>${getLocalAdvice.l_content }${m_id }${member.m_id }</p></div>		
+				<div style="height: 300px"><p><br>${getLocalAdvice.l_content }${member.m_id }</p></div>		
 		</div>	
 
 		<%-- ${getLocalAdvice.l_idx } --%>
@@ -200,11 +206,14 @@ function login_chk(frm){
 								&nbsp;&nbsp;${list.m_id }&emsp;&emsp;${list.lc_date }asdfasdfasdf${list.lc_idx }
 								<c:if test="${list.m_id eq member.m_id}">    <!-- 조건에 로그인한아이디와 프로필의 m_id가 같으면 -->									
 									<%-- <a href="../updateLocalAdviceComment.do?lc_idx=${list.lc_idx }&m_id=${getProfileImage.m_id}">&nbsp;수정&nbsp;</a>| --%>
-					 				<button type="button" class="btn btn-outline-secondary" onclick="update_button('${list.lc_idx}')">수정</button>
+					 				<%-- <button type="button" class="btn btn-outline-secondary" id="update_button" onclick="update_button('${list.lc_idx}')">수정</button> --%>
+					 				<button type="button" class="btn btn-outline-secondary" id="update_button" onclick="update_button(this.form)">수정</button>
+					 				<input type="hidden" name="lc_idx" value="${list.lc_idx }">
 									<button type="button" class="btn btn-outline-secondary" onclick="delete_button(this.form)">삭제</button>
 								</c:if>
-<div id="${list.lc_idx}"><br>${list.lc_content }<br></div>
+									<div id="${list.lc_idx}"><br>${list.lc_content }<br></div>
 						</td>
+						<td>${list }</td>
 					</tr>	
 				</c:forEach>	
 			</table>
