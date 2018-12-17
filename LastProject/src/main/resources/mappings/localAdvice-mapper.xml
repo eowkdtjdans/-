@@ -28,17 +28,18 @@
 	
 	<!-- 게시글 상세보기 -->
 	<select id="getLocalAdvice" parameterType="localadvice" resultType="localadvice">
-		SELECT L.*, PI.P_ROUTE FROM LOCALADVICE L, PROFILE_IMAGE PI WHERE L_IDX=#{l_idx}
-	</select>
+		SELECT L.*, PI.P_ROUTE FROM LOCALADVICE L, PROFILE_IMAGE PI
+		WHERE L.L_IDX=#{l_idx} AND PI.M_ID = L.M_ID
+		AND PI.ROWID IN (SELECT MIN(PI2.ROWID) FROM PROFILE_IMAGE PI2 GROUP BY PI2.M_ID)
+	</select> 
 
-	<!-- 프로필이미지 조회 -->
-	<select id="getProfileImage" parameterType="com.spring.biz.profileImage.ProfileImageVO" resultType="com.spring.biz.profileImage.ProfileImageVO">
-		<!-- SELECT * FROM PROFILE_IMAGE WHERE M_ID=#{m_id} -->
+	<!-- 프로필이미지 조회  -->
+	<select id="getProfileImage" parameterType="com.spring.biz.profileImage.ProfileImageVO" resultType="com.spring.biz.profileImage.ProfileImageVO">		
 		SELECT M_ID, P_ROUTE 
 		FROM PROFILE_IMAGE 
 		WHERE ROWID IN (SELECT MIN(ROWID) FROM PROFILE_IMAGE GROUP BY M_ID) 
 		AND M_ID = #{m_id}
-	</select>
+	</select>  
 	
 	<!-- 게시글 수정 -->
 	<update id="updateLocalAdvice" parameterType="localadvice">
