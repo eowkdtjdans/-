@@ -99,6 +99,7 @@ function fillInAddress() { //lat 와 lng 값을 넘겨줄 input 태그에 값 �
           <li><a href="../../logoutMember.do">로그아웃</a></li>
           <li><a href="../../loginMember.do" >로그인</a></li>
 		  <li><a  href="../../insertMember.do" >회원가입</a></li>   
+		  <li><a  href="../../chat.do" >웹소켓 채팅</a></li>   
         </ul>
       </nav><!-- #nav-menu-container -->
     </div>

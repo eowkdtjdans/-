@@ -31,7 +31,7 @@
 		SELECT L.*, PI.P_ROUTE FROM LOCALADVICE L, PROFILE_IMAGE PI
 		WHERE L.L_IDX=#{l_idx} AND PI.M_ID = L.M_ID
 		AND PI.ROWID IN (SELECT MIN(PI2.ROWID) FROM PROFILE_IMAGE PI2 GROUP BY PI2.M_ID)
-	</select>
+	</select> 
 
 	<!-- 프로필이미지 조회  -->
 	<select id="getProfileImage" parameterType="com.spring.biz.profileImage.ProfileImageVO" resultType="com.spring.biz.profileImage.ProfileImageVO">		
