@@ -91,13 +91,8 @@ function login_chk(frm){
 						
 	}); */ 
 
-<<<<<<< HEAD
-<script>
-	function update_button(frm) {
-=======
 
 	 function update_button(lc_idx) {
->>>>>>> refs/remotes/origin/master
 		alert("update_button()함수로옴");
 	    var textareaTag = "<br><textarea id='textarea" + lc_idx + "'  rows='3' cols='134' name='lc_content'></textarea>"+
 	    "<button type='button' class='btn btn-outline-secondary' onclick='json_update(this.form)'>수정완료</button>"+
@@ -108,9 +103,6 @@ function login_chk(frm){
 		
 		$("#"+lc_idx).empty();
 		$("#"+lc_idx).append(textareaTag);
-<<<<<<< HEAD
-		$("#textarea" + lc_idx).append(lc_content);
-=======
 		//alert("aa");
 		$("#textarea" + lc_idx).append(lc_content);		
 	}  
@@ -121,14 +113,19 @@ function login_chk(frm){
 		var lc_idx = $('#lc_idx').val();
 		var str = $("#frm").serialize();
 		
-		alert("lc_idx : " + lc_idx);
-		alert("str4 : " +str);
+		//alert("lc_idx : " + lc_idx);
+		//alert("str4 : " +str);
+		
+		alert("lc_idx : " + $('#lc_idx').val());
+		/* alert("m_id : " + ${member.m_id}); */
+		alert("lc_content : " + $('#textarea')); 
+		
 		
 		$.ajax({
 			async: true,
 			type : 'POST',
-			dataType : "json",
-			data : str,
+			dataType : "json",			
+			/* data : {lc_idx: $('#lc_idx').val(), m_id: ${member.m_id}, lc_content: $('#textarea'+lc_idx)}, */
 			contentType: "application/json; charset=UTF-8",
 			url : '../updateLocalAdviceCommentJson.do',
 		
@@ -142,7 +139,6 @@ function login_chk(frm){
 			}
 		
 		})
->>>>>>> refs/remotes/origin/master
 	}
 	
 	
@@ -248,11 +244,7 @@ function login_chk(frm){
 								&nbsp;&nbsp;${list.m_id }&emsp;&emsp;${list.lc_date }asdfasdfasdf${list.lc_idx }
 								<c:if test="${list.m_id eq member.m_id}">    <!-- 조건에 로그인한아이디와 프로필의 m_id가 같으면 -->									
 									<%-- <a href="../updateLocalAdviceComment.do?lc_idx=${list.lc_idx }&m_id=${getProfileImage.m_id}">&nbsp;수정&nbsp;</a>| --%>
-<<<<<<< HEAD
-					 				<button type="button" class="btn btn-outline-secondary" onclick="update_button(this.form)">수정</button>
-=======
 					 				<button type="button" class="btn btn-outline-secondary" onclick="update_button('${list.lc_idx}')">수정</button>			 				
->>>>>>> refs/remotes/origin/master
 									<button type="button" class="btn btn-outline-secondary" onclick="delete_button(this.form)">삭제</button>
 									<input type="hidden" name="lc_idx" value="${list.lc_idx }">
 								</c:if>

@@ -22,5 +22,6 @@
 	<a href="/views/google/googleLast.jsp">구글</a>
 	<a href="../ModifyPwdMember.do">비밀번호 수정</a>
 	<a href=""></a>
+	<p>세션 : [${m_id}] 앙기무리</p>
 </body>
 </html>

@@ -14,8 +14,34 @@
 	 	var phoneCheck = /^((01[1|6|7|8|9])[1-9]+[0-9]{6,7})|(010[1-9][0-9]{7})$/;
 	
 	 	var str = $("#ModifyPhoneForm").serialize();
-
-	 	$.ajax({
+	 	/* if(phoneCheck.test(phone)==false || phone == ""){
+		alert("핸드폰번호를 제대로 기입하세요.");
+		 $("#m_phone").focus();
+         $("#m_phone").val("");
+		return false;
+		
+		
+   } else if(phoneCheck.test(modifyM_phone)==false || phone == ""){
+		alert("변경할 핸드폰번호를 제대로 기입하세요.");
+		 $("#modifyM_phone").focus();
+         $("#modifyM_phone").val("");
+		return false;
+   } 
+	 			
+	else if (data.cnt > 0) {
+		alert("변경 완료");
+		frm.action = "../../ModifyPhoneMember.do";
+	 	frm.submit();   
+	 	return false;
+	 	
+	 	
+	} else {
+		alert("기존에 등록된 핸드폰번호가 일치하지않습니다. 다시 확인해주세요.");
+		frm.m_phone.value = "";
+		frm.modifyM_phone.value = "";
+		frm.m_phone.focus();
+	} */
+		$.ajax({
 			async : true,
 			type : "POST",
 			dataType : "json",
@@ -50,6 +76,14 @@
 	};
 		
 </script>
+	<!--			
+				기존비밀번호 입력페이지 - > .do -> dao mapper - > 컨트롤러에서 찾고 -> view -> 
+				다음페이지(변경할 비밀번호페이지) - > .do ->service dao mapper -> ->컨트롤러에서 데이터 반영 후 views
+			
+				ajax로 이 정보가 데이터베이스에 있는지 select - > 이게 있다면 -> success로 가는건데 여기에서 다른 컨트롤러가는거에여
+				수정을 할 컨트롤러.do를 작성
+	
+	  -->
 	<meta charset="utf-8">
 	<meta name="author" content="Kodinger">
 	<meta name="viewport" content="width=device-width,initial-scale=1">

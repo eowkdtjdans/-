@@ -36,6 +36,7 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public void logoutMember(HttpSession session) {
 		session.invalidate();
+		
 	}
 
 
