@@ -11,9 +11,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.spring.biz.localAdvice.LocalAdviceService;
@@ -262,6 +264,20 @@ public class LocalAdviceController {
       return null;
    }
    */
+   
+   //ajax 댓글수정 카운트주기
+   @RequestMapping("/updateLocalAdviceCommentJson.do")
+   @ResponseBody
+   public Map<Object, Object> checkMemberJson(@RequestBody String m_id, LocalAdviceCommentVO vo) {
+       
+       int count = 0;
+       Map<Object, Object> map = new HashMap<Object, Object>();
+
+       count = localAdviceCommentService.updateLocalAdviceCommentJson(vo);
+       map.put("cnt", count);
+
+       return map;
+   }
    
    
 }

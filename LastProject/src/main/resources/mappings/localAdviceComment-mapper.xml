@@ -28,6 +28,9 @@
 		UPDATE L_COMMENT SET LC_CONTENT=#{lc_content} WHERE LC_IDX=#{lc_idx} 
 	</update>
 	
+	<select id="updateLocalAdviceCommentJson" parameterType="String" resultType="Integer">
+		SELECT COUNT(*) FROM L_COMMENT WHERE M_ID=#{m_id} AND LC_IDX=#{lc_idx} AND LC_CONTENT=#{lc_content}
+	</select>
 </mapper>
 
 
