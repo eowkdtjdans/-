@@ -2,48 +2,48 @@ package com.spring.biz.messsage;
 
 public class MessageVO {
 	
-	private int MSG_IDX;
-	private String MSG_SENDER;
-	private String MSG_RECEIVER;
-	private String MSG_TITLE;
-	private String MSG_CONTENT;
-	
-	
-	public int getMSG_IDX() {
-		return MSG_IDX;
+	private int msg_idx;
+	private String msg_sender;
+	private String msg_receiver;
+	private String msg_title;
+	private String msg_content;
+	public int getMsg_idx() {
+		return msg_idx;
 	}
-	public void setMSG_IDX(int mSG_IDX) {
-		MSG_IDX = mSG_IDX;
+	public void setMsg_idx(int msg_idx) {
+		this.msg_idx = msg_idx;
 	}
-	public String getMSG_SENDER() {
-		return MSG_SENDER;
+	public String getMsg_sender() {
+		return msg_sender;
 	}
-	public void setMSG_SENDER(String mSG_SENDER) {
-		MSG_SENDER = mSG_SENDER;
+	public void setMsg_sender(String msg_sender) {
+		this.msg_sender = msg_sender;
 	}
-	public String getMSG_RECEIVER() {
-		return MSG_RECEIVER;
+	public String getMsg_receiver() {
+		return msg_receiver;
 	}
-	public void setMSG_RECEIVER(String mSG_RECEIVER) {
-		MSG_RECEIVER = mSG_RECEIVER;
+	public void setMsg_receiver(String msg_receiver) {
+		this.msg_receiver = msg_receiver;
 	}
-	public String getMSG_TITLE() {
-		return MSG_TITLE;
+	public String getMsg_title() {
+		return msg_title;
 	}
-	public void setMSG_TITLE(String mSG_TITLE) {
-		MSG_TITLE = mSG_TITLE;
+	public void setMsg_title(String msg_title) {
+		this.msg_title = msg_title;
 	}
-	public String getMSG_CONTENT() {
-		return MSG_CONTENT;
+	public String getMsg_content() {
+		return msg_content;
 	}
-	public void setMSG_CONTENT(String mSG_CONTENT) {
-		MSG_CONTENT = mSG_CONTENT;
+	public void setMsg_content(String msg_content) {
+		this.msg_content = msg_content;
 	}
 	@Override
 	public String toString() {
-		return "MessageVO [MSG_IDX=" + MSG_IDX + ", MSG_SENDER=" + MSG_SENDER + ", MSG_RECEIVER=" + MSG_RECEIVER
-				+ ", MSG_TITLE=" + MSG_TITLE + ", MSG_CONTENT=" + MSG_CONTENT + "]";
+		return "MessageVO [msg_idx=" + msg_idx + ", msg_sender=" + msg_sender + ", msg_receiver=" + msg_receiver
+				+ ", msg_title=" + msg_title + ", msg_content=" + msg_content + "]";
 	}
+	
+	
 	
 	
 	
