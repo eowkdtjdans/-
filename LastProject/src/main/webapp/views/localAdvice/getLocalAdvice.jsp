@@ -82,21 +82,63 @@ function login_chk(frm){
 }
 
 
-</script>  
+/* jQuery(document).ready(function(){
+		var count= 0;
+		$('#update_button').click(function() { 
+			count = 1;
+			alert("count:" + count);		
+		});
+						
+	}); */ 
 
-<script>
-	function update_button(lc_idx) {
+
+	 function update_button(lc_idx) {
 		alert("update_button()함수로옴");
-	    var textareaTag = "<br><textarea id='textarea" + lc_idx + "'  rows='3' cols='134' name='update'></textarea>"+
-	    "<button type='button' class='btn btn-outline-secondary' onclick='json_update(this.form)'>수정완료</button>";
+	    var textareaTag = "<br><textarea id='textarea" + lc_idx + "'  rows='3' cols='134' name='lc_content'></textarea>"+
+	    "<button type='button' class='btn btn-outline-secondary' onclick='json_update(this.form)'>수정완료</button>"+
+	    "<input type='hidden' id='lc_idx' value="+lc_idx+">";
 	    var lc_content = $("#"+ lc_idx).text();
-	    alert(lc_idx);
+	    //alert(lc_idx);
 		//$("#"+ lc_idx).append(textareaTag);
 		
 		$("#"+lc_idx).empty();
 		$("#"+lc_idx).append(textareaTag);
-		alert("aa");
-		$("#textarea" + lc_idx).append(lc_content);
+		//alert("aa");
+		$("#textarea" + lc_idx).append(lc_content);		
+	}  
+	
+	function json_update(){	
+		//alert("json_update");
+		/* var lc_idx = document.getElementById("lc_idx").value; */
+		var lc_idx = $('#lc_idx').val();
+		var str = $("#frm").serialize();
+		
+		//alert("lc_idx : " + lc_idx);
+		//alert("str4 : " +str);
+		
+		alert("lc_idx : " + $('#lc_idx').val());
+		/* alert("m_id : " + ${member.m_id}); */
+		alert("lc_content : " + $('#textarea')); 
+		
+		
+		$.ajax({
+			async: true,
+			type : 'POST',
+			dataType : "json",			
+			/* data : {lc_idx: $('#lc_idx').val(), m_id: ${member.m_id}, lc_content: $('#textarea'+lc_idx)}, */
+			contentType: "application/json; charset=UTF-8",
+			url : '../updateLocalAdviceCommentJson.do',
+		
+			success : function(data){
+				alert("data.cnt : " + data.cnt);
+				if(data.cnt ==0){
+					alert("데이터가 없숨");
+				} else{
+					alert("데이터가 있숨");
+				}
+			}
+		
+		})
 	}
 	
 	
@@ -169,7 +211,7 @@ function login_chk(frm){
 		<div id="tableDiv">
 			<table>				
 				<tr>
-					<td rowspan="3"><img src="${getProfileImage.p_route }" class="rounded-circle"  id="profileImage" onerror='this.src="../views/img/people/fuckyou.jpg"'></td>
+					<td rowspan="3"><img src="${getLocalAdvice.getP_route() }" class="rounded-circle"  id="profileImage" onerror='this.src="../views/img/people/fuckyou.jpg"'></td>
 					<td><strong>${getLocalAdvice.l_subject }</strong></td>
 					<td>					
 						<c:if test="${getProfileImage.m_id eq m_id }"> 
@@ -185,13 +227,15 @@ function login_chk(frm){
 					<td>${getLocalAdvice.l_upvote } &nbsp;&nbsp; ${getLocalAdvice.l_reviewcount }</td>
 				</tr>				
 			</table>	
-				<div style="height: 300px"><p><br>${getLocalAdvice.l_content }${m_id }${member.m_id }</p></div>		
+				<div style="height: 300px"><p><br>${getLocalAdvice.l_content }${member.m_id }</p></div>		
 		</div>	
 
 		<%-- ${getLocalAdvice.l_idx } --%>
 	 
       	<!-- 여기서부터 댓글폼 -->    
-      	<form method="post">	
+      	<form method="post" id="frm">	
+      	<input type="hidden" name="m_id" value="${member.m_id }">
+      	
 			<table class="table" style="width: 1100px; /* height: 400px; */"> 
 				<c:forEach var="list" items="${getLocalAdviceCommentList}">
 					<tr>
@@ -200,11 +244,13 @@ function login_chk(frm){
 								&nbsp;&nbsp;${list.m_id }&emsp;&emsp;${list.lc_date }asdfasdfasdf${list.lc_idx }
 								<c:if test="${list.m_id eq member.m_id}">    <!-- 조건에 로그인한아이디와 프로필의 m_id가 같으면 -->									
 									<%-- <a href="../updateLocalAdviceComment.do?lc_idx=${list.lc_idx }&m_id=${getProfileImage.m_id}">&nbsp;수정&nbsp;</a>| --%>
-					 				<button type="button" class="btn btn-outline-secondary" onclick="update_button('${list.lc_idx}')">수정</button>
+					 				<button type="button" class="btn btn-outline-secondary" onclick="update_button('${list.lc_idx}')">수정</button>			 				
 									<button type="button" class="btn btn-outline-secondary" onclick="delete_button(this.form)">삭제</button>
+									<input type="hidden" name="lc_idx" value="${list.lc_idx }">
 								</c:if>
-<div id="${list.lc_idx}"><br>${list.lc_content }<br></div>
+									<div id="${list.lc_idx}"><br>${list.lc_content }<br></div>
 						</td>
+						<td>${list }</td>
 					</tr>	
 				</c:forEach>	
 			</table>

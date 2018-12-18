@@ -27,4 +27,8 @@ public class LocalAdviceCommentDAO {
 	public void updateLocalAdviceComment(LocalAdviceCommentVO vo) {
 		mybatis.update("updateLocalAdviceComment", vo);
 	}
+
+	public int updateLocalAdivceCommentJson(LocalAdviceCommentVO vo) {
+		return mybatis.selectOne("updateLocalAdviceCommentJson", vo);
+	}
 }

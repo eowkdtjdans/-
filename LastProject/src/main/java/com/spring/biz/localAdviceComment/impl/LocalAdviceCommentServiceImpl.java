@@ -32,4 +32,10 @@ public class LocalAdviceCommentServiceImpl implements LocalAdviceCommentService 
 		localAdviceCommentDAO.updateLocalAdviceComment(vo);		
 	}
 
+	@Override
+	public int updateLocalAdviceCommentJson(LocalAdviceCommentVO vo) {
+		return localAdviceCommentDAO.updateLocalAdivceCommentJson(vo);
+		
+	}
+
 }

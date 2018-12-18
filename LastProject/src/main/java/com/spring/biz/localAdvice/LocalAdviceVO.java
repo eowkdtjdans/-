@@ -21,6 +21,7 @@ public class LocalAdviceVO {
     
     private String m_address;
     
+    private String p_route;
     
     
 	public int getL_idx() {
@@ -71,12 +72,21 @@ public class LocalAdviceVO {
 	public void setM_address(String m_address) {
 		this.m_address = m_address;
 	}
+		
+	public String getP_route() {
+		return p_route;
+	}
+	public void setP_route(String p_route) {
+		this.p_route = p_route;
+	}
 	@Override
 	public String toString() {
 		return "LocalAdviceVO [l_idx=" + l_idx + ", m_id=" + m_id + ", l_subject=" + l_subject + ", l_content="
 				+ l_content + ", l_date=" + l_date + ", l_upvote=" + l_upvote + ", l_reviewcount=" + l_reviewcount
-				+ ", m_address=" + m_address + "]";
+				+ ", m_address=" + m_address + ", p_route=" + p_route + "]";
 	}
+	
+	
 	
     
     

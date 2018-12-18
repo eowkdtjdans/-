@@ -23,6 +23,9 @@
 			dataType : "json",
 			data : str,
 			url : "../../findIdMemberJson.do",
+			
+			
+			
 			success : function(data) {
 				if (data.cnt > 0) {
 					alert("기입하신 이메일을 확인하세요!");
