@@ -98,7 +98,7 @@ public class MemberServiceImpl implements MemberService{
 	}
 	
 	@Override
-	public void ModifyPwd(MemberVO vo) throws Exception {
+	public void ModifyPwd(MemberVO vo) {
 		memberDAO.ModifyPwdMember(vo);
 	}
 	@Override

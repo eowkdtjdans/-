@@ -5,43 +5,23 @@
 <html lang="en">
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<title>로그인</title>
+<title>쪽지 작성</title>
 
 <script>
-	//로그인 값이 있던 없던 그냥 넘어가니까 JSON을 사용해서 데이터베이스에 있는지 체크하기.
-	function login(frm) {
-	var str = $("#form").serialize();
-		
-		$.ajax({
-			async: true,
-			type : "POST",
-			dataType : "json",
-			data : str,
-			url : '../../loginMemberJson.do',
-			success : function(data) { 
-				if (data.cnt > 0) {
-					 frm.action = "../../loginMember.do";
-					 frm.submit(); 
-					 return false;
-				} else {
-					alert("아이디 또는 비밀번호가 일치하지않습니다. 다시 입력해주세요.");
-					frm.m_id.value = "";
-					frm.m_pwd.value = "";
-					frm.m_id.focus();
-					
-				}
-			}
-		}); 
+	
+	function insertMessage(frm) {
+		frm.action = "../../insertMessage.do";
+		frm.submit();
+	}
 
-	};
 
-		
+
 </script>
 
 	<meta charset="utf-8">
 	<meta name="author" content="Kodinger">
 	<meta name="viewport" content="width=device-width,initial-scale=1">
-	<title>로그인페이지</title>
+	<title>쪽지 보내기</title>
 	<link rel="stylesheet" type="text/css" href="views/bootstrapModal/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="views/cssModal/my-login.css">
 </head>
@@ -55,34 +35,29 @@
 					</div>
 					<div class="card fat">
 						<div class="card-body">
-							<h4 class="card-title" style="text-align : center;">로그인</h4>
+							<h4 class="card-title" style="text-align : center;">프로필 기입 및 수정</h4>
 							<form method="POST" class="my-login-validation" id="form">
-							
+								<p>${member.m_id }</p>
+								<input id="msg_sender" type="hidden" class="form-control" name="msg_sender" value="${member.m_id }">	
+								<input id="msg_receiver" type="hidden" class="form-control" name="msg_receiver" value="${msg.m_id }">	
+								
 								<div class="form-group">
-									<label for="email">아이디</label>
-									<input id="m_id" type="email" class="form-control" name="m_id" required autofocus>
+									<label for="title" style="text-align : center;">제목</label>
+									<textarea rows="1" cols="10" id="msg_title" name="msg_title" class="form-control"></textarea>
 								</div>
 								
 								<div class="form-group">
-									<label for="password">비밀번호</label>
-									<input id="m_pwd" type="password" class="form-control" name="m_pwd" required data-eye>
+									<label for="content" style="text-align : center">내용</label>
+									<textarea rows="5" cols="10" id="msg_content" name="msg_content"  class="form-control"></textarea>
 								</div>
 								
 								
 								<div class="form-group m-0">
-									<button type="button" class="btn btn-primary btn-block" onclick="login(this.form)">
-										Login
+									<button type="button" class="btn btn-primary btn-block" onclick="insertMessage(this.form)">
+										쪽지 보내기
 									</button>
 								</div>
 								
-					
-								<a href="../../findPwdMember.do" class="float-right">
-									비밀번호 찾기
-								</a>
-								
-								<div class="mt-4 text-center">
-									아이디가 없으십니까? <a href="../../insertMember.do">회원가입</a>
-								</div>
 							</form>
 						</div>
 					</div>
