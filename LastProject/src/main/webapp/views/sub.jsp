@@ -85,10 +85,17 @@ function fillInAddress() { //lat 와 lng 값을 넘겨줄 input 태그에 값 �
         <ul class="nav-menu">
         <li class="menu-has-children"><a href="#">내 정보</a>
             <ul>
+            
               <li><a href="../../ModifyPwdMember.do">비밀번호 변경</a></li> <!-- Ajax  -->
               <li><a href="../../ModifyPhoneMember.do">핸드폰 변경</a></li> <!-- Ajax -->
               <li><a href="../../ModifyAddressMember.do">주소 변경</a></li> <!-- 그냥 처리 -->
               <li><a href="../../DeleteMember.do">회원 탈퇴</a></li> <!-- 그냥 처리 -->
+              <li><a  href="../../insertMessage.do" >쪽지 작성</a></li>  
+              <li><a  href="../../chat.do" >웹소켓 채팅</a></li> 
+              <li><a href="../../loginMember.do" >로그인</a></li>
+		      <li><a  href="../../insertMember.do" >회원가입</a></li> 
+		      <li><a  href="../../insertProfile.do" >프로필 관리</a></li> 
+		      
             </ul>
           </li>
           <li><a href="#about">쪽지</a></li>
@@ -97,9 +104,8 @@ function fillInAddress() { //lat 와 lng 값을 넘겨줄 input 태그에 값 �
           <li><a href="../../findIdMember.do">아이디</a></li>
           <li><a href="../../findPwdMember.do">비밀번호</a></li>
           <li><a href="../../logoutMember.do">로그아웃</a></li>
-          <li><a href="../../loginMember.do" >로그인</a></li>
-		  <li><a  href="../../insertMember.do" >회원가입</a></li>   
-		  <li><a  href="../../chat.do" >웹소켓 채팅</a></li>   
+       
+		
         </ul>
       </nav><!-- #nav-menu-container -->
     </div>

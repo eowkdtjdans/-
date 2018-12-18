@@ -9,9 +9,35 @@
 
 <script>
 	function insertProfile(frm) {
-		frm.action = "../insertProfile.do";
-		frm.submit();
-	}
+		
+		 var str = $("#form").serialize();
+	 	
+		 $.ajax({
+			async : true,
+			type : "POST",
+			dataType : "json",
+			data : str,
+			url : "../../insetProfileJson.do",
+			success : function(data) {
+				if (data.cnt == 0) {
+					alert("data.cnt : " + data.cnt); 
+					 frm.action = "../../insertProfile.do";
+					frm.submit();
+			 	} else {
+					alert("data.cnt : " + data.cnt);
+					frm.action = "../../modifyProfile.do";
+					frm.submit(); 
+					return false;
+				}
+			}
+		
+		
+		
+		
+		});  
+		
+		
+	};
 </script>
 
 	<meta charset="utf-8">
@@ -70,7 +96,7 @@
 								
 								<div class="form-group m-0">
 									<button type="button" class="btn btn-primary btn-block" onclick="insertProfile(this.form)">
-										수정 완료
+										프로필 등록
 									</button>
 								</div>
 								

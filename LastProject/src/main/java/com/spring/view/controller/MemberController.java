@@ -55,7 +55,7 @@ public class MemberController {
 	@RequestMapping(value="ModifyPwdMember.do", method=RequestMethod.POST)
 	public String ModifyMemberPwdPost(MemberVO vo, @RequestParam("pwdModify") String pwdModify, @RequestParam("m_id") String m_id, HttpSession session) throws Exception {
 		System.out.println("=====비밀번호 변경 시작=====");
-		System.out.println("modifyM_pwd : " + pwdModify);
+		System.out.println("pwdModify : " + pwdModify);
 		vo.setM_pwd(pwdModify);
 		vo.setM_id(m_id);
 		memberService.ModifyPwd(vo);	
@@ -64,11 +64,11 @@ public class MemberController {
 	}
 	//핸드폰 번호 변경
 	@RequestMapping(value="ModifyPhoneMember.do", method=RequestMethod.POST)
-	public String ModifyMemberPhonePost(MemberVO vo, @RequestParam("modifyM_phone") String modifyM_phone, @RequestParam("m_id") String m_id, HttpSession session) throws Exception {
+	public String ModifyMemberPhonePost(MemberVO vo, @RequestParam("phoneModify") String phoneModify, @RequestParam("m_id") String m_id, HttpSession session) throws Exception {
 		System.out.println("=====핸드폰번호 변경 시작=====");
-		System.out.println("modifyM_pwd : " + modifyM_phone);
-		vo.setM_phone(modifyM_phone);
+		System.out.println("phoneModify : " + phoneModify);
 		vo.setM_id(m_id);
+		vo.setM_phone(phoneModify);
 		memberService.ModifyPhone(vo);	
 		session.setAttribute("member", vo);
 		return "redirect:/sub2.do";
