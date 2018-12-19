@@ -95,6 +95,10 @@ function fillInAddress() { //lat 와 lng 값을 넘겨줄 input 태그에 값 �
               <li><a href="../../loginMember.do" >로그인</a></li>
 		      <li><a  href="../../insertMember.do" >회원가입</a></li> 
 		      <li><a  href="../../insertProfile.do" >프로필 관리</a></li> 
+		      <li><a  href="../../GetProfile.do" >겟프로필</a></li> 
+		      <li><a  href="../../getSendMessageList.do" >보낸 쪽지 리스트</a></li> 
+		      <li><a  href="../../getReceiveMessageList.do" >받은 쪽지 리스트</a></li> 
+		      <li><a  href="../../checkMessage.do" >쪽지 체크</a></li> 
 		      
             </ul>
           </li>

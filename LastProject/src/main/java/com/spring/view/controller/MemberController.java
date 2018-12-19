@@ -18,7 +18,6 @@ import com.spring.biz.member.Email;
 import com.spring.biz.member.EmailSender;
 import com.spring.biz.member.MemberService;
 import com.spring.biz.member.MemberVO;
-import com.spring.biz.profile.ProfileVO;
 @Controller 
 public class MemberController {
 	
@@ -232,14 +231,6 @@ public class MemberController {
 		MemberVO vo2 = memberService.loginMember(vo, session);
 		System.out.println("vo2.getM_id : " + vo2.getM_id());
 		System.out.println("vo2.getM_pwd : " + vo2.getM_pwd());
-		/*vo2.setM_name(vo.getM_name());
-		vo2.setM_phone(vo.getM_phone());
-		vo2.setM_birthday(vo.getM_birthday());
-		vo2.setM_gender(vo.getM_gender());
-		vo2.setLat(vo.getLat());
-		vo2.setLng(vo.getLng());
-		vo2.setM_address(vo.getM_address());
-		vo2.setM_regdate(vo.getM_regdate());*/
 		if (vo2.getM_id() != null && vo2.getM_id().equals(vo.getM_id()) && vo2.getM_pwd() != null && vo2.getM_pwd().equals(vo.getM_pwd())) {
 			System.out.println("======있는 아이디======");
 			//session.setAttribute("m_id", vo.getM_id());

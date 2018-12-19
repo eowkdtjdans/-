@@ -18,6 +18,8 @@
   	<typeAlias alias="event" type="com.spring.biz.event.EventVO"/>
   	<typeAlias alias="profile" type="com.spring.biz.profile.ProfileVO"/>
   	<typeAlias alias="message" type="com.spring.biz.messsage.MessageVO"/>
+  	<typeAlias alias="messageSend" type="com.spring.biz.messsage.MessageSendVO"/>
+  	<typeAlias alias="messageReceive" type="com.spring.biz.messsage.MessageRecieveVO"/>
   </typeAliases>
   
   <mappers>

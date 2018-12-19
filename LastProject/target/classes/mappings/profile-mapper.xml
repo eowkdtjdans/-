@@ -26,4 +26,9 @@ VALUES (#{m_id}, #{p_hobby}, #{p_language}, #{p_job}, #{p_aboutme}, #{p_purpose}
 	WHERE M_ID = #{m_id}
 </select>
 
+<select id="getProfile" resultType="profile">
+	SELECT * FROM PROFILE
+	WHERE M_ID = #{m_id}
+</select>
+
 </mapper>

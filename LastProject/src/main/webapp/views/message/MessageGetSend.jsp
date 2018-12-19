@@ -25,10 +25,6 @@
 </style>
 
 <script>
-	function deleteMessage(frm) {
-		frm.action = "deleteMessage.do?seq=${messageList.msg_idx }";
-		frm.submit();
-	}
 
 </script>
 
@@ -39,31 +35,31 @@
 	<h1>쪽지 상세</h1>
 	<hr>
 	<form action="updateBoard.do" method="post">
-		<input type="hidden" name="seq" value="${message.msg_idx }">
+		<input type="hidden" name="send_idx" value="${message.send_idx }">
 	<table>
 		<tr>
 			<th width="70">제목</th>
 			<td>
-				${message.msg_title }
+				${message.send_title }
 			</td>
 		</tr>
 		<tr>
 			<th>보낸사람</th>
-			<td>${message.msg_sender}</td>
+			<td>${message.send_sender}</td>
 		</tr>
 		<tr>
 			<th>내용</th>
 			<td style="height : 300px;">
-				${message.msg_content}
+				${message.send_content}
 			</td>
 		</tr>
 		<tr>
 			<th>보낸 날짜</th>
-			<td>${message.msg_regdate }</td>
+			<td>${message.send_regdate }</td>
 		</tr>
 		<tr>
 			<td colspan="2" class="center">
-				<a href="deleteMessage.do?msg_idx=${message.msg_idx }">쪽지삭제</a>
+				<a href="deleteSendMessage.do?send_idx=${message.send_idx }">쪽지삭제</a>
 			</td>
 		</tr>
 	</table>

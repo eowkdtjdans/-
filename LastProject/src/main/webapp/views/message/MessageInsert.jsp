@@ -37,17 +37,18 @@
 						<div class="card-body">
 							<h4 class="card-title" style="text-align : center;">프로필 기입 및 수정</h4>
 							<form method="POST" class="my-login-validation" id="form">
-								<input id="msg_sender" type="hidden" class="form-control" name="msg_sender" value="${member.m_id }">	
-								<input id="msg_receiver" type="hidden" class="form-control" name="msg_receiver" value="junyeon2459@gmail.com">	
+								<input id="m_id" type="hidden" class="form-control" name="m_id" value="${member.m_id }">	
+								<input id="send_sender" name="send_sender" type="hidden" class="form-control" value="${member.m_id }">	
+								<input id="send_receiver" name="send_receiver" type="hidden" class="form-control" value="junyeon2459@gmail.com">	
 								<!-- ${msg.m_id } -->
 								<div class="form-group">
-									<label for="title" style="text-align : center;">제목</label>
-									<textarea rows="1" cols="10" id="msg_title" name="msg_title" class="form-control"></textarea>
+									<label for="send_title" style="text-align : center;">제목</label>
+									<textarea rows="1" cols="10" id="send_title" name="send_title" class="form-control"></textarea>
 								</div>
 								
 								<div class="form-group">
-									<label for="content" style="text-align : center">내용</label>
-									<textarea rows="5" cols="10" id="msg_content" name="msg_content"  class="form-control"></textarea>
+									<label for="send_content" style="text-align : center">내용</label>
+									<textarea rows="5" cols="10" id="send_content" name="send_content"  class="form-control"></textarea>
 								</div>
 								
 								
