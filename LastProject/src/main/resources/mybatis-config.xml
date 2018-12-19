@@ -17,6 +17,7 @@
   	<typeAlias alias="host" type="com.spring.biz.host.HostVO"/>
   	<typeAlias alias="event" type="com.spring.biz.event.EventVO"/>
   	<typeAlias alias="profile" type="com.spring.biz.profile.ProfileVO"/>
+  	<typeAlias alias="message" type="com.spring.biz.messsage.MessageVO"/>
   </typeAliases>
   
   <mappers>
@@ -32,6 +33,7 @@
     <mapper resource="mappings/countryImage-mapper.xml"/>
     <mapper resource="mappings/google-maaper.xml"/>
     <mapper resource="mappings/event-mapper.xml"/>
+    <mapper resource="mappings/message-mapper.xml"/>
   </mappers>
 </configuration>
 

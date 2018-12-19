@@ -1,5 +1,7 @@
 package com.spring.biz.message.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +17,16 @@ public class MessageServiceImpl implements MessageService {
 	@Override
 	public int insertMessageJson(MessageVO vo) {
 		return messageDAO.insertMessageJson(vo);
+	}
+
+	@Override
+	public void insertMessage(MessageVO vo) {
+		messageDAO.insertMessage(vo);
+	}
+
+	@Override
+	public List<MessageVO> getMessageList(MessageVO vo) {
+		return messageDAO.getMessageList(vo);
 	}
 	
 	

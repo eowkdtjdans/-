@@ -16,7 +16,6 @@
     
     
     <div>
-        <!-- <button type="button" onclick="openSocket();">웹소켓 오픈</button> -->
         
         <button type="button" onclick="send();">메세지 보내기</button>
         <button type="button" onclick="closeSocket();">그만 하기</button>

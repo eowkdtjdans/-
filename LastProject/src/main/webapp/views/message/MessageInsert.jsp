@@ -37,10 +37,9 @@
 						<div class="card-body">
 							<h4 class="card-title" style="text-align : center;">프로필 기입 및 수정</h4>
 							<form method="POST" class="my-login-validation" id="form">
-								<p>${member.m_id }</p>
 								<input id="msg_sender" type="hidden" class="form-control" name="msg_sender" value="${member.m_id }">	
-								<input id="msg_receiver" type="hidden" class="form-control" name="msg_receiver" value="${msg.m_id }">	
-								
+								<input id="msg_receiver" type="hidden" class="form-control" name="msg_receiver" value="junyeon2459@gmail.com">	
+								<!-- ${msg.m_id } -->
 								<div class="form-group">
 									<label for="title" style="text-align : center;">제목</label>
 									<textarea rows="1" cols="10" id="msg_title" name="msg_title" class="form-control"></textarea>
