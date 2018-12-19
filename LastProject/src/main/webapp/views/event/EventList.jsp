@@ -303,9 +303,9 @@ function move() {
 	      	<c:otherwise>
       		<c:forEach var="list" items="${eventList}">
 	      		<tr>
-	      			<td rowspan="3">${list.p_route}</td>
-	      			<td>${list.m_id}</td>
-	      			<td>${list.m_address}</td>
+	      			<td>${list.e_name}</td>
+	      			<td>${list.e_address}</td>
+	      			<td>${list.e_content}</td>
 	      		</tr>
       		</c:forEach>
       		</c:otherwise>     		
