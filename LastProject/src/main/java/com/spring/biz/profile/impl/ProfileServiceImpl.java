@@ -1,7 +1,39 @@
 package com.spring.biz.profile.impl;
 
-import com.spring.biz.profile.ProfileService;
+import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.spring.biz.profile.ProfileService;
+import com.spring.biz.profile.ProfileVO;
+@Service("profileService")
 public class ProfileServiceImpl implements ProfileService {
+	@Autowired
+	private ProfileDAO profileDAO;
+	
+	
+	@Override
+	public void ModifyProfile(ProfileVO vo) {
+		profileDAO.modifyProfile(vo);	
+	}
+
+
+	@Override
+	public void InsertProfile(ProfileVO vo) throws Exception {
+		profileDAO.insertProfile(vo);
+	}
+
+
+	@Override
+	public int insertProfileJson(ProfileVO vo) {
+		return profileDAO.insertProfileJson(vo);
+	}
+
+
+	@Override
+	public List<ProfileVO> getProfile(ProfileVO vo) {
+		return profileDAO.getProfile(vo);
+	}
 
 }

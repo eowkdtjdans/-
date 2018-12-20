@@ -61,10 +61,10 @@ public interface MemberService {
 	int MemberDeleteJson(MemberVO vo);
 	
 	//핸드폰 번호 변경
-	void ModifyPhone(MemberVO vo) throws Exception;
+	void ModifyPhone(MemberVO vo);
 
 	//비밀번호 변경
-	void ModifyPwd(MemberVO vo) throws Exception;
+	void ModifyPwd(MemberVO vo);
 	
 	//주소 변경
 	void ModifyAddress(MemberVO vo);

@@ -141,7 +141,7 @@ public class LocalAdviceController {
    public String moveWriteLocalAdvice() {
       return "views/localAdvice/insertLocalAdvice.jsp";
    }
-   
+    
    
    //여기에는 localAdvice게시글작성하고 저장버튼 눌렀을때
    //@RequestMapping(value="/insertLocalAdvice.do")

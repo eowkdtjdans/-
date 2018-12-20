@@ -56,14 +56,15 @@
 						<div class="card-body">
 							<h4 class="card-title" style="text-align : center;">회원 탈퇴</h4>
 							<form method="POST" class="my-login-validation" id="DeleteMember">
+							<label for="id">아이디</label>
 									<input id="m_id" type="text" class="form-control" name="m_id" value="${member.m_id }" required autofocus>
 								<div class="form-group">
-									<label for="text">비밀번호</label>
+									<label for="password">비밀번호</label>
 									<input id="m_pwd" type="password" class="form-control" name="m_pwd" required data-eye>
 								</div>
 								
 								<div class="form-group">
-									<label for="text">핸드폰 번호</label>
+									<label for="phone">핸드폰 번호</label>
 									<input id="m_phone" type="text" class="form-control" name="m_phone" required autofocus>
 								</div>
 

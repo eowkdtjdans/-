@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- mapper 태그의 namespace 속성 필수 작성  -->  
+<mapper namespace="messageDAO">
+	
+	<insert id="insertMessage" parameterType="messageSend">
+		INSERT INTO MESSAGE_SEND(SEND_IDX, SEND_SENDER, SEND_RECEIVER, SEND_TITLE, SEND_CONTENT, SEND_REGDATE)
+		VALUES (MESSAGE_SEND_SEQ.NEXTVAL, #{send_sender}, #{send_receiver}, #{send_title}, #{send_content}, SYSDATE)
+	</insert>
+	
+	<select id="getSendMessageList" resultType="messageSend">
+		SELECT * FROM MESSAGE_SEND WHERE SEND_SENDER = #{send_sender}
+		ORDER BY SEND_IDX DESC
+	</select>
+	
+	<select id="getReceiveMessageList" resultType="messageReceive">
+		SELECT * FROM MESSAGE_RECEIVE WHERE RECEIVE_RECEIVER = #{receive_receiver} 
+		ORDER BY RECEIVE_IDX DESC
+	</select>
+	
+	<select id="getSendMessage" parameterType="Integer" resultType="messageSend">
+		SELECT * FROM MESSAGE_SEND WHERE SEND_IDX = #{send_idx} 
+	</select>
+	
+	<select id="getReceiveMessage" parameterType="Integer" resultType="messageReceive">
+		SELECT * FROM MESSAGE_RECEIVE WHERE RECEIVE_IDX = #{receive_idx} 
+	</select>
+	
+	<delete id="deleteSendMessage" parameterType="messageSend">
+		DELETE FROM MESSAGE_SEND WHERE SEND_IDX = #{send_idx}
+	</delete>
+	
+	<delete id="deleteReceiveMessage" parameterType="messageReceive">
+		DELETE FROM MESSAGE_RECEIVE WHERE RECEIVE_IDX = #{receive_idx}
+	</delete>
+	
+</mapper>

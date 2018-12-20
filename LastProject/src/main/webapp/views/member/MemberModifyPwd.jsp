@@ -15,7 +15,7 @@
 	 	var pwdCheck = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,15}$/;
 
 	 	var str = $("#ModifyPwd").serialize();
-
+		alert("str : " + str);
 		$.ajax({
 			async : true,
 			type : "POST",
@@ -24,20 +24,24 @@
 			url : "../../MemberModifyPwdJson.do",
 			success : function(data) {
 				   if (data.cnt == 0) {
+					   alert(data.cnt);
 					   alert("기존 비밀번호가 일치하지않습니다. 다시 입력하세요.");
 					   $("#m_id").focus();
 					   $("#m_pwd").val("");
 				   } else if(frm.pwdModify.value == "" || frm.m_pwd.value == null){
+					   alert(data.cnt);
 					   alert("변경할 비밀번호를 기입하세요.");
 						frm.pwdModify.value="";
 						frm.pwdModify.focus();
 						return false; 
 				   } else if (frm.pwdModify.value.length<8 || frm.pwdModify.value.length>16) {
+					   alert(data.cnt);
 						alert("비밀번호를 8~16자리로 설정해주세요.");
 			        	frm.pwdModify.value = ""; 
 						frm.pwdModify.focus();
 						return false;
 				   }  else {
+					   alert(data.cnt);
 					    alert("변경이 완료되었습니다.");
 						frm.action = "../../ModifyPwdMember.do";
 					    frm.submit();    

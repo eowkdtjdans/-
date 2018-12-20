@@ -33,9 +33,8 @@
   <link href="views/css/style.css" rel="stylesheet">
   
   <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maps.googleapis.com/maps/api/js?v=3&sensor=false&libraries=places&callback=initAutocomplete&key=AIzaSyAfB2qQnvAuU2YFFqi8hrPWfjJNyxl5kWc" async defer></script>
-
+ 
   <!-- =======================================================
     Theme Name: BizPage
     Theme URL: https://bootstrapmade.com/bizpage-bootstrap-business-template/
@@ -282,8 +281,8 @@ function login_chk(frm){
 								&nbsp;&nbsp;${list.m_id }&emsp;&emsp;${list.lc_date }<span id="focusing">${list.lc_idx }</span>
 								<c:if test="${list.m_id eq member.m_id}">    <!-- 조건에 로그인한아이디와 프로필의 m_id가 같으면 -->									
 									<%-- <a href="../updateLocalAdviceComment.do?lc_idx=${list.lc_idx }&m_id=${getProfileImage.m_id}">&nbsp;수정&nbsp;</a>| --%>
-					 				<button type="button" id="btn" class="btn btn-outline-secondary" onclick="update_button('${list.lc_idx}')">수정</button>			 				
-									<button type="button" class="btn btn-outline-secondary" onclick="delete_button('${list.lc_idx}')">삭제</button>
+					 				<button type="button" class="btn btn-outline-secondary" onclick="update_button('${list.lc_idx}')">수정</button>			 				
+									<button type="button" class="btn btn-outline-secondary" onclick="delete_button(this.form)">삭제</button>
 									<input type="hidden" name="lc_idx" value="${list.lc_idx }">
 								</c:if>
 									<div id="${list.lc_idx}"><br>${list.lc_content }<br></div>

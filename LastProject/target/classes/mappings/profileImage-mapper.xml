@@ -5,5 +5,12 @@
 
 <!-- mapper 태그의 namespace 속성 필수 작성  -->  
 <mapper namespace="profileImageDAO">
-
+	<select id="ProfileImageMainCount" parameterType="String" resultType="int">
+		SELECT COUNT(*) FROM PROFILE_IMAGE WHERE M_ID = #{m_id} AND P_MAIN != 0
+	</select>
+	
+	<insert id="ProfileImageInsert" parameterType="Map">
+		INSERT INTO PROFILE_IMAGE (M_ID, P_ROUTE, P_MAIN)
+		VALUES (#{m_id}, #{p_route}, #{p_main})
+	</insert>
 </mapper>

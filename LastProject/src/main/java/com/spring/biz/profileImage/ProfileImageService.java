@@ -1,5 +1,9 @@
 package com.spring.biz.profileImage;
 
-public interface ProfileImageService {
+import java.util.Map;
 
+public interface ProfileImageService {
+	void ProfileImageInsert(Map<String, String> profileImageMap);
+	int ProfileImageMainCount(String m_id);
+	void ProfileImageSetMain();
 }
