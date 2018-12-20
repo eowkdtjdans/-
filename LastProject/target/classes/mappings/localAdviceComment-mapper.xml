@@ -14,7 +14,7 @@
   			 SELECT LC.*, PI.P_ROUTE FROM L_COMMENT LC, PROFILE_IMAGE PI  
 	         WHERE LC.M_ID = PI.M_ID 
 	         AND PI.ROWID IN (SELECT MIN(PI2.ROWID) FROM PROFILE_IMAGE PI2 GROUP BY PI2.M_ID) 
-	         AND LC.L_IDX=#{l_idx} 
+	         AND LC.L_IDX=#{l_idx} ORDER BY LC_IDX DESC
 	</select>
 	
 
@@ -28,9 +28,18 @@
 		UPDATE L_COMMENT SET LC_CONTENT=#{lc_content} WHERE LC_IDX=#{lc_idx} 
 	</update>
 	
-	<select id="updateLocalAdviceCommentJson" parameterType="String" resultType="Integer">
-		SELECT COUNT(*) FROM L_COMMENT WHERE M_ID=#{m_id} AND LC_IDX=#{lc_idx} AND LC_CONTENT=#{lc_content}
+	<select id="updateLocalAdviceCommentJson" parameterType="localadvicecomment" resultType="Integer">
+		SELECT COUNT(*) FROM L_COMMENT WHERE LC_IDX=#{lc_idx}
 	</select>
+	
+	<delete id="deleteLocalAdviceComment" parameterType="localadvicecomment">
+		DELETE FROM L_COMMENT WHERE LC_IDX= #{lc_idx}
+	</delete>
+	
+	<delete id="deleteLocalAdviceCommentAll" parameterType="localadvice">
+		DELETE FROM L_COMMENT WHERE L_IDX=#{l_idx}
+	</delete>
+	
 </mapper>
 
 

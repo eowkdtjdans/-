@@ -2,6 +2,7 @@ package com.spring.biz.localAdviceComment;
 
 import java.util.List;
 
+import com.spring.biz.localAdvice.LocalAdviceVO;
 import com.spring.biz.member.MemberVO;
 
 
@@ -17,5 +18,11 @@ public interface LocalAdviceCommentService {
 	
 	//ajax selectone카운트주기
 	int updateLocalAdviceCommentJson(LocalAdviceCommentVO vo);
+	
+	//ajax deletecomment
+	void deleteLocalAdviceComment(LocalAdviceCommentVO vo);
+	
+	//게시글삭제할때 댓글내용전체삭제
+	void deleteLocalAdviceCommentAll(LocalAdviceVO vo);
 	
 }

@@ -31,14 +31,7 @@
   <!-- Main Stylesheet File -->
   <link href="views/css/style.css" rel="stylesheet">
   
-  
-
-  <!-- =======================================================
-    Theme Name: BizPage
-    Theme URL: https://bootstrapmade.com/bizpage-bootstrap-business-template/
-    Author: BootstrapMade.com
-    License: https://bootstrapmade.com/license/
-  ======================================================= -->
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
   
 <style>
 	body{
@@ -60,8 +53,26 @@ function fillInAddress() { //lat 와 lng 값을 넘겨줄 input 태그에 값 �
     document.getElementById("lat").value=place.geometry.location.lat();
     document.getElementById("lng").value=place.geometry.location.lng();
 }
+
 </script>
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script>
+$(function(){
+	   $("#condition").change(function(){
+	      var condition = $("#condition").val();
+	      
+	      if(condition == "find_advice") {
+	         $("#autocomplete").removeAttr("name");
+	         $("#autocomplete").hide();
+	         $("<input type='text' id='advice' name='searchKeyword'>").insertBefore("#search");
+	      } else {
+	         $("#advice").remove();
+	         $("#autocomplete").show();
+	         $("#autocomplete").attr("name", "searchKeyword");
+	      }
+	   })
+	})
+</script>
+
 <script src="https://maps.googleapis.com/maps/api/js?v=3&sensor=false&libraries=places&callback=initAutocomplete&key=AIzaSyAfB2qQnvAuU2YFFqi8hrPWfjJNyxl5kWc" async defer></script>
  
  
@@ -113,7 +124,7 @@ function fillInAddress() { //lat 와 lng 값을 넘겨줄 input 태그에 값 �
 	<table class="border-none">
 		<tr>
 			<td>
-				<select name="searchCondition">			
+				<select name="searchCondition" id="condition">			
 					<%-- <c:forEach var="option" items="${conditionMap }">
 						<option value="${option.value }">${option.key }
 					</c:forEach> --%>
@@ -122,12 +133,12 @@ function fillInAddress() { //lat 와 lng 값을 넘겨줄 input 태그에 값 �
 					<option value="find_event">이벤트검색
 					<option value="find_advice">현지정보검색
 				</select>
-				<input id="autocomplete" placeholder="Enter your address" type="text" name="searchKeyword">
+				<input id="autocomplete" placeholder="" type="text" name="searchKeyword">
 				
 				<input class="field" id="lat" type="hidden" name="lat"/>
 				<input class="field" id="lng" type="hidden" name="lng"/>
 				
-				<input type="submit" value="검색">
+				<input type="submit" id="search" value="검색">
 			</td>
 			<%-- <td>
 				<select name="searchCondition">			

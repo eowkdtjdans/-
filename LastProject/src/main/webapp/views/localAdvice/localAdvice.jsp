@@ -71,16 +71,7 @@
 </style>
 
 <script>
-	/*
-	function paging(frm){
-		alert("페이징");
-		frm.action="../getLocalAdviceList.do?cPage=${pvo.nowPage }"; 
-		href.location="../getLocalAdviceList.do?cPage=${pvo.nowPage }"; 
-		alert("페이징2");
-		frm.method="post";
-		frm.submit();
-	}  
-	*/
+	
 	//주소를 좌표로 변환
 	var placeSearch, autocomplete;
 
@@ -180,7 +171,7 @@
       		<c:forEach var="list" items="${localAdviceList}">
 	      		<tr>
 	      			<th><a href="../getLocalAdvice.do?l_idx=${list.l_idx }&m_id=${list.m_id}">${list.l_subject }<br>${list.m_id }</a></th>
-	      			<td>${list.l_upvote } &nbsp;&nbsp; ${list.l_reviewcount }</td>
+	      			<td style="text-align:right">추천수 : ${list.l_upvote } &nbsp;&nbsp;&nbsp;&nbsp; 조회수 : ${list.l_reviewcount }</td>
 	      		</tr>
       		</c:forEach>
       		</c:otherwise>     		

@@ -45,6 +45,15 @@ public class LocalAdviceDAO {
 		mybatis.update("updateLocalAdvice", vo);
 	}
 	
+	//게시글 삭제
+	public void deleteLocalAdvice(LocalAdviceVO vo) {
+		mybatis.delete("deleteLocalAdvice", vo);
+	}
+	
+	//게시글 조회수 
+	public void localAdviceCount(String l_idx) {
+		mybatis.update("localAdviceCount", l_idx);
+	}
 }
 
 

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.spring.biz.localAdvice.LocalAdviceVO;
 import com.spring.biz.localAdviceComment.LocalAdviceCommentService;
 import com.spring.biz.localAdviceComment.LocalAdviceCommentVO;
 
@@ -35,6 +36,18 @@ public class LocalAdviceCommentServiceImpl implements LocalAdviceCommentService 
 	@Override
 	public int updateLocalAdviceCommentJson(LocalAdviceCommentVO vo) {
 		return localAdviceCommentDAO.updateLocalAdivceCommentJson(vo);
+		
+	}
+
+	@Override
+	public void deleteLocalAdviceComment(LocalAdviceCommentVO vo) {
+		localAdviceCommentDAO.deleteLocalAdviceComment(vo);
+		
+	}
+
+	@Override
+	public void deleteLocalAdviceCommentAll(LocalAdviceVO vo) {
+		localAdviceCommentDAO.deleteLocalAdviceCommentAll(vo);
 		
 	}
 

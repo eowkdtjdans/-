@@ -17,7 +17,7 @@
 	<a href="../logoutMember.do">logout</a> 
 	<a href="../sub2.do">sub페이지</a>  
 	<a href="../findIdMember.do">아이디 찾기페이지</a>  
-	<a href="../findPwdMember.do">비밀번호 찾기페이지</a>
+	<a href="../findPwdMember.do">비밀번호 찾기페이지</a>  
 	<a href="../google.do">구글</a>
 	<a href="/views/google/googleLast.jsp">구글</a>
 	<a href="../ModifyPwdMember.do">비밀번호 수정</a>
