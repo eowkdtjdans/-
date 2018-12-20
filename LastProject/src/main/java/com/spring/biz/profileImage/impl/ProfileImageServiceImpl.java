@@ -27,4 +27,14 @@ public class ProfileImageServiceImpl implements ProfileImageService{
 		return profileImageDAO.ProfileImageMainCount(m_id);
 	}
 
+	@Override
+	public int HostImageMainCount(String m_id) {
+		return profileImageDAO.HostImageMainCount(m_id);
+	}
+
+	@Override
+	public void HostImageInsert(Map<String, String> hostImageMap) {
+		profileImageDAO.HostImageInsert(hostImageMap);
+	}
+
 }

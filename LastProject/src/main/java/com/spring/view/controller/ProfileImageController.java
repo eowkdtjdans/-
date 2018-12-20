@@ -31,18 +31,18 @@ public class ProfileImageController {
 	}
 	
 	@RequestMapping(value="uploadProfileImg.do", method=RequestMethod.POST)
-	public String uploadProfileImg(@RequestParam("img") MultipartFile img, @RequestParam("m_id") String m_id) {
+	public String uploadProfileImg(@RequestParam("profileImg") MultipartFile profileImg, @RequestParam("m_id") String m_id) {
 		
-		String url = fileUploadService.fileUpload(img);
+		String url = fileUploadService.fileUpload(profileImg);
 		
-		int mainCnt = ProfileImageMainCount(m_id);
+		int profileMainCnt = ProfileImageMainCount(m_id);
 		String p_main = "0";
 		
 		Map<String, String> profileImageMap = new HashMap<String, String>();
 		profileImageMap.put("m_id", m_id);
 		profileImageMap.put("p_route", url);
 		
-		if(mainCnt > 0) {
+		if(profileMainCnt > 0) {
 			profileImageMap.put("p_main", p_main);
 			profileImageService.ProfileImageInsert(profileImageMap);
 		} else {
@@ -59,6 +59,40 @@ public class ProfileImageController {
 		int result = 0;
 		
 		result = profileImageService.ProfileImageMainCount(m_id);
+		
+		return result;
+	}
+	
+	/* ========================================================================================================== */
+	
+	@RequestMapping(value="uploadHostImg.do", method=RequestMethod.POST)
+	public String uploadHostImg(@RequestParam("hostImg") MultipartFile hostImg, @RequestParam("m_id") String m_id) {
+		
+		String url = fileUploadService.fileUpload(hostImg);
+		
+		int hostMainCnt = hostMainCnt(m_id);
+		String h_main = "0";
+		
+		Map<String, String> hostImageMap = new HashMap<String, String>();
+		hostImageMap.put("h_route", url);
+		hostImageMap.put("m_id", m_id);
+		
+		if(hostMainCnt > 0) {
+			hostImageMap.put("h_main", h_main);
+			profileImageService.HostImageInsert(hostImageMap);
+		} else {
+			h_main = "1";
+			hostImageMap.put("h_main", h_main);
+			profileImageService.HostImageInsert(hostImageMap);
+		}
+		
+		return "redirect:/sub2.do";
+	}
+	
+	private int hostMainCnt(String m_id) {
+		int result = 0;
+		
+		result = profileImageService.HostImageMainCount(m_id);
 		
 		return result;
 	}

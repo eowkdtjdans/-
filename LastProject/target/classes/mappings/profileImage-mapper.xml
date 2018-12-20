@@ -13,4 +13,13 @@
 		INSERT INTO PROFILE_IMAGE (M_ID, P_ROUTE, P_MAIN)
 		VALUES (#{m_id}, #{p_route}, #{p_main})
 	</insert>
+	
+	<select id="HostImageMainCount" parameterType="String" resultType="int">
+		SELECT COUNT(*) FROM HOST_IMAGE WHERE M_ID = #{m_id} AND H_MAIN != 0
+	</select>
+	
+	<insert id="HostImageInsert" parameterType="Map">
+		INSERT INTO HOST_IMAGE (M_ID, H_ROUTE, H_MAIN)
+		VALUES (#{m_id}, #{h_route}, #{h_main})
+	</insert>
 </mapper>
