@@ -114,6 +114,7 @@ $(function(){
               <li><a href="../../loginMember.do" >로그인</a></li>
 		      <li><a  href="../../insertMember.do" >회원가입</a></li> 
 		      <li><a  href="../../insertProfile.do" >프로필 관리</a></li> 
+		      <li><a  href="../../profileImageInsert.do" >프로필 이미지 관리</a></li> 
 		      
             </ul>
           </li>
