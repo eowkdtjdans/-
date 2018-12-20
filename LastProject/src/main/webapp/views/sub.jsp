@@ -114,7 +114,14 @@ $(function(){
               <li><a href="../../loginMember.do" >로그인</a></li>
 		      <li><a  href="../../insertMember.do" >회원가입</a></li> 
 		      <li><a  href="../../insertProfile.do" >프로필 관리</a></li> 
+<<<<<<< HEAD
 		      <li><a  href="../../profileImageInsert.do" >프로필 이미지 관리</a></li> 
+=======
+		      <li><a  href="../../GetProfile.do" >겟프로필</a></li> 
+		      <li><a  href="../../getSendMessageList.do" >보낸 쪽지 리스트</a></li> 
+		      <li><a  href="../../getReceiveMessageList.do" >받은 쪽지 리스트</a></li> 
+		      <li><a  href="../../checkMessage.do" >쪽지 체크</a></li> 
+>>>>>>> refs/remotes/origin/master
 		      
             </ul>
           </li>

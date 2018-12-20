@@ -29,7 +29,7 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public MemberVO loginMember(MemberVO vo, HttpSession session) throws Exception {
 		session.setAttribute("m_id", vo.getM_id());
-		session.setAttribute("m_id", vo.getM_pwd());
+		session.setAttribute("m_pwd", vo.getM_pwd());
 	return memberDAO.loginMember(vo);
 	}
 	

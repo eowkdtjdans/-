@@ -19,6 +19,8 @@
   	<typeAlias alias="profile" type="com.spring.biz.profile.ProfileVO"/>
   	<typeAlias alias="message" type="com.spring.biz.messsage.MessageVO"/>
   	<typeAlias alias="profileImg" type="com.spring.biz.profileImage.ProfileImageVO"/>
+  	<typeAlias alias="messageSend" type="com.spring.biz.messsage.MessageSendVO"/>
+  	<typeAlias alias="messageReceive" type="com.spring.biz.messsage.MessageRecieveVO"/>
   </typeAliases>
   
   <mappers>

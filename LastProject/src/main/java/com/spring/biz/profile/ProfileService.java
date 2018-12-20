@@ -1,6 +1,6 @@
 package com.spring.biz.profile;
 
-import com.spring.biz.member.MemberVO;
+import java.util.List;
 
 public interface ProfileService {
 
@@ -9,6 +9,8 @@ public interface ProfileService {
 	void InsertProfile(ProfileVO vo) throws Exception;
 
 	int insertProfileJson(ProfileVO vo);
+
+	List<ProfileVO> getProfile(ProfileVO vo);
 	
 
 }

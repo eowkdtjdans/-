@@ -4,10 +4,26 @@ import java.util.List;
 
 public interface MessageService {
 
-	int insertMessageJson(MessageVO vo);
+	void insertMessage(MessageSendVO vo);
 
-	void insertMessage(MessageVO vo);
 
-	List<MessageVO> getMessageList(MessageVO vo);
+	List<MessageSendVO> getSendMessageList(MessageSendVO vo);
+
+	List<MessageRecieveVO> getReceiveMessageList(MessageRecieveVO vo);
+
+	MessageVO getMessage(MessageVO vo);
+
+
+	void deleteMessege(MessageVO vo);
+
+
+	MessageSendVO getSendMessage(MessageSendVO vo);
+
+	MessageRecieveVO getReceiveMessage(MessageRecieveVO vo);
+
+
+	void deleteSendMessage(MessageSendVO vo);
+
+	void deleteReceiveMessage(MessageRecieveVO vo);
 	
 }

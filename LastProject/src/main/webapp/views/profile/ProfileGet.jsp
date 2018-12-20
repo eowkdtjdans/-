@@ -38,7 +38,6 @@
 		
 		
 	};
-	
 </script>
 
 	<meta charset="utf-8">
@@ -61,37 +60,39 @@
 							<h4 class="card-title" style="text-align : center;">프로필 기입 및 수정</h4>
 							<form method="POST" class="my-login-validation" id="form">
 	
-								<input id="m_id" type=text class="form-control" name="m_id" value="${member.m_id }">	
+								<input id="m_id" type="text" class="form-control" name="m_id" value="${profileList.m_id }">	
 								
 								<div class="form-group">
 									<label for="hobby" style="text-align : center;">취미</label>
-									<textarea rows="5" cols="10" id="p_hobby" name="p_hobby" class="form-control" value="${profile.p_hobby }"></textarea>
+									<textarea rows="5" cols="10" id="p_hobby" name="p_hobby" class="form-control" value="${profileList.p_hobby }"></textarea>
 								</div>
 								
 								<div class="form-group">
 									<label for="langauge" style="text-align : center;">사용가능한 언어</label>
-									<textarea rows="5" cols="10" id="p_langauge" name="p_langauge"  class="form-control">${profile.p_language }</textarea>
+									<textarea rows="5" cols="10" id="p_langauge" name="p_langauge"  class="form-control">${profileList.p_language }</textarea>
 								</div>
 								
 								<div class="form-group">
 									<label for="job" style="text-align : center;">직업</label>
-									<textarea rows="5" cols="10" id="p_job"  name="p_job" class="form-control">${profile.p_job }</textarea>
+									<textarea rows="5" cols="10" id="p_job"  name="p_job" class="form-control">${profileList.p_job }</textarea>
 								</div>
 								
 								<div class="form-group">
 									<label for="aboutme" style="text-align : center;">자기 소개</label>
-									<textarea rows="5" cols="10" id="p_aboutme" name="p_aboutme" class="form-control">${profile.p_aboutme }</textarea>
+									<textarea rows="5" cols="10" id="p_aboutme" name="p_aboutme" class="form-control">${profileList.p_aboutme }</textarea>
 								</div>
 								
 								<div class="form-group">
 									<label for="purpose" style="text-align : center;">목적</label>
-									<textarea rows="5" cols="10" id="p_purpose"  name="p_purpose" class="form-control">${profile.p_purpose }</textarea>
+									<textarea rows="5" cols="10" id="p_purpose"  name="p_purpose" class="form-control">${profileList.p_purpose }</textarea>
 								</div>
 								
 								<div class="form-group">
 									<label for="visitcountry" style="text-align : center;">방문했던 나라</label>
-									<textarea rows="5" cols="10" id="p_visitcountry"   name="p_visitcountry" class="form-control">${profile.p_visitcountry }</textarea>
+									<textarea rows="5" cols="10" id="p_visitcountry"   name="p_visitcountry" class="form-control">${profileList.p_visitcountry }</textarea>
 								</div>
+								
+								
 								
 								<div class="form-group m-0">
 									<button type="button" class="btn btn-primary btn-block" onclick="insertProfile(this.form)">
