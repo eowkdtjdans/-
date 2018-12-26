@@ -65,6 +65,10 @@
 	.textareaComment{
 		width: 1000px;
 	}
+	#profileImage3 { width: 30px; height: 30px; }
+	.noline{
+		border-collapse: collapse;
+	}
 	
 </style> 
 
@@ -132,6 +136,8 @@ function login_chk(frm){
 	
  
      $( document ).ready( function() {
+    	 
+   	 
     	if('${focus_idx}'==""){  
     			
     	} else {   		
@@ -142,7 +148,18 @@ function login_chk(frm){
 			$("#"+"${focus_idx}").attr("tabindex",-1).focus();
       		<% session.removeAttribute("focus_idx"); %>    		      				
     	}
-    	
+/* 
+		console.log("detdet1");
+
+		var list= "${getLocalAdviceCommentList}";
+		alert("list: " + list);
+		alert("list.length: " + list.length);
+		if(list.detdet == list.lc_idx){
+			for (var i=0; i<list.length; i++){
+				var detdetDiv = "&emsp;&emsp;<img id='bentarrow' src='views/img/bentarrow.png'><div>작성자:"+list.m_id+"내용:"+list.lc_content+" </div>";
+				$("#"+list.lc_idx).append(detdetDiv);
+			}
+		} */
       } );
      
      
@@ -262,10 +279,22 @@ function login_chk(frm){
 			url : "/json_insertComment.do?lc_content="+lc_content+"&l_idx="+l_idx,
 	
 			success : function(data){	
-				alert("허걱");
-				alert(data.lc_idx);
-				alert(data.lc_content);
+				alert("ajax성공");
+				//alert(data.lc_idx);
+				//alert(data.lc_content);
 				alert(data.selectdetdetComment);
+				
+				var values = data.selectdetdetComment ;
+/* 
+	var textareaTag = "&emsp;&emsp;<img id='bentarrow' src='views/img/bentarrow.png'><textarea class='textareaComment' id='textareaComment" + lc_idx + "' rows='3' cols='134' name='lc_content'></textarea>"+
+	"<button type='button' class='btn btn-outline-secondary' onclick='json_insertComment("+lc_idx+")'>댓글입력</button>";
+*/	
+                  $("#textareaComment").remove();
+	                $.each(values, function( index, value ) {
+	                   alert( index + " : " + value.lc_content);
+	                   var detdetDiv = "&emsp;&emsp;<img id='bentarrow' src='views/img/bentarrow.png'><div>작성자:"+value.m_id+"내용:"+value.lc_content+" </div>";
+	                   $("#"+lc_idx).append(detdetDiv);
+	                });
 				
 			}
 		})
@@ -377,8 +406,9 @@ function login_chk(frm){
       	<input type="hidden" name="m_id" value="${member.m_id }">
       	
 			<table class="table" style="width: 1100px; /* height: 400px; */"> 
-				<c:forEach var="list" items="${getLocalAdviceCommentList}">
-				<c:if test="${list.detdet eq 0 }">
+				<c:forEach var="list" items="${getLocalAdviceCommentList}">	
+				<c:choose>					
+				<c:when test="${list.detdet eq 0 }">
 					<tr id="tr">
 						<td  class="update" id="td${list.lc_idx}">
 							<img src="${list.p_route }" class="rounded-circle" id="profileImage2" onerror='this.src="../views/img/people/fuckyou.jpg"'>          
@@ -396,9 +426,18 @@ function login_chk(frm){
 									<input type="hidden" name="lc_idx" value="${list.lc_idx }">
 								</c:if>
 									<div id="${list.lc_idx}"><br>${list.lc_content }<br><br></div>
+										<%-- <c:if test="${list.detdet ne 0}">
+											<div>d&emsp;&emsp;작성자:${list.m_id } 내용:${list.lc_content }</div>
+										</c:if>  --%>
 						</td>
 					</tr>
-				</c:if>
+				</c:when>
+				<c:otherwise>
+				<tr class="noline">
+					<td class="noline">대댓내용 : ${list.lc_content }</td>
+				</tr>
+				</c:otherwise>
+				</c:choose>
 				</c:forEach>	
 			</table>
 		</form> 

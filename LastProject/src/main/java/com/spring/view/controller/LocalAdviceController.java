@@ -398,14 +398,13 @@ public class LocalAdviceController {
 		System.out.println("l_idx : " + l_idx);
 		
 		Map<Object, Object> map = new HashMap<Object, Object>();
-		map.put("lc_idx", lc_idx);
-		map.put("lc_content", lc_content);
+		//map.put("lc_idx", lc_idx);
+		//map.put("lc_content", lc_content);
 		System.out.println(map);
 		MemberVO mvo = (MemberVO)session.getAttribute("member");
 		String m_id = mvo.getM_id();
 		System.out.println("m_id : " + m_id);
 
-		//VALUES (L_COMMENT_SEQ.NEXTVAL, #{l_idx}, #{m_id}, SYSDATE, #{lc_content}, 100, #{lc_idx})
 		vo.setL_idx(Integer.parseInt(l_idx));
 		vo.setM_id(m_id);
 		vo.setLc_content(lc_content);
@@ -413,7 +412,7 @@ public class LocalAdviceController {
 		localAdviceCommentService.insertdetdetComment(vo);
 		
 		vo.setLc_idx(Integer.parseInt(lc_idx));
-		List selectdetdetComment = localAdviceCommentService.selectdetdetComment(vo);
+		List<LocalAdviceCommentVO> selectdetdetComment = localAdviceCommentService.selectdetdetComment(vo);
 		System.out.println("selectdetdetComment : " + selectdetdetComment);
 		map.put("selectdetdetComment", selectdetdetComment);
 		System.out.println(map);
