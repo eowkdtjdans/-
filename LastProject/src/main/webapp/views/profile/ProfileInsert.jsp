@@ -64,8 +64,8 @@
 								<input id="m_id" type=text class="form-control" name="m_id" value="${member.m_id }">	
 								
 								<div class="form-group">
-									<label for="hobby" style="text-align : center;">취미</label>
-									<textarea rows="5" cols="10" id="p_hobby" name="p_hobby" class="form-control" value="${profile.p_hobby }"></textarea>
+									<label for="p_hobby" style="text-align : center;">취미</label>
+									<textarea rows="5" cols="10" id="p_hobby" name="p_hobby" class="form-control">${profile.p_hobby }</textarea>
 								</div>
 								
 								<div class="form-group">

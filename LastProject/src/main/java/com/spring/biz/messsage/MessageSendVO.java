@@ -3,7 +3,7 @@ package com.spring.biz.messsage;
 import java.util.Date;
 
 public class MessageSendVO {
-	private int send_idx;
+	private int send_idx, send_read;
 	private String send_sender,
 	send_receiver,
 	send_title,
@@ -16,6 +16,14 @@ public class MessageSendVO {
 	
 	
 	
+
+	public int getSend_read() {
+		return send_read;
+	}
+
+	public void setSend_read(int send_read) {
+		this.send_read = send_read;
+	}
 
 	public int getSend_idx() {
 		return send_idx;
@@ -67,11 +75,11 @@ public class MessageSendVO {
 
 	@Override
 	public String toString() {
-		return "MessageSendVO [send_idx=" + send_idx + ", send_sender=" + send_sender + ", send_receiver="
-				+ send_receiver + ", send_title=" + send_title + ", send_content=" + send_content + ", send_regdate="
-				+ send_regdate + "]";
+		return "MessageSendVO [send_idx=" + send_idx + ", send_read=" + send_read + ", send_sender=" + send_sender
+				+ ", send_receiver=" + send_receiver + ", send_title=" + send_title + ", send_content=" + send_content
+				+ ", send_regdate=" + send_regdate + "]";
 	}
-	
+
 	
 	
 }

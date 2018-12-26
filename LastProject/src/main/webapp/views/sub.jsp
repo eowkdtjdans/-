@@ -114,16 +114,13 @@ $(function(){
               <li><a href="../../loginMember.do" >로그인</a></li>
 		      <li><a  href="../../insertMember.do" >회원가입</a></li> 
 		      <li><a  href="../../insertProfile.do" >프로필 관리</a></li> 
-<<<<<<< HEAD
 		      <li><a  href="../../profileImageInsert.do" >프로필 이미지 관리</a></li> 
 =======
-		      <li><a  href="../../GetProfile.do" >겟프로필</a></li> 
 		      <li><a  href="../../getSendMessageList.do" >보낸 쪽지 리스트</a></li> 
 		      <li><a  href="../../getReceiveMessageList.do" >받은 쪽지 리스트</a></li> 
 		      <li><a  href="../../checkMessage.do" >쪽지 체크</a></li> 
->>>>>>> refs/remotes/origin/master
 		      
-            </ul>
+            </ul> 
           </li>
           <li><a href="#about">쪽지</a></li>
           <li><a href="#portfolio">마이 프로필</a></li>      
@@ -196,6 +193,11 @@ $(function(){
         	<p>${member.lat }</p>
         	<p>${member.lng }</p>
         	<p>${member.m_address }</p>
+        	<p>${profile.p_hobby }</p>
+        	<p>${profile.p_language }</p>
+        	<p>${profile.p_job }</p>
+        	<p>${profile.p_aboutme }</p>
+        	<p>${profile.p_purpose }</p>
           <h3>About Us</h3>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
         </header>

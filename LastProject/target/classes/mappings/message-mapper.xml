@@ -7,9 +7,14 @@
 <mapper namespace="messageDAO">
 	
 	<insert id="insertMessage" parameterType="messageSend">
-		INSERT INTO MESSAGE_SEND(SEND_IDX, SEND_SENDER, SEND_RECEIVER, SEND_TITLE, SEND_CONTENT, SEND_REGDATE)
-		VALUES (MESSAGE_SEND_SEQ.NEXTVAL, #{send_sender}, #{send_receiver}, #{send_title}, #{send_content}, SYSDATE)
+		INSERT INTO MESSAGE_SEND(SEND_IDX, SEND_SENDER, SEND_RECEIVER, SEND_TITLE, SEND_CONTENT, SEND_REGDATE, SEND_READ)
+		VALUES (MESSAGE_SEND_SEQ.NEXTVAL, #{send_sender}, #{send_receiver}, #{send_title}, #{send_content}, SYSDATE, 0)
 	</insert>
+	
+	<select id="getMessageList" resultType="message">
+		SELECT * FROM MESSAGE WHERE MESSAGE_SENDER = #{message_sender} AND MESSAGE_RECEIVER = #{message_receiver}
+		ORDER BY SEND_IDX DESC
+	</select>
 	
 	<select id="getSendMessageList" resultType="messageSend">
 		SELECT * FROM MESSAGE_SEND WHERE SEND_SENDER = #{send_sender}

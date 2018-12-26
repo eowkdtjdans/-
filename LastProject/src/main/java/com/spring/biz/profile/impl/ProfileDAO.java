@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.spring.biz.member.MemberVO;
 import com.spring.biz.profile.ProfileVO;
 @Repository("profileDAO")
 public class ProfileDAO {
@@ -33,8 +34,13 @@ public class ProfileDAO {
 	}
 
 
-	public List<ProfileVO> getProfile(ProfileVO vo) {
-		return mybatis.selectList("getProfile", vo);
+	/*public List<ProfileVO> getProfile(ProfileVO vo) {
+		return mybatis.selectOne("getProfile", vo);
+	}*/
+
+
+	public ProfileVO getProfile2(ProfileVO vo) {
+		return  mybatis.selectOne("getProfile", vo);
 	}
 
 }

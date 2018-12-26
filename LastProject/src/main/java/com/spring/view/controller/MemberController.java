@@ -18,11 +18,15 @@ import com.spring.biz.member.Email;
 import com.spring.biz.member.EmailSender;
 import com.spring.biz.member.MemberService;
 import com.spring.biz.member.MemberVO;
+import com.spring.biz.profile.ProfileService;
+import com.spring.biz.profile.ProfileVO;
 @Controller 
 public class MemberController {
 	
 	@Autowired
 	private MemberService memberService;
+	@Autowired
+	private ProfileService profileService;
 	@Autowired
 	private Email email;
 	@Autowired
@@ -50,6 +54,39 @@ public class MemberController {
 		session.setAttribute("member", vo);
 		return "redirect:/sub2.do";
 	}
+	
+	//=======================================================================
+	@RequestMapping(value="/loginMember.do", method=RequestMethod.GET) 
+	public String loginGet(MemberVO vo) {
+		System.out.println(">> 겟방식");
+			return "views/member/MemberLogin.jsp";
+	}	
+	
+	
+	
+	//로그인
+	@RequestMapping(value="/loginMember.do", method=RequestMethod.POST) //@RequestParam("m_id") String m_id, @RequestParam("m_pwd") String m_pwd,
+	public String loginPost(MemberVO vo, HttpSession session, ProfileVO profileVO) throws Exception {
+		System.out.println(">> 포스트방식 로그인처리");
+		System.out.println("m_id : " + vo.getM_id());
+		System.out.println("m_pwd : " + vo.getM_pwd());
+		MemberVO vo2 = memberService.loginMember(vo, session);
+		ProfileVO profileVO2 = profileService.getProfile2(profileVO, session);
+		System.out.println("vo2.getM_id : " + vo2.getM_id());
+		System.out.println("vo2.getM_pwd : " + vo2.getM_pwd());
+		if (vo2.getM_id() != null && vo2.getM_id().equals(vo.getM_id()) && vo2.getM_pwd() != null && vo2.getM_pwd().equals(vo.getM_pwd())) {
+			System.out.println("======있는 아이디======");
+			//session.setAttribute("m_id", vo.getM_id());
+			session.setAttribute("member", vo2);
+			session.setAttribute("profile", profileVO2);
+			
+			return "redirect:/sub2.do";
+		} else {
+			System.out.println("=====없는 아이디=====");
+			return "redirect:/loginMember.do";
+		}
+	}	
+	
 	//비밀번호 변경
 	@RequestMapping(value="ModifyPwdMember.do", method=RequestMethod.POST)
 	public String ModifyMemberPwdPost(MemberVO vo, @RequestParam("pwdModify") String pwdModify, @RequestParam("m_id") String m_id, HttpSession session) throws Exception {
@@ -214,34 +251,7 @@ public class MemberController {
 	
 	
 		//======================================================================
-	@RequestMapping(value="/loginMember.do", method=RequestMethod.GET) 
-	public String loginGet(MemberVO vo) {
-		System.out.println(">> 겟방식");
-			return "views/member/MemberLogin.jsp";
-	}	
-	
-	
-	
-	//로그인
-	@RequestMapping(value="/loginMember.do", method=RequestMethod.POST) //@RequestParam("m_id") String m_id, @RequestParam("m_pwd") String m_pwd,
-	public String loginPost(MemberVO vo, HttpSession session) throws Exception {
-		System.out.println(">> 포스트방식 로그인처리");
-		System.out.println("m_id : " + vo.getM_id());
-		System.out.println("m_pwd : " + vo.getM_pwd());
-		MemberVO vo2 = memberService.loginMember(vo, session);
-		System.out.println("vo2.getM_id : " + vo2.getM_id());
-		System.out.println("vo2.getM_pwd : " + vo2.getM_pwd());
-		if (vo2.getM_id() != null && vo2.getM_id().equals(vo.getM_id()) && vo2.getM_pwd() != null && vo2.getM_pwd().equals(vo.getM_pwd())) {
-			System.out.println("======있는 아이디======");
-			//session.setAttribute("m_id", vo.getM_id());
-			session.setAttribute("member", vo2);
-			
-			return "redirect:/sub2.do";
-		} else {
-			System.out.println("=====없는 아이디=====");
-			return "redirect:/loginMember.do";
-		}
-	}	
+
 	
 	
 	

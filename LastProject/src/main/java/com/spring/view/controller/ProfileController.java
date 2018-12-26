@@ -21,7 +21,6 @@ import com.spring.biz.profile.ProfileService;
 import com.spring.biz.profile.ProfileVO;
 
 @Controller
-@SessionAttributes("profile")
 public class ProfileController {
 		
 	@Autowired
@@ -44,7 +43,7 @@ public class ProfileController {
 		public String isnertProfileGet(ProfileVO vo, Model model, @RequestParam("p_hobby") String p_hobby,
 				@RequestParam("p_langauge") String p_langauge, @RequestParam("p_job") String p_job,
 				@RequestParam("p_aboutme") String p_aboutme, @RequestParam("p_purpose") String p_purpose,
-				@RequestParam("p_visitcountry") String p_visitcountry,  @RequestParam("m_id") String m_id) throws Exception {
+				@RequestParam("p_visitcountry") String p_visitcountry,  @RequestParam("m_id") String m_id, HttpSession session) throws Exception {
 		System.out.println("인서트 프로파일 ============ POST");
 		vo.setM_id(m_id);
 		vo.setP_aboutme(p_aboutme);
@@ -55,8 +54,7 @@ public class ProfileController {
 		vo.setP_language(p_langauge);
 		
 		profileService.InsertProfile(vo);
-		model.addAttribute("profile", vo);
-		
+		session.setAttribute("profile", vo);
 		
 		
 		return "redirect:/sub2.do";
@@ -78,7 +76,7 @@ public class ProfileController {
 	public String modifyProfilePost(ProfileVO vo, HttpSession session, @RequestParam("p_hobby") String p_hobby,
 			@RequestParam("p_langauge") String p_langauge, @RequestParam("p_job") String p_job,
 			@RequestParam("p_aboutme") String p_aboutme, @RequestParam("p_purpose") String p_purpose,
-			@RequestParam("p_visitcountry") String p_visitcountry,  @RequestParam("m_id") String m_id) throws Exception {
+			@RequestParam("p_visitcountry") String p_visitcountry,  @RequestParam("m_id") String m_id, Model model) throws Exception {
 		System.out.println("프로필 수정 시작");
 		vo.setM_id(m_id);
 		vo.setP_aboutme(p_aboutme);
@@ -88,23 +86,12 @@ public class ProfileController {
 		vo.setP_visitcountry(p_visitcountry);
 		vo.setP_language(p_langauge);
 		
-		session.setAttribute("profile", vo);
 		profileService.ModifyProfile(vo);
+		session.setAttribute("profile", vo);
 		
 		
 		return "redirect:/sub2.do";
 	}
-	@RequestMapping(value="GetProfile.do", method=RequestMethod.GET)
-	public String getProfile(ProfileVO vo, Model model, HttpSession session) {
-		System.out.println("겟 프로필 ===========GET");
-		MemberVO member = (MemberVO) session.getAttribute("member");
-		String m_id = member.getM_id();
-		vo.setM_id(m_id);
-		System.out.println("vo.getm_id : " + m_id);
-		List<ProfileVO> profileList = profileService.getProfile(vo);
-		model.addAttribute("profileList", profileList);
-		return "views/profile/ProfileGet.jsp";
-}	
 	
 	@RequestMapping(value="/insetProfileJson.do", method=RequestMethod.POST)
 	@ResponseBody
