@@ -43,6 +43,21 @@ public class LocalAdviceCommentDAO {
 		mybatis.delete("deleteLocalAdviceCommentAll", vo);
 	}
 	
+	//댓글페이징 처리를 위한 댓글 수 조회
+	public int countLocalAdviceComment(int l_idx) {
+		return mybatis.selectOne("countLocalAdviceComment", l_idx);
+	}
+	
+	//대댓글을 위한 insert
+	public void insertdetdetComment(LocalAdviceCommentVO vo) {
+		mybatis.insert("insertdetdetComment", vo);
+	}
+	
+	//대댓글을 위한 select
+	public List<LocalAdviceCommentVO> selectdetdetComment(LocalAdviceCommentVO vo) {
+		return mybatis.selectList("selectdetdetComment", vo);
+	}
+	
 }
 
 

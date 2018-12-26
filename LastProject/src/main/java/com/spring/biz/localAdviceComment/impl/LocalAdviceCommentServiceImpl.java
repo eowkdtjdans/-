@@ -51,4 +51,21 @@ public class LocalAdviceCommentServiceImpl implements LocalAdviceCommentService 
 		
 	}
 
+	@Override
+	public int countLocalAdviceComment(int l_idx) {
+		return localAdviceCommentDAO.countLocalAdviceComment(l_idx);
+		
+	}
+
+	@Override
+	public void insertdetdetComment(LocalAdviceCommentVO vo) {
+		localAdviceCommentDAO.insertdetdetComment(vo);
+		
+	}
+
+	@Override
+	public List<LocalAdviceCommentVO> selectdetdetComment(LocalAdviceCommentVO vo) {
+		return localAdviceCommentDAO.selectdetdetComment(vo);
+	}
+
 }

@@ -31,6 +31,18 @@ public interface LocalAdviceService {
 	//게시글 조회수 
 	void localAdviceCount(String l_idx);
 	
+	//게시글 댓글수 증가(+1)
+	void updateLocalAdviceCnt(int l_idx);
+	
+	//게시글 댓글수 감소(-1)
+	void updateLocalAdviceCntMinus(int l_idx);
+	
+	//게시글 좋아요 기능(+)
+	int goodLocalAdvice(int l_idx);
+	
+	//게시글 좋아요 기능(-)
+	int badLocalAdvice(int l_idx);
+	
 }
 
 

@@ -171,7 +171,7 @@
       		<c:forEach var="list" items="${localAdviceList}">
 	      		<tr>
 	      			<th><a href="../getLocalAdvice.do?l_idx=${list.l_idx }&m_id=${list.m_id}">${list.l_subject }<br>${list.m_id }</a></th>
-	      			<td style="text-align:right">추천수 : ${list.l_upvote } &nbsp;&nbsp;&nbsp;&nbsp; 조회수 : ${list.l_reviewcount }</td>
+	      			<td style="text-align:right">댓글수:${list.lc_cnt} &nbsp;&nbsp;&nbsp;&nbsp; 추천수 : ${list.l_upvote } &nbsp;&nbsp;&nbsp;&nbsp; 조회수 : ${list.l_reviewcount }</td>
 	      		</tr>
       		</c:forEach>
       		</c:otherwise>     		

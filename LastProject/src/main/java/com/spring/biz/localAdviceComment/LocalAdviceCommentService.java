@@ -25,4 +25,13 @@ public interface LocalAdviceCommentService {
 	//게시글삭제할때 댓글내용전체삭제
 	void deleteLocalAdviceCommentAll(LocalAdviceVO vo);
 	
+	//댓글페이징 처리를 위한 댓글 수 조회
+	int countLocalAdviceComment(int l_idx);
+	
+	//대댓글을 위한 insert
+	void insertdetdetComment(LocalAdviceCommentVO vo);
+	
+	//대댓글을 위한 select
+	List<LocalAdviceCommentVO> selectdetdetComment(LocalAdviceCommentVO vo);
+	
 }

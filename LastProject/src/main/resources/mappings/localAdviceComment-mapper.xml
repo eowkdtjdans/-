@@ -40,6 +40,18 @@
 		DELETE FROM L_COMMENT WHERE L_IDX=#{l_idx}
 	</delete>
 	
+	<select id="countLocalAdviceComment" parameterType="int" resultType="int">
+		SELECT COUNT(*) FROM L_COMMENT WHERE L_IDX=#{l_idx}
+	</select>
+	
+	<insert id="insertdetdetComment" parameterType="localadvicecomment">
+		INSERT INTO L_COMMENT (LC_IDX, L_IDX, M_ID, LC_DATE, LC_CONTENT, LC_COMMENTCOUNT, DETDET) 
+    		VALUES (L_COMMENT_SEQ.NEXTVAL, #{l_idx}, #{m_id}, SYSDATE, #{lc_content}, 100, #{lc_idx})
+	</insert>
+	
+	<select id="selectdetdetComment" parameterType="localadvicecomment" resultType="localadvicecomment">
+		SELECT * FROM L_COMMENT WHERE DETDET=(SELECT LC_IDX FROM L_COMMENT WHERE LC_IDX=#{lc_idx})
+	</select>
 </mapper>
 
 
