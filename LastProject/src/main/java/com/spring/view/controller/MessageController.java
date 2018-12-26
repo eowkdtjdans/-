@@ -83,20 +83,30 @@ public class MessageController {
 		return "views/message/MessageGetReceiveList.jsp";
 	}
 		@RequestMapping(value="/getMessage.do", method=RequestMethod.GET)
-		public String getSendMessage(MessageVO vo, Model model, @RequestParam("message_idx") int message_idx) {
+		public String getSendMessage(MessageVO vo, MessageRecieveVO receivevo, MessageSendVO sendvo, Model model, @RequestParam("message_idx") int message_idx) {
 			model.addAttribute("message",messageService.getMessage(vo));
-		
+			receivevo.setReceive_idx(message_idx);
+			sendvo.setSend_idx(message_idx);
+			messageService.readMessage(vo);
+			messageService.readSendMessage(sendvo);
+			messageService.readRecieveMessage(receivevo);
 			return "views/message/MessageGet.jsp";
 		} 
 	@RequestMapping(value="/getSendMessage.do", method=RequestMethod.GET)
-	public String getSendMessage(MessageSendVO vo, Model model) {
-		model.addAttribute("message",messageService.getSendMessage(vo));
+	public String getSendMessage(MessageVO vo,MessageSendVO sendvo, Model model, @RequestParam("send_idx") int send_idx) {
+		model.addAttribute("message",messageService.getSendMessage(sendvo));
+		vo.setMessage_idx(send_idx);
+		messageService.readMessage(vo);
+		messageService.readSendMessage(sendvo);
 		return "views/message/MessageGetSend.jsp";
 	}
 
 	@RequestMapping(value="/getReceiveMessage.do", method=RequestMethod.GET)
-	public String getReceiveMessage(MessageRecieveVO vo, Model model) {
-		model.addAttribute("message",messageService.getReceiveMessage(vo));
+	public String getReceiveMessage(MessageVO vo,MessageRecieveVO receivevo, Model model, @RequestParam("receive_idx") int receive_idx) {
+		model.addAttribute("message",messageService.getReceiveMessage(receivevo));
+		vo.setMessage_idx(receive_idx);
+		messageService.readMessage(vo);
+		messageService.readRecieveMessage(receivevo);
 		return "views/message/MessaGetReceive.jsp";
 	}
 	

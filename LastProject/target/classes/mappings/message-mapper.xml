@@ -41,6 +41,20 @@
 	<select id="getReceiveMessage" parameterType="Integer" resultType="messageReceive">
 		SELECT * FROM MESSAGE_RECEIVE WHERE RECEIVE_IDX = #{receive_idx} 
 	</select>
+	
+	<update id="readMessage" parameterType="message">
+		UPDATE MESSAGE SET MESSAGE_READ = 1 WHERE MESSAGE_IDX = #{message_idx}
+	</update>
+	
+	<update id="readSendMessage" parameterType="messageSend">
+		UPDATE MESSAGE_SEND SET SEND_READ = 1 WHERE SEND_IDX = #{send_idx}
+	</update>
+	
+	<update id="readReceiveMessage" parameterType="messageReceive">
+		UPDATE MESSAGE_RECEIVE SET RECEIVE_READ = 1 WHERE RECEIVE_IDX = #{receive_idx}
+	</update>
+	
+	
 	<delete id="deleteMessage" parameterType="message">
 		DELETE FROM MESSAGE WHERE MESSAGE_IDX = #{message_idx}
 	</delete>
@@ -52,5 +66,10 @@
 	<delete id="deleteReceiveMessage" parameterType="messageReceive">
 		DELETE FROM MESSAGE_RECEIVE WHERE RECEIVE_IDX = #{receive_idx}
 	</delete>
+	
+	<select id="noticeMessage" parameterType="messageReceive">
+		SELECT COUNT(*) FROM MESSAGE_RECEIVE WHERE RECEIVE_READ = 0 AND RECEIVE_RECEIVER = #{receive_receiver}
+	</select>
+	
 	
 </mapper>

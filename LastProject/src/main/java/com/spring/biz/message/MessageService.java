@@ -30,6 +30,15 @@ public interface MessageService {
 	void deleteReceiveMessage(MessageRecieveVO receivevo);
 
 
+	void readMessage(MessageVO vo);
+
+
+	void readSendMessage(MessageSendVO sendvo);
+
+
+	void readRecieveMessage(MessageRecieveVO receivevo);
+
+
 
 
 

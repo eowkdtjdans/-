@@ -47,8 +47,14 @@ public class MessageDAO {
 	public Object deleteSendMessage(MessageSendVO sendvo) {
 		return mybatis.delete("deleteSendMessage", sendvo);
 	}
-	public MessageVO updateRead(MessageVO vo) {
-		return mybatis.selectOne("updateRead", vo);
+	public void readMessage(MessageVO vo) {
+		mybatis.update("readMessage", vo);
+	}
+	public void readSendMessage(MessageSendVO sendvo) {
+		mybatis.update("readSendMessage", sendvo);
+	}
+	public void readReceiveMessage(MessageRecieveVO receivevo) {
+		mybatis.update("readReceiveMessage", receivevo);
 	}
 
 	

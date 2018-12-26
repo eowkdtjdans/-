@@ -67,6 +67,21 @@ public class MessageServiceImpl implements MessageService {
 		messageDAO.deleteReceiveMessage(receivevo);
 	}
 
+	@Override
+	public void readMessage(MessageVO vo) {
+		messageDAO.readMessage(vo);
+	}
+
+	@Override
+	public void readSendMessage(MessageSendVO sendvo) {
+		messageDAO.readSendMessage(sendvo);
+	}
+
+	@Override
+	public void readRecieveMessage(MessageRecieveVO receivevo) {
+		messageDAO.readReceiveMessage(receivevo);
+	}
+
 
 	
 	
