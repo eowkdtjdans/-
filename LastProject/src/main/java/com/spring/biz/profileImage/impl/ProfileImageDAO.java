@@ -12,7 +12,6 @@ public class ProfileImageDAO {
 	private SqlSessionTemplate mybatis;
 	
 	public void ProfileImageInsert(Map<String, String> profileImageMap) {
-		System.out.println(profileImageMap);
 		mybatis.insert("ProfileImageInsert", profileImageMap);
 	}
 	
@@ -22,6 +21,14 @@ public class ProfileImageDAO {
 	
 	public void ProfileImageSetMain() {
 		
+	}
+
+	public int HostImageMainCount(String m_id) {
+		return mybatis.selectOne("HostImageMainCount", m_id);
+	}
+
+	public void HostImageInsert(Map<String, String> hostImageMap) {
+		mybatis.insert("HostImageInsert", hostImageMap);
 	}
 
 }

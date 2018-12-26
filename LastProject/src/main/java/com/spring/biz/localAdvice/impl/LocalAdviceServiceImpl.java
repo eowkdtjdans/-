@@ -41,13 +41,6 @@ public class LocalAdviceServiceImpl implements LocalAdviceService {
 		
 	}
 
-	/*
-	@Override
-	public void deleteLocalAdvice(LocalAdviceVO vo) {
-		// TODO Auto-generated method stub
-		
-	}
-	 */
 	@Override
 	public LocalAdviceVO getLocalAdvice(LocalAdviceVO vo) {
 		return localAdviceDAO.getLocalAdvice(vo);
@@ -56,6 +49,41 @@ public class LocalAdviceServiceImpl implements LocalAdviceService {
 	@Override
 	public ProfileImageVO getProfileImage(ProfileImageVO vo) {
 		return localAdviceDAO.getProfileImage(vo);
+	}
+
+	@Override
+	public void deleteLocalAdvice(LocalAdviceVO vo) {
+		localAdviceDAO.deleteLocalAdvice(vo);
+		
+	}
+
+	@Override
+	public void localAdviceCount(String l_idx) {
+		localAdviceDAO.localAdviceCount(l_idx);
+		
+	}
+
+	@Override
+	public void updateLocalAdviceCnt(int l_idx) {
+		localAdviceDAO.updateLocalAdviceCnt(l_idx);
+		
+	}
+
+	@Override
+	public void updateLocalAdviceCntMinus(int l_idx) {
+		localAdviceDAO.updateLocalAdviceCntMinus(l_idx);
+		
+	}
+
+	@Override
+	public int goodLocalAdvice(int l_idx) {
+		return localAdviceDAO.goodLocalAdvice(l_idx);
+		
+	}
+
+	@Override
+	public int badLocalAdvice(int l_idx) {	
+		return localAdviceDAO.badLocalAdvice(l_idx);
 	}
 
 

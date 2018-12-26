@@ -47,21 +47,7 @@
 	}
 </style>
 
-<script>	
-	/* function sendData(frm){
-		for (var i=0; i<frm.elements.length; i++){
-			if(frm.elements[i].value.trim() == ""){
-				alert(i);
-				alert(frm.elements[i].title + "을 입력해주세요");
-				frm.elements[i].focus();
-				return false;
-			}		
-		}		
-			alert("안녕하세요");
-			frm.action="../insertLocalAdvice.do";
-			frm.submit();
-	} */
-	 
+<script>		 
 	function sendData(frm){
 		if(frm.elements[0].value.trim()==""){
 			alert(frm.elements[0].title + "을 입력해주세요");
@@ -73,7 +59,7 @@
 			frm.elements[1].focus();
 			return false;
 		}
-		alert("안녕하세요");
+		alert("인서트컨트롤러가는얼랏");
 		frm.action="../insertLocalAdvice.do";
 		frm.submit();
 	}
@@ -84,6 +70,8 @@
 	}
 	
 </script>   
+
+
  
 </head>
 
@@ -168,6 +156,7 @@
 						<input type="button" value="목록으로" class="btn btn-outline-secondary"
 							onclick="list_go()">
 						<input type="hidden" name="searchCondition" value="${searchCondition }">
+						${searchCondition }, ${key }, ${member.m_address}, ${firstLat}, ${firstLng}
 						<input type="hidden" name="searchKeyword" value="${key }" >
 						<input type="hidden" name="m_address" value="${member.m_address}">
 						<input type="hidden" name="lat" value="${firstLat}">
@@ -176,9 +165,26 @@
 				</tr>		
 			</table>			
 		</form>
+		
+		
 	</div>
 </div>	   
 </section><!-- #about -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
  <!--==========================
     Footer
   ============================-->

@@ -10,9 +10,13 @@
 		<!-- SELECT * FROM LOCALADVICE 
 		WHERE UPPER(L_SUBJECT) LIKE '%' || UPPER(#{key}) || '%' 
 		ORDER BY L_IDX DESC -->
-		SELECT R_NUM, L_IDX, M_ID, L_SUBJECT, L_CONTENT, L_DATE, L_UPVOTE, L_REVIEWCOUNT, M_ADDRESS
+		<!-- SELECT R_NUM, L_IDX, M_ID, L_SUBJECT, L_CONTENT, L_DATE, L_UPVOTE, L_REVIEWCOUNT, M_ADDRESS
    		FROM (SELECT ROWNUM R_NUM, B.* FROM (SELECT * FROM LOCALADVICE ORDER BY L_IDX DESC) B)
-    	WHERE UPPER(M_ADDRESS) LIKE '%' || UPPER(#{key}) || '%' AND (R_NUM BETWEEN #{begin} AND #{end})
+    	WHERE UPPER(M_ADDRESS) LIKE '%' || UPPER(#{key}) || '%' AND (R_NUM BETWEEN #{begin} AND #{end}) -->
+    	SELECT R_NUM, L_IDX, M_ID, L_SUBJECT, L_CONTENT, L_DATE, L_UPVOTE, L_REVIEWCOUNT, M_ADDRESS, LC_CNT
+   		FROM (SELECT ROWNUM R_NUM, B.* FROM (SELECT * FROM LOCALADVICE 
+        WHERE UPPER(L_SUBJECT) LIKE '%' || UPPER(#{key}) || '%' ORDER BY L_IDX DESC) B)
+    	WHERE UPPER(L_SUBJECT) LIKE '%' || UPPER(#{key}) || '%' AND (R_NUM BETWEEN #{begin} AND #{end})
 	</select>
 	
 	<!-- 키값에 해당하는 게시글수 조회 -->
@@ -45,6 +49,38 @@
 	<update id="updateLocalAdvice" parameterType="localadvice">
 		UPDATE LOCALADVICE SET L_SUBJECT=#{l_subject}, L_CONTENT=#{l_content} WHERE L_IDX=#{l_idx} 
 	</update>
+	
+	<delete id="deleteLocalAdvice" parameterType="localadvice">
+		DELETE FROM LOCALADVICE WHERE L_IDX=#{l_idx}
+	</delete>
+	
+	
+	<!-- 게시글 조회수 증가 -->
+	<update id="localAdviceCount" parameterType="String">
+		UPDATE LOCALADVICE SET L_REVIEWCOUNT = L_REVIEWCOUNT+1  WHERE L_IDX = #{l_idx }
+	</update>
+	
+	
+	<!-- 게시글 댓글수 증가 -->
+	<update id="updateLocalAdviceCnt" parameterType="int">
+		UPDATE LOCALADVICE SET LC_CNT = LC_CNT+1 WHERE L_IDX=#{l_idx}
+	</update>
+	
+	<!-- 게시글 댓글수 감소 -->
+	<update id="updateLocalAdviceCntMinus" parameterType="int">
+		UPDATE LOCALADVICE SET LC_CNT = LC_CNT-1 WHERE L_IDX=#{l_idx}
+	</update>
+	
+	<!-- 게시글 좋아요 기능(+) -->
+	<update id="goodLocalAdvice" parameterType="int">
+		UPDATE LOCALADVICE SET L_UPVOTE = L_UPVOTE+1 WHERE L_IDX=#{l_idx}
+	</update>
+	
+	<!-- 게시글 좋아요 기능(-) -->
+	<update id="badLocalAdvice" parameterType="int">
+		UPDATE LOCALADVICE SET L_UPVOTE = L_UPVOTE-1 WHERE L_IDX=#{l_idx}
+	</update>
+	
 </mapper>
 
 

@@ -140,12 +140,11 @@
 		<form name="frm" method="post">
 			<table>				
 				<tr>
-					<td><img src="${getProfileImage.p_route }" class="rounded-circle"  id="profileImage"></td>
+					<td><img src="${getLocalAdvice.getP_route() }" class="rounded-circle"  id="profileImage" onerror='this.src="../views/img/people/fuckyou.jpg"'></td>
 					<td><textarea class="form-control" rows="1" cols="90" name="l_subject">${getLocalAdvice.l_subject }</textarea></td>
 					<td>					
-						<c:if test="${getProfileImage.m_id eq m_id }"> 
+						<c:if test="${getLocalAdvice.m_id eq member.m_id }"> 
 							<input type="button" class="btn btn-outline-secondary" value="수정완료" onclick="updatego(this.form)">
-							<input type="button" class="btn btn-outline-secondary" value="삭제" onclick="deletego(this.form)">
 							<input type="hidden" name="l_idx" value="${getLocalAdvice.l_idx }">
 						</c:if>
 					</td>

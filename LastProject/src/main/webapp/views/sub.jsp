@@ -43,9 +43,9 @@
   ======================================================= -->
   
 <style>
-	body{
-		padding-top: 70px;
-	}
+   body{
+      padding-top: 70px;
+   }
 </style>
 
 
@@ -66,19 +66,19 @@ function fillInAddress() { //lat 와 lng 값을 넘겨줄 input 태그에 값 �
 </script>
 <script>
 $(function(){
-	$("#condition").change(function(){
-		var condition = $("#condition").val();
-		
-		if(condition == "find_advice") {
-			$("#autocomplete").removeAttr("name");
-			$("#autocomplete").hide();
-			$("<input type='text' id='advice' name='searchKeyword'>").insertBefore("#search");
-		} else {
-			$("#advice").remove();
-			$("#autocomplete").show();
-			$("#autocomplete").attr("name", "searchKeyword");
-		}
-	})
+   $("#condition").change(function(){
+      var condition = $("#condition").val();
+      
+      if(condition == "find_advice") {
+         $("#autocomplete").removeAttr("name");
+         $("#autocomplete").hide();
+         $("<input type='text' id='advice' name='searchKeyword'>").insertBefore("#search");
+      } else {
+         $("#advice").remove();
+         $("#autocomplete").show();
+         $("#autocomplete").attr("name", "searchKeyword");
+      }
+   })
 })
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?v=3&sensor=false&libraries=places&callback=initAutocomplete&key=AIzaSyAfB2qQnvAuU2YFFqi8hrPWfjJNyxl5kWc" async defer></script>
@@ -125,11 +125,11 @@ $(function(){
           <li><a href="#about">쪽지</a></li>
           <li><a href="#portfolio">마이 프로필</a></li>      
           
-          <li><a href="../../findIdMember.do">아이디</a></li>
-          <li><a href="../../findPwdMember.do">비밀번호</a></li>
+          <li><a href="../../findIdMember.do">아이디</a></li >
+          <li><a href="../../findPwdMember.do">비밀번호< /a></li>
           <li><a href="../../logoutMember.do">로그아웃</a></li>
        
-		
+      
         </ul>
       </nav><!-- #nav-menu-container -->
     </div>
@@ -140,41 +140,41 @@ $(function(){
 
 <!-- 키워드로 검색 -->
 <form action="../sub.do" method="post">
-	<table class="border-none">
-		<tr>
-			<td>
-				<select id="condition" name="searchCondition">			
-					<%-- <c:forEach var="option" items="${conditionMap }">
-						<option value="${option.value }">${option.key }
-					</c:forEach> --%>
-					<option value="find_travler">여행자검색
-					<option value="find_host">호스트검색
-					<option value="find_event">이벤트검색
-					<option value="find_advice">현지정보검색
-				</select>
-				
-				<input id="autocomplete" placeholder="" type="text" name="searchKeyword">
-				
-				<input class="field" id="lat" type="hidden" name="lat"/>
-				<input class="field" id="lng" type="hidden" name="lng"/>
-				
-				<input type="submit" id="search" value="검색">
-			</td>
-			<%-- <td>
-				<select name="searchCondition">			
-					<c:forEach var="option" items="${conditionMap }">
-						<option value="${option.value }">${option.key }
-					</c:forEach>
-					<option value="find_travler">여행자검색
-					<option value="find_host">호스트검색
-					<option value="find_event">이벤트검색
-					<option value="find_advice">현지정보검색
-				</select>
-				<input type="text" name="searchKeyword" value="${key}">
-				<input type="submit" value="검색">
-			</td> --%>
-		</tr>
-	</table>
+   <table class="border-none">
+      <tr>
+         <td>
+            <select id="condition" name="searchCondition">         
+               <%-- <c:forEach var="option" items="${conditionMap }">
+                  <option value="${option.value }">${option.key }
+               </c:forEach> --%>
+               <option value="find_travler">여행자검색
+               <option value="find_host">호스트검색
+               <option value="find_event">이벤트검색
+               <option value="find_advice">현지정보검색
+            </select>
+            
+            <input id="autocomplete" placeholder="" type="text" name="searchKeyword">
+            
+            <input class="field" id="lat" type="hidden" name="lat"/>
+            <input class="field" id="lng" type="hidden" name="lng"/>
+            
+            <input type="submit" id="search" value="검색">
+         </td>
+         <%-- <td>
+            <select name="searchCondition">         
+               <c:forEach var="option" items="${conditionMap }">
+                  <option value="${option.value }">${option.key }
+               </c:forEach>
+               <option value="find_travler">여행자검색
+               <option value="find_host">호스트검색
+               <option value="find_event">이벤트검색
+               <option value="find_advice">현지정보검색
+            </select>
+            <input type="text" name="searchKeyword" value="${key}">
+            <input type="submit" value="검색">
+         </td> --%>
+      </tr>
+   </table>
 </form>
 
    <!--==========================
@@ -183,16 +183,16 @@ $(function(){
 <section id="about">
       <div class="container">
         <header class="section-header">
-        	<p>${member.m_id }</p>
-        	<p>${member.m_pwd }</p>
-        	<p>${member.m_name }</p>
-        	<p>${member.m_phone }</p>
-        	<p>${member.m_gender }</p>
-        	<p>${member.m_birthday }</p>
-        	<p>${member.m_regdate }</p>
-        	<p>${member.lat }</p>
-        	<p>${member.lng }</p>
-        	<p>${member.m_address }</p>
+           <p>${member.m_id }</p>
+           <p>${member.m_pwd }</p>
+           <p>${member.m_name }</p>
+           <p>${member.m_phone }</p>
+           <p>${member.m_gender }</p>
+           <p>${member.m_birthday }</p>
+           <p>${member.m_regdate }</p>
+           <p>${member.lat }</p>
+           <p>${member.lng }</p>
+           <p>${member.m_address }</p>
         	<p>${profile.p_hobby }</p>
         	<p>${profile.p_language }</p>
         	<p>${profile.p_job }</p>
@@ -242,7 +242,7 @@ $(function(){
               </p>
             </div>
           </div>
-	</div>
+   </div>
       </div>
     </section><!-- #about -->
 
@@ -440,7 +440,7 @@ $(function(){
           <div class="col-lg-3 col-md-6 footer-contact">
             <h4>Contact Us</h4>
             <p>
-             	 비트캠프 신촌센터 <br>
+                 비트캠프 신촌센터 <br>
               Seoul, NY 535022<br>
               Korea <br>
               <strong>Phone:</strong> 010-5575-4786<br>
@@ -460,8 +460,8 @@ $(function(){
           <div class="col-lg-3 col-md-6 footer-newsletter">
             <h4>Couch Surfing tip</h4>
             <p>만나는 사람들과 대화를 많이 하려고 시도하세요.
-				그 의사소통보다 더 중요한 건 안전이다. 인증이 된 멤버인지, 타인들이 남긴 레퍼런스(리뷰)는 긍정적인지, 올려둔 사진은 괜찮은지... 감각을 키워가자.
-				호스트든 게스트든 집에서는 위생을 유지하도록 하자.</p>
+            그 의사소통보다 더 중요한 건 안전이다. 인증이 된 멤버인지, 타인들이 남긴 레퍼런스(리뷰)는 긍정적인지, 올려둔 사진은 괜찮은지... 감각을 키워가자.
+            호스트든 게스트든 집에서는 위생을 유지하도록 하자.</p>
           </div>
 
         </div>
@@ -520,117 +520,111 @@ $(function(){
 
 <!-- ================================================== modal  -->
 <div class="cd-intro">
-		<h1>Login/Signup Modal Window</h1>
-		<div class="cd-nugget-info">
-			<a href="http://codyhouse.co/gem/loginsignup-modal-window/">
-				<span>
-					<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="16px" height="16px" viewBox="0 0 16 16" style="enable-background:new 0 0 16 16;" xml:space="preserve">
-						<style type="text/css">
-							.cd-nugget-info-arrow{fill:#383838;}
-						</style>
-						<polygon class="cd-nugget-info-arrow" points="15,7 4.4,7 8.4,3 7,1.6 0.6,8 0.6,8 0.6,8 7,14.4 8.4,13 4.4,9 15,9 "/>
-					</svg>
-				</span>
-				Article &amp; Download
-			</a>
-		</div> <!-- cd-nugget-info -->
-	</div>
+      <h1>Login/Signup Modal Window</h1>
+      <div class="cd-nugget-info">
+         <a href="http://codyhouse.co/gem/loginsignup-modal-window/">
+            <span>
+               <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="16px" height="16px" viewBox="0 0 16 16" style="enable-background:new 0 0 16 16;" xml:space="preserve">
+                  <style type="text/css">
+                     .cd-nugget-info-arrow{fill:#383838;}
+                  </style>
+                  <polygon class="cd-nugget-info-arrow" points="15,7 4.4,7 8.4,3 7,1.6 0.6,8 0.6,8 0.6,8 7,14.4 8.4,13 4.4,9 15,9 "/>
+               </svg>
+            </span>
+            Article &amp; Download
+         </a>
+      </div> <!-- cd-nugget-info -->
+   </div>
 
-	<div class="cd-signin-modal js-signin-modal"> <!-- this is the entire modal form, including the background -->
-		<div class="cd-signin-modal__container"> <!-- this is the container wrapper -->
-			<ul class="cd-signin-modal__switcher js-signin-modal-switcher js-signin-modal-trigger">
-				<li><a href="#0" data-signin="login" data-type="login">Sign in</a></li>
-				<li><a href="#0" data-signin="signup" data-type="signup">New account</a></li>
-			</ul>
+   <div class="cd-signin-modal js-signin-modal"> <!-- this is the entire modal form, including the background -->
+      <div class="cd-signin-modal__container"> <!-- this is the container wrapper -->
+         <ul class="cd-signin-modal__switcher js-signin-modal-switcher js-signin-modal-trigger">
+            <li><a href="#0" data-signin="login" data-type="login">Sign in</a></li>
+            <li><a href="#0" data-signin="signup" data-type="signup">New account</a></li>
+         </ul>
 
-			<div class="cd-signin-modal__block js-signin-modal-block" data-type="login"> <!-- log in form -->
-				<form class="cd-signin-modal__form">
-					<p class="cd-signin-modal__fieldset">
-						<label class="cd-signin-modal__label cd-signin-modal__label--email cd-signin-modal__label--image-replace" for="signin-email">E-mail</label>
-						<input class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding cd-signin-modal__input--has-border" id="signin-email" type="email" placeholder="E-mail">
-						<span class="cd-signin-modal__error">Error message here!</span>
-					</p>
+         <div class="cd-signin-modal__block js-signin-modal-block" data-type="login"> <!-- log in form -->
+            <form class="cd-signin-modal__form">
+               <p class="cd-signin-modal__fieldset">
+                  <label class="cd-signin-modal__label cd-signin-modal__label--email cd-signin-modal__label--image-replace" for="signin-email">E-mail</label>
+                  <input class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding cd-signin-modal__input--has-border" id="signin-email" type="email" placeholder="E-mail">
+                  <span class="cd-signin-modal__error">Error message here!</span>
+               </p>
 
-					<p class="cd-signin-modal__fieldset">
-						<label class="cd-signin-modal__label cd-signin-modal__label--password cd-signin-modal__label--image-replace" for="signin-password">Password</label>
-						<input class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding cd-signin-modal__input--has-border" id="signin-password" type="text"  placeholder="Password">
-						<a href="#0" class="cd-signin-modal__hide-password js-hide-password">Hide</a>
-						<span class="cd-signin-modal__error">Error message here!</span>
-					</p>
+               <p class="cd-signin-modal__fieldset">
+                  <label class="cd-signin-modal__label cd-signin-modal__label--password cd-signin-modal__label--image-replace" for="signin-password">Password</label>
+                  <input class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding cd-signin-modal__input--has-border" id="signin-password" type="text"  placeholder="Password">
+                  <a href="#0" class="cd-signin-modal__hide-password js-hide-password">Hide</a>
+                  <span class="cd-signin-modal__error">Error message here!</span>
+               </p>
 
-					<p class="cd-signin-modal__fieldset">
-						<input type="checkbox" id="remember-me" checked class="cd-signin-modal__input ">
-						<label for="remember-me">Remember me</label>
-					</p>
+               <p class="cd-signin-modal__fieldset">
+                  <input type="checkbox" id="remember-me" checked class="cd-signin-modal__input ">
+                  <label for="remember-me">Remember me</label>
+               </p>
 
-					<p class="cd-signin-modal__fieldset">
-						<input class="cd-signin-modal__input cd-signin-modal__input--full-width" type="submit" value="Login">
-					</p>
-				</form>
-				
-				<p class="cd-signin-modal__bottom-message js-signin-modal-trigger"><a href="#0" data-signin="reset">Forgot your password?</a></p>
-			</div> <!-- cd-signin-modal__block -->
+               <p class="cd-signin-modal__fieldset">
+                  <input class="cd-signin-modal__input cd-signin-modal__input--full-width" type="submit" value="Login">
+               </p>
+            </form>
+            
+            <p class="cd-signin-modal__bottom-message js-signin-modal-trigger"><a href="#0" data-signin="reset">Forgot your password?</a></p>
+         </div> <!-- cd-signin-modal__block -->
 
-			<div class="cd-signin-modal__block js-signin-modal-block" data-type="signup"> <!-- sign up form -->
-				<form class="cd-signin-modal__form">
-					<p class="cd-signin-modal__fieldset">
-						<label class="cd-signin-modal__label cd-signin-modal__label--username cd-signin-modal__label--image-replace" for="signup-username">Username</label>
-						<input class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding cd-signin-modal__input--has-border" id="signup-username" type="text" placeholder="Username">
-						<span class="cd-signin-modal__error">Error message here!</span>
-					</p>
+         <div class="cd-signin-modal__block js-signin-modal-block" data-type="signup"> <!-- sign up form -->
+            <form class="cd-signin-modal__form">
+               <p class="cd-signin-modal__fieldset">
+                  <label class="cd-signin-modal__label cd-signin-modal__label--username cd-signin-modal__label--image-replace" for="signup-username">Username</label>
+                  <input class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding cd-signin-modal__input--has-border" id="signup-username" type="text" placeholder="Username">
+                  <span class="cd-signin-modal__error">Error message here!</span>
+               </p>
 
-					<p class="cd-signin-modal__fieldset">
-						<label class="cd-signin-modal__label cd-signin-modal__label--email cd-signin-modal__label--image-replace" for="signup-email">E-mail</label>
-						<input class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding cd-signin-modal__input--has-border" id="signup-email" type="email" placeholder="E-mail">
-						<span class="cd-signin-modal__error">Error message here!</span>
-					</p>
+               <p class="cd-signin-modal__fieldset">
+                  <label class="cd-signin-modal__label cd-signin-modal__label--email cd-signin-modal__label--image-replace" for="signup-email">E-mail</label>
+                  <input class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding cd-signin-modal__input--has-border" id="signup-email" type="email" placeholder="E-mail">
+                  <span class="cd-signin-modal__error">Error message here!</span>
+               </p>
 
-					<p class="cd-signin-modal__fieldset">
-						<label class="cd-signin-modal__label cd-signin-modal__label--password cd-signin-modal__label--image-replace" for="signup-password">Password</label>
-						<input class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding cd-signin-modal__input--has-border" id="signup-password" type="text"  placeholder="Password">
-						<a href="#0" class="cd-signin-modal__hide-password js-hide-password">Hide</a>
-						<span class="cd-signin-modal__error">Error message here!</span>
-					</p>
+               <p class="cd-signin-modal__fieldset">
+                  <label class="cd-signin-modal__label cd-signin-modal__label--password cd-signin-modal__label--image-replace" for="signup-password">Password</label>
+                  <input class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding cd-signin-modal__input--has-border" id="signup-password" type="text"  placeholder="Password">
+                  <a href="#0" class="cd-signin-modal__hide-password js-hide-password">Hide</a>
+                  <span class="cd-signin-modal__error">Error message here!</span>
+               </p>
 
-					<p class="cd-signin-modal__fieldset">
-						<input type="checkbox" id="accept-terms" class="cd-signin-modal__input ">
-						<label for="accept-terms">I agree to the <a href="#0">Terms</a></label>
-					</p>
+               <p class="cd-signin-modal__fieldset">
+                  <input type="checkbox" id="accept-terms" class="cd-signin-modal__input ">
+                  <label for="accept-terms">I agree to the <a href="#0">Terms</a></label>
+               </p>
 
-					<p class="cd-signin-modal__fieldset">
-						<input class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding" type="submit" value="Create account">
-					</p>
-				</form>
-			</div> <!-- cd-signin-modal__block -->
+               <p class="cd-signin-modal__fieldset">
+                  <input class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding" type="submit" value="Create account">
+               </p>
+            </form>
+         </div> <!-- cd-signin-modal__block -->
 
-			<div class="cd-signin-modal__block js-signin-modal-block" data-type="reset"> <!-- reset password form -->
-				<p class="cd-signin-modal__message">Lost your password? Please enter your email address. You will receive a link to create a new password.</p>
+         <div class="cd-signin-modal__block js-signin-modal-block" data-type="reset"> <!-- reset password form -->
+            <p class="cd-signin-modal__message">Lost your password? Please enter your email address. You will receive a link to create a new password.</p>
 
-				<form class="cd-signin-modal__form">
-					<p class="cd-signin-modal__fieldset">
-						<label class="cd-signin-modal__label cd-signin-modal__label--email cd-signin-modal__label--image-replace" for="reset-email">E-mail</label>
-						<input class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding cd-signin-modal__input--has-border" id="reset-email" type="email" placeholder="E-mail">
-						<span class="cd-signin-modal__error">Error message here!</span>
-					</p>
+            <form class="cd-signin-modal__form">
+               <p class="cd-signin-modal__fieldset">
+                  <label class="cd-signin-modal__label cd-signin-modal__label--email cd-signin-modal__label--image-replace" for="reset-email">E-mail</label>
+                  <input class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding cd-signin-modal__input--has-border" id="reset-email" type="email" placeholder="E-mail">
+                  <span class="cd-signin-modal__error">Error message here!</span>
+               </p>
 
-					<p class="cd-signin-modal__fieldset">
-						<input class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding" type="submit" value="Reset password">
-					</p>
-				</form>
+               <p class="cd-signin-modal__fieldset">
+                  <input class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding" type="submit" value="Reset password">
+               </p>
+            </form>
 
-				<p class="cd-signin-modal__bottom-message js-signin-modal-trigger"><a href="#0" data-signin="login">Back to log-in</a></p>
-			</div> <!-- cd-signin-modal__block -->
-			<a href="#0" class="cd-signin-modal__close js-close">Close</a>
-		</div> <!-- cd-signin-modal__container -->
-	</div> <!-- cd-signin-modal -->
+            <p class="cd-signin-modal__bottom-message js-signin-modal-trigger"><a href="#0" data-signin="login">Back to log-in</a></p>
+         </div> <!-- cd-signin-modal__block -->
+         <a href="#0" class="cd-signin-modal__close js-close">Close</a>
+      </div> <!-- cd-signin-modal__container -->
+   </div> <!-- cd-signin-modal -->
 <script src="jsModal/placeholders.min.js"></script> <!-- polyfill for the HTML5 placeholder attribute -->
 <script src="jsModal/main.js"></script> <!-- Resource JavaScript -->
-
-
-
-
-
-
 
 </body>
 </html>

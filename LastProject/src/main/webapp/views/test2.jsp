@@ -7,6 +7,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Commit-Test</title>
+
+
 </head>
 <body>
 <c:choose>
@@ -17,7 +19,8 @@
 	<c:otherwise>
 		${m_id }님이 로그인 중입니다.
 	</c:otherwise>
-	
 </c:choose>
+
+
 </body>
 </html>

@@ -23,6 +23,8 @@ public class LocalAdviceVO {
     
     private String p_route;
     
+    private int lc_cnt;
+    
     
 	public int getL_idx() {
 		return l_idx;
@@ -79,17 +81,20 @@ public class LocalAdviceVO {
 	public void setP_route(String p_route) {
 		this.p_route = p_route;
 	}
+
+	public int getLc_cnt() {
+		return lc_cnt;
+	}
+	public void setLc_cnt(int lc_cnt) {
+		this.lc_cnt = lc_cnt;
+	}
 	@Override
 	public String toString() {
 		return "LocalAdviceVO [l_idx=" + l_idx + ", m_id=" + m_id + ", l_subject=" + l_subject + ", l_content="
 				+ l_content + ", l_date=" + l_date + ", l_upvote=" + l_upvote + ", l_reviewcount=" + l_reviewcount
-				+ ", m_address=" + m_address + ", p_route=" + p_route + "]";
+				+ ", m_address=" + m_address + ", p_route=" + p_route + ", lc_cnt=" + lc_cnt + "]";
 	}
 	
-	
-	
-    
-    
-	
+
     
 }

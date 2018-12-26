@@ -34,7 +34,7 @@
   
   <script src="http://code.jquery.com/jquery-latest.min.js"></script>
   <script src="https://maps.googleapis.com/maps/api/js?v=3&sensor=false&libraries=places&callback=initAutocomplete&key=AIzaSyAfB2qQnvAuU2YFFqi8hrPWfjJNyxl5kWc" async defer></script>
-
+ 
   <!-- =======================================================
     Theme Name: BizPage
     Theme URL: https://bootstrapmade.com/bizpage-bootstrap-business-template/
@@ -58,11 +58,18 @@
 		width: 1100px;
 		height: 400px;
 	}
-
-
+	#bentarrow{
+		width: 20px;
+		height: 20px;
+	}
+	.textareaComment{
+		width: 1000px;
+	}
+	
 </style> 
 
 <script>
+
 function login_chk(frm){
 	if("${m_id}" == "") {
 		alert("로그인이 필요한 서비스입니다.");
@@ -74,7 +81,6 @@ function login_chk(frm){
 			frm.lc_content.focus();
 			return false;
 		} else {
-			alert("컨트롤러 이동");
 			frm.action = "../insertLocalAdviceComment.do?l_idx=${getLocalAdvice.l_idx }&getProfileImage.m_id=${getProfileImage.m_id}";
 			frm.submit();			
 		}
@@ -82,68 +88,192 @@ function login_chk(frm){
 }
 
 
-/* jQuery(document).ready(function(){
-		var count= 0;
-		$('#update_button').click(function() { 
-			count = 1;
-			alert("count:" + count);		
-		});
-						
-	}); */ 
-
-
 	 function update_button(lc_idx) {
-		alert("update_button()함수로옴");
+		//alert("update_button()함수로옴");
 	    var textareaTag = "<br><textarea id='textarea" + lc_idx + "'  rows='3' cols='134' name='lc_content'></textarea>"+
-	    "<button type='button' class='btn btn-outline-secondary' onclick='json_update(this.form)'>수정완료</button>"+
-	    "<input type='hidden' id='lc_idx' value="+lc_idx+">";
+	    "<button type='button' class='btn btn-outline-secondary' onclick='json_update("+lc_idx+")' id='focus'>수정완료</button>"+
+	    "<input type='hidden' id='lc_idx' value="+lc_idx+">"+
+	    "<input type='hidden' name='focus_idx' id='focus_idx' value="+lc_idx+">";
 	    var lc_content = $("#"+ lc_idx).text();
-	    //alert(lc_idx);
-		//$("#"+ lc_idx).append(textareaTag);
 		
 		$("#"+lc_idx).empty();
 		$("#"+lc_idx).append(textareaTag);
-		//alert("aa");
-		$("#textarea" + lc_idx).append(lc_content);		
+		$("#textarea" + lc_idx).append(lc_content);	
+		
+		var btn = document.getElementById('btn');
+		btn.disabled = 'disabled';		
 	}  
+	 
 	
-	function json_update(){	
-		//alert("json_update");
-		/* var lc_idx = document.getElementById("lc_idx").value; */
+	function json_update(lc_idx){	
 		var lc_idx = $('#lc_idx').val();
-		var str = $("#frm").serialize();
+		alert("lc_idx : " + lc_idx);
+		$.ajax({
+			async: true,
+			type : "POST",
+			dataType : "json",			
+			data : lc_idx,
+			contentType: "application/json; charset=UTF-8",
+			url : "/updateLocalAdviceCommentJson.do",
+			
+			
+			success : function(data){
+				if(data.cnt ==0){
+					//제이슨 조회시 데이터 갯수 0일때
+				} else{
+					//alert("데이터가 있숨");
+					location.href="/updateLocalAdviceComment.do?lc_idx="+$('#lc_idx').val()+"&lc_content="+$('#textarea' + lc_idx).val()+"&m_id="+"${member.m_id}"+"&l_idx="+"${getLocalAdvice.l_idx }"+"&focus_idx="+lc_idx; 				
+				}
+			} 
+	
+		})	
 		
-		//alert("lc_idx : " + lc_idx);
-		//alert("str4 : " +str);
+	}
+	
+ 
+     $( document ).ready( function() {
+    	if('${focus_idx}'==""){  
+    			
+    	} else {   		
+      		console.log($("#"+"${focus_idx}"));
+      		console.log('#');
+      		console.log('${focus_idx}');
+
+			$("#"+"${focus_idx}").attr("tabindex",-1).focus();
+      		<% session.removeAttribute("focus_idx"); %>    		      				
+    	}
+    	
+      } );
+     
+     
+     
+   function delete_button(lc_idx, l_idx) {	 
+	   var con_test = confirm("정말 삭제하시겠습니까?");
+	   if(con_test == true){
+		   alert("댓글삭제누를시 나오는 alert");
+		   alert("lc_idx : " + lc_idx);
+		   alert("l_idx : " +l_idx);
+			$.ajax({
+				async: true,
+				type : "POST",
+				dataType : "json",			
+				data : lc_idx,
+				//data : {lc_idx:lc_idx, l_idx:l_idx},
+				contentType: "application/json; charset=UTF-8",
+				url : "/deleteLocalAdviceCommentJson.do?l_idx="+l_idx,
 		
-		alert("lc_idx : " + $('#lc_idx').val());
-		/* alert("m_id : " + ${member.m_id}); */
-		alert("lc_content : " + $('#textarea')); 
-		
+				success : function(data){	
+					$("#td"+lc_idx).remove();
+				}
+			})				 
+	   } else{
+		   return false;
+	   }
+	   
+		  
+   }
+      
+	
+	function good(){
+		alert("좋아요 ajax");
+		var good = ${getLocalAdvice.l_upvote };
+		/* var l_idx = ${getLocalAdvice.l_idx}; */
+		var l_idx = "${getLocalAdvice.l_idx}";
+		alert("good " + good);
+		alert("l_idx : " + l_idx);
+		$.ajax({
+			async: true,
+			type : "POST",
+			dataType : "json",			
+			data : l_idx,
+			contentType: "application/json; charset=UTF-8",
+			url : "/goodJson.do",
+	
+			success : function(data){	
+				alert(data.count);
+				$("#good").remove();
+				$("#span").empty();
+				$("#span").text(good+data.count + " 명이 좋아합니다.");
+				$("#span").append("&emsp;<a id='bad' href='#' onclick='bad()'><img src='views/img/good.png' style='width: 20px; height: 20px;'> 좋아요취소</a>");
+				                         /* <a id="bad" href="#" onclick="bad(" 127')'=""><img src="views/img/good.png" style="width: 20px; height: 20px;"> 좋아요취소</a> */
+				/* $("#span").append("&emsp;<a id='bad' href='#' onclick='bad('${getLocalAdvice.l_idx}')'><img src='views/img/good.png' style='width: 20px; height: 20px;'> 좋아요취소</a>"); */
+			}			                                      
+		})					
+	};   
+	
+	function bad(){
+		alert("싫어요 ajax");
+		var good = ${getLocalAdvice.l_upvote }+1;
+		alert("good : " + good);
+		var l_idx = "${getLocalAdvice.l_idx}";
+		alert("l_idx : " + l_idx);
 		
 		$.ajax({
 			async: true,
-			type : 'POST',
+			type : "POST",
 			dataType : "json",			
-			/* data : {lc_idx: $('#lc_idx').val(), m_id: ${member.m_id}, lc_content: $('#textarea'+lc_idx)}, */
+			data : l_idx,
 			contentType: "application/json; charset=UTF-8",
-			url : '../updateLocalAdviceCommentJson.do',
+			url : "/badJson.do",
+	
+			success : function(data){	
+				alert(data.count);
+				$("#good").remove();
+				$("#span").empty();
+				$("#span").text(good-data.count + " 명이 좋아합니다.");
+				$("#span").append("&emsp;<a id='good' href='#' onclick='good(${getLocalAdvice.l_idx})'><img src='views/img/good.png' style='width: 20px; height: 20px;'> 좋아요!</a>");
+				                     /*  <a id="good" href="#" onclick="good(" 127')'=""><img src="views/img/good.png" style="width: 20px; height: 20px;"> 좋아요!</a> */
+				                     /* function good(l_idx) */
+			}			                                      
+		})
 		
-			success : function(data){
-				alert("data.cnt : " + data.cnt);
-				if(data.cnt ==0){
-					alert("데이터가 없숨");
-				} else{
-					alert("데이터가 있숨");
-				}
+	}
+
+	
+	
+	function detdetgo(lc_idx){
+		alert("댓글속댓글");
+		
+		var textareaTag = "&emsp;&emsp;<img id='bentarrow' src='views/img/bentarrow.png'><textarea class='textareaComment' id='textareaComment" + lc_idx + "' rows='3' cols='134' name='lc_content'></textarea>"+
+						  "<button type='button' class='btn btn-outline-secondary' onclick='json_insertComment("+lc_idx+")'>댓글입력</button>";
+		$("#"+lc_idx).append(textareaTag);	
+		var btn2 = document.getElementById('btn2');
+		btn2.disabled = 'disabled';		
+	}
+	
+
+	
+	function json_insertComment(lc_idx){
+		alert("댓글속댓글 json방식으로");
+		alert("lc_idx : " + lc_idx);
+		var lc_content = $("#textareaComment"+lc_idx).val();
+		alert("lc_content : " + lc_content);
+
+		var lc_idx = JSON.stringify(lc_idx);
+		var l_idx = ${getLocalAdvice.l_idx};
+		alert("l_idx : " + l_idx);
+		
+		$.ajax({
+			async: true,
+			type : "POST",
+			dataType : "json",			
+			data : lc_idx, 
+			contentType: "application/json; charset=UTF-8",
+			url : "/json_insertComment.do?lc_content="+lc_content+"&l_idx="+l_idx,
+	
+			success : function(data){	
+				alert("허걱");
+				alert(data.lc_idx);
+				alert(data.lc_content);
+				alert(data.selectdetdetComment);
+				
 			}
-		
 		})
 	}
 	
 	
 </script>
- 
+
 </head>
 
 <body>
@@ -208,29 +338,39 @@ function login_chk(frm){
 <div class="container">
 	<div class="row from-group">	
 	
+		
 		<div id="tableDiv">
 			<table>				
 				<tr>
 					<td rowspan="3"><img src="${getLocalAdvice.getP_route() }" class="rounded-circle"  id="profileImage" onerror='this.src="../views/img/people/fuckyou.jpg"'></td>
 					<td><strong>${getLocalAdvice.l_subject }</strong></td>
 					<td>					
-						<c:if test="${getProfileImage.m_id eq m_id }"> 
+						<%-- <c:if test="${getProfileImage.m_id eq m_id }">  --%>
+						<c:if test="${getLocalAdvice.m_id eq member.m_id }"> 
 							<a id="atag-size" href="../updateLocalAdvice.do?l_idx=${getLocalAdvice.l_idx }">&nbsp;수정&nbsp;</a>|
-							<a id="atag-size" href="#" onclick="deleteokC('${vo.qc_idx}')">삭제&nbsp;</a>
+							<a id="atag-size" href="../deleteLocalAdvice.do?l_idx=${getLocalAdvice.l_idx }">삭제&nbsp;</a>
 						</c:if>
 					</td>
 				</tr>
 				<tr>
 					<td>${getLocalAdvice.m_id}&emsp;&emsp; ${getLocalAdvice.l_date }</td>
 				</tr>
-				<tr>
-					<td>${getLocalAdvice.l_upvote } &nbsp;&nbsp; ${getLocalAdvice.l_reviewcount }</td>
-				</tr>				
 			</table>	
-				<div style="height: 300px"><p><br>${getLocalAdvice.l_content }${member.m_id }</p></div>		
+				<div style="height: 300px"><p><br>${getLocalAdvice.l_content }</p></div>	
 		</div>	
-
-		<%-- ${getLocalAdvice.l_idx } --%>
+	
+		
+		
+	<c:choose>	
+		<c:when test="${not empty member.m_id}">
+			<span id="span">${getLocalAdvice.l_upvote } 명이 좋아합니다..</span> &emsp;<a id="good" href="#" onclick="good('${getLocalAdvice.l_idx}')"><img src="views/img/good.png" style="width: 20px; height: 20px;"> 좋아요!</a>			
+		</c:when>
+		<c:otherwise>                                                                        
+			<span id="span">${getLocalAdvice.l_upvote } 명이 좋아합니다..</span> &emsp;<a id="good" href="#"><img src="views/img/good.png" style="width: 20px; height: 20px;"> 좋아요!</a>
+		</c:otherwise>
+	</c:choose>
+						
+						
 	 
       	<!-- 여기서부터 댓글폼 -->    
       	<form method="post" id="frm">	
@@ -238,30 +378,36 @@ function login_chk(frm){
       	
 			<table class="table" style="width: 1100px; /* height: 400px; */"> 
 				<c:forEach var="list" items="${getLocalAdviceCommentList}">
-					<tr>
-						<td  class="update">
-							<img src="${list.p_route }" class="rounded-circle" id="profileImage2" onerror='this.src="../views/img/people/fuckyou.jpg"'>
-								&nbsp;&nbsp;${list.m_id }&emsp;&emsp;${list.lc_date }asdfasdfasdf${list.lc_idx }
+				<c:if test="${list.detdet eq 0 }">
+					<tr id="tr">
+						<td  class="update" id="td${list.lc_idx}">
+							<img src="${list.p_route }" class="rounded-circle" id="profileImage2" onerror='this.src="../views/img/people/fuckyou.jpg"'>          
+								&nbsp;&nbsp;${list.m_id }&emsp;&emsp;${list.lc_date }<span id="focusing"> lc_idx : ${list.lc_idx }&emsp;
+								
+								<c:if test="${!empty member.m_id }">
+									<button type="button" id="btn2" class="btn btn-outline-secondary" onclick="detdetgo('${list.lc_idx}')">댓글달기</button>
+								</c:if>
+								
+								
 								<c:if test="${list.m_id eq member.m_id}">    <!-- 조건에 로그인한아이디와 프로필의 m_id가 같으면 -->									
 									<%-- <a href="../updateLocalAdviceComment.do?lc_idx=${list.lc_idx }&m_id=${getProfileImage.m_id}">&nbsp;수정&nbsp;</a>| --%>
 					 				<button type="button" class="btn btn-outline-secondary" onclick="update_button('${list.lc_idx}')">수정</button>			 				
-									<button type="button" class="btn btn-outline-secondary" onclick="delete_button(this.form)">삭제</button>
+									<button type="button" class="btn btn-outline-secondary" onclick="delete_button('${list.lc_idx}','${getLocalAdvice.l_idx }')">삭제</button>
 									<input type="hidden" name="lc_idx" value="${list.lc_idx }">
 								</c:if>
-									<div id="${list.lc_idx}"><br>${list.lc_content }<br></div>
+									<div id="${list.lc_idx}"><br>${list.lc_content }<br><br></div>
 						</td>
-						<td>${list }</td>
-					</tr>	
+					</tr>
+				</c:if>
 				</c:forEach>	
 			</table>
 		</form> 
-
-
+		
 		<!-- 댓글 입력 폼 -->
 		<form method="post" name="frm">
 			<p>
-			<textarea name="lc_content" rows="3" cols="134"></textarea>
-			<input class="btn btn-outline-secondary" type="button" value="댓글등록" onclick="login_chk(this.form)">			
+			<textarea name="lc_content" rows="3" cols="134" id="abc"></textarea>
+			<input class="btn btn-outline-secondary" type="button" value="댓글등록" onclick="login_chk(this.form)">		
 			</p>
 		</form>
 		
@@ -312,7 +458,7 @@ function login_chk(frm){
 
           </div>
 
-          <div class="col-lg-3 col-md-6 footer-newsletter">
+          <div class="col-lg-3 col-md-6 footer-newsletter" id="hi">
             <h4>Couch Surfing tip</h4>
             <p>만나는 사람들과 대화를 많이 하려고 시도하세요.
 				그 의사소통보다 더 중요한 건 안전이다. 인증이 된 멤버인지, 타인들이 남긴 레퍼런스(리뷰)는 긍정적인지, 올려둔 사진은 괜찮은지... 감각을 키워가자.
