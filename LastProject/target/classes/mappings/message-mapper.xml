@@ -6,14 +6,18 @@
 <!-- mapper 태그의 namespace 속성 필수 작성  -->  
 <mapper namespace="messageDAO">
 	
-	<insert id="insertMessage" parameterType="messageSend">
+<!-- 	<insert id="insertMessage" parameterType="messageSend">
 		INSERT INTO MESSAGE_SEND(SEND_IDX, SEND_SENDER, SEND_RECEIVER, SEND_TITLE, SEND_CONTENT, SEND_REGDATE, SEND_READ)
 		VALUES (MESSAGE_SEND_SEQ.NEXTVAL, #{send_sender}, #{send_receiver}, #{send_title}, #{send_content}, SYSDATE, 0)
+	</insert> -->
+	<insert id="insertMessage" parameterType="message">
+		INSERT INTO MESSAGE (MESSAGE_IDX, MESSAGE_SENDER, MESSAGE_RECEIVER, MESSAGE_TITLE, MESSAGE_CONTENT, MESSAGE_REGDATE, MESSAGE_READ)
+		VALUES (MESSAGE_SEND_SEQ.NEXTVAL, #{message_sender}, #{message_receiver}, #{message_title}, #{message_content}, SYSDATE, 0)
 	</insert>
 	
-	<select id="getMessageList" resultType="message">
-		SELECT * FROM MESSAGE WHERE MESSAGE_SENDER = #{message_sender} AND MESSAGE_RECEIVER = #{message_receiver}
-		ORDER BY SEND_IDX DESC
+	<select id="getAllMessageList" resultType="message">
+		SELECT * FROM MESSAGE WHERE MESSAGE_SENDER = #{message_sender} OR MESSAGE_RECEIVER = #{message_receiver}
+		ORDER BY MESSAGE_IDX DESC
 	</select>
 	
 	<select id="getSendMessageList" resultType="messageSend">
@@ -26,6 +30,10 @@
 		ORDER BY RECEIVE_IDX DESC
 	</select>
 	
+	<select id="getMessage" parameterType="Integer" resultType="message">
+		SELECT * FROM MESSAGE WHERE MESSAGE_IDX = #{message_idx} 
+	</select>
+	
 	<select id="getSendMessage" parameterType="Integer" resultType="messageSend">
 		SELECT * FROM MESSAGE_SEND WHERE SEND_IDX = #{send_idx} 
 	</select>
@@ -34,6 +42,23 @@
 		SELECT * FROM MESSAGE_RECEIVE WHERE RECEIVE_IDX = #{receive_idx} 
 	</select>
 	
+	<update id="readMessage" parameterType="message">
+		UPDATE MESSAGE SET MESSAGE_READ = 1 WHERE MESSAGE_IDX = #{message_idx}
+	</update>
+	
+	<update id="readSendMessage" parameterType="messageSend">
+		UPDATE MESSAGE_SEND SET SEND_READ = 1 WHERE SEND_IDX = #{send_idx}
+	</update>
+	
+	<update id="readReceiveMessage" parameterType="messageReceive">
+		UPDATE MESSAGE_RECEIVE SET RECEIVE_READ = 1 WHERE RECEIVE_IDX = #{receive_idx}
+	</update>
+	
+	
+	<delete id="deleteMessage" parameterType="message">
+		DELETE FROM MESSAGE WHERE MESSAGE_IDX = #{message_idx}
+	</delete>
+	
 	<delete id="deleteSendMessage" parameterType="messageSend">
 		DELETE FROM MESSAGE_SEND WHERE SEND_IDX = #{send_idx}
 	</delete>
@@ -41,5 +66,10 @@
 	<delete id="deleteReceiveMessage" parameterType="messageReceive">
 		DELETE FROM MESSAGE_RECEIVE WHERE RECEIVE_IDX = #{receive_idx}
 	</delete>
+	
+	<select id="noticeMessage" parameterType="messageReceive">
+		SELECT COUNT(*) FROM MESSAGE_RECEIVE WHERE RECEIVE_READ = 0 AND RECEIVE_RECEIVER = #{receive_receiver}
+	</select>
+	
 	
 </mapper>

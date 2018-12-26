@@ -1,4 +1,4 @@
-package com.spring.biz.messsage;
+package com.spring.biz.message;
 
 import java.util.Date;
 

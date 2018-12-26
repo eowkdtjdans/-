@@ -6,9 +6,9 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.spring.biz.messsage.MessageRecieveVO;
-import com.spring.biz.messsage.MessageSendVO;
-import com.spring.biz.messsage.MessageVO;
+import com.spring.biz.message.MessageRecieveVO;
+import com.spring.biz.message.MessageSendVO;
+import com.spring.biz.message.MessageVO;
 
 @Repository("messageDAO")
 public class MessageDAO {
@@ -47,8 +47,14 @@ public class MessageDAO {
 	public Object deleteSendMessage(MessageSendVO sendvo) {
 		return mybatis.delete("deleteSendMessage", sendvo);
 	}
-	public MessageVO updateRead(MessageVO vo) {
-		return mybatis.selectOne("updateRead", vo);
+	public void readMessage(MessageVO vo) {
+		mybatis.update("readMessage", vo);
+	}
+	public void readSendMessage(MessageSendVO sendvo) {
+		mybatis.update("readSendMessage", sendvo);
+	}
+	public void readReceiveMessage(MessageRecieveVO receivevo) {
+		mybatis.update("readReceiveMessage", receivevo);
 	}
 
 	

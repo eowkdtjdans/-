@@ -65,11 +65,7 @@
 	.textareaComment{
 		width: 1000px;
 	}
-	#profileImage3 { width: 30px; height: 30px; }
-	.noline{
-		border-collapse: collapse;
-	}
-	
+	#profileImage3 { width: 45px; height: 45px; } 
 	table .noline{
 		border: 0;
 	}
