@@ -43,7 +43,7 @@
 				   }  else {
 					   alert(data.cnt);
 					    alert("변경이 완료되었습니다.");
-						frm.action = "../../ModifyPwdMember.do";
+						frm.action = "../../ModifyPhoneMember.do";
 					    frm.submit();    
 					    return false;
 				   }

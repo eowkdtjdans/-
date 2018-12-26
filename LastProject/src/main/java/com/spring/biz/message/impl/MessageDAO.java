@@ -17,8 +17,11 @@ public class MessageDAO {
 	private SqlSessionTemplate mybatis;
 	public Object messageDAO;
 	
-	public void insertMessage(MessageSendVO vo) {
+	public void insertMessage(MessageVO vo) {
 		mybatis.insert("insertMessage", vo);
+	}
+	public List<MessageVO> getAllMessageList(MessageVO vo) {
+		return mybatis.selectList("getAllMessageList", vo);
 	}
 	public List<MessageSendVO> getSendMessageList(MessageSendVO vo) {
 		return mybatis.selectList("getSendMessageList", vo);
@@ -38,11 +41,15 @@ public class MessageDAO {
 	public MessageRecieveVO getReceiveMessage(MessageRecieveVO vo) {
 		return mybatis.selectOne("getReceiveMessage", vo);
 	}
-	public Object deleteReceiveMessage(MessageRecieveVO vo) {
-		return mybatis.delete("deleteReceiveMessage", vo);
+	public Object deleteReceiveMessage(MessageRecieveVO receivevo) {
+		return mybatis.delete("deleteReceiveMessage", receivevo);
 	}
-	public Object deleteSendMessage(MessageSendVO vo) {
-		return mybatis.delete("deleteSendMessage", vo);
+	public Object deleteSendMessage(MessageSendVO sendvo) {
+		return mybatis.delete("deleteSendMessage", sendvo);
 	}
+	public MessageVO updateRead(MessageVO vo) {
+		return mybatis.selectOne("updateRead", vo);
+	}
+
 	
 }

@@ -4,58 +4,65 @@ import java.util.Date;
 
 public class MessageVO {
 	
-	private int msg_idx;
-	private String msg_sender;
-	private String msg_receiver;
-	private String msg_title;
-	private String msg_content;
-	private Date msg_regdate;
-	
-	
-	
-	public int getMsg_idx() {
-		return msg_idx;
+	private int message_idx;
+	private String message_sender;
+	private String message_receiver;
+	private String message_title;
+	private String message_content;
+	private String message_read;
+	private Date message_regdate;
+	public int getMessage_idx() {
+		return message_idx;
 	}
-	public void setMsg_idx(int msg_idx) {
-		this.msg_idx = msg_idx;
+	public void setMessage_idx(int message_idx) {
+		this.message_idx = message_idx;
 	}
-	
-	public String getMsg_sender() {
-		return msg_sender;
+	public String getMessage_sender() {
+		return message_sender;
 	}
-	public void setMsg_sender(String msg_sender) {
-		this.msg_sender = msg_sender;
+	public void setMessage_sender(String message_sender) {
+		this.message_sender = message_sender;
 	}
-	public String getMsg_receiver() {
-		return msg_receiver;
+	public String getMessage_receiver() {
+		return message_receiver;
 	}
-	public void setMsg_receiver(String msg_receiver) {
-		this.msg_receiver = msg_receiver;
+	public void setMessage_receiver(String message_receiver) {
+		this.message_receiver = message_receiver;
 	}
-	public String getMsg_title() {
-		return msg_title;
+	public String getMessage_title() {
+		return message_title;
 	}
-	public void setMsg_title(String msg_title) {
-		this.msg_title = msg_title;
+	public void setMessage_title(String message_title) {
+		this.message_title = message_title;
 	}
-	public String getMsg_content() {
-		return msg_content;
+	public String getMessage_content() {
+		return message_content;
 	}
-	public void setMsg_content(String msg_content) {
-		this.msg_content = msg_content;
+	public void setMessage_content(String message_content) {
+		this.message_content = message_content;
 	}
-	public Date getMsg_regdate() {
-		return msg_regdate;
+	public String getMessage_read() {
+		return message_read;
 	}
-	public void setMsg_regdate(Date msg_regdate) {
-		this.msg_regdate = msg_regdate;
+	public void setMessage_read(String message_read) {
+		this.message_read = message_read;
 	}
-	
+	public Date getMessage_regdate() {
+		return message_regdate;
+	}
+	public void setMessage_regdate(Date message_regdate) {
+		this.message_regdate = message_regdate;
+	}
 	@Override
 	public String toString() {
-		return "MessageVO [msg_idx=" + msg_idx + ", msg_sender=" + msg_sender + ", msg_receiver=" + msg_receiver
-				+ ", msg_title=" + msg_title + ", msg_content=" + msg_content + ", msg_regdate=" + msg_regdate + "]";
+		return "MessageVO [message_idx=" + message_idx + ", message_sender=" + message_sender + ", message_receiver="
+				+ message_receiver + ", message_title=" + message_title + ", message_content=" + message_content
+				+ ", message_read=" + message_read + ", message_regdate=" + message_regdate + "]";
 	}
+	
+	
+	
+	
 	
 	
 	

@@ -10,37 +10,11 @@
 <script>
 	function ModifyPhone(frm) {
 	 	var phone = document.getElementById("m_phone").value;
-	 	var pwdModify = document.getElementById("pwdModify").value;
+	 	var phoneModify = document.getElementById("phoneModify").value;
 	 	var phoneCheck = /^((01[1|6|7|8|9])[1-9]+[0-9]{6,7})|(010[1-9][0-9]{7})$/;
 	
 	 	var str = $("#ModifyPhoneForm").serialize();
-	 	/* if(phoneCheck.test(phone)==false || phone == ""){
-		alert("핸드폰번호를 제대로 기입하세요.");
-		 $("#m_phone").focus();
-         $("#m_phone").val("");
-		return false;
-		
-		
-   } else if(phoneCheck.test(modifyM_phone)==false || phone == ""){
-		alert("변경할 핸드폰번호를 제대로 기입하세요.");
-		 $("#modifyM_phone").focus();
-         $("#modifyM_phone").val("");
-		return false;
-   } 
-	 			
-	else if (data.cnt > 0) {
-		alert("변경 완료");
-		frm.action = "../../ModifyPhoneMember.do";
-	 	frm.submit();   
-	 	return false;
-	 	
-	 	
-	} else {
-		alert("기존에 등록된 핸드폰번호가 일치하지않습니다. 다시 확인해주세요.");
-		frm.m_phone.value = "";
-		frm.modifyM_phone.value = "";
-		frm.m_phone.focus();
-	} */
+
 		$.ajax({
 			async : true,
 			type : "POST",
@@ -51,21 +25,16 @@
 				 if (data.cnt == 0) {
 					   alert("등록된 핸드폰번호가 일치하지않습니다. 다시 입력하세요.");
 						frm.m_phone.value = "";
-						frm.modifyM_phone.value = "";
+						frm.phoneModify.value = "";
 						frm.m_phone.focus();
-				   } else if(phoneCheck.test(pwdModify)==false || pwdModify == ""){
-						alert("핸드폰번호를 제대로 기입하세요.");
-						 $("#pwdModify").focus();
-		                 $("#pwdModify").val("");
-						return false;
-				   } else if(frm.pwdModify.value.length <= 7) {
-						alert("변경할 비밀번호를 8자리 이상 적어주세요.");
-			        	frm.pwdModify.value = ""; 
-						frm.pwdModify.focus();
+				   } else if(phoneCheck.test(phoneModify)==false || phoneModify == ""){
+						alert("변경할 핸드폰번호를 제대로 기입하세요.");
+						 $("#phoneModify").focus();
+		                 $("#phoneModify").val("");
 						return false;
 				   } else {
 					    alert("변경이 완료되었습니다.");
-						frm.action = "../../ModifyPwdMember.do";
+						frm.action = "../../ModifyPhoneMember.do";
 					    frm.submit();    
 					    return false;
 				   }
@@ -111,8 +80,8 @@
 								</div>
 
 								<div class="form-group">
-									<label for="pwdModify">변경할 핸드폰 번호</label>
-									<input id="pwdModify" type="text" class="form-control" name="pwdModify" required data-eye>
+									<label for="phoneModify">변경할 핸드폰 번호</label>
+									<input id="phoneModify" type="text" class="form-control" name="phoneModify" required data-eye>
 								</div>
 								
 								<div class="form-group m-0">

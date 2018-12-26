@@ -17,10 +17,15 @@ public class MessageServiceImpl implements MessageService {
 	private MessageDAO messageDAO;
 
 	@Override
-	public void insertMessage(MessageSendVO vo) {
+	public void insertMessage(MessageVO vo) {
 		messageDAO.insertMessage(vo);
 	}
-
+	
+	@Override
+	public List<MessageVO> getAllMessageList(MessageVO vo) {
+		return messageDAO.getAllMessageList(vo);
+	}
+	
 	@Override
 	public List<MessageSendVO> getSendMessageList(MessageSendVO vo) {
 		return messageDAO.getSendMessageList(vo);
@@ -53,14 +58,21 @@ public class MessageServiceImpl implements MessageService {
 	}
 
 	@Override
-	public void deleteSendMessage(MessageSendVO vo) {
-		messageDAO.deleteSendMessage(vo);
+	public void deleteSendMessage(MessageSendVO sendvo) {
+		messageDAO.deleteSendMessage(sendvo);
 	}
 
 	@Override
-	public void deleteReceiveMessage(MessageRecieveVO vo) {
-		messageDAO.deleteReceiveMessage(vo);
+	public void deleteReceiveMessage(MessageRecieveVO receivevo) {
+		messageDAO.deleteReceiveMessage(receivevo);
 	}
+
+	@Override
+	public void updateRead(MessageVO vo) {
+		messageDAO.updateRead(vo);
+	}
+
+	
 	
 	
 }

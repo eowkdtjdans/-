@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>받은메세지 목록</title>
+<title>전체 메세지 목록</title>
 
 <style>
 	#container {
@@ -26,7 +26,7 @@
 <body>
 
 <div id="container">
-	<h1>받은 쪽지 목록</h1>
+	<h1>전체 쪽지 목록</h1>
 	
 	<!-- 데이타 표시 -->
 	<form>
@@ -43,14 +43,14 @@
 		<c:forEach var="messageList" items="${messageList }">
 		<tr>
 			<td>
-				<a href="getReceiveMessage.do?receive_idx=${messageList.receive_idx }">
-					${messageList.receive_title }
-				</a>
+				 <a href="getMessage.do?message_idx=${messageList.message_idx }">
+					${messageList.message_title }
+			 	</a> 
 			</td>
-			<td>${messageList.receive_sender }</td>
-		    <td>${messageList.receive_receiver }</td> 
-			<td>${messageList.receive_regdate }</td>
-			<td>${messageList.receive_read }</td>
+			<td>${messageList.message_sender }</td>
+		    <td>${messageList.message_receiver }</td> 
+			<td>${messageList.message_regdate }</td>
+			<td>${messageList.message_read }</td>
 			
 		
 		</tr>

@@ -26,7 +26,7 @@
 <body>
 
 <div id="container">
-	<h1>받은 쪽지 목록</h1>
+	<h1>보낸 쪽지 목록</h1>
 	
 	<!-- 데이타 표시 -->
 	<form>
@@ -37,6 +37,7 @@
 			<th width="150">보낸이</th>
 			<th width="150">받는이</th>
 			<th width="150">날짜</th>
+			<th width="150">읽었냐?</th>
 		</tr>
 		
 		<c:forEach var="messageList" items="${messageList }">
@@ -49,6 +50,7 @@
 			<td>${messageList.send_sender }</td>
 		    <td>${messageList.send_receiver }</td> 
 			<td>${messageList.send_regdate }</td>
+			<td>${messageList.send_read }</td>
 		
 		</tr>
 		</c:forEach>
