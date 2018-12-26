@@ -5,10 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.spring.biz.messsage.MessageRecieveVO;
-import com.spring.biz.messsage.MessageSendVO;
-import com.spring.biz.messsage.MessageService;
-import com.spring.biz.messsage.MessageVO;
+import com.spring.biz.message.MessageRecieveVO;
+import com.spring.biz.message.MessageSendVO;
+import com.spring.biz.message.MessageService;
+import com.spring.biz.message.MessageVO;
 
 @Service("messageService")
 public class MessageServiceImpl implements MessageService {
@@ -67,10 +67,6 @@ public class MessageServiceImpl implements MessageService {
 		messageDAO.deleteReceiveMessage(receivevo);
 	}
 
-	@Override
-	public void updateRead(MessageVO vo) {
-		messageDAO.updateRead(vo);
-	}
 
 	
 	

@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.spring.biz.member.MemberVO;
-import com.spring.biz.messsage.MessageRecieveVO;
-import com.spring.biz.messsage.MessageSendVO;
-import com.spring.biz.messsage.MessageService;
-import com.spring.biz.messsage.MessageVO;
+import com.spring.biz.message.MessageRecieveVO;
+import com.spring.biz.message.MessageSendVO;
+import com.spring.biz.message.MessageService;
+import com.spring.biz.message.MessageVO;
 @Controller
 @SessionAttributes("message")
 public class MessageController {
@@ -34,23 +34,6 @@ public class MessageController {
 		return "views/message/MessageInsert.jsp";
 	}
 	
-/*	@RequestMapping(value="insertMessage.do", method=RequestMethod.POST)
-	public String insertMessagePost(MessageSendVO vo, 
-			@RequestParam("send_sender") String send_sender,
-			@RequestParam("send_receiver") String send_receiver,
-			@RequestParam("send_title") String send_title, 
-			@RequestParam("send_content") String send_content, HttpSession session) {
-			
-		System.out.println("인서트 메세지 =========== POST");
-		vo.setSend_sender(send_sender);
-		vo.setSend_receiver(send_receiver);
-		vo.setSend_title(send_title);
-		vo.setSend_content(send_content);
-		
-		messageService.insertMessage(vo);
-		session.setAttribute("message", vo);
-		return "redirect:/sub2.do";
-	}*/
 	@RequestMapping(value="insertMessage.do", method=RequestMethod.POST)
 	public String insertMessagePost(MessageVO vo, 
 			@RequestParam("message_sender") String message_sender,
@@ -104,7 +87,7 @@ public class MessageController {
 			model.addAttribute("message",messageService.getMessage(vo));
 		
 			return "views/message/MessageGet.jsp";
-		} //	messageService.updateRead(vo);
+		} 
 	@RequestMapping(value="/getSendMessage.do", method=RequestMethod.GET)
 	public String getSendMessage(MessageSendVO vo, Model model) {
 		model.addAttribute("message",messageService.getSendMessage(vo));

@@ -1,4 +1,4 @@
-package com.spring.biz.messsage;
+package com.spring.biz.message;
 
 import java.util.List;
 
@@ -30,7 +30,6 @@ public interface MessageService {
 	void deleteReceiveMessage(MessageRecieveVO receivevo);
 
 
-	void updateRead(MessageVO vo);
 
 
 

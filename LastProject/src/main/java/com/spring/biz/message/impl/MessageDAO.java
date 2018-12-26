@@ -6,9 +6,9 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.spring.biz.messsage.MessageRecieveVO;
-import com.spring.biz.messsage.MessageSendVO;
-import com.spring.biz.messsage.MessageVO;
+import com.spring.biz.message.MessageRecieveVO;
+import com.spring.biz.message.MessageSendVO;
+import com.spring.biz.message.MessageVO;
 
 @Repository("messageDAO")
 public class MessageDAO {
