@@ -70,6 +70,10 @@
 		border-collapse: collapse;
 	}
 	
+	table .noline{
+		border: 0;
+	}
+	
 </style> 
 
 <script>
