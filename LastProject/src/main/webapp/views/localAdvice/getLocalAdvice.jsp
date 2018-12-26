@@ -65,11 +65,11 @@
 	.textareaComment{
 		width: 1000px;
 	}
-	#profileImage3 { width: 30px; height: 30px; }
+	#profileImage3 { width: 45px; height: 45px; } 
 	table .noline{
-		border: 0px;
+		border: 0px; 
 	}
-	
+	#tr262{border: 500px; background-color: black;}
 </style> 
 
 <script>
@@ -136,8 +136,7 @@ function login_chk(frm){
 	
  
      $( document ).ready( function() {
-    	 
-   	 
+		
     	if('${focus_idx}'==""){  
     			
     	} else {   		
@@ -148,20 +147,22 @@ function login_chk(frm){
 			$("#"+"${focus_idx}").attr("tabindex",-1).focus();
       		<% session.removeAttribute("focus_idx"); %>    		      				
     	}
-/* 
-		console.log("detdet1");
+    	
+    	detdet();
+    	
 
-		var list= "${getLocalAdviceCommentList}";
-		alert("list: " + list);
-		alert("list.length: " + list.length);
-		if(list.detdet == list.lc_idx){
-			for (var i=0; i<list.length; i++){
-				var detdetDiv = "&emsp;&emsp;<img id='bentarrow' src='views/img/bentarrow.png'><div>작성자:"+list.m_id+"내용:"+list.lc_content+" </div>";
-				$("#"+list.lc_idx).append(detdetDiv);
-			}
-		} */
-      } );
+      });
      
+     function detdet() {
+    	 alert("detdet작동중");
+   
+    	 for(var list in "${getLocalAdviceCommentList}") {
+    		
+    		 if(list.detdet != 0) {   			 
+    	 		$("#tr"+"${list.detdet}").append("<div>dddddd</div>");    	 		
+    		 }
+    	 }
+     }
      
      
    function delete_button(lc_idx, l_idx) {	 
@@ -409,10 +410,10 @@ function login_chk(frm){
 				<c:forEach var="list" items="${getLocalAdviceCommentList}">	
 				<c:choose>					
 				<c:when test="${list.detdet eq 0 }">
-					<tr id="tr">
+					<tr id="tr${list.lc_idx}">
 						<td  class="update" id="td${list.lc_idx}">
 							<img src="${list.p_route }" class="rounded-circle" id="profileImage2" onerror='this.src="../views/img/people/fuckyou.jpg"'>          
-								&nbsp;&nbsp;${list.m_id }&emsp;&emsp;${list.lc_date }<span id="focusing"> lc_idx : ${list.lc_idx }&emsp;
+								&nbsp;&nbsp;${list.m_id }&emsp;&emsp;${list.lc_date }<span id="focusing"> lc_idx : ${list.lc_idx }&emsp;</span>
 								
 								<c:if test="${!empty member.m_id }">
 									<button type="button" id="btn2" class="btn btn-outline-secondary" onclick="detdetgo('${list.lc_idx}')">댓글달기</button>
@@ -420,23 +421,34 @@ function login_chk(frm){
 								
 								
 								<c:if test="${list.m_id eq member.m_id}">    <!-- 조건에 로그인한아이디와 프로필의 m_id가 같으면 -->									
-									<%-- <a href="../updateLocalAdviceComment.do?lc_idx=${list.lc_idx }&m_id=${getProfileImage.m_id}">&nbsp;수정&nbsp;</a>| --%>
 					 				<button type="button" class="btn btn-outline-secondary" onclick="update_button('${list.lc_idx}')">수정</button>			 				
 									<button type="button" class="btn btn-outline-secondary" onclick="delete_button('${list.lc_idx}','${getLocalAdvice.l_idx }')">삭제</button>
 									<input type="hidden" name="lc_idx" value="${list.lc_idx }">
 								</c:if>
-									<div id="${list.lc_idx}"><br>${list.lc_content }<br><br></div>
-										<%-- <c:if test="${list.detdet ne 0}">
-											<div>d&emsp;&emsp;작성자:${list.m_id } 내용:${list.lc_content }</div>
-										</c:if>  --%>
+									<div id="${list.lc_idx}"><br>${list.lc_content }<br><br></div>		
 						</td>
 					</tr>
 				</c:when>
-				<c:otherwise>
-				<tr class="noline">
-					<td class="noline">대댓작성자:${list.m_id} 대댓내용: ${list.lc_content }</td>
-				</tr>
-				</c:otherwise>
+				<%-- <c:otherwise>
+					<c:if test="${list.lc_idx eq list.detdet }">
+					<script>
+						function abc(){
+							alert("abc");
+							alert("${list.lc_idx}");
+							alert("${list.detdet}");
+							alert("#tr"+"${list.detdet}");
+							console.log("#tr"+"${list.detdet}");
+							//$("#tr"+"${list.detdet}").append("<tr class='noline'><td class='noline'>&emsp;&emsp;<img src='${list.p_route }' class='rounded-circle' id='profileImage3' onerror='this.src=\"../views/img/people/fuckyou.jpg\"'>&nbsp;${list.m_id} &emsp;&emsp;${list.lc_date }<br>&emsp;&emsp;${list.lc_content } 댓글번호:${list.lc_idx} 댓댓번호:${list.detdet }</td></tr>");
+							$("#tr"+"${list.detdet}").append("ㅎㅇ");
+						}
+						
+						abc();
+					</script>					
+						<tr class="noline">
+							<td class="noline">&emsp;&emsp;<img src="${list.p_route }" class="rounded-circle" id="profileImage3" onerror='this.src="../views/img/people/fuckyou.jpg"'>&nbsp;${list.m_id} &emsp;&emsp;${list.lc_date }<br>&emsp;&emsp;${list.lc_content } 댓글번호:${list.lc_idx} 댓댓번호:${list.detdet }</td>
+						</tr>
+					</c:if>
+				</c:otherwise> --%>
 				</c:choose>
 				</c:forEach>	
 			</table>
