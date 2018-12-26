@@ -66,8 +66,8 @@
 		width: 1000px;
 	}
 	#profileImage3 { width: 30px; height: 30px; }
-	.noline{
-		border-collapse: collapse;
+	table .noline{
+		border: 0px;
 	}
 	
 </style> 
@@ -434,7 +434,7 @@ function login_chk(frm){
 				</c:when>
 				<c:otherwise>
 				<tr class="noline">
-					<td class="noline">대댓내용 : ${list.lc_content }</td>
+					<td class="noline">대댓작성자:${list.m_id} 대댓내용: ${list.lc_content }</td>
 				</tr>
 				</c:otherwise>
 				</c:choose>
