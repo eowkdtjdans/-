@@ -414,7 +414,7 @@ public class LocalAdviceController {
 		vo.setLc_idx(Integer.parseInt(lc_idx));
 		List<LocalAdviceCommentVO> selectdetdetComment = localAdviceCommentService.selectdetdetComment(vo);
 		System.out.println("selectdetdetComment : " + selectdetdetComment);
-		map.put("selectdetdetComment", selectdetdetComment);
+		map.put("m_id", m_id);
 		System.out.println(map);
 		return map;
 	}
