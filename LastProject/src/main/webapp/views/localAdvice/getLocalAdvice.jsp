@@ -81,7 +81,7 @@ td {
    width: 20px;
    height: 20px;
 }
-
+ 
 .textareaComment {
    width: 1000px;
 }

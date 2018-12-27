@@ -34,7 +34,7 @@
 <div id="container">
 	<h1>쪽지 상세</h1>
 	<hr>
-	<form action="updateBoard.do" method="post">
+	<form>
 		<input type="hidden" name="send_idx" value="${message.send_idx }">
 	<table>
 		<tr>
