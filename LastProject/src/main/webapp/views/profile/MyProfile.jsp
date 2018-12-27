@@ -43,22 +43,22 @@
 								
 								<div class="form-group">
 									<label for="job" style="text-align : center;">직업</label>
-									<p>${profileList.p_job }</p>
+									<p>${profile.p_job }</p>
 								</div>
 								
 								<div class="form-group">
-									<label for="aboutme" style="text-align : center;">자기 소개</label>
-									<p>${profileList.p_aboutme }</p>
+									<label for="aboutme" style="text-align : center;">나에 대해서</label>
+									<p>${profile.p_aboutme }</p>
 								</div>
 								
 								<div class="form-group">
 									<label for="purpose" style="text-align : center;">목적</label>
-									<p>${profileList.p_purpose }</p>
+									<p>${profile.p_purpose }</p>
 								</div>
 								
 								<div class="form-group">
 									<label for="visitcountry" style="text-align : center;">방문했던 나라</label>
-									<p>${profileList.p_visitcountry }</p>
+									<p>${profile.p_visitcountry }</p>
 								</div>
 								
 								

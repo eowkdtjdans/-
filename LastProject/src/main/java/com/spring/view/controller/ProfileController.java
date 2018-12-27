@@ -29,7 +29,13 @@ public class ProfileController {
 	public ProfileController() {
 		System.out.println("=======프로필 컨트롤러 시작");
 	}
-	
+	//=======================================
+	//마이 프로필
+	@RequestMapping(value="myProfile.do", method=RequestMethod.GET)
+		public String myProfile(ProfileVO vo, HttpSession session) {
+		session.getAttribute("profile");
+		return "views/profile/getProfile.jsp";
+	}
 	//=============================================================
 	//프로필 등록
 

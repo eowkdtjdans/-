@@ -245,7 +245,7 @@ $(function(){
 <section id="about">
       <div class="container">
         <header class="section-header">
-        
+        	<p>${profile.p_route }</p>
            <p>${member.m_id }</p>
            <p>${member.m_pwd }</p>
            <p>${member.m_name }</p>

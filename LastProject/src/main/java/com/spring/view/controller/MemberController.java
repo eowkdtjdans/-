@@ -70,14 +70,15 @@ public class MemberController {
 	
 	
 	//로그인
-	@RequestMapping(value="/loginMember.do", method=RequestMethod.POST) //@RequestParam("m_id") String m_id, @RequestParam("m_pwd") String m_pwd,
+	@RequestMapping(value="/loginMember.do", method=RequestMethod.POST) // @RequestParam("m_pwd") String m_pwd,
 	public String loginPost(MemberVO vo, HttpSession session, ProfileVO profileVO, MessageRecieveVO receivevo) throws Exception {
 		System.out.println(">> 포스트방식 로그인처리");
 		System.out.println("m_id : " + vo.getM_id());
 		System.out.println("m_pwd : " + vo.getM_pwd());
 		MemberVO vo2 = memberService.loginMember(vo, session);
-		ProfileVO profileVO2 = profileService.getProfile2(profileVO, session);
 		receivevo.setReceive_receiver(vo.getM_id());
+		ProfileVO profileVO2 = profileService.getProfile2(profileVO, session);
+		profileVO.setM_id(vo.getM_id());
 		MessageRecieveVO receivevo2 = messageService.getReceiveMessage2(receivevo, session);
 		
 		System.out.println("vo2.getM_id : " + vo2.getM_id());

@@ -11,7 +11,6 @@
 	//로그인 값이 있던 없던 그냥 넘어가니까 JSON을 사용해서 데이터베이스에 있는지 체크하기.
 	function login(frm) {
 	var str = $("#form").serialize();
-		
 		$.ajax({
 			async: true,
 			type : "POST",
