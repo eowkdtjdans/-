@@ -1,6 +1,7 @@
 package com.spring.view.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -18,6 +19,8 @@ import com.spring.biz.member.Email;
 import com.spring.biz.member.EmailSender;
 import com.spring.biz.member.MemberService;
 import com.spring.biz.member.MemberVO;
+import com.spring.biz.message.MessageRecieveVO;
+import com.spring.biz.message.MessageService;
 import com.spring.biz.profile.ProfileService;
 import com.spring.biz.profile.ProfileVO;
 @Controller 
@@ -27,6 +30,8 @@ public class MemberController {
 	private MemberService memberService;
 	@Autowired
 	private ProfileService profileService;
+	@Autowired 
+	private MessageService messageService;
 	@Autowired
 	private Email email;
 	@Autowired
@@ -66,19 +71,22 @@ public class MemberController {
 	
 	//로그인
 	@RequestMapping(value="/loginMember.do", method=RequestMethod.POST) //@RequestParam("m_id") String m_id, @RequestParam("m_pwd") String m_pwd,
-	public String loginPost(MemberVO vo, HttpSession session, ProfileVO profileVO) throws Exception {
+	public String loginPost(MemberVO vo, HttpSession session, ProfileVO profileVO, MessageRecieveVO receivevo) throws Exception {
 		System.out.println(">> 포스트방식 로그인처리");
 		System.out.println("m_id : " + vo.getM_id());
 		System.out.println("m_pwd : " + vo.getM_pwd());
 		MemberVO vo2 = memberService.loginMember(vo, session);
 		ProfileVO profileVO2 = profileService.getProfile2(profileVO, session);
+		receivevo.setReceive_receiver(vo.getM_id());
+		MessageRecieveVO receivevo2 = messageService.getReceiveMessage2(receivevo, session);
+		
 		System.out.println("vo2.getM_id : " + vo2.getM_id());
 		System.out.println("vo2.getM_pwd : " + vo2.getM_pwd());
 		if (vo2.getM_id() != null && vo2.getM_id().equals(vo.getM_id()) && vo2.getM_pwd() != null && vo2.getM_pwd().equals(vo.getM_pwd())) {
 			System.out.println("======있는 아이디======");
-			//session.setAttribute("m_id", vo.getM_id());
 			session.setAttribute("member", vo2);
 			session.setAttribute("profile", profileVO2);
+			session.setAttribute("messageInfo", receivevo2);
 			
 			return "redirect:/sub2.do";
 		} else {

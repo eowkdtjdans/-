@@ -2,6 +2,8 @@ package com.spring.biz.message;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 public interface MessageService {
 
 	void insertMessage(MessageVO vo);
@@ -37,6 +39,12 @@ public interface MessageService {
 
 
 	void readRecieveMessage(MessageRecieveVO receivevo);
+
+
+	MessageRecieveVO getReceiveMessage2(MessageRecieveVO receivevo, HttpSession session);
+
+
+	 int noticeMessageJson(MessageRecieveVO receivevo);
 
 
 

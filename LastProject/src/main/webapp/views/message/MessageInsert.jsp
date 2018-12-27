@@ -35,7 +35,7 @@
 					</div>
 					<div class="card fat">
 						<div class="card-body">
-							<h4 class="card-title" style="text-align : center;">프로필 기입 및 수정</h4>
+							<h4 class="card-title" style="text-align : center;">쪽지 보내기</h4>
 							<form method="POST" class="my-login-validation" id="form">
 								<input id="m_id" type="hidden" class="form-control" name="m_id" value="${member.m_id }">	
 								<input id="message_sender" name="message_sender" type="hidden" class="form-control" value="${member.m_id }">	

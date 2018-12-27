@@ -32,12 +32,15 @@ public class ProfileController {
 	
 	//=============================================================
 	//프로필 등록
+
+	
 	@RequestMapping(value="insertProfile.do", method=RequestMethod.GET)
 		public String insertProfileGet(ProfileVO vo, HttpSession session) {
 			System.out.println("인서트 프로파일 ===========GET");
 			session.getAttribute("profile");
 			return "views/profile/ProfileInsert.jsp";
 	}
+	
 	
 	@RequestMapping(value="insertProfile.do", method=RequestMethod.POST) 
 		public String isnertProfileGet(ProfileVO vo, Model model, @RequestParam("p_hobby") String p_hobby,
