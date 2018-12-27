@@ -2,14 +2,9 @@
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c"   uri="http://java.sun.com/jsp/jstl/core" %>
 
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
-
 <!DOCTYPE html>
 <html>
-<title>프로필</title>
+<title>ABU TALHA</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
 .card {
@@ -48,15 +43,25 @@ button:hover, a:hover {
   opacity: 0.7;
 }
 </style>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 
 <body>
 <div class="card">
-  <img src="img/people/good.jpg" alt="John" style="width:100%; height: 10% ">
+  <img src="https://raw.githubusercontent.com/talha08/talha08.github.io/master/images/photo.jpg" alt="John" style="width:100%">
   <br>
-  <h3><b>박비듬</b></h3>
-  <p class="title">안뇽하세용~ㅋㅋ</p>
-    <p><a href="#" class="button">프로필</a></p>
+  <h3><b>MD. ABU TALHA</b></h3>
+  <p class="title">Full Stack Web Developer</p>
+  <p>InfancyIT</p>
+  <div style="margin: 24px 0;">
+    <a href="https://www.linkedin.com/in/md-abu-talha/" target="_blank"><i class="fa fa-linkedin"></i></a>
+    <a href="https://www.facebook.com/talha.sust.cse" target="_blank"><i class="fa fa-facebook"></i></a>
+    <a href="https://github.com/talha08" target="_blank"><i class="fa fa-github"></i></a>
+    <a href="https://medium.com/@talhaqc" target="_blank"><i class="fa fa-medium"></i></a>
+  </div>
+  <p><a href="talha08.github.io" class="button">Profile</a></p>
 </div>
 
 </body>
