@@ -6,12 +6,26 @@
 <head>
 <meta charset="UTF-8">
 <title>Commit-Test</title>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script>
+function init() {
+	$.get("http://ipinfo.io", function(response){
+		var lv_ip = response.ip;
+		var lv_country = response.country;
+		var newHref = "../LogVisit.do?lv_ip=" + lv_ip + "&lv_country=" + lv_country;
+		
+		$("#main").attr("href", newHref);
+	}, "jsonp");
+}
+</script>
 </head>
-<body>
+<body onload="init()">
 	<h2>ㅎㅇ</h2>
+	
+	<a href="#" id="main">Main테스트</a>
+	
+	
 	<a href="../getTravelersList.do">travelers</a>
-	<a href="Travelers.jsp">travelers2</a>
-	<a href="travelers/Travelers.jsp">travelers3</a>
 	<a href="../insertMember.do">Register</a> 
 	<a href="../loginMember.do">Login</a> 
 	<a href="../logoutMember.do">logout</a> 

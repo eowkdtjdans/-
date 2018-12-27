@@ -16,5 +16,4 @@
 	<select id="countEvent" parameterType="String" resultType="int">
 		SELECT COUNT(E_IDX) FROM EVENT WHERE UPPER(E_ADDRESS) LIKE '%' || UPPER(#{key}) || '%'
 	</select>
-	
 </mapper>
