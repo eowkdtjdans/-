@@ -24,6 +24,7 @@
   </typeAliases>
   
   <mappers>
+    <mapper resource="mappings/admin-mapper.xml"/>
     <mapper resource="mappings/host-mapper.xml"/>
     <mapper resource="mappings/localAdvice-mapper.xml"/>
     <mapper resource="mappings/localAdviceComment-mapper.xml"/>
