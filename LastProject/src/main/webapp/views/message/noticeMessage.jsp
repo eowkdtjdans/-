@@ -28,7 +28,7 @@
 					
 					setInteval(function() {
 						noticeMessage()
-					}, 3000);
+					}, 5000);
 		 
 				}
 			}

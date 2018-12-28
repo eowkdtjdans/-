@@ -50,9 +50,9 @@ public class ProfileController {
 	
 	@RequestMapping(value="insertProfile.do", method=RequestMethod.POST) 
 		public String isnertProfileGet(ProfileVO vo, Model model, @RequestParam("p_hobby") String p_hobby,
-				@RequestParam("p_langauge") String p_langauge, @RequestParam("p_job") String p_job,
+				@RequestParam("p_language") String p_language, @RequestParam("p_job") String p_job,
 				@RequestParam("p_aboutme") String p_aboutme, @RequestParam("p_purpose") String p_purpose,
-				@RequestParam("p_visitcountry") String p_visitcountry,  @RequestParam("m_id") String m_id, HttpSession session) throws Exception {
+				@RequestParam("p_visitcountry") String p_visitcountry,  @RequestParam("m_id") String m_id, @RequestParam("p_route") String p_route, HttpSession session) throws Exception {
 		System.out.println("인서트 프로파일 ============ POST");
 		vo.setM_id(m_id);
 		vo.setP_aboutme(p_aboutme);
@@ -60,8 +60,8 @@ public class ProfileController {
 		vo.setP_job(p_job);
 		vo.setP_purpose(p_purpose);
 		vo.setP_visitcountry(p_visitcountry);
-		vo.setP_language(p_langauge);
-		
+		vo.setP_language(p_language);
+		vo.setP_route(p_route);
 		profileService.InsertProfile(vo);
 		session.setAttribute("profile", vo);
 		
@@ -83,9 +83,9 @@ public class ProfileController {
 	//
 	@RequestMapping(value = "/modifyProfile.do",  method=RequestMethod.POST) 
 	public String modifyProfilePost(ProfileVO vo, HttpSession session, @RequestParam("p_hobby") String p_hobby,
-			@RequestParam("p_langauge") String p_langauge, @RequestParam("p_job") String p_job,
+			@RequestParam("p_language") String p_language, @RequestParam("p_job") String p_job,
 			@RequestParam("p_aboutme") String p_aboutme, @RequestParam("p_purpose") String p_purpose,
-			@RequestParam("p_visitcountry") String p_visitcountry,  @RequestParam("m_id") String m_id, Model model) throws Exception {
+			@RequestParam("p_visitcountry") String p_visitcountry,  @RequestParam("m_id") String m_id, Model model, @RequestParam("p_route") String p_route) throws Exception {
 		System.out.println("프로필 수정 시작");
 		vo.setM_id(m_id);
 		vo.setP_aboutme(p_aboutme);
@@ -93,9 +93,10 @@ public class ProfileController {
 		vo.setP_job(p_job);
 		vo.setP_purpose(p_purpose);
 		vo.setP_visitcountry(p_visitcountry);
-		vo.setP_language(p_langauge);
-		
+		vo.setP_language(p_language);
+		vo.setP_route(p_route);
 		profileService.ModifyProfile(vo);
+		profileService.getProfile2(vo, session);
 		session.setAttribute("profile", vo);
 		
 		

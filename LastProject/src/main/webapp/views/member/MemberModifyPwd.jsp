@@ -72,7 +72,7 @@
               <a href="../../myProfile.do" class="list-group-item list-group-item-action">마이 프로필</a>
               <a href="#" class="list-group-item list-group-item-action">받은 쪽지함</a>
               <a href="#" class="list-group-item list-group-item-action">보낸 쪽지함</a>
-              <a href="#" class="list-group-item list-group-item-action">프로필 수정</a>
+              <a href="../../insertProfile.do" class="list-group-item list-group-item-action">프로필 수정</a>
               <a href="../../ModifyPwdMember.do" class="list-group-item list-group-item-action active">비밀번호 변경</a>
               <a href="../../ModifyPhoneMember.do" class="list-group-item list-group-item-action">핸드폰 변경</a>
               <a href="../../ModifyAddressMember.do" class="list-group-item list-group-item-action">주소 변경</a>

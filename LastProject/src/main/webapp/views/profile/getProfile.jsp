@@ -6,6 +6,11 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
+<script>
+	function profileModify() {
+		location.href = "../../insertProfile.do";
+	}
+</script>
 
 
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -24,7 +29,7 @@
               <a href="../../myProfile.do" class="list-group-item list-group-item-action active">마이 프로필</a>
               <a href="#" class="list-group-item list-group-item-action">받은 쪽지함</a>
               <a href="#" class="list-group-item list-group-item-action">보낸 쪽지함</a>
-              <a href="#" class="list-group-item list-group-item-action">프로필 수정</a>
+              <a href="../../insertProfile.do" class="list-group-item list-group-item-action">프로필 수정</a>
               <a href="../../ModifyPwdMember.do" class="list-group-item list-group-item-action">비밀번호 변경</a>
               <a href="../../ModifyPhoneMember.do" class="list-group-item list-group-item-action">핸드폰 변경</a>
               <a href="../../ModifyAddressMember.do" class="list-group-item list-group-item-action">주소 변경</a>
@@ -51,7 +56,7 @@
 		                    	<!--   <div class="form-group row">
                                 <label for="username" class="col-4 col-form-label">이미지</label>  -->
                                 <div class="col-8" >  <!-- style=" text-align:center; margin-left: 120px -->
-                                <img src="${profile.p_route }" style="width:250px;" /> <!--  -->
+                                <img src="${profile.p_route }" style="width:250px;" class="rounded" /> <!--  -->
                            <!--      </div> -->
                                  </div> 
                                    <hr />

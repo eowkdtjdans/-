@@ -166,7 +166,7 @@ $(function(){
               <li><a  href="../../chat.do" >웹소켓 채팅</a></li> 
               <li><a href="../../loginMember.do" >로그인</a></li>
 		      <li><a  href="../../insertMember.do" >회원가입</a></li> 
-		      <li><a  href="../../insertProfile.do" >프로필 관리</a></li> 
+		      <li><a  href="../../myProfile.do" >MyProfile</a></li> 
 		      <li><a  href="../../profileImageInsert.do" >프로필 이미지 관리</a></li> 
 		      <li><a  href="../../getSendMessageList.do" >보낸 쪽지 리스트</a></li> 
 		      <li><a  href="../../getReceiveMessageList.do" >받은 쪽지 리스트</a></li> 
@@ -222,6 +222,7 @@ $(function(){
 <section id="about">
       <div class="container">
         <header class="section-header">
+           <p>${profile.p_route }</p>
            <p>${member.m_id }</p>
            <p>${member.m_pwd }</p>
            <p>${member.m_name }</p>
