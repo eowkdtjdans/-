@@ -35,10 +35,20 @@
 <link
 	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700"
 	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR" rel="stylesheet">
 	
 <style>
 	.inner {
+		font-family: 'Noto Sans KR', sans-serif;
 		color: white;
+	}
+	
+	#client {
+		background-color: #E0A914;
+	}
+	
+	.small-box-footer {
+		font-family: 'Noto Sans KR', sans-serif;
 	}
 </style>
 </head>
@@ -471,7 +481,7 @@
 						<!-- ./col -->
 						<div class="col-lg-3 col-6">
 							<!-- small box -->
-							<div class="small-box bg-warning">
+							<div id="client" class="small-box">
 								<div class="inner">
 									<h3>44</h3>
 
@@ -480,7 +490,7 @@
 								<div class="icon">
 									<i class="ion ion-person-add"></i>
 								</div>
-								<a href="#" class="small-box-footer">More info <i
+								<a href="../../userAdmin.do" class="small-box-footer">More info <i
 									class="fa fa-arrow-circle-right"></i></a>
 							</div>
 						</div>
@@ -515,7 +525,11 @@
 									</h3>
 									<ul class="nav nav-pills ml-auto p-2">
 										<li class="nav-item"><a class="nav-link active"
-											href="#revenue-chart" data-toggle="tab">수</a></li>
+											href="#revenue-chart" data-toggle="tab">주</a></li>
+										<li class="nav-item"><a class="nav-link"
+											href="#revenue-chart" data-toggle="tab">월</a></li>
+										<li class="nav-item"><a class="nav-link"
+											href="#revenue-chart" data-toggle="tab">년</a></li>
 										<li class="nav-item"><a class="nav-link"
 											href="#sales-chart" data-toggle="tab">국가</a></li>
 									</ul>

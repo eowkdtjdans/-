@@ -6,10 +6,19 @@
 <!-- mapper 태그의 namespace 속성 필수 작성  -->  
 <mapper namespace="adminDAO">
 
-	<insert id="LogVisit" parameterType="Map">
-	INSERT INTO LOG_VISIT(LV_IP, LV_COUNTRY, LV_DATE)
-	VALUES (#{lv_ip}, #{lv_country}, SYSDATE)
+	<insert id="logVisit" parameterType="Map">
+		INSERT INTO LOG_VISIT(LV_IP, LV_COUNTRY, LV_DATE, LV_BROWSER)
+		VALUES (#{lv_ip}, #{lv_country}, SYSDATE, #{lv_browser})
 	</insert>
+	
+	<insert id="logLogin" parameterType="Map">
+		INSERT INTO LOG_LOGIN(LL_ID, LL_IP, LL_COUNTRY, LL_DATE, LL_DEVICE, LL_RESULT)
+		VALUES (#{ll_id}, #{ll_ip}, #{ll_country}, SYSDATE, #{ll_device}, #{ll_result})
+	</insert>
+	
+	<select id="userAdminSelect" resultType="member">
+		SELECT * FROM MEMBER
+	</select>
 
 
 </mapper>

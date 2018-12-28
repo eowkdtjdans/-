@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.spring.biz.com.admin.AdminService;
 import com.spring.biz.member.Email;
 import com.spring.biz.member.EmailSender;
 import com.spring.biz.member.MemberService;
@@ -43,11 +44,11 @@ public class MemberController {
 	
 	//======================================================================
 	//회원가입
-			@RequestMapping(value = "/insertMember.do", method=RequestMethod.GET)
-			public String insertMemberGet(MemberVO vo) {
-				System.out.println("=======겟방식");
-				return "views/member/MemberRegister.jsp";
-		}
+	@RequestMapping(value = "/insertMember.do", method=RequestMethod.GET)
+	public String insertMemberGet(MemberVO vo) {
+		System.out.println("=======겟방식");
+		return "views/member/MemberRegister.jsp";
+	}
 	//회원가입
 	@RequestMapping(value = "/insertMember.do", method=RequestMethod.POST)
 	public String insertMemberPost(MemberVO vo, HttpSession session) throws Exception {
@@ -75,6 +76,7 @@ public class MemberController {
 		System.out.println(">> 포스트방식 로그인처리");
 		System.out.println("m_id : " + vo.getM_id());
 		System.out.println("m_pwd : " + vo.getM_pwd());
+		
 		MemberVO vo2 = memberService.loginMember(vo, session);
 		receivevo.setReceive_receiver(vo.getM_id());
 		ProfileVO profileVO2 = profileService.getProfile2(profileVO, session);
@@ -83,8 +85,10 @@ public class MemberController {
 		
 		System.out.println("vo2.getM_id : " + vo2.getM_id());
 		System.out.println("vo2.getM_pwd : " + vo2.getM_pwd());
+		
 		if (vo2.getM_id() != null && vo2.getM_id().equals(vo.getM_id()) && vo2.getM_pwd() != null && vo2.getM_pwd().equals(vo.getM_pwd())) {
 			System.out.println("======있는 아이디======");
+			//session.setAttribute("m_id", vo.getM_id());
 			session.setAttribute("member", vo2);
 			session.setAttribute("profile", profileVO2);
 			session.setAttribute("messageInfo", receivevo2);
@@ -92,6 +96,7 @@ public class MemberController {
 			return "redirect:/sub2.do";
 		} else {
 			System.out.println("=====없는 아이디=====");
+			
 			return "redirect:/loginMember.do";
 		}
 	}	

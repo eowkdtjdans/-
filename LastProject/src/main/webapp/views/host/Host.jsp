@@ -291,7 +291,9 @@ function move() {
       <div class="container">
       	<h2><strong>Find Host</strong></h2>
       	<h5>요청하신 키워드에 관한 게시글 수 : ${countHost }</h5>
-      	<div class="text-right"><a href="../writeLocalAdvice.do" class="btn btn-outline-secondary">게시글 작성</a></div>
+      	
+      	<div id="map" style="width:760px;height:400px;margin-top:20px;"></div>
+      	
       	<br>
       	<form method="post" name="frm">
       	<table class="table">
@@ -312,7 +314,6 @@ function move() {
       		</c:otherwise>     		
       	</c:choose>	
       	<!-- ---------------------------------------------------------------- -->
-      	
       	<tr>
 			<td colspan="4">
 				<ol class="paging">
@@ -370,11 +371,6 @@ function move() {
       </div>
     </section><!-- #about -->
 		
-	<div id="map" style="width:760px;height:400px;margin-top:20px;"></div>
-
-
-  
-   
   <!--==========================
     Footer
   ============================-->

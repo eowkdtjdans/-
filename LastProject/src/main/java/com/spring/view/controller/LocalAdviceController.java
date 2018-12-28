@@ -168,8 +168,8 @@ public class LocalAdviceController {
    //로컬어드바이스 게시판에서 상세화면페이지로 이동
    @RequestMapping(value="/getLocalAdvice.do")
    public String moveGetLocalAdvice(LocalAdviceVO vo, ProfileImageVO pvo, LocalAdviceCommentVO cvo, Model model, String l_idx, String m_id, HttpServletRequest request) {
-/*	  여기서부터 댓글 
-	  PagingVO p = new PagingVO();
+/*     여기서부터 댓글 
+     PagingVO p = new PagingVO();
       p.setNumPerPage(3);
       p.setPagePerBlock(10);
       int countLocalAdviceComment =localAdviceCommentService.countLocalAdviceComment(Integer.parseInt(l_idx));
@@ -194,12 +194,12 @@ public class LocalAdviceController {
       map.put("begin", p.getBegin());
       map.put("end", p.getEnd());*/
 
-	   
-	   
-	   
-	  //여기서는 댓글 끝 
-	   
-	   
+      
+      
+      
+     //여기서는 댓글 끝 
+      
+      
       System.out.println("상세페이지");
       System.out.println("l_idx : " + l_idx);
       System.out.println("m_id :" + m_id);
@@ -327,101 +327,100 @@ public class LocalAdviceController {
    @RequestMapping(value="/deleteLocalAdviceCommentJson.do" ,method=RequestMethod.POST)
    @ResponseBody
    public Map<Object, Object> deleteLocalAdviceComment(@RequestBody String lc_idx, LocalAdviceCommentVO vo, @RequestParam String l_idx) {
-	   System.out.println("ajax로 댓글delete하는 컨트롤러");
-	   System.out.println("lc_idx : " + lc_idx);
-	   System.out.println("l_idx : " + l_idx);
-	   Map<Object, Object> map = new HashMap<Object, Object>();
-	   map.put("lc_idx", lc_idx);
-	   
-	   vo.setLc_idx(Integer.parseInt(lc_idx));
-	   localAdviceCommentService.deleteLocalAdviceComment(vo);
-	   localAdviceService.updateLocalAdviceCntMinus(Integer.parseInt(l_idx));
-	   System.out.println("마지막부분");
-	   return map;
+      System.out.println("ajax로 댓글delete하는 컨트롤러");
+      System.out.println("lc_idx : " + lc_idx);
+      System.out.println("l_idx : " + l_idx);
+      Map<Object, Object> map = new HashMap<Object, Object>();
+      map.put("lc_idx", lc_idx);
+      
+      vo.setLc_idx(Integer.parseInt(lc_idx));
+      localAdviceCommentService.deleteLocalAdviceComment(vo);
+      localAdviceService.updateLocalAdviceCntMinus(Integer.parseInt(l_idx));
+      System.out.println("마지막부분");
+      return map;
    }
 
 
-	//게시글삭제
-	@RequestMapping(value="/deleteLocalAdvice.do" ,method=RequestMethod.GET)
-	public String deleteLocalAdvice(LocalAdviceVO vo, LocalAdviceCommentVO cvo, @RequestParam("l_idx") String l_idx) {
-		System.out.println("게시글삭제");
-		System.out.println("l_idx : " + l_idx);
-		cvo.setL_idx(Integer.parseInt(l_idx));
-		vo.setL_idx(Integer.parseInt(l_idx));
-		
-		localAdviceCommentService.deleteLocalAdviceCommentAll(vo);
-		localAdviceService.deleteLocalAdvice(vo);
-		
-		return "/getLocalAdviceList2.do?cPage=1";
-	}
+   //게시글삭제
+   @RequestMapping(value="/deleteLocalAdvice.do" ,method=RequestMethod.GET)
+   public String deleteLocalAdvice(LocalAdviceVO vo, LocalAdviceCommentVO cvo, @RequestParam("l_idx") String l_idx) {
+      System.out.println("게시글삭제");
+      System.out.println("l_idx : " + l_idx);
+      cvo.setL_idx(Integer.parseInt(l_idx));
+      vo.setL_idx(Integer.parseInt(l_idx));
+      
+      localAdviceCommentService.deleteLocalAdviceCommentAll(vo);
+      localAdviceService.deleteLocalAdvice(vo);
+      
+      return "/getLocalAdviceList2.do?cPage=1";
+   }
 
-	
-	//좋아요기능(+)
-	@RequestMapping(value="/goodJson.do" ,method=RequestMethod.POST)
+   
+   //좋아요기능(+)
+   @RequestMapping(value="/goodJson.do" ,method=RequestMethod.POST)
     @ResponseBody
     public Map<Object, Object> goodLocalAdvice(@RequestBody String l_idx) {
-	    System.out.println("ajax로 추천수good컨트롤");
-	    System.out.println("l_idx : " + l_idx);
-	    //Map<Object, Object> map = new HashMap<Object, Object>();
-	    //map.put("l_idx", l_idx);
-	    
-	    int count = localAdviceService.goodLocalAdvice(Integer.parseInt(l_idx));  //실질적으로 좋아요 증가시키는 메소드
-	    Map<Object, Object> map = new HashMap<Object, Object>();
-	    map.put("count", count);
-	    System.out.println("마지막부분");
-	    return map;
+       System.out.println("ajax로 추천수good컨트롤");
+       System.out.println("l_idx : " + l_idx);
+       //Map<Object, Object> map = new HashMap<Object, Object>();
+       //map.put("l_idx", l_idx);
+       
+       int count = localAdviceService.goodLocalAdvice(Integer.parseInt(l_idx));  //실질적으로 좋아요 증가시키는 메소드
+       Map<Object, Object> map = new HashMap<Object, Object>();
+       map.put("count", count);
+       System.out.println("마지막부분");
+       return map;
     }
-	
-	
-	//좋아요기능(-)
-	@RequestMapping(value="/badJson.do" ,method=RequestMethod.POST)
+   
+   
+   //좋아요기능(-)
+   @RequestMapping(value="/badJson.do" ,method=RequestMethod.POST)
     @ResponseBody
     public Map<Object, Object> badLocalAdvice(@RequestBody String l_idx) {
-	    System.out.println("ajax로 추천수bad컨트롤");
-	    System.out.println("l_idx : " + l_idx);
-	    
-	    int count = localAdviceService.badLocalAdvice(Integer.parseInt(l_idx));  //실질적으로 좋아요 증가시키는 메소드
-	    Map<Object, Object> map = new HashMap<Object, Object>();
-	    map.put("count", count);
-	    System.out.println("마지막부분");
-	    return map;
+       System.out.println("ajax로 추천수bad컨트롤");
+       System.out.println("l_idx : " + l_idx);
+       
+       int count = localAdviceService.badLocalAdvice(Integer.parseInt(l_idx));  //실질적으로 좋아요 증가시키는 메소드
+       Map<Object, Object> map = new HashMap<Object, Object>();
+       map.put("count", count);
+       System.out.println("마지막부분");
+       return map;
     }
-	
-	
-	//ajax 댓글에댓글
-	@RequestMapping(value="/json_insertComment.do", method=RequestMethod.POST)
-	@ResponseBody
-	public Map<Object, Object> JsonInsertComment(@RequestBody String lc_idx, @RequestParam("lc_content") String lc_content, @RequestParam("l_idx") String l_idx, LocalAdviceCommentVO vo, HttpSession session){
-		System.out.println("ajax로 댓글에 댓글 insert");
-		System.out.println("lc_idx : " + lc_idx);
-		System.out.println("lc_content : " + lc_content);
-		System.out.println("l_idx : " + l_idx);
-		
-		Map<Object, Object> map = new HashMap<Object, Object>();
-		//map.put("lc_idx", lc_idx);
-		//map.put("lc_content", lc_content);
-		System.out.println(map);
-		MemberVO mvo = (MemberVO)session.getAttribute("member");
-		String m_id = mvo.getM_id();
-		System.out.println("m_id : " + m_id);
+   
+   
+   //ajax 댓글에댓글
+   @RequestMapping(value="/json_insertComment.do", method=RequestMethod.POST)
+   @ResponseBody
+   public Map<Object, Object> JsonInsertComment(@RequestBody String lc_idx, @RequestParam("lc_content") String lc_content, @RequestParam("l_idx") String l_idx, LocalAdviceCommentVO vo, HttpSession session){
+      System.out.println("ajax로 댓글에 댓글 insert");
+      System.out.println("lc_idx : " + lc_idx);
+      System.out.println("lc_content : " + lc_content);
+      System.out.println("l_idx : " + l_idx);
+      
+      Map<Object, Object> map = new HashMap<Object, Object>();
+      //map.put("lc_idx", lc_idx);
+      //map.put("lc_content", lc_content);
+      System.out.println(map);
+      MemberVO mvo = (MemberVO)session.getAttribute("member");
+      String m_id = mvo.getM_id();
+      System.out.println("m_id : " + m_id);
 
-		vo.setL_idx(Integer.parseInt(l_idx));
-		vo.setM_id(m_id);
-		vo.setLc_content(lc_content);
-		vo.setLc_idx(Integer.parseInt(lc_idx));
-		localAdviceCommentService.insertdetdetComment(vo);
-		
-		vo.setLc_idx(Integer.parseInt(lc_idx));
-		List<LocalAdviceCommentVO> selectdetdetComment = localAdviceCommentService.selectdetdetComment(vo);
-		System.out.println("selectdetdetComment : " + selectdetdetComment);
-		map.put("m_id", m_id);
-		System.out.println(map);
-		return map;
-	}
-	
-	
+      vo.setL_idx(Integer.parseInt(l_idx));
+      vo.setM_id(m_id);
+      vo.setLc_content(lc_content);
+      vo.setLc_idx(Integer.parseInt(lc_idx));
+      localAdviceCommentService.insertdetdetComment(vo);
+      
+      vo.setLc_idx(Integer.parseInt(lc_idx));
+      List<LocalAdviceCommentVO> selectdetdetComment = localAdviceCommentService.selectdetdetComment(vo);
+      System.out.println("selectdetdetComment : " + selectdetdetComment);
+      map.put("m_id", m_id);
+      System.out.println(map);
+      return map;
+   }
+   
+   
 }
-
 
 
 
