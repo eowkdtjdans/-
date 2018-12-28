@@ -21,14 +21,13 @@
 			success : function(data) {
 				
 				$.get("http://ipinfo.io", function(response){
-					localStorage.ll_id = frm.m_id.value;
 					localStorage.ll_ip = response.ip;
 					localStorage.ll_country = response.country;
 					localStorage.ll_device = navigator.userAgent;
 					localStorage.ll_result = "로그인 테스트";
 				}, "jsonp");
 				
-				var ll_id = localStorage.ll_id;
+				var ll_id = frm.m_id.value;
 				var ll_ip = localStorage.ll_ip;
 				var ll_country = localStorage.ll_country;
 				var ll_device = localStorage.ll_device;
