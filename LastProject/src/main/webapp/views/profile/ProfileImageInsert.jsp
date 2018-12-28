@@ -67,7 +67,6 @@ function uploadProfile(profileFrm) {
 	profileFrm.action="/uploadProfileImg.do";
 	profileFrm.submit();
 }
-
 function uploadHost(hostFrm) {
 	hostFrm.action="/uploadHostImg.do";
 	hostFrm.submit();

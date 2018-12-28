@@ -5,7 +5,7 @@ public class ProfileVO {
     private String m_id;
     // 취미 
     private String p_hobby;
-    // 사용언어 
+    // 사용언어
     private String p_language;
     // 직업 
     private String p_job;
