@@ -67,7 +67,7 @@
                      <form method="POST" class="my-login-validation" id="findId">
                     
 	                    <div class="form-group">
-							<label for="m_email">ID</label>
+							<label for="m_email">임시 이메일</label>
 							<input id="m_id" type="email" class="form-control" name="m_id" placeholder="아이디를 입력하세요." required autofocus>
 						</div>
                         
