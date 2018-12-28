@@ -43,4 +43,6 @@ public class ProfileDAO {
 		return  mybatis.selectOne("getProfile", vo);
 	}
 
+
+
 }

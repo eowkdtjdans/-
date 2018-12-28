@@ -6,11 +6,13 @@
 <meta charset="UTF-8">
 <title>프로필 이미지 수정</title>
 
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 <link rel="stylesheet" type="text/css" href="views/bootstrapModal/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="views/cssModal/my-login.css">
-<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 
 <script>
 	$(function(){
@@ -72,24 +74,57 @@ function uploadHost(hostFrm) {
 }
 </script>
 
+
+
 </head>
-<body class="my-login-page">
-	<section class="h-100">
-		<div class="container h-100">
-			<div class="row justify-content-md-center h-100">
-				<div class="card-wrapper">
-					<div class="brand">
-					</div>
-					<div class="card fat">
-						<div class="card-body">
-							<h4 class="card-title" style="text-align : center;">Photo</h4>
-								
-							<div>
-								<label for="profile_img" style="text-align : center;">프로필 이미지 업로드</label>
-								<button type="button" class="btn btn-primary btn-block" id="profileModal" >ADD PROFILE IMG+</button>
-							</div>
-							
-							<form id="profileFrm" name="profileFrm" method="POST" enctype="multipart/form-data">
+
+<body>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<!------ Include the above in your HEAD tag ---------->
+<section>
+<div class="container">
+	<div class="row">
+		<div class="col-md-3 ">
+		     <div class="list-group ">
+              <a href="../../myProfile.do" class="list-group-item list-group-item-action">마이 프로필</a>
+              <a href="#" class="list-group-item list-group-item-action">받은 쪽지함</a>
+              <a href="#" class="list-group-item list-group-item-action">보낸 쪽지함</a>
+              <a href="#" class="list-group-item list-group-item-action">프로필 수정</a>
+              <a href="../../ModifyPwdMember.do" class="list-group-item list-group-item-action">비밀번호 변경</a>
+              <a href="../../ModifyPhoneMember.do" class="list-group-item list-group-item-action">핸드폰 변경</a>
+              <a href="../../ModifyAddressMember.do" class="list-group-item list-group-item-action">주소 변경</a>
+              <a href="../../profileImageInsert.do" class="list-group-item list-group-item-action active">이미지 업로드</a>
+              <a href="#" class="list-group-item list-group-item-action">내 글</a>
+              <a href="#" class="list-group-item list-group-item-action">내 댓글</a>
+              
+              
+            </div> 
+            
+		</div>
+		<div class="col-md-9">
+		    <div class="card">
+		        <div class="card-body">
+		            <div class="row">
+		                <div class="col-md-12">
+		                    <h4>이미지 업로드</h4>
+		                    <hr>
+		                </div>
+		            </div>
+		            <div class="row">
+		                <div class="col-md-12">
+		                    	<input id="m_id" type="hidden" class="form-control" name="m_id" value="${member.m_id }">
+                             
+                             
+                              <div class="form-group row">
+                                <label for="profile_img" class="col-4 col-form-label">프로필 이미지 업로드</label> 
+                                <div class="col-8">
+                                	<button type="button" class="btn btn-primary btn-block" id="profileModal" >ADD PROFILE IMG+</button>
+                                </div>
+                              </div>
+                              
+                              <form id="profileFrm" name="profileFrm" method="POST" enctype="multipart/form-data">
 							<div class="modal fade" id="profile">
 								<div class="modal-dialog">
 									<div class="modal-content">
@@ -117,14 +152,16 @@ function uploadHost(hostFrm) {
 								</div>
 							</div>
 							</form>
-							
-							<div>
-								<label for="home_img" style="text-align : center;">호스트 이미지 업로드</label>
-								<button type="button" class="btn btn-primary btn-block" id="hostModal" >ADD HOST IMG+</button>
-							</div>
-							
-							<form id="hostFrm" name="hostFrm" method="POST" enctype="multipart/form-data">
-							<div class="modal fade" id="host">
+                            
+                            <div class="form-group row">
+                               	<label for="home_img"  class="col-4 col-form-label">호스트 이미지 업로드</label>
+                                <div class="col-8">
+                                	<button type="button" class="btn btn-primary btn-block" id="hostModal" >ADD HOST IMG+</button>
+                                </div>
+                              </div>
+                            
+                          	 <form id="hostFrm" name="hostFrm" method="POST" enctype="multipart/form-data">
+							<div class="modal fade" id="profile">
 								<div class="modal-dialog">
 									<div class="modal-content">
 										<div class="modal-header">
@@ -133,7 +170,7 @@ function uploadHost(hostFrm) {
 										</div>
 										<div class="modal-body">
 											<b>Select Image: </b><br>
-											<input type="file" id="uploadHostImg" name="hostImg"/>
+											<input type="file" id="uploadHostImg" name="uploadHostImg"/>
 											
 											<ul>
 												<li>이미지는 JPG, JPEG, GIF, PNG 타입만 허용됩니다.</li>
@@ -150,22 +187,20 @@ function uploadHost(hostFrm) {
 									</div>
 								</div>
 							</div>
-							</form>
-								
-						</div>
-					</div>
-					<div class="footer">
-						Copyright &copy; 2018 &mdash; 국봉쓰
-					</div>
-				</div>
-			</div>
+							</form>	
+		                </div>
+		            </div>
+		            
+		        </div>
+		    </div>
 		</div>
-	</section>
-
-	<script src="js/jquery.min.js"></script>
-	<script src="bootstrap/js/bootstrap.min.js"></script>
-	<script src="js/my-login.js"></script>
+	</div>
+</div>
+<script src="js/jquery.min.js"></script>
+<script src="bootstrap/js/bootstrap.min.js"></script>
+<script src="js/my-login.js"></script>
 	
-	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+</section>
 </body>
 </html>
