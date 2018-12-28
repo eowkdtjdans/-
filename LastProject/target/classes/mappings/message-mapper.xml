@@ -21,6 +21,10 @@
 		ORDER BY RECEIVE_IDX DESC
 	</select>
 	
+	<select id="MessageReceiveVO" resultType="messageReceive">
+		SELECT COUNT(*) FROM MESSAGE_RECEIVE WHERE RECEIVE_RECEIVER = #{receive_receiver} AND RECEIVE_READ = 0
+	</select>
+	
 	<select id="getSendMessage" parameterType="Integer" resultType="messageSend">
 		SELECT * FROM MESSAGE_SEND WHERE SEND_IDX = #{send_idx} 
 	</select>
@@ -45,9 +49,9 @@
 		DELETE FROM MESSAGE_RECEIVE WHERE RECEIVE_IDX = #{receive_idx}
 	</delete>
 	
-	<!-- <select id="noticeMessage" parameterType="messageReceive">
+	<select id="noticeMessageJson" parameterType="String" resultType="Integer">
 		SELECT COUNT(*) FROM MESSAGE_RECEIVE WHERE RECEIVE_READ = 0 AND RECEIVE_RECEIVER = #{receive_receiver}
-	</select> -->
+	</select>
 	
 	
 </mapper>

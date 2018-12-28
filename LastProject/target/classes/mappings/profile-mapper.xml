@@ -27,8 +27,11 @@ VALUES (#{m_id}, #{p_hobby}, #{p_language}, #{p_job}, #{p_aboutme}, #{p_purpose}
 </select>
 
 <select id="getProfile" resultType="profile">
-	SELECT * FROM PROFILE
-	WHERE M_ID = #{m_id}
+	SELECT P.*, PI.P_ROUTE
+	FROM PROFILE P, PROFILE_IMAGE PI
+	WHERE P.M_ID = PI.M_ID
+	AND P.M_ID = #{m_id}
+	AND PI.P_MAIN = 1
 </select>
 
 </mapper>

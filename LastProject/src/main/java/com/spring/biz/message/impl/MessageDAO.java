@@ -56,6 +56,12 @@ public class MessageDAO {
 	public void readReceiveMessage(MessageRecieveVO receivevo) {
 		mybatis.update("readReceiveMessage", receivevo);
 	}
+	public MessageRecieveVO getReceiveMessage2(MessageRecieveVO receivevo) {
+		return mybatis.selectOne("MessageReceiveVO", receivevo);
+	}
+	public int noticeMessageJson(MessageRecieveVO receivevo) {
+		return mybatis.selectOne("noticeMessageJson", receivevo);
+	}
 
 	
 }

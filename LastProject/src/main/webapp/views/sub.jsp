@@ -82,25 +82,36 @@ $(function(){
 })
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?v=3&sensor=false&libraries=places&callback=initAutocomplete&key=AIzaSyAfB2qQnvAuU2YFFqi8hrPWfjJNyxl5kWc" async defer></script>
-<link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
- <style>
- 	#header {
- 		background-color: #C4E2F6;
- 	}
- 	#header.header-scrolled {
- 		background-color: #C4E2F6;
- 	}
- 	.scrollto {
- 		font-family: 'Kaushan Script', cursive;
- 		color: white;
- 	}
- 	.border-none {
- 		margin-left: 490px;
- 	}
- 	#nav-menu-container {
-	 		margin-top: -30px;
- 	}
- </style>
+ 
+ 
+<script type="text/javascript">
+	function noticeMessage() {
+		var noticeMessage = $("#noticeMessage").serialize();
+		var receive_receiver =$("#receive_receiver").val();
+	 	
+	 	  $.ajax({
+			async : true,
+			type : "POST",
+			dataType : "json",
+			data : noticeMessage,
+			url : "../../noticeMessageJson.do",
+			success : function(data) {
+				if (data.cnt > 0) {
+					$("#noticeMessageCount").append(data.cnt);
+					$("#noticeMessageCount2").append(data.cnt);
+					setInteval(function() {
+						noticeMessage()
+					}, 3000);
+		 
+				}
+			}
+			
+			
+		});    
+	}
+
+</script>	 
+ 
 </head>
 
 <body>
