@@ -11,31 +11,67 @@
 	//로그인 값이 있던 없던 그냥 넘어가니까 JSON을 사용해서 데이터베이스에 있는지 체크하기.
 	function login(frm) {
 	var str = $("#form").serialize();
-		
+	
 		$.ajax({
 			async: true,
 			type : "POST",
 			dataType : "json",
 			data : str,
 			url : '../../loginMemberJson.do',
-			success : function(data) { 
+			success : function(data) {
+				
+				$.get("http://ipinfo.io", function(response){
+					localStorage.ll_id = frm.m_id.value;
+					localStorage.ll_ip = response.ip;
+					localStorage.ll_country = response.country;
+					localStorage.ll_device = navigator.userAgent;
+					localStorage.ll_result = "로그인 테스트";
+				}, "jsonp");
+				
+				var ll_id = localStorage.ll_id;
+				var ll_ip = localStorage.ll_ip;
+				var ll_country = localStorage.ll_country;
+				var ll_device = localStorage.ll_device;
+				
 				if (data.cnt > 0) {
-					 frm.action = "../../loginMember.do";
-					 frm.submit(); 
-					 return false;
+					$.ajax({
+						type : "GET",
+						url : "../logLogin.do?ll_id="+ll_id+"&ll_ip="+ll_ip+"&ll_country="+ll_country+"&ll_device="+ll_device+"&ll_result=로그인성공",
+						success : function(){
+							frm.action = "../../loginMember.do";
+							frm.submit();
+						}
+					});
 				} else {
-					alert("아이디 또는 비밀번호가 일치하지않습니다. 다시 입력해주세요.");
-					frm.m_id.value = "";
-					frm.m_pwd.value = "";
-					frm.m_id.focus();
-					
+					$.ajax({
+						type : "GET",
+						url : "../logLogin.do?ll_id="+ll_id+"&ll_ip="+ll_ip+"&ll_country="+ll_country+"&ll_device="+ll_device+"&ll_result=로그인실패",
+						success : function(){
+							alert("아이디 또는 비밀번호가 일치하지않습니다. 다시 입력해주세요.");
+							
+							frm.m_id.value = "";
+							frm.m_pwd.value = "";
+							frm.m_id.focus();
+						}
+					});
 				}
+				
 			}
-		}); 
+		});
 
 	};
+	
+	function getIpCountry(ll_result, ll_id) {
+		$.get("http://ipinfo.io", function(response){
+			var ll_ip = response.ip;
+			var ll_country = response.country;
+			var ll_device = navigator.userAgent;
+			
+			location.href = "../logLogin.do?ll_id="+ll_id+"&ll_ip="+ll_ip+"&ll_country="+ll_country+"&ll_device="+ll_device+"&ll_result="+ll_result;
+			
+		}, "jsonp");
+	}
 
-		
 </script>
 
 	<meta charset="utf-8">

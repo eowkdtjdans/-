@@ -82,8 +82,25 @@ $(function(){
 })
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?v=3&sensor=false&libraries=places&callback=initAutocomplete&key=AIzaSyAfB2qQnvAuU2YFFqi8hrPWfjJNyxl5kWc" async defer></script>
- 
- 
+<link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
+ <style>
+ 	#header {
+ 		background-color: #C4E2F6;
+ 	}
+ 	#header.header-scrolled {
+ 		background-color: #C4E2F6;
+ 	}
+ 	.scrollto {
+ 		font-family: 'Kaushan Script', cursive;
+ 		color: white;
+ 	}
+ 	.border-none {
+ 		margin-left: 490px;
+ 	}
+ 	#nav-menu-container {
+	 		margin-top: -30px;
+ 	}
+ </style>
 </head>
 
 <body>
@@ -95,11 +112,36 @@ $(function(){
     <div class="container-fluid">
 
       <div id="logo" class="pull-left">
-        <h1><a href="#intro" class="scrollto">Couch Surfing</a></h1>
+        <h1><a href="/sub2.do" class="scrollto">Couch Surfing</a></h1>
         <!-- Uncomment below if you prefer to use an image logo -->
         <!-- <a href="#intro"><img src="img/logo.png" alt="" title="" /></a>-->
       </div>
-
+      
+      <form action="../sub.do" method="post">
+	   <table class="border-none">
+	      <tr>
+	         <td>
+	            <select id="condition" name="searchCondition">         
+	               <%-- <c:forEach var="option" items="${conditionMap }">
+	                  <option value="${option.value }">${option.key }
+	               </c:forEach> --%>
+	               <option value="find_travler">여행자검색
+	               <option value="find_host">호스트검색
+	               <option value="find_event">이벤트검색
+	               <option value="find_advice">현지정보검색
+	            </select>
+	            
+	            <input id="autocomplete" placeholder="" type="text" name="searchKeyword">
+	            
+	            <input class="field" id="lat" type="hidden" name="lat"/>
+	            <input class="field" id="lng" type="hidden" name="lng"/>
+	            
+	            <input type="submit" id="search" value="검색">
+	         </td>
+	      </tr>
+	   </table>
+	</form>
+      
       <nav id="nav-menu-container">
         <ul class="nav-menu">
         <li class="menu-has-children"><a href="#">내 정보</a>
@@ -138,14 +180,14 @@ $(function(){
     
 
 <!-- 키워드로 검색 -->
-<form action="../sub.do" method="post">
+<%-- <form action="../sub.do" method="post">
    <table class="border-none">
       <tr>
          <td>
             <select id="condition" name="searchCondition">         
-               <%-- <c:forEach var="option" items="${conditionMap }">
+               <c:forEach var="option" items="${conditionMap }">
                   <option value="${option.value }">${option.key }
-               </c:forEach> --%>
+               </c:forEach>
                <option value="find_travler">여행자검색
                <option value="find_host">호스트검색
                <option value="find_event">이벤트검색
@@ -159,22 +201,9 @@ $(function(){
             
             <input type="submit" id="search" value="검색">
          </td>
-         <%-- <td>
-            <select name="searchCondition">         
-               <c:forEach var="option" items="${conditionMap }">
-                  <option value="${option.value }">${option.key }
-               </c:forEach>
-               <option value="find_travler">여행자검색
-               <option value="find_host">호스트검색
-               <option value="find_event">이벤트검색
-               <option value="find_advice">현지정보검색
-            </select>
-            <input type="text" name="searchKeyword" value="${key}">
-            <input type="submit" value="검색">
-         </td> --%>
       </tr>
    </table>
-</form>
+</form> --%>
 
    <!--==========================
       About Us Section
