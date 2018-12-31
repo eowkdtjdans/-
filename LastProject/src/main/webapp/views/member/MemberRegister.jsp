@@ -225,7 +225,7 @@ $('.t-datepicker').tDatePicker({
                            <input id="m_id" type="text" class="form-control" name="m_id">
                         </div>
                         
-                           <div class="form-group m-0">
+                         <div class="form-group m-0">
                            <button type="button" class="btn btn-default btn-block" onclick="idCheck(this.form)" >
                               아이디 중복확인
                            </button>

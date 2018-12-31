@@ -102,7 +102,7 @@
 					<div class="card fat">
 						<div class="card-body">
 							<h4 class="card-title" style="text-align : center;">로그인</h4>
-							<form method="POST" class="my-login-validation" id="form"  onsubmit="return false">
+							<form onsubmit="return false"method="POST" class="my-login-validation" id="form"  >
 							
 								<div class="form-group">
 									<label for="email">아이디</label>
