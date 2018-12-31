@@ -17,7 +17,8 @@
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
+  
   <!-- Bootstrap CSS File -->
   <link href="views/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
@@ -27,11 +28,12 @@
   <link href="views/lib/ionicons/css/ionicons.min.css" rel="stylesheet">
   <link href="views/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
   <link href="views/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
-
+  
   <!-- Main Stylesheet File -->
   <link href="views/css/style.css" rel="stylesheet">
   
   <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+  
   
   
 
@@ -45,6 +47,23 @@
 <style>
    body{
       padding-top: 70px;
+   }
+   
+   .scrollto {
+	  font-family: 'Kaushan Script', cursive;
+   }
+   .border-none {
+   	  margin-left: 490px;
+   }
+   
+   #nav-menu-container {
+   	  margin-top: -30px;
+   }
+   #header {
+   	  background-color: #BDD3DE;
+   }
+   #header.header-scrolled {
+   	  background-color: #BDD3DE;
    }
 </style>
 
@@ -128,6 +147,31 @@ $(function(){
         <!-- Uncomment below if you prefer to use an image logo -->
         <!-- <a href="#intro"><img src="img/logo.png" alt="" title="" /></a>-->
       </div>
+      
+      <form action="../sub.do" method="post">
+	   <table class="border-none">
+	      <tr>
+	         <td>
+	            <select id="condition" name="searchCondition">         
+	               <%-- <c:forEach var="option" items="${conditionMap }">
+	                  <option value="${option.value }">${option.key }
+	               </c:forEach> --%>
+	               <option value="find_travler">여행자검색
+	               <option value="find_host">호스트검색
+	               <option value="find_event">이벤트검색
+	               <option value="find_advice">현지정보검색
+	            </select>
+	            
+	            <input id="autocomplete" placeholder="" type="text" name="searchKeyword">
+	            
+	            <input class="field" id="lat" type="hidden" name="lat"/>
+	            <input class="field" id="lng" type="hidden" name="lng"/>
+	            
+	            <input type="submit" id="search" value="검색">
+	         </td>
+	      </tr>
+	   </table>
+	</form>
 
     
       <nav id="nav-menu-container">
@@ -182,34 +226,6 @@ $(function(){
     </form>	
   </header><!-- #header -->
 
- 
-    
-
-<!-- 키워드로 검색 -->
-<%-- <form action="../sub.do" method="post">
-   <table class="border-none">
-      <tr>
-         <td>
-            <select id="condition" name="searchCondition">         
-               <c:forEach var="option" items="${conditionMap }">
-                  <option value="${option.value }">${option.key }
-               </c:forEach>
-               <option value="find_travler">여행자검색
-               <option value="find_host">호스트검색
-               <option value="find_event">이벤트검색
-               <option value="find_advice">현지정보검색
-            </select>
-            
-            <input id="autocomplete" placeholder="" type="text" name="searchKeyword">
-            
-            <input class="field" id="lat" type="hidden" name="lat"/>
-            <input class="field" id="lng" type="hidden" name="lng"/>
-            
-            <input type="submit" id="search" value="검색">
-         </td>
-      </tr>
-   </table>
-</form> --%>
 
    <!--==========================
       About Us Section
