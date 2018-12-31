@@ -106,6 +106,10 @@
 *************************************************************************************/  
 
 function register(frm) {
+	var nameCheck = /^[가-힣]{2,4}|[a-zA-Z]{2,10}\s[a-zA-Z]{2,10}$/;
+
+	var name = frm.m_name.value;
+	
 	if(confirm("회원가입을 하시겠습니까?")){
 		if(idck==0){
             alert('아이디 중복체크를 해주세요');
@@ -121,8 +125,12 @@ function register(frm) {
         	alert("비밀번호를 8~16자리로 설정해주세요.");
         	frm.m_pwd.value = ""; 
 			frm.m_pwd.focus();
-		} else if (frm.m_name.value == "" || frm.m_name.value == null) {
+		} /* else if (frm.m_name.value == "" || frm.m_name.value == null) {
 			alert("성함을 기입하세요.");
+			frm.m_name.value = ""; 
+			frm.m_name.focus();
+		} */ else if (nameCheck.test(name)==false || frm.m_name.value =="") {
+			alert("성함은 한글 또는 영어로 작성해주세요.");
 			frm.m_name.value = ""; 
 			frm.m_name.focus();
 		} else if (frm.m_birthday.value == "" || frm.m_birthday.value == null) {

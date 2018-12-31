@@ -8,7 +8,9 @@
 <title>로그인</title>
 
 <script>
-	//로그인 값이 있던 없던 그냥 넘어가니까 JSON을 사용해서 데이터베이스에 있는지 체크하기.
+
+
+
 	function login(frm) {
 	var str = $("#form").serialize();
 	
@@ -70,7 +72,16 @@
 			
 		}, "jsonp");
 	}
+	
+	
+	function enterkey(event) {
+		if(event.keyCode == 13) {
+			$("#loginBtn").click();
+		}
+	}
 
+
+	
 </script>
 
 	<meta charset="utf-8">
@@ -91,23 +102,23 @@
 					<div class="card fat">
 						<div class="card-body">
 							<h4 class="card-title" style="text-align : center;">로그인</h4>
-							<form method="POST" class="my-login-validation" id="form">
+							<form method="POST" class="my-login-validation" id="form"  onsubmit="return false">
 							
 								<div class="form-group">
 									<label for="email">아이디</label>
-									<input id="m_id" type="email" class="form-control" name="m_id" required autofocus>
+									<input type="email" class="form-control" name="m_id" onkeypress="enterkey()" required autofocus>
 								</div>
 								
 								<div class="form-group">
 									<label for="password">비밀번호</label>
-									<input id="m_pwd" type="password" class="form-control" name="m_pwd" required data-eye>
+									<input type="password" class="form-control" name="m_pwd" onkeypress="enterkey()" required data-eye>
 								</div>
 								
 								
 								<div class="form-group m-0">
-									<button type="button" class="btn btn-primary btn-block" onclick="login(this.form)">
+									 <button type="submit" id="loginBtn" class="btn btn-primary btn-block" onclick="login(this.form)" >
 										Login
-									</button>
+									</button> 
 								</div>
 								
 					

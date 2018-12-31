@@ -35,6 +35,12 @@
 		
 	};
 		
+	function enterkey(event) {
+		if(event.keyCode == 13) {
+			$("#deleteBtn").click();
+		}
+	}
+	
 </script>
 
 	<meta charset="utf-8">
@@ -55,22 +61,22 @@
 					<div class="card fat">
 						<div class="card-body">
 							<h4 class="card-title" style="text-align : center;">회원 탈퇴</h4>
-							<form method="POST" class="my-login-validation" id="DeleteMember">
+							<form onsubmit="return false;"method="POST" class="my-login-validation" id="DeleteMember">
 							<label for="id">아이디</label>
 									<input id="m_id" type="text" class="form-control" name="m_id" value="${member.m_id }" required autofocus>
 								<div class="form-group">
 									<label for="password">비밀번호</label>
-									<input id="m_pwd" type="password" class="form-control" name="m_pwd" required data-eye>
+									<input onkeypress="enterkey()"id="m_pwd" type="password" class="form-control" name="m_pwd" required data-eye>
 								</div>
 								
 								<div class="form-group">
 									<label for="phone">핸드폰 번호</label>
-									<input id="m_phone" type="text" class="form-control" name="m_phone" required autofocus>
+									<input onkeypress="enterkey()"id="m_phone" type="text" class="form-control" name="m_phone" required autofocus>
 								</div>
 
 								
 								<div class="form-group m-0">
-									<button type="button" class="btn btn-primary btn-block" onclick="DeleteMember(this.form)">
+									<button type="submit" id="deleteBtn"class="btn btn-primary btn-block" onclick="DeleteMember(this.form)">
 										회원 정보 삭제
 									</button>
 								</div>
