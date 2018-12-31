@@ -15,7 +15,6 @@
 	 	var pwdCheck = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,15}$/;
 
 	 	var str = $("#ModifyPwd").serialize();
-		alert("str : " + str);
 		$.ajax({
 			async : true,
 			type : "POST",
@@ -34,7 +33,6 @@
 						frm.pwdModify.focus();
 						return false; 
 				   } else if (frm.pwdModify.value.length<8 || frm.pwdModify.value.length>16) {
-					   alert(data.cnt);
 						alert("비밀번호를 8~16자리로 설정해주세요.");
 			        	frm.pwdModify.value = ""; 
 						frm.pwdModify.focus();
@@ -51,6 +49,11 @@
 		
 	};
 		
+	function enterkey(event) {
+		if(event.keyCode == 13) {
+			$("#modifyBtn").click();
+		}
+	}
 </script>
 	
 	<meta charset="utf-8">
@@ -95,23 +98,23 @@
 		            </div>
 		            <div class="row">
 		                <div class="col-md-12">
-		                    <form method="POST" class="my-login-validation" id="ModifyPwd">
+		                    <form method="POST" onsubmit="return false;"class="my-login-validation" id="ModifyPwd">
 		                    	<input id="m_id" type="hidden" class="form-control" name="m_id" value="${member.m_id }">
                               <div class="form-group row">
                                 <label for="m_pwd" class="col-4 col-form-label">기존 비밀번호</label> 
                                 <div class="col-8">
-                                	<input id="m_pwd" name="m_pwd" type="password" class="form-control" >
+                                	<input onkeypress="enterkey()"id="m_pwd" name="m_pwd" type="password" class="form-control" >
                                 </div>
                               </div>
                               <div class="form-group row">
                                <label for="pwdModify" class="col-4 col-form-label">변경할 비밀번호</label>
                                 <div class="col-8">
-                                  	<input id="pwdModify" name="pwdModify" type="password" class="form-control" >
+                                  	<input onkeypress="enterkey()"id="pwdModify" name="pwdModify" type="password" class="form-control" >
                                 </div>
                               </div>
                               
                               <div class="form-group row">
-                               		<button type="button" class="btn btn-primary btn-block" onclick="ModifyPwd(this.form)">
+                               		<button type="submit" id="modifyBtn"class="btn btn-primary btn-block" onclick="ModifyPwd(this.form)">
 										비밀번호 변경
 									</button>
                               </div>

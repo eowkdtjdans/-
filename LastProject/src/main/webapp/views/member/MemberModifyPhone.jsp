@@ -9,8 +9,8 @@
 
 <script>
 	function ModifyPhone(frm) {
-	 	var phone = document.getElementById("m_phone").value;
-	 	var phoneModify = document.getElementById("phoneModify").value;
+	 	var phone = frm.m_phone.value;
+	 	var phoneModify = frm.phoneModify.value;
 	 	var phoneCheck = /^((01[1|6|7|8|9])[1-9]+[0-9]{6,7})|(010[1-9][0-9]{7})$/;
 	
 	 	var str = $("#ModifyPhoneForm").serialize();
@@ -22,28 +22,33 @@
 			data : str,
 			url : "../../MemberModifyPhoneJson.do",
 			success : function(data) {
-				 if (data.cnt == 0) {
+				
+				  if (data.cnt == 0) {
 					   alert("등록된 핸드폰번호가 일치하지않습니다. 다시 입력하세요.");
 						frm.m_phone.value = "";
 						frm.phoneModify.value = "";
 						frm.m_phone.focus();
-				   } else if(phoneCheck.test(phoneModify)==false || phoneModify == ""){
+				   } if(phoneCheck.test(phoneModify)==false || phoneModify == ""){
 						alert("변경할 핸드폰번호를 제대로 기입하세요.");
-						 $("#phoneModify").focus();
-		                 $("#phoneModify").val("");
-						return false;
+		                 frm.phoneModify.value = "";
+		                 frm.phoneModify.focus();
 				   } else {
 					    alert("변경이 완료되었습니다.");
 						frm.action = "../../ModifyPhoneMember.do";
 					    frm.submit();    
-					    return false;
-				   }
+				   } 
 			}
 				 
 		})
 		
 	};
-		
+	
+	function enterkey(event) {
+		if(event.keyCode == 13) {
+			$("#modifyBtn").click();
+		}
+	}
+	
 </script>
 	
 	<meta charset="utf-8">
@@ -88,23 +93,23 @@
 		            </div>
 		            <div class="row">
 		                <div class="col-md-12">
-		                    <form method="POST" class="my-login-validation" id="ModifyPhoneForm">
+		                    <form onsubmit="return false;" method="POST" class="my-login-validation" id="ModifyPhoneForm">
 		                    	<input id="m_id" type="hidden" class="form-control" name="m_id" value="${member.m_id }">
                               <div class="form-group row">
                                 <label for="m_phone" class="col-4 col-form-label">기존 핸드폰 번호</label> 
                                 <div class="col-8">
-                                	<input id="m_phone" name="m_phone" type="text" class="form-control" >
+                                	<input id="m_phone" name="m_phone" type="text" class="form-control" onkeypress="enterkey()">
                                 </div>
                               </div>
                               <div class="form-group row">
                                <label for="phoneModify" class="col-4 col-form-label">변경할 핸드폰 번호</label>
                                 <div class="col-8">
-                                  	<input id="phoneModify" name="phoneModify" type="text" class="form-control" >
+                                  	<input id="phoneModify" name="phoneModify" type="text" class="form-control" onkeypress="enterkey()">
                                 </div>
                               </div>
                               
                               <div class="form-group row">
-                               	<button type="button" class="btn btn-primary btn-block" onclick="ModifyPhone(this.form)">
+                               	<button type="submit" id="modifyBtn" class="btn btn-primary btn-block" onclick="ModifyPhone(this.form)" >
 										핸드폰 변경
 									</button>
                               </div>

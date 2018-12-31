@@ -133,45 +133,22 @@ $(function(){
  
 </head>
 
-<body>
+<body onload="noticeMessage()">
 
   <!--==========================
     Header
   ============================-->
-  <header id="header">
+   <header id="header">
+  <form id="noticeMessage" method="GET">
     <div class="container-fluid">
-
+		<input type="hidden" id="receive_receiver" name="receive_receiver" value="${member.m_id }" />
       <div id="logo" class="pull-left">
-        <h1><a href="/sub2.do" class="scrollto">Couch Surfing</a></h1>
+        <h1><a href="#intro" class="scrollto">Couch Surfing</a></h1>
         <!-- Uncomment below if you prefer to use an image logo -->
         <!-- <a href="#intro"><img src="img/logo.png" alt="" title="" /></a>-->
       </div>
-      
-      <form action="../sub.do" method="post">
-	   <table class="border-none">
-	      <tr>
-	         <td>
-	            <select id="condition" name="searchCondition">         
-	               <%-- <c:forEach var="option" items="${conditionMap }">
-	                  <option value="${option.value }">${option.key }
-	               </c:forEach> --%>
-	               <option value="find_travler">여행자검색
-	               <option value="find_host">호스트검색
-	               <option value="find_event">이벤트검색
-	               <option value="find_advice">현지정보검색
-	            </select>
-	            
-	            <input id="autocomplete" placeholder="" type="text" name="searchKeyword">
-	            
-	            <input class="field" id="lat" type="hidden" name="lat"/>
-	            <input class="field" id="lng" type="hidden" name="lng"/>
-	            
-	            <input type="submit" id="search" value="검색">
-	         </td>
-	      </tr>
-	   </table>
-	</form>
-      
+
+    
       <nav id="nav-menu-container">
         <ul class="nav-menu">
         <li class="menu-has-children"><a href="#">내 정보</a>
@@ -185,25 +162,43 @@ $(function(){
               <li><a  href="../../chat.do" >웹소켓 채팅</a></li> 
               <li><a href="../../loginMember.do" >로그인</a></li>
 		      <li><a  href="../../insertMember.do" >회원가입</a></li> 
-		      <li><a  href="../../myProfile.do" >MyProfile</a></li> 
+		      <li><a  href="../../insertProfile.do" >프로필 관리</a></li> 
+		      <li><a  href="../../myProfile.do" >마이 프로필</a></li> 
 		      <li><a  href="../../profileImageInsert.do" >프로필 이미지 관리</a></li> 
 		      <li><a  href="../../getSendMessageList.do" >보낸 쪽지 리스트</a></li> 
 		      <li><a  href="../../getReceiveMessageList.do" >받은 쪽지 리스트</a></li> 
 		      <li><a  href="../../checkMessage.do" >쪽지 체크</a></li> 
+		      <li><a  href="../../noticeMessage.do" >쪽지 알림</a></li> 
 		      
             </ul> 
           </li>
+          <li class="nav-item dropdown"><a class="nav-link"
+					data-toggle="dropdown" href="#"> <i class="fa fa-bell-o" id="noticeMessageCount"></i> <span
+						class="badge badge-warning navbar-badge" > </span>
+				</a>
+					<div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+						<span class="dropdown-item dropdown-header"></span>
+						<div class="dropdown-divider"></div>
+						<a href="../../getReceiveMessageList.do" class="dropdown-item" style="color:black;"> <i
+							class="fa fa-envelope mr-2" id="noticeMessageCount2"></i>개의 새로운 쪽지
+							 <span class="float-right text-muted text-sm">3 mins</span>
+						</a>
+					</div></li>
+			
+          
           <li><a href="#about">쪽지</a></li>
           <li><a href="#portfolio">마이 프로필</a></li>      
-          
+        <!--   <li><a href="../../getReceiveMessageList.do" id="noticeMessageCount"></a></li> -->
           <li><a href="../../findIdMember.do">아이디</a></li >
-          <li><a href="../../findPwdMember.do">비밀번호< /a></li>
+          <li><a href="../../findPwdMember.do">비밀번호</a></li>
           <li><a href="../../logoutMember.do">로그아웃</a></li>
-       
-      
         </ul>
-      </nav><!-- #nav-menu-container -->
+        </nav>
+        	
+		
+        
     </div>
+    </form>	
   </header><!-- #header -->
 
  
