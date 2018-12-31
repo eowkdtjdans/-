@@ -17,7 +17,8 @@
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
+  
   <!-- Bootstrap CSS File -->
   <link href="views/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
@@ -27,11 +28,12 @@
   <link href="views/lib/ionicons/css/ionicons.min.css" rel="stylesheet">
   <link href="views/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
   <link href="views/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
-
+  
   <!-- Main Stylesheet File -->
   <link href="views/css/style.css" rel="stylesheet">
   
   <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+  
   
   
 
@@ -45,6 +47,23 @@
 <style>
    body{
       padding-top: 70px;
+   }
+   
+   .scrollto {
+	  font-family: 'Kaushan Script', cursive;
+   }
+   .border-none {
+   	  margin-left: 490px;
+   }
+   
+   #nav-menu-container {
+   	  margin-top: -30px;
+   }
+   #header {
+   	  background-color: #BDD3DE;
+   }
+   #header.header-scrolled {
+   	  background-color: #BDD3DE;
    }
 </style>
 

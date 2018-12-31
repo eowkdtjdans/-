@@ -84,7 +84,16 @@ public class AdminController {
 		list = adminService.userAdminSelect();
 		
 		model.addAttribute("userAdminList", list);
-		System.out.println("?");
 		return "redirect:/views/admin/pages/tables/userAdmin.jsp";
+	}
+	@RequestMapping(value="/userAdminView.do")
+	public String userAdminView(Model model) {
+		List<MemberVO> list = null;
+		
+		list = adminService.userAdminSelect();
+		
+		model.addAttribute("userAdminList", list);
+		
+		return "redirect:/views/admin/pages/examples/userAdminView.jsp";
 	}
 }

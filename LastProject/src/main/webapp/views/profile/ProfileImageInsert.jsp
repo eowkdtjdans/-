@@ -160,7 +160,7 @@ function uploadHost(hostFrm) {
                               </div>
                             
                           	 <form id="hostFrm" name="hostFrm" method="POST" enctype="multipart/form-data">
-							<div class="modal fade" id="profile">
+							<div class="modal fade" id="host">
 								<div class="modal-dialog">
 									<div class="modal-content">
 										<div class="modal-header">
