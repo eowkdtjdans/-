@@ -40,6 +40,8 @@ public class ProfileImageController {
 	public String uploadProfileImg(MemberVO vo,HttpSession session, ProfileVO profilevo, @RequestParam("profileImg") MultipartFile profileImg, @RequestParam("m_id") String m_id) {
 		
 		String url = fileUploadService.fileUpload(profileImg);
+		String path = session.getServletContext().getRealPath("/");
+		System.out.println(path);
 		
 		int profileMainCnt = ProfileImageMainCount(m_id);
 		String p_main = "0";

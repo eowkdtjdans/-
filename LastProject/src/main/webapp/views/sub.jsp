@@ -74,14 +74,6 @@ var placeSearch, autocomplete;
 function initAutocomplete() {
   autocomplete = new google.maps.places.Autocomplete((document.getElementById('autocomplete')),{types: ['geocode']});
   autocomplete.addListener('place_changed', fillInAddress);
-  
-  autocomplete.addListener('place_changed', function() {
-	   if(event.keyCode == 13 || event.keyCode == 9) { // detect the enter key
-	     var firstValue = $(".pac-container .pac-item:first").text();
-	      }
-	     $('#search-address').val(firstValue);
-	     console.log(firstValue);
-  });
 }
 
 function fillInAddress() { //lat 와 lng 값을 넘겨줄 input 태그에 값 넣어주기
