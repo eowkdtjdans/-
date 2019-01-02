@@ -2,6 +2,7 @@ package com.spring.view.controller;
 
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -391,7 +392,7 @@ public class LocalAdviceController {
 	//ajax 댓글에댓글
 	@RequestMapping(value="/json_insertComment.do", method=RequestMethod.POST)
 	@ResponseBody
-	public Map<Object, Object> JsonInsertComment(@RequestBody String lc_idx, @RequestParam("lc_content") String lc_content, @RequestParam("l_idx") String l_idx, LocalAdviceCommentVO vo, HttpSession session){
+	public Map<Object, Object> JsonInsertComment(@RequestBody String lc_idx, @RequestParam("lc_content") String lc_content, @RequestParam("l_idx") String l_idx, LocalAdviceCommentVO vo, ProfileImageVO pvo, HttpSession session){
 		System.out.println("ajax로 댓글에 댓글 insert");
 		System.out.println("lc_idx : " + lc_idx);
 		System.out.println("lc_content : " + lc_content);
@@ -410,14 +411,83 @@ public class LocalAdviceController {
 		vo.setLc_content(lc_content);
 		vo.setLc_idx(Integer.parseInt(lc_idx));
 		localAdviceCommentService.insertdetdetComment(vo);
+		int detdetlc_idx = localAdviceCommentService.detdetlc_idx();
+		System.out.println("detdetlc_idx : "+ detdetlc_idx );
+		map.put("detdetlc_idx", detdetlc_idx);
+		
+		pvo.setM_id(m_id);
+		String p_route = localAdviceCommentService.selectImage(pvo);
+		map.put("p_route", p_route);
 		
 		vo.setLc_idx(Integer.parseInt(lc_idx));
 		List<LocalAdviceCommentVO> selectdetdetComment = localAdviceCommentService.selectdetdetComment(vo);
 		System.out.println("selectdetdetComment : " + selectdetdetComment);
+		map.put("selectdetdetComment", selectdetdetComment);
+
+		//Iterator<LocalAdviceCommentVO> itr = selectdetdetComment.iterator();
+	
 		map.put("m_id", m_id);
+		
+		
+		//int detdetnum = localAdviceCommentService.selectdetdet(lc_content);
+		//map.put("detdetnum", detdetnum);
+		
 		System.out.println(map);
 		return map;
 	}
+	
+	
+	@RequestMapping(value="/updatedetdet.do" ,method=RequestMethod.POST)
+    @ResponseBody
+    public LocalAdviceCommentVO updatedetdet(@RequestBody String detdetlc_idx) {
+	    System.out.println("ajax로 updatedetdet");
+	    System.out.println("lc_idx : " + detdetlc_idx);
+	    
+	    List<LocalAdviceCommentVO> detdetList = localAdviceCommentService.selectdetdetList(detdetlc_idx);
+	    System.out.println("detdetList : " + detdetList);
+	   
+	    //Map<Object, Object> map = new HashMap<Object, Object>();
+	    //map.put("detdetList", detdetList);
+	    return detdetList.get(0);
+    }
+	
+	
+	@RequestMapping(value="/updatedetdetgo.do" ,method=RequestMethod.POST)
+    @ResponseBody
+    public LocalAdviceCommentVO updatedetdetgo(@RequestBody String detdetlc_idx, @RequestParam("lc_content") String lc_content, LocalAdviceCommentVO vo) {
+	    System.out.println("ajax로 updatedetdetgo");
+	    System.out.println("detdetlc_idx : " + detdetlc_idx);
+	    System.out.println("수정된 lc_content : " + lc_content);
+	    
+	    vo.setLc_idx(Integer.parseInt(detdetlc_idx));
+	    vo.setLc_content(lc_content);
+	    
+	    localAdviceCommentService.updatedetdet(vo);
+	    
+	    List<LocalAdviceCommentVO> detdetList = localAdviceCommentService.selectdetdetList(detdetlc_idx);
+	    System.out.println("detdetList : " + detdetList);
+	   
+	    //Map<Object, Object> map = new HashMap<Object, Object>();
+	    //map.put("detdetList", detdetList);
+	    return detdetList.get(0);
+    }
+	
+	
+	@RequestMapping(value="/deletedetdetgo.do" ,method=RequestMethod.POST)
+    @ResponseBody
+    public Map<Object, Object> deletedetdetgo(@RequestBody String detdetlc_idx, LocalAdviceCommentVO vo) {
+		System.out.println("여기는 deletedetdet 부분");
+		System.out.println("detdetlc_idx : " + detdetlc_idx);
+		
+		vo.setLc_idx(Integer.parseInt(detdetlc_idx));
+		localAdviceCommentService.deletedetdet(vo);
+		
+		Map<Object, Object> map = new HashMap<Object, Object>();
+		map.put("detdetlc_idx", detdetlc_idx);
+		
+		return map;
+    }
+	
 	
 	
 }

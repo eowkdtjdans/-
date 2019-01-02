@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.spring.biz.localAdvice.LocalAdviceVO;
 import com.spring.biz.localAdviceComment.LocalAdviceCommentVO;
+import com.spring.biz.profileImage.ProfileImageVO;
 
 @Repository("localAdviceCommentDAO")
 public class LocalAdviceCommentDAO {
@@ -58,6 +59,35 @@ public class LocalAdviceCommentDAO {
 		return mybatis.selectList("selectdetdetComment", vo);
 	}
 	
+	//프로필이미지 나오게하기
+	public String selectImage(ProfileImageVO vo) {
+		return mybatis.selectOne("selectImage", vo);
+	}
+	
+	//댓댓의 번호뽑기
+	public int selectdetdet(String lc_content) {
+		return mybatis.selectOne("selectdetdet", lc_content);
+	}
+	
+	//댓댓의 lc_idx뽑기
+	public int detdetlc_idx() {
+		return mybatis.selectOne("detdetlc_idx");
+	}
+	
+	//댓댓의 lc_idx를 이용해서 한줄조회
+	public List<LocalAdviceCommentVO> selectdetdetList(String detdetlc_idx){
+		return mybatis.selectList("selectdetdetList", detdetlc_idx);
+	}
+	
+	//댓댓 수정
+	public void updatedetdet(LocalAdviceCommentVO vo) {
+		mybatis.update("updatedetdet", vo);
+	}
+	
+	//댓댓 삭제
+	public void deletedetdet(LocalAdviceCommentVO vo) {
+		mybatis.delete("deletedetdet", vo);
+	}
 }
 
 

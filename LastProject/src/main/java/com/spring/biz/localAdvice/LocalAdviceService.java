@@ -43,6 +43,8 @@ public interface LocalAdviceService {
 	//게시글 좋아요 기능(-)
 	int badLocalAdvice(int l_idx);
 	
+	
+	
 }
 
 
