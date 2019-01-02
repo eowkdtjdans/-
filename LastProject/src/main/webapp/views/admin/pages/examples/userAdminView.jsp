@@ -150,9 +150,8 @@
 		<!-- Main Sidebar Container -->
 		<aside class="main-sidebar sidebar-dark-primary elevation-4">
 			<!-- Brand Logo -->
-			<a href="../../index3.jsp" class="brand-link"> <img
-				src="../../dist/img/AdminLTELogo.png" alt="AdminLTE Logo"
-				class="brand-image img-circle elevation-3" style="opacity: .8">
+			<a href="../../index3.jsp" class="brand-link">
+				<img src="../../dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
 				<span class="brand-text font-weight-light">AdminLTE 3</span>
 			</a>
 
@@ -416,8 +415,9 @@
 								<div class="card-body box-profile">
 									<div class="text-center">
 										<img class="profile-user-img img-fluid img-circle"
-											src="../../dist/img/user4-128x128.jpg"
-											alt="User profile picture">
+											src="${userAdminViewVO.p_route}"
+											alt="User profile picture"
+											onerror='this.src="/views/img/people/fuckyou.jpg"'>
 									</div>
 
 									<h3 class="profile-username text-center">Nina Mcintire</h3>

@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+ <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -70,15 +70,19 @@
 
 <script>
 var placeSearch, autocomplete;
+
 function initAutocomplete() {
   autocomplete = new google.maps.places.Autocomplete((document.getElementById('autocomplete')),{types: ['geocode']});
   autocomplete.addListener('place_changed', fillInAddress);
 }
+
 function fillInAddress() { //lat 와 lng 값을 넘겨줄 input 태그에 값 넣어주기
   var place = autocomplete.getPlace();
     document.getElementById("lat").value=place.geometry.location.lat();
     document.getElementById("lng").value=place.geometry.location.lng();
 }
+
+
 </script>
 <script>
 $(function(){
@@ -95,6 +99,7 @@ $(function(){
          $("#autocomplete").attr("name", "searchKeyword");
       }
    })
+   
 })
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?v=3&sensor=false&libraries=places&callback=initAutocomplete&key=AIzaSyAfB2qQnvAuU2YFFqi8hrPWfjJNyxl5kWc" async defer></script>
@@ -125,6 +130,7 @@ $(function(){
 			
 		});    
 	}
+
 </script>	 
  
 </head>
@@ -143,8 +149,8 @@ $(function(){
         <!-- Uncomment below if you prefer to use an image logo -->
         <!-- <a href="#intro"><img src="img/logo.png" alt="" title="" /></a>-->
       </div>
-      </div>
-      </form>
+    </div>
+  </form>
       
       <form action="../sub.do" method="post">
 	   <table class="border-none">
@@ -166,7 +172,7 @@ $(function(){
 	         </td>
 	      </tr>
 	   </table>
-	   </form>
+	</form>
 
     
       <nav id="nav-menu-container">
@@ -551,8 +557,7 @@ $(function(){
   <!-- Template Main Javascript File -->
   <script src="views/js/main.js"></script>
 
-<script src="jsModal/placeholders.min.js"></script> <!-- polyfill for the HTML5 placeholder attribute -->
-<script src="jsModal/main.js"></script> <!-- Resource JavaScript -->
-
+  <script src="jsModal/placeholders.min.js"></script> <!-- polyfill for the HTML5 placeholder attribute -->
+  <script src="jsModal/main.js"></script> <!-- Resource JavaScript -->
 </body>
 </html>

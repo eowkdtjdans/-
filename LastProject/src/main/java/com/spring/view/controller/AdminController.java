@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,10 +14,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.spring.biz.com.admin.AdminService;
+import com.spring.biz.com.admin.userAdminViewVO;
 import com.spring.biz.member.MemberVO;
 
 @Controller
-@SessionAttributes("userAdminList")
+@SessionAttributes({"userAdminList", "userAdminViewList"})
 public class AdminController {
 	@Autowired
 	private AdminService adminService;
@@ -87,12 +87,13 @@ public class AdminController {
 		return "redirect:/views/admin/pages/tables/userAdmin.jsp";
 	}
 	@RequestMapping(value="/userAdminView.do")
-	public String userAdminView(Model model) {
-		List<MemberVO> list = null;
+	public String userAdminView(Model model, HttpServletRequest request) {
+		userAdminViewVO vo = null;
+		String m_id = request.getParameter("m_id");
 		
-		list = adminService.userAdminSelect();
+		vo = adminService.userAdminViewSelect(m_id);
 		
-		model.addAttribute("userAdminList", list);
+		model.addAttribute("userAdminViewVO", vo);
 		
 		return "redirect:/views/admin/pages/examples/userAdminView.jsp";
 	}

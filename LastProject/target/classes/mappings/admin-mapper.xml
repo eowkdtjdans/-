@@ -19,6 +19,14 @@
 	<select id="userAdminSelect" resultType="member">
 		SELECT * FROM MEMBER
 	</select>
+	
+	<select id="userAdminViewSelect" resultType="com.spring.biz.com.admin.userAdminViewVO">
+		SELECT M.*, PI.P_ROUTE
+		FROM MEMBER M, PROFILE_IMAGE PI
+		WHERE M.M_ID = PI.M_ID
+		AND PI.P_MAIN = '1'
+		AND M.M_ID = #{m_id}
+	</select>
 
 
 </mapper>

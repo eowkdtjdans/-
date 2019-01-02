@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.spring.biz.com.admin.AdminService;
+import com.spring.biz.com.admin.userAdminViewVO;
 import com.spring.biz.member.MemberVO;
 
 @Service("adminService")
@@ -23,10 +24,15 @@ public class AdminServiceImpl implements AdminService {
 	public List<MemberVO> userAdminSelect() {
 		return adminDAO.userAdminSelect();
 	}
+	
+	@Override
+	public userAdminViewVO userAdminViewSelect(String m_id) {
+		return adminDAO.userAdminViewSelect(m_id);
+	}
 
 	@Override
 	public void logLogin(Map<String, String> llMap) {
 		adminDAO.logLogin(llMap);
 	}
-	
+
 }

@@ -10,4 +10,5 @@ public interface AdminService {
 	void logLogin(Map<String, String> llMap);
 	
 	List<MemberVO> userAdminSelect();
+	userAdminViewVO userAdminViewSelect(String m_id);
 }
