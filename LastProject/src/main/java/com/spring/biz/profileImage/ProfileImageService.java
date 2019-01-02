@@ -20,6 +20,6 @@ public interface ProfileImageService {
 	
 	void updateMainProfileImage(ProfileImageVO vo);
 
-	void mainProfileImageInit(String m_id);
+	void mainProfileImageInit(ProfileImageVO vo);
 	
 }

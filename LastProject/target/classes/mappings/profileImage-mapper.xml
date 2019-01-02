@@ -36,7 +36,7 @@
 	</update>
 	
 	<update id="mainProfileImageInit" parameterType="profileImg">
-		 UPDATE PROFILE_IMAGE SET P_MAIN = 0 WHERE M_ID = #{m_id} AND P_ROUTE = #{p_route}
+		 UPDATE PROFILE_IMAGE SET P_MAIN = 0 WHERE M_ID = #{m_id}
 	</update> 
 	
 </mapper>

@@ -26,6 +26,7 @@
 	<div class="row">
 		<div class="col-md-3 ">
 		     <div class="list-group ">
+		      <a href="../../sub2.do" class="list-group-item list-group-item-action">메인페이지</a>
               <a href="../../myProfile.do" class="list-group-item list-group-item-action active">마이 프로필</a>
               <a href="../../getReceiveMessageList.do" class="list-group-item list-group-item-action">받은 쪽지함</a>
               <a href="../../getSendMessageList.do" class="list-group-item list-group-item-action">보낸 쪽지함</a>

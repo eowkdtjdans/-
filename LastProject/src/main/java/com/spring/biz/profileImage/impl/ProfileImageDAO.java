@@ -46,8 +46,8 @@ public class ProfileImageDAO {
 		mybatis.update("updateMainProfileImage", vo);
 	}
 
-	public void mainProfileImageInit(String m_id) {
-		mybatis.update("mainProfileImageInit", m_id);
+	public void mainProfileImageInit(ProfileImageVO vo) {
+		mybatis.update("mainProfileImageInit", vo);
 	}
 
 }

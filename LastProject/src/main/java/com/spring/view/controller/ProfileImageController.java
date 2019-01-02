@@ -61,15 +61,35 @@ public class ProfileImageController {
 		System.out.println("컨트롤러 옴");
 		return "profileImageList.do";
 	}
-	@RequestMapping(value="updateMainProfileImage.do", method=RequestMethod.POST)
-	public String updateMainProfileImage(ProfileImageVO vo, HttpSession session, @RequestParam("m_id") String m_id, @RequestParam("p_route") String p_route) {
-		/*profileImageService.updateMainProfileImage(vo);
-		session.setAttribute("profile", vo);*/
+	@RequestMapping(value="deleteProfileImage.do", method=RequestMethod.GET) 
+	public String deleteProfileImageGet(ProfileImageVO vo, HttpSession session, @RequestParam("m_id") String m_id, @RequestParam("p_route") String p_route) {
 		vo.setM_id(m_id);
 		vo.setP_route(p_route);
-		profileImageService.mainProfileImageInit(m_id);
+		profileImageService.deleteProfileImage(vo);
+		
+		System.out.println("컨트롤러 옴");
 		return "profileImageList.do";
 	}
+	@RequestMapping(value="updateMainProfileImage.do", method=RequestMethod.POST)
+	public String updateMainProfileImage(ProfileImageVO vo, HttpSession session, @RequestParam("m_id") String m_id) {
+		vo.setM_id(m_id);
+		profileImageService.mainProfileImageInit(vo);
+		return "updateMainProfileImage2.do";
+	}
+	@RequestMapping(value="updateMainProfileImage2.do", method=RequestMethod.POST) 
+	public String updateProfileImage2(ProfileImageVO vo, ProfileVO profileVO, HttpSession session, @RequestParam("m_id") String m_id, @RequestParam("p_route") String p_route) {
+		
+		vo.setM_id(m_id);
+		vo.setP_route(p_route);
+		profileImageService.updateMainProfileImage(vo);
+		
+		ProfileVO vo2 = profileService.getProfile2(profileVO, session);
+		vo2.setP_route(p_route);
+		
+		session.setAttribute("profile", vo2);
+		return "profileImageList.do";
+	}
+	
 	
 	@RequestMapping(value="profileImageInsert.do", method=RequestMethod.GET)
 	public String ProfileImageInsert() {

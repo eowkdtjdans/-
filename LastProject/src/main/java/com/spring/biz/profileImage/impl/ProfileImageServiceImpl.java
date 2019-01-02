@@ -56,8 +56,8 @@ public class ProfileImageServiceImpl implements ProfileImageService{
 	}
 
 	@Override
-	public void mainProfileImageInit(String m_id) {
-		profileImageDAO.mainProfileImageInit(m_id);
+	public void mainProfileImageInit(ProfileImageVO vo) {
+		profileImageDAO.mainProfileImageInit(vo);
 	}
 
 }
