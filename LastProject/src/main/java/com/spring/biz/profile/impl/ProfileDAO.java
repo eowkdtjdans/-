@@ -34,13 +34,17 @@ public class ProfileDAO {
 	}
 
 
-	/*public List<ProfileVO> getProfile(ProfileVO vo) {
-		return mybatis.selectOne("getProfile", vo);
-	}*/
-
-
-	public ProfileVO getProfile2(ProfileVO vo) {
+	public ProfileVO getProfile(ProfileVO vo) {
 		return  mybatis.selectOne("getProfile", vo);
 	}
+
+
+	public ProfileVO getProfile2(ProfileVO profileVO) {
+		return  mybatis.selectOne("getProfile", profileVO);
+	}
+
+
+
+
 
 }

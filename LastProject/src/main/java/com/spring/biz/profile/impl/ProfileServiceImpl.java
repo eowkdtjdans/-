@@ -7,7 +7,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.spring.biz.member.MemberVO;
 import com.spring.biz.profile.ProfileService;
 import com.spring.biz.profile.ProfileVO;
 @Service("profileService")
@@ -52,6 +51,10 @@ public class ProfileServiceImpl implements ProfileService {
 	public ProfileVO getProfile2(ProfileVO profileVO, HttpSession session) {
 		return profileDAO.getProfile2(profileVO);
 	}
+
+
+
+
 
 
 	

@@ -22,4 +22,8 @@
 		INSERT INTO HOST_IMAGE (M_ID, H_ROUTE, H_MAIN)
 		VALUES (#{m_id}, #{h_route}, #{h_main})
 	</insert>
+	
+	<select id="getProfileImageList" parameterType="String" resultType="profileImg">
+			SELECT P_ROUTE, M_ID, P_MAIN FROM PROFILE_IMAGE WHERE M_ID = #{m_id}
+	</select>
 </mapper>

@@ -280,7 +280,7 @@ table .noline {
       var lc_idx = JSON.stringify(lc_idx);
       var l_idx = ${getLocalAdvice.l_idx };
       alert("l_idx : " + l_idx);
-      
+       
       $.ajax({
                async : true,
                type : "POST",

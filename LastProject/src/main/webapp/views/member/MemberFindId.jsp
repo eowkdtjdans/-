@@ -49,6 +49,11 @@
 		}); 
 		
 	};
+	function enterkey(event) {
+		if(event.keyCode == 13) {
+			$("#findBtn").click();
+		}
+	}
 </script>
    
    
@@ -64,25 +69,25 @@
                <div class="card fat">
                   <div class="card-body">
                      <h4 class="card-title">아이디 찾기</h4>
-                     <form method="POST" class="my-login-validation" id="findId">
+                     <form method="POST" onsubmit="return false;" class="my-login-validation" id="findId">
                     
 	                    <div class="form-group">
-							<label for="m_email">ID</label>
-							<input id="m_id" type="email" class="form-control" name="m_id" placeholder="아이디를 입력하세요." required autofocus>
+							<label for="m_email">임시 이메일</label>
+							<input id="m_id" onkeypress="enterkey()"type="email" class="form-control" name="m_id" placeholder="아이디를 입력하세요." required autofocus>
 						</div>
                         
                         <div class="form-group" >
                            <label for="m_name">성함</label>
-                           <input id="m_name" type="text" class="form-control" name="m_name" placeholder="이름을 입력하세요." required autofocus>
+                           <input id="m_name" onkeypress="enterkey()"type="text" class="form-control" name="m_name" placeholder="이름을 입력하세요." required autofocus>
                         </div>
                         
                         <div class="form-group" >
                            <label for="m_phone">전화번호</label>
-                           <input id="m_phone" type="text" class="form-control" name="m_phone" placeholder="전화번호를 입력하세요." required autofocus>
+                           <input id="m_phone"onkeypress="enterkey()" type="text" class="form-control" name="m_phone" placeholder="전화번호를 입력하세요." required autofocus>
                         </div>
 
                         <div class="form-group m-0">
-                           <button type="button" class="btn btn-primary btn-block" onclick="findId(this.form)">
+                           <button type="submit" id="findBtn" class="btn btn-primary btn-block" onclick="findId(this.form)">
                               아이디 찾기
                            </button>
                         </div>

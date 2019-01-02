@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- mapper 태그의 namespace 속성 필수 작성  -->  
+<mapper namespace="adminDAO">
+
+	<insert id="logVisit" parameterType="Map">
+		INSERT INTO LOG_VISIT(LV_IP, LV_COUNTRY, LV_DATE, LV_BROWSER)
+		VALUES (#{lv_ip}, #{lv_country}, SYSDATE, #{lv_browser})
+	</insert>
+	
+	<insert id="logLogin" parameterType="Map">
+		INSERT INTO LOG_LOGIN(LL_ID, LL_IP, LL_COUNTRY, LL_DATE, LL_DEVICE, LL_RESULT)
+		VALUES (#{ll_id}, #{ll_ip}, #{ll_country}, SYSDATE, #{ll_device}, #{ll_result})
+	</insert>
+	
+	<select id="userAdminSelect" resultType="member">
+		SELECT * FROM MEMBER
+	</select>
+	
+	<select id="userAdminViewSelect" resultType="com.spring.biz.com.admin.userAdminViewVO">
+		SELECT M.*, PI.P_ROUTE
+		FROM MEMBER M, PROFILE_IMAGE PI
+		WHERE M.M_ID = PI.M_ID
+		AND PI.P_MAIN = '1'
+		AND M.M_ID = #{m_id}
+	</select>
+
+
+</mapper>

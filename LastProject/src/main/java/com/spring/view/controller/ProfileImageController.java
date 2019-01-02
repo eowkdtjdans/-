@@ -1,7 +1,10 @@
 package com.spring.view.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,8 +13,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.spring.biz.member.MemberVO;
+import com.spring.biz.profile.ProfileService;
+import com.spring.biz.profile.ProfileVO;
 import com.spring.biz.profileImage.FileUploadService;
 import com.spring.biz.profileImage.ProfileImageService;
+import com.spring.biz.profileImage.ProfileImageVO;
 
 @Controller
 public class ProfileImageController {
@@ -19,9 +26,20 @@ public class ProfileImageController {
 	private ProfileImageService profileImageService;
 	@Autowired
 	private FileUploadService fileUploadService;
-	
+	@Autowired
+	private ProfileService profileService;
 	public ProfileImageController () {
 		System.out.println("ProfileImageController 컨트롤러");
+	}
+	@RequestMapping(value="testImage.do")
+	public String testImage(ProfileImageVO vo, HttpSession session, @RequestParam("m_id") String m_id) {
+		vo.setM_id(m_id);
+		System.out.println("m_id = " + m_id);
+		System.out.println("vo : " + vo);
+		List<ProfileImageVO> profileImageList = profileImageService.getProfileImageList(m_id);
+		System.out.println("list : " + profileImageList);
+		session.setAttribute("profileImageList", profileImageList);
+		return "/views/profile/testImage.jsp";
 	}
 	
 	@RequestMapping(value="profileImageInsert.do", method=RequestMethod.GET)
@@ -31,9 +49,11 @@ public class ProfileImageController {
 	}
 	
 	@RequestMapping(value="uploadProfileImg.do", method=RequestMethod.POST)
-	public String uploadProfileImg(@RequestParam("profileImg") MultipartFile profileImg, @RequestParam("m_id") String m_id) {
+	public String uploadProfileImg(MemberVO vo,HttpSession session, ProfileVO profilevo, @RequestParam("profileImg") MultipartFile profileImg, @RequestParam("m_id") String m_id) {
 		
 		String url = fileUploadService.fileUpload(profileImg);
+		String path = session.getServletContext().getRealPath("/");
+		System.out.println(path);
 		
 		int profileMainCnt = ProfileImageMainCount(m_id);
 		String p_main = "0";
@@ -45,10 +65,16 @@ public class ProfileImageController {
 		if(profileMainCnt > 0) {
 			profileImageMap.put("p_main", p_main);
 			profileImageService.ProfileImageInsert(profileImageMap);
+			ProfileVO profileVO2 = profileService.getProfile2(profilevo, session);
+			profilevo.setM_id(vo.getM_id());
+			session.setAttribute("profile", profileVO2);
 		} else {
 			p_main = "1";
 			profileImageMap.put("p_main", p_main);
 			profileImageService.ProfileImageInsert(profileImageMap);
+			ProfileVO profileVO2 = profileService.getProfile2(profilevo, session);
+			profilevo.setM_id(vo.getM_id());
+			session.setAttribute("profile", profileVO2);
 		}
 		
 		return "redirect:/sub2.do";

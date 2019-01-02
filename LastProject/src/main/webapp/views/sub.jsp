@@ -17,7 +17,8 @@
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
+  
   <!-- Bootstrap CSS File -->
   <link href="views/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
@@ -27,11 +28,12 @@
   <link href="views/lib/ionicons/css/ionicons.min.css" rel="stylesheet">
   <link href="views/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
   <link href="views/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
-
+  
   <!-- Main Stylesheet File -->
   <link href="views/css/style.css" rel="stylesheet">
   
   <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+  
   
   
 
@@ -45,6 +47,23 @@
 <style>
    body{
       padding-top: 70px;
+   }
+   
+   .scrollto {
+	  font-family: 'Kaushan Script', cursive;
+   }
+   .border-none {
+   	  margin-left: 490px;
+   }
+   
+   #nav-menu-container {
+   	  margin-top: -30px;
+   }
+   #header {
+   	  background-color: #BDD3DE;
+   }
+   #header.header-scrolled {
+   	  background-color: #BDD3DE;
    }
 </style>
 
@@ -63,6 +82,7 @@ function fillInAddress() { //lat 와 lng 값을 넘겨줄 input 태그에 값 �
     document.getElementById("lng").value=place.geometry.location.lng();
 }
 
+
 </script>
 <script>
 $(function(){
@@ -79,27 +99,82 @@ $(function(){
          $("#autocomplete").attr("name", "searchKeyword");
       }
    })
+   
 })
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?v=3&sensor=false&libraries=places&callback=initAutocomplete&key=AIzaSyAfB2qQnvAuU2YFFqi8hrPWfjJNyxl5kWc" async defer></script>
  
  
+<script type="text/javascript">
+	function noticeMessage() {
+		var noticeMessage = $("#noticeMessage").serialize();
+		var receive_receiver =$("#receive_receiver").val();
+	 	
+	 	  $.ajax({
+			async : true,
+			type : "POST",
+			dataType : "json",
+			data : noticeMessage,
+			url : "../../noticeMessageJson.do",
+			success : function(data) {
+				if (data.cnt > 0) {
+					$("#noticeMessageCount").append(data.cnt);
+					$("#noticeMessageCount2").append(data.cnt);
+					setInteval(function() {
+						noticeMessage()
+					}, 3000);
+		 
+				}
+			}
+			
+			
+		});    
+	}
+
+</script>	 
+ 
 </head>
 
-<body>
+<body onload="noticeMessage()">
 
   <!--==========================
     Header
   ============================-->
-  <header id="header">
+   <header id="header">
+  <form id="noticeMessage" method="GET">
     <div class="container-fluid">
-
+		<input type="hidden" id="receive_receiver" name="receive_receiver" value="${member.m_id }" />
       <div id="logo" class="pull-left">
         <h1><a href="#intro" class="scrollto">Couch Surfing</a></h1>
         <!-- Uncomment below if you prefer to use an image logo -->
         <!-- <a href="#intro"><img src="img/logo.png" alt="" title="" /></a>-->
       </div>
+    </div>
+  </form>
+      
+      <form action="../sub.do" method="post">
+	   <table class="border-none">
+	      <tr>
+	         <td>
+	            <select id="condition" name="searchCondition">         
+	               <option value="find_travler">여행자검색
+	               <option value="find_host">호스트검색
+	               <option value="find_event">이벤트검색
+	               <option value="find_advice">현지정보검색
+	            </select>
+	            
+	            <input id="autocomplete" placeholder="" type="text" name="searchKeyword">
+	            
+	            <input class="field" id="lat" type="hidden" name="lat"/>
+	            <input class="field" id="lng" type="hidden" name="lng"/>
+	            
+	            <input type="submit" id="search" value="검색">
+	         </td>
+	      </tr>
+	   </table>
+	</form>
 
+    
       <nav id="nav-menu-container">
         <ul class="nav-menu">
         <li class="menu-has-children"><a href="#">내 정보</a>
@@ -114,67 +189,43 @@ $(function(){
               <li><a href="../../loginMember.do" >로그인</a></li>
 		      <li><a  href="../../insertMember.do" >회원가입</a></li> 
 		      <li><a  href="../../insertProfile.do" >프로필 관리</a></li> 
+		      <li><a  href="../../myProfile.do" >마이 프로필</a></li> 
 		      <li><a  href="../../profileImageInsert.do" >프로필 이미지 관리</a></li> 
 		      <li><a  href="../../getSendMessageList.do" >보낸 쪽지 리스트</a></li> 
 		      <li><a  href="../../getReceiveMessageList.do" >받은 쪽지 리스트</a></li> 
 		      <li><a  href="../../checkMessage.do" >쪽지 체크</a></li> 
+		      <li><a  href="../../noticeMessage.do" >쪽지 알림</a></li> 
+		      <li><a href="../testImage.do?m_id=${member.m_id }">테스트이미지</a></li>
 		      
             </ul> 
           </li>
+          <li class="nav-item dropdown"><a class="nav-link"
+					data-toggle="dropdown" href="#"> <i class="fa fa-bell-o" id="noticeMessageCount"></i> <span
+						class="badge badge-warning navbar-badge" > </span>
+				</a>
+					<div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+						<span class="dropdown-item dropdown-header"></span>
+						<div class="dropdown-divider"></div>
+						<a href="../../getReceiveMessageList.do" class="dropdown-item" style="color:black;"> <i
+							class="fa fa-envelope mr-2" id="noticeMessageCount2"></i>개의 새로운 쪽지
+							 <span class="float-right text-muted text-sm">3 mins</span>
+						</a>
+					</div></li>
+			
+          
           <li><a href="#about">쪽지</a></li>
           <li><a href="#portfolio">마이 프로필</a></li>      
-          
+        <!--   <li><a href="../../getReceiveMessageList.do" id="noticeMessageCount"></a></li> -->
           <li><a href="../../findIdMember.do">아이디</a></li >
-          <li><a href="../../findPwdMember.do">비밀번호< /a></li>
+          <li><a href="../../findPwdMember.do">비밀번호</a></li>
           <li><a href="../../logoutMember.do">로그아웃</a></li>
-       
-      
         </ul>
-      </nav><!-- #nav-menu-container -->
-    </div>
+        </nav>
+        	
+		
+        
   </header><!-- #header -->
 
- 
-    
-
-<!-- 키워드로 검색 -->
-<form action="../sub.do" method="post">
-   <table class="border-none">
-      <tr>
-         <td>
-            <select id="condition" name="searchCondition">         
-               <%-- <c:forEach var="option" items="${conditionMap }">
-                  <option value="${option.value }">${option.key }
-               </c:forEach> --%>
-               <option value="find_travler">여행자검색
-               <option value="find_host">호스트검색
-               <option value="find_event">이벤트검색
-               <option value="find_advice">현지정보검색
-            </select>
-            
-            <input id="autocomplete" placeholder="" type="text" name="searchKeyword">
-            
-            <input class="field" id="lat" type="hidden" name="lat"/>
-            <input class="field" id="lng" type="hidden" name="lng"/>
-            
-            <input type="submit" id="search" value="검색">
-         </td>
-         <%-- <td>
-            <select name="searchCondition">         
-               <c:forEach var="option" items="${conditionMap }">
-                  <option value="${option.value }">${option.key }
-               </c:forEach>
-               <option value="find_travler">여행자검색
-               <option value="find_host">호스트검색
-               <option value="find_event">이벤트검색
-               <option value="find_advice">현지정보검색
-            </select>
-            <input type="text" name="searchKeyword" value="${key}">
-            <input type="submit" value="검색">
-         </td> --%>
-      </tr>
-   </table>
-</form>
 
    <!--==========================
       About Us Section
@@ -182,6 +233,7 @@ $(function(){
 <section id="about">
       <div class="container">
         <header class="section-header">
+           <p>${profile.p_route}</p>
            <p>${member.m_id }</p>
            <p>${member.m_pwd }</p>
            <p>${member.m_name }</p>
@@ -505,125 +557,7 @@ $(function(){
   <!-- Template Main Javascript File -->
   <script src="views/js/main.js"></script>
 
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- ================================================== modal  -->
-<div class="cd-intro">
-      <h1>Login/Signup Modal Window</h1>
-      <div class="cd-nugget-info">
-         <a href="http://codyhouse.co/gem/loginsignup-modal-window/">
-            <span>
-               <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="16px" height="16px" viewBox="0 0 16 16" style="enable-background:new 0 0 16 16;" xml:space="preserve">
-                  <style type="text/css">
-                     .cd-nugget-info-arrow{fill:#383838;}
-                  </style>
-                  <polygon class="cd-nugget-info-arrow" points="15,7 4.4,7 8.4,3 7,1.6 0.6,8 0.6,8 0.6,8 7,14.4 8.4,13 4.4,9 15,9 "/>
-               </svg>
-            </span>
-            Article &amp; Download
-         </a>
-      </div> <!-- cd-nugget-info -->
-   </div>
-
-   <div class="cd-signin-modal js-signin-modal"> <!-- this is the entire modal form, including the background -->
-      <div class="cd-signin-modal__container"> <!-- this is the container wrapper -->
-         <ul class="cd-signin-modal__switcher js-signin-modal-switcher js-signin-modal-trigger">
-            <li><a href="#0" data-signin="login" data-type="login">Sign in</a></li>
-            <li><a href="#0" data-signin="signup" data-type="signup">New account</a></li>
-         </ul>
-
-         <div class="cd-signin-modal__block js-signin-modal-block" data-type="login"> <!-- log in form -->
-            <form class="cd-signin-modal__form">
-               <p class="cd-signin-modal__fieldset">
-                  <label class="cd-signin-modal__label cd-signin-modal__label--email cd-signin-modal__label--image-replace" for="signin-email">E-mail</label>
-                  <input class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding cd-signin-modal__input--has-border" id="signin-email" type="email" placeholder="E-mail">
-                  <span class="cd-signin-modal__error">Error message here!</span>
-               </p>
-
-               <p class="cd-signin-modal__fieldset">
-                  <label class="cd-signin-modal__label cd-signin-modal__label--password cd-signin-modal__label--image-replace" for="signin-password">Password</label>
-                  <input class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding cd-signin-modal__input--has-border" id="signin-password" type="text"  placeholder="Password">
-                  <a href="#0" class="cd-signin-modal__hide-password js-hide-password">Hide</a>
-                  <span class="cd-signin-modal__error">Error message here!</span>
-               </p>
-
-               <p class="cd-signin-modal__fieldset">
-                  <input type="checkbox" id="remember-me" checked class="cd-signin-modal__input ">
-                  <label for="remember-me">Remember me</label>
-               </p>
-
-               <p class="cd-signin-modal__fieldset">
-                  <input class="cd-signin-modal__input cd-signin-modal__input--full-width" type="submit" value="Login">
-               </p>
-            </form>
-            
-            <p class="cd-signin-modal__bottom-message js-signin-modal-trigger"><a href="#0" data-signin="reset">Forgot your password?</a></p>
-         </div> <!-- cd-signin-modal__block -->
-
-         <div class="cd-signin-modal__block js-signin-modal-block" data-type="signup"> <!-- sign up form -->
-            <form class="cd-signin-modal__form">
-               <p class="cd-signin-modal__fieldset">
-                  <label class="cd-signin-modal__label cd-signin-modal__label--username cd-signin-modal__label--image-replace" for="signup-username">Username</label>
-                  <input class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding cd-signin-modal__input--has-border" id="signup-username" type="text" placeholder="Username">
-                  <span class="cd-signin-modal__error">Error message here!</span>
-               </p>
-
-               <p class="cd-signin-modal__fieldset">
-                  <label class="cd-signin-modal__label cd-signin-modal__label--email cd-signin-modal__label--image-replace" for="signup-email">E-mail</label>
-                  <input class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding cd-signin-modal__input--has-border" id="signup-email" type="email" placeholder="E-mail">
-                  <span class="cd-signin-modal__error">Error message here!</span>
-               </p>
-
-               <p class="cd-signin-modal__fieldset">
-                  <label class="cd-signin-modal__label cd-signin-modal__label--password cd-signin-modal__label--image-replace" for="signup-password">Password</label>
-                  <input class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding cd-signin-modal__input--has-border" id="signup-password" type="text"  placeholder="Password">
-                  <a href="#0" class="cd-signin-modal__hide-password js-hide-password">Hide</a>
-                  <span class="cd-signin-modal__error">Error message here!</span>
-               </p>
-
-               <p class="cd-signin-modal__fieldset">
-                  <input type="checkbox" id="accept-terms" class="cd-signin-modal__input ">
-                  <label for="accept-terms">I agree to the <a href="#0">Terms</a></label>
-               </p>
-
-               <p class="cd-signin-modal__fieldset">
-                  <input class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding" type="submit" value="Create account">
-               </p>
-            </form>
-         </div> <!-- cd-signin-modal__block -->
-
-         <div class="cd-signin-modal__block js-signin-modal-block" data-type="reset"> <!-- reset password form -->
-            <p class="cd-signin-modal__message">Lost your password? Please enter your email address. You will receive a link to create a new password.</p>
-
-            <form class="cd-signin-modal__form">
-               <p class="cd-signin-modal__fieldset">
-                  <label class="cd-signin-modal__label cd-signin-modal__label--email cd-signin-modal__label--image-replace" for="reset-email">E-mail</label>
-                  <input class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding cd-signin-modal__input--has-border" id="reset-email" type="email" placeholder="E-mail">
-                  <span class="cd-signin-modal__error">Error message here!</span>
-               </p>
-
-               <p class="cd-signin-modal__fieldset">
-                  <input class="cd-signin-modal__input cd-signin-modal__input--full-width cd-signin-modal__input--has-padding" type="submit" value="Reset password">
-               </p>
-            </form>
-
-            <p class="cd-signin-modal__bottom-message js-signin-modal-trigger"><a href="#0" data-signin="login">Back to log-in</a></p>
-         </div> <!-- cd-signin-modal__block -->
-         <a href="#0" class="cd-signin-modal__close js-close">Close</a>
-      </div> <!-- cd-signin-modal__container -->
-   </div> <!-- cd-signin-modal -->
-<script src="jsModal/placeholders.min.js"></script> <!-- polyfill for the HTML5 placeholder attribute -->
-<script src="jsModal/main.js"></script> <!-- Resource JavaScript -->
-
+  <script src="jsModal/placeholders.min.js"></script> <!-- polyfill for the HTML5 placeholder attribute -->
+  <script src="jsModal/main.js"></script> <!-- Resource JavaScript -->
 </body>
 </html>

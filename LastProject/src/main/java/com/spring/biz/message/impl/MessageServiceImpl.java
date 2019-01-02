@@ -2,6 +2,8 @@ package com.spring.biz.message.impl;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -80,6 +82,16 @@ public class MessageServiceImpl implements MessageService {
 	@Override
 	public void readRecieveMessage(MessageRecieveVO receivevo) {
 		messageDAO.readReceiveMessage(receivevo);
+	}
+
+	@Override
+	public MessageRecieveVO getReceiveMessage2(MessageRecieveVO receivevo, HttpSession session) {
+		return messageDAO.getReceiveMessage2(receivevo);
+	}
+
+	@Override
+	public int noticeMessageJson(MessageRecieveVO receivevo) {
+		return messageDAO.noticeMessageJson(receivevo);
 	}
 
 
