@@ -11,7 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class FileUploadService {
 	private static final String SAVE_PATH = "C:/MyStudy/GIT/gukbong/LastProject/src/main/webapp/views/img/upload";
 	/*private static final String SAVE_PATH = "C:/MyStudy/GIT/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/LastProject/views/img/upload/";*/
-	private static final String PREFIX_URL = "views/img/upload/";
+	private static final String PREFIX_URL = "/views/img/upload/";
 	
 	public String fileUpload(MultipartFile multipartFile) {
 		String url = null;

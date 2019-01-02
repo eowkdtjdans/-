@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<fmt:formatDate value="${userAdminViewVO.m_regdate}" pattern="yyyy-MM-dd"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,6 +23,9 @@
 <link
 	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700"
 	rel="stylesheet">
+
+<style>
+</style>
 </head>
 <body class="hold-transition sidebar-mini">
 	<div class="wrapper">
@@ -417,16 +422,16 @@
 										<img class="profile-user-img img-fluid img-circle"
 											src="${userAdminViewVO.p_route}"
 											alt="User profile picture"
-											onerror='this.src="/views/img/people/fuckyou.jpg"'>
+											onerror='this.src="/views/img/people/fuckyou.jpg"' style="width:300px;">
 									</div>
 
-									<h3 class="profile-username text-center">Nina Mcintire</h3>
+									<h3 class="profile-username text-center">${userAdminViewVO.m_name}</h3>
 
 									<p class="text-muted text-center">Software Engineer</p>
 
 									<ul class="list-group list-group-unbordered mb-3">
-										<li class="list-group-item"><b>Followers</b> <a
-											class="float-right">1,322</a></li>
+										<li class="list-group-item"><b>가입일자</b> <a
+											class="float-right">${userAdminViewVO.m_regdate}</a></li>
 										<li class="list-group-item"><b>Following</b> <a
 											class="float-right">543</a></li>
 										<li class="list-group-item"><b>Friends</b> <a

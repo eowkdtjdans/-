@@ -18,7 +18,7 @@ import com.spring.biz.com.admin.userAdminViewVO;
 import com.spring.biz.member.MemberVO;
 
 @Controller
-@SessionAttributes({"userAdminList", "userAdminViewList"})
+@SessionAttributes({"userAdminList", "userAdminViewVO"})
 public class AdminController {
 	@Autowired
 	private AdminService adminService;
