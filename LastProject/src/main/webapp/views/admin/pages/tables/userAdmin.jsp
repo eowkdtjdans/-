@@ -448,7 +448,7 @@
 											<td>${list.m_gender}</td>
 											<td>${list.m_address}</td>
 											<td>${list.m_regdate}</td>
-											<td><button type="button" class="btn btn-default" onclick="location.href='/userAdminView.do?${list.m_id}'">관리</button></td>
+											<td><button type="button" class="btn btn-default" onclick="location.href='/userAdminView.do?m_id=${list.m_id}'">관리</button></td>
 										</tr>
 										</c:forEach>
 									</tbody>

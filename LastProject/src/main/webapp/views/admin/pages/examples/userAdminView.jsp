@@ -415,8 +415,9 @@
 								<div class="card-body box-profile">
 									<div class="text-center">
 										<img class="profile-user-img img-fluid img-circle"
-											src="../../dist/img/user4-128x128.jpg"
-											alt="User profile picture">
+											src="${userAdminViewVO.p_route}"
+											alt="User profile picture"
+											onerror='this.src="/views/img/people/fuckyou.jpg"'>
 									</div>
 
 									<h3 class="profile-username text-center">Nina Mcintire</h3>
