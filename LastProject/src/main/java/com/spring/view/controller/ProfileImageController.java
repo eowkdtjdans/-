@@ -1,6 +1,7 @@
 package com.spring.view.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -17,6 +18,7 @@ import com.spring.biz.profile.ProfileService;
 import com.spring.biz.profile.ProfileVO;
 import com.spring.biz.profileImage.FileUploadService;
 import com.spring.biz.profileImage.ProfileImageService;
+import com.spring.biz.profileImage.ProfileImageVO;
 
 @Controller
 public class ProfileImageController {
@@ -28,6 +30,16 @@ public class ProfileImageController {
 	private ProfileService profileService;
 	public ProfileImageController () {
 		System.out.println("ProfileImageController 컨트롤러");
+	}
+	@RequestMapping(value="testImage.do")
+	public String testImage(ProfileImageVO vo, HttpSession session, @RequestParam("m_id") String m_id) {
+		vo.setM_id(m_id);
+		System.out.println("m_id = " + m_id);
+		System.out.println("vo : " + vo);
+		List<ProfileImageVO> profileImageList = profileImageService.getProfileImageList(m_id);
+		System.out.println("list : " + profileImageList);
+		session.setAttribute("profileImageList", profileImageList);
+		return "/views/profile/testImage.jsp";
 	}
 	
 	@RequestMapping(value="profileImageInsert.do", method=RequestMethod.GET)
