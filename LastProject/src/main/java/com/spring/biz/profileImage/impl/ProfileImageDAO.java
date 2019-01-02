@@ -38,4 +38,16 @@ public class ProfileImageDAO {
 		return mybatis.selectList("getProfileImageList",m_id);
 	}
 
+	public void deleteProfileImage(ProfileImageVO vo) {
+		 mybatis.delete("deleteProfileImage", vo);
+	}
+
+	public void updateMainProfileImage(ProfileImageVO vo) {
+		mybatis.update("updateMainProfileImage", vo);
+	}
+
+	public void mainProfileImageInit(String m_id) {
+		mybatis.update("mainProfileImageInit", m_id);
+	}
+
 }

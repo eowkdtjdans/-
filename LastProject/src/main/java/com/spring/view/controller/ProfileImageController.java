@@ -31,15 +31,44 @@ public class ProfileImageController {
 	public ProfileImageController () {
 		System.out.println("ProfileImageController 컨트롤러");
 	}
-	@RequestMapping(value="testImage.do")
-	public String testImage(ProfileImageVO vo, HttpSession session, @RequestParam("m_id") String m_id) {
+	@RequestMapping(value="profileImageList.do", method=RequestMethod.POST )
+	public String profileImageListPost(ProfileImageVO vo, HttpSession session, @RequestParam("m_id") String m_id) {
 		vo.setM_id(m_id);
 		System.out.println("m_id = " + m_id);
 		System.out.println("vo : " + vo);
 		List<ProfileImageVO> profileImageList = profileImageService.getProfileImageList(m_id);
 		System.out.println("list : " + profileImageList);
 		session.setAttribute("profileImageList", profileImageList);
-		return "/views/profile/testImage.jsp";
+		return "/views/profile/ProfileImageList.jsp";
+	}
+	@RequestMapping(value="profileImageList.do", method=RequestMethod.GET )
+	public String profileImageListGet(ProfileImageVO vo, HttpSession session, @RequestParam("m_id") String m_id) {
+		vo.setM_id(m_id);
+		System.out.println("m_id = " + m_id);
+		System.out.println("vo : " + vo);
+		List<ProfileImageVO> profileImageList = profileImageService.getProfileImageList(m_id);
+		System.out.println("list : " + profileImageList);
+		session.setAttribute("profileImageList", profileImageList);
+		return "/views/profile/ProfileImageList.jsp";
+	}
+	
+	@RequestMapping(value="deleteProfileImage.do", method=RequestMethod.POST) 
+	public String deleteProfileImage(ProfileImageVO vo, HttpSession session, @RequestParam("m_id") String m_id, @RequestParam("p_route") String p_route) {
+		vo.setM_id(m_id);
+		vo.setP_route(p_route);
+		profileImageService.deleteProfileImage(vo);
+		
+		System.out.println("컨트롤러 옴");
+		return "profileImageList.do";
+	}
+	@RequestMapping(value="updateMainProfileImage.do", method=RequestMethod.POST)
+	public String updateMainProfileImage(ProfileImageVO vo, HttpSession session, @RequestParam("m_id") String m_id, @RequestParam("p_route") String p_route) {
+		/*profileImageService.updateMainProfileImage(vo);
+		session.setAttribute("profile", vo);*/
+		vo.setM_id(m_id);
+		vo.setP_route(p_route);
+		profileImageService.mainProfileImageInit(m_id);
+		return "profileImageList.do";
 	}
 	
 	@RequestMapping(value="profileImageInsert.do", method=RequestMethod.GET)

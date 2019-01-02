@@ -50,20 +50,20 @@
    }
    
    .scrollto {
-	  font-family: 'Kaushan Script', cursive;
+     font-family: 'Kaushan Script', cursive;
    }
    .border-none {
-   	  margin-left: 490px;
+        margin-left: 490px;
    }
    
    #nav-menu-container {
-   	  margin-top: -30px;
+        margin-top: -30px;
    }
    #header {
-   	  background-color: #BDD3DE;
+        background-color: #BDD3DE;
    }
    #header.header-scrolled {
-   	  background-color: #BDD3DE;
+        background-color: #BDD3DE;
    }
 </style>
 
@@ -106,32 +106,32 @@ $(function(){
  
  
 <script type="text/javascript">
-	function noticeMessage() {
-		var noticeMessage = $("#noticeMessage").serialize();
-		var receive_receiver =$("#receive_receiver").val();
-	 	
-	 	  $.ajax({
-			async : true,
-			type : "POST",
-			dataType : "json",
-			data : noticeMessage,
-			url : "../../noticeMessageJson.do",
-			success : function(data) {
-				if (data.cnt > 0) {
-					$("#noticeMessageCount").append(data.cnt);
-					$("#noticeMessageCount2").append(data.cnt);
-					setInteval(function() {
-						noticeMessage()
-					}, 3000);
-		 
-				}
-			}
-			
-			
-		});    
-	}
+   function noticeMessage() {
+      var noticeMessage = $("#noticeMessage").serialize();
+      var receive_receiver =$("#receive_receiver").val();
+       
+         $.ajax({
+         async : true,
+         type : "POST",
+         dataType : "json",
+         data : noticeMessage,
+         url : "../../noticeMessageJson.do",
+         success : function(data) {
+            if (data.cnt > 0) {
+               $("#noticeMessageCount").append(data.cnt);
+               $("#noticeMessageCount2").append(data.cnt);
+               setInteval(function() {
+                  noticeMessage()
+               }, 3000);
+       
+            }
+         }
+         
+         
+      });    
+   }
 
-</script>	 
+</script>    
  
 </head>
 
@@ -143,7 +143,7 @@ $(function(){
    <header id="header">
   <form id="noticeMessage" method="GET">
     <div class="container-fluid">
-		<input type="hidden" id="receive_receiver" name="receive_receiver" value="${member.m_id }" />
+      <input type="hidden" id="receive_receiver" name="receive_receiver" value="${member.m_id }" />
       <div id="logo" class="pull-left">
         <h1><a href="#intro" class="scrollto">Couch Surfing</a></h1>
         <!-- Uncomment below if you prefer to use an image logo -->
@@ -153,26 +153,26 @@ $(function(){
   </form>
       
       <form action="../sub.do" method="post">
-	   <table class="border-none">
-	      <tr>
-	         <td>
-	            <select id="condition" name="searchCondition">         
-	               <option value="find_travler">여행자검색
-	               <option value="find_host">호스트검색
-	               <option value="find_event">이벤트검색
-	               <option value="find_advice">현지정보검색
-	            </select>
-	            
-	            <input id="autocomplete" placeholder="" type="text" name="searchKeyword">
-	            
-	            <input class="field" id="lat" type="hidden" name="lat"/>
-	            <input class="field" id="lng" type="hidden" name="lng"/>
-	            
-	            <input type="submit" id="search" value="검색">
-	         </td>
-	      </tr>
-	   </table>
-	</form>
+      <table class="border-none">
+         <tr>
+            <td>
+               <select id="condition" name="searchCondition">         
+                  <option value="find_travler">여행자검색
+                  <option value="find_host">호스트검색
+                  <option value="find_event">이벤트검색
+                  <option value="find_advice">현지정보검색
+               </select>
+               
+               <input id="autocomplete" placeholder="" type="text" name="searchKeyword">
+               
+               <input class="field" id="lat" type="hidden" name="lat"/>
+               <input class="field" id="lng" type="hidden" name="lng"/>
+               
+               <input type="submit" id="search" value="검색">
+            </td>
+         </tr>
+      </table>
+   </form>
 
     
       <nav id="nav-menu-container">
@@ -187,31 +187,31 @@ $(function(){
               <li><a  href="../../insertMessage.do" >쪽지 작성</a></li>  
               <li><a  href="../../chat.do" >웹소켓 채팅</a></li> 
               <li><a href="../../loginMember.do" >로그인</a></li>
-		      <li><a  href="../../insertMember.do" >회원가입</a></li> 
-		      <li><a  href="../../insertProfile.do" >프로필 관리</a></li> 
-		      <li><a  href="../../myProfile.do" >마이 프로필</a></li> 
-		      <li><a  href="../../profileImageInsert.do" >프로필 이미지 관리</a></li> 
-		      <li><a  href="../../getSendMessageList.do" >보낸 쪽지 리스트</a></li> 
-		      <li><a  href="../../getReceiveMessageList.do" >받은 쪽지 리스트</a></li> 
-		      <li><a  href="../../checkMessage.do" >쪽지 체크</a></li> 
-		      <li><a  href="../../noticeMessage.do" >쪽지 알림</a></li> 
-		      <li><a href="../testImage.do?m_id=${member.m_id }">테스트이미지</a></li>
-		      
+            <li><a  href="../../insertMember.do" >회원가입</a></li> 
+            <li><a  href="../../insertProfile.do" >프로필 관리</a></li> 
+            <li><a  href="../../myProfile.do" >마이 프로필</a></li> 
+            <li><a  href="../../profileImageInsert.do" >프로필 이미지 관리</a></li> 
+            <li><a  href="../../getSendMessageList.do" >보낸 쪽지 리스트</a></li> 
+            <li><a  href="../../getReceiveMessageList.do" >받은 쪽지 리스트</a></li> 
+            <li><a  href="../../checkMessage.do" >쪽지 체크</a></li> 
+            <li><a  href="../../noticeMessage.do" >쪽지 알림</a></li> 
+            <li><a href="../testImage.do?m_id=${member.m_id }">테스트이미지</a></li>
+            
             </ul> 
           </li>
           <li class="nav-item dropdown"><a class="nav-link"
-					data-toggle="dropdown" href="#"> <i class="fa fa-bell-o" id="noticeMessageCount"></i> <span
-						class="badge badge-warning navbar-badge" > </span>
-				</a>
-					<div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-						<span class="dropdown-item dropdown-header"></span>
-						<div class="dropdown-divider"></div>
-						<a href="../../getReceiveMessageList.do" class="dropdown-item" style="color:black;"> <i
-							class="fa fa-envelope mr-2" id="noticeMessageCount2"></i>개의 새로운 쪽지
-							 <span class="float-right text-muted text-sm">3 mins</span>
-						</a>
-					</div></li>
-			
+               data-toggle="dropdown" href="#"> <i class="fa fa-bell-o" id="noticeMessageCount"></i> <span
+                  class="badge badge-warning navbar-badge" > </span>
+            </a>
+               <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                  <span class="dropdown-item dropdown-header"></span>
+                  <div class="dropdown-divider"></div>
+                  <a href="../../getReceiveMessageList.do" class="dropdown-item" style="color:black;"> <i
+                     class="fa fa-envelope mr-2" id="noticeMessageCount2"></i>개의 새로운 쪽지
+                      <span class="float-right text-muted text-sm">3 mins</span>
+                  </a>
+               </div></li>
+         
           
           <li><a href="#about">쪽지</a></li>
           <li><a href="#portfolio">마이 프로필</a></li>      
@@ -221,8 +221,8 @@ $(function(){
           <li><a href="../../logoutMember.do">로그아웃</a></li>
         </ul>
         </nav>
-        	
-		
+           
+      
         
   </header><!-- #header -->
 
@@ -244,11 +244,11 @@ $(function(){
            <p>${member.lat }</p>
            <p>${member.lng }</p>
            <p>${member.m_address }</p>
-        	<p>${profile.p_hobby }</p>
-        	<p>${profile.p_language }</p>
-        	<p>${profile.p_job }</p>
-        	<p>${profile.p_aboutme }</p>
-        	<p>${profile.p_purpose }</p>
+           <p>${profile.p_hobby }</p>
+           <p>${profile.p_language }</p>
+           <p>${profile.p_job }</p>
+           <p>${profile.p_aboutme }</p>
+           <p>${profile.p_purpose }</p>
           <h3>About Us</h3>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
         </header>
