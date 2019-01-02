@@ -16,7 +16,9 @@ public interface ProfileService {
 
 	ProfileVO getProfile(ProfileVO vo, HttpSession session);
 
-	ProfileVO getProfile2(ProfileVO profileVO, HttpSession session);
+	/*ProfileVO getProfile2(ProfileVO profileVO, HttpSession session);*/
+
+	ProfileVO getProfile2(ProfileVO vo, HttpSession session);
 
 	
 

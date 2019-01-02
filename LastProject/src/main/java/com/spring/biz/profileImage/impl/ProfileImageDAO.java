@@ -1,10 +1,13 @@
 package com.spring.biz.profileImage.impl;
 
+import java.util.List;
 import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import com.spring.biz.profileImage.ProfileImageVO;
 
 @Repository("profileImageDAO")
 public class ProfileImageDAO {
@@ -29,6 +32,10 @@ public class ProfileImageDAO {
 
 	public void HostImageInsert(Map<String, String> hostImageMap) {
 		mybatis.insert("HostImageInsert", hostImageMap);
+	}
+
+	public List<ProfileImageVO> getProfileImageList(String m_id) {
+		return mybatis.selectList("getProfileImageList",m_id);
 	}
 
 }

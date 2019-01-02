@@ -1,11 +1,15 @@
 package com.spring.biz.profileImage.impl;
 
+import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.spring.biz.profileImage.ProfileImageService;
+import com.spring.biz.profileImage.ProfileImageVO;
 
 @Service("profileImageService")
 public class ProfileImageServiceImpl implements ProfileImageService{
@@ -35,6 +39,12 @@ public class ProfileImageServiceImpl implements ProfileImageService{
 	@Override
 	public void HostImageInsert(Map<String, String> hostImageMap) {
 		profileImageDAO.HostImageInsert(hostImageMap);
+	}
+
+	@Override						
+	public List<ProfileImageVO> getProfileImageList(String m_id) {
+	
+		return 	profileImageDAO.getProfileImageList(m_id);
 	}
 
 }

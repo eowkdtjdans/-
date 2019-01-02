@@ -157,9 +157,6 @@ $(function(){
 	      <tr>
 	         <td>
 	            <select id="condition" name="searchCondition">         
-	               <%-- <c:forEach var="option" items="${conditionMap }">
-	                  <option value="${option.value }">${option.key }
-	               </c:forEach> --%>
 	               <option value="find_travler">여행자검색
 	               <option value="find_host">호스트검색
 	               <option value="find_event">이벤트검색
@@ -198,6 +195,7 @@ $(function(){
 		      <li><a  href="../../getReceiveMessageList.do" >받은 쪽지 리스트</a></li> 
 		      <li><a  href="../../checkMessage.do" >쪽지 체크</a></li> 
 		      <li><a  href="../../noticeMessage.do" >쪽지 알림</a></li> 
+		      <li><a href="../testImage.do?m_id=${member.m_id }">테스트이미지</a></li>
 		      
             </ul> 
           </li>
@@ -235,7 +233,7 @@ $(function(){
 <section id="about">
       <div class="container">
         <header class="section-header">
-           <p>${profile.p_route }</p>
+           <p>${profile.p_route}</p>
            <p>${member.m_id }</p>
            <p>${member.m_pwd }</p>
            <p>${member.m_name }</p>

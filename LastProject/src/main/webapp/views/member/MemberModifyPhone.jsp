@@ -74,7 +74,7 @@
               <a href="../../ModifyPwdMember.do" class="list-group-item list-group-item-action">비밀번호 변경</a>
               <a href="../../ModifyPhoneMember.do" class="list-group-item list-group-item-action active">핸드폰 변경</a>
               <a href="../../ModifyAddressMember.do" class="list-group-item list-group-item-action">주소 변경</a>
-              <a href="../../profileImageInsert.do" class="list-group-item list-group-item-action">이미지 업로드</a>
+              <a href="../../profileImageInsert.do" class="list-group-item list-group-item-action">이미지 관리</a>
               <a href="#" class="list-group-item list-group-item-action">내 글</a>
               <a href="#" class="list-group-item list-group-item-action">내 댓글</a>
               

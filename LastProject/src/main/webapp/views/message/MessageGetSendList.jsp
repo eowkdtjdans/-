@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+ <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,7 +30,7 @@
               <a href="../../ModifyPwdMember.do" class="list-group-item list-group-item-action">비밀번호 변경</a>
               <a href="../../ModifyPhoneMember.do" class="list-group-item list-group-item-action">핸드폰 변경</a>
               <a href="../../ModifyAddressMember.do" class="list-group-item list-group-item-action">주소 변경</a>
-              <a href="../../profileImageInsert.do" class="list-group-item list-group-item-action">이미지 업로드</a>
+              <a href="../../profileImageInsert.do" class="list-group-item list-group-item-action">이미지 관리</a>
               <a href="#" class="list-group-item list-group-item-action">내 글</a>
               <a href="#" class="list-group-item list-group-item-action">내 댓글</a>
               
@@ -67,7 +68,7 @@
 				</a>
 			</td>
 			<td>${messageList.send_receiver }</td>
-			<td>${messageList.send_regdate }</td>
+			<td><fmt:formatDate value="${messageList.send_regdate }" pattern="yyyy-MM-dd HH:mm:ss"/></td>
 			
 		
 		</tr>
