@@ -167,27 +167,7 @@ public class LoginAPIController {
         System.out.println(naverLoginBO.getUserProfile(oauthToken).toString());
         model.addAttribute("result", apiResult);
         System.out.println("result"+apiResult);
-        /* 네이버 로그인 성공 페이지 View 호출 */
-//      JSONObject jsonobj = jsonparse.stringToJson(apiResult, "response");
-//      String snsId = jsonparse.JsonToString(jsonobj, "id");
-//      String name = jsonparse.JsonToString(jsonobj, "name");
-//
-//      UserVO vo = new UserVO();
-//      vo.setUser_snsId(snsId);
-//      vo.setUser_name(name);
-//
-//      System.out.println(name);
-//      try {
-//          vo = service.naverLogin(vo);
-//      } catch (Exception e) {
-//          // TODO Auto-generated catch block
-//          e.printStackTrace();
-//      }
 
-
-//      session.setAttribute("login",vo);
-//      return new ModelAndView("user/loginPost", "result", vo);
-        
         return "/views/loginAPI/NaverCallback.jsp";
     }
     

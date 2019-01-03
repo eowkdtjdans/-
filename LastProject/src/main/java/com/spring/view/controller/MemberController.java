@@ -48,6 +48,10 @@ public class MemberController {
 	
 	//======================================================================
 	//회원가입
+	@RequestMapping(value="/NaverRegister.do") 
+		public String naverRegister(MemberVO vo) {
+			return "views/member/NaverRegister.jsp";
+		}
 	@RequestMapping(value = "/insertMember.do", method=RequestMethod.GET)
 	public String insertMemberGet(MemberVO vo) {
 		System.out.println("=======겟방식");
