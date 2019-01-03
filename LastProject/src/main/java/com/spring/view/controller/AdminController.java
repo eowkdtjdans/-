@@ -14,11 +14,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.spring.biz.com.admin.AdminService;
-import com.spring.biz.com.admin.userAdminViewVO;
+import com.spring.biz.com.admin.UserAdminCommentVO;
+import com.spring.biz.com.admin.UserAdminPostVO;
+import com.spring.biz.com.admin.UserAdminViewVO;
 import com.spring.biz.member.MemberVO;
 
 @Controller
-@SessionAttributes({"userAdminList", "userAdminViewVO"})
+@SessionAttributes({"userAdminList", "userAdminViewVO", "userAdminPostList", "userAdminCommentList"})
 public class AdminController {
 	@Autowired
 	private AdminService adminService;
@@ -88,13 +90,20 @@ public class AdminController {
 	}
 	@RequestMapping(value="/userAdminView.do")
 	public String userAdminView(Model model, HttpServletRequest request) {
-		userAdminViewVO uvo = null;
+		UserAdminViewVO uvo = null;
+		
+		List<UserAdminPostVO> uplist = null;
+		List<UserAdminCommentVO> upclist = null;
 		
 		String m_id = request.getParameter("m_id");
 		
 		uvo = adminService.userAdminViewSelect(m_id);
+		uplist = adminService.userAdminPostSelect(m_id);
+		upclist = adminService.userAdminCommentSelect(m_id);
 		
 		model.addAttribute("userAdminViewVO", uvo);
+		model.addAttribute("userAdminPostList", uplist);
+		model.addAttribute("userAdminCommentList", upclist);
 		
 		return "redirect:/views/admin/pages/examples/userAdminView.jsp";
 	}

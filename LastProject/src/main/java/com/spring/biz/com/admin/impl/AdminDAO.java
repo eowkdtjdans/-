@@ -7,7 +7,9 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.spring.biz.com.admin.userAdminViewVO;
+import com.spring.biz.com.admin.UserAdminCommentVO;
+import com.spring.biz.com.admin.UserAdminPostVO;
+import com.spring.biz.com.admin.UserAdminViewVO;
 import com.spring.biz.member.MemberVO;
 
 @Repository("adminDAO")
@@ -23,12 +25,20 @@ public class AdminDAO {
 		return mybatis.selectList("userAdminSelect");
 	}
 	
-	public userAdminViewVO userAdminViewSelect(String m_id) {
+	public UserAdminViewVO userAdminViewSelect(String m_id) {
 		return mybatis.selectOne("userAdminViewSelect", m_id);
 	}
 
 	public void logLogin(Map<String, String> llMap) {
 		mybatis.insert("logLogin", llMap);
+	}
+
+	public List<UserAdminPostVO> userAdminPostSelect(String m_id) {
+		return mybatis.selectList("userAdminPostSelect", m_id);
+	}
+
+	public List<UserAdminCommentVO> userAdminCommentSelect(String m_id) {
+		return mybatis.selectList("userAdminCommentSelect", m_id);
 	}
 
 }

@@ -74,7 +74,7 @@ td {
 
 #tableDiv {
    width: 1100px;
-   height: 400px;
+   min-height: 400px;
 }
 
 #bentarrow {
@@ -494,7 +494,7 @@ table .noline {
                         ${getLocalAdvice.l_date }</td>
                   </tr>
                </table>
-               <div style="height: 300px">
+               <div>
                   <p>
                      <br>${getLocalAdvice.l_content }</p>
                </div>
