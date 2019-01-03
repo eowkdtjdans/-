@@ -88,12 +88,13 @@ public class AdminController {
 	}
 	@RequestMapping(value="/userAdminView.do")
 	public String userAdminView(Model model, HttpServletRequest request) {
-		userAdminViewVO vo = null;
+		userAdminViewVO uvo = null;
+		
 		String m_id = request.getParameter("m_id");
 		
-		vo = adminService.userAdminViewSelect(m_id);
+		uvo = adminService.userAdminViewSelect(m_id);
 		
-		model.addAttribute("userAdminViewVO", vo);
+		model.addAttribute("userAdminViewVO", uvo);
 		
 		return "redirect:/views/admin/pages/examples/userAdminView.jsp";
 	}

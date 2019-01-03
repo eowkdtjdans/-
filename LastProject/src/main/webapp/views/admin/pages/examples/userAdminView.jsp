@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<fmt:formatDate value="${userAdminViewVO.m_regdate}" pattern="yyyy-MM-dd"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -425,20 +424,21 @@
 											onerror='this.src="/views/img/people/fuckyou.jpg"' style="width:300px;">
 									</div>
 
-									<h3 class="profile-username text-center">${userAdminViewVO.m_name}</h3>
+									<h3 class="profile-username text-center">${userAdminViewVO.m_id}</h3>
 
 									<p class="text-muted text-center">Software Engineer</p>
 
+									<fmt:formatDate var="reg" value="${userAdminViewVO.m_regdate}" pattern="yyyy-MM-dd"/>
+									
 									<ul class="list-group list-group-unbordered mb-3">
+										<li class="list-group-item"><b>이름</b> <a
+											class="float-right">${userAdminViewVO.m_name}</a></li>
+										<li class="list-group-item"><b>번호</b> <a
+											class="float-right">${userAdminViewVO.m_phone}</a></li>
 										<li class="list-group-item"><b>가입일자</b> <a
-											class="float-right">${userAdminViewVO.m_regdate}</a></li>
-										<li class="list-group-item"><b>Following</b> <a
-											class="float-right">543</a></li>
-										<li class="list-group-item"><b>Friends</b> <a
-											class="float-right">13,287</a></li>
+											class="float-right">${reg}</a></li>
 									</ul>
 
-									<a href="#" class="btn btn-primary btn-block"><b>Follow</b></a>
 								</div>
 								<!-- /.card-body -->
 							</div>

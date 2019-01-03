@@ -21,9 +21,11 @@
 	</select>
 	
 	<select id="userAdminViewSelect" resultType="com.spring.biz.com.admin.userAdminViewVO">
-		SELECT M.*, PI.P_ROUTE
-		FROM MEMBER M, PROFILE_IMAGE PI
+		SELECT M.M_ID, M.M_NAME, M.M_PHONE, M.M_GENDER, M.M_BIRTHDAY, M.M_REGDATE, M.M_ADDRESS,
+        P.P_HOBBY, P.P_LANGUAGE, P.P_JOB, P.P_ABOUTME, P.P_PURPOSE,P.P_VISITCOUNTRY, PI.P_ROUTE
+		FROM MEMBER M, PROFILE_IMAGE PI, PROFILE P
 		WHERE M.M_ID = PI.M_ID
+        AND PI.M_ID = P.M_ID
 		AND PI.P_MAIN = '1'
 		AND M.M_ID = #{m_id}
 	</select>

@@ -1,14 +1,20 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+ <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
- <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
+     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE>
 <html>
+<head>
+<meta charset="UTF-8">
+<title>프로필 이미지 수정</title>
 
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<link rel="stylesheet" type="text/css" href="views/bootstrapModal/css/bootstrap.min.css">
+
+   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
 body {font-family: Arial, Helvetica, sans-serif;}
 
@@ -31,14 +37,14 @@ body {font-family: Arial, Helvetica, sans-serif;}
   width: 100%; /* Full width */
   height: 100%; /* Full height */
   overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+  background-color: rgb(0,0,0);  
+  background-color: rgba(0,0,0,0.9);  
+ 
 }
 
 /* Modal Content (image) */
 .modal-content {
   margin: auto;
-  margin-top : -100px;
   display: block;
   width: 80%;
   max-width: 700px;
@@ -99,59 +105,116 @@ body {font-family: Arial, Helvetica, sans-serif;}
   }
 }
 </style>
+
+<script>
+function test(p_route, m_id) {
+   var modal = document.getElementById('myModal');
+   
+   var img = document.getElementById(p_route);
+   var modalImg = document.getElementById("img01");
+   var captionText = document.getElementById("caption");
+   
+   var m_id_value = document.getElementById('m_id');
+   var p_route_value = document.getElementById('p_route');
+   
+   m_id_value.value=m_id;
+   p_route_value.value=p_route;
+   
+   modal.style.display = "block";
+   modalImg.src = img.src;
+   captionText.innerHTML = img.alt;
+   
+   var span = document.getElementsByClassName("close")[0];
+
+   span.onclick = function() { 
+     modal.style.display = "none";
+   }
+}
+</script>
+
+<script>
+   function deleteImage(frm) {
+      var m_id = frm.m_id.value;
+      var p_route = frm.p_route.value;
+      var str = $("#modalBtn").serialize();
+      alert(m_id);
+      alert(p_route);
+      alert(str);
+      /* frm.action = "../../deleteProfileImage.do";
+      frm.submit();
+      return false; */
+   }
+
+</script>
+
 </head>
+<body>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-<body>
-<input type="hidden" id="m_id" name="m_id" value="${member.m_id }"/>
-<h2>Image Modal</h2>
-<p>In this example, we use CSS to create a modal (dialog box) that is hidden by default.</p>
-<p>We use JavaScript to trigger the modal and to display the current image inside the modal when it is clicked on. Also note that we use the value from the image's "alt" attribute as an image caption text inside the modal.</p>
- <c:forEach var="profileImageList" items="${profileImageList}">
-	 <img class="myImg" src="${profileImageList.p_route }" style="width:100%; max-width:200px" alt="국봉"> 
-</c:forEach>
-<p>${profileImageList }</p>
+<!------ Include the above in your HEAD tag ---------->
+<section>
+<div class="container">
+   <div class="row">
+      <div class="col-md-3 ">
+           <div class="list-group ">
+              <a href="../../myProfile.do" class="list-group-item list-group-item-action">마이 프로필</a>
+              <a href="../../getReceiveMessageList.do" class="list-group-item list-group-item-action">받은 쪽지함</a>
+              <a href="../../getSendMessageList.do" class="list-group-item list-group-item-action">보낸 쪽지함</a>
+              <a href="#" class="list-group-item list-group-item-action">프로필 수정</a>
+              <a href="../../ModifyPwdMember.do" class="list-group-item list-group-item-action">비밀번호 변경</a>
+              <a href="../../ModifyPhoneMember.do" class="list-group-item list-group-item-action">핸드폰 변경</a>
+              <a href="../../ModifyAddressMember.do" class="list-group-item list-group-item-action">주소 변경</a>
+              <a href="../../profileImageInsert.do" class="list-group-item list-group-item-action">이미지 관리</a>
+              <a href="#" class="list-group-item list-group-item-action">내 글</a>
+              <a href="#" class="list-group-item list-group-item-action">내 댓글</a>
+              
+              
+            </div> 
+            
+      </div>
+<div class="col-md-9">
+          <div class="card">
+              <div class="card-body">
+                  <div class="row">
+                      <div class="col-md-12">
+                          <h4>이미지 업로드</h4>
+                          <hr>
+                      </div>
+                  </div>
 
+
+ <c:forEach var="profileImageList" items="${profileImageList}">
+    <span style="width:250px; height:300px;" onclick="test('${profileImageList.p_route}', '${profileImageList.m_id}')">
+       <img id="${profileImageList.p_route}" class="myImg" src="${profileImageList.p_route}" style="width:200px; height:250px;">
+   	</span>
+</c:forEach>
 
 <!-- The Modal -->
+<form method="post" id="modalBtn">
 <div id="myModal" class="modal">
   <span class="close">&times;</span>
   <img class="modal-content" id="img01">
-  <div style="text-align : center;">
-  		<button class="btn btn-light">대표이미지 등록</button>
-  		<button class="btn btn-light">이미지 삭제</button>
+   <div style="text-align : center;">
+        <button class="btn btn-light" onclick="selectMainImage(this.form)">대표이미지 등록</button>
+        <button class="btn btn-light" onclick="deleteImage(this.form)">이미지 삭제</button>
+        <div>
+         <input id="m_id" type="hidden" class="form-control" name="m_id">
+         <input id="p_route" type="hidden" class="form-control" name="p_route"> 
+         </div>
+          
   </div>
-  <div id="caption">
-
-  </div>
-  
+  <div id="caption"></div>
 </div>
+</form>
 
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
 
-
-<script>
-// Get the modal
-var modal = document.getElementById('myModal');
-
-// Get the image and insert it inside the modal - use its "alt" text as a caption
-var img = document.getElementByClass('myImg');
-var modalImg = document.getElementById("img01");
-var captionText = document.getElementById("caption");
-img.onclick = function(){
-  modal.style.display = "block";
-  modalImg.src = this.src;
-  captionText.innerHTML = this.alt;
-}
-
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() { 
-  modal.style.display = "none";
-}
-</script>
 
 </body>
 </html>
