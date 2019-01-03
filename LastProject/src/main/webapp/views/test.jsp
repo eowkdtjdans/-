@@ -55,8 +55,8 @@ function getIpCountry() {
 	<a href="../ModifyPwdMember.do">비밀번호 수정</a>
 	<a href="admin/testAdmin.jsp">관리자 페이지</a>
 	<a href="../testImage.do">테스트이미지</a>
-	
-	<a href="/naverLogin.do">네이버 로그인</a>
+	<a href="../naverLogin.do">네이버 로그인</a>
+	<a href="../NaverRegister.do">네이버회원가입</a>
 	<p>세션 : [${m_id}] 앙기무리</p>
 	
 </body>

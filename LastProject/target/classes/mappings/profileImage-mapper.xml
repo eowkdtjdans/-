@@ -24,9 +24,11 @@
 	</insert>
 	
 	<select id="getProfileImageList" parameterType="String" resultType="profileImg">
-			SELECT P_ROUTE, M_ID, P_MAIN FROM PROFILE_IMAGE WHERE M_ID = #{m_id}
+			SELECT P_ROUTE, M_ID, P_MAIN FROM PROFILE_IMAGE WHERE M_ID = #{m_id} ORDER BY P_MAIN DESC
 	</select>
 	
+	
+		
 	<delete id="deleteProfileImage" parameterType="profileImg">
 		   DELETE PROFILE_IMAGE WHERE P_ROUTE = #{p_route} AND M_ID = #{m_id}
 	</delete>

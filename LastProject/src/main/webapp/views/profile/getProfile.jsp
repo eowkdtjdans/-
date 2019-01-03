@@ -35,10 +35,12 @@
               <a href="../../ModifyPhoneMember.do" class="list-group-item list-group-item-action">핸드폰 변경</a>
               <a href="../../ModifyAddressMember.do" class="list-group-item list-group-item-action">주소 변경</a>
               <a href="../../profileImageInsert.do" class="list-group-item list-group-item-action">이미지 업로드</a>
-              <a href="../../profileImageList.do?m_id=${member.m_id }" class="list-group-item list-group-item-action">이미지 관리</a>
+              <a href="../../profileImageList.do?m_id=${member.m_id }" class="list-group-item list-group-item-action">프로필 이미지 관리</a>
+              <a href="../../HostImageList.do?m_id=${member.m_id }" class="list-group-item list-group-item-action">호스트 이미지 관리</a>
               <a href="#" class="list-group-item list-group-item-action">내 글</a>
               <a href="#" class="list-group-item list-group-item-action">내 댓글</a>
               
+
               
             </div> 
             
@@ -55,11 +57,12 @@
 		            <div class="row">
 		                <div class="col-md-12">
 		                    <form>
-		                    	<!--   <div class="form-group row">
-                                <label for="username" class="col-4 col-form-label">이미지</label>  -->
                                 <div class="col-8" >  <!-- style=" text-align:center; margin-left: 120px -->
                                 <img src="${profile.p_route }" style="width:250px;" class="rounded" /> <!--  -->
-                           <!--      </div> -->
+                                 </div> 
+                                   <hr />
+                                    <div class="col-8" >  <!-- style=" text-align:center; margin-left: 120px -->
+                                <img src="${hostImg.h_route }" style="width:250px;" class="rounded" /> <!--  -->
                                  </div> 
                                    <hr />
                               <div class="form-group row">

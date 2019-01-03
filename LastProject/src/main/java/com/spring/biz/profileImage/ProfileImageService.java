@@ -3,6 +3,8 @@ package com.spring.biz.profileImage;
 import java.util.List;
 import java.util.Map;
 
+import com.spring.biz.hostImage.HostImageVO;
+
 public interface ProfileImageService {
 	void ProfileImageInsert(Map<String, String> profileImageMap);
 	
@@ -21,5 +23,6 @@ public interface ProfileImageService {
 	void updateMainProfileImage(ProfileImageVO vo);
 
 	void mainProfileImageInit(ProfileImageVO vo);
+
 	
 }
