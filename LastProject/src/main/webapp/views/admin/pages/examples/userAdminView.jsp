@@ -43,6 +43,14 @@
 		-webkit-line-clamp: 3;
 		-webkit-box-orient: vertical;
 	}
+	.subject {
+		display: block;
+		text-overflow:ellipsis;
+		white-space:nowrap;
+		word-wrap:normal;
+		width:800px;
+		overflow:hidden;
+	}
 </style>
 </head>
 <body class="hold-transition sidebar-mini">
@@ -520,7 +528,7 @@
 												<div class="user-block">
 													<img class="img-circle img-bordered-sm" src="${list.p_route}" alt="user image" onerror='this.src="/views/img/people/fuckyou.jpg"'>
 													<span class="username">
-														<a href="/getLocalAdvice.do?l_idx=${list.l_idx }&m_id=${list.m_id}">${list.l_subject}</a>
+														<a href="/getLocalAdvice.do?l_idx=${list.l_idx }&m_id=${list.m_id}" class="subject">${list.l_subject}</a>
 													</span>
 													<fmt:formatDate var="l_date" value="${list.l_date}" pattern="yyyy-MM-dd a hh:mm:ss"/>
 													<span class="description">
@@ -541,8 +549,6 @@
 													</span>
 												</p>
 
-												<input class="form-control form-control-sm" type="text" placeholder="Type a comment">
-
 											</div>
 											<!-- /.post -->
 											</c:forEach>
@@ -555,15 +561,13 @@
 												<div class="user-block">
 													<img class="img-circle img-bordered-sm" src="${list.p_route}" alt="user image" onerror='this.src="/views/img/people/fuckyou.jpg"'>
 													<span class="username">
-														<a href="/getLocalAdvice.do?l_idx=${list.l_idx }&m_id=${list.m_id}">${list.lc_content}</a>
+														<a href="/getLocalAdvice.do?l_idx=${list.l_idx }&m_id=${list.m_id}" class="subject">${list.lc_content}</a>
 													</span>
 													<fmt:formatDate var="lc_date" value="${list.lc_date}" pattern="yyyy-MM-dd a hh:mm:ss"/>
 													<span class="description">
 														${lc_date}
 													</span>
 												</div>
-												<!-- /.user-block -->
-												<p id="content">${list.lc_content}</p>
 
 											</div>
 											<hr>
