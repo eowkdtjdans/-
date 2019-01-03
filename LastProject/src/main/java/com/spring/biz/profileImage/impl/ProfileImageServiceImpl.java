@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.spring.biz.hostImage.HostImageVO;
 import com.spring.biz.profileImage.ProfileImageService;
 import com.spring.biz.profileImage.ProfileImageVO;
 
@@ -59,5 +60,6 @@ public class ProfileImageServiceImpl implements ProfileImageService{
 	public void mainProfileImageInit(ProfileImageVO vo) {
 		profileImageDAO.mainProfileImageInit(vo);
 	}
+
 
 }
