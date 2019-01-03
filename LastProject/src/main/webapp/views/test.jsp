@@ -43,7 +43,6 @@ function getIpCountry() {
 	
 	<a href="#" id="main">Main테스트</a>
 	
-	
 	<a href="../getTravelersList.do">travelers</a>
 	<a href="../insertMember.do">Register</a> 
 	<a href="../loginMember.do">Login</a> 

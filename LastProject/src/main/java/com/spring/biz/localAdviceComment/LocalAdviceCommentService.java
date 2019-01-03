@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.spring.biz.localAdvice.LocalAdviceVO;
 import com.spring.biz.member.MemberVO;
+import com.spring.biz.profileImage.ProfileImageVO;
 
 
 public interface LocalAdviceCommentService {
@@ -33,5 +34,23 @@ public interface LocalAdviceCommentService {
 	
 	//대댓글을 위한 select
 	List<LocalAdviceCommentVO> selectdetdetComment(LocalAdviceCommentVO vo);
+	
+	//프로필이미지 나오게하기
+	String selectImage(ProfileImageVO vo);
+	
+	//댓댓의 번호뽑기
+	int selectdetdet(String lc_content);
+	
+	//댓댓의 lc_idx뽑아오기
+	int detdetlc_idx();
+	
+	//댓댓의 lc_idx를 이용해서 한줄조회
+	List<LocalAdviceCommentVO> selectdetdetList(String detdetlc_idx);
+	
+	//댓댓 수정
+	void updatedetdet(LocalAdviceCommentVO vo);
+	
+	//댓댓 삭제
+	void deletedetdet(LocalAdviceCommentVO vo);
 	
 }

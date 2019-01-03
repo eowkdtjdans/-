@@ -52,6 +52,30 @@
 	<select id="selectdetdetComment" parameterType="localadvicecomment" resultType="localadvicecomment">
 		SELECT * FROM L_COMMENT WHERE DETDET=(SELECT LC_IDX FROM L_COMMENT WHERE LC_IDX=#{lc_idx})
 	</select>
+	
+	<select id="selectImage" parameterType="profileImg" resultType="String">
+		SELECT P_ROUTE FROM PROFILE_IMAGE WHERE M_ID=#{m_id} AND P_MAIN=1
+	</select>
+	
+	<select id="selectdetdet" parameterType="String" resultType="int">
+		SELECT DISTINCT DETDET FROM L_COMMENT WHERE LC_CONTENT=#{lc_content}
+	</select>
+	
+	<select id="detdetlc_idx" resultType="int">
+		SELECT L_COMMENT_SEQ.CURRVAL FROM DUAL
+	</select>
+	
+	<select id="selectdetdetList" resultType="localadvicecomment" parameterType="String">
+		SELECT L.*, P.* FROM L_COMMENT L, PROFILE_IMAGE P WHERE L.M_ID=P.M_ID AND L.LC_IDX=#{lc_idx} AND P.P_MAIN=1
+	</select>
+	
+	<update id="updatedetdet" parameterType="localadvicecomment">
+		UPDATE L_COMMENT SET LC_CONTENT=#{lc_content} WHERE LC_IDX=#{lc_idx}
+	</update>
+	
+	<delete id="deletedetdet" parameterType="localadvicecomment">
+		DELETE L_COMMENT WHERE LC_IDX=#{lc_idx}
+	</delete>
 </mapper>
 
 

@@ -81,7 +81,7 @@ td {
    width: 20px;
    height: 20px;
 }
- 
+
 .textareaComment {
    width: 1000px;
 }
@@ -172,7 +172,7 @@ table .noline {
          console.log('${focus_idx}');
 
          $("#" + "${focus_idx}").attr("tabindex", -1).focus();
-      <%session.removeAttribute("focus_idx");%>
+		<%session.removeAttribute("focus_idx");%>
    }
 
    });
@@ -212,7 +212,7 @@ table .noline {
       alert("good " + good);
       alert("l_idx : " + l_idx);
       
-         $.ajax({
+      	$.ajax({
                async : true,
                type : "POST",
                dataType : "json",
@@ -226,8 +226,8 @@ table .noline {
                   $("#span").empty();
                   $("#span").text(good + data.count + " 명이 좋아합니다.");
                   $("#span").append("&emsp;<a id='bad' href='#' onclick='bad()'><img src='views/img/good.png' style='width: 20px; height: 20px;'> 좋아요취소</a>");
-                  }
-               })
+               	}
+           	 })
    };
 
    
@@ -259,22 +259,24 @@ table .noline {
 
    function detdetgo(lc_idx, p_route) {
       alert("댓글속댓글");
-      alert("p_route : " + p_route);
-      
+		alert("p_route : " + p_route);
+		var p_route = String(p_route);
+		//var p_route =  parseInt(p_route);
       var textareaTag = "&emsp;&emsp;<div id='div"+lc_idx+"'><img id='bentarrow' src='views/img/bentarrow.png'><textarea class='textareaComment' id='textareaComment" + lc_idx + "' rows='3' cols='134' name='lc_content'></textarea>"
-            + "&emsp;&emsp;<button type='button' class='btn btn-outline-secondary' onclick='json_insertComment("+ lc_idx +")'>댓글입력</button></div>";
+            + "&emsp;&emsp;<button type='button' class='btn btn-outline-secondary' onclick='json_insertComment("+ lc_idx +")'>댓글입력</div>";
       $("#" + lc_idx).append(textareaTag);
-      var btn2 = document.getElementById('btn2');
-      btn2.disabled = 'disabled';
+      /* var btn2 = document.getElementById('btn2');
+      btn2.disabled = 'disabled'; */
    }
 
    function json_insertComment(lc_idx) {
       alert("댓글속댓글 json방식으로");
       alert("lc_idx : " + lc_idx);
-      //alert("p_route : " + p_route);
+     
+      //alert("p_route : " + ${list.p_route});
       var lc_content = $("#textareaComment" + lc_idx).val();
       alert("lc_content : " + lc_content);
-   
+	
       var lc_idx = JSON.stringify(lc_idx);
       var l_idx = ${getLocalAdvice.l_idx };
       alert("l_idx : " + l_idx);
@@ -289,22 +291,119 @@ table .noline {
 
                success : function(data) {
                   alert("ajax성공");
-                 alert("lc_idx : " + lc_idx);
-              alert("m_id : " + data.m_id);
-              
-                  var values = data.selectdetdetComment;
-
-                  $("#div"+lc_idx).remove();
-                
-                  //var detdetDiv = "<tr><td>&emsp;&emsp;<img src='${list.p_route }' class='rounded-circle' id='profileImage3' onerror='this.src='../views/img/people/fuckyou.jpg''>${list.m_id}${list.p_route}<br>&emsp;&emsp;"+value.lc_content+"</td></tr>";
-                  var detdetDiv = "<tr><td>&emsp;&emsp;<img src='${list.p_route }' class='rounded-circle' id='profileImage3' onerror='this.src='../views/img/people/fuckyou.jpg''>"+data.m_id+"<br>&emsp;&emsp;"+lc_content+"</td></tr>";
-                  $("#tr"+lc_idx).after(detdetDiv);
-                 
-
+      			  alert("lc_idx : " + lc_idx);
+				  alert("글작성한m_id : " + data.m_id);
+				  alert("현재로그인한m_id : " + "${member.m_id}");
+				  alert("p_route : " + data.p_route);
+				  //alert("detdetnum : " + data.detdetnum);
+                  var values = data.selectdetdetComment; 
+				  alert(values);
+				  alert("detdetlc_idx : " + data.detdetlc_idx);
+			
+				  
+                  $("#div"+lc_idx).remove();                                                                              // onerror="this.src="../views img people fuckyou.jpg'' 크롬에 나온거
+                                                                                                                          // onerror='this.src="../views/img/people/fuckyou.jpg"' 정상         
+                  //var detdetDiv = "<tr><td>&emsp;&emsp;<img src='${list.p_route }' class='rounded-circle' id='profileImage3' onerror='this.src='../views/img/people/fuckyou.jpg''>${list.m_id}${list.p_route}<br>&emsp;&emsp;"+value.lc_content+"</td></tr>"; '${list.m_id eq member.m_id}'
+                  var detdetDiv = "<tr class='trclass"+lc_idx+"'><td class='tdclass"+data.detdetlc_idx+"'>&emsp;&emsp;<img src="+data.p_route+" class='rounded-circle' id='profileImage3' onerror='this.src='../views/img/people/fuckyou.jpg'>"+data.m_id+"<button type='button' class='btn btn-outline-secondary' onclick='updatedetdet("+data.detdetlc_idx+", "+lc_idx+")'>수정</button><button type='button' class='btn btn-outline-secondary'onclick='deletedetdet("+data.detdetlc_idx+")'>삭제</button><br>&emsp;&emsp;"+lc_content+"</td></tr>";
+                  		                 			
+                  		$(".trclass"+lc_idx).last().after(detdetDiv);
+						
+                  		
+					
                }
             })
    }
    
+   
+	function updatedetdet(detdetlc_idx, detdet){
+		alert("update뎃뎃");
+		alert(detdetlc_idx);
+		alert(detdet);
+		
+		/* $(".trclass"+detdet).last().empty();
+		$(".trclass"+detdet).last().append("<tr><td>h</td></tr>"); */
+	
+		var detdetlc_idx = JSON.stringify(detdetlc_idx);
+				      
+	     $.ajax({
+	           async : true,
+	           type : "POST",
+	           dataType : "json",
+	           data : detdetlc_idx,
+	           contentType : "application/json; charset=UTF-8",
+	           url : "/updatedetdet.do",
+
+	           success : function(detdetList) {
+	        	   alert("성공부분");
+				   alert(detdetList.lc_idx);
+				   alert(detdetList.lc_content);
+				   alert(detdetList.m_id);
+
+				   $(".tdclass"+detdetlc_idx).empty();  //"&emsp;&emsp;<img src="+detdetList.p_route+" class='rounded-circle' id='profileImage3' onerror='this.src='../views/img/people/fuckyou.jpg'>"+detdetList.m_id+"<button type='button' class='btn btn-outline-secondary' onclick='updatedetdetgo("+data.detdetlc_idx+", "+lc_idx+")'>수정완료</button><button type='button' class='btn btn-outline-secondary'onclick='deletedetdet("+data.detdetlc_idx+")'>삭제</button><br>&emsp;&emsp;"+detdetList.lc_content+"
+				   $(".tdclass"+detdetlc_idx).append("&emsp;&emsp;<img src="+detdetList.p_route+" class='rounded-circle' id='profileImage3' onerror='this.src='../views/img/people/fuckyou.jpg'>"+detdetList.m_id+"<button type='button' class='btn btn-outline-secondary' onclick='updatedetdetgo("+detdetList.lc_idx+","+detdetList.lc+")'>수정완료</button><button type='button' class='btn btn-outline-secondary'onclick='deletedetdet("+detdetList.lc_idx+")'>삭제</button><br>&emsp;&emsp;<textarea id='textarea" + detdetList.lc_idx + "'  rows='3' cols='134' name='lc_content'>"+detdetList.lc_content+"</textarea></td>");
+				   //$(".trclass"+detdet).last().append("<tr class='trclass"+detdet+"'><td class='tdclass'>+6</tr>");
+				 
+	           }
+	        }) 		 		
+	}
+	
+	
+	
+	function updatedetdetgo(detdetlc_idx){
+		alert("실질적인 업데이트");
+		alert("detdetlc_idx : " + detdetlc_idx);
+		var lc_content = $("#textarea"+detdetlc_idx).val();
+		alert("lc_content : " + lc_content);
+		
+		var detdetlc_idx = JSON.stringify(detdetlc_idx);
+		
+		$.ajax({
+	           async : true,
+	           type : "POST",
+	           dataType : "json",
+	           data : detdetlc_idx,
+	           contentType : "application/json; charset=UTF-8",
+	           url : "/updatedetdetgo.do?lc_content="+lc_content,
+
+	           success : function(data) {
+	        	   alert("성공부분");
+	        	   alert(data.lc_idx);
+				   alert(data.lc_content);
+				   alert(data.m_id);
+				   alert(data.p_route);
+				   
+				   $(".tdclass"+detdetlc_idx).empty();
+				   $(".tdclass"+detdetlc_idx).append("&emsp;&emsp;<img src="+data.p_route+" class='rounded-circle' id='profileImage3' onerror='this.src='../views/img/people/fuckyou.jpg'>"+data.m_id+"<button type='button' class='btn btn-outline-secondary' onclick='updatedetdet("+data.lc_idx+","+data.detdet+")'>수정</button><button type='button' class='btn btn-outline-secondary'onclick='deletedetdet("+data.lc_idx+")'>삭제</button><br>&emsp;&emsp;"+data.lc_content+"    ");
+				 
+	           }
+	        }) 		 	
+		
+	}
+	
+	
+	function deletedetdet(detdetlc_idx){
+		alert("deletedetdet");
+		alert("detdetlc_idx : " + detdetlc_idx);
+		var detdetlc_idx = JSON.stringify(detdetlc_idx);
+		
+		$.ajax({
+	           async : true,
+	           type : "POST",
+	           dataType : "json",
+	           data : detdetlc_idx,
+	           contentType : "application/json; charset=UTF-8",
+	           url : "/deletedetdetgo.do",
+
+	           success : function(data) {
+	        	   alert("성공부분");
+	        	   alert(data.detdetlc_idx);
+	        	   
+	        	   $(".tdclass"+data.detdetlc_idx).remove();
+				 
+	           }
+	        }) 		 	
+		
+	}
 
    
 </script>
@@ -429,7 +528,7 @@ table .noline {
                   <c:forEach var="list" items="${getLocalAdviceCommentList}">
                      <c:choose>
                         <c:when test="${list.detdet eq 0 }">
-                           <tr id="tr${list.lc_idx}">
+                           <tr id="tr${list.lc_idx}" class="trclass${list.lc_idx}">
                               <td class="update" id="td${list.lc_idx}"><img src="${list.p_route }" class="rounded-circle" id="profileImage2" onerror='this.src="../views/img/people/fuckyou.jpg"'>
                                  &nbsp;&nbsp;${list.m_id }&emsp;&emsp;${list.lc_date }<span id="focusing"> lc_idx : ${list.lc_idx }&emsp;</span> 
                                  <c:if test="${!empty member.m_id }">
@@ -437,11 +536,12 @@ table .noline {
                                  </c:if> 
                                  <c:if test="${list.m_id eq member.m_id}">
                                     <!-- 조건에 로그인한아이디와 프로필의 m_id가 같으면 -->
-                                    <button type="button" class="btn btn-outline-secondary"
+                                    <button type="button" class="btn btn-outline-secondary" id="btn1"  
                                        onclick="update_button('${list.lc_idx}')">수정</button>
-                                    <button type="button" class="btn btn-outline-secondary"
+                                    <button type="button" class="btn btn-outline-secondary" id="btn1"  
                                        onclick="delete_button('${list.lc_idx}','${getLocalAdvice.l_idx }')">삭제</button>
                                     <input type="hidden" name="lc_idx" value="${list.lc_idx }">
+                                 
                                  </c:if>
                                  <div id="${list.lc_idx}">
                                     <br>${list.lc_content }<br> <br>
@@ -450,15 +550,18 @@ table .noline {
                            </tr>
                         </c:when>
                         <c:otherwise>
+                                           
                            <script>
                            function abc(detdet) {
                               $(document).ready(function(){
-                                 $("#tr"+detdet).after("<tr><td>&emsp;&emsp;<img src='${list.p_route }' class='rounded-circle' id='profileImage3' onerror='this.src='../views/img/people/fuckyou.jpg''>${list.m_id}${list.p_route}<br>&emsp;&emsp;${list.lc_content}</td></tr>");
+                                 //$("#tr"+detdet).after("<tr class='trclass"+detdet+"'><td class='tdclass'>&emsp;&emsp;<img src='${list.p_route }' class='rounded-circle' id='profileImage3' onerror='this.src='../views/img/people/fuckyou.jpg''>${list.m_id}${list.p_route}<c:if test='${list.m_id eq member.m_id}'><button type='button' class='btn btn-outline-secondary' onclick='updatedetdet("+${list.lc_idx}+",${list.lc_content })'>수정</button><button type='button' class='btn btn-outline-secondary'onclick='deletedetdet()'>삭제</button></c:if><br>&emsp;&emsp;${list.lc_content}__${list.lc_idx}</td></tr>");
+                                 $("#tr"+detdet).after("<tr class='trclass"+detdet+"'><td class='tdclass"+${list.lc_idx}+"'>&emsp;&emsp;<img src='${list.p_route }' class='rounded-circle' id='profileImage3' onerror='this.src='../views/img/people/fuckyou.jpg''>${list.m_id}<c:if test='${list.m_id eq member.m_id}'><button type='button' id='btn3' class='btn btn-outline-secondary' onclick='updatedetdet(${list.lc_idx}, "+detdet+")'>수정</button><button type='button' id='btn4' class='btn btn-outline-secondary'onclick='deletedetdet(${list.lc_idx})'>삭제</button></c:if><br>&emsp;&emsp;${list.lc_content}__${list.lc_idx}</td></tr>");
                               })
                            }
 
                               abc("${list.detdet}");
                            </script>
+                           
                         </c:otherwise>
                      </c:choose>
                   </c:forEach>
