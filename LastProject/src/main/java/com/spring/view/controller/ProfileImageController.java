@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.spring.biz.hostImage.HostImageService;
+import com.spring.biz.hostImage.HostImageVO;
 import com.spring.biz.member.MemberVO;
 import com.spring.biz.profile.ProfileService;
 import com.spring.biz.profile.ProfileVO;
@@ -28,6 +30,8 @@ public class ProfileImageController {
 	private FileUploadService fileUploadService;
 	@Autowired
 	private ProfileService profileService;
+	@Autowired
+	private HostImageService hostImageService;
 	public ProfileImageController () {
 		System.out.println("ProfileImageController 컨트롤러");
 	}
@@ -141,7 +145,7 @@ public class ProfileImageController {
 	/* ========================================================================================================== */
 	
 	@RequestMapping(value="uploadHostImg.do", method=RequestMethod.POST)
-	public String uploadHostImg(@RequestParam("hostImg") MultipartFile hostImg, @RequestParam("m_id") String m_id) {
+	public String uploadHostImg(MemberVO vo, HostImageVO hostimageVO, HttpSession session, @RequestParam("uploadHostImg") MultipartFile hostImg, @RequestParam("m_id") String m_id) {
 		
 		String url = fileUploadService.fileUpload(hostImg);
 		
@@ -155,10 +159,16 @@ public class ProfileImageController {
 		if(hostMainCnt > 0) {
 			hostImageMap.put("h_main", h_main);
 			profileImageService.HostImageInsert(hostImageMap);
+			hostimageVO.setM_id(vo.getM_id());
+			HostImageVO hostimageVO2 = hostImageService.getHostImage(hostimageVO);
+			session.setAttribute("hostImg", hostimageVO2);
 		} else {
 			h_main = "1";
 			hostImageMap.put("h_main", h_main);
 			profileImageService.HostImageInsert(hostImageMap);
+			hostimageVO.setM_id(vo.getM_id());
+			HostImageVO hostimageVO2 = hostImageService.getHostImage(hostimageVO);
+			session.setAttribute("hostImg", hostimageVO2);
 		}
 		
 		return "redirect:/sub2.do";

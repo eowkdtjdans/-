@@ -213,8 +213,7 @@ $(function(){
                </div></li>
          
           
-          <li><a href="#about">쪽지</a></li>
-          <li><a href="#portfolio">마이 프로필</a></li>      
+          <li><a href="#portfolio">포트폴리오</a></li>      
         <!--   <li><a href="../../getReceiveMessageList.do" id="noticeMessageCount"></a></li> -->
           <li><a href="../../findIdMember.do">아이디</a></li >
           <li><a href="../../findPwdMember.do">비밀번호</a></li>
@@ -233,6 +232,7 @@ $(function(){
 <section id="about">
       <div class="container">
         <header class="section-header">
+        	<p>${hostImg.h_route }</p>
            <p>${profile.p_route}</p>
            <p>${member.m_id }</p>
            <p>${member.m_pwd }</p>

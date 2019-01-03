@@ -55,11 +55,12 @@
 		            <div class="row">
 		                <div class="col-md-12">
 		                    <form>
-		                    	<!--   <div class="form-group row">
-                                <label for="username" class="col-4 col-form-label">이미지</label>  -->
                                 <div class="col-8" >  <!-- style=" text-align:center; margin-left: 120px -->
                                 <img src="${profile.p_route }" style="width:250px;" class="rounded" /> <!--  -->
-                           <!--      </div> -->
+                                 </div> 
+                                   <hr />
+                                    <div class="col-8" >  <!-- style=" text-align:center; margin-left: 120px -->
+                                <img src="${hostImg.h_route }" style="width:250px;" class="rounded" /> <!--  -->
                                  </div> 
                                    <hr />
                               <div class="form-group row">
