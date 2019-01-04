@@ -30,7 +30,7 @@ import com.spring.biz.member.MemberVO;
 import com.spring.biz.profileImage.ProfileImageVO;
 import com.spring.pagination.PagingVO;
 
-@Controller
+@Controller 
 @SessionAttributes({"key", "getLocalAdviceCommentList"})
 public class LocalAdviceController {
    HttpSession session;

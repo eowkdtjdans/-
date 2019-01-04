@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.spring.biz.com.admin.AdminService;
+import com.spring.biz.hostImage.HostImageService;
+import com.spring.biz.hostImage.HostImageVO;
 import com.spring.biz.member.Email;
 import com.spring.biz.member.EmailSender;
 import com.spring.biz.member.MemberService;
@@ -34,6 +36,8 @@ public class MemberController {
 	@Autowired 
 	private MessageService messageService;
 	@Autowired
+	private HostImageService hostImageService;
+	@Autowired
 	private Email email;
 	@Autowired
 	private EmailSender emailSender;
@@ -44,6 +48,10 @@ public class MemberController {
 	
 	//======================================================================
 	//회원가입
+	@RequestMapping(value="/NaverRegister.do") 
+		public String naverRegister(MemberVO vo) {
+			return "views/member/NaverRegister.jsp";
+		}
 	@RequestMapping(value = "/insertMember.do", method=RequestMethod.GET)
 	public String insertMemberGet(MemberVO vo) {
 		System.out.println("=======겟방식");
@@ -72,16 +80,20 @@ public class MemberController {
 	
 	//로그인
 	@RequestMapping(value="/loginMember.do", method=RequestMethod.POST) // @RequestParam("m_pwd") String m_pwd,
-	public String loginPost(MemberVO vo, HttpSession session, ProfileVO profileVO, MessageRecieveVO receivevo) throws Exception {
+	public String loginPost(MemberVO vo, HttpSession session, ProfileVO profileVO, MessageRecieveVO receivevo, HostImageVO hostimageVO) throws Exception {
 		System.out.println(">> 포스트방식 로그인처리");
 		System.out.println("m_id : " + vo.getM_id());
 		System.out.println("m_pwd : " + vo.getM_pwd());
 		
 		MemberVO vo2 = memberService.loginMember(vo, session);
-		receivevo.setReceive_receiver(vo.getM_id());
-		ProfileVO profileVO2 = profileService.getProfile2(profileVO, session);
 		profileVO.setM_id(vo.getM_id());
+		ProfileVO profileVO2 = profileService.getProfile2(profileVO, session);
+		
+		receivevo.setReceive_receiver(vo.getM_id());
 		MessageRecieveVO receivevo2 = messageService.getReceiveMessage2(receivevo, session);
+		
+		hostimageVO.setM_id(vo.getM_id());
+		HostImageVO hostimageVO2 = hostImageService.getHostImage(hostimageVO);
 		
 		System.out.println("vo2.getM_id : " + vo2.getM_id());
 		System.out.println("vo2.getM_pwd : " + vo2.getM_pwd());
@@ -92,7 +104,7 @@ public class MemberController {
 			session.setAttribute("member", vo2);
 			session.setAttribute("profile", profileVO2);
 			session.setAttribute("messageInfo", receivevo2);
-			
+			session.setAttribute("hostImg", hostimageVO2);
 			return "redirect:/sub2.do";
 		} else {
 			System.out.println("=====없는 아이디=====");

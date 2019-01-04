@@ -3,11 +3,10 @@ package com.spring.biz.profileImage.impl;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.spring.biz.hostImage.HostImageVO;
 import com.spring.biz.profileImage.ProfileImageService;
 import com.spring.biz.profileImage.ProfileImageVO;
 
@@ -46,5 +45,21 @@ public class ProfileImageServiceImpl implements ProfileImageService{
 	
 		return 	profileImageDAO.getProfileImageList(m_id);
 	}
+
+	@Override
+	public void deleteProfileImage(ProfileImageVO vo) {
+		profileImageDAO.deleteProfileImage(vo);
+	}
+
+	@Override
+	public void updateMainProfileImage(ProfileImageVO vo) {
+		profileImageDAO.updateMainProfileImage(vo);
+	}
+
+	@Override
+	public void mainProfileImageInit(ProfileImageVO vo) {
+		profileImageDAO.mainProfileImageInit(vo);
+	}
+
 
 }

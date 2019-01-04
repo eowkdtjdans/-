@@ -32,15 +32,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.github.scribejava.core.model.OAuth2AccessToken;
 import com.spring.biz.loginAPI.NaverLoginBO;
-
+@SessionAttributes("result")
 @Controller
 public class LoginAPIController {
-	
-	@Autowired
+   
+   @Autowired
     private GoogleConnectionFactory googleConnectionFactory;
     @Autowired
     private OAuth2Parameters googleOAuth2Parameters;
@@ -63,7 +64,7 @@ public class LoginAPIController {
     // ------------------------------------ 구글 콜백 ----------------------------------------
     
     @RequestMapping(value = "/googleCallback.do", method = { RequestMethod.GET, RequestMethod.POST })
-    public String doSessionAssignActionPage(HttpServletRequest request) throws Exception {
+    public String doSessionAssignActionPage(HttpServletRequest request, HttpSession session) throws Exception {
  
         String code = request.getParameter("code");
  
@@ -91,7 +92,11 @@ public class LoginAPIController {
         System.out.println("User Email : " + profile.getAccountEmail());
         System.out.println("User Profile : " + profile.getImageUrl());
         System.out.println("User Birth : " + profile.getBirthday());
- 
+        System.out.println("user Gender : " + profile.getGender());
+        session.setAttribute("googleProfileId", profile.getId());
+        session.setAttribute("googleProfileName", profile.getDisplayName());
+        session.setAttribute("googleProfileEmail", profile.getAccountEmail());
+        session.setAttribute("googleProfileBirth", profile.getBirthday());
         // Access Token 취소
         try {
             System.out.println("Closing Token....");
@@ -167,27 +172,8 @@ public class LoginAPIController {
         System.out.println(naverLoginBO.getUserProfile(oauthToken).toString());
         model.addAttribute("result", apiResult);
         System.out.println("result"+apiResult);
-        /* 네이버 로그인 성공 페이지 View 호출 */
-//      JSONObject jsonobj = jsonparse.stringToJson(apiResult, "response");
-//      String snsId = jsonparse.JsonToString(jsonobj, "id");
-//      String name = jsonparse.JsonToString(jsonobj, "name");
-//
-//      UserVO vo = new UserVO();
-//      vo.setUser_snsId(snsId);
-//      vo.setUser_name(name);
-//
-//      System.out.println(name);
-//      try {
-//          vo = service.naverLogin(vo);
-//      } catch (Exception e) {
-//          // TODO Auto-generated catch block
-//          e.printStackTrace();
-//      }
-
-
-//      session.setAttribute("login",vo);
-//      return new ModelAndView("user/loginPost", "result", vo);
         
+       // return "/views/loginAPI/NaverCallback.jsp";
         return "/views/loginAPI/NaverCallback.jsp";
     }
     
