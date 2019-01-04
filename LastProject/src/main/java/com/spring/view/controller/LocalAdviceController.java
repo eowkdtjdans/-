@@ -160,7 +160,7 @@ public class LocalAdviceController {
       
       session.getAttribute("searchCondition");
       session.getAttribute("searchKeyword");
-      return "redirect:/getLocalAdviceList.do?cPage=1";
+      return "/getLocalAdviceList.do?cPage=1";
    }
    
    
