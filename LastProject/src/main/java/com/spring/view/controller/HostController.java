@@ -35,7 +35,9 @@ public class HostController {
 	}
 	@RequestMapping(value="insertHost.do", method=RequestMethod.POST)
 	public String insertHostPost(HostVO vo, HttpSession session) {
-		return "views/host/HostInsert.jsp";
+		hostService.insertHost(vo);
+		session.setAttribute("host", vo);
+		return "redirect:/getHostList.do";
 	}
 	
 	@RequestMapping(value="hostGetInfo.do", method=RequestMethod.GET)
