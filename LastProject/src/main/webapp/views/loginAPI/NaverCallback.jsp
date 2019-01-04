@@ -56,8 +56,6 @@ $(document).ready(function() {
 function naverRegister(frm) {
    var str = $("#form").serialize();
    alert(str);
-   var m_name = frm.m_name.value;
-   alert(m_name);
    
 }
 </script>

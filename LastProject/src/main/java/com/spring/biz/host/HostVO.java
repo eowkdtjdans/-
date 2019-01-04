@@ -5,6 +5,8 @@ import java.sql.Date;
 public class HostVO {
 	 // 아이디 
     private String m_id;
+    //이름
+    private String m_name;
     // 최대투숙객 
     private String h_maximumguest;
     // 선호성별 
@@ -27,6 +29,12 @@ public class HostVO {
     
     
     
+	public String getM_name() {
+		return m_name;
+	}
+	public void setM_name(String m_name) {
+		this.m_name = m_name;
+	}
 	public String getM_id() {
 		return m_id;
 	}
@@ -95,11 +103,14 @@ public class HostVO {
 	}
 	@Override
 	public String toString() {
-		return "HostVO [m_id=" + m_id + ", h_maximumguest=" + h_maximumguest + ", h_gender=" + h_gender + ", h_smoke="
-				+ h_smoke + ", h_roomtype=" + h_roomtype + ", h_rule=" + h_rule + ", h_availabledate=" + h_availabledate
-				+ ", h_haspet=" + h_haspet + ", h_haschild=" + h_haschild + ", p_route=" + p_route + ", m_address="
-				+ m_address + "]";
+		return "HostVO [m_id=" + m_id + ", m_name=" + m_name + ", h_maximumguest=" + h_maximumguest + ", h_gender="
+				+ h_gender + ", h_smoke=" + h_smoke + ", h_roomtype=" + h_roomtype + ", h_rule=" + h_rule
+				+ ", h_availabledate=" + h_availabledate + ", h_haspet=" + h_haspet + ", h_haschild=" + h_haschild
+				+ ", p_route=" + p_route + ", m_address=" + m_address + "]";
 	}
+	
+	
+	
 	
     
 	

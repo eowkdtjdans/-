@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,7 +28,21 @@ public class HostController {
 	public HostController() {
 		System.out.println("HostController 실행");
 	}
+	//호스트 게시판 글 작성
+	@RequestMapping(value="insertHost.do", method=RequestMethod.GET)
+	public String insertHost(HostVO vo, HttpSession session) {
+		return "views/host/HostInsert.jsp";
+	}
+	@RequestMapping(value="insertHost.do", method=RequestMethod.POST)
+	public String insertHostPost(HostVO vo, HttpSession session) {
+		return "views/host/HostInsert.jsp";
+	}
 	
+	@RequestMapping(value="hostGetInfo.do", method=RequestMethod.GET)
+	public String hostGetInfo(HttpSession session, @RequestParam("m_id") String m_id) {
+		System.out.println(m_id);
+		return "views/host/getHost.jsp";
+	}
 	@RequestMapping(value="/getHostList.do", method=RequestMethod.POST)
 	public String getTravelersList(Model model, @ModelAttribute("key") String key, @RequestParam("cPage") String cPage) {
 		System.out.println(">> 글목록 조회 처리(getHostList) - POST");
@@ -68,7 +84,7 @@ public class HostController {
 		
 		model.addAttribute("cPage", cPage);
 		
-		return "views/host/Host.jsp";
+		return "views/host/HostList.jsp";
 	}
 	
 	@RequestMapping(value="/getHostList.do", method=RequestMethod.GET)
@@ -111,6 +127,6 @@ public class HostController {
 		
 		model.addAttribute("cPage", cPage);
 		
-		return "views/host/Host.jsp";
+		return "views/host/HostList.jsp";
 	}
 }
