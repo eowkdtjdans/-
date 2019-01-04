@@ -288,9 +288,7 @@ table .noline {
       alert("lc_date : " + lc_date);
  
       //alert("p_route : " + ${list.p_route});
-      
-      
-      
+     
       var lc_content = $("#textareaComment" + lc_idx).val();
       alert("lc_content : " + lc_content);
 	
@@ -339,8 +337,7 @@ table .noline {
                   var detdetDiv = "<tr class='trclass"+lc_idx+"'><td class='tdclass"+data.detdetlc_idx+"'>&emsp;&emsp;<img src="+data.p_route+" class='rounded-circle' id='profileImage3' onerror='this.src='../views/img/people/fuckyou.jpg'>&nbsp;&nbsp;"+data.m_id+"&emsp;"+lc_date+"&emsp;<button type='button' class='btn btn-outline-secondary btn-sm' onclick='updatedetdet("+data.detdetlc_idx+", "+lc_idx+")'>수정</button>&nbsp;<button type='button' class='btn btn-outline-secondary btn-sm'onclick='deletedetdet("+data.detdetlc_idx+")'>삭제</button><br>&emsp;&emsp;"+lc_content+"</td></tr>";
                   		                 			
                   		$(".trclass"+lc_idx).last().after(detdetDiv);
-						
-                  		
+					
 					
                }
             })

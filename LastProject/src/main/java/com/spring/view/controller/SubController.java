@@ -25,12 +25,12 @@ public class SubController {
 			path = "/getTravelersList.do?cPage=1";
 		} else if(searchCondition.equals("find_host")) {
 			System.out.println("host");
-			path = "/getHostList.do?cPage=1";
+			path = "redirect:/getHostList.do?cPage=1";
 		} else if(searchCondition.equals("find_event")) {
 			path = "/getEventList.do?cPage=1";
 		} else if(searchCondition.equals("find_advice")) {
 			System.out.println("/getLocalAdviceList.do?cPage=1");
-			path = "/getLocalAdviceList.do?cPage=1";	
+			path = "redirect:/getLocalAdviceList2.do?cPage=1";	
 		}
 		
 		model.addAttribute("firstLat", lat);
