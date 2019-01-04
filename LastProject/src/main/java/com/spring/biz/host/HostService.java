@@ -7,4 +7,6 @@ public interface HostService {
 	List<HostVO> getHostList(Map<String, Object> map);
 	
 	int countHost(String key);
+
+	void insertHost(HostVO vo);
 }

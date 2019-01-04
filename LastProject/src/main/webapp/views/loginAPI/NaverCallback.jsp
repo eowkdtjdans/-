@@ -40,11 +40,15 @@ $(document).ready(function() {
     var name = ${result}.response.name;
     var email = ${result}.response.email;
     var gender = ${result}.response.gender;
-    $("#m_name").html("환영합니다. "+name+"님");
-    $("#m_id").html(email);
-    $("#m_gender").html(gender);
-  	
-    });
+    $("#naverName").html("환영합니다. "+name+"님");
+    $("#naverId").html(email);
+    $("#naverGender").html(gender);
+   
+    $("#naverName").val(name);
+     $("#naverId").val(email);
+     $("#naverGender").val(gender);
+	
+});
   //location.href = "${pageContext.request.contextPath}/";
 </script>
 

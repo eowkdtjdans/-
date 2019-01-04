@@ -15,22 +15,22 @@ public class SubController {
 	
 	HttpSession session;
 	
-	@RequestMapping(value="/sub.do", method=RequestMethod.POST)
+	@RequestMapping("/sub.do")
 	public String moveController(@RequestParam("searchCondition") String searchCondition, @RequestParam("searchKeyword") String searchKeyword, @RequestParam("lat") String lat, @RequestParam("lng") String lng, Model model) {
 		System.out.println("searchCondition : " + searchCondition);
 		System.out.println("searchKeyword : " + searchKeyword);
 		String path = null;
-		System.out.println("sub.do ==== post방식");
+		
 		if(searchCondition.equals("find_travler")) {
 			path = "/getTravelersList.do?cPage=1";
 		} else if(searchCondition.equals("find_host")) {
 			System.out.println("host");
-			path = "/getHostList.do?cPage=1";
+			path = "redirect:/getHostList.do?cPage=1";
 		} else if(searchCondition.equals("find_event")) {
 			path = "/getEventList.do?cPage=1";
 		} else if(searchCondition.equals("find_advice")) {
 			System.out.println("/getLocalAdviceList.do?cPage=1");
-			path = "/getLocalAdviceList.do?cPage=1";	
+			path = "redirect:/getLocalAdviceList2.do?cPage=1";	
 		}
 		
 		model.addAttribute("firstLat", lat);
@@ -49,11 +49,7 @@ public class SubController {
 		return "views/sub.jsp";
 	}
 	
-	@RequestMapping(value="/sub2.do", method=RequestMethod.POST)
-	public String moveController2() {
-		System.out.println("sub.do 포스트방식");
-		return "views/sub.jsp";
-	}
+
 	
 	
 }

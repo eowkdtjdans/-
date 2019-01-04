@@ -40,8 +40,8 @@ import com.spring.biz.loginAPI.NaverLoginBO;
 @SessionAttributes("result")
 @Controller
 public class LoginAPIController {
-	
-	@Autowired
+   
+   @Autowired
     private GoogleConnectionFactory googleConnectionFactory;
     @Autowired
     private OAuth2Parameters googleOAuth2Parameters;
@@ -64,7 +64,7 @@ public class LoginAPIController {
     // ------------------------------------ 구글 콜백 ----------------------------------------
     
     @RequestMapping(value = "/googleCallback.do", method = { RequestMethod.GET, RequestMethod.POST })
-    public String doSessionAssignActionPage(HttpServletRequest request) throws Exception {
+    public String doSessionAssignActionPage(HttpServletRequest request, HttpSession session) throws Exception {
  
         String code = request.getParameter("code");
  
@@ -92,7 +92,11 @@ public class LoginAPIController {
         System.out.println("User Email : " + profile.getAccountEmail());
         System.out.println("User Profile : " + profile.getImageUrl());
         System.out.println("User Birth : " + profile.getBirthday());
- 
+        System.out.println("user Gender : " + profile.getGender());
+        session.setAttribute("googleProfileId", profile.getId());
+        session.setAttribute("googleProfileName", profile.getDisplayName());
+        session.setAttribute("googleProfileEmail", profile.getAccountEmail());
+        session.setAttribute("googleProfileBirth", profile.getBirthday());
         // Access Token 취소
         try {
             System.out.println("Closing Token....");

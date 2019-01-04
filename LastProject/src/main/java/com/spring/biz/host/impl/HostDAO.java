@@ -21,5 +21,9 @@ public class HostDAO {
 	public int countHost(String key) {
 		return mybatis.selectOne("countHost", key);
 	}
+
+	public void insertHost(HostVO vo) {
+		mybatis.insert("insertHost", vo);
+	}
 	
 }

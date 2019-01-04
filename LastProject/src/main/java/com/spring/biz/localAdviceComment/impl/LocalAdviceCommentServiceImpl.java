@@ -1,6 +1,7 @@
 package com.spring.biz.localAdviceComment.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,8 +21,8 @@ public class LocalAdviceCommentServiceImpl implements LocalAdviceCommentService 
 	}
 	
 	@Override
-	public List<LocalAdviceCommentVO> getLocalAdviceCommentList(int l_idx) {
-		return localAdviceCommentDAO.getLocalAdviceCommentList(l_idx);
+	public List<LocalAdviceCommentVO> getLocalAdviceCommentList(Map<String, Object> map) {
+		return localAdviceCommentDAO.getLocalAdviceCommentList(map);
 	}
 
 	@Override
@@ -97,6 +98,11 @@ public class LocalAdviceCommentServiceImpl implements LocalAdviceCommentService 
 	@Override
 	public void deletedetdet(LocalAdviceCommentVO vo) {
 		localAdviceCommentDAO.deletedetdet(vo);		
+	}
+
+	@Override
+	public void deletedetdetall(String detdet) {
+		localAdviceCommentDAO.deletedetdetall(detdet);		
 	}
 
 

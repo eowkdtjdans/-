@@ -68,6 +68,18 @@
 		padding: 3px 3px;
 		font-weight: bold;
 	} 
+	#detcnt{
+		color: orange;
+	}
+	#profileImage{
+		width: 50px;
+		height: 50px;
+	}
+	#date{
+		font-size: 0.9em;
+		opacity: 0.6;
+	}
+	
 </style>
 
 <script>
@@ -170,8 +182,15 @@
 	      	<c:otherwise>
       		<c:forEach var="list" items="${localAdviceList}">
 	      		<tr>
-	      			<th><a href="../getLocalAdvice.do?l_idx=${list.l_idx }&m_id=${list.m_id}">${list.l_subject }<br>${list.m_id }</a></th>
-	      			<td style="text-align:right">댓글수:${list.lc_cnt} &nbsp;&nbsp;&nbsp;&nbsp; 추천수 : ${list.l_upvote } &nbsp;&nbsp;&nbsp;&nbsp; 조회수 : ${list.l_reviewcount }</td>
+	      			<td style="width: 7%"><img src="${list.p_route }"
+                        class="rounded-circle" id="profileImage"
+                        onerror='this.src="../views/img/people/fuckyou.jpg"'></td>
+	      			<th style="width: 63%">
+	      				<a href="../getLocalAdvice.do?l_idx=${list.l_idx }&m_id=${list.m_id}&cPage=1">${list.l_subject }</a>&nbsp;&nbsp;<span id="detcnt">[${list.lc_cnt}]</span> &emsp;<span id="date">${list.l_date }</span>
+	      				<br>${list.m_id }
+	      			</th>
+	      			<td style="width:15%"> &nbsp;&nbsp;&nbsp;&nbsp; <a id="good" href="#" ><img src="views/img/good.png" style="width: 20px; height: 20px;">  좋아요 ${list.l_upvote }</a> &nbsp;&nbsp;&nbsp;&nbsp; </td>
+	      			<td style="width:15%"><img src="views/img/lookup.PNG" style="width: 20px; height: 20px;"> ${list.l_reviewcount }</td>
 	      		</tr>
       		</c:forEach>
       		</c:otherwise>     		

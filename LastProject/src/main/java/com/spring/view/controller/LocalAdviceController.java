@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.spring.biz.localAdvice.LocalAdviceService;
 import com.spring.biz.localAdvice.LocalAdviceVO;
@@ -29,8 +30,8 @@ import com.spring.biz.member.MemberVO;
 import com.spring.biz.profileImage.ProfileImageVO;
 import com.spring.pagination.PagingVO;
 
-@Controller
-@SessionAttributes("key")
+@Controller 
+@SessionAttributes({"key", "getLocalAdviceCommentList"})
 public class LocalAdviceController {
    HttpSession session;
    @Autowired
@@ -40,7 +41,7 @@ public class LocalAdviceController {
    
    //키값을 받아 localAdvice게시판 전체조회
    @RequestMapping(value="/getLocalAdviceList.do" , method=RequestMethod.POST)
-   public String getLocalAdviceList(Model model, @ModelAttribute("key") String key, @RequestParam("cPage") String cPage, HttpSession session) {
+   public String getLocalAdviceList(Model model, @ModelAttribute("key") String key, @RequestParam("cPage") String cPage, HttpSession session, RedirectAttributes rttr) {
       System.out.println("getLocalAdviceList.do로 왔습니다.");
       PagingVO p = new PagingVO();
       p.setNumPerPage(10);
@@ -70,16 +71,24 @@ public class LocalAdviceController {
       map.put("key", key);
       
       List<LocalAdviceVO> localAdviceList = localAdviceService.getLocalAdviceList(map);
-      
+      rttr.addFlashAttribute("localAdviceList", localAdviceList);
       model.addAttribute("localAdviceList", localAdviceList);
       model.addAttribute("countLocalAdvice", countLocalAdvice);
       model.addAttribute("pvo", p);
+      System.out.println("localAdviceList : " + localAdviceList);
       
       session.setAttribute("cPage", cPage);
       System.out.println(localAdviceList.toString());
-      return "views/localAdvice/localAdvice.jsp";
+      return "/views/localAdvice/localAdvice.jsp";
    
    }
+   
+   /*@RequestMapping(value="/localAdviceListgo.do")
+   public String localAdviceListgo() {
+	   System.out.println("localAdviceListgo로 옴");
+	   
+	   return "/views/localAdvice/localAdvice.jsp";
+   }*/
    
    
    
@@ -121,18 +130,8 @@ public class LocalAdviceController {
       
       session.setAttribute("cPage", cPage);
       
-      return "views/localAdvice/localAdvice.jsp";
+      return "/views/localAdvice/localAdvice.jsp";
    
-   }
-   
-
-   
-   
-   //localAdvice게시판으로 단순 페이지이동
-   @RequestMapping(value="/getLocalAdviceList.do", method=RequestMethod.GET)
-   public String getLocalAdviceList() {
-      System.out.println("겟로컬어드바이스리스트 GET방식");
-      return "views/localAdvice/localAdvice.jsp";
    }
    
    
@@ -140,9 +139,10 @@ public class LocalAdviceController {
    //, method=RequestMethod.GET
    @RequestMapping(value="/writeLocalAdvice.do")
    public String moveWriteLocalAdvice() {
-      return "views/localAdvice/insertLocalAdvice.jsp";
+      return "/views/localAdvice/insertLocalAdvice.jsp";	   
    }
-    
+   
+   
    
    //여기에는 localAdvice게시글작성하고 저장버튼 눌렀을때
    //@RequestMapping(value="/insertLocalAdvice.do")
@@ -167,62 +167,49 @@ public class LocalAdviceController {
    
    
    //로컬어드바이스 게시판에서 상세화면페이지로 이동
-   @RequestMapping(value="/getLocalAdvice.do")
-   public String moveGetLocalAdvice(LocalAdviceVO vo, ProfileImageVO pvo, LocalAdviceCommentVO cvo, Model model, String l_idx, String m_id, HttpServletRequest request) {
-/*     여기서부터 댓글 
-     PagingVO p = new PagingVO();
-      p.setNumPerPage(3);
-      p.setPagePerBlock(10);
-      int countLocalAdviceComment =localAdviceCommentService.countLocalAdviceComment(Integer.parseInt(l_idx));
-      p.setTotalRecord(countLocalAdviceComment);
-      p.setTotalPage();
-   
-      p.setNowPage(1);
-      
-      p.setEnd(p.getNowPage() * p.getNumPerPage());
-      p.setBegin(p.getEnd() - p.getNumPerPage() + 1);
-            
-      int nowPage = p.getNowPage();
-      p.setBeginPage((nowPage - 1) / p.getPagePerBlock() * p.getPagePerBlock() + 1);
-      p.setEndPage(p.getBeginPage() + p.getPagePerBlock() - 1);
-      
-      if (p.getEndPage() > p.getTotalPage()) {
-         p.setEndPage(p.getTotalPage());
-      }
-      
-      여기는 일단 보류
+   @RequestMapping(value="/getLocalAdvice.do", method = {RequestMethod.GET, RequestMethod.POST})
+   public String moveGetLocalAdvice(LocalAdviceVO vo,LocalAdviceCommentVO cvo, Model model, @RequestParam("l_idx") String l_idx, @RequestParam("m_id") String m_id, HttpSession session, RedirectAttributes rttr) {
+	 System.out.println("로컬어드바이스게시판에서 -> 상세페이지");   
+	 
       Map<String, Object> map = new HashMap<>();
-      map.put("begin", p.getBegin());
-      map.put("end", p.getEnd());*/
-
-      
-      
-      
-     //여기서는 댓글 끝 
-      
-      
-      System.out.println("상세페이지");
-      System.out.println("l_idx : " + l_idx);
-      System.out.println("m_id :" + m_id);
-      
-      l_idx = request.getParameter("l_idx");
-      m_id = request.getParameter("m_id");
-      
+      map.put("l_idx", l_idx);
+      System.out.println(l_idx);
+        
       vo.setL_idx(Integer.parseInt(l_idx));
-      LocalAdviceVO getLocalAdvice = localAdviceService.getLocalAdvice(vo);
-      
+      LocalAdviceVO getLocalAdvice = localAdviceService.getLocalAdvice(vo);      
       model.addAttribute("getLocalAdvice", getLocalAdvice);
-      
-      List<LocalAdviceCommentVO> getLocalAdviceCommentList = localAdviceCommentService.getLocalAdviceCommentList(Integer.parseInt(l_idx));      
+
+      List<LocalAdviceCommentVO> getLocalAdviceCommentList = localAdviceCommentService.getLocalAdviceCommentList(map);
       model.addAttribute("getLocalAdviceCommentList", getLocalAdviceCommentList);
+      
+      session.setAttribute("getLocalAdvice", getLocalAdvice);
+      session.setAttribute("getLocalAdviceCommentList", getLocalAdviceCommentList);
+      
+      
+      //모델에 담김내용을 리다이렉트어트리뷰터에 넣어줌
+      rttr.addFlashAttribute("getLocalAdvice", getLocalAdvice);
+      rttr.addFlashAttribute("getLocalAdviceCommentList", getLocalAdviceCommentList);
+      //rttr.addFlashAttribute("l_idx", l_idx);
       System.out.println(getLocalAdviceCommentList);
       
       //여기는 상세페이지 들어오면 해당 게시글 조회수 1씩 증가
       localAdviceService.localAdviceCount(l_idx);
       System.out.println("조회수증가되게찌;;");
-      return "/views/localAdvice/getLocalAdvice.jsp";
+      
+      return "redirect:/getLocalAdvicego.do";
+      //return "/views/localAdvice/getLocalAdvice.jsp";
    }
    
+   
+   @RequestMapping(value="/getLocalAdvicego.do", method = RequestMethod.GET)
+   public String getLocalAdvicego() {
+	   System.out.println("리다이렉트하는 getLocalAdvicego");
+	   
+	   //System.out.println("getLocalAdvice : " + getLocalAdvice);
+	   //System.out.println("getLocalAdviceCommentList : " + getLocalAdviceCommentList);
+	   
+	   return "/views/localAdvice/getLocalAdvice.jsp";
+   }
    
    
    
@@ -242,7 +229,7 @@ public class LocalAdviceController {
       
       model.addAttribute("getLocalAdvice", getLocalAdvice);
       model.addAttribute("getProfileImage", getProfileImage);
-      return "views/localAdvice/updateLocalAdvice.jsp";
+      return "redirect:/views/localAdvice/updateLocalAdvice.jsp";
    }
    
    //localAdvice게시글 수정
@@ -257,14 +244,15 @@ public class LocalAdviceController {
       String m_id = (String)session.getAttribute("m_id");
       System.out.println("m_id가몽미 : " + m_id);
       //return "/getLocalAdviceList.do?cPage="+cPage;
-      return "getLocalAdvice.do?&m_id="+m_id;
+      return "redirect:/getLocalAdvice.do?&m_id="+m_id;
    }
    
    
    //댓글 입력
-   @RequestMapping(value="/insertLocalAdviceComment.do")
-   public String insertLocalAdviceComment(LocalAdviceCommentVO vo, @RequestParam("l_idx") String l_idx, @RequestParam("lc_content") String lc_content, HttpSession session) {
+   @RequestMapping(value="/insertLocalAdviceComment.do",method = {RequestMethod.GET, RequestMethod.POST})
+   public String insertLocalAdviceComment(LocalAdviceCommentVO vo, @RequestParam("l_idx") String l_idx, String lc_content, HttpSession session) {
       MemberVO mvo = (MemberVO)session.getAttribute("member");
+      
       System.out.println("댓글입력 컨트롤러");
       System.out.println(l_idx);
       System.out.println(lc_content);
@@ -273,15 +261,24 @@ public class LocalAdviceController {
       
       
       String m_id2 = mvo.getM_id();
+      
+      System.out.println("1");
       vo.setL_idx(Integer.parseInt(l_idx));
       vo.setLc_content(lc_content);
       vo.setM_id(m_id2);
+      System.out.println("2");
+      
+  /*    INSERT INTO L_COMMENT (LC_IDX, L_IDX, M_ID, LC_DATE, LC_CONTENT, LC_COMMENTCOUNT)
+		VALUES (L_COMMENT_SEQ.NEXTVAL, #{l_idx}, #{m_id}, SYSDATE, #{lc_content}, 100)*/
+      
       localAdviceCommentService.insertLocalAdviceComment(vo);
+      System.out.println("3");
       int l_idx2 = Integer.parseInt(l_idx);
+      System.out.println("4");
       localAdviceService.updateLocalAdviceCnt(l_idx2);
       
       System.out.println("잘되고 잉니?");
-      return "/getLocalAdvice.do?m_id="+mvo.getM_id();
+      return "redirect:/getLocalAdvice.do?m_id="+mvo.getM_id()+"&l_idx="+l_idx;
    }
    
    
@@ -303,7 +300,7 @@ public class LocalAdviceController {
       session.setAttribute("updateJson", vo);
       localAdviceCommentService.updateLocalAdviceComment(vo);
       
-     return "/getLocalAdvice.do?l_idx="+vo.getL_idx()+"&m_id="+vo.getM_id();
+     return "redirect:/getLocalAdvice.do?l_idx="+vo.getL_idx()+"&m_id="+vo.getM_id();
      
    }
    
@@ -328,169 +325,172 @@ public class LocalAdviceController {
    @RequestMapping(value="/deleteLocalAdviceCommentJson.do" ,method=RequestMethod.POST)
    @ResponseBody
    public Map<Object, Object> deleteLocalAdviceComment(@RequestBody String lc_idx, LocalAdviceCommentVO vo, @RequestParam String l_idx) {
-      System.out.println("ajax로 댓글delete하는 컨트롤러");
-      System.out.println("lc_idx : " + lc_idx);
-      System.out.println("l_idx : " + l_idx);
-      Map<Object, Object> map = new HashMap<Object, Object>();
-      map.put("lc_idx", lc_idx);
-      
-      vo.setLc_idx(Integer.parseInt(lc_idx));
-      localAdviceCommentService.deleteLocalAdviceComment(vo);
-      localAdviceService.updateLocalAdviceCntMinus(Integer.parseInt(l_idx));
-      System.out.println("마지막부분");
-      return map;
+	   System.out.println("ajax로 댓글delete하는 컨트롤러");
+	   System.out.println("lc_idx : " + lc_idx);
+	   System.out.println("l_idx : " + l_idx);
+	   localAdviceCommentService.deletedetdetall(lc_idx);
+	   
+	   Map<Object, Object> map = new HashMap<Object, Object>();
+	   map.put("lc_idx", lc_idx);
+	   
+	   vo.setLc_idx(Integer.parseInt(lc_idx));
+	   localAdviceCommentService.deleteLocalAdviceComment(vo);
+	   localAdviceService.updateLocalAdviceCntMinus(Integer.parseInt(l_idx));
+	   System.out.println("마지막부분");
+	   return map;
    }
 
 
-   //게시글삭제
-   @RequestMapping(value="/deleteLocalAdvice.do" ,method=RequestMethod.GET)
-   public String deleteLocalAdvice(LocalAdviceVO vo, LocalAdviceCommentVO cvo, @RequestParam("l_idx") String l_idx) {
-      System.out.println("게시글삭제");
-      System.out.println("l_idx : " + l_idx);
-      cvo.setL_idx(Integer.parseInt(l_idx));
-      vo.setL_idx(Integer.parseInt(l_idx));
-      
-      localAdviceCommentService.deleteLocalAdviceCommentAll(vo);
-      localAdviceService.deleteLocalAdvice(vo);
-      
-      return "/getLocalAdviceList2.do?cPage=1";
-   }
+	//게시글삭제
+	@RequestMapping(value="/deleteLocalAdvice.do" ,method=RequestMethod.GET)
+	public String deleteLocalAdvice(LocalAdviceVO vo, LocalAdviceCommentVO cvo, @RequestParam("l_idx") String l_idx) {
+		System.out.println("게시글삭제");
+		System.out.println("l_idx : " + l_idx);
+		cvo.setL_idx(Integer.parseInt(l_idx));
+		vo.setL_idx(Integer.parseInt(l_idx));
+		
+		localAdviceCommentService.deleteLocalAdviceCommentAll(vo);
+		localAdviceService.deleteLocalAdvice(vo);
+		
+		return "redirect:/getLocalAdviceList2.do?cPage=1";
+	}
 
-   
-   //좋아요기능(+)
-   @RequestMapping(value="/goodJson.do" ,method=RequestMethod.POST)
+	
+	//좋아요기능(+)
+	@RequestMapping(value="/goodJson.do" ,method=RequestMethod.POST)
     @ResponseBody
     public Map<Object, Object> goodLocalAdvice(@RequestBody String l_idx) {
-       System.out.println("ajax로 추천수good컨트롤");
-       System.out.println("l_idx : " + l_idx);
-       //Map<Object, Object> map = new HashMap<Object, Object>();
-       //map.put("l_idx", l_idx);
-       
-       int count = localAdviceService.goodLocalAdvice(Integer.parseInt(l_idx));  //실질적으로 좋아요 증가시키는 메소드
-       Map<Object, Object> map = new HashMap<Object, Object>();
-       map.put("count", count);
-       System.out.println("마지막부분");
-       return map;
+	    System.out.println("ajax로 추천수good컨트롤");
+	    System.out.println("l_idx : " + l_idx);
+	    //Map<Object, Object> map = new HashMap<Object, Object>();
+	    //map.put("l_idx", l_idx);
+	    
+	    int count = localAdviceService.goodLocalAdvice(Integer.parseInt(l_idx));  //실질적으로 좋아요 증가시키는 메소드
+	    Map<Object, Object> map = new HashMap<Object, Object>();
+	    map.put("count", count);
+	    System.out.println("마지막부분");
+	    return map;
     }
-   
-   
-   //좋아요기능(-)
-   @RequestMapping(value="/badJson.do" ,method=RequestMethod.POST)
+	
+	
+	//좋아요기능(-)
+	@RequestMapping(value="/badJson.do" ,method=RequestMethod.POST)
     @ResponseBody
     public Map<Object, Object> badLocalAdvice(@RequestBody String l_idx) {
-       System.out.println("ajax로 추천수bad컨트롤");
-       System.out.println("l_idx : " + l_idx);
-       
-       int count = localAdviceService.badLocalAdvice(Integer.parseInt(l_idx));  //실질적으로 좋아요 증가시키는 메소드
-       Map<Object, Object> map = new HashMap<Object, Object>();
-       map.put("count", count);
-       System.out.println("마지막부분");
-       return map;
+	    System.out.println("ajax로 추천수bad컨트롤");
+	    System.out.println("l_idx : " + l_idx);
+	    
+	    int count = localAdviceService.badLocalAdvice(Integer.parseInt(l_idx));  //실질적으로 좋아요 증가시키는 메소드
+	    Map<Object, Object> map = new HashMap<Object, Object>();
+	    map.put("count", count);
+	    System.out.println("마지막부분");
+	    return map;
     }
-   
-   
-   //ajax 댓글에댓글
-   @RequestMapping(value="/json_insertComment.do", method=RequestMethod.POST)
-   @ResponseBody
-   public Map<Object, Object> JsonInsertComment(@RequestBody String lc_idx, @RequestParam("lc_content") String lc_content, @RequestParam("l_idx") String l_idx, LocalAdviceCommentVO vo, ProfileImageVO pvo, HttpSession session){
-      System.out.println("ajax로 댓글에 댓글 insert");
-      System.out.println("lc_idx : " + lc_idx);
-      System.out.println("lc_content : " + lc_content);
-      System.out.println("l_idx : " + l_idx);
-      
-      Map<Object, Object> map = new HashMap<Object, Object>();
-      //map.put("lc_idx", lc_idx);
-      //map.put("lc_content", lc_content);
-      System.out.println(map);
-      MemberVO mvo = (MemberVO)session.getAttribute("member");
-      String m_id = mvo.getM_id();
-      System.out.println("m_id : " + m_id);
+	
+	
+	//ajax 댓글에댓글
+	@RequestMapping(value="/json_insertComment.do", method=RequestMethod.POST)
+	@ResponseBody
+	public Map<Object, Object> JsonInsertComment(@RequestBody String lc_idx, @RequestParam("lc_content") String lc_content, @RequestParam("l_idx") String l_idx, LocalAdviceCommentVO vo, ProfileImageVO pvo, HttpSession session){
+		System.out.println("ajax로 댓글에 댓글 insert");
+		System.out.println("lc_idx : " + lc_idx);
+		System.out.println("lc_content : " + lc_content);
+		System.out.println("l_idx : " + l_idx);
+		
+		Map<Object, Object> map = new HashMap<Object, Object>();
+		//map.put("lc_idx", lc_idx);
+		//map.put("lc_content", lc_content);
+		System.out.println(map);
+		MemberVO mvo = (MemberVO)session.getAttribute("member");
+		String m_id = mvo.getM_id();
+		System.out.println("m_id : " + m_id);
 
-      vo.setL_idx(Integer.parseInt(l_idx));
-      vo.setM_id(m_id);
-      vo.setLc_content(lc_content);
-      vo.setLc_idx(Integer.parseInt(lc_idx));
-      localAdviceCommentService.insertdetdetComment(vo);
-      int detdetlc_idx = localAdviceCommentService.detdetlc_idx();
-      System.out.println("detdetlc_idx : "+ detdetlc_idx );
-      map.put("detdetlc_idx", detdetlc_idx);
-      
-      pvo.setM_id(m_id);
-      String p_route = localAdviceCommentService.selectImage(pvo);
-      map.put("p_route", p_route);
-      
-      vo.setLc_idx(Integer.parseInt(lc_idx));
-      List<LocalAdviceCommentVO> selectdetdetComment = localAdviceCommentService.selectdetdetComment(vo);
-      System.out.println("selectdetdetComment : " + selectdetdetComment);
-      map.put("selectdetdetComment", selectdetdetComment);
+		vo.setL_idx(Integer.parseInt(l_idx));
+		vo.setM_id(m_id);
+		vo.setLc_content(lc_content);
+		vo.setLc_idx(Integer.parseInt(lc_idx));
+		localAdviceCommentService.insertdetdetComment(vo);
+		int detdetlc_idx = localAdviceCommentService.detdetlc_idx();
+		System.out.println("detdetlc_idx : "+ detdetlc_idx );
+		map.put("detdetlc_idx", detdetlc_idx);
+		
+		pvo.setM_id(m_id);
+		String p_route = localAdviceCommentService.selectImage(pvo);
+		map.put("p_route", p_route);
+		
+		vo.setLc_idx(Integer.parseInt(lc_idx));
+		List<LocalAdviceCommentVO> selectdetdetComment = localAdviceCommentService.selectdetdetComment(vo);
+		System.out.println("selectdetdetComment : " + selectdetdetComment);
+		map.put("selectdetdetComment", selectdetdetComment);
 
-      //Iterator<LocalAdviceCommentVO> itr = selectdetdetComment.iterator();
-   
-      map.put("m_id", m_id);
-      
-      
-      //int detdetnum = localAdviceCommentService.selectdetdet(lc_content);
-      //map.put("detdetnum", detdetnum);
-      
-      System.out.println(map);
-      return map;
-   }
-   
-   
-   @RequestMapping(value="/updatedetdet.do" ,method=RequestMethod.POST)
+		//Iterator<LocalAdviceCommentVO> itr = selectdetdetComment.iterator();
+	
+		map.put("m_id", m_id);
+		
+		localAdviceService.updateLocalAdviceCnt(Integer.parseInt(l_idx));
+		//int detdetnum = localAdviceCommentService.selectdetdet(lc_content);
+		//map.put("detdetnum", detdetnum);
+		
+		System.out.println(map);
+		return map;
+	}
+	
+	
+	@RequestMapping(value="/updatedetdet.do" ,method=RequestMethod.POST)
     @ResponseBody
     public LocalAdviceCommentVO updatedetdet(@RequestBody String detdetlc_idx) {
-       System.out.println("ajax로 updatedetdet");
-       System.out.println("lc_idx : " + detdetlc_idx);
-       
-       List<LocalAdviceCommentVO> detdetList = localAdviceCommentService.selectdetdetList(detdetlc_idx);
-       System.out.println("detdetList : " + detdetList);
-      
-       //Map<Object, Object> map = new HashMap<Object, Object>();
-       //map.put("detdetList", detdetList);
-       return detdetList.get(0);
+	    System.out.println("ajax로 updatedetdet");
+	    System.out.println("lc_idx : " + detdetlc_idx);
+	    
+	    List<LocalAdviceCommentVO> detdetList = localAdviceCommentService.selectdetdetList(detdetlc_idx);
+	    System.out.println("detdetList : " + detdetList);
+	   
+	    //Map<Object, Object> map = new HashMap<Object, Object>();
+	    //map.put("detdetList", detdetList);
+	    return detdetList.get(0);
     }
-   
-   
-   @RequestMapping(value="/updatedetdetgo.do" ,method=RequestMethod.POST)
+	
+	
+	@RequestMapping(value="/updatedetdetgo.do" ,method=RequestMethod.POST)
     @ResponseBody
     public LocalAdviceCommentVO updatedetdetgo(@RequestBody String detdetlc_idx, @RequestParam("lc_content") String lc_content, LocalAdviceCommentVO vo) {
-       System.out.println("ajax로 updatedetdetgo");
-       System.out.println("detdetlc_idx : " + detdetlc_idx);
-       System.out.println("수정된 lc_content : " + lc_content);
-       
-       vo.setLc_idx(Integer.parseInt(detdetlc_idx));
-       vo.setLc_content(lc_content);
-       
-       localAdviceCommentService.updatedetdet(vo);
-       
-       List<LocalAdviceCommentVO> detdetList = localAdviceCommentService.selectdetdetList(detdetlc_idx);
-       System.out.println("detdetList : " + detdetList);
-      
-       //Map<Object, Object> map = new HashMap<Object, Object>();
-       //map.put("detdetList", detdetList);
-       return detdetList.get(0);
+	    System.out.println("ajax로 updatedetdetgo");
+	    System.out.println("detdetlc_idx : " + detdetlc_idx);
+	    System.out.println("수정된 lc_content : " + lc_content);
+	    
+	    vo.setLc_idx(Integer.parseInt(detdetlc_idx));
+	    vo.setLc_content(lc_content);
+	    
+	    localAdviceCommentService.updatedetdet(vo);
+	    
+	    List<LocalAdviceCommentVO> detdetList = localAdviceCommentService.selectdetdetList(detdetlc_idx);
+	    System.out.println("detdetList : " + detdetList);
+	   
+	    //Map<Object, Object> map = new HashMap<Object, Object>();
+	    //map.put("detdetList", detdetList);
+	    return detdetList.get(0);
     }
-   
-   
-   @RequestMapping(value="/deletedetdetgo.do" ,method=RequestMethod.POST)
+	
+	
+	@RequestMapping(value="/deletedetdetgo.do" ,method=RequestMethod.POST)
     @ResponseBody
     public Map<Object, Object> deletedetdetgo(@RequestBody String detdetlc_idx, LocalAdviceCommentVO vo) {
-      System.out.println("여기는 deletedetdet 부분");
-      System.out.println("detdetlc_idx : " + detdetlc_idx);
-      
-      vo.setLc_idx(Integer.parseInt(detdetlc_idx));
-      localAdviceCommentService.deletedetdet(vo);
-      
-      Map<Object, Object> map = new HashMap<Object, Object>();
-      map.put("detdetlc_idx", detdetlc_idx);
-      
-      return map;
+		System.out.println("여기는 deletedetdet 부분");
+		System.out.println("detdetlc_idx : " + detdetlc_idx);
+		
+		vo.setLc_idx(Integer.parseInt(detdetlc_idx));
+		localAdviceCommentService.deletedetdet(vo);
+		
+		Map<Object, Object> map = new HashMap<Object, Object>();
+		map.put("detdetlc_idx", detdetlc_idx);
+		
+		return map;
     }
-   
-   
-   
+	
+	
+	
 }
+
 
 
 
