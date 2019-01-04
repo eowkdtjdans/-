@@ -35,6 +35,22 @@
 <link
 	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700"
 	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR" rel="stylesheet">
+	
+<style>
+	.inner {
+		font-family: 'Noto Sans KR', sans-serif;
+		color: white;
+	}
+	
+	#client {
+		background-color: #E0A914;
+	}
+	
+	.small-box-footer {
+		font-family: 'Noto Sans KR', sans-serif;
+	}
+</style>
 </head>
 <body class="hold-transition sidebar-mini">
 	<div class="wrapper">
@@ -465,16 +481,16 @@
 						<!-- ./col -->
 						<div class="col-lg-3 col-6">
 							<!-- small box -->
-							<div class="small-box bg-warning">
+							<div id="client" class="small-box">
 								<div class="inner">
 									<h3>44</h3>
 
-									<p>User Registrations</p>
+									<p>클라이언트 관리</p>
 								</div>
 								<div class="icon">
 									<i class="ion ion-person-add"></i>
 								</div>
-								<a href="#" class="small-box-footer">More info <i
+								<a href="../../userAdmin.do" class="small-box-footer">More info <i
 									class="fa fa-arrow-circle-right"></i></a>
 							</div>
 						</div>
@@ -505,13 +521,17 @@
 							<div class="card">
 								<div class="card-header d-flex p-0">
 									<h3 class="card-title p-3">
-										<i class="fa fa-pie-chart mr-1"></i> Sales
+										<i class="fa fa-pie-chart mr-1"></i> 방문자
 									</h3>
 									<ul class="nav nav-pills ml-auto p-2">
 										<li class="nav-item"><a class="nav-link active"
-											href="#revenue-chart" data-toggle="tab">Area</a></li>
+											href="#revenue-chart" data-toggle="tab">주</a></li>
 										<li class="nav-item"><a class="nav-link"
-											href="#sales-chart" data-toggle="tab">Donut</a></li>
+											href="#revenue-chart2" data-toggle="tab">월</a></li>
+										<li class="nav-item"><a class="nav-link"
+											href="#revenue-chart3" data-toggle="tab">년</a></li>
+										<li class="nav-item"><a class="nav-link"
+											href="#sales-chart" data-toggle="tab">국가</a></li>
 									</ul>
 								</div>
 								<!-- /.card-header -->
@@ -519,6 +539,10 @@
 									<div class="tab-content p-0">
 										<!-- Morris chart - Sales -->
 										<div class="chart tab-pane active" id="revenue-chart"
+											style="position: relative; height: 300px;"></div>
+										<div class="chart tab-pane" id="revenue-chart2"
+											style="position: relative; height: 300px;"></div>
+										<div class="chart tab-pane" id="revenue-chart3"
 											style="position: relative; height: 300px;"></div>
 										<div class="chart tab-pane" id="sales-chart"
 											style="position: relative; height: 300px;"></div>
@@ -987,8 +1011,7 @@
 	<!-- Bootstrap 4 -->
 	<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 	<!-- Morris.js charts -->
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
 	<script src="plugins/morris/morris.min.js"></script>
 	<!-- Sparkline -->
 	<script src="plugins/sparkline/jquery.sparkline.min.js"></script>
@@ -998,14 +1021,12 @@
 	<!-- jQuery Knob Chart -->
 	<script src="plugins/knob/jquery.knob.js"></script>
 	<!-- daterangepicker -->
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
 	<script src="plugins/daterangepicker/daterangepicker.js"></script>
 	<!-- datepicker -->
 	<script src="plugins/datepicker/bootstrap-datepicker.js"></script>
 	<!-- Bootstrap WYSIHTML5 -->
-	<script
-		src="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+	<script src="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
 	<!-- Slimscroll -->
 	<script src="plugins/slimScroll/jquery.slimscroll.min.js"></script>
 	<!-- FastClick -->

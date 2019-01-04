@@ -1,12 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c"   uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE>
-<html>
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Commit-Test</title>
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+   <meta charset="utf-8">
+   <meta name="author" content="Kodinger">
+   <meta name="viewport" content="width=device-width,initial-scale=1">
+   <title>회원가입</title>
+   <link rel="stylesheet" type="text/css" href="views/bootstrapModal/css/bootstrap.min.css">
+   <link rel="stylesheet" type="text/css" href="views/cssModal/my-login.css">
+   
+   <link rel="stylesheet" href="views/datepicker/public/theme/css/t-datepicker.min.css">
+   <link rel="stylesheet" href="views/datepicker/public/theme/css/themes/t-datepicker-bluegrey.css">
+   <!-- blue, bluegrey, cyan, green, lime, main, orange, purple, teal, yellow -->
+   
+   <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+   <script src="views/datepicker/public/theme/js/t-datepicker.min.js"></script>
+
 <script>
 function getIpCountry() {
 	$.get("http://ipinfo.io", function(response){
@@ -56,6 +68,9 @@ function getIpCountry() {
 	<a href="admin/testAdmin.jsp">관리자 페이지</a>
 	<a href="../testImage.do">테스트이미지</a>
 	<a href="../naverLogin.do">네이버 로그인</a>
+	<a href="../googleLogin.do">구글 로그인</a>
+	<a href="../facebookLogin.do">페이스북 로그인</a>
+	<a href="../kakaoLogin.do">페이스북 로그인</a>
 	<a href="../NaverRegister.do">네이버회원가입</a>
 	<p>세션 : [${m_id}] 앙기무리</p>
 	

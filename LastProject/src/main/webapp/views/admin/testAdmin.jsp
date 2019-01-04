@@ -525,22 +525,22 @@
 									</h3>
 									<ul class="nav nav-pills ml-auto p-2">
 										<li class="nav-item"><a class="nav-link active"
-											href="#revenue-chart" data-toggle="tab">주</a></li>
+											href="#own-chart" data-toggle="tab">주</a></li>
 										<li class="nav-item"><a class="nav-link"
-											href="#revenue-chart" data-toggle="tab">월</a></li>
+											href="#own-chart2" data-toggle="tab">월</a></li>
 										<li class="nav-item"><a class="nav-link"
-											href="#revenue-chart" data-toggle="tab">년</a></li>
-										<li class="nav-item"><a class="nav-link"
-											href="#sales-chart" data-toggle="tab">국가</a></li>
+											href="#own-chart3" data-toggle="tab">년</a></li>
 									</ul>
 								</div>
 								<!-- /.card-header -->
 								<div class="card-body">
 									<div class="tab-content p-0">
 										<!-- Morris chart - Sales -->
-										<div class="chart tab-pane active" id="revenue-chart"
+										<div class="chart tab-pane active" id="own-chart"
 											style="position: relative; height: 300px;"></div>
-										<div class="chart tab-pane" id="sales-chart"
+										<div class="chart tab-pane" id="own-chart2"
+											style="position: relative; height: 300px;"></div>
+										<div class="chart tab-pane" id="own-chart3"
 											style="position: relative; height: 300px;"></div>
 									</div>
 								</div>
@@ -995,6 +995,20 @@
 		<!-- /.control-sidebar -->
 	</div>
 	<!-- ./wrapper -->
+	
+	<script>
+		$.ajax({ //모리스 차트 마저하기
+			type:"POST",
+			url:"/userLogVisit.do",
+			data: document.getElementById().val(),
+			dataType:"JSON",
+			success: function(result){
+				
+			}
+		});
+	
+	</script>
+	
 
 	<!-- jQuery -->
 	<script src="plugins/jquery/jquery.min.js"></script>
@@ -1007,8 +1021,7 @@
 	<!-- Bootstrap 4 -->
 	<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 	<!-- Morris.js charts -->
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
 	<script src="plugins/morris/morris.min.js"></script>
 	<!-- Sparkline -->
 	<script src="plugins/sparkline/jquery.sparkline.min.js"></script>
@@ -1018,14 +1031,12 @@
 	<!-- jQuery Knob Chart -->
 	<script src="plugins/knob/jquery.knob.js"></script>
 	<!-- daterangepicker -->
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
 	<script src="plugins/daterangepicker/daterangepicker.js"></script>
 	<!-- datepicker -->
 	<script src="plugins/datepicker/bootstrap-datepicker.js"></script>
 	<!-- Bootstrap WYSIHTML5 -->
-	<script
-		src="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+	<script src="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
 	<!-- Slimscroll -->
 	<script src="plugins/slimScroll/jquery.slimscroll.min.js"></script>
 	<!-- FastClick -->

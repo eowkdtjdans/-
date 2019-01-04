@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.spring.biz.com.admin.AdminService;
@@ -18,9 +19,10 @@ import com.spring.biz.com.admin.UserAdminCommentVO;
 import com.spring.biz.com.admin.UserAdminPostVO;
 import com.spring.biz.com.admin.UserAdminViewVO;
 import com.spring.biz.member.MemberVO;
+import com.spring.biz.profileImage.ProfileImageVO;
 
 @Controller
-@SessionAttributes({"userAdminList", "userAdminViewVO", "userAdminPostList", "userAdminCommentList"})
+@SessionAttributes({"userAdminList", "userAdminViewVO", "userAdminPostList", "userAdminCommentList", "userAdminImageSelect"})
 public class AdminController {
 	@Autowired
 	private AdminService adminService;
@@ -74,11 +76,6 @@ public class AdminController {
 		return "redirect:/loginMember.do";
 	}
 	
-	
-	
-	
-	
-	
 	@RequestMapping(value="/userAdmin.do")
 	public String userAdminSelect(Model model) {
 		List<MemberVO> list = null;
@@ -94,17 +91,25 @@ public class AdminController {
 		
 		List<UserAdminPostVO> uplist = null;
 		List<UserAdminCommentVO> upclist = null;
+		List<ProfileImageVO> upilist = null;
 		
 		String m_id = request.getParameter("m_id");
 		
 		uvo = adminService.userAdminViewSelect(m_id);
 		uplist = adminService.userAdminPostSelect(m_id);
 		upclist = adminService.userAdminCommentSelect(m_id);
+		upilist = adminService.userAdminImageSelect(m_id);
 		
 		model.addAttribute("userAdminViewVO", uvo);
 		model.addAttribute("userAdminPostList", uplist);
 		model.addAttribute("userAdminCommentList", upclist);
+		model.addAttribute("userAdminImageSelect", upilist);
 		
 		return "redirect:/views/admin/pages/examples/userAdminView.jsp";
+	}
+	
+	@RequestMapping(value="/userLogVisit.do")
+	public String userLogVisit() {
+		return "";
 	}
 }
