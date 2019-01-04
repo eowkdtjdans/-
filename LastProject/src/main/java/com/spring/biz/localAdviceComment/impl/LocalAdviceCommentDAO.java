@@ -1,6 +1,7 @@
 package com.spring.biz.localAdviceComment.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +17,8 @@ public class LocalAdviceCommentDAO {
 	private SqlSessionTemplate mybatis;
 	
 	//댓글게시판 전체조회
-	public List<LocalAdviceCommentVO> getLocalAdviceCommentList(int l_idx){		
-		return mybatis.selectList("getLocalAdviceCommentList", l_idx);
+	public List<LocalAdviceCommentVO> getLocalAdviceCommentList(Map<String, Object> map){		
+		return mybatis.selectList("getLocalAdviceCommentList", map);
 	}
 	
 	//댓글입력
@@ -84,10 +85,16 @@ public class LocalAdviceCommentDAO {
 		mybatis.update("updatedetdet", vo);
 	}
 	
-	//댓댓 삭제
+	//댓댓 LC_IDX를 이용해 한개 삭제
 	public void deletedetdet(LocalAdviceCommentVO vo) {
 		mybatis.delete("deletedetdet", vo);
 	}
+	
+	//댓댓 DETDET을 이용해 전체 삭제
+	public void deletedetdetall(String detdet) {
+		mybatis.delete("deletedetdetall", detdet);
+	}
+	
 }
 
 

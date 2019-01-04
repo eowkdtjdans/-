@@ -15,12 +15,12 @@ public class SubController {
 	
 	HttpSession session;
 	
-	@RequestMapping(value="/sub.do", method=RequestMethod.POST)
+	@RequestMapping("/sub.do")
 	public String moveController(@RequestParam("searchCondition") String searchCondition, @RequestParam("searchKeyword") String searchKeyword, @RequestParam("lat") String lat, @RequestParam("lng") String lng, Model model) {
 		System.out.println("searchCondition : " + searchCondition);
 		System.out.println("searchKeyword : " + searchKeyword);
 		String path = null;
-		System.out.println("sub.do ==== post방식");
+		
 		if(searchCondition.equals("find_travler")) {
 			path = "/getTravelersList.do?cPage=1";
 		} else if(searchCondition.equals("find_host")) {
