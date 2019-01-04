@@ -65,44 +65,76 @@
 		                    	<input id="p_route" type="hidden" class="form-control" name="p_route" value="${profile.p_route}">
                              
                                <div class="form-group row">
-                                <label for="p_hobby" class="col-4 col-form-label">최대 투숙객</label> 
+                                <label for="h_maximumguest" class="col-4 col-form-label">최대 투숙객</label> 
                                 <div class="col-8">
-                                	<textarea rows="5" cols="10" id="p_hobby" name="p_hobby" class="form-control">${profile.p_hobby }</textarea>
+                                	<textarea rows="5" cols="10" id="h_maximumguest" name="h_maximumguest" class="form-control"></textarea>
                                 </div>
                               </div>
+                               <div class="form-group row">
+							    <label for="h_maximumguest">최대 투숙객</label>
+							    <select class="form-control" id="h_maximumguest">
+							      <option>1</option>
+							      <option>2</option>
+							      <option>3</option>
+							      <option>4</option>
+							      <option>5</option>
+							    </select>
+							  </div>
+							                              
                         	   
                               <div class="form-group row">
-                                <label for="p_language" class="col-4 col-form-label">사용가능한 언어</label> 
+                                <label for="h_gender" class="col-4 col-form-label">선호 성별</label> 
                                 <div class="col-8">
-                                	<textarea rows="5" cols="10" id="p_language" name="p_language" class="form-control">${profile.p_language }</textarea>
+                                	<textarea rows="5" cols="10" id="h_gender" name="h_gender" class="form-control"></textarea>
                                 </div>
                               </div>
                            
                               <div class="form-group row">
-                                <label for="p_job" class="col-4 col-form-label">직업</label> 
+                                <label for="h_smoke" class="col-4 col-form-label">흡연 가능 여부</label> 
                                 <div class="col-8">
-                                	<textarea rows="5" cols="10" id="p_job" name="p_job" class="form-control">${profile.p_job }</textarea>
+                                	<textarea rows="5" cols="10" id="h_smoke" name="h_smoke" class="form-control"></textarea>
                                 </div>
                               </div>
                            
                               <div class="form-group row">
-                                <label for="p_aboutme" class="col-4 col-form-label">자기소개</label> 
+                                <label for="h_roomtype" class="col-4 col-form-label">방 종류</label> 
                                 <div class="col-8">
-                                	<textarea rows="5" cols="10" id="aboutme" name="p_aboutme" class="form-control">${profile.p_aboutme }</textarea>
+                                	<textarea rows="5" cols="10" id="h_roomtype" name="h_roomtype" class="form-control"></textarea>
                                 </div>
                               </div>
                         
                               <div class="form-group row">
-                                <label for="p_purpose" class="col-4 col-form-label">목적</label> 
+                                <label for="h_rule" class="col-4 col-form-label">숙소 이용시 주의사항</label> 
                                 <div class="col-8">
-                                	<textarea rows="5" cols="10" id="p_purpose" name="p_purpose" class="form-control">${profile.p_purpose }</textarea>
+                                	<textarea rows="5" cols="10" id="h_rule" name="h_rule" class="form-control"></textarea>
                                 </div>
                               </div>
                         
                               <div class="form-group row">
-                                <label for="p_visitcountry" class="col-4 col-form-label">방문했던 국가</label> 
+                                <label for="h_startdate" class="col-4 col-form-label">입실 날짜</label> 
                                 <div class="col-8">
-                                	<textarea rows="5" cols="10" id="p_visitcountry" name="p_visitcountry" class="form-control">${profile.p_visitcountry }</textarea>
+                                	<textarea rows="5" cols="10" id="h_startdate" name="h_startdate" class="form-control"></textarea>
+                                </div>
+                              </div>
+                        
+                              <div class="form-group row">
+                                <label for="h_haspet" class="col-4 col-form-label">펫 유무</label> 
+                                <div class="col-8">
+                                	<textarea rows="5" cols="10" id="h_haspet" name="h_haspet" class="form-control"></textarea>
+                                </div>
+                              </div>
+                        
+                              <div class="form-group row">
+                                <label for="h_haschild" class="col-4 col-form-label">자녀 유무</label> 
+                                <div class="col-8">
+                                	<textarea rows="5" cols="10" id="h_haschild" name="h_haschild" class="form-control"></textarea>
+                                </div>
+                              </div>
+                        	
+                              <div class="form-group row">
+                                <label for="h_enddate" class="col-4 col-form-label">퇴실 날짜</label> 
+                                <div class="col-8">
+                                	<textarea rows="5" cols="10" id="h_enddate" name="h_enddate" class="form-control"></textarea>
                                 </div>
                               </div>
                         
