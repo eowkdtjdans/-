@@ -632,7 +632,7 @@
     var areaChart       = new Chart(areaChartCanvas)
 
     var areaChartData = {
-      labels  : ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+      labels  : ['2015', '2016', '2017', '2018', '2019'],
       datasets: [
         {
           label               : 'Electronics',
@@ -642,7 +642,7 @@
           pointStrokeColor    : '#c1c7d1',
           pointHighlightFill  : '#fff',
           pointHighlightStroke: 'rgba(220,220,220,1)',
-          data                : [65, 59, 80, 81, 56, 55, 40]
+          data                : [6, 7, 8, 9, 10]
         },
         {
           label               : 'Digital Goods',
@@ -652,7 +652,7 @@
           pointStrokeColor    : 'rgba(60,141,188,1)',
           pointHighlightFill  : '#fff',
           pointHighlightStroke: 'rgba(60,141,188,1)',
-          data                : [28, 48, 40, 19, 86, 27, 90]
+          data                : [1, 2, 3, 4, 5]
         }
       ]
     }

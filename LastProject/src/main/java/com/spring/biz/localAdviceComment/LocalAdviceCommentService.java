@@ -1,6 +1,7 @@
 package com.spring.biz.localAdviceComment;
 
 import java.util.List;
+import java.util.Map;
 
 import com.spring.biz.localAdvice.LocalAdviceVO;
 import com.spring.biz.member.MemberVO;
@@ -9,7 +10,7 @@ import com.spring.biz.profileImage.ProfileImageVO;
 
 public interface LocalAdviceCommentService {
 	//댓글 목록 전체 조회
-	List<LocalAdviceCommentVO> getLocalAdviceCommentList(int l_idx);
+	List<LocalAdviceCommentVO> getLocalAdviceCommentList(Map<String, Object> map);
 	
 	//댓글 입력
 	void insertLocalAdviceComment(LocalAdviceCommentVO vo);
@@ -50,7 +51,10 @@ public interface LocalAdviceCommentService {
 	//댓댓 수정
 	void updatedetdet(LocalAdviceCommentVO vo);
 	
-	//댓댓 삭제
+	//댓댓 LC_IDX를 이용해 삭제
 	void deletedetdet(LocalAdviceCommentVO vo);
+	
+	//댓댓 DETDET을 이용해서 삭제
+	void deletedetdetall(String detdet);
 	
 }

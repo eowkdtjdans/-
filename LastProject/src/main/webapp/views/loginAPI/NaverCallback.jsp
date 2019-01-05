@@ -230,14 +230,14 @@ function register(frm) {
 
 <script>
 function naverRegister(frm) {
-   var str = $("#form").serialize();
-   alert(str);
-   var m_name = frm.m_name.value;
-   alert(m_name);
-   
+	var str = $("#form").serialize();
+	alert(str);
+	var m_name = frm.m_name.value;
+	alert(m_name);
 }
 </script>
 </head>
+<<<<<<< HEAD
 
 <body class="my-login-page">
    <section class="h-100">
@@ -341,5 +341,33 @@ function naverRegister(frm) {
    <script src="js/jquery.min.js"></script>
    <script src="bootstrap/js/bootstrap.min.js"></script>
    <script src="js/my-login.js"></script>
+=======
+<body>
+  <div
+    style="background-color: #15a181; width: 100%; height: 50px; text-align: center; color: white;">
+    <h3>Naver_Login Success</h3>
+  </div>
+  <br>
+  <div id="div">
+  
+  </div>
+  <form method="POST" class="my-login-validation" id="form">
+	<div>
+	  <h2 style="text-align: center" id="m_name"></h2>
+	  <h4 style="text-align: center" id="m_id"></h4>
+	  <h4 style="text-align: center" id="m_gender"></h4>
+	  <input name="m_pwd" type="password">
+	  <input name="m_name" value="${result}.name" type="hidden">
+	  <input name="m_email" value="${result}.email" type="hidden">
+	  <input name="m_gender" value="${result}.gender" type="hidden">
+	   <div class="form-group m-0">
+         <button type="button" class="btn btn-primary btn-block" onclick="naverRegister(this.form)">
+          			  회원가입
+         </button>
+       </div>
+	  
+	</div>
+  </form>
+>>>>>>> branch 'master' of https://github.com/eowkdtjdans/Its-dissapointing.git
 </body>
 </html>

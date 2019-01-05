@@ -24,4 +24,9 @@ public class HouseServiceImpl implements HostService {
 		return hostDAO.countHost(key);
 	}
 
+	@Override
+	public void insertHost(HostVO vo) {
+		hostDAO.insertHost(vo);
+	}
+
 }

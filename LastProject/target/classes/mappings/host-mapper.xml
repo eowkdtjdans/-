@@ -8,10 +8,38 @@
 
 	<select id="getHostList" parameterType="Map" resultType="host">
 		SELECT R_NUM, H3.*
-        FROM (SELECT ROWNUM R_NUM, H2.* FROM (SELECT H.*, PI.P_ROUTE, M.M_ADDRESS FROM HOST H, PROFILE_IMAGE PI, MEMBER M WHERE H.M_ID = PI.M_ID AND PI.M_ID = M.M_ID AND PI.ROWID IN (SELECT MIN(ROWID) FROM PROFILE_IMAGE GROUP BY M_ID) ORDER BY H_STARTDATE ASC) H2) H3
-	    WHERE H3.M_ADDRESS LIKE '%' || UPPER(#{key}) || '%'
-	    AND (R_NUM BETWEEN #{begin} AND #{end})
+        FROM (SELECT ROWNUM R_NUM, H2.* FROM (SELECT H.*, PI.P_ROUTE, M.M_ADDRESS, M.M_NAME FROM HOST H, PROFILE_IMAGE PI, MEMBER M WHERE H.M_ID = PI.M_ID AND PI.M_ID = M.M_ID AND PI.P_MAIN = 1 ORDER BY H_STARTDATE ASC) H2) H3
+       WHERE H3.M_ADDRESS LIKE '%' || UPPER(#{key}) || '%'
+       AND (R_NUM BETWEEN #{begin} AND #{end})
 	</select>
+	
+	<insert id="insertHost" parameterType="host">INSERT INTO HOST (
+		M_ID
+		H_MAXIMUMGUEST
+		H_GENDER
+		H_SMOKE
+		H_ROOMTYPE
+		H_RULE
+		H_STARTDATE
+		H_HASPET
+		H_HASCHILD
+		H_ENDDATE
+	) VALUES (
+			${m_id
+		${h_maximumguest},
+		${h_gender},
+		${h_smoke},
+		${h_roomtype},
+		${h_rule},
+		${h_startdate},
+		${h_haspet},
+		${h_haschild},
+		${h_enddate}
+	)
+	
+	
+	
+	</insert>
 	
 	<select id="countHost" parameterType="String" resultType="int">
 		SELECT COUNT(H.M_ID)

@@ -17,7 +17,7 @@
 <script type='text/javascript'>
   //<![CDATA[
     // 사용할 앱의 JavaScript 키를 설정해 주세요.
-    Kakao.init('사용자 API');
+    Kakao.init('키');
     function loginWithKakao() {
       // 로그인 창을 띄웁니다.
       Kakao.Auth.login({

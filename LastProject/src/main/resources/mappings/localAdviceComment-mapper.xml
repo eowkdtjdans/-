@@ -6,15 +6,29 @@
 <!-- mapper 태그의 namespace 속성 필수 작성  -->  
 <mapper namespace="localAdviceCommentDAO">
 
-	<select id="getLocalAdviceCommentList" resultType="localadvicecomment" parameterType="int">
+	<select id="getLocalAdviceCommentList" resultType="localadvicecomment" parameterType="Map">
 		  <!-- SELECT R_NUM, LC_IDX, M_ID, LC_DATE, LC_CONTENT, LC_COMMENTCOUNT 
   	  		FROM (SELECT ROWNUM R_NUM, B.*FROM (SELECT *FROM L_COMMENT ORDER BY LC_IDX DESC) B) 
    			 WHERE R_NUM BETWEEN 1 AND 10  -->
    			 <!-- SELECT * FROM L_COMMENT WHERE L_IDX=#{l_idx}  -->
+   			 
+   			 
   			 SELECT LC.*, PI.P_ROUTE FROM L_COMMENT LC, PROFILE_IMAGE PI  
 	         WHERE LC.M_ID = PI.M_ID 
 	         AND PI.ROWID IN (SELECT MIN(PI2.ROWID) FROM PROFILE_IMAGE PI2 GROUP BY PI2.M_ID) 
-	         AND LC.L_IDX=#{l_idx} ORDER BY LC_IDX DESC
+	         AND LC.L_IDX=#{l_idx} ORDER BY LC_IDX ASC 
+	         
+	         <!-- SELECT B2.* FROM (
+			    SELECT ROWNUM R_NUM, B.*
+			    FROM (SELECT LC.*, PI.P_ROUTE 
+			            FROM L_COMMENT LC, (SELECT PI2.* FROM PROFILE_IMAGE PI2 WHERE PI2.P_MAIN = 1) PI  
+			            WHERE LC.M_ID = PI.M_ID  
+			            AND LC.L_IDX = #{l_idx} 
+			            ORDER BY LC.LC_DATE ASC) B 
+			            ) B2 
+			WHERE (B2.R_NUM BETWEEN #{begin} AND #{end}) -->
+	         
+	         
 	</select>
 	
 
@@ -41,7 +55,7 @@
 	</delete>
 	
 	<select id="countLocalAdviceComment" parameterType="int" resultType="int">
-		SELECT COUNT(*) FROM L_COMMENT WHERE L_IDX=#{l_idx}
+		SELECT COUNT(*) FROM L_COMMENT WHERE L_IDX=#{l_idx}  
 	</select>
 	
 	<insert id="insertdetdetComment" parameterType="localadvicecomment">
@@ -75,6 +89,10 @@
 	
 	<delete id="deletedetdet" parameterType="localadvicecomment">
 		DELETE L_COMMENT WHERE LC_IDX=#{lc_idx}
+	</delete>
+	
+	<delete id="deletedetdetall" parameterType="String">
+		DELETE L_COMMENT WHERE DETDET=#{detdet}
 	</delete>
 </mapper>
 
