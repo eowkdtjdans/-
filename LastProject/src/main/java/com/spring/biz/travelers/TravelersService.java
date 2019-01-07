@@ -8,4 +8,6 @@ public interface TravelersService {
 	List<TravelersVO> getTravelersList(Map<String, Object> map);
 	
 	int countTravelers (String key);
+	
+	TravelersVO getTravelers(String m_id);
 }

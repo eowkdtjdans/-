@@ -10,6 +10,15 @@
   <meta content="" name="keywords">
   <meta content="" name="description">
  
+  <!-- 폰트어썸 -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+ 
+  <!-- modal -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 
   <!-- Favicons -->
   <link href="views/img/favicon.png" rel="icon">
@@ -81,6 +90,14 @@ function fillInAddress() { //lat 와 lng 값을 넘겨줄 input 태그에 값 �
   var place = autocomplete.getPlace();
     document.getElementById("lat").value=place.geometry.location.lat();
     document.getElementById("lng").value=place.geometry.location.lng();
+}
+
+function sendMessage(m_id){
+	alert("sendMessage 함수로 옴");
+	alert("m_id : " +m_id);
+	/* frm.action="../insertMessage.do";
+	frm.submit(); */
+	location.href="../insertMessage.do?message_receiver="+m_id+"&message_sender=${member.m_id}";
 }
 </script>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -187,6 +204,7 @@ function fillInAddress() { //lat 와 lng 값을 넘겨줄 input 태그에 값 �
 				      <p class="card-text">${list.t_country}</p>
 				      <hr />
 				      <a href="../../travelersGetInfo.do?m_id=${list.m_id }" class="btn btn-light">See Profile</a>
+				      <button type="button" class="btn btn-light" data-toggle="modal" data-target="#myModal${list.m_id }">Open modal</button>
 				    </span>
 			    </span>
       		</c:forEach>
@@ -251,8 +269,8 @@ function fillInAddress() { //lat 와 lng 값을 넘겨줄 input 태그에 값 �
       </div>
     </section><!-- #about -->
 
+	
 
-  
    
   <!--==========================
     Footer
@@ -346,6 +364,62 @@ function fillInAddress() { //lat 와 lng 값을 넘겨줄 input 태그에 값 �
 
   <!-- Template Main Javascript File -->
   <script src="views/js/main.js"></script>
+
+
+
+
+
+<!-- The Modal -->
+<c:forEach var="list" items="${travelersList }">
+  <div class="modal fade" id="myModal${list.m_id }">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">&nbsp;&nbsp;${list.m_id } 님의 Traveler profile</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+          <table class="table">
+          	<tr class="text-center">
+          		<td><img class="rounded" style="width: 200px; height: 200px; margin-top: 50px;" src="${list.p_route }"></td>
+          		<td>주소<br><br>StartDate<br><br>EndDate<br><br>방문인원<br><br>취미<br><br>직업<br><br>사용언어</td>
+          		<td>${list.t_country }<br><br>${list.t_startdate }<br><br>${list.t_enddate }<br><br>${list.t_visits } 명<br><br>${list.p_hobby }<br><br>${list.p_job }<br><br>${list.p_language }</td>
+          	</tr>
+          	<tr class="text-center">
+          		<td>사이트 방문목적</td>
+          		<td colspan="2">${list.p_purpose }</td>
+          	</tr>
+          	<tr class="text-center">
+          		<td>자기소개</td>
+          		<td colspan="2">${list.p_aboutme }</td>
+          	</tr>
+          	<tr class="text-center">
+          		<td>[${list.t_country }] 방문동기</td>
+          		<td colspan="2">${list.t_motive }</td>
+          	</tr>
+          	
+          </table>
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+        <form name="frm">                                                           <!-- onclick="../insertMessage.do?message_receiver=${list.m_id}" -->
+          <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" onclick='sendMessage("${list.m_id}")'>Send Message</button>
+        </form>   
+          <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</c:forEach>
+
+
+
 
 </body>
 </html>

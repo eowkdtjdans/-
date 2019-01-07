@@ -121,4 +121,24 @@ public class TravelersController {
 	}
 	
 	
+	@RequestMapping(value="/travelersGetInfo.do", method=RequestMethod.GET)
+	public String travelersGetInfo(@RequestParam("m_id") String m_id, Model model, TravelersVO vo) {
+		System.out.println("travelersGetInfo.do로 이동");
+		System.out.println("m_id : " + m_id);
+		
+		TravelersVO getTravelers = travelersService.getTravelers(m_id);
+		System.out.println("getTravelers : " + getTravelers);
+		model.addAttribute("getTravelers", getTravelers);
+		
+		return "views/travelers/getTravelers.jsp";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
