@@ -11,6 +11,7 @@ import com.spring.biz.com.admin.UserAdminCommentVO;
 import com.spring.biz.com.admin.UserAdminPostVO;
 import com.spring.biz.com.admin.UserAdminViewVO;
 import com.spring.biz.member.MemberVO;
+import com.spring.biz.profileImage.ProfileImageVO;
 
 @Service("adminService")
 public class AdminServiceImpl implements AdminService {
@@ -45,6 +46,11 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public List<UserAdminCommentVO> userAdminCommentSelect(String m_id) {
 		return adminDAO.userAdminCommentSelect(m_id);
+	}
+
+	@Override
+	public List<ProfileImageVO> userAdminImageSelect(String m_id) {
+		return adminDAO.userAdminImageSelect(m_id);
 	}
 
 }

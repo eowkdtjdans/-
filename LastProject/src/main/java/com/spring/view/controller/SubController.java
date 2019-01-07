@@ -49,11 +49,7 @@ public class SubController {
 		return "views/sub.jsp";
 	}
 	
-	@RequestMapping(value="/sub2.do", method=RequestMethod.POST)
-	public String moveController2() {
-		System.out.println("sub.do 포스트방식");
-		return "views/sub.jsp";
-	}
+
 	
 	
 }

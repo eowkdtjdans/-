@@ -299,7 +299,6 @@ function move() {
       	<br>
       	<form method="post" name="frm">
   			 <a href="../../insertHost.do?m_id=${member.m_id }" class="btn btn-light">글쓰기</a>
-      	
       	<table class="table">
       	<c:choose>
 	      	<c:when test="${empty hostList}">

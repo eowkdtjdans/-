@@ -134,16 +134,6 @@ public class LocalAdviceController {
    
    }
    
-
-   
-   
-   //localAdvice게시판으로 단순 페이지이동
-   @RequestMapping(value="/getLocalAdviceList.do", method=RequestMethod.GET)
-   public String getLocalAdviceList() {
-      System.out.println("겟로컬어드바이스리스트 GET방식");
-      return "/views/localAdvice/localAdvice.jsp";
-   }
-   
    
    //localAdvice에서 게시글작성 버튼누르면 작성페이지로 이동
    //, method=RequestMethod.GET
@@ -194,6 +184,7 @@ public class LocalAdviceController {
       
       session.setAttribute("getLocalAdvice", getLocalAdvice);
       session.setAttribute("getLocalAdviceCommentList", getLocalAdviceCommentList);
+      
       
       //모델에 담김내용을 리다이렉트어트리뷰터에 넣어줌
       rttr.addFlashAttribute("getLocalAdvice", getLocalAdvice);

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.spring.biz.host.HostService;
 import com.spring.biz.host.HostVO;
+import com.spring.biz.profile.ProfileVO;
 
 @Service("hostService")
 public class HouseServiceImpl implements HostService {
@@ -23,5 +24,17 @@ public class HouseServiceImpl implements HostService {
 	public int countHost(String key) {
 		return hostDAO.countHost(key);
 	}
+
+	@Override
+	public void insertHost(HostVO vo) {
+		hostDAO.insertHost(vo);
+	}
+
+	@Override
+	public int checkHostJson(ProfileVO vo) {
+		return hostDAO.checkHostJson(vo);
+	}
+
+
 
 }

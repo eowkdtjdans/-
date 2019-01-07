@@ -11,6 +11,7 @@ import com.spring.biz.com.admin.UserAdminCommentVO;
 import com.spring.biz.com.admin.UserAdminPostVO;
 import com.spring.biz.com.admin.UserAdminViewVO;
 import com.spring.biz.member.MemberVO;
+import com.spring.biz.profileImage.ProfileImageVO;
 
 @Repository("adminDAO")
 public class AdminDAO {
@@ -39,6 +40,10 @@ public class AdminDAO {
 
 	public List<UserAdminCommentVO> userAdminCommentSelect(String m_id) {
 		return mybatis.selectList("userAdminCommentSelect", m_id);
+	}
+
+	public List<ProfileImageVO> userAdminImageSelect(String m_id) {
+		return mybatis.selectList("userAdminImageSelect", m_id);
 	}
 
 }

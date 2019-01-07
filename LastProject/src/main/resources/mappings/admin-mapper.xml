@@ -46,6 +46,12 @@
 		AND PI.P_MAIN = 1
 		AND LC.M_ID = #{m_id}
 	</select>
+	
+	<select id="userAdminImageSelect" resultType="profileImg">
+		SELECT *
+		FROM PROFILE_IMAGE
+		WHERE M_ID = #{m_id}
+	</select>
 
 
 </mapper>
