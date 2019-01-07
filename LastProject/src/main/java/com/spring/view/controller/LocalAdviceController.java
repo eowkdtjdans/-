@@ -205,12 +205,12 @@ public class LocalAdviceController {
       localAdviceService.localAdviceCount(l_idx);
       System.out.println("조회수증가되게찌;;");
       
-      return "redirect:/getLocalAdvicego.do";
-      //return "/views/localAdvice/getLocalAdvice.jsp";
+      //return "redirect:/getLocalAdvicego.do";
+      return "/views/localAdvice/getLocalAdvice.jsp";
    }
    
    
-   @RequestMapping(value="/getLocalAdvicego.do", method = RequestMethod.GET)
+   /*@RequestMapping(value="/getLocalAdvicego.do", method = RequestMethod.GET)
    public String getLocalAdvicego() {
 	   System.out.println("리다이렉트하는 getLocalAdvicego");
 	   
@@ -218,7 +218,7 @@ public class LocalAdviceController {
 	   //System.out.println("getLocalAdviceCommentList : " + getLocalAdviceCommentList);
 	   
 	   return "/views/localAdvice/getLocalAdvice.jsp";
-   }
+   }*/
    
    
    
@@ -238,7 +238,7 @@ public class LocalAdviceController {
       
       model.addAttribute("getLocalAdvice", getLocalAdvice);
       model.addAttribute("getProfileImage", getProfileImage);
-      return "redirect:/views/localAdvice/updateLocalAdvice.jsp";
+      return "/views/localAdvice/updateLocalAdvice.jsp";
    }
    
    //localAdvice게시글 수정
@@ -253,7 +253,7 @@ public class LocalAdviceController {
       String m_id = (String)session.getAttribute("m_id");
       System.out.println("m_id가몽미 : " + m_id);
       //return "/getLocalAdviceList.do?cPage="+cPage;
-      return "redirect:/getLocalAdvice.do?&m_id="+m_id;
+      return "redirect:/getLocalAdvice.do?&m_id="+m_id+"&l_idx="+l_idx;
    }
    
    

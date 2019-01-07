@@ -1,6 +1,7 @@
 package com.spring.biz.travelers.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +15,8 @@ public class TravelersDAO {
 	private SqlSessionTemplate mybatis;
 	
 	//Travelers 조회
-	public List<TravelersVO> getTravelersList(String key) {
-		System.out.println("TravelersDAO: getTravelersList()처리");
-		return mybatis.selectList("getTravelersList", key);
+	public List<TravelersVO> getTravelersList(Map<String, Object> map) {
+		return mybatis.selectList("getTravelersList", map);
 	}
 	
 	public int countTravelers(String key) {

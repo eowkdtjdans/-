@@ -1,6 +1,7 @@
 package com.spring.biz.travelers.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,8 +19,8 @@ public class TravelersServiceImpl implements TravelersService{
 	}
 
    @Override
-   public List<TravelersVO> getTravelersList(String key) {
-      return travelersDAO.getTravelersList(key);
+   public List<TravelersVO> getTravelersList(Map<String, Object> map) {
+      return travelersDAO.getTravelersList(map);
    }
 
 @Override

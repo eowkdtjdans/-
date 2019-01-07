@@ -38,20 +38,23 @@ public class HostController {
 		return "views/host/HostInsert.jsp";
 	}
 	
+	//만들어만놓은거
 	@RequestMapping(value="hostGetInfo.do", method=RequestMethod.GET)
 	public String hostGetInfo(HttpSession session, @RequestParam("m_id") String m_id) {
 		System.out.println(m_id);
 		return "views/host/getHost.jsp";
 	}
+	
 	@RequestMapping(value="/getHostList.do", method=RequestMethod.POST)
 	public String getTravelersList(Model model, @ModelAttribute("key") String key, @RequestParam("cPage") String cPage) {
 		System.out.println(">> 글목록 조회 처리(getHostList) - POST");
 		System.out.println("key: " + key);
 		
 		PagingVO p = new PagingVO();
-		p.setNumPerPage(10);
-		p.setPagePerBlock(3);
+		p.setNumPerPage(2);
+		p.setPagePerBlock(2);
 		int countHost = hostService.countHost(key);
+		System.out.println("countHost : " + countHost);
 		p.setTotalRecord(countHost);
 		p.setTotalPage();
 		
@@ -90,11 +93,13 @@ public class HostController {
 	@RequestMapping(value="/getHostList.do", method=RequestMethod.GET)
 	public String getTravelersList2(Model model, @ModelAttribute("key") String key, @RequestParam("cPage") String cPage) {
 		System.out.println(">> 글목록 조회 처리(getHostList) - POST");
+		System.out.println("key : " + key);
 		
 		PagingVO p = new PagingVO();
-		p.setNumPerPage(10);
-		p.setPagePerBlock(3);
+		p.setNumPerPage(5);
+		p.setPagePerBlock(5);
 		int countHost = hostService.countHost(key);
+		System.out.println("countHost : " + countHost);
 		p.setTotalRecord(countHost);
 		p.setTotalPage();
 		

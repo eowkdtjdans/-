@@ -32,8 +32,8 @@ public class TravelersController {
 		System.out.println(">> 글목록 조회 처리(getTravelersList) - POST");
 		
 		PagingVO p = new PagingVO();
-		p.setNumPerPage(10);
-		p.setPagePerBlock(3);
+		p.setNumPerPage(5);
+		p.setPagePerBlock(5);
 		int countTravelers = travelersService.countTravelers(key);
 		p.setTotalRecord(countTravelers);
 		p.setTotalPage();
@@ -58,7 +58,7 @@ public class TravelersController {
 		map.put("end", p.getEnd());
 		map.put("key", key);
 		
-		List<TravelersVO> travelersList = travelersService.getTravelersList(key);
+		List<TravelersVO> travelersList = travelersService.getTravelersList(map);
 		System.out.println("travelersList: " + travelersList);
 		
 		model.addAttribute("travelersList", travelersList);
@@ -73,11 +73,13 @@ public class TravelersController {
 	@RequestMapping(value="/getTravelersList.do", method=RequestMethod.GET)
 	public String getTravelersList2(Model model, @ModelAttribute("key") String key, @RequestParam("cPage") String cPage) {
 		System.out.println(">> 글목록 조회 처리(getTravelersList) - GET");
-		
+
 		PagingVO p = new PagingVO();
-		p.setNumPerPage(10);
-		p.setPagePerBlock(3);
+		p.setNumPerPage(5);
+		p.setPagePerBlock(5);
 		int countTravelers = travelersService.countTravelers(key);
+		System.out.println("countTravelers : " + countTravelers);
+		
 		p.setTotalRecord(countTravelers);
 		p.setTotalPage();
 		
@@ -101,7 +103,13 @@ public class TravelersController {
 		map.put("end", p.getEnd());
 		map.put("key", key);
 		
-		List<TravelersVO> travelersList = travelersService.getTravelersList(key);
+		System.out.println("p.getBegin() : " + p.getBegin());
+		System.out.println("p.getEnd() :" +p.getEnd());
+		System.out.println("key : " + key);
+		
+		
+		List<TravelersVO> travelersList = travelersService.getTravelersList(map);
+		System.out.println("travelersList : " + travelersList);
 		
 		model.addAttribute("travelersList", travelersList);
 		model.addAttribute("countTravelers", countTravelers);

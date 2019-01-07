@@ -319,7 +319,7 @@ function move() {
 				      <hr />
 				      <a href="../../hostGetInfo.do?m_id=${list.m_id }" class="btn btn-light">See Profile</a>
 				    </span>
-			  </span>
+			    </span>
       		</c:forEach>
       		</c:otherwise>     		
       	</c:choose>	
@@ -337,7 +337,7 @@ function move() {
 				<%--사용가능(enable) : 두번째 이상(첫번째 아닌경우) --%>
 					<c:otherwise>
 						<li>
-							<a href="../getLocalAdviceList2.do?cPage=${pvo.beginPage - 1 }">◀</a>
+							<a href="../getHostList.do?cPage=${pvo.beginPage - 1 }">◀</a>
 						</li>
 					</c:otherwise>	
 				</c:choose>
@@ -351,7 +351,7 @@ function move() {
 					</c:when>
 					<c:otherwise>
 						<li>
-							<a href="../getLocalAdviceList2.do?cPage=${k }">${k }</a>
+							<a href="../getHostList.do?cPage=${k }">${k }</a>
 						</li>
 					</c:otherwise>
 				</c:choose>
@@ -366,7 +366,7 @@ function move() {
 					<%--사용가능(enable) --%>
 					<c:otherwise>
 						<li>
-							<a href="../getLocalAdviceList2.do?cPage=${pvo.endPage + 1 }">▶</a>
+							<a href="../getHostList.do?cPage=${pvo.endPage + 1 }">▶</a>
 						</li>
 					</c:otherwise>
 				</c:choose>

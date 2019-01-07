@@ -5,12 +5,17 @@
 
 <!-- mapper 태그의 namespace 속성 필수 작성  -->  
 <mapper namespace="trevelerDAO">
-	<select id="getTravelersList" parameterType="String" resultType="travelers">
-		SELECT T.*, PI.P_ROUTE FROM TRAVELERS T, MEMBER M, PROFILE_IMAGE PI
+	<select id="getTravelersList" parameterType="Map" resultType="travelers">
+		<!-- SELECT T.*, PI.P_ROUTE FROM TRAVELERS T, MEMBER M, PROFILE_IMAGE PI
 		WHERE UPPER(T.T_COUNTRY) LIKE '%' || UPPER(#{key}) || '%'
         AND T.M_ID = M.M_ID
         AND PI.M_ID = M.M_ID
-		ORDER BY T.M_ID
+		ORDER BY T.M_ID -->
+		SELECT R_NUM, T3.*
+	    FROM (SELECT ROWNUM R_NUM, T2.* FROM (SELECT T.*, PI.P_ROUTE, M.M_ADDRESS, M.M_NAME FROM TRAVELERS T, PROFILE_IMAGE PI, MEMBER M WHERE T.M_ID = PI.M_ID AND PI.M_ID = M.M_ID AND PI.P_MAIN = 1 ORDER BY T_DATEOFVISIT ASC) T2) T3          
+	    WHERE T3.T_COUNTRY LIKE '%' || UPPER(#{key}) || '%' 
+	    AND (R_NUM BETWEEN #{begin} AND #{end}) 
+		
 	</select>
 	
 	<select id="countTravelers" parameterType="String" resultType="int">
