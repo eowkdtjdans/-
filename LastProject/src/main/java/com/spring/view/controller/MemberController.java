@@ -1,9 +1,12 @@
 package com.spring.view.controller;
 
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,11 +65,67 @@ public class MemberController {
 	public String insertMemberPost(MemberVO vo, HttpSession session) throws Exception {
 		System.out.println("=======인서트시작");
 		System.out.println("인서트두 컨트롤러 vo: " + vo);
+		System.out.println("vo.getM_id : " + vo.getM_id());
 		memberService.insertMember(vo);
 		
-		//session.setAttribute("m_id", vo.getM_id());
+		StringBuffer temp = new StringBuffer();
+		Random rnd = new Random();
+		for (int i = 0; i < 10; i++) {
+		    int rIndex = rnd.nextInt(3);
+		    switch (rIndex) {
+		    case 0:
+		        // a-z
+		        temp.append((char) ((int) (rnd.nextInt(26)) + 97));
+		        break;
+		    case 1:
+		        // A-Z
+		        temp.append((char) ((int) (rnd.nextInt(26)) + 65));
+		        break;
+		    case 2:
+		        // 0-9
+		        temp.append((rnd.nextInt(10)));
+		        break;
+		    }
+		}
+		
+		String emailCheck = temp.toString();
+
+ 
+		email.setSubject(" [국봉월드] " + vo.getM_id() +"님 이메일 인증코드이메일입니다.");
+		email.setReceiver(vo.getM_id());
+		email.setContent("[국봉월드] 인증번호는 " + " ["+emailCheck+"] " +" 입니다. 인증번호를 기입 후 확인버튼을 눌러주세요.");
+		emailSender.SendEmail(email);
+		session.setAttribute("emailCheck", emailCheck);
 		session.setAttribute("member", vo);
-		return "redirect:/sub2.do";
+		return "redirect:/certifyEmail.do?m_id="+vo.getM_id();
+		//return "views/member/certifyEmail.jsp?m_id=";
+	}
+	
+	@RequestMapping(value="/certifyEmail.do", method=RequestMethod.GET)
+	public String certifyEmail(MemberVO vo, @RequestParam("m_id") String m_id) {
+		System.out.println("=certifyEmail===get가즈아ㅏㅏ=============");
+		System.out.println("vo.getM_id : " + vo.getM_id());
+		
+		System.out.println("vo : " + vo);
+		return "views/member/certifyEmail.jsp";
+	}
+	@RequestMapping(value="/certifyEmail.do", method=RequestMethod.POST)
+	public String certifyEmailPost(MemberVO vo, @RequestParam("m_id") String m_id) {
+		System.out.println("=certifyEmail===get가즈아ㅏㅏ=============");
+		System.out.println("vo.getM_id : " + vo.getM_id());
+		
+		System.out.println("vo : " + vo);
+		return "views/member/certifyEmail.jsp";
+	}
+
+	@RequestMapping(value="certifyCodeUpdate.do", method=RequestMethod.POST)
+	public String certifyCodeUpdate(MemberVO vo, @RequestParam("m_id") String m_id) {
+		vo.setM_id(m_id);
+		System.out.println("=certifyCodeUpdate===get가즈아ㅏㅏ=============");
+		System.out.println("vo.getM_id : " + vo.getM_id());
+		memberService.certifyCodeUpdate(vo);
+		
+		return "redirect:/loginMember.do";
 	}
 	
 	//=======================================================================
@@ -80,11 +139,10 @@ public class MemberController {
 	
 	//로그인
 	@RequestMapping(value="/loginMember.do", method=RequestMethod.POST) // @RequestParam("m_pwd") String m_pwd,
-	public String loginPost(MemberVO vo, HttpSession session, ProfileVO profileVO, MessageRecieveVO receivevo, HostImageVO hostimageVO) throws Exception {
+	public String loginPost(HttpServletResponse response, MemberVO vo, HttpSession session, ProfileVO profileVO, MessageRecieveVO receivevo, HostImageVO hostimageVO) throws Exception {
 		System.out.println(">> 포스트방식 로그인처리");
 		System.out.println("m_id : " + vo.getM_id());
 		System.out.println("m_pwd : " + vo.getM_pwd());
-		
 		MemberVO vo2 = memberService.loginMember(vo, session);
 		profileVO.setM_id(vo.getM_id());
 		ProfileVO profileVO2 = profileService.getProfile2(profileVO, session);
@@ -100,17 +158,61 @@ public class MemberController {
 		
 		if (vo2.getM_id() != null && vo2.getM_id().equals(vo.getM_id()) && vo2.getM_pwd() != null && vo2.getM_pwd().equals(vo.getM_pwd())) {
 			System.out.println("======있는 아이디======");
-			//session.setAttribute("m_id", vo.getM_id());
+			
+			if(vo2.getM_certify().equals("O")) {
+				
+			System.out.println("O로 넘어감");
 			session.setAttribute("member", vo2);
 			session.setAttribute("profile", profileVO2);
 			session.setAttribute("messageInfo", receivevo2);
 			session.setAttribute("hostImg", hostimageVO2);
 			return "redirect:/sub2.do";
+			} else if (vo2.getM_certify().equals("X")) {
+				
+				StringBuffer temp = new StringBuffer();
+				Random rnd = new Random();
+				for (int i = 0; i < 10; i++) {
+				    int rIndex = rnd.nextInt(3);
+				    switch (rIndex) {
+				    case 0:
+				        // a-z
+				        temp.append((char) ((int) (rnd.nextInt(26)) + 97));
+				        break;
+				    case 1:
+				        // A-Z
+				        temp.append((char) ((int) (rnd.nextInt(26)) + 65));
+				        break;
+				    case 2:
+				        // 0-9
+				        temp.append((rnd.nextInt(10)));
+				        break;
+				    }
+				}
+				
+				String emailCheck = temp.toString();
+				
+				PrintWriter out = response.getWriter();
+				//response.setCharacterEncoding("utf-8");
+				response.setContentType("text/html; charset=utf-8");
+				out.println("<script language='javascript'>");
+				out.println("alert('이메일 인증이 완료되지않았습니다. 이메일을 확인해주세요.');");
+				out.println("</script>");
+				out.flush();
+				
+				email.setSubject(" [국봉월드] " + vo.getM_id() +"님 이메일 인증코드이메일입니다.");
+				email.setReceiver(vo.getM_id());
+				email.setContent("[국봉월드] 인증번호는 " + " ["+emailCheck+"] " +" 입니다. 인증번호를 기입 후 확인버튼을 눌러주세요.");
+				emailSender.SendEmail(email);
+				session.setAttribute("emailCheck", emailCheck);
+				session.setAttribute("member", vo);
+				return "redirect:/certifyEmail.do?m_id="+vo.getM_id();
+			}
 		} else {
 			System.out.println("=====없는 아이디=====");
 			
 			return "redirect:/loginMember.do";
 		}
+		return "redirect:/sub2.do";
 	}	
 	
 	//비밀번호 변경
@@ -365,8 +467,9 @@ public class MemberController {
     		return "redirect:/findPwdMember.do";
     	}
     }
-	
-	
+
+
+
 	
 	
 	

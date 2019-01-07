@@ -7,8 +7,8 @@
 <mapper namespace="MemberDAO">
 
 		<insert id="insertMember" parameterType="member">
-		INSERT INTO MEMBER (M_ID, M_PWD, M_NAME, M_PHONE, M_GENDER, M_BIRTHDAY, LAT, LNG, M_REGDATE, M_ADDRESS ) 
-		VALUES ( #{m_id}, #{m_pwd}, #{m_name}, #{m_phone}, #{m_gender}, #{m_birthday}, #{lat}, #{lng}, SYSDATE, #{m_address})
+		INSERT INTO MEMBER (M_ID, M_PWD, M_NAME, M_PHONE, M_GENDER, M_BIRTHDAY, LAT, LNG, M_REGDATE, M_ADDRESS, M_CERTIFY ) 
+		VALUES ( #{m_id}, #{m_pwd}, #{m_name}, #{m_phone}, #{m_gender}, #{m_birthday}, #{lat}, #{lng}, SYSDATE, #{m_address}, 'X')
 	</insert>
 	<update id="ModifyPwdMember" parameterType="member">
 		UPDATE MEMBER SET M_PWD = #{m_pwd} WHERE M_ID = #{m_id}
@@ -23,6 +23,10 @@
 		LAT = #{lat},
 		LNG = #{lng} 
 		WHERE M_ID = #{m_id}
+	</update>
+	
+	<update id="certifyCodeUpdate" parameterType="member">
+		UPDATE MEMBER SET M_CERTIFY = 'O' WHERE M_ID = #{m_id}
 	</update>
 	
 	<delete id="DeleteMember" parameterType="member">

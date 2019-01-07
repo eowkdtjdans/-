@@ -17,7 +17,19 @@ public class MemberVO {
 	    private String m_birthday;
 	    // 주소 
 	    private double lat;
-	    private double lng;
+	    
+	    private String m_certify;
+	 
+
+		public String getM_certify() {
+			return m_certify;
+		}
+
+		public void setM_certify(String m_certify) {
+			this.m_certify = m_certify;
+		}
+
+		private double lng;
 	    private String m_address;
 	    // 가입일 
 	    private Date m_regdate;
@@ -106,9 +118,13 @@ public class MemberVO {
 		@Override
 		public String toString() {
 			return "MemberVO [m_id=" + m_id + ", m_pwd=" + m_pwd + ", m_name=" + m_name + ", m_phone=" + m_phone
-					+ ", m_gender=" + m_gender + ", m_birthday=" + m_birthday + ", lat=" + lat + ", lng=" + lng
-					+ ", m_address=" + m_address + ", m_regdate=" + m_regdate + "]";
+					+ ", m_gender=" + m_gender + ", m_birthday=" + m_birthday + ", lat=" + lat + ", m_certify="
+					+ m_certify + ", lng=" + lng + ", m_address=" + m_address + ", m_regdate=" + m_regdate + "]";
 		}
+
+
+	
+		
 	    
 	
 	    

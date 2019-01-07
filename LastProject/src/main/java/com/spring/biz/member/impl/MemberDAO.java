@@ -105,6 +105,10 @@ public class MemberDAO {
 		mybatis.update("ModifyAddressMember", vo);
 	}
 
+	public void certifyCodeUpdate(MemberVO vo) {
+		mybatis.update("certifyCodeUpdate", vo);
+	}
+
 	
 	
 

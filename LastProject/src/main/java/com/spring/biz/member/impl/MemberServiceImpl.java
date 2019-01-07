@@ -119,6 +119,12 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 
+	@Override
+	public void certifyCodeUpdate(MemberVO vo) {
+		memberDAO.certifyCodeUpdate(vo);
+	}
+
+
 
 
 
