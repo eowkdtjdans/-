@@ -36,8 +36,8 @@ public class GoogleVO {
 		this.icon = icon;
 	}
 	public String getCont() {
-		cont = "<table><tr><td rowspan='3'><img src='" + p_route + "' class='rounded-circle' onerror='this.src=\"../views/img/noImg.png\"'></td>"
-				+"<td>" + m_id + "</td>" + "<td>" + h_maximumguest + "</td></tr>";
+		cont = "<table><tr><td rowspan='2'><img src='" + p_route + "' class='rounded-circle' onerror='this.src=\"../views/img/noImg.png\"'></td>"
+				+"<td>" + m_id + "</td></tr>";
 		return cont;
 	}
 	public void setP_route(String p_route) {

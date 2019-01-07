@@ -18,8 +18,8 @@ public class GoogleServiceImpl implements GoogleService{
 	}
 
 	@Override
-	public List<GoogleVO> getGoogle() {
-		return googleDAO.getGoogle();
+	public List<GoogleVO> getHostGoogle() {
+		return googleDAO.getHostGoogle();
 	}
 
 }

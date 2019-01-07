@@ -4,5 +4,5 @@ import java.util.List;
 
 public interface GoogleService {
 
-	List<GoogleVO> getGoogle();
+	List<GoogleVO> getHostGoogle();
 }

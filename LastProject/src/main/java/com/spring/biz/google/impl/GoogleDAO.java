@@ -13,8 +13,7 @@ public class GoogleDAO {
 	@Autowired
 	private SqlSessionTemplate mybatis;
 	
-	public List<GoogleVO> getGoogle() {
-		System.out.println("GoogleDAO: getGoogle(GoogleVO vo)처리");
-		return mybatis.selectList("getGoogle");
+	public List<GoogleVO> getHostGoogle() {
+		return mybatis.selectList("getHostGoogle");
 	}
 }

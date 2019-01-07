@@ -20,10 +20,10 @@ public class GoogleController {
 		System.out.println("GoogleController 실행");
 	}
 	
-	@RequestMapping("/google.do")
+	@RequestMapping("/getHostGoogle.do")
 	@ResponseBody
-	public List<GoogleVO> getGoogle() {
-		List<GoogleVO> list = googleService.getGoogle();
+	public List<GoogleVO> getHostGoogle() {
+		List<GoogleVO> list = googleService.getHostGoogle();
 		return list;
 	}
 	

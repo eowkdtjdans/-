@@ -1,9 +1,10 @@
 package com.spring.view.controller;
 
+import java.io.PrintWriter;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.spring.biz.com.admin.AdminService;
 import com.spring.biz.hostImage.HostImageService;
 import com.spring.biz.hostImage.HostImageVO;
 import com.spring.biz.member.Email;
@@ -105,6 +105,7 @@ public class MemberController {
 			session.setAttribute("profile", profileVO2);
 			session.setAttribute("messageInfo", receivevo2);
 			session.setAttribute("hostImg", hostimageVO2);
+			
 			return "redirect:/sub2.do";
 		} else {
 			System.out.println("=====없는 아이디=====");

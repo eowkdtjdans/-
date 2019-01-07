@@ -1,5 +1,8 @@
 package com.spring.view.controller;
 
+import java.io.PrintWriter;
+
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -46,6 +49,7 @@ public class SubController {
 	@RequestMapping(value="/sub2.do", method=RequestMethod.GET)
 	public String moveController() {
 		System.out.println("sub2.do === get방식");
+		
 		return "views/sub.jsp";
 	}
 	

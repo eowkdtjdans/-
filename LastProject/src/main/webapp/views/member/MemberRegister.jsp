@@ -13,7 +13,7 @@
    <link rel="stylesheet" type="text/css" href="views/cssModal/my-login.css">
    
    <link rel="stylesheet" href="views/datepicker/public/theme/css/t-datepicker.min.css">
-   <link rel="stylesheet" href="views/datepicker/public/theme/css/themes/t-datepicker-bluegrey.css">
+   <link rel="stylesheet" href="views/datepicker/public/theme/css/themes/t-datepicker-teal.css">
    <!-- blue, bluegrey, cyan, green, lime, main, orange, purple, teal, yellow -->
    
    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
