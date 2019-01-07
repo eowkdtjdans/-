@@ -25,7 +25,7 @@ public class SubController {
 		String path = null;
 		
 		if(searchCondition.equals("find_travler")) {
-			path = "/getTravelersList.do?cPage=1";
+			path = "redirect:/getTravelersList.do?cPage=1";
 		} else if(searchCondition.equals("find_host")) {
 			System.out.println("host");
 			path = "redirect:/getHostList.do?cPage=1";

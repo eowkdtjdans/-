@@ -43,7 +43,8 @@
 							frm.submit();
 						}
 					});
-				} else {
+				} 
+				else {
 					$.ajax({
 						type : "GET",
 						url : "../logLogin.do?ll_id="+ll_id+"&ll_ip="+ll_ip+"&ll_country="+ll_country+"&ll_device="+ll_device+"&ll_result=로그인실패",
@@ -80,7 +81,6 @@
 		}
 	}
 
-
 	
 </script>
 
@@ -103,7 +103,6 @@
 						<div class="card-body">
 							<h4 class="card-title" style="text-align : center;">로그인</h4>
 							<form onsubmit="return false"method="POST" class="my-login-validation" id="form"  >
-							
 								<div class="form-group">
 									<label for="email">아이디</label>
 									<input type="email" class="form-control" name="m_id" onkeypress="enterkey()" required autofocus>

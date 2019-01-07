@@ -10,6 +10,7 @@ import org.springframework.aop.ThrowsAdvice;
 
 public interface MemberService {
 	
+
 	//회원가입
 	 void insertMember(MemberVO vo) throws Exception;
 	
@@ -71,6 +72,8 @@ public interface MemberService {
 
 	//회원정보 삭제
 	void DeleteMember(MemberVO vo);
+
+	void certifyCodeUpdate(MemberVO vo);
 	
 	
 	

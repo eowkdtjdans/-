@@ -142,9 +142,9 @@ function register(frm) {
 			frm.m_address.value = ""; 
 			frm.m_address.focus();
         }else{
-        alert("회원가입을 축하합니다");
-    	frm.action = "../../insertMember.do"; //로그인 작업 처리
-		frm.submit();
+        alert("이메일 인증을 완료해야 사이트를 이용하실 수 있습니다. 이메일을 확인해주세요.");
+     	frm.action = "../../insertMember.do"; //로그인 작업 처리
+		frm.submit(); 
         }
     }
 

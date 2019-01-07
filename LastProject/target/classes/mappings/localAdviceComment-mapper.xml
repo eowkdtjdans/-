@@ -15,7 +15,7 @@
    			 
   			 SELECT LC.*, PI.P_ROUTE FROM L_COMMENT LC, PROFILE_IMAGE PI  
 	         WHERE LC.M_ID = PI.M_ID 
-	         AND PI.P_MAIN = 1 
+	         AND PI.P_MAIN = 1  
 	         AND LC.L_IDX=#{l_idx} ORDER BY LC_IDX ASC 
 	         
 	         <!-- SELECT B2.* FROM (

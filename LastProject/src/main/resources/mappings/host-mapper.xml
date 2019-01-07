@@ -14,33 +14,22 @@
        AND (R_NUM BETWEEN #{begin} AND #{end})
 	</select>
 	
-	<insert id="insertHost" parameterType="host">INSERT INTO HOST (
-		M_ID
-		H_MAXIMUMGUEST
-		H_GENDER
-		H_SMOKE
-		H_ROOMTYPE
-		H_RULE
-		H_STARTDATE
-		H_HASPET
-		H_HASCHILD
-		H_ENDDATE
-	) VALUES (
-			${m_id
-		${h_maximumguest},
-		${h_gender},
-		${h_smoke},
-		${h_roomtype},
-		${h_rule},
-		${h_startdate},
-		${h_haspet},
-		${h_haschild},
-		${h_enddate}
-	)
+	<insert id="insertHost" parameterType="host">
+	INSERT INTO HOST 
+(M_ID, H_MAXIMUMGUEST, H_GENDER, H_SMOKE, H_ROOMTYPE,
+ H_RULE, H_STARTDATE, H_HASPET, H_HASCHILD, H_ENDDATE)
+ 
+VALUES (#{m_id}, #{h_maximumguest}, #{h_gender}, #{h_smoke}, #{h_roomtype}, 
+#{h_rule}, #{h_startdate}, #{h_haspet}, #{h_haschild}, #{h_enddate})    
 	
 	
 	
 	</insert>
+	
+	<select id="checkHostJson" parameterType="String" resultType="Integer">
+		SELECT COUNT(*) FROM HOST
+		WHERE M_ID = #{m_id}
+	</select>
 	
 	<select id="countHost" parameterType="String" resultType="int">
 		SELECT COUNT(H.M_ID)
