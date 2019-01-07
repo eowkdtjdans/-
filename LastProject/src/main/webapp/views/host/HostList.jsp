@@ -312,7 +312,7 @@ function move() {
 	      		<span class="card" style="width:200px; height: 500px; margin : auto; text-align: center;">
 				    <img class="card-img-top" src="${list.p_route}" alt="Card image" style="width:200px; height: 200px;">
 				    <span class="card-body">
-				      <h6 class="card-title">${list.m_name}</h6>
+				      <h6 class="card-title">${list.m_id}</h6>
 				      <hr />
 				      <p class="card-text">${list.m_address}</p>
 				      <hr />
