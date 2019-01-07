@@ -27,7 +27,7 @@
   <link href="views/lib/ionicons/css/ionicons.min.css" rel="stylesheet">
   <link href="views/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
   <link href="views/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
-  
+
   <!-- Main Stylesheet File -->
   <link href="views/css/style.css" rel="stylesheet">
   
@@ -88,14 +88,14 @@ var endLng = null;
 //시작할때 실행되는 맵 세팅
 function initialize() {
     var mapOptions = {
-        zoom: 11, //지도 줌
+        zoom: 14, //지도 줌
         mapTypeId: google.maps.MapTypeId.ROADMAP, //지도 타입(변경 x)
         center: new google.maps.LatLng("${firstLat}", "${firstLng}") //맵이 로딩됬을때 시작지점
     };
     
     var addCircle = new google.maps.Circle({ //원형 그리기
     	center: new google.maps.LatLng("${firstLat}", "${firstLng}"), //원형의 중앙점
-    	radius: 11000,			//원형 범위
+    	radius: 1800,			//원형 범위
     	strokeColor: "GREEN",	//테두리 색
     	strokeOpacity: 0.8, 	//테두리 투명도
     	strokeWeight: 2,		//테두리 굵기
@@ -142,7 +142,7 @@ function viewMarker() {
 	{
 		$.ajax({
 			type: "GET",
-			url: "../getHostGoogle.do",
+			url: "../google.do",
 			 beforeSend: function() {			
 				fnRemoveMarker();
 			 },
@@ -158,7 +158,7 @@ function viewMarker() {
 							draggable: false,
 							html: markerList[i].cont,
 							label: {
-					            text: markerList[i].m_name,
+					            text: markerList[i].m_name, // $100,000
 					            color: 'black',
 					            fontWeight: 'bold'
 					        },
@@ -222,16 +222,6 @@ function move() {
 <style>
 	.rounded-circle { width: 80px; height: 70px;} 
 	.card {float : left;}
-	
-	#modalImg {
-		margin: auto;
-		width: 500px;
-		height: 500px;
-	}
-	.modal-container {
-		width: 800px;
-		height: 2000px;
-	}
 </style>
 
 
@@ -323,11 +313,10 @@ function move() {
 				    <img class="card-img-top" src="${list.p_route}" alt="Card image" style="width:200px; height: 200px;">
 				    <span class="card-body">
 				      <h6 class="card-title">${list.m_name}</h6>
-				      <hr/>
+				      <hr />
 				      <p class="card-text">${list.m_address}</p>
-				      <hr/>
+				      <hr />
 				      <a href="../../hostGetInfo.do?m_id=${list.m_id }" class="btn btn-light">See Profile</a>
-				      <button type="button" class="btn btn-light" id="modalBtn${list.m_id}" data-toggle="modal" data-target="#modal${list.m_id}">ModalTest</button>
 				    </span>
 			    </span>
       		</c:forEach>
@@ -463,49 +452,6 @@ function move() {
   </footer><!-- #footer -->
 
   <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
-  
-  <!-- The Modal -->
-  <c:forEach var="list" items="${hostList}">
-  <div class="modal fade" id="modal${list.m_id}" class="modal-container">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-      
-        <!-- Modal Header -->
-        <div class="modal-header">
-          <h4 class="modal-title">Traveler profile</h4>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-        </div>
-        
-        <!-- Modal body -->
-        <div class="modal-body">
-          <table class="table">
-             <tr>
-             	<td colspan="2"><img src="${list.p_route}" id="modalImg"></td>
-             </tr>
-             <tr>
-                <td>아이디</td>
-                <td>${list.m_id}</td>
-             </tr>
-             <tr>
-                <td>이름</td>
-                <td>${list.m_name}</td>
-             </tr>
-             <tr>
-                <td>ㅎㅇ</td>
-                <td>gg</td>
-             </tr>
-          </table>
-        </div>
-        
-        <!-- Modal footer -->
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        </div>
-        
-      </div>
-    </div>
-  </div>
-  </c:forEach>
 
   <!-- JavaScript Libraries -->
   <script src="views/lib/jquery/jquery.min.js"></script>
