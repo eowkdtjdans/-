@@ -97,7 +97,7 @@ function sendMessage(m_id){
 	alert("m_id : " +m_id);
 	/* frm.action="../insertMessage.do";
 	frm.submit(); */
-	location.href="../insertMessage.do?message_receiver="+m_id+"&message_sender=${member.m_id}";
+	location.href="../insertMessage.do?message_receiver="+m_id;
 }
 </script>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -371,6 +371,10 @@ function sendMessage(m_id){
 
 <!-- The Modal -->
 <c:forEach var="list" items="${travelersList }">
+<% 	
+	String m_id= "${list.m_id}";
+	session.setAttribute("receiver", m_id); 
+%>
   <div class="modal fade" id="myModal${list.m_id }">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
@@ -404,7 +408,7 @@ function sendMessage(m_id){
           	
           </table>
         </div>
-        
+
         <!-- Modal footer -->
         <div class="modal-footer">
         <form name="frm">                                                           <!-- onclick="../insertMessage.do?message_receiver=${list.m_id}" -->
