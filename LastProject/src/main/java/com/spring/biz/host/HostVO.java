@@ -18,7 +18,8 @@ public class HostVO {
     // 숙소이용주의사항 
     private String h_rule;
     // 사용가능날짜 
-    private Date h_availabledate;
+    private Date h_startdate;
+    private Date h_enddate;
     // 펫유무 
     private String h_haspet;
     // 자녀유무 
@@ -26,20 +27,17 @@ public class HostVO {
     
     private String p_route;
     private String m_address;
-    
-    
-    
-	public String getM_name() {
-		return m_name;
-	}
-	public void setM_name(String m_name) {
-		this.m_name = m_name;
-	}
 	public String getM_id() {
 		return m_id;
 	}
 	public void setM_id(String m_id) {
 		this.m_id = m_id;
+	}
+	public String getM_name() {
+		return m_name;
+	}
+	public void setM_name(String m_name) {
+		this.m_name = m_name;
 	}
 	public String getH_maximumguest() {
 		return h_maximumguest;
@@ -71,11 +69,24 @@ public class HostVO {
 	public void setH_rule(String h_rule) {
 		this.h_rule = h_rule;
 	}
-	public Date getH_availabledate() {
-		return h_availabledate;
+	public Date getH_startdate() {
+		return h_startdate;
 	}
-	public void setH_availabledate(Date h_availabledate) {
-		this.h_availabledate = h_availabledate;
+	public void setH_startdate(Date h_startdate) {
+		this.h_startdate = h_startdate;
+	}
+	public Date getH_enddate() {
+		return h_enddate;
+	}
+	public void setH_enddate(Date h_enddate) {
+		this.h_enddate = h_enddate;
+	}
+	@Override
+	public String toString() {
+		return "HostVO [m_id=" + m_id + ", m_name=" + m_name + ", h_maximumguest=" + h_maximumguest + ", h_gender="
+				+ h_gender + ", h_smoke=" + h_smoke + ", h_roomtype=" + h_roomtype + ", h_rule=" + h_rule
+				+ ", h_startdate=" + h_startdate + ", h_enddate=" + h_enddate + ", h_haspet=" + h_haspet
+				+ ", h_haschild=" + h_haschild + ", p_route=" + p_route + ", m_address=" + m_address + "]";
 	}
 	public String getH_haspet() {
 		return h_haspet;
@@ -101,13 +112,10 @@ public class HostVO {
 	public void setM_address(String m_address) {
 		this.m_address = m_address;
 	}
-	@Override
-	public String toString() {
-		return "HostVO [m_id=" + m_id + ", m_name=" + m_name + ", h_maximumguest=" + h_maximumguest + ", h_gender="
-				+ h_gender + ", h_smoke=" + h_smoke + ", h_roomtype=" + h_roomtype + ", h_rule=" + h_rule
-				+ ", h_availabledate=" + h_availabledate + ", h_haspet=" + h_haspet + ", h_haschild=" + h_haschild
-				+ ", p_route=" + p_route + ", m_address=" + m_address + "]";
-	}
+    
+    
+    
+
 	
 	
 	
