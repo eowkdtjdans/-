@@ -65,6 +65,8 @@
 		padding: 3px 3px;
 		font-weight: bold;
 	} 
+	.rounded-circle { width: 80px; height: 70px;} 
+	.card {float : left;}
 </style>
 
 <script>
@@ -152,10 +154,15 @@ function fillInAddress() { //lat 와 lng 값을 넘겨줄 input 태그에 값 �
 <section id="about">
       <div class="container">
       	<h2><strong>Find Travelers</strong></h2>
+      	
       	<h5>요청하신 키워드에 관한 게시글 수 : ${countTravelers }</h5>
+      	
       	<div class="text-right"><a href="../writeLocalAdvice.do" class="btn btn-outline-secondary">게시글 작성</a></div>
+      	
       	<br>
       	<form method="post" name="frm">
+      		<a href="../../insertHost.do?m_id=${member.m_id }" class="btn btn-light">글쓰기</a>
+      	
       	<table class="table">
       	<c:choose>
 	      	<c:when test="${empty travelersList}">
@@ -165,12 +172,23 @@ function fillInAddress() { //lat 와 lng 값을 넘겨줄 input 태그에 값 �
 	      	</c:when>                    
 	      	<c:otherwise>
       		<c:forEach var="list" items="${travelersList}">
-	      		<tr>
+	      		<%-- <tr>
 	      			<td rowspan="3">${list.p_route}</td>
 	      			<td>${list.m_id}</td>
 	      			<td>${t_dateofvisit}</td>
 	      			<td>${list.t_country}</td>
-	      		</tr>
+	      		</tr> --%>
+	      		<input type="hidden" name="m_id" value="${list.m_id }" id="m_id" />
+	      		<span class="card" style="width:200px; height: 500px; margin : auto; text-align: center;">
+				    <img class="card-img-top" src="${list.p_route}" alt="Card image" style="width:200px; height: 200px;">
+				    <span class="card-body">
+				      <h6 class="card-title">${list.m_id}</h6>
+				      <hr />
+				      <p class="card-text">${list.t_country}</p>
+				      <hr />
+				      <a href="../../travelersGetInfo.do?m_id=${list.m_id }" class="btn btn-light">See Profile</a>
+				    </span>
+			    </span>
       		</c:forEach>
       		</c:otherwise>     		
       	</c:choose>	
