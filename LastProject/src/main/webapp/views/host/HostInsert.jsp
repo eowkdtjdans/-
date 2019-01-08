@@ -28,10 +28,12 @@
          url : "../../checkHostJson.do",
          success : function(data) {
             if (data.cnt == 0) {
-               alert("data.cnt : " + data.cnt); 
                alert("적은 글 없음");
-                frm.action = "../../insertHost.do";
-               frm.submit();
+                if (frm.h_maximumguest =="choose") {
+            	   alert("최대수용인원");
+               } 
+           		frm.action = "../../insertHost.do";
+               frm.submit(); 
              } else {
                alert("data.cnt : " + data.cnt);
                alert("적은 글 있음");
@@ -101,8 +103,7 @@ $(document).ready(function(){
                                 <label for="h_maximumguest" class="col-4 col-form-label">최대 투숙객</label> 
                                 <div class="col-8">
                                    <select class="form-control" id="h_maximumguest" name="h_maximumguest">
-                                  <option selected="selected">choose</option>
-                                  <option>1</option>
+                                  <option selected="selected">1</option>
                                   <option>2</option>
                                   <option>3</option>
                                   <option>4</option>
@@ -115,9 +116,8 @@ $(document).ready(function(){
                                 <label for="h_gender" class="col-4 col-form-label">선호 성별</label> 
                                 <div class="col-8">
                                    <select class="form-control" id="h_gender" name="h_gender">
-                                  <option selected="selected">choose</option>
-                                  <option>남자</option>
-                               <option>여자</option>
+                                 	 <option selected="selected">남자</option>
+                              		 <option>여자</option>
                           </select>
                                 </div>
                               </div>
@@ -126,9 +126,8 @@ $(document).ready(function(){
                                 <label for="h_smoke" class="col-4 col-form-label">흡연 가능 여부</label> 
                                 <div class="col-8">
                                     <select class="form-control" id="h_smoke" name="h_smoke">
-                                  <option selected="selected">choose</option>
-                                  <option>O</option>
-                               <option>X</option>
+                               		 <option selected="selected">X</option>
+                                 	 <option>O</option>
                              </select>
                                 </div>
                               </div>
@@ -137,11 +136,10 @@ $(document).ready(function(){
                                 <label for="h_roomtype" class="col-4 col-form-label">방 종류</label> 
                                 <div class="col-8">
                                     <select class="form-control" id="h_roomtype" name="h_roomtype">
-                               <option selected="selected">choose</option>
-                               <option>싱글 베드</option>
-                               <option>더블 베드</option>
-                               <option>퀸 베드</option>
-                                  <option>소파</option>
+		                               <option selected="selected">싱글 베드</option>
+		                               <option>더블 베드</option>
+		                               <option>퀸 베드</option>
+		                                  <option>소파</option>
                           </select>
                                 </div>
                               </div>
@@ -172,9 +170,8 @@ $(document).ready(function(){
                                 <div class="col-8">
                                     <select class="form-control" id="h_haspet" name="h_haspet">
                                        
-                                  <option selected="selected">choose</option>
-                                  <option>O</option>
-                               <option>X</option>
+	                               		<option selected="selected">X</option>
+	                                  	<option>O</option>
                              </select>
                                 </div>
                               </div>
@@ -183,9 +180,8 @@ $(document).ready(function(){
                                 <label for="h_haschild" class="col-4 col-form-label">자녀 유무</label> 
                                 <div class="col-8">
                                     <select class="form-control" id="h_haschild" name="h_haschild">
-                                  <option selected="selected">choose</option>
-                                  <option>O</option>
-                               <option>X</option>
+	                               	      <option selected="selected">X</option>
+		                                  <option>O</option>
                              </select>
                                 </div>
                               </div>
