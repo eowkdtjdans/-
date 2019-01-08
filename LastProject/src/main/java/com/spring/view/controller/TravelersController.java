@@ -134,6 +134,13 @@ public class TravelersController {
 	}
 	
 	
+	@RequestMapping(value="/travelersInsert.do", method=RequestMethod.GET)
+	public String travelersInsert() {
+		System.out.println("travelersInsert === GET");
+		return "views/travelers/TravelersInsert.jsp";
+	}
+	
+	
 	
 	
 	

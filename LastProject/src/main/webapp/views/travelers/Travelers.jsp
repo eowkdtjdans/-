@@ -10,43 +10,34 @@
   <meta content="" name="keywords">
   <meta content="" name="description">
  
-  <!-- 폰트어썸 -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
- 
-  <!-- modal -->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-
   <!-- Favicons -->
-  <link href="views/img/favicon.png" rel="icon">
-  <link href="views/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="/views/img/favicon.png" rel="icon">
+  <link href="/views/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
 
   <!-- Bootstrap CSS File -->
-  <link href="views/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/views/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
   <!-- Libraries CSS Files -->
-  <link href="views/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-  <link href="views/lib/animate/animate.min.css" rel="stylesheet">
-  <link href="views/lib/ionicons/css/ionicons.min.css" rel="stylesheet">
-  <link href="views/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-  <link href="views/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+  <link href="/views/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link href="/views/lib/animate/animate.min.css" rel="stylesheet">
+  <link href="/views/lib/ionicons/css/ionicons.min.css" rel="stylesheet">
+  <link href="/views/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+  <link href="/views/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
 
   <!-- Main Stylesheet File -->
-  <link href="views/css/style.css" rel="stylesheet">
-
-  <!-- =======================================================
-    Theme Name: BizPage
-    Theme URL: https://bootstrapmade.com/bizpage-bootstrap-business-template/
-    Author: BootstrapMade.com
-    License: https://bootstrapmade.com/license/
-  ======================================================= -->
+  <link href="/views/css/style.css" rel="stylesheet">
   
+  <!-- 데이트 피커 -->
+  <link rel="stylesheet" href="/views/datepicker/public/theme/css/t-datepicker.min.css">
+  <link rel="stylesheet" href="/views/datepicker/public/theme/css/themes/t-datepicker-teal.css">
+  
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?v=3&sensor=false&libraries=places&callback=initAutocomplete&key=AIzaSyAfB2qQnvAuU2YFFqi8hrPWfjJNyxl5kWc" async defer></script>
+
+    
 <style>
 	body{
 		padding-top: 70px;
@@ -95,13 +86,34 @@ function fillInAddress() { //lat 와 lng 값을 넘겨줄 input 태그에 값 �
 function sendMessage(m_id){
 	alert("sendMessage 함수로 옴");
 	alert("m_id : " +m_id);
-	/* frm.action="../insertMessage.do";
-	frm.submit(); */
 	location.href="../insertMessage.do?message_receiver="+m_id;
 }
 </script>
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?v=3&sensor=false&libraries=places&callback=initAutocomplete&key=AIzaSyAfB2qQnvAuU2YFFqi8hrPWfjJNyxl5kWc" async defer></script>
+<script>
+$(document).ready(function(){
+   $('.t-datepicker').tDatePicker({
+     autoClose:true,
+     durationArrowTop:200,
+     limitDateRanges:16,
+     numCalendar:2,
+     limitNextMonth:2,
+     titleCheckIn:'입실날짜',
+     titleCheckOut:'퇴실날짜',
+     titleDateRange:'일',
+     titleDateRanges:'일',
+     titleToday:'오늘',
+     titleDays:['월','화','수','목','금','토','일'],
+     titleMonths:['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+     toDayShowTitle:true,
+     dateRangesShowTitle:true,
+     dateRangesHover:true,
+     dateDisabled:[false]
+   }).on('eventClickDay',function(e, dataDate){
+     var getDateInput = $('.t-datepicker').tDatePicker('getDateInputs');
+      document.getElementById("h_startdate").value = getDateInput[0];
+      document.getElementById("h_enddate").value = getDateInput[1];
+   });
+</script>
  
 </head>
 
@@ -145,9 +157,6 @@ function sendMessage(m_id){
 		<tr>
 			<td>
 				<select name="searchCondition">			
-					<%-- <c:forEach var="option" items="${conditionMap }">
-						<option value="${option.value }">${option.key }
-					</c:forEach> --%>
 					<option value="find_travler">여행자검색
 					<option value="find_host">호스트검색
 					<option value="find_event">이벤트검색
@@ -174,11 +183,10 @@ function sendMessage(m_id){
       	
       	<h5>요청하신 키워드에 관한 게시글 수 : ${countTravelers }</h5>
       	
-      	<div class="text-right"><a href="../writeLocalAdvice.do" class="btn btn-outline-secondary">게시글 작성</a></div>
+      	
       	
       	<br>
       	<form method="post" name="frm">
-      		<a href="../../insertHost.do?m_id=${member.m_id }" class="btn btn-light">글쓰기</a>
       	
       	<table class="table">
       	<c:choose>
@@ -189,12 +197,7 @@ function sendMessage(m_id){
 	      	</c:when>                    
 	      	<c:otherwise>
       		<c:forEach var="list" items="${travelersList}">
-	      		<%-- <tr>
-	      			<td rowspan="3">${list.p_route}</td>
-	      			<td>${list.m_id}</td>
-	      			<td>${t_dateofvisit}</td>
-	      			<td>${list.t_country}</td>
-	      		</tr> --%>
+	
 	      		<input type="hidden" name="m_id" value="${list.m_id }" id="m_id" />
 	      		<span class="card" style="width:200px; height: 500px; margin : auto; text-align: center;">
 				    <img class="card-img-top" src="${list.p_route}" alt="Card image" style="width:200px; height: 200px;">
@@ -258,6 +261,8 @@ function sendMessage(m_id){
 						</li>
 					</c:otherwise>
 				</c:choose>
+					<li><button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#insertModal">글작성</button></li>
+							
 				</ol>
 			</td>
 		</tr>
@@ -345,25 +350,7 @@ function sendMessage(m_id){
 
   <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
 
-  <!-- JavaScript Libraries -->
-  <script src="views/lib/jquery/jquery.min.js"></script>
-  <script src="views/lib/jquery/jquery-migrate.min.js"></script>
-  <script src="views/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="views/lib/easing/easing.min.js"></script>
-  <script src="views/lib/superfish/hoverIntent.js"></script>
-  <script src="views/lib/superfish/superfish.min.js"></script>
-  <script src="views/lib/wow/wow.min.js"></script>
-  <script src="views/lib/waypoints/waypoints.min.js"></script>
-  <script src="views/lib/counterup/counterup.min.js"></script>
-  <script src="views/lib/owlcarousel/owl.carousel.min.js"></script>
-  <script src="views/lib/isotope/isotope.pkgd.min.js"></script>
-  <script src="views/lib/lightbox/js/lightbox.min.js"></script>
-  <script src="views/lib/touchSwipe/jquery.touchSwipe.min.js"></script>
-  <!-- Contact Form JavaScript File -->
-  <script src="views/contactform/contactform.js"></script>
-
-  <!-- Template Main Javascript File -->
-  <script src="views/js/main.js"></script>
+  
 
 
 
@@ -371,10 +358,7 @@ function sendMessage(m_id){
 
 <!-- The Modal -->
 <c:forEach var="list" items="${travelersList }">
-<% 	
-	String m_id= "${list.m_id}";
-	session.setAttribute("receiver", m_id); 
-%>
+
   <div class="modal fade" id="myModal${list.m_id }">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
@@ -421,6 +405,161 @@ function sendMessage(m_id){
     </div>
   </div>
 </c:forEach>
+
+
+
+
+
+
+<div class="modal fade" id="insertModal">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">호스트 등록</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-12">
+              <form method="POST" id="form">
+                    <input id="m_id" type="hidden" class="form-control" name="m_id" value="${member.m_id }">
+                    
+                    <div class="form-group row">
+                         <label for="h_startdate" class="col-4 col-form-label">입실/퇴실 날짜</label> 
+                         <div class="col-8">
+                           <div class="t-datepicker">
+                             <div class="t-check-in"></div>
+                             <div class="t-check-out"></div>
+                           </div>
+                         </div>
+                         <input id="h_startdate" type="hidden" class="form-control" name="h_startdate" required data-eye> 
+                         <input id="h_enddate" type="hidden" class="form-control" name="h_enddate" required data-eye> 
+                       </div>
+                    
+                      <div class="form-group row">
+                       <label for="h_maximumguest" class="col-4 col-form-label">최대 투숙객</label> 
+                       <div class="col-8">
+                         <select class="form-control" id="h_maximumguest" name="h_maximumguest">
+                            <option selected="selected">1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                        </select>
+                                                          
+                       </div>
+                      </div>
+                              
+                      <div class="form-group row">
+                        <label for="h_gender" class="col-4 col-form-label">선호 성별</label> 
+                          <div class="col-8">
+                           <select class="form-control" id="h_gender" name="h_gender">
+                              <option selected="selected">남자</option>
+                              <option>여자</option>
+                           </select>
+                          </div>
+                      </div>
+                           
+                      <div class="form-group row">
+                        <label for="h_smoke" class="col-4 col-form-label">흡연 가능 여부</label> 
+                        <div class="col-8">
+                            <select class="form-control" id="h_smoke" name="h_smoke">
+                               <option selected="selected">X</option>
+                              <option>O</option>
+                            </select>
+                        </div>
+                       </div>
+                       
+                       <div class="form-group row">
+                         <label for="h_haspet" class="col-4 col-form-label">펫 유무</label> 
+                         <div class="col-8">
+                         <select class="form-control" id="h_haspet" name="h_haspet">
+                             <option selected="selected">X</option>
+                             <option>O</option>
+                         </select>
+                         </div>
+                       </div>
+                        
+                       <div class="form-group row">
+                         <label for="h_haschild" class="col-4 col-form-label">자녀 유무</label> 
+                         <div class="col-8">
+                           <select class="form-control" id="h_haschild" name="h_haschild">
+                             <option selected="selected">X</option>
+                             <option>O</option>
+                           </select>
+                         </div>
+                       </div>
+                           
+                       <div class="form-group row">
+                         <label for="h_roomtype" class="col-4 col-form-label">방 종류</label> 
+                         <div class="col-8">
+                           <select class="form-control" id="h_roomtype" name="h_roomtype">
+                             <option selected="selected">싱글 베드</option>
+                             <option>더블 베드</option>
+                             <option>퀸 베드</option>
+                              <option>소파</option>
+                           </select>
+                         </div>
+                       </div>
+                        
+                       <div class="form-group row">
+                         <label for="h_rule" class="col-4 col-form-label">숙소 이용시 주의사항</label> 
+                         <div class="col-8">
+                            <textarea rows="5" cols="10" id="h_rule" name="h_rule" class="form-control"></textarea>
+                         </div>
+                       </div>
+                        
+                              
+                       <div class="modal-footer">
+                           <div class="form-group m-0">
+                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" onclick="insertHost(this.form)">등록완료</button>
+                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+                      </div>
+                    </div>
+                     </form>
+               </div>
+           </div>
+        </div>
+
+        
+      </div>
+    </div>
+  </div>
+
+
+
+
+<!-- JavaScript Libraries -->
+  <script src="/views/lib/jquery/jquery.min.js"></script>
+  <script src="/views/lib/jquery/jquery-migrate.min.js"></script>
+  <script src="/views/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/views/lib/easing/easing.min.js"></script>
+  <script src="/views/lib/superfish/hoverIntent.js"></script>
+  <script src="/views/lib/superfish/superfish.min.js"></script>
+  <script src="/views/lib/wow/wow.min.js"></script>
+  <script src="/views/lib/waypoints/waypoints.min.js"></script>
+  <script src="/views/lib/counterup/counterup.min.js"></script>
+  <script src="/views/lib/owlcarousel/owl.carousel.min.js"></script>
+  <script src="/views/lib/isotope/isotope.pkgd.min.js"></script>
+  <script src="/views/lib/lightbox/js/lightbox.min.js"></script>
+  <script src="/views/lib/touchSwipe/jquery.touchSwipe.min.js"></script>
+  <!-- Contact Form JavaScript File -->
+  <script src="/views/contactform/contactform.js"></script>
+  <script src="/views/datepicker/public/theme/js/t-datepicker.min.js"></script>
+  
+  <!-- Template Main Javascript File -->
+  <script src="/views/js/main.js"></script>
+
+
+
+
+
+
+
+
 
 
 

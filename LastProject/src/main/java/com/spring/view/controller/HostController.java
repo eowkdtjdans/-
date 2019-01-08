@@ -83,54 +83,10 @@ public class HostController {
 	}
 	
 	@RequestMapping(value="/getHostList.do", method=RequestMethod.POST)
-	public String getTravelersList(Model model, @ModelAttribute("key") String key, @RequestParam("cPage") String cPage) {
+	public String getTravelersList(Model model, @ModelAttribute("key") String key, @RequestParam("cPage") String cPage, HttpSession session) {
 		System.out.println(">> 글목록 조회 처리(getHostList) - POST");
 		System.out.println("key: " + key);
-		
-		PagingVO p = new PagingVO();
-		p.setNumPerPage(2);
-		p.setPagePerBlock(2);
-		int countHost = hostService.countHost(key);
-		System.out.println("countHost : " + countHost);
-		p.setTotalRecord(countHost);
-		p.setTotalPage();
-		
-		if (cPage != null) {
-			p.setNowPage(Integer.parseInt(cPage));
-		}
-		
-		p.setEnd(p.getNowPage() * p.getNumPerPage());
-		p.setBegin(p.getEnd() - p.getNumPerPage() + 1);
-				
-		int nowPage = p.getNowPage();
-		p.setBeginPage((nowPage - 1) / p.getPagePerBlock() * p.getPagePerBlock() + 1);
-		p.setEndPage(p.getBeginPage() + p.getPagePerBlock() - 1);
-		
-		if (p.getEndPage() > p.getTotalPage()) {
-			p.setEndPage(p.getTotalPage());
-		}
-		
-		Map<String, Object> map = new HashMap<>();
-		map.put("begin", p.getBegin());
-		map.put("end", p.getEnd());
-		map.put("key", key);
-		
-		List<HostVO> hostList = hostService.getHostList(map);
-		System.out.println("hostList: " + hostList);
-		
-		model.addAttribute("hostList", hostList);
-		model.addAttribute("countHost", countHost);
-		model.addAttribute("pvo", p);
-		
-		model.addAttribute("cPage", cPage);
-		
-		return "views/host/HostList.jsp";
-	}
-	
-	@RequestMapping(value="/getHostList.do", method=RequestMethod.GET)
-	public String getTravelersList2(Model model, @ModelAttribute("key") String key, @RequestParam("cPage") String cPage) {
-		System.out.println(">> 글목록 조회 처리(getHostList) - POST");
-		System.out.println("key : " + key);
+		System.out.println("cPage : " + cPage);
 		
 		PagingVO p = new PagingVO();
 		p.setNumPerPage(5);
@@ -167,7 +123,53 @@ public class HostController {
 		model.addAttribute("countHost", countHost);
 		model.addAttribute("pvo", p);
 		
-		model.addAttribute("cPage", cPage);
+		session.setAttribute("cPage", cPage);
+		
+		return "views/host/HostList.jsp";
+	}
+	
+	@RequestMapping(value="/getHostList.do", method=RequestMethod.GET)
+	public String getTravelersList2(Model model, @ModelAttribute("key") String key, @RequestParam("cPage") String cPage, HttpSession session) {
+		System.out.println(">> 글목록 조회 처리(getHostList) - POST");
+		System.out.println("key : " + key);
+		System.out.println("cPage : " + cPage);
+		
+		PagingVO p = new PagingVO();
+		p.setNumPerPage(5);
+		p.setPagePerBlock(5);
+		int countHost = hostService.countHost(key);
+		System.out.println("countHost : " + countHost);
+		p.setTotalRecord(countHost);
+		p.setTotalPage();
+		
+		if (cPage != null) {
+			p.setNowPage(Integer.parseInt(cPage));
+		}
+		
+		p.setEnd(p.getNowPage() * p.getNumPerPage());
+		p.setBegin(p.getEnd() - p.getNumPerPage() + 1);
+				
+		int nowPage = p.getNowPage();
+		p.setBeginPage((nowPage - 1) / p.getPagePerBlock() * p.getPagePerBlock() + 1);
+		p.setEndPage(p.getBeginPage() + p.getPagePerBlock() - 1);
+		
+		if (p.getEndPage() > p.getTotalPage()) {
+			p.setEndPage(p.getTotalPage());
+		}
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("begin", p.getBegin());
+		map.put("end", p.getEnd());
+		map.put("key", key);
+		
+		List<HostVO> hostList = hostService.getHostList(map);
+		System.out.println("hostList: " + hostList);
+		
+		model.addAttribute("hostList", hostList);
+		model.addAttribute("countHost", countHost);
+		model.addAttribute("pvo", p);
+		
+		session.setAttribute("cPage", cPage);
 		
 		return "views/host/HostList.jsp";
 	}

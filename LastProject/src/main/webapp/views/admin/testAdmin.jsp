@@ -216,7 +216,7 @@
 									class="nav-link active"> <i class="fa fa-circle-o nav-icon"></i>
 										<p>Dashboard v1</p>
 								</a></li>
-								<li class="nav-item"><a href="./index2.jsp"
+								<li class="nav-item"><a href="./testAdmin2.jsp"
 									class="nav-link"> <i class="fa fa-circle-o nav-icon"></i>
 										<p>Dashboard v2</p>
 								</a></li>
@@ -445,37 +445,43 @@
 				<div class="container-fluid">
 					<!-- Small boxes (Stat box) -->
 					<div class="row">
-						<div class="col-lg-3 col-6">
-							<!-- small box -->
-							<div class="small-box bg-info">
-								<div class="inner">
-									<h3>150</h3>
+						<div class="col-lg-3 col-6">							
+							<div class="info-box bg-warning">
+								<span class="info-box-icon"><i class="fa fa-tag"></i></span>
 
-									<p>New Orders</p>
+								<div class="info-box-content">
+									<span class="info-box-text">Inventory</span> <span
+										class="info-box-number">5,200</span>
 								</div>
-								<div class="icon">
-									<i class="ion ion-bag"></i>
-								</div>
-								<a href="#" class="small-box-footer">More info <i
-									class="fa fa-arrow-circle-right"></i></a>
+								<!-- /.info-box-content -->
 							</div>
 						</div>
 						<!-- ./col -->
 						<div class="col-lg-3 col-6">
 							<!-- small box -->
-							<div class="small-box bg-success">
-								<div class="inner">
-									<h3>
-										53<sup style="font-size: 20px">%</sup>
-									</h3>
+						<div class="info-box mb-3 bg-success">
+								<span class="info-box-icon"><i class="fa fa-heart-o"></i></span>
 
-									<p>Bounce Rate</p>
+								<div class="info-box-content">
+									<span class="info-box-text">Mentions</span> <span
+										class="info-box-number">92,050</span>
 								</div>
-								<div class="icon">
-									<i class="ion ion-stats-bars"></i>
+								<!-- /.info-box-content -->
+							</div>
+						
+						</div>
+						<!-- ./col -->
+						<div class="col-lg-3 col-6">
+							<!-- small box -->
+							<div class="info-box mb-3 bg-danger">
+								<span class="info-box-icon"><i
+									class="fa fa-cloud-download"></i></span>
+
+								<div class="info-box-content">
+									<span class="info-box-text">Downloads</span> <span
+										class="info-box-number">114,381</span>
 								</div>
-								<a href="#" class="small-box-footer">More info <i
-									class="fa fa-arrow-circle-right"></i></a>
+								<!-- /.info-box-content -->
 							</div>
 						</div>
 						<!-- ./col -->
@@ -491,22 +497,6 @@
 									<i class="ion ion-person-add"></i>
 								</div>
 								<a href="../../userAdmin.do" class="small-box-footer">More info <i
-									class="fa fa-arrow-circle-right"></i></a>
-							</div>
-						</div>
-						<!-- ./col -->
-						<div class="col-lg-3 col-6">
-							<!-- small box -->
-							<div class="small-box bg-danger">
-								<div class="inner">
-									<h3>65</h3>
-
-									<p>Unique Visitors</p>
-								</div>
-								<div class="icon">
-									<i class="ion ion-pie-graph"></i>
-								</div>
-								<a href="#" class="small-box-footer">More info <i
 									class="fa fa-arrow-circle-right"></i></a>
 							</div>
 						</div>
@@ -826,51 +816,14 @@
 						<!-- right col (We are only adding the ID to make the widgets sortable)-->
 						<section class="col-lg-5 connectedSortable">
 
-							<!-- Map card -->
-							<div class="card bg-primary-gradient">
-								<div class="card-header no-border">
-									<h3 class="card-title">
-										<i class="fa fa-map-marker mr-1"></i> Visitors
-									</h3>
-									<!-- card tools -->
-									<div class="card-tools">
-										<button type="button" class="btn btn-primary btn-sm daterange"
-											data-toggle="tooltip" title="Date range">
-											<i class="fa fa-calendar"></i>
-										</button>
-										<button type="button" class="btn btn-primary btn-sm"
-											data-widget="collapse" data-toggle="tooltip" title="Collapse">
-											<i class="fa fa-minus"></i>
-										</button>
-									</div>
-									<!-- /.card-tools -->
-								</div>
-								<div class="card-body">
-									<div id="world-map" style="height: 250px; width: 100%;"></div>
-								</div>
-								<!-- /.card-body-->
-								<div class="card-footer bg-transparent">
-									<div class="row">
-										<div class="col-4 text-center">
-											<div id="sparkline-1"></div>
-											<div class="text-white">Visitors</div>
-										</div>
-										<!-- ./col -->
-										<div class="col-4 text-center">
-											<div id="sparkline-2"></div>
-											<div class="text-white">Online</div>
-										</div>
-										<!-- ./col -->
-										<div class="col-4 text-center">
-											<div id="sparkline-3"></div>
-											<div class="text-white">Sales</div>
-										</div>
-										<!-- ./col -->
-									</div>
-									<!-- /.row -->
-								</div>
-							</div>
-							<!-- /.card -->
+
+
+
+
+
+
+
+
 
 							<!-- solid sales graph -->
 							<div class="card bg-info-gradient">
