@@ -28,4 +28,9 @@ public int countTravelers(String key) {
 	return travelersDAO.countTravelers(key);
 }
 
+@Override
+public TravelersVO getTravelers(String m_id) {
+	return travelersDAO.getTravelers(m_id);
+}
+
 }

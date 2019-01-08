@@ -42,8 +42,10 @@ public class MessageController {
     }
 	
 	@RequestMapping(value="insertMessage.do", method=RequestMethod.GET) 
-	public String insertMessageGet(MessageSendVO vo) {
+	public String insertMessageGet(MessageSendVO vo, @RequestParam("message_receiver") String message_receiver, HttpSession session) {
 		System.out.println("인서트 메세지 =========== GET");
+		System.out.println("message_receiver : " + message_receiver);
+		session.setAttribute("message_receiver", message_receiver);
 		return "views/message/MessageInsert.jsp";
 	}
 	
@@ -53,7 +55,15 @@ public class MessageController {
 			@RequestParam("message_receiver") String message_receiver,
 			@RequestParam("message_title") String message_title, 
 			@RequestParam("message_content") String message_content, HttpSession session) throws Exception {
-			
+		
+		System.out.println("message_sender : " + message_sender);
+		System.out.println("message_receiver : " + message_receiver);
+		System.out.println("message_title : " + message_title);
+		System.out.println("message_content : " + message_content);
+		
+		
+	
+		
 		System.out.println("인서트 메세지 =========== POST");
 		vo.setMessage_sender(message_sender);
 		vo.setMessage_receiver(message_receiver);

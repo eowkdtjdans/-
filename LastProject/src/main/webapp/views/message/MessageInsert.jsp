@@ -35,11 +35,11 @@ z
 					</div>
 					<div class="card fat">
 						<div class="card-body">
-							<h4 class="card-title" style="text-align : center;">쪽지 보내기</h4>
+							<h4 class="card-title" style="text-align : center;">쪽지 보내기${message_receiver }</h4>
 							<form method="POST" class="my-login-validation" id="form">
 								<input id="m_id" type="hidden" class="form-control" name="m_id" value="${member.m_id }">	
 								<input id="message_sender" name="message_sender" type="hidden" class="form-control" value="${member.m_id }">	
-								<input id="message_receiver" name="message_receiver" type="hidden" class="form-control" value="junyeon2459@gmail.com">	
+								<input id="message_receiver" name="message_receiver" type="hidden" class="form-control" value="${message_receiver }">	
 								<div class="form-group">
 									<label for="message_title" style="text-align : center;">제목</label>
 									<textarea rows="1" cols="10" id="message_title" name="message_title" class="form-control"></textarea>

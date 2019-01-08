@@ -22,4 +22,9 @@ public class TravelersDAO {
 	public int countTravelers(String key) {
 		return mybatis.selectOne("countTravelers", key);
 	}
+	
+	//상세조회
+	public TravelersVO getTravelers(String m_id) {
+		return mybatis.selectOne("getTravelers", m_id);
+	}
 }

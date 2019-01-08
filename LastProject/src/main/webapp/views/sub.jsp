@@ -232,7 +232,7 @@ $(function(){
 <section id="about">
       <div class="container">
         <header class="section-header">
-        	<p>${hostImg.h_route }</p>
+           <p>${hostImg.h_route }</p>
            <p>${profile.p_route}</p>
            <p>${member.m_id }</p>
            <p>${member.m_pwd }</p>
