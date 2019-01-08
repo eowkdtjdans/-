@@ -167,7 +167,6 @@ public class MemberController {
 			
 			return "redirect:/sub2.do";
 			} else if (vo2.getM_certify().equals("X")) {
-				
 				StringBuffer temp = new StringBuffer();
 				Random rnd = new Random();
 				for (int i = 0; i < 10; i++) {
@@ -190,13 +189,11 @@ public class MemberController {
 				
 				String emailCheck = temp.toString();
 				
+				response.setCharacterEncoding("UTF-8");
+				response.setContentType("text/html; charset=UTF-8");
 				PrintWriter out = response.getWriter();
-				//response.setCharacterEncoding("utf-8");
-				response.setContentType("text/html; charset=utf-8");
-				out.println("<script language='javascript'>");
-				out.println("alert('이메일 인증이 완료되지않았습니다. 이메일을 확인해주세요.');");
-				out.println("</script>");
-				out.flush();
+	            out.println("<script>alert('이메일 인증을 완료해주세요.');</script>");
+	            out.flush();
 				
 				email.setSubject(" [국봉월드] " + vo.getM_id() +"님 이메일 인증코드이메일입니다.");
 				email.setReceiver(vo.getM_id());
