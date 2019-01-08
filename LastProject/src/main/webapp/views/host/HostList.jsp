@@ -27,7 +27,7 @@
   <link href="views/lib/ionicons/css/ionicons.min.css" rel="stylesheet">
   <link href="views/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
   <link href="views/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
-  
+
   <!-- Main Stylesheet File -->
   <link href="views/css/style.css" rel="stylesheet">
   
@@ -42,32 +42,32 @@
   ======================================================= -->
   
 <style>
-	body{
-		padding-top: 70px;
-	}
-	a{
-		color:#5e7e9b;
-	}
-	.paging { list-style: none; }
-	.paging li {
-		float: left;
-		margin-right: 30px;
-	}
-	.paging li a {
-		text-decoration: none;
-		 display: block;
-		padding: 3px 3px; 
-		color: black;
-	}
+   body{
+      padding-top: 70px;
+   }
+   a{
+      color:#5e7e9b;
+   }
+   .paging { list-style: none; }
+   .paging li {
+      float: left;
+      margin-right: 30px;
+   }
+   .paging li a {
+      text-decoration: none;
+       display: block;
+      padding: 3px 3px; 
+      color: black;
+   }
 
-	.paging .disable {
-		padding: 3px 3px;
-		color: silver;
-	}
-	.paging .now {
-		padding: 3px 3px;
-		font-weight: bold;
-	} 
+   .paging .disable {
+      padding: 3px 3px;
+      color: silver;
+   }
+   .paging .now {
+      padding: 3px 3px;
+      font-weight: bold;
+   } 
 </style>
 
 <SCRIPT LANGUAGE="JavaScript">
@@ -88,111 +88,111 @@ var endLng = null;
 //시작할때 실행되는 맵 세팅
 function initialize() {
     var mapOptions = {
-        zoom: 11, //지도 줌
+        zoom: 14, //지도 줌
         mapTypeId: google.maps.MapTypeId.ROADMAP, //지도 타입(변경 x)
         center: new google.maps.LatLng("${firstLat}", "${firstLng}") //맵이 로딩됬을때 시작지점
     };
     
     var addCircle = new google.maps.Circle({ //원형 그리기
-    	center: new google.maps.LatLng("${firstLat}", "${firstLng}"), //원형의 중앙점
-    	radius: 11000,			//원형 범위
-    	strokeColor: "GREEN",	//테두리 색
-    	strokeOpacity: 0.8, 	//테두리 투명도
-    	strokeWeight: 2,		//테두리 굵기
-    	fillColor: "GREEN", 	//원형 속 색
-    	fillOpacity: 0.3		//원형 속 투명도
+       center: new google.maps.LatLng("${firstLat}", "${firstLng}"), //원형의 중앙점
+       radius: 1800,         //원형 범위
+       strokeColor: "GREEN",   //테두리 색
+       strokeOpacity: 0.8,    //테두리 투명도
+       strokeWeight: 2,      //테두리 굵기
+       fillColor: "GREEN",    //원형 속 색
+       fillOpacity: 0.3      //원형 속 투명도
     });
  
     map = new google.maps.Map(document.getElementById('map'),mapOptions); //맵 생성
     
     //동적 마크생성을 위한 좌표체크
-	google.maps.event.addListener(map, 'idle', function(){ //시작지점의 좌표 체크
-		startLat = map.getBounds().getSouthWest().lat();
-		startLng = map.getBounds().getSouthWest().lng();
-		endLat = map.getBounds().getNorthEast().lat();
-		endLng = map.getBounds().getNorthEast().lng();
-		viewMarker();
-	});
- 	
-	google.maps.event.addListener(map, 'zoom_changed', function() { //줌이 바뀔때 좌표 체크
-		startLat = map.getBounds().getSouthWest().lat();
-		startLng = map.getBounds().getSouthWest().lng();
-		endLat = map.getBounds().getNorthEast().lat();
-		endLng = map.getBounds().getNorthEast().lng();
+   google.maps.event.addListener(map, 'idle', function(){ //시작지점의 좌표 체크
+      startLat = map.getBounds().getSouthWest().lat();
+      startLng = map.getBounds().getSouthWest().lng();
+      endLat = map.getBounds().getNorthEast().lat();
+      endLng = map.getBounds().getNorthEast().lng();
+      viewMarker();
+   });
+    
+   google.maps.event.addListener(map, 'zoom_changed', function() { //줌이 바뀔때 좌표 체크
+      startLat = map.getBounds().getSouthWest().lat();
+      startLng = map.getBounds().getSouthWest().lng();
+      endLat = map.getBounds().getNorthEast().lat();
+      endLng = map.getBounds().getNorthEast().lng();
 
-		viewMarker();
-	});
+      viewMarker();
+   });
 
-	google.maps.event.addListener(map, 'dragend', function(){ //드래그해서 바뀔때 좌표 체크
-		startLat = map.getBounds().getSouthWest().lat();
-		startLng = map.getBounds().getSouthWest().lng();
-		endLat = map.getBounds().getNorthEast().lat();
-		endLng = map.getBounds().getNorthEast().lng();
+   google.maps.event.addListener(map, 'dragend', function(){ //드래그해서 바뀔때 좌표 체크
+      startLat = map.getBounds().getSouthWest().lat();
+      startLng = map.getBounds().getSouthWest().lng();
+      endLat = map.getBounds().getNorthEast().lat();
+      endLng = map.getBounds().getNorthEast().lng();
 
-		viewMarker();
-	});
-	
+      viewMarker();
+   });
+   
     addCircle.setMap(map); //원형 생성
  
 }
 
 //마커생성 함수
 function viewMarker() {
-	if(startLat)
-	{
-		$.ajax({
-			type: "GET",
-			url: "../getHostGoogle.do",
-			 beforeSend: function() {			
-				fnRemoveMarker();
-			 },
-			success: function (json) {
-				var markerList = json;
-				var listLen = markerList.length;
-				for(var i=0; i<listLen; i++){
-					if (parseFloat(startLat) <= parseFloat(markerList[i].lat) && parseFloat(startLng) <= parseFloat(markerList[i].lng) && parseFloat(endLat) >= parseFloat(markerList[i].lat) && parseFloat(endLng) >= parseFloat(markerList[i].lng))
-					{
-						var marker = new google.maps.Marker({
-							position: new google.maps.LatLng(markerList[i].lat,markerList[i].lng),
-							map: map,
-							draggable: false,
-							html: markerList[i].cont,
-							label: {
-					            text: markerList[i].m_name,
-					            color: 'black',
-					            fontWeight: 'bold'
-					        },
-					        icon: {
-					    		url: markerList[i].icon,
-					    	}
-						});
-						markers.push(marker);
+   if(startLat)
+   {
+      $.ajax({
+         type: "GET",
+         url: "../google.do",
+          beforeSend: function() {         
+            fnRemoveMarker();
+          },
+         success: function (json) {
+            var markerList = json;
+            var listLen = markerList.length;
+            for(var i=0; i<listLen; i++){
+               if (parseFloat(startLat) <= parseFloat(markerList[i].lat) && parseFloat(startLng) <= parseFloat(markerList[i].lng) && parseFloat(endLat) >= parseFloat(markerList[i].lat) && parseFloat(endLng) >= parseFloat(markerList[i].lng))
+               {
+                  var marker = new google.maps.Marker({
+                     position: new google.maps.LatLng(markerList[i].lat,markerList[i].lng),
+                     map: map,
+                     draggable: false,
+                     html: markerList[i].cont,
+                     label: {
+                           text: markerList[i].m_name, // $100,000
+                           color: 'black',
+                           fontWeight: 'bold'
+                       },
+                       icon: {
+                         url: markerList[i].icon,
+                      }
+                  });
+                  markers.push(marker);
 
-						var infowindow = new google.maps.InfoWindow() //정보창 생성
+                  var infowindow = new google.maps.InfoWindow() //정보창 생성
 
-						google.maps.event.addListener(marker, "click", function () { //마커 클릭했을때 정보창 출력
-							infowindow.setContent(this.html);
-							infowindow.open(map, this);
-						});
+                  google.maps.event.addListener(marker, "click", function () { //마커 클릭했을때 정보창 출력
+                     infowindow.setContent(this.html);
+                     infowindow.open(map, this);
+                  });
 
-						
-					}
-				}
-			}
-		});
-		
-	}
+                  
+               }
+            }
+         }
+      });
+      
+   }
 }
 
 function fnRemoveMarker() //마커 지우기
 {
-	for (var i = 1; i < markers.length; i++) {
-		markers[i].setMap(null);
-	}
+   for (var i = 1; i < markers.length; i++) {
+      markers[i].setMap(null);
+   }
 }
 
 $( window ).load(function() { //jsp가 실행되면 아래 함수 시작
-	initialize();
+   initialize();
 });
 
 //주소를 좌표로 변환
@@ -220,18 +220,8 @@ function move() {
 
 
 <style>
-	.rounded-circle { width: 80px; height: 70px;} 
-	.card {float : left;}
-	
-	#modalImg {
-		margin: auto;
-		width: 500px;
-		height: 500px;
-	}
-	.modal-container {
-		width: 800px;
-		height: 2000px;
-	}
+   .rounded-circle { width: 80px; height: 70px;} 
+   .card {float : left;}
 </style>
 
 
@@ -271,27 +261,27 @@ function move() {
 
 <!-- 키워드로 검색 -->
 <form action="../sub.do" method="post">
-	<table class="border-none">
-		<tr>
-			<td>
-				<select name="searchCondition">			
-					<%-- <c:forEach var="option" items="${conditionMap }">
-						<option value="${option.value }">${option.key }
-					</c:forEach> --%>
-					<option value="find_travler">여행자검색
-					<option value="find_host">호스트검색
-					<option value="find_event">이벤트검색
-					<option value="find_advice">현지정보검색
-				</select>
-				<input id="autocomplete" placeholder="Enter your address" type="text" name="searchKeyword">
-				
-				<input class="field" id="lat" type="hidden" name="lat"/>
-				<input class="field" id="lng" type="hidden" name="lng"/>
-				
-				<input type="submit" value="검색">
-			</td>
-		</tr>
-	</table>
+   <table class="border-none">
+      <tr>
+         <td>
+            <select name="searchCondition">         
+               <%-- <c:forEach var="option" items="${conditionMap }">
+                  <option value="${option.value }">${option.key }
+               </c:forEach> --%>
+               <option value="find_travler">여행자검색
+               <option value="find_host">호스트검색
+               <option value="find_event">이벤트검색
+               <option value="find_advice">현지정보검색
+            </select>
+            <input id="autocomplete" placeholder="Enter your address" type="text" name="searchKeyword">
+            
+            <input class="field" id="lat" type="hidden" name="lat"/>
+            <input class="field" id="lng" type="hidden" name="lng"/>
+            
+            <input type="submit" value="검색">
+         </td>
+      </tr>
+   </table>
 </form>
 
 
@@ -300,97 +290,96 @@ function move() {
     ============================-->    
 <section id="about">
       <div class="container">
-      	<h2><strong>Find Host</strong></h2>
-		
-      	<h5>요청하신 키워드에 관한 게시글 수 : ${countHost }</h5>
-      	
-      	<div id="map" style="width:760px;height:400px;margin-top:20px;"></div>
-      	
-      	<br>
-      	<form method="post" name="frm">
-  			 <a href="../../insertHost.do?m_id=${member.m_id }" class="btn btn-light">글쓰기</a>
-      	<table class="table">
-      	<c:choose>
-	      	<c:when test="${empty hostList}">
-	      			<tr>
-	      				<td>요청하신 도시의 정보가 존재하지 않습니다.</td>
-	      			</tr>
-	      	</c:when>                    
-	      	<c:otherwise>
-      		<c:forEach var="list" items="${hostList}">
-      		<input type="hidden" name="m_id" value="${list.m_id }" id="m_id" />
-	      		<span class="card" style="width:200px; height: 500px; margin : auto; text-align: center;">
-				    <img class="card-img-top" src="${list.p_route}" alt="Card image" style="width:200px; height: 200px;">
-				    <span class="card-body">
-				      <h6 class="card-title">${list.m_name}</h6>
-				      <hr/>
-				      <p class="card-text">${list.m_address}</p>
-				      <hr/>
-				      <a href="../../hostGetInfo.do?m_id=${list.m_id }" class="btn btn-light">See Profile</a>
-				      <button type="button" class="btn btn-light" id="modalBtn${list.m_id}" data-toggle="modal" data-target="#modal${list.m_id}">ModalTest</button>
-				    </span>
-			    </span>
-      		</c:forEach>
-      		</c:otherwise>     		
-      	</c:choose>	
-      	<!-- ---------------------------------------------------------------- -->
-      	<tr>
-			<td colspan="4">
-				<ol class="paging">
-				
-				<%--[이전으로]에 대한 사용여부 처리 --%>
-				<c:choose>
-				<%-- 사용불가(disable) : 첫번째 블록인 경우 --%>
-					<c:when test="${pvo.beginPage == 1 }">
-						<li class="disable">◀</li>
-					</c:when>
-				<%--사용가능(enable) : 두번째 이상(첫번째 아닌경우) --%>
-					<c:otherwise>
-						<li>
-							<a href="../getHostList.do?cPage=${pvo.beginPage - 1 }">◀</a>
-						</li>
-					</c:otherwise>	
-				</c:choose>
-				
-				<%-- 블록내에 표시할 페이지 반복처리(시작페이지~끝페이지)--%>
-				<c:forEach var="k" 
-						begin="${pvo.beginPage }" end="${pvo.endPage }">
-				<c:choose>
-					<c:when test="${k == pvo.nowPage }">
-						<li class="now">${k }</li>
-					</c:when>
-					<c:otherwise>
-						<li>
-							<a href="../getHostList.do?cPage=${k }">${k }</a>
-						</li>
-					</c:otherwise>
-				</c:choose>
-				</c:forEach>
-				
-				<%--[다음으로]에 대한 사용여부 처리 --%>
-				<c:choose>	
-					<%--사용불가(disable) : endPage가 전체페이지수 보다 크거나 같으면 --%>
-					<c:when test="${pvo.endPage >= pvo.totalPage }">
-						<li class="disable">▶</li>
-					</c:when>
-					<%--사용가능(enable) --%>
-					<c:otherwise>
-						<li>
-							<a href="../getHostList.do?cPage=${pvo.endPage + 1 }">▶</a>
-						</li>
-					</c:otherwise>
-				</c:choose>
-				</ol>
-			</td>
-		</tr>
-      	
-      	<!-- ---------------------------------------------------------------- -->
-      	</table>
-      	</form>
-      	
+         <h2><strong>Find Host</strong></h2>
+      
+         <h5>요청하신 키워드에 관한 게시글 수 : ${countHost }</h5>
+         
+         <div id="map" style="width:760px;height:400px;margin-top:20px;"></div>
+         
+         <br>
+         <form method="post" name="frm">
+            <a href="../../insertHost.do?m_id=${member.m_id }" class="btn btn-light">글쓰기</a>
+         <table class="table">
+         <c:choose>
+            <c:when test="${empty hostList}">
+                  <tr>
+                     <td>요청하신 도시의 정보가 존재하지 않습니다.</td>
+                  </tr>
+            </c:when>                    
+            <c:otherwise>
+            <c:forEach var="list" items="${hostList}">
+            <input type="hidden" name="m_id" value="${list.m_id }" id="m_id" />
+               <span class="card" style="width:200px; height: 500px; margin : auto; text-align: center;">
+                <img class="card-img-top" src="${list.p_route}" alt="Card image" style="width:200px; height: 200px;">
+                <span class="card-body">
+                  <h6 class="card-title">${list.m_id}</h6>
+                  <hr />
+                  <p class="card-text">${list.m_address}</p>
+                  <hr />
+                  <a href="../../hostGetInfo.do?m_id=${list.m_id }" class="btn btn-light">See Profile</a>
+                </span>
+             </span>
+            </c:forEach>
+            </c:otherwise>           
+         </c:choose>   
+         <!-- ---------------------------------------------------------------- -->
+         <tr>
+         <td colspan="4">
+            <ol class="paging">
+            
+            <%--[이전으로]에 대한 사용여부 처리 --%>
+            <c:choose>
+            <%-- 사용불가(disable) : 첫번째 블록인 경우 --%>
+               <c:when test="${pvo.beginPage == 1 }">
+                  <li class="disable">◀</li>
+               </c:when>
+            <%--사용가능(enable) : 두번째 이상(첫번째 아닌경우) --%>
+               <c:otherwise>
+                  <li>
+                     <a href="../getHostList.do?cPage=${pvo.beginPage - 1 }">◀</a>
+                  </li>
+               </c:otherwise>   
+            </c:choose>
+            
+            <%-- 블록내에 표시할 페이지 반복처리(시작페이지~끝페이지)--%>
+            <c:forEach var="k" 
+                  begin="${pvo.beginPage }" end="${pvo.endPage }">
+            <c:choose>
+               <c:when test="${k == pvo.nowPage }">
+                  <li class="now">${k }</li>
+               </c:when>
+               <c:otherwise>
+                  <li>
+                     <a href="../getHostList.do?cPage=${k }">${k }</a>
+                  </li>
+               </c:otherwise>
+            </c:choose>
+            </c:forEach>
+            
+            <%--[다음으로]에 대한 사용여부 처리 --%>
+            <c:choose>   
+               <%--사용불가(disable) : endPage가 전체페이지수 보다 크거나 같으면 --%>
+               <c:when test="${pvo.endPage >= pvo.totalPage }">
+                  <li class="disable">▶</li>
+               </c:when>
+               <%--사용가능(enable) --%>
+               <c:otherwise>
+                  <li>
+                     <a href="../getHostList.do?cPage=${pvo.endPage + 1 }">▶</a>
+                  </li>
+               </c:otherwise>
+            </c:choose>
+            </ol>
+         </td>
+      </tr>
+         
+         <!-- ---------------------------------------------------------------- -->
+         </table>
+         </form>
+         
       </div>
     </section><!-- #about -->
-		
+      
   <!--==========================
     Footer
   ============================-->
@@ -418,7 +407,7 @@ function move() {
           <div class="col-lg-3 col-md-6 footer-contact">
             <h4>Contact Us</h4>
             <p>
-             	 비트캠프 신촌센터 <br>
+                 비트캠프 신촌센터 <br>
               Seoul, NY 535022<br>
               Korea <br>
               <strong>Phone:</strong> 010-5575-4786<br>
@@ -438,8 +427,8 @@ function move() {
           <div class="col-lg-3 col-md-6 footer-newsletter">
             <h4>Couch Surfing tip</h4>
             <p>만나는 사람들과 대화를 많이 하려고 시도하세요.
-				그 의사소통보다 더 중요한 건 안전이다. 인증이 된 멤버인지, 타인들이 남긴 레퍼런스(리뷰)는 긍정적인지, 올려둔 사진은 괜찮은지... 감각을 키워가자.
-				호스트든 게스트든 집에서는 위생을 유지하도록 하자.</p>
+            그 의사소통보다 더 중요한 건 안전이다. 인증이 된 멤버인지, 타인들이 남긴 레퍼런스(리뷰)는 긍정적인지, 올려둔 사진은 괜찮은지... 감각을 키워가자.
+            호스트든 게스트든 집에서는 위생을 유지하도록 하자.</p>
           </div>
 
         </div>
@@ -463,49 +452,6 @@ function move() {
   </footer><!-- #footer -->
 
   <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
-  
-  <!-- The Modal -->
-  <c:forEach var="list" items="${hostList}">
-  <div class="modal fade" id="modal${list.m_id}" class="modal-container">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-      
-        <!-- Modal Header -->
-        <div class="modal-header">
-          <h4 class="modal-title">Traveler profile</h4>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-        </div>
-        
-        <!-- Modal body -->
-        <div class="modal-body">
-          <table class="table">
-             <tr>
-             	<td colspan="2"><img src="${list.p_route}" id="modalImg"></td>
-             </tr>
-             <tr>
-                <td>아이디</td>
-                <td>${list.m_id}</td>
-             </tr>
-             <tr>
-                <td>이름</td>
-                <td>${list.m_name}</td>
-             </tr>
-             <tr>
-                <td>ㅎㅇ</td>
-                <td>gg</td>
-             </tr>
-          </table>
-        </div>
-        
-        <!-- Modal footer -->
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        </div>
-        
-      </div>
-    </div>
-  </div>
-  </c:forEach>
 
   <!-- JavaScript Libraries -->
   <script src="views/lib/jquery/jquery.min.js"></script>
