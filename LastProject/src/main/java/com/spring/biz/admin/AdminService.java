@@ -1,4 +1,4 @@
-package com.spring.biz.com.admin;
+package com.spring.biz.admin;
 
 import java.util.List;
 import java.util.Map;
