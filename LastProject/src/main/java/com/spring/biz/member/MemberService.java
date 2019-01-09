@@ -74,6 +74,8 @@ public interface MemberService {
 	void DeleteMember(MemberVO vo);
 
 	void certifyCodeUpdate(MemberVO vo);
+
+
 	
 	
 	

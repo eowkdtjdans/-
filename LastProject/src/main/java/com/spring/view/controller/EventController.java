@@ -8,13 +8,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.spring.biz.event.EventService;
 import com.spring.biz.event.EventVO;
+import com.spring.biz.eventComment.EventCommentService;
+import com.spring.biz.eventImage.EventImageService;
+import com.spring.biz.eventImage.EventImageVO;
 import com.spring.pagination.PagingVO;
 
 @Controller
@@ -22,6 +27,11 @@ import com.spring.pagination.PagingVO;
 public class EventController {
 	@Autowired
 	private EventService eventService;
+	@Autowired
+	private EventCommentService eventCommentService;
+	@Autowired
+	private EventImageService eventImageService;
+	
 	
 	public EventController() {
 		System.out.println("Reach EventController!");
@@ -29,12 +39,14 @@ public class EventController {
 	
 	@RequestMapping(value = "/getEventList.do", method=RequestMethod.POST)
 	public String getEventList (Model model, @ModelAttribute("key") String key, @RequestParam("cPage") String cPage) {
-		System.out.println("getEventList() 실행");
+		System.out.println("getEventList() 실행 === POST");
+		System.out.println("cPage : " + cPage);
 		
 		PagingVO p = new PagingVO();
 		p.setNumPerPage(10);
-		p.setPagePerBlock(3);
+		p.setPagePerBlock(10);
 		int countEvent = eventService.countEvent(key);
+		System.out.println("countEvent : " + countEvent);
 		p.setTotalRecord(countEvent);
 		p.setTotalPage();
 		
@@ -60,6 +72,7 @@ public class EventController {
 		System.out.println("EventController Map: " + map);
 		
 		List<EventVO> eventList = eventService.getEventList(map);
+		System.out.println("eventList : " + eventList);
 		
 		model.addAttribute("eventList", eventList);
 		model.addAttribute("countEvent", countEvent);
@@ -71,7 +84,7 @@ public class EventController {
 	
 	@RequestMapping(value = "/getEventList.do", method=RequestMethod.GET)
 	public String getEventList2 (Model model, @ModelAttribute("key") String key, @RequestParam("cPage") String cPage) {
-		System.out.println("getEventList() 실행");
+		System.out.println("getEventList() 실행 === GET");
 		
 		PagingVO p = new PagingVO();
 		p.setNumPerPage(10);
@@ -101,6 +114,7 @@ public class EventController {
 		map.put("key", key);
 		
 		List<EventVO> eventList = eventService.getEventList(map);
+		System.out.println("eventList");
 		
 		model.addAttribute("eventList", eventList);
 		model.addAttribute("countEvent", countEvent);
@@ -109,5 +123,64 @@ public class EventController {
 		
 		return "/views/event/EventList.jsp";
 	}
+	
+	
+	@RequestMapping(value = "/getEvent.do")
+	public String getEvent(@RequestParam("e_idx") int e_idx, Model model) {
+		System.out.println("event 상세페이지");
+		System.out.println("e_idx : " + e_idx);
+		
+		EventVO getEvent = eventService.getEvent(e_idx);
+		System.out.println("getEvent : " + getEvent);
+		List<EventImageVO> getEventImageList = eventImageService.getEventImageList(e_idx);
+		System.out.println("getEventImageList : " + getEventImageList);
+		
+		model.addAttribute("getEvent", getEvent);
+		model.addAttribute("getEventImageList", getEventImageList);
+		
+		return "/views/event/getEvent.jsp";				
+	}
+	
+	
+	//좋아요기능(+)
+	@RequestMapping(value="/goodEventJson.do" ,method=RequestMethod.POST)
+    @ResponseBody
+    public Map<Object, Object> goodEventJson(@RequestBody String e_idx) {
+	    System.out.println("ajax로 good컨트롤");
+	    System.out.println("e_idx : " + e_idx);
+	    
+	    int count = eventService.goodEvent(Integer.parseInt(e_idx));
+	    Map<Object, Object> map = new HashMap<Object, Object>();
+	    map.put("count", count);
+	    System.out.println("마지막부분");
+	    return map;
+    }
+	
+	//좋아요기능(-)
+	@RequestMapping(value="/badEventJson.do" ,method=RequestMethod.POST)
+    @ResponseBody
+    public Map<Object, Object> badEventJson(@RequestBody String e_idx) {
+	    System.out.println("ajax로 bad컨트롤");
+	    System.out.println("e_idx : " + e_idx);
+	    
+	    int count = eventService.badEvent(Integer.parseInt(e_idx));
+	    Map<Object, Object> map = new HashMap<Object, Object>();
+	    map.put("count", count);
+	    System.out.println("마지막부분");
+	    return map;
+    }
+	
+	
 
 }
+
+
+
+
+
+
+
+
+
+
+

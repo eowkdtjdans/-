@@ -7,13 +7,25 @@
 <mapper namespace="eventDAO">
 	
 	<select id="getEventList" resultType="event" parameterType="Map">
-		SELECT R_NUM, E3.*
-        FROM (SELECT ROWNUM R_NUM, E2.* FROM (SELECT E.* FROM EVENT E ORDER BY E_STARTDATE ASC) E2) E3
-	    WHERE E3.E_ADDRESS LIKE '%' || UPPER(#{key}) || '%'
-	    AND (R_NUM BETWEEN #{begin} AND #{end})
+		SELECT R_NUM, E_IDX, E_ADDRESS, E_NAME, E_CONTENT, E_STARTDATE, E_ENDDATE, E_UPVOTE, E_REVIEWCOUNT, LAT, LNG, E_REGION, E_TAG, E_COUNT 
+    		FROM (SELECT ROWNUM R_NUM, E.*FROM (SELECT EVENT.* FROM EVENT)E) 
+        	WHERE UPPER(E_ADDRESS) LIKE '%' || UPPER(#{key}) || '%' 
+        	AND (R_NUM BETWEEN #{begin} AND #{end}) AND E_ENDDATE >= TO_CHAR(SYSDATE, 'YYYY-MM-DD')
 	</select>
 	
 	<select id="countEvent" parameterType="String" resultType="int">
 		SELECT COUNT(E_IDX) FROM EVENT WHERE UPPER(E_ADDRESS) LIKE '%' || UPPER(#{key}) || '%'
 	</select>
+	
+	<select id="getEvent" resultType="event" parameterType="int"> 
+		SELECT * FROM EVENT WHERE E_IDX=#{e_idx}
+	</select>
+	
+	<update id="goodEvent" parameterType="int">
+		UPDATE EVENT SET E_UPVOTE = E_UPVOTE+1 WHERE E_IDX=#{e_idx}
+	</update>
+	
+	<update id="badEvent" parameterType="int">
+		UPDATE EVENT SET E_UPVOTE = E_UPVOTE-1 WHERE E_IDX=#{e_idx}
+	</update>
 </mapper>

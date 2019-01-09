@@ -64,6 +64,9 @@ public class MemberController {
 		System.out.println("=======인서트시작");
 		System.out.println("인서트두 컨트롤러 vo: " + vo);
 		System.out.println("vo.getM_id : " + vo.getM_id());
+		if(vo.getM_gender().equals("M") && vo.getM_gender().equals("male")) {
+			vo.setM_gender("남자");
+		}
 		memberService.insertMember(vo);
 		
 		StringBuffer temp = new StringBuffer();
@@ -95,7 +98,7 @@ public class MemberController {
 		emailSender.SendEmail(email);
 		session.setAttribute("emailCheck", emailCheck);
 		session.setAttribute("member", vo);
-		return "redirect:/certifyEmail.do?m_id="+vo.getM_id();
+		return "/certifyEmail.do?m_id="+vo.getM_id();
 		//return "views/member/certifyEmail.jsp?m_id=";
 	}
 	
@@ -201,7 +204,7 @@ public class MemberController {
 				emailSender.SendEmail(email);
 				session.setAttribute("emailCheck", emailCheck);
 				session.setAttribute("member", vo);
-				return "redirect:/certifyEmail.do?m_id="+vo.getM_id();
+				return "/certifyEmail.do?m_id="+vo.getM_id();
 			}
 		} else {
 			System.out.println("=====없는 아이디=====");
@@ -312,6 +315,7 @@ public class MemberController {
 		map.put("cnt",  count);
 		return map;
 	}
+
 	
 	
 	
@@ -463,7 +467,6 @@ public class MemberController {
     		return "redirect:/findPwdMember.do";
     	}
     }
-
 
 
 	

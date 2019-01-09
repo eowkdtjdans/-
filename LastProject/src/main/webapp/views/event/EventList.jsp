@@ -67,7 +67,14 @@
 	.paging .now {
 		padding: 3px 3px;
 		font-weight: bold;
+	}
+	#detcnt{
+		color: orange;
 	} 
+	#date{
+		font-size: 0.9em;
+		opacity: 0.6;
+	}
 </style>
 
 <SCRIPT LANGUAGE="JavaScript">
@@ -88,14 +95,14 @@ var endLng = null;
 //시작할때 실행되는 맵 세팅
 function initialize() {
     var mapOptions = {
-        zoom: 14, //지도 줌
+        zoom: 9, //지도 줌
         mapTypeId: google.maps.MapTypeId.ROADMAP, //지도 타입(변경 x)
         center: new google.maps.LatLng("${firstLat}", "${firstLng}") //맵이 로딩됬을때 시작지점
     };
     
     var addCircle = new google.maps.Circle({ //원형 그리기
     	center: new google.maps.LatLng("${firstLat}", "${firstLng}"), //원형의 중앙점
-    	radius: 1800,			//원형 범위
+    	radius: 30000,			//원형 범위
     	strokeColor: "GREEN",	//테두리 색
     	strokeOpacity: 0.8, 	//테두리 투명도
     	strokeWeight: 2,		//테두리 굵기
@@ -290,7 +297,8 @@ function move() {
       <div class="container">
       	<h2><strong>Find Event</strong></h2>
       	<h5>요청하신 키워드에 관한 게시글 수 : ${countEvent }</h5>
-      	<div class="text-right"><a href="../writeLocalAdvice.do" class="btn btn-outline-secondary">게시글 작성</a></div>
+      	
+      	<div id="map" style="width:760px;height:400px;margin-top:20px;"></div>
       	<br>
       	<form method="post" name="frm">
       	<table class="table">
@@ -302,10 +310,12 @@ function move() {
 	      	</c:when>                    
 	      	<c:otherwise>
       		<c:forEach var="list" items="${eventList}">
-	      		<tr>
-	      			<td>${list.e_name}</td>
-	      			<td>${list.e_address}</td>
-	      			<td>${list.e_content}</td>
+	      		<tr>	      			
+	      			<th style="width: 70%">
+	      				<a href="../getEvent.do?e_idx=${list.e_idx }">${list.e_name }</a>&nbsp;&nbsp;<span id="detcnt">[${list.e_count}]</span> &emsp;<span id="date">${list.e_startdate } ~ ${list.e_enddate }</span>
+	      			</th>
+	      			<td style="width:15%"> &nbsp;&nbsp;&nbsp;&nbsp; <a id="good" href="#" ><img src="views/img/good.png" style="width: 20px; height: 20px;">  좋아요 ${list.e_upvote }</a> &nbsp;&nbsp;&nbsp;&nbsp; </td>
+	      			<td style="width:15%"><img src="views/img/lookup.PNG" style="width: 20px; height: 20px;"> ${list.e_reviewcount }</td>
 	      		</tr>
       		</c:forEach>
       		</c:otherwise>     		
@@ -325,7 +335,7 @@ function move() {
 				<%--사용가능(enable) : 두번째 이상(첫번째 아닌경우) --%>
 					<c:otherwise>
 						<li>
-							<a href="../getLocalAdviceList2.do?cPage=${pvo.beginPage - 1 }">◀</a>
+							<a href="../getEventList.do?cPage=${pvo.beginPage - 1 }">◀</a>
 						</li>
 					</c:otherwise>	
 				</c:choose>
@@ -339,7 +349,7 @@ function move() {
 					</c:when>
 					<c:otherwise>
 						<li>
-							<a href="../getLocalAdviceList2.do?cPage=${k }">${k }</a>
+							<a href="../getEventList.do?cPage=${k }">${k }</a>
 						</li>
 					</c:otherwise>
 				</c:choose>
@@ -354,7 +364,7 @@ function move() {
 					<%--사용가능(enable) --%>
 					<c:otherwise>
 						<li>
-							<a href="../getLocalAdviceList2.do?cPage=${pvo.endPage + 1 }">▶</a>
+							<a href="../getEventList.do?cPage=${pvo.endPage + 1 }">▶</a>
 						</li>
 					</c:otherwise>
 				</c:choose>
@@ -368,22 +378,6 @@ function move() {
       	
       </div>
     </section><!-- #about -->
-    
-    <form action="#" onsubmit="move(); return false" name="frm1">
-			<div id="locationField">
-			  <input id="autocomplete" placeholder="Enter your address" type="text">
-			</div>
-			<input type="submit" value="move"/>
-		</form>
-		
-		<input class="field" id="lat" type="hidden"/>
-		<input class="field" id="lng" type="hidden"/>
-		<input class="field" id="lat2"/>
-		<input class="field" id="lng2"/>
-		
-		<div id="map" style="width:760px;height:400px;margin-top:20px;"></div>
-
-
   
    
   <!--==========================
