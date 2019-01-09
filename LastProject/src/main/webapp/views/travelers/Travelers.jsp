@@ -426,8 +426,14 @@ $(document).ready(function(){
           <div class="row">
             <div class="col-md-12">
               <form method="POST" id="form">
+              		<div class="form-group row">
+                         <label for="h_rule" class="col-4 col-form-label">방문국가</label> 
+                         <div class="col-8">
+                            <div>${key }</div>
+                         </div>
+                       </div>
+              		
                     <input id="m_id" type="hidden" class="form-control" name="m_id" value="${member.m_id }">
-                    
                     <div class="form-group row">
                          <label for="h_startdate" class="col-4 col-form-label">입실/퇴실 날짜</label> 
                          <div class="col-8">
@@ -436,14 +442,14 @@ $(document).ready(function(){
                              <div class="t-check-out"></div>
                            </div>
                          </div>
-                         <input id="h_startdate" type="hidden" class="form-control" name="h_startdate" required data-eye> 
-                         <input id="h_enddate" type="hidden" class="form-control" name="h_enddate" required data-eye> 
+                         <input id="t_startdate" type="hidden" class="form-control" name="t_startdate" required data-eye> 
+                         <input id="t_enddate" type="hidden" class="form-control" name="t_enddate" required data-eye> 
                        </div>
                     
                       <div class="form-group row">
-                       <label for="h_maximumguest" class="col-4 col-form-label">최대 투숙객</label> 
+                       <label for="h_maximumguest" class="col-4 col-form-label">방문자 수</label> 
                        <div class="col-8">
-                         <select class="form-control" id="h_maximumguest" name="h_maximumguest">
+                         <select class="form-control" id="t_visits" name="t_visits">
                             <option selected="selected">1</option>
                             <option>2</option>
                             <option>3</option>
@@ -452,63 +458,11 @@ $(document).ready(function(){
                                                           
                        </div>
                       </div>
-                              
-                      <div class="form-group row">
-                        <label for="h_gender" class="col-4 col-form-label">선호 성별</label> 
-                          <div class="col-8">
-                           <select class="form-control" id="h_gender" name="h_gender">
-                              <option selected="selected">남자</option>
-                              <option>여자</option>
-                           </select>
-                          </div>
-                      </div>
-                           
-                      <div class="form-group row">
-                        <label for="h_smoke" class="col-4 col-form-label">흡연 가능 여부</label> 
-                        <div class="col-8">
-                            <select class="form-control" id="h_smoke" name="h_smoke">
-                               <option selected="selected">X</option>
-                              <option>O</option>
-                            </select>
-                        </div>
-                       </div>
-                       
+                                          
                        <div class="form-group row">
-                         <label for="h_haspet" class="col-4 col-form-label">펫 유무</label> 
+                         <label for="h_rule" class="col-4 col-form-label">여행동기</label> 
                          <div class="col-8">
-                         <select class="form-control" id="h_haspet" name="h_haspet">
-                             <option selected="selected">X</option>
-                             <option>O</option>
-                         </select>
-                         </div>
-                       </div>
-                        
-                       <div class="form-group row">
-                         <label for="h_haschild" class="col-4 col-form-label">자녀 유무</label> 
-                         <div class="col-8">
-                           <select class="form-control" id="h_haschild" name="h_haschild">
-                             <option selected="selected">X</option>
-                             <option>O</option>
-                           </select>
-                         </div>
-                       </div>
-                           
-                       <div class="form-group row">
-                         <label for="h_roomtype" class="col-4 col-form-label">방 종류</label> 
-                         <div class="col-8">
-                           <select class="form-control" id="h_roomtype" name="h_roomtype">
-                             <option selected="selected">싱글 베드</option>
-                             <option>더블 베드</option>
-                             <option>퀸 베드</option>
-                              <option>소파</option>
-                           </select>
-                         </div>
-                       </div>
-                        
-                       <div class="form-group row">
-                         <label for="h_rule" class="col-4 col-form-label">숙소 이용시 주의사항</label> 
-                         <div class="col-8">
-                            <textarea rows="5" cols="10" id="h_rule" name="h_rule" class="form-control"></textarea>
+                            <textarea rows="5" cols="10" id="t_motive" name="t_motive" class="form-control"></textarea>
                          </div>
                        </div>
                         
