@@ -31,6 +31,11 @@ public class AdminController {
 		System.out.println("AdminController로 옴");
 	}
 	
+	@RequestMapping(value="/adminPage.do")
+	public String adminPage() {
+		return "views/admin/testAdmin.jsp";
+	}
+	
 	@RequestMapping(value="/logVisit.do", method=RequestMethod.GET)
 	public String LogVisit(HttpServletRequest request) {
 		System.out.println("AdminController의 사이트 조회수 누적 메소드");

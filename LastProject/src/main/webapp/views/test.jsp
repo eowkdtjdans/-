@@ -59,7 +59,7 @@ function getIpCountry() {
 	<a href="/google.do">구글</a>
 	<a href="/views/google/googleLast.jsp">구글</a>
 	<a href="/ModifyPwdMember.do">비밀번호 수정</a>
-	<a href="admin/testAdmin.jsp">관리자 페이지</a>
+	<a href="/adminPage.do">관리자 페이지</a>
 	<a href="/testImage.do">테스트이미지</a>
 	<a href="/naverLogin.do">네이버 로그인</a>
 	<a href="/googleLogin.do">구글 로그인</a>

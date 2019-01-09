@@ -97,6 +97,9 @@ public class LoginAPIController {
         session.setAttribute("googleProfileName", profile.getDisplayName());
         session.setAttribute("googleProfileEmail", profile.getAccountEmail());
         session.setAttribute("googleProfileBirth", profile.getBirthday());
+        session.setAttribute("googleProfileGender", profile.getGender());
+        String realName = profile.getFamilyName() +" " + profile.getGivenName();
+        session.setAttribute("googleRealName", realName);
         // Access Token 취소
         try {
             System.out.println("Closing Token....");
@@ -117,10 +120,14 @@ public class LoginAPIController {
  
             e.printStackTrace();
         }
-        return "redirect:/views/loginAPI/GoogleCallback.jsp";
+        return "/views/loginAPI/GoogleCallback.jsp";
  
     }
     
+    @RequestMapping(value="/googleRegister.do")
+    public String googleRegister() {
+    	return "views/loginAPI/GoogleRegister.jsp";
+    }
     
     
     
