@@ -42,13 +42,7 @@
                return false;
             }
          } 
-      
-      
-      
-      
       });  
-      
-      
    };
    
 </script>
@@ -77,7 +71,8 @@ $(document).ready(function(){
      var getDateInput = $('.t-datepicker').tDatePicker('getDateInputs');
       document.getElementById("h_startdate").value = getDateInput[0];
       document.getElementById("h_enddate").value = getDateInput[1];
-   })
+   });
+   
 });
 </script>
 

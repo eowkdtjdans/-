@@ -35,6 +35,16 @@ public class HouseServiceImpl implements HostService {
 		return hostDAO.checkHostJson(vo);
 	}
 
+	@Override
+	public void updateHost(HostVO vo) {
+		hostDAO.updateHost(vo);
+	}
+
+	@Override
+	public void deleteHost(String m_id) {
+		hostDAO.deleteHost(m_id);
+	}
+
 
 
 }

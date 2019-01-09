@@ -1,8 +1,11 @@
 package com.spring.view.controller;
 
+import java.sql.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,8 +14,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.spring.biz.host.HostVO;
+import com.spring.biz.profile.ProfileVO;
 import com.spring.biz.travelers.TravelersService;
 import com.spring.biz.travelers.TravelersVO;
 import com.spring.pagination.PagingVO;
@@ -67,7 +73,7 @@ public class TravelersController {
 		
 		model.addAttribute("cPage", cPage);
 		
-		return "views/travelers/Travelers.jsp";
+		return "/views/travelers/Travelers.jsp";
 	}
 	
 	@RequestMapping(value="/getTravelersList.do", method=RequestMethod.GET)
@@ -117,7 +123,7 @@ public class TravelersController {
 		
 		model.addAttribute("cPage", cPage);
 		
-		return "views/travelers/Travelers.jsp";
+		return "/views/travelers/Travelers.jsp";
 	}
 	
 	
@@ -130,14 +136,68 @@ public class TravelersController {
 		System.out.println("getTravelers : " + getTravelers);
 		model.addAttribute("getTravelers", getTravelers);
 		
-		return "views/travelers/getTravelers.jsp";
+		return "/views/travelers/getTravelers.jsp";
+	}
+	
+	//트레블러 게시판 글 작성 유무 확인
+	@RequestMapping(value="/checkTravelersJson.do", method=RequestMethod.POST)
+	@ResponseBody
+	public Map<Object, Object> insertMessageJson(ProfileVO vo) {
+		int count = 0;
+		Map<Object, Object> map = new HashMap<Object, Object>();
+		
+		count = travelersService.checkTravelersJson(vo);
+		map.put("cnt", count);
+		
+		return map;
 	}
 	
 	
-	@RequestMapping(value="/travelersInsert.do", method=RequestMethod.GET)
-	public String travelersInsert() {
-		System.out.println("travelersInsert === GET");
-		return "views/travelers/TravelersInsert.jsp";
+	//호스트 게시판 글 작성
+	@RequestMapping(value="insertTravelers.do", method=RequestMethod.POST)
+	public String insertTravelers(TravelersVO vo, HttpSession session, 
+		@RequestParam("m_id") String m_id, @RequestParam("t_visits") int t_visits, 
+		@RequestParam("t_motive") String t_motive, @RequestParam("t_country") String t_country,
+		@RequestParam("t_startdate") Date t_startdate, @RequestParam("t_enddate") Date t_enddate) {
+		System.out.println("insertTravelers ==== POST");
+		System.out.println("vo :" + vo);
+		vo.setM_id(m_id);
+		vo.setT_visits(t_visits);
+		vo.setT_motive(t_motive);
+		vo.setT_country(t_country);
+		vo.setT_startdate(t_startdate);
+		vo.setT_enddate(t_enddate);
+		
+		travelersService.insertTravelers(vo);
+		session.setAttribute("travelers", vo);
+		return "redirect:/getTravelersList.do";
+	}
+	
+	@RequestMapping(value="updateTravelers.do", method=RequestMethod.POST)
+	public String updateTravelers(TravelersVO vo, HttpSession session, 
+		@RequestParam("m_id") String m_id, @RequestParam("t_visits") int t_visits, 
+		@RequestParam("t_motive") String t_motive, @RequestParam("t_country") String t_country,
+		@RequestParam("t_startdate") Date t_startdate, @RequestParam("t_enddate") Date t_enddate) {
+		System.out.println("insertTravelers ==== POST");
+		System.out.println("vo :" + vo);
+		vo.setM_id(m_id);
+		vo.setT_visits(t_visits);
+		vo.setT_motive(t_motive);
+		vo.setT_country(t_country);
+		vo.setT_startdate(t_startdate);
+		vo.setT_enddate(t_enddate);
+		
+		travelersService.updateTravelers(vo);
+		session.setAttribute("travelers", vo);
+		return "redirect:/getTravelersList.do";
+	}
+	
+	@RequestMapping(value="deleteTravelers.do", method=RequestMethod.GET)
+	public String deleteTravelers(HttpSession session, @RequestParam("m_id") String m_id) {
+		
+		travelersService.deleteTravelers(m_id);
+		
+		return "redirect:/getTravelersList.do";
 	}
 	
 	
