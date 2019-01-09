@@ -45,11 +45,6 @@ public class HostController {
 	}  
 	
 	//호스트 게시판 글 작성
-	@RequestMapping(value="insertHost.do", method=RequestMethod.GET)
-	public String insertHost(HostVO vo, HttpSession session) {
-		System.out.println("insertHost ==== GET");
-		return "views/host/HostInsert.jsp";
-	}
 	@RequestMapping(value="insertHost.do", method=RequestMethod.POST)
 	public String insertHostPost(HostVO vo, HttpSession session, 
 			@RequestParam("m_id") String m_id, @RequestParam("h_maximumguest") String h_maximumguest, 
@@ -71,6 +66,36 @@ public class HostController {
 		vo.setM_id(m_id);
 		hostService.insertHost(vo);
 		session.setAttribute("host", vo);
+		return "redirect:/getHostList.do";
+	}
+	@RequestMapping(value="updateHost.do", method=RequestMethod.POST)
+	public String updateHostPost(HostVO vo, HttpSession session, 
+			@RequestParam("m_id") String m_id, @RequestParam("h_maximumguest") String h_maximumguest, 
+			@RequestParam("h_gender") String h_gender, @RequestParam("h_smoke") String h_smoke, 
+			@RequestParam("h_roomtype") String h_roomtype, @RequestParam("h_rule") String h_rule, 
+			@RequestParam("h_startdate") Date h_startdate , @RequestParam("h_haspet") String h_haspet, 
+			@RequestParam("h_haschild") String h_haschild, @RequestParam("h_enddate") Date h_enddate) {
+		System.out.println("updateHost ==== POST");
+		System.out.println("vo :" + vo);
+		vo.setH_enddate(h_enddate);
+		vo.setH_gender(h_gender);
+		vo.setH_haschild(h_haschild);
+		vo.setH_haspet(h_haspet);
+		vo.setH_maximumguest(h_maximumguest);
+		vo.setH_roomtype(h_roomtype);
+		vo.setH_rule(h_rule);
+		vo.setH_smoke(h_smoke);
+		vo.setH_startdate(h_startdate);
+		vo.setM_id(m_id);
+		hostService.updateHost(vo);
+		session.setAttribute("host", vo);
+		return "redirect:/getHostList.do";
+	}
+	
+	@RequestMapping(value="deleteHost.do", method=RequestMethod.GET)
+	public String deleteHostPost(HttpSession session, @RequestParam("m_id") String m_id) {
+		hostService.deleteHost(m_id);
+		
 		return "redirect:/getHostList.do";
 	}
 	

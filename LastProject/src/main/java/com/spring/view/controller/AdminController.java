@@ -11,24 +11,36 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.spring.biz.admin.AdminCntVO;
 import com.spring.biz.admin.AdminService;
 import com.spring.biz.admin.UserAdminCommentVO;
 import com.spring.biz.admin.UserAdminPostVO;
 import com.spring.biz.admin.UserAdminViewVO;
+import com.spring.biz.event.EventVO;
 import com.spring.biz.member.MemberVO;
 import com.spring.biz.profileImage.ProfileImageVO;
 
 @Controller
-@SessionAttributes({"userAdminList", "userAdminViewVO", "userAdminPostList", "userAdminCommentList", "userAdminImageSelect"})
+@SessionAttributes({"userAdminList", "userAdminViewVO", "userAdminPostList", "userAdminCommentList", "userAdminImageSelect", "adminCnt"})
 public class AdminController {
 	@Autowired
 	private AdminService adminService;
 	
 	public AdminController() {
 		System.out.println("AdminController로 옴");
+	}
+	
+	@RequestMapping(value="/Admin.do")
+	public String AdminMain(HttpServletRequest request, Model model) {
+		System.out.println("AdminController의 사이트 조회수 누적 메소드");
+		
+		AdminCntVO adminCnt = adminService.adminCnt();
+		
+		model.addAttribute("adminCnt", adminCnt);
+		
+		return "redirect:/views/admin/testAdmin.jsp";
 	}
 	
 	@RequestMapping(value="/logVisit.do", method=RequestMethod.GET)
@@ -77,10 +89,10 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value="/userAdmin.do")
-	public String userAdminSelect(Model model) {
+	public String userAdminList(Model model) {
 		List<MemberVO> list = null;
 		
-		list = adminService.userAdminSelect();
+		list = adminService.userAdminList();
 		
 		model.addAttribute("userAdminList", list);
 		return "redirect:/views/admin/pages/tables/userAdmin.jsp";
@@ -95,21 +107,24 @@ public class AdminController {
 		
 		String m_id = request.getParameter("m_id");
 		
-		uvo = adminService.userAdminViewSelect(m_id);
-		uplist = adminService.userAdminPostSelect(m_id);
-		upclist = adminService.userAdminCommentSelect(m_id);
-		upilist = adminService.userAdminImageSelect(m_id);
+		uvo = adminService.userAdminView(m_id);
+		uplist = adminService.userAdminPostList(m_id);
+		upclist = adminService.userAdminCommentList(m_id);
 		
 		model.addAttribute("userAdminViewVO", uvo);
 		model.addAttribute("userAdminPostList", uplist);
 		model.addAttribute("userAdminCommentList", upclist);
-		model.addAttribute("userAdminImageSelect", upilist);
 		
 		return "redirect:/views/admin/pages/examples/userAdminView.jsp";
 	}
 	
-	@RequestMapping(value="/userLogVisit.do")
-	public String userLogVisit() {
-		return "";
+	@RequestMapping(value="/eventAdmin.do")
+	public String eventAdminList(Model model) {
+		List<EventVO> list = null;
+		
+		list = adminService.eventAdminList();
+		
+		model.addAttribute("userAdminList", list);
+		return "redirect:/views/admin/pages/tables/userAdmin.jsp";
 	}
 }

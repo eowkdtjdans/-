@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.spring.biz.profile.ProfileVO;
 import com.spring.biz.travelers.TravelersVO;
 
 @Repository("travelersDAO")
@@ -26,5 +27,21 @@ public class TravelersDAO {
 	//상세조회
 	public TravelersVO getTravelers(String m_id) {
 		return mybatis.selectOne("getTravelers", m_id);
+	}
+
+	public int checkTravelersJson(ProfileVO vo) {
+		return mybatis.selectOne("checkTravelersJson", vo);
+	}
+
+	public void insertTravelers(TravelersVO vo) {
+		mybatis.insert("insertTravelers", vo);
+	}
+
+	public void updateTravelers(TravelersVO vo) {
+		mybatis.update("updateTravelers", vo);
+	}
+
+	public void deleteTravelers(String m_id) {
+		mybatis.delete("deleteTravelers", m_id);
 	}
 }

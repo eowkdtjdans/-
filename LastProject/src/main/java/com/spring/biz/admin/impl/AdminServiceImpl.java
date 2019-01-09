@@ -6,10 +6,12 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.spring.biz.admin.AdminCntVO;
 import com.spring.biz.admin.AdminService;
 import com.spring.biz.admin.UserAdminCommentVO;
 import com.spring.biz.admin.UserAdminPostVO;
 import com.spring.biz.admin.UserAdminViewVO;
+import com.spring.biz.event.EventVO;
 import com.spring.biz.member.MemberVO;
 import com.spring.biz.profileImage.ProfileImageVO;
 
@@ -24,13 +26,13 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public List<MemberVO> userAdminSelect() {
-		return adminDAO.userAdminSelect();
+	public List<MemberVO> userAdminList() {
+		return adminDAO.userAdminList();
 	}
 	
 	@Override
-	public UserAdminViewVO userAdminViewSelect(String m_id) {
-		return adminDAO.userAdminViewSelect(m_id);
+	public UserAdminViewVO userAdminView(String m_id) {
+		return adminDAO.userAdminView(m_id);
 	}
 
 	@Override
@@ -39,18 +41,23 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public List<UserAdminPostVO> userAdminPostSelect(String m_id) {
-		return adminDAO.userAdminPostSelect(m_id);
+	public List<UserAdminPostVO> userAdminPostList(String m_id) {
+		return adminDAO.userAdminPostList(m_id);
 	}
 
 	@Override
-	public List<UserAdminCommentVO> userAdminCommentSelect(String m_id) {
-		return adminDAO.userAdminCommentSelect(m_id);
+	public List<UserAdminCommentVO> userAdminCommentList(String m_id) {
+		return adminDAO.userAdminCommentList(m_id);
 	}
 
 	@Override
-	public List<ProfileImageVO> userAdminImageSelect(String m_id) {
-		return adminDAO.userAdminImageSelect(m_id);
+	public AdminCntVO adminCnt() {
+		return adminDAO.adminCnt();
+	}
+
+	@Override
+	public List<EventVO> eventAdminList() {
+		return adminDAO.eventAdminList();
 	}
 
 }

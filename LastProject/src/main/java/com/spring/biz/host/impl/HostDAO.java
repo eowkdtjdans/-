@@ -28,8 +28,15 @@ public class HostDAO {
 	}
 
 	public int checkHostJson(ProfileVO vo) {
-		// TODO Auto-generated method stub
 		return mybatis.selectOne("checkHostJson", vo);
+	}
+
+	public void updateHost(HostVO vo) {
+		mybatis.insert("updateHost", vo);
+	}
+
+	public void deleteHost(String m_id) {
+		mybatis.delete("deleteHost", m_id);
 	}
 	
 }

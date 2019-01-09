@@ -450,8 +450,8 @@
 								<span class="info-box-icon"><i class="fa fa-tag"></i></span>
 
 								<div class="info-box-content">
-									<span class="info-box-text">Inventory</span> <span
-										class="info-box-number">5,200</span>
+									<span class="info-box-text">게시글 수</span> <span
+										class="info-box-number">${adminCnt.l_cnt + adminCnt.e_cnt}</span>
 								</div>
 								<!-- /.info-box-content -->
 							</div>
@@ -463,8 +463,8 @@
 								<span class="info-box-icon"><i class="fa fa-heart-o"></i></span>
 
 								<div class="info-box-content">
-									<span class="info-box-text">Mentions</span> <span
-										class="info-box-number">92,050</span>
+									<span class="info-box-text">댓글 수</span> <span
+										class="info-box-number">${adminCnt.lc_cnt + adminCnt.ec_cnt}</span>
 								</div>
 								<!-- /.info-box-content -->
 							</div>
@@ -478,8 +478,22 @@
 									class="fa fa-cloud-download"></i></span>
 
 								<div class="info-box-content">
-									<span class="info-box-text">Downloads</span> <span
-										class="info-box-number">114,381</span>
+									<span class="info-box-text">유효 호스트 수(전체)</span> <span
+										class="info-box-number">${adminCnt.rh_cnt}(${adminCnt.h_cnt})</span>
+								</div>
+								<!-- /.info-box-content -->
+							</div>
+						</div>
+						
+						<div class="col-lg-3 col-6">
+							<!-- small box -->
+							<div class="info-box mb-3 bg-danger">
+								<span class="info-box-icon"><i
+									class="fa fa-cloud-download"></i></span>
+
+								<div class="info-box-content">
+									<span class="info-box-text">유효 여행자 수(전체)</span> <span
+										class="info-box-number">${adminCnt.rt_cnt}(${adminCnt.t_cnt})</span>
 								</div>
 								<!-- /.info-box-content -->
 							</div>
@@ -489,7 +503,7 @@
 							<!-- small box -->
 							<div id="client" class="small-box">
 								<div class="inner">
-									<h3>44</h3>
+									<h3>${adminCnt.m_cnt}</h3>
 
 									<p>클라이언트 관리</p>
 								</div>
@@ -497,6 +511,22 @@
 									<i class="ion ion-person-add"></i>
 								</div>
 								<a href="../../userAdmin.do" class="small-box-footer">More info <i
+									class="fa fa-arrow-circle-right"></i></a>
+							</div>
+						</div>
+						
+						<div class="col-lg-3 col-6">
+							<!-- small box -->
+							<div id="person" class="small-box bg-info">
+								<div class="inner">
+									<h3>${adminCnt.e_cnt}</h3>
+
+									<p>이벤트 관리</p>
+								</div>
+								<div class="icon">
+									<i class="ion ion-person-add"></i>
+								</div>
+								<a href="../../eventAdmin.do" class="small-box-footer">More info <i
 									class="fa fa-arrow-circle-right"></i></a>
 							</div>
 						</div>

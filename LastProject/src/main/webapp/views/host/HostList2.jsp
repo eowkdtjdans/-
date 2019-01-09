@@ -251,13 +251,7 @@ function deleteHost(m_id) {
 }
 
 function cardOver(m_id) {
-	
-	
-	
-	
-	
-	
-	
+	alert(document.getElementById("marker" + m_id));
 }
 
 </SCRIPT>

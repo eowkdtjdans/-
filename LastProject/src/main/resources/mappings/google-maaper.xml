@@ -12,6 +12,7 @@
 		WHERE H.M_ID = PI.M_ID
         AND PI.M_ID = M.M_ID
         AND H.H_ENDDATE >= TO_CHAR(SYSDATE, 'YYYY-MM-DD')
+        AND PI.P_MAIN = 1
 		ORDER BY PI.P_ROUTE
 	</select>
 	
