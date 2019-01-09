@@ -48,6 +48,5 @@
 
 </head>
 <body class="my-login-page" onload="ApiRegisterCheck()">
- <input value="${googleProfileEmail }" id="m_id" type="hidden" class="form-control" name="m_id">
 </body>
 </html>

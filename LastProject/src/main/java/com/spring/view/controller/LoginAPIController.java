@@ -98,7 +98,7 @@ public class LoginAPIController {
         session.setAttribute("googleProfileEmail", profile.getAccountEmail());
         session.setAttribute("googleProfileBirth", profile.getBirthday());
         session.setAttribute("googleProfileGender", profile.getGender());
-        String realName = profile.getFamilyName() +" " + profile.getGivenName();
+        String realName = profile.getFamilyName()+ profile.getGivenName();
         session.setAttribute("googleRealName", realName);
         // Access Token 취소
         try {
@@ -126,7 +126,7 @@ public class LoginAPIController {
     
     @RequestMapping(value="/googleRegister.do")
     public String googleRegister() {
-    	return "views/loginAPI/GoogleRegister.jsp";
+    	return "views/member/GoogleRegister.jsp";
     }
     
     
@@ -169,7 +169,7 @@ public class LoginAPIController {
 
     //네이버 로그인 성공시 callback호출 메소드
     @RequestMapping(value = "/naverCallback.do", method = { RequestMethod.GET, RequestMethod.POST })
-    public String callback(Model model, @RequestParam String code, @RequestParam String state, HttpSession session)
+    public String callback(HttpSession session, @RequestParam String code, @RequestParam String state)
             throws IOException {
         System.out.println("여기는 callback");
         OAuth2AccessToken oauthToken;
@@ -177,13 +177,16 @@ public class LoginAPIController {
         //로그인 사용자 정보를 읽어온다.
         apiResult = naverLoginBO.getUserProfile(oauthToken);
         System.out.println(naverLoginBO.getUserProfile(oauthToken).toString());
-        model.addAttribute("result", apiResult);
+        session.setAttribute("result", apiResult);
         System.out.println("result"+apiResult);
         
-       // return "/views/loginAPI/NaverCallback.jsp";
         return "/views/loginAPI/NaverCallback.jsp";
     }
     
+    @RequestMapping(value="/NaverRegister.do.")
+    public String NaverRegister() {
+    	return "views/loginAPI/NaverRegister.jsp";
+    }
     
     // 페이스북 oAuth 관련
     @Autowired

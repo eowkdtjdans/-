@@ -98,7 +98,7 @@ public class MemberController {
 		emailSender.SendEmail(email);
 		session.setAttribute("emailCheck", emailCheck);
 		session.setAttribute("member", vo);
-		return "redirect:/certifyEmail.do?m_id="+vo.getM_id();
+		return "/certifyEmail.do?m_id="+vo.getM_id();
 		//return "views/member/certifyEmail.jsp?m_id=";
 	}
 	
@@ -204,7 +204,7 @@ public class MemberController {
 				emailSender.SendEmail(email);
 				session.setAttribute("emailCheck", emailCheck);
 				session.setAttribute("member", vo);
-				return "redirect:/certifyEmail.do?m_id="+vo.getM_id();
+				return "/certifyEmail.do?m_id="+vo.getM_id();
 			}
 		} else {
 			System.out.println("=====없는 아이디=====");

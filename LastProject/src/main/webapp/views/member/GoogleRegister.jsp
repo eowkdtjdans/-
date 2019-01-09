@@ -222,7 +222,7 @@ $('.t-datepicker').tDatePicker({
                      <form method="POST" class="my-login-validation" id="form">
                         <div class="form-group">
                            <label for="text">아이디</label>
-                           <input value="${googleProfileEmail }" id="m_id" type="text" class="form-control" name="m_id">
+                           <input readonly="readonly" value="${googleProfileEmail }" id="m_id" type="text" class="form-control" name="m_id">
                         </div>
                         
                          <div class="form-group m-0">
@@ -239,7 +239,7 @@ $('.t-datepicker').tDatePicker({
                   
                         <div class="form-group">
                            <label for="name">성함</label>
-                           <input id="m_name" value="${googleRealName }" type="text" class="form-control" name="m_name">
+                           <input readonly="readonly" id="m_name" value="${googleRealName }" type="text" class="form-control" name="m_name">
                         </div>
                   
                         <div class="form-group">
@@ -252,10 +252,24 @@ $('.t-datepicker').tDatePicker({
                               핸드폰 중복확인
                            </button>
                         </div>
-                  
                          <div class="form-group">
                            <label for="text">성별</label>
-                           <input value="${googleProfileGender }" id="m_gender" type="text" class="form-control" name="m_gender" required data-eye>
+                  		<c:if test="${googleProfileGender eq null}">
+							   <div class="form-group" style="text-algin : center; margin : 0 auto">
+                              <div class="btn-group" data-toggle="buttons">
+                                 <label class="btn btn-default active"> 
+                                    <input type="radio" name="m_gender" autocomplete="off" value="남자" checked/>남자
+                                 </label>
+                                 
+                                 <label class="btn btn-default">
+                                    <input type="radio" name="m_gender" autocomplete="off" value="여자"/>여자
+                                 </label>
+                              </div>
+                           </div>	                  			
+                  		</c:if>
+                           <c:if test="${googleProfileGender ne null }">
+                           <input readonly="readonly" value="${googleProfileGender }" id="m_gender" type="text" class="form-control" name="m_gender" required data-eye>
+ 							</c:if>                      
                         </div>
                   
                         <c:set var="yearStart" value="1969"/>
