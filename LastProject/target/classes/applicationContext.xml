@@ -66,7 +66,7 @@
     <!-- Google 소셜 로그인 연결 설정 -->
 	<bean id = "googleConnectionFactory" class="org.springframework.social.google.connect.GoogleConnectionFactory">
 		<constructor-arg value="320127136039-j4l8hms8087fdjorf8pnsphbi9rdhn86.apps.googleusercontent.com"/>
-		<constructor-arg value="BNVtt7U9mN3SVy8dGSP5wvyG"/>
+		<constructor-arg value=""/>
 	</bean>
 	 
 	<bean id = "googleOAuth2Parameters" class="org.springframework.social.oauth2.OAuth2Parameters">
