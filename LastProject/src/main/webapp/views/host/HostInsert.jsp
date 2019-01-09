@@ -153,7 +153,6 @@ $(document).ready(function(){
                         
                               <div class="form-group row">
                                 <label for="h_startdate" class="col-4 col-form-label">입실/퇴실 날짜</label> 
-                              
                               <div class="col-8">
                                <div class="t-datepicker">
                           <div class="t-check-in"></div>

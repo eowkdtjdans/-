@@ -111,4 +111,12 @@
 		SELECT COUNT(*) FROM MEMBER
 		WHERE M_PHONE = #{m_phone}
 	</select>
+	
+	<select id="ApiRegisterCheckJson" parameterType="String" resultType="Integer">
+		SELECT COUNT(*) FROM MEMBER
+		WHERE M_ID = #{m_id}
+	</select>
+	
+	
+
 </mapper>

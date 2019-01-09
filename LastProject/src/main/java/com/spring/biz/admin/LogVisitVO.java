@@ -1,4 +1,4 @@
-package com.spring.biz.com.admin;
+package com.spring.biz.admin;
 
 import oracle.sql.DATE;
 

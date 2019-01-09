@@ -1,4 +1,4 @@
-package com.spring.biz.com.admin.impl;
+package com.spring.biz.admin.impl;
 
 import java.util.List;
 import java.util.Map;
@@ -7,9 +7,9 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.spring.biz.com.admin.UserAdminCommentVO;
-import com.spring.biz.com.admin.UserAdminPostVO;
-import com.spring.biz.com.admin.UserAdminViewVO;
+import com.spring.biz.admin.UserAdminCommentVO;
+import com.spring.biz.admin.UserAdminPostVO;
+import com.spring.biz.admin.UserAdminViewVO;
 import com.spring.biz.member.MemberVO;
 import com.spring.biz.profileImage.ProfileImageVO;
 

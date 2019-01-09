@@ -14,10 +14,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-import com.spring.biz.com.admin.AdminService;
-import com.spring.biz.com.admin.UserAdminCommentVO;
-import com.spring.biz.com.admin.UserAdminPostVO;
-import com.spring.biz.com.admin.UserAdminViewVO;
+import com.spring.biz.admin.AdminService;
+import com.spring.biz.admin.UserAdminCommentVO;
+import com.spring.biz.admin.UserAdminPostVO;
+import com.spring.biz.admin.UserAdminViewVO;
 import com.spring.biz.member.MemberVO;
 import com.spring.biz.profileImage.ProfileImageVO;
 
@@ -29,6 +29,11 @@ public class AdminController {
 	
 	public AdminController() {
 		System.out.println("AdminController로 옴");
+	}
+	
+	@RequestMapping(value="/adminPage.do")
+	public String adminPage() {
+		return "views/admin/testAdmin.jsp";
 	}
 	
 	@RequestMapping(value="/logVisit.do", method=RequestMethod.GET)

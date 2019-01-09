@@ -109,6 +109,8 @@ public class MemberDAO {
 		mybatis.update("certifyCodeUpdate", vo);
 	}
 
+
+
 	
 	
 
