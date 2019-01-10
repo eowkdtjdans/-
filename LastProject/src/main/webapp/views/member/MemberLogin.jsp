@@ -13,7 +13,6 @@
 
 	function login(frm) {
 	var str = $("#form").serialize();
-	
 		$.ajax({
 			async: true,
 			type : "POST",

@@ -35,37 +35,19 @@
         	  url: '/v1/user/me',
             success: function(res) {
             	var kakaoInfo = JSON.stringify(res.properties);
+            	
+            	var kakaoName = JSON.stringify(res.properties.nickname); 
+            	var kakaoName2 = res.properties.nickname; 
+            
             	var kakaoEmail = JSON.stringify(res.kaccount_email);
             	var kakaoEmail2 = res.kaccount_email;
-            	alert("kakaoEmail2 : " + kakaoEmail2); //이건"" 없음
-            	alert("kakaoEmail : " + kakaoEmail); //이건 "" 있음
-           	
-           	 /* alert("kakaoInfo : " + kakaoInfo);
-		 	  alert("이메일 : " + JSON.stringify(res.kaccount_email)); //이메일 나옴
-              alert("아이디 : " + JSON.stringify(res.id)); //1234523424
-              alert("프로필이미지 : " + JSON.stringify(res.properties.profile_image)); //사진.jpg
-              alert("닉네임 : " + JSON.stringify(res.properties.nickname)); //"이준연"
-              alert("성별 : " + JSON.stringify(res.properties.gender));  //안나오고
-              alert("전체 : " + JSON.stringify(res.properties)); // */
-             
-              //location.href = "../../kakaoCallback.do";
-              location.href = "/views/loginAPI/kakaoCallback.jsp";
-             /* 	 $.ajax({
-             		async : true,
-             		type : "POST",
-             		dataType : "json",
-             		data : kakaoEmail2,
-             		url : '../../checkMemberJson.do',
-             		success : function(data) {
-             			if (data.cnt >= 1) {
-        					alert("사이트 이용 시 로그인을 해야 가능합니다.");
-        					location.href = "../../loginMember.do";
-        				} else if(data.cnt == 0) {
-        					alert("사이트 이용 시 회원가입을 해야 사용 가능합니다.");
-        					location.href = "../../kakaoRegister.do";
-        				} 
-             		}
-             	}); */
+            
+            	sessionStorage.setItem("kakaoEmailSession", kakaoEmail2);
+            	sessionStorage.setItem("kakaoNameSession", kakaoName2);
+            	
+           	 $("#m_id").val(kakaoEmail2);
+           	checkAJax();
+
               
             },
             
@@ -78,5 +60,37 @@
 
 </script>
 
+<script>
+function checkAJax() {
+	alert("체크에이잭스 펑션");
+	//var str = $("#form").serialize();
+	var str = $("#m_id").val();
+	alert(str);
+	$.ajax({
+		async: true,
+		type : 'POST',
+		dataType : "json",
+		data : str,
+	    contentType: "application/json; charset=UTF-8",  
+		url : '../../checkMemberJson.do',
+		
+		   success : function(data) {
+ 			alert(data.cnt);
+ 			if (data.cnt >= 1) {
+				alert("사이트 이용 시 로그인을 해야 가능합니다.");
+				location.href = "../../loginMember.do";
+			} else if(data.cnt == 0) {
+				alert("사이트 이용 시 회원가입을 해야 사용 가능합니다.");
+				location.href = "../../kakaoCallback.do";
+			} 
+ 		}
+ 	});
+}
+</script>
+<form onsubmit="return false"method="POST" class="my-login-validation" id="form"  >
+<div>
+  <input id="m_id" type="text" class="form-control" name="m_id">
+</div>
+</form>
 </body>
 </html>
