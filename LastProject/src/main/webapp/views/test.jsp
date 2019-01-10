@@ -43,12 +43,15 @@ function getIpCountry() {
 	}, "jsonp");
 }
 </script>
+
+
 </head>
 <body onload="getIpCountry()">
 	<h2>ㅎㅇ</h2>
-	
+
+
 	<a href="#" id="main">Main테스트</a>
-	
+	<a href="/kakaoLogout.do" >카카오 로그아웃</a>
 	<a href="/getTravelersList.do">travelers</a>
 	<a href="/insertMember.do">Register</a> 
 	<a href="/loginMember.do">Login</a> 
