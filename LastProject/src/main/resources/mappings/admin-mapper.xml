@@ -62,6 +62,12 @@
 		     (SELECT COUNT(*) AS LOG_L_CNT FROM LOG_LOGIN) L_LC,
 		     (SELECT COUNT(*) AS LOG_V_CNT FROM LOG_VISIT) L_VC
 	</select>
+	
+	<select id="eventAdminList" resultType="event">
+		SELECT E_IDX, E_ADDRESS, E_NAME, E_CONTENT, E_STARTDATE, E_ENDDATE, E_UPVOTE, E_REVIEWCOUNT, LAT, LNG, E_REGION, E_TAG, E_COUNT 
+    		FROM EVENT
+        	WHERE E_ENDDATE >= TO_CHAR(SYSDATE, 'YYYY-MM-DD')
+	</select>
 
 
 </mapper>
