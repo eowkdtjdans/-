@@ -20,11 +20,10 @@
    <script src="views/datepicker/public/theme/js/t-datepicker.min.js"></script>
 
 
-
 <script>
 	function ApiRegisterCheck() {
-		 var naverId = ${result}.response.email;
-		 alert("naverId :" + naverId);
+		alert("kakaoEmail : " + kakaoEmail);
+		 alert("kakaoEmail :" + kakaoEmail);
 	 	 $.ajax({
 	 		async: true,
 			type : 'POST',
@@ -46,6 +45,7 @@
 		
 	}
 </script>
+
 
 </head>
 <body class="my-login-page" onload="ApiRegisterCheck()">

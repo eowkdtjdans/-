@@ -66,7 +66,9 @@
 		</tr>
 		<tr>
 			<th>보낸사람</th>
-			<td>${message.send_sender}</td>
+			<td>
+			${message.send_sender}
+			</td>
 		</tr>
 		<tr>
 			<th>내용</th>

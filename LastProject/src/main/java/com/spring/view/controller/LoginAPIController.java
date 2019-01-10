@@ -47,7 +47,16 @@ public class LoginAPIController {
     private OAuth2Parameters googleOAuth2Parameters;
  
     private OAuth2Operations oauthOperations;
- 
+    
+    @RequestMapping(value = "/kakaoLogin.do")
+    public String kakaoLogin() {
+    	return "/views/loginAPI/kakaoLogin.jsp";
+    }
+    @RequestMapping(value="/kakaoCallback.do")
+    public String kakaoCallback() {
+    	return "/views/loginAPI/kakaoCallback.jsp";
+    }
+    
     // 회원 가입 페이지
     @RequestMapping(value = "/googleLogin.do", method = { RequestMethod.GET, RequestMethod.POST })
     public String googleLogin(HttpServletResponse response, Model model) {
