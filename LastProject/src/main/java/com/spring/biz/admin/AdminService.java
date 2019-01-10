@@ -10,6 +10,7 @@ import com.spring.biz.profileImage.ProfileImageVO;
 public interface AdminService {
 	void logVisit(Map<String, String> lvMap);
 	void logLogin(Map<String, String> llMap);
+	void insertEvent();
 	
 	UserAdminViewVO userAdminView(String m_id);
 	

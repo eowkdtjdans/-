@@ -23,7 +23,7 @@ import com.spring.biz.member.MemberVO;
 import com.spring.biz.profileImage.ProfileImageVO;
 
 @Controller
-@SessionAttributes({"userAdminList", "userAdminViewVO", "userAdminPostList", "userAdminCommentList", "userAdminImageSelect", "adminCnt"})
+@SessionAttributes({"userAdminList", "userAdminViewVO", "userAdminPostList", "userAdminCommentList", "userAdminImageSelect", "eventAdminList", "adminCnt"})
 public class AdminController {
 	@Autowired
 	private AdminService adminService;
@@ -124,7 +124,13 @@ public class AdminController {
 		
 		list = adminService.eventAdminList();
 		
-		model.addAttribute("userAdminList", list);
-		return "redirect:/views/admin/pages/tables/userAdmin.jsp";
+		model.addAttribute("eventAdminList", list);
+		return "redirect:/views/admin/pages/tables/eventAdmin.jsp";
+	}
+	
+	@RequestMapping(value="/insertEvent.do")
+	public String insertEvent(Model model) {
+		
+		return "redirect:/views/admin/insertEvent.jsp";
 	}
 }

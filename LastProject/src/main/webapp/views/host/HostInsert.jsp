@@ -150,9 +150,9 @@ $(document).ready(function(){
                                 <label for="h_startdate" class="col-4 col-form-label">입실/퇴실 날짜</label> 
                               <div class="col-8">
                                <div class="t-datepicker">
-                          <div class="t-check-in"></div>
-                          <div class="t-check-out"></div>
-                        </div>
+	                          <div class="t-check-in"></div>
+	                          <div class="t-check-out"></div>
+	                        </div>
                         </div>
                               
                                 <input id="h_startdate" type="hidden" class="form-control" name="h_startdate" required data-eye> 

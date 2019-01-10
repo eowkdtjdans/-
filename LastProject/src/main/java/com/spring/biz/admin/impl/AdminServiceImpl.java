@@ -60,4 +60,9 @@ public class AdminServiceImpl implements AdminService {
 		return adminDAO.eventAdminList();
 	}
 
+	@Override
+	public void insertEvent() {
+		adminDAO.insertEvent();
+	}
+
 }

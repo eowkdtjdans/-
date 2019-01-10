@@ -49,7 +49,11 @@ public class AdminDAO {
 	}
 
 	public List<EventVO> eventAdminList() {
-		return mybatis.selectList("userAdminList");
+		return mybatis.selectList("eventAdminList");
+	}
+
+	public void insertEvent() {
+		mybatis.insert("insertEvent");
 	}
 
 }
