@@ -68,6 +68,16 @@
     		FROM EVENT
         	WHERE E_ENDDATE >= TO_CHAR(SYSDATE, 'YYYY-MM-DD')
 	</select>
+	
+	<insert id="insertEvent" parameterType="event">
+		INSERT INTO EVENT (E_IDX, E_NAME, E_CONTENT, E_ADDRESS, E_STARTDATE, E_ENDDATE, LAT, LNG, E_REGION, E_TAG, E_DATE)
+		VALUES (EVENT_SEQ.NEXTVAL, #{e_name}, #{e_content}, #{e_address}, #{e_startdate}, #{e_enddate}, #{lat}, #{lng}, #{e_region}, #{e_tag}, SYSDATE)
+	</insert>
+	
+	<insert id="insertEventImg" parameterType="Map">
+		INSERT INTO EVENT (E_IDX, E_IMG, E_MAIN)
+		VALUES (EVENT_SEQ.CURRVAL, #{url}, #{e_main})
+	</insert>
 
 
 </mapper>

@@ -401,7 +401,6 @@ $(document).ready(function(){
 				      <hr />
 				      <p class="card-text">${list.m_address}</p>
 				      <hr />
-				      <a href="../../hostGetInfo.do?m_id=${list.m_id }" class="btn btn-light">See Profile</a>
 				      <button type="button" class="btn btn-light" data-toggle="modal" data-target="#myModal${list.m_id }">Open modal</button>
 				    </span>
 			    </span>

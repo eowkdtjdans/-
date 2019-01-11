@@ -434,10 +434,8 @@
 											<label for="exampleInputFile">File input</label>
 											<div class="input-group">
 												<div class="custom-file">
-													<input type="file" class="custom-file-input"
-														id="exampleInputFile"> <label
-														class="custom-file-label" for="exampleInputFile">Choose
-														file</label>
+													<input type="file" class="custom-file-input" id="exampleInputFile">
+													<label class="custom-file-label" for="exampleInputFile">Choose file</label>
 												</div>
 												<div class="input-group-append">
 													<span class="input-group-text" id="">Upload</span>

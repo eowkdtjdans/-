@@ -31,9 +31,7 @@
 <!-- Theme style -->
 <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
 <!-- Google Font: Source Sans Pro -->
-<link
-	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700"
-	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
 <body class="hold-transition sidebar-mini">
 	<div class="wrapper">
@@ -819,34 +817,32 @@
 	<!-- ./wrapper -->
 
 	<!-- jQuery -->
-	<script src="../../plugins/jquery/jquery.min.js"></script>
+	<script src="/views/admin/plugins/jquery/jquery.min.js"></script>
 	<!-- Bootstrap 4 -->
-	<script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="/views/admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 	<!-- Select2 -->
-	<script src="../../plugins/select2/select2.full.min.js"></script>
+	<script src="/views/admin/plugins/select2/select2.full.min.js"></script>
 	<!-- InputMask -->
-	<script src="../../plugins/input-mask/jquery.inputmask.js"></script>
-	<script
-		src="../../plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
-	<script src="../../plugins/input-mask/jquery.inputmask.extensions.js"></script>
+	<script src="/views/admin/plugins/input-mask/jquery.inputmask.js"></script>
+	<script src="/views/admin/plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
+	<script src="/views/admin/plugins/input-mask/jquery.inputmask.extensions.js"></script>
 	<!-- date-range-picker -->
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
-	<script src="../../plugins/daterangepicker/daterangepicker.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
+	<script src="/views/admin/plugins/daterangepicker/daterangepicker.js"></script>
 	<!-- bootstrap color picker -->
-	<script src="../../plugins/colorpicker/bootstrap-colorpicker.min.js"></script>
+	<script src="/views/admin/plugins/colorpicker/bootstrap-colorpicker.min.js"></script>
 	<!-- bootstrap time picker -->
-	<script src="../../plugins/timepicker/bootstrap-timepicker.min.js"></script>
+	<script src="/views/admin/plugins/timepicker/bootstrap-timepicker.min.js"></script>
 	<!-- SlimScroll 1.3.0 -->
-	<script src="../../plugins/slimScroll/jquery.slimscroll.min.js"></script>
+	<script src="/views/admin/plugins/slimScroll/jquery.slimscroll.min.js"></script>
 	<!-- iCheck 1.0.1 -->
-	<script src="../../plugins/iCheck/icheck.min.js"></script>
+	<script src="/views/admin/plugins/iCheck/icheck.min.js"></script>
 	<!-- FastClick -->
-	<script src="../../plugins/fastclick/fastclick.js"></script>
+	<script src="/views/admin/plugins/fastclick/fastclick.js"></script>
 	<!-- AdminLTE App -->
-	<script src="../../dist/js/adminlte.min.js"></script>
+	<script src="/views/admin/dist/js/adminlte.min.js"></script>
 	<!-- AdminLTE for demo purposes -->
-	<script src="../../dist/js/demo.js"></script>
+	<script src="/views/admin/dist/js/demo.js"></script>
 	<!-- Page script -->
 	<script>
 		$(function() {

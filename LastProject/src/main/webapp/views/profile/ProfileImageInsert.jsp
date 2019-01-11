@@ -25,12 +25,20 @@
 		
 		$("#uploadProfileImg").change(function(){
 			var imgFile = $("#uploadProfileImg").val();
+			var imgFileExtendArray = imgFile.split('.');
 			var imgFileLength = $("#uploadProfileImg").val().length;
-			var imgFileExtend = imgFile.substring(imgFileLength - 3);
+			var imgFileExtend = imgFileExtendArray[1];
 			
-			if(imgFileExtend=="jpg" || imgFileExtend=="png" || imgFileExtend=="gif" || imgFileExtend=="jpeg") {
-				$("#profileWrong").remove();
-				$("#profileImgBtn").prop("disabled", false);
+			var size = document.getElementById("uploadProfileImg").files[0].size;
+			
+			if(imgFileExtend=="jpg" || imgFileExtend=="png" || imgFileExtend=="gif" || imgFileExtend=="jpeg" || imgFileExtend=="JPG" || imgFileExtend=="PNG" || imgFileExtend=="GIF" || imgFileExtend=="JPEG") {
+				if (size <= 20971520) {
+					$("#profileWrong").remove();
+					$("#profileImgBtn").prop("disabled", false);
+				} else {
+					$("#profileWrong").remove();
+					$("<div id='typeWrong'><b>파일 용량이 너무 큽니다.</b></div>").insertAfter("#uploadProfileImg");
+				}
 			} else {
 				$("#profileWrong").remove();
 				$("#profileImgBtn").prop("disabled", true);
