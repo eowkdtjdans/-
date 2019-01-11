@@ -3,7 +3,7 @@ package com.spring.biz.event;
 import java.util.Date;
 
 public class EventVO {
-	private int e_idx, e_upvote, e_reviewcount, lat, lng, e_count;
+	private int e_idx, e_upvote, e_reviewcount, e_count;
 	private String e_address, e_name, e_content, e_region, e_tag;
 	private Date e_startdate, e_enddate;
 	private double lat, lng;
