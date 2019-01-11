@@ -11,7 +11,7 @@
    <title>회원가입</title>
    <link rel="stylesheet" type="text/css" href="views/bootstrapModal/css/bootstrap.min.css">
    <link rel="stylesheet" type="text/css" href="views/cssModal/my-login.css">
-   
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">   
    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
 function getIpCountry() {
@@ -50,6 +50,7 @@ function getIpCountry() {
 	<h2>ㅎㅇ</h2>
 
 
+	<a href="/views/test2.jsp" id="main">모달</a>
 	<a href="#" id="main">Main테스트</a>
 	<a href="/kakaoLogout.do" >카카오 로그아웃</a>
 	<a href="/getTravelersList.do">travelers</a>

@@ -98,7 +98,7 @@
 
                         <div class="form-group m-0">
                            <button type="submit" id="findBtn" class="btn btn-primary btn-block" onclick="findPwdAndUpdate(this.form)">
-                             비밀번호 변경
+                             이메일로 비밀번호 찾기
                            </button>
                         </div>
                      </form>
