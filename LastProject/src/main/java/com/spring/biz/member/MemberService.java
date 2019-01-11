@@ -75,6 +75,8 @@ public interface MemberService {
 
 	void certifyCodeUpdate(MemberVO vo);
 
+	void PwdUpdate(MemberVO vo);
+
 
 	
 	

@@ -125,6 +125,12 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 
+	@Override
+	public void PwdUpdate(MemberVO vo) {
+		memberDAO.PwdUpdate(vo);
+	}
+
+
 
 
 

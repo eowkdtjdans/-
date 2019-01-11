@@ -11,16 +11,24 @@ import javax.websocket.Session;
  
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
- 
+
+import com.spring.biz.WebSocket.WebSocketchatService;
+import com.spring.biz.member.MemberVO;
+
 import javax.websocket.RemoteEndpoint.Basic;
  
 @Controller
 @ServerEndpoint(value="/echo.do")
 public class WebSocketController {
     
+	@Autowired
+	WebSocketchatService webSocketchatService;
+	
     private static final List<Session> sessionList=new ArrayList<Session>();;
     private static final Logger logger = LoggerFactory.getLogger(WebSocketController.class);
     public WebSocketController() {
@@ -44,17 +52,19 @@ public class WebSocketController {
         }
         sessionList.add(session);
     }
-    /*
-     * 모든 사용자에게 메시지를 전달한다.
-     * @param self
-     * @param message
-     */
- 
-    private void sendAllSessionToMessage(Session ss,String message) {
+/*
+ * 모든 사용자에게 메시지를 전달한다.
+ * @param self
+ * @param message
+*/     
+    private void sendAllSessionToMessage( Session ss,String message) {
         try {
+        	System.out.println("WebSocketController.sessionList : " + WebSocketController.sessionList);
+        	System.out.println("ss.getId() : " + ss.getId());
+        	
             for(Session session : WebSocketController.sessionList) {
                 if(!ss.getId().equals(session.getId())) {
-                    session.getBasicRemote().sendText(message);
+                	session.getBasicRemote().sendText(message);
                 }
             }
         }catch (Exception e) {
@@ -66,13 +76,14 @@ public class WebSocketController {
     @OnMessage
     public void onMessage(String message,Session session) {
         try {
-            final Basic basic=session.getBasicRemote();
+        	final Basic basic=session.getBasicRemote();
             basic.sendText(message);
         }catch (Exception e) {
             // TODO: handle exception
             System.out.println(e.getMessage());
         }
         sendAllSessionToMessage(session, message);
+       
     }
     @OnError
     public void onError(Throwable e,Session session) {

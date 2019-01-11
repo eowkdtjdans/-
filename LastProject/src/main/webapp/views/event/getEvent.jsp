@@ -6,50 +6,41 @@
 <html lang="en">
 <head>
  
-<script
-   src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<meta charset="utf-8">
-<title>BizPage Bootstrap Template</title>
-<meta content="width=device-width, initial-scale=1.0" name="viewport">
-<meta content="" name="keywords">
-<meta content="" name="description">
+<meta charset="utf-8"> 
+  <title>BizPage Bootstrap Template</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="" name="keywords">
+  <meta content="" name="description">
+ 
+  <!-- Favicons -->
+  <link href="/views/img/favicon.png" rel="icon">
+  <link href="/views/img/apple-touch-icon.png" rel="apple-touch-icon">
 
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
 
-<!-- Favicons -->
-<link href="views/img/favicon.png" rel="icon">
-<link href="views/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <!-- Bootstrap CSS File -->
+  <link href="/views/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-<!-- Google Fonts -->
-<link
-   href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700"
-   rel="stylesheet">
+  <!-- Libraries CSS Files -->
+  <link href="/views/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link href="/views/lib/animate/animate.min.css" rel="stylesheet">
+  <link href="/views/lib/ionicons/css/ionicons.min.css" rel="stylesheet">
+  <link href="/views/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+  <link href="/views/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
 
-<!-- Bootstrap CSS File -->
-<link href="views/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-<!-- Libraries CSS Files -->
-<link href="views/lib/font-awesome/css/font-awesome.min.css"
-   rel="stylesheet">
-<link href="views/lib/animate/animate.min.css" rel="stylesheet">
-<link href="views/lib/ionicons/css/ionicons.min.css" rel="stylesheet">
-<link href="views/lib/owlcarousel/assets/owl.carousel.min.css"
-   rel="stylesheet">
-<link href="views/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
-
-<!-- Main Stylesheet File -->
-<link href="views/css/style.css" rel="stylesheet">
-
+  <!-- Main Stylesheet File -->
+  <link href="/views/css/style.css" rel="stylesheet">
+  
+  <!-- 데이트 피커 -->
+  <link rel="stylesheet" href="/views/datepicker/public/theme/css/t-datepicker.min.css">
+  <link rel="stylesheet" href="/views/datepicker/public/theme/css/themes/t-datepicker-teal.css">
+  
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script
-   src="https://maps.googleapis.com/maps/api/js?v=3&sensor=false&libraries=places&callback=initAutocomplete&key=AIzaSyAfB2qQnvAuU2YFFqi8hrPWfjJNyxl5kWc"
-   async defer></script>
+<script src="https://maps.googleapis.com/maps/api/js?v=3&sensor=false&libraries=places&callback=initAutocomplete&key=AIzaSyAfB2qQnvAuU2YFFqi8hrPWfjJNyxl5kWc" async defer></script>
 
-<!-- =======================================================
-    Theme Name: BizPage
-    Theme URL: https://bootstrapmade.com/bizpage-bootstrap-business-template/
-    Author: BootstrapMade.com
-    License: https://bootstrapmade.com/license/
-  ======================================================= -->
+
+
 
 <style>
 body {
@@ -67,7 +58,7 @@ a {
 
 #profileImage2 {
    width: 60px;
-   height: 60px;
+   height: 60px; 
 }
 
 td {
@@ -76,8 +67,7 @@ td {
 
 #tableDiv {
    width: 1100px;
-   min-height: 400px;
-}
+} 
 
 #bentarrow {
    width: 20px;
@@ -96,32 +86,70 @@ td {
 table .noline {
    border: 0px;
 }
+#e_content{
+	font-size: 1em;
+}
+#smalltable{
+	font-size: 0.95em;
+}
 
 
+#slideimg{
+	width: 500px;
+	height: 350px;
+}
 </style>
 
 <script>
    function login_chk(frm) {
+	   alert("댓글입력시 검증");
       if ("${member.m_id}" == "") {
          alert("로그인이 필요한 서비스입니다.");
          location.href = ""; /* 로그인을 안하고 댓글 쓰려고할 때 로그인페이지로 이동 */
       } else {
-         if (frm.lc_content2.value == "") {
+         if (frm.ec_content.value == "") {
             alert("댓글을 입력해주세요");
-            alert(frm.lc_content2.value);
-            frm.lc_content2.focus();
+            frm.ec_content.focus();
             return false;
          } else {
-        	alert(frm.lc_content2.value);
-        	alert("../insertLocalAdviceComment.do");
-            frm.action = "../insertLocalAdviceComment.do?l_idx=${getLocalAdvice.l_idx }&lc_content="+frm.lc_content2.value+"";
-            frm.submit();
+        	alert("입력값 : " + frm.ec_content.value);
+            var ec_content = frm.ec_content.value;  
+            alert("게시글번호 : " + frm.e_idx.value);
+            var e_idx = frm.e_idx.value;
+            
+	     	   $.ajax({
+	               async : true,
+	               type : "POST",
+	               dataType : "json",
+	               data : ec_content,
+	               contentType : "application/json; charset=UTF-8",
+	               url : "/insertEventComment.do?e_idx="+e_idx,
+	
+	               success : function(data) {
+	                  alert("댓글 입력 성공부분");
+	                  // alert("e_idx : " + data.e_idx);
+	                  //alert("ec_content : " + data.ec_content);
+	                  //alert("m_id : " + data.m_id);
+	                  alert(data.getEventComment.ec_date);
+	                  //alert(data.getEventComment.ec_date.format('YYYYMMDD'));
+	                  //alert(data.getEventComment.p_route);
+	               
+	                  alert(data.getEventComment.ec_idx);
+						$("#table").last().append(
+							"<tr id='tr"+data.getEventComment.ec_idx+"' class='trclass"+data.getEventComment.ec_idx+"'><td class='update' id='td"+data.getEventComment.ec_idx+"'><img src='"+data.getEventComment.p_route+"' class='rounded-circle' id='profileImage2' onerror='this.src=\"/views/img/people/fuckyou.jpg\"'>&nbsp;&nbsp; "+data.m_id+"&emsp;&emsp;"+data.getEventComment.ec_date+"<span id='focusing'>&emsp;</span><button type='button' class='btn btn-outline-secondary' id='btn1"+data.getEventComment.ec_idx+"' onclick='update_button(\""+data.getEventComment.ec_idx+"\", \""+data.ec_content+"\")'>수정</button> <button type='button' class='btn btn-outline-secondary' id='btn2"+data.getEventComment.ec_idx+"' onclick='delete_button(\""+data.getEventComment.ec_idx+"\", \""+data.e_idx+"\")'>삭제</button><div id='"+data.getEventComment.ec_idx+"'><br>"+data.ec_content+"<br><br></div></td></tr>");
+							document.getElementById("textareadet").value='';
+							
+	               	}
+	           	 })
+						
+            
+            
          }
       }
    }
 
-  
 
+	
    $(document).ready(function() {
 
       if ('${focus_idx}' == "") {
@@ -134,6 +162,9 @@ table .noline {
          $("#" + "${focus_idx}").attr("tabindex", -1).focus();
 
    }
+      
+     $(".main1").parent().addClass("carousel-item active");
+      
    });
 
 
@@ -191,6 +222,85 @@ table .noline {
      }
 
    
+    function update_button(ec_idx, ec_content) {
+        alert("update_button()함수로옴");
+        alert("ec_idx : " + ec_idx + ", ec_content : " + ec_content);
+        var textareaTag = "<br><textarea id='textarea" + ec_idx + "'  rows='3' cols='134' name='lc_content'>"+ec_content+"</textarea><button type='button' class='btn btn-outline-secondary' onclick='json_update("+ ec_idx + ")' id='focus'>수정완료</button>"
+              + "<input type='hidden' id='lc_idx' value="+ec_idx+">"
+              + "<input type='hidden' name='focus_idx' id='focus_idx' value="+ec_idx+">";
+        var ec_content = $("#" + ec_idx).text();
+
+        $("#" + ec_idx).empty();
+        $("#" + ec_idx).append(textareaTag);
+       // $("#textarea" + lc_idx).text(lc_content);
+
+        var btn = document.getElementById('btn1'+ec_idx);
+        btn.disabled = 'disabled';
+     }
+    
+    
+    function json_update(ec_idx){
+    	alert("실질적인 update");
+    	var ec_content = $("#textarea"+ec_idx).val();
+    	alert("바뀐 ec_content : " + ec_content);
+    	var ec_idx = JSON.stringify(ec_idx);
+    	
+		$.ajax({
+	           async : true,
+	           type : "POST",
+	           dataType : "json",
+	           data : ec_idx,
+	           contentType : "application/json; charset=UTF-8",
+	           url : "/updateEventComment.do?ec_content="+ec_content,
+
+	           success : function(data) {
+	        	   alert("성공부분");
+	        	   alert(data.ec_idx);
+	        	   alert(data.ec_content);
+				   
+	        	   $("#" + data.ec_idx).empty();
+	        	   $("#" + data.ec_idx).html("<br>"+data.ec_content+"<br> <br>");
+	        	   
+	        	   var btn = document.getElementById('btn1'+data.ec_idx);
+	               btn.disabled = false;
+	           }
+	        }) 
+    }
+    
+    
+    function delete_button(ec_idx, e_idx){
+    	alert("delete ajax");
+    	alert("ec_idx : " + ec_idx);
+    	//var ec_idx1 = JSON.stringify(ec_idx);
+    	
+	   	 var con_test = confirm("정말 삭제하시겠습니까?");
+	        if (con_test == true) {
+	           alert("댓글삭제누를시 나오는 alert");
+	           alert("ec_idx : " + ec_idx);
+	           
+	           $.ajax({
+	              async : true,
+	              type : "POST",
+	              dataType : "json",
+	              data : ec_idx,
+	              contentType : "application/json; charset=UTF-8",
+	              url : "/deleteEventComment.do?e_idx="+e_idx,
+	
+	              success : function(data) {
+	            	  alert("ajax 성공부분");
+	                  $("#td" + data.ec_idx).remove();
+	                  $(".trclass" + data.ec_idx).remove();
+	              }
+	           })
+	        } else {
+	           return false;
+	        }
+    }
+    
+ 
+   
+    
+ 
 </script>
 
 </head>
@@ -262,10 +372,12 @@ table .noline {
                   <tr>                     
                      <td><strong>${getEvent.e_name }</strong></td>                     
                   </tr>
-                  <fmt:formatDate value="${getEvent.e_startdate}" pattern="yyyy-MM-dd" var="startdate"/>
-                  <fmt:formatDate value="${getEvent.e_enddate}" pattern="yyyy-MM-dd" var="enddate"/>
+                  <%-- <fmt:formatDate value="${getEvent.e_startdate}" pattern="yyyy-MM-dd" var="startdate"/>
+                  <fmt:formatDate value="${getEvent.e_enddate}" pattern="yyyy-MM-dd" var="enddate"/> --%>
+                  <fmt:formatDate value="${getEvent.e_date }" pattern="yyyy-MM-dd" var="date"/>
                   <tr>
-                     <td>관리자&emsp;&emsp;${startdate} ~ ${enddate}</td>
+                     <%-- <td>관리자&emsp;&emsp;${startdate} ~ ${enddate}</td> --%>
+                     <td>관리자 &emsp;&emsp; ${date}</td>
                   </tr>
                   <tr>
                   	 <td>
@@ -284,66 +396,120 @@ table .noline {
                   	 </td>	
                   </tr>
                </table>
-               
-               <div>
-                  <p><br>
-				  	  <c:forEach var="list" items="${getEventImageList }">
-				  	  		<span><img src="${list.e_img }" style="width: 350px; height: 260px; float: left; margin: 30px;" class="img-thumbnail"></span>
-				  	  		<div style="margin: 30px;">${list.e_contents }</div><br>
-				  	  </c:forEach>	
-				  </p>
-               </div>
-               
             </div>
-
-
-
-      
+            
+            
+            <div class="container show-grid">			    
+			    <div class="row">
+			      <div class="col-md-6" style="text-align: center">
+				      <c:forEach var="list" items="${getEventImageList }">
+					  	  		<span><img src="${list.e_img }" style="width: 420px; height: 300px;" class="img-thumbnail"></span>
+					  	  		<br>
+					  </c:forEach>
+					  <!-- <button type="button" class="btn btn-outline-secondary" onclick="imagemodal()">사진 더보기</button> -->
+					  <button type="button" data-toggle="modal" data-target="#myModal">사진 더보기</button>
+					
+			      </div>
+			      
+			      
+			      <div class="col-md-6" id="e_content">
+			      ${getEvent.e_content } <br><br>
+			      <table class="table" id="smalltable">
+			      	<tr>
+			      		<td>시작일</td>
+			      		<td>${getEvent.e_startdate }</td>
+			      	</tr>
+			      	<tr>
+			      		<td>종료일</td>
+			      		<td>${getEvent.e_enddate }</td>
+			      	</tr>
+			      	<tr>
+			      		<td>태그</td>
+			      		<td>${getEvent.e_tag }</td>
+			      	</tr>
+			      	<tr>
+			      		<td>주소</td>
+			      		<td>${getEvent.e_address }</td>
+			      	</tr>			      	
+			      </table>			      			      
+			      </div>			      
+			    </div>		    			    
+			</div>
+			<br><br>
 
 
  
-<%--             <form method="post" id="frm">
-               <input type="hidden" name="m_id" value="${member.m_id }">
 
-               <table class="table" style="width: 1100px;">
-                  <c:forEach var="list" items="${getLocalAdviceCommentList}">
-                     <c:choose>
-                        <c:when test="${list.detdet eq 0 }">
-                           <tr id="tr${list.lc_idx}" class="trclass${list.lc_idx}">
-                              <td class="update" id="td${list.lc_idx}"><img src="${list.p_route }" class="rounded-circle" id="profileImage2" onerror='this.src="../views/img/people/fuckyou.jpg"'>
-                                 &nbsp;&nbsp;${list.m_id }&emsp;&emsp;${list.lc_date }<span id="focusing">&emsp;</span> 
-                                 <c:if test="${!empty member.m_id }">
-                                    <button type="button" id="detdetgobtn${list.lc_idx }" class="btn btn-outline-secondary" onclick="detdetgo('${list.lc_idx}', '${list.p_route }', '${list.lc_date }')">댓글달기</button>
-                                 </c:if> 
-                                 <c:if test="${list.m_id eq member.m_id}">
-                                    <!-- 조건에 로그인한아이디와 프로필의 m_id가 같으면 -->
-                                    <button type="button" class="btn btn-outline-secondary" id="btn1${list.lc_idx}"  
-                                       onclick="update_button('${list.lc_idx}','${list.lc_content }')">수정</button>
-                                    <button type="button" class="btn btn-outline-secondary" id="btn2${list.lc_idx}"   
-                                       onclick="delete_button('${list.lc_idx}','${getLocalAdvice.l_idx }')">삭제</button>
-                                    <input type="hidden" name="lc_idx" value="${list.lc_idx }">
-                                 
-                                 </c:if>
-                                 <div id="${list.lc_idx}">
-                                    <br>${list.lc_content }<br> <br>
-                                 </div>
-                                 </td>
+<!-- <div class="modal fade" id="myModal">
+<div class="modal-dialog modal-lg">
+<div class="modal-content"> -->
+	  <div id="demo" class="carousel slide" data-ride="carousel">
+	
+	  <!-- The slideshow -->
+	  <div class="carousel-inner">
+	    <c:forEach var="list" items="${getEventImageList}">
+		    <div class="carousel-item">
+		      <img src="${list.e_img}" class="main${list.e_main }" id="slideimage">
+		    </div>
+	    </c:forEach>
+	
+	  </div>
+	  
+	  <!-- Left and right controls -->
+	  <a class="carousel-control-prev" href="#demo" data-slide="prev">
+	    <span class="carousel-control-prev-icon"></span>
+	  </a>
+	  <a class="carousel-control-next" href="#demo" data-slide="next">
+	    <span class="carousel-control-next-icon"></span>
+	  </a>
+	  </div>
+<!-- </div>
+</div>
+</div> -->
+
+
+
+
+
+
+
+
+
+ 
+	<!-- 댓글 폼 -->
+ 		<br>
+		<form method="post" id="frm">
+              <table id="table" class="table" style="width: 1100px;">
+                 <c:forEach var="list" items="${getEventCommentList}">
+                 <%-- <fmt:formatDate value="${list.ec_date}" pattern="yyyy-MM-dd" var="ec_date"/> --%>
+                          <tr id="tr${list.ec_idx}" class="trclass${list.ec_idx}">
+                             <td class="update" id="td${list.ec_idx}"><img src="${list.p_route }" class="rounded-circle" id="profileImage2" onerror='this.src="../views/img/people/fuckyou.jpg"'>
+                                &nbsp;&nbsp;${list.m_id }&emsp;&emsp;${list.ec_date }<span id="focusing">&emsp;</span> 
+                                
+                                <c:if test="${list.m_id eq member.m_id}">
+                                   <!-- 조건에 로그인한아이디와 프로필의 m_id가 같으면 -->
+                                   <button type="button" class="btn btn-outline-secondary" id="btn1${list.ec_idx}"  
+                                      onclick="update_button('${list.ec_idx}','${list.ec_content }')">수정</button>
+                                   <button type="button" class="btn btn-outline-secondary" id="btn2${list.ec_idx}"   
+                                      onclick="delete_button('${list.ec_idx}','${getEvent.e_idx }')">삭제</button>                                                
+                                </c:if>
+                                
+                                <div id="${list.ec_idx}">
+                                   <br>${list.ec_content }<br> <br>
+                                </div>
+                                
+                              </td>
                            </tr>
-                        </c:when>
-                        <c:otherwise>
-                                        
 
-                           
-                        </c:otherwise>
-                     </c:choose>
-                  </c:forEach>
-               </table>
-            </form> --%>
+                 </c:forEach>
+              </table>
+           </form>
 
             <!-- 댓글 입력 폼 -->
             <form method="post" name="frm">
                <p>
-                  <textarea name="e_content" rows="3" cols="134" id="abc"></textarea>
+                  <textarea name="ec_content" rows="3" cols="134" id="textareadet"></textarea>
+                  <input type="hidden" id="e_idx" name="e_idx" value="${getEvent.e_idx }">
                   <input class="btn btn-outline-secondary" type="button"
                      value="댓글등록" onclick="login_chk(this.form)">
                </p>
@@ -352,6 +518,26 @@ table .noline {
       </div>
    </section>
    <!-- #about -->
+   
+   
+   
+   
+
+
+ 
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
    <!--==========================
     Footer
   ============================-->
@@ -418,5 +604,31 @@ table .noline {
             BootstrapMade
          </div>
       </div>
+      
+      
+      
+      <!-- JavaScript Libraries -->
+  <script src="/views/lib/jquery/jquery.min.js"></script>
+  <script src="/views/lib/jquery/jquery-migrate.min.js"></script>
+  <script src="/views/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/views/lib/easing/easing.min.js"></script>
+  <script src="/views/lib/superfish/hoverIntent.js"></script>
+  <script src="/views/lib/superfish/superfish.min.js"></script>
+  <script src="/views/lib/wow/wow.min.js"></script>
+  <script src="/views/lib/waypoints/waypoints.min.js"></script>
+  <script src="/views/lib/counterup/counterup.min.js"></script>
+  <script src="/views/lib/owlcarousel/owl.carousel.min.js"></script>
+  <script src="/views/lib/isotope/isotope.pkgd.min.js"></script>
+  <script src="/views/lib/lightbox/js/lightbox.min.js"></script>
+  <script src="/views/lib/touchSwipe/jquery.touchSwipe.min.js"></script>
+  <!-- Contact Form JavaScript File -->
+  <script src="/views/contactform/contactform.js"></script>
+  <script src="/views/datepicker/public/theme/js/t-datepicker.min.js"></script>
+  
+  <!-- Template Main Javascript File -->
+  <script src="/views/js/main.js"></script>
+  
    </footer>
    <!-- #footer -->
+   </body>
+</html>

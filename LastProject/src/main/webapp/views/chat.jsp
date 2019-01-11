@@ -4,26 +4,25 @@
 <!DOCTYPE>
 <html>
 <head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>웹소켓 채팅</title>
 </head>
 <body onload="openSocket();">
+   <form  onsubmit="return false" method="POST" id="form"  >
     <div>
         <input type="hidden" id="sender" value="${member.m_id }" style="display: none;"> 
-        <input type="text" id="messageinput">
+        <input type="text" id="message">
     </div>
     
     
-    
+<button type="submit" id="loginBtn" class="btn btn-primary btn-block" onclick="send();" >
+	메세지 보내기
+</button> 
+     <button type="button" onclick="closeSocket();">그만 하기</button>    
     <div>
-        
-        <button type="button" onclick="send();">메세지 보내기</button>
-        <button type="button" onclick="closeSocket();">그만 하기</button>
-        
-        
-        
     </div>
-    
+ </form>   
     
     
     <div id="messages"></div>
@@ -57,8 +56,16 @@
             }
         }
         function send(){
-             var text = document.getElementById("sender").value+" : "+document.getElementById("messageinput").value;  
-            ws.send(text);
+        	if(ws.readyState == 1) {
+             var text = document.getElementById("sender").value+" : "+document.getElementById("message").value;  
+			             var chatting = $("#form").serialize();
+			             alert(chatting);
+			             console.log(chatting);
+            if(text) {
+			             ws.send(text);
+             document.getElementById("message").value="";
+            	}
+            }
         }
         
         function closeSocket(){

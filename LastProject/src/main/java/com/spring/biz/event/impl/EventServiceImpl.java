@@ -39,4 +39,19 @@ public class EventServiceImpl implements EventService {
 		return eventDAO.badEvent(e_idx);
 	}
 
+	@Override
+	public void updet(int e_idx) {
+		eventDAO.updet(e_idx);		
+	}
+
+	@Override
+	public void downdet(int e_idx) {
+		eventDAO.downdet(e_idx);
+	}
+
+	@Override
+	public void upreviewcount(int e_idx) {		
+		eventDAO.upreviewcount(e_idx);
+	}
+
 }

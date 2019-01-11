@@ -57,6 +57,10 @@ public class LoginAPIController {
     	return "/views/loginAPI/kakaoCallback.jsp";
     }
     
+    @RequestMapping(value="/kakaoLogout.do")
+    public String kakaoLogOut() {
+    	return "/views/loginAPI/kakaoLogout.jsp";
+    }
     // 회원 가입 페이지
     @RequestMapping(value = "/googleLogin.do", method = { RequestMethod.GET, RequestMethod.POST })
     public String googleLogin(HttpServletResponse response, Model model) {
@@ -254,7 +258,7 @@ public class LoginAPIController {
             e.printStackTrace();
  
         }
-        return "redirect:/views/test.jsp";
+        return "/views/loginAPI/FacebookCallback.jsp";
  
     }
 

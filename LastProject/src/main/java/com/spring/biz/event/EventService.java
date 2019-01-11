@@ -19,4 +19,10 @@ public interface EventService {
 	int goodEvent(int e_idx);
 	
 	int badEvent(int e_idx);
+	
+	void updet(int e_idx);
+	
+	void downdet(int e_idx);
+	
+	void upreviewcount(int e_idx);
 }

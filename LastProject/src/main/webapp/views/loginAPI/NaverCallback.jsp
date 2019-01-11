@@ -20,32 +20,32 @@
    <script src="views/datepicker/public/theme/js/t-datepicker.min.js"></script>
 
 
-<script>
-	function ApiRegisterCheck() {
-		alert("kakaoEmail : " + kakaoEmail);
-		 alert("kakaoEmail :" + kakaoEmail);
-	 	 $.ajax({
-	 		async: true,
-			type : 'POST',
-			dataType : "json",
-			data : naverId,
-		    contentType: "application/json; charset=UTF-8",  
-			url : '../../checkMemberJson.do',
-			success : function(data) {
-				if (data.cnt >= 1) {
-					alert("사이트 이용 시 로그인을 해야 가능합니다.");
-					location.href = "../../loginMember.do";
-				} else if(data.cnt == 0) {
-					alert("사이트 이용 시 회원가입을 해야 사용 가능합니다.");
-					location.href = "../../NaverRegister.do";
-				} 
-				
-			}
-		})  
-		
-	}
-</script>
 
+<script>
+   function ApiRegisterCheck() {
+       var naverId = ${result}.response.email;
+       alert("naverId :" + naverId);
+        $.ajax({
+          async: true,
+         type : 'POST',
+         dataType : "json",
+         data : naverId,
+          contentType: "application/json; charset=UTF-8",  
+         url : '../../checkMemberJson.do',
+         success : function(data) {
+            if (data.cnt >= 1) {
+               alert("사이트 이용 시 로그인을 해야 가능합니다.");
+               location.href = "../../loginMember.do";
+            } else if(data.cnt == 0) {
+               alert("사이트 이용 시 회원가입을 해야 사용 가능합니다.");
+               location.href = "../../NaverRegister.do";
+            } 
+            
+         }
+      })  
+      
+   }
+</script>
 
 </head>
 <body class="my-login-page" onload="ApiRegisterCheck()">
