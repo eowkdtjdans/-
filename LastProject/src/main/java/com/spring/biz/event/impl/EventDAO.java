@@ -35,4 +35,15 @@ public class EventDAO {
 		return mybatis.update("badEvent", e_idx);
 	} 
 	
+	public void updet(int e_idx) {
+		mybatis.update("updet", e_idx);
+	}
+	
+	public void downdet(int e_idx) {
+		mybatis.update("downdet", e_idx);
+	}
+	
+	public void upreviewcount(int e_idx) {
+		mybatis.update("upreviewcount", e_idx);
+	}
 }

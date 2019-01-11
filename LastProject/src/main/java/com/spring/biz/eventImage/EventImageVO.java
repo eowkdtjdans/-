@@ -2,7 +2,7 @@ package com.spring.biz.eventImage;
 
 public class EventImageVO {
 	private int e_idx, e_main;
-	private String e_img, e_contents;
+	private String e_img;
 	
 	public int getE_idx() {
 		return e_idx;
@@ -22,18 +22,13 @@ public class EventImageVO {
 	public void setE_img(String e_img) {
 		this.e_img = e_img;
 	}
-	public String getE_contents() {
-		return e_contents;
-	}
-	public void setE_contents(String e_contents) {
-		this.e_contents = e_contents;
-	}
-	
 	@Override
 	public String toString() {
-		return "EventImageVO [e_idx=" + e_idx + ", e_main=" + e_main + ", e_img=" + e_img + ", e_contents=" + e_contents
-				+ "]";
+		return "EventImageVO [e_idx=" + e_idx + ", e_main=" + e_main + ", e_img=" + e_img + "]";
 	}
+
+	
+
 	
 	
 }

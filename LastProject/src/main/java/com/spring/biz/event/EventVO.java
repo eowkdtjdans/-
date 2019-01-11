@@ -5,7 +5,7 @@ import java.util.Date;
 public class EventVO {
 	private int e_idx, e_upvote, e_reviewcount, lat, lng, e_count;
 	private String e_address, e_name, e_content, e_region, e_tag;
-	private Date e_startdate, e_enddate;
+	private Date e_startdate, e_enddate, e_date;
 
 	
 	public int getE_idx() {
@@ -86,15 +86,21 @@ public class EventVO {
 	}
 	public void setE_count(int e_count) {
 		this.e_count = e_count;
+	}		
+	public Date getE_date() {
+		return e_date;
 	}
-	
+	public void setE_date(Date e_date) {
+		this.e_date = e_date;
+	}
 	@Override
 	public String toString() {
 		return "EventVO [e_idx=" + e_idx + ", e_upvote=" + e_upvote + ", e_reviewcount=" + e_reviewcount + ", lat="
 				+ lat + ", lng=" + lng + ", e_count=" + e_count + ", e_address=" + e_address + ", e_name=" + e_name
 				+ ", e_content=" + e_content + ", e_region=" + e_region + ", e_tag=" + e_tag + ", e_startdate="
-				+ e_startdate + ", e_enddate=" + e_enddate + "]";
+				+ e_startdate + ", e_enddate=" + e_enddate + ", e_date=" + e_date + "]";
 	}
+	
 	
 	
 	
