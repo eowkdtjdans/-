@@ -28,7 +28,7 @@
   <link href="views/lib/ionicons/css/ionicons.min.css" rel="stylesheet">
   <link href="views/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
   <link href="views/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
-  
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
   <!-- Main Stylesheet File -->
   <link href="views/css/style.css" rel="stylesheet">
   
@@ -199,19 +199,13 @@ $(function(){
             
             </ul> 
           </li>
-          <li class="nav-item dropdown"><a class="nav-link"
-               data-toggle="dropdown" href="#"> <i class="fa fa-bell-o" id="noticeMessageCount"></i> <span
-                  class="badge badge-warning navbar-badge" > </span>
-            </a>
-               <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                  <span class="dropdown-item dropdown-header"></span>
-                  <div class="dropdown-divider"></div>
-                  <a href="../../getReceiveMessageList.do" class="dropdown-item" style="color:black;"> <i
-                     class="fa fa-envelope mr-2" id="noticeMessageCount2"></i>개의 새로운 쪽지
-                      <span class="float-right text-muted text-sm">3 mins</span>
-                  </a>
-               </div></li>
+          
+               
          
+        <li>
+       	 <a href="../../getReceiveMessageList.do">
+       	 <i class="far fa-envelope fa-2x" id="noticeMessageCount2"></i></a>
+        </li>
           
           <li><a href="#portfolio">포트폴리오</a></li>      
         <!--   <li><a href="../../getReceiveMessageList.do" id="noticeMessageCount"></a></li> -->

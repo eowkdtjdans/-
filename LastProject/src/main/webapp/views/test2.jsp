@@ -49,19 +49,28 @@ button:hover, a:hover {
 </head>
 
 <body>
-<div class="card">
-  <img src="https://raw.githubusercontent.com/talha08/talha08.github.io/master/images/photo.jpg" alt="John" style="width:100%">
-  <br>
-  <h3><b>MD. ABU TALHA</b></h3>
-  <p class="title">Full Stack Web Developer</p>
-  <p>InfancyIT</p>
-  <div style="margin: 24px 0;">
-    <a href="https://www.linkedin.com/in/md-abu-talha/" target="_blank"><i class="fa fa-linkedin"></i></a>
-    <a href="https://www.facebook.com/talha.sust.cse" target="_blank"><i class="fa fa-facebook"></i></a>
-    <a href="https://github.com/talha08" target="_blank"><i class="fa fa-github"></i></a>
-    <a href="https://medium.com/@talhaqc" target="_blank"><i class="fa fa-medium"></i></a>
+<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="myModal">
+  Launch demo modal
+</button>
+
+
+<!-- 모달-->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">        
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">모달 타이틀</h4>
+      </div>
+      <div class="modal-body">
+         여기가 모달의 바디 부분입니다. 
+         이 부분에 이제 원하시는 엘리먼트를 추가시키면 됩니다.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+      </div>
+    </div>
   </div>
-  <p><a href="talha08.github.io" class="button">Profile</a></p>
 </div>
 
 </body>

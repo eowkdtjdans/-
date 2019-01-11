@@ -5,18 +5,19 @@ import java.util.Date;
 public class GoogleVO {
 	private double lat, lng;
 	private String p_route, m_id, m_name, h_maximumguest;
-	public String getM_id() {
-		return m_id;
-	}
-	public String getH_maximumguest() {
-		return h_maximumguest;
-	}
+	
 	private Date h_startdate, h_enddate;
 	
 	private String cont;
 	
 	private String icon = "/views/img/markerImg-blue.png";
 	
+	public String getM_id() {
+		return m_id;
+	}
+	public String getH_maximumguest() {
+		return h_maximumguest;
+	}
 	public String getLat() {
 		return Double.toString(lat);
 	}

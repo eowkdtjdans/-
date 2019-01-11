@@ -216,11 +216,11 @@ $(document).ready(function() {
     var email = ${result}.response.email;
     var gender = ${result}.response.gender;
     $("#naverName").html("환영합니다. "+name+"님");
-    $("#naverId").html(email);
+    $("#m_id").html(email);
     $("#naverGender").html(gender);
    
     $("#naverName").val(name);
-     $("#naverId").val(email);
+     $("#m_id").val(email);
      $("#naverGender").val(gender);
    
 });
@@ -238,7 +238,7 @@ $(document).ready(function() {
                      <form method="POST" class="my-login-validation" id="form">
                         <div class="form-group">
                            <label for="text">아이디</label>
-                           <input readonly="readonly"  id="naverId" type="text" class="form-control" name="m_id">
+                           <input readonly="readonly"  id="m_id" type="text" class="form-control" name="m_id">
                         </div>
                         
                          <div class="form-group m-0">

@@ -65,7 +65,7 @@
  function idCheck(frm) {
 	 var idcheck = 0;
 	 var m_id = $('#m_id').val();
-	
+	 alert("m_id : " + m_id);
 	 var email = document.getElementById("m_id").value;
 	 var emailCheck = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
 	$.ajax({

@@ -80,8 +80,8 @@
  
     <bean id="connectionFactory"
         class="org.springframework.social.facebook.connect.FacebookConnectionFactory">
-        <constructor-arg value="클라" />
-        <constructor-arg value="시크" />
+        <constructor-arg value="517079855476323" />
+        <constructor-arg value="" /> 
     </bean>
  
     <bean id="oAuth2Parameters"

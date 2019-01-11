@@ -47,7 +47,7 @@
 		        <div class="card-body">
 		            <div class="row">
 		                <div class="col-md-12">
-		                    <h4>보낸 쪽지목록</h4>
+		                    <h4>받은 쪽지목록</h4>
 		                    <hr>
 		                </div>
 		            </div>
@@ -59,19 +59,25 @@
 	<table class="table">
 		<thead class="thead-light">
 		<tr>
+			<th width="50"></th>
+			<th width="100">보낸이</th>
 			<th width="200">제목</th>
-			<th width="150">받는이</th>
-			<th width="150">날짜</th>
+			<th width="100">날짜</th>
 		</tr>
 		</thead>
 		<c:forEach var="messageList" items="${messageList }">
 		<tr>
+			<td><img src="${hostImg.h_route }" alt="" class="rounded-circle" style="width:100px; height:100px;"/></td>
+			<td>
+				<a href="getReceiveMessage.do?receive_idx=${messageList.receive_idx }">
+					${messageList.receive_sender }
+				</a>
+			</td>
 			<td>
 				<a href="getReceiveMessage.do?receive_idx=${messageList.receive_idx }">
 					${messageList.receive_title }
 				</a>
 			</td>
-			<td>${messageList.receive_receiver }</td>
 			<td><fmt:formatDate value="${messageList.receive_regdate }" pattern="yyyy-MM-dd HH:mm:ss"/> </td>
 			
 		

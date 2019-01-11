@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.spring.biz.profile.ProfileVO;
 import com.spring.biz.travelers.TravelersService;
 import com.spring.biz.travelers.TravelersVO;
 
@@ -31,6 +32,27 @@ public int countTravelers(String key) {
 @Override
 public TravelersVO getTravelers(String m_id) {
 	return travelersDAO.getTravelers(m_id);
+}
+
+@Override
+public int checkTravelersJson(ProfileVO vo) {
+	return travelersDAO.checkTravelersJson(vo);
+}
+
+@Override
+public void insertTravelers(TravelersVO vo) {
+	travelersDAO.insertTravelers(vo);
+}
+
+@Override
+public void updateTravelers(TravelersVO vo) {
+	travelersDAO.updateTravelers(vo);
+}
+
+@Override
+public void deleteTravelers(String m_id) {
+	travelersDAO.deleteTravelers(m_id);
+	
 }
 
 }

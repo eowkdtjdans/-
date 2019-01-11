@@ -14,4 +14,8 @@ public interface HostService {
 
 	int checkHostJson(ProfileVO vo);
 
+	void updateHost(HostVO vo);
+
+	void deleteHost(String m_id);
+
 }

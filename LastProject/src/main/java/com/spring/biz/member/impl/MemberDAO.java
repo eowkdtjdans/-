@@ -109,6 +109,10 @@ public class MemberDAO {
 		mybatis.update("certifyCodeUpdate", vo);
 	}
 
+	public void PwdUpdate(MemberVO vo) {
+		mybatis.update("PwdUpdate", vo);
+	}
+
 
 
 	

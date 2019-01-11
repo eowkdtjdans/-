@@ -92,14 +92,14 @@ var endLng = null;
 //시작할때 실행되는 맵 세팅
 function initialize() {
     var mapOptions = {
-        zoom: 14, //지도 줌
+        zoom: 11, //지도 줌
         mapTypeId: google.maps.MapTypeId.ROADMAP, //지도 타입(변경 x)
         center: new google.maps.LatLng("${firstLat}", "${firstLng}") //맵이 로딩됬을때 시작지점
     };
     
     var addCircle = new google.maps.Circle({ //원형 그리기
     	center: new google.maps.LatLng("${firstLat}", "${firstLng}"), //원형의 중앙점
-    	radius: 1800,			//원형 범위
+    	radius: 11000,			//원형 범위
     	strokeColor: "GREEN",	//테두리 색
     	strokeOpacity: 0.8, 	//테두리 투명도
     	strokeWeight: 2,		//테두리 굵기
@@ -167,18 +167,19 @@ function viewMarker() {
 					            fontWeight: 'bold'
 					        },
 					        icon: {
-					    		url: markerList[i].icon,
-					    	}
+					    		url: markerList[i].icon
+					    	},
+					    	zIndex: i,
+					    	id: 'marker' + markerList[i].m_id
 						});
 						markers.push(marker);
-
+						
 						var infowindow = new google.maps.InfoWindow() //정보창 생성
 
 						google.maps.event.addListener(marker, "click", function () { //마커 클릭했을때 정보창 출력
 							infowindow.setContent(this.html);
 							infowindow.open(map, this);
 						});
-
 						
 					}
 				}
@@ -235,22 +236,29 @@ function insertHost(frm) {
       url : "../../checkHostJson.do",
       success : function(data) {
          if (data.cnt == 0) {
-            alert("적은 글 없음");
-             if (frm.h_maximumguest =="choose") {
-         	   alert("최대수용인원");
-            } 
-        		frm.action = "../../insertHost.do";
+      		frm.action = "../../insertHost.do";
             frm.submit(); 
           } else {
-            alert("data.cnt : " + data.cnt);
-            alert("적은 글 있음");
-            /* frm.action = "../../modifyProfile.do";
-            frm.submit();  */
-            return false;
+        	  frm.action = "../../updateHost.do";
+              frm.submit(); 
          }
       } 
    });  
 };
+
+function deleteHost(m_id) {
+	location.href="../deleteHost.do?m_id=" + m_id;
+}
+
+function cardOver(m_id) {
+	
+	
+	
+	
+	
+	
+	
+}
 
 </SCRIPT>
 <script>
@@ -278,20 +286,21 @@ $(document).ready(function(){
       document.getElementById("h_enddate").value = getDateInput[1];
    });
    
+   var str = $("#form").serialize();
    $.ajax({
-	      async : true,
-	      type : "POST",
-	      dataType : "json",
-	      data : str,
-	      url : "/checkHostJson.do",
-	      success : function(data) {
-	         if (data.cnt == 0) {
-	            
-	          } else {
-	            
-	         }
-	      } 
-	   });
+       async : true,
+       type : "POST",
+       dataType : "json",
+       data : str,
+       url : "/checkHostJson.do",
+       success : function(data) {
+          if (data.cnt != 0) {
+        	  $("#insertHostBtn").text('호스트 수정');
+           } else {
+        	   $("#insertHostBtn").text('호스트 등록');
+           }
+       } 
+    }); 
 });
 </script>
 
@@ -385,7 +394,7 @@ $(document).ready(function(){
 	      	<c:otherwise>
       		<c:forEach var="list" items="${hostList}">
       		<input type="hidden" name="m_id" value="${list.m_id }" id="m_id" />
-	      		<span class="card" style="width:200px; height: 500px; margin : auto; text-align: center;">
+	      		<span class="card" style="width:200px; height: 500px; margin : auto; text-align: center;" onmouseover="cardOver('${list.m_id}')">
 				    <img class="card-img-top" src="${list.p_route}" alt="Card image" style="width:200px; height: 200px;">
 				    <span class="card-body">
 				      <h6 class="card-title">${list.m_id}</h6>
@@ -447,7 +456,7 @@ $(document).ready(function(){
 					</c:otherwise>
 				</c:choose>
 					<li style="text-align:right;">
-						<button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#insertHost">호스트 등록</button>
+						<button type="button" id="insertHostBtn" class="btn btn-outline-secondary" data-toggle="modal" data-target="#insertHost">호스트 등록</button>
 					</li>
 				</ol>
 			</td>
@@ -574,7 +583,9 @@ $(document).ready(function(){
 	        <form name="frm">                                                           <!-- onclick="../insertMessage.do?message_receiver=${list.m_id}" -->
 	          <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" onclick='sendMessage("${list.m_id}")'>Send Message</button>
 	        </form>   
-	          <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+	          <c:if test="${list.m_id eq member.m_id}">
+	            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" onclick='deleteHost("${list.m_id}")'>등록해제</button>
+	          </c:if>
 	        </div>
 	        
 	      </div>
@@ -688,7 +699,7 @@ $(document).ready(function(){
                               
                        <div class="modal-footer">
                        	 <div class="form-group m-0">
-			               <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" onclick="insertHost(this.form)">등록완료</button>
+			               <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" onclick="insertHost(this.form)">완료</button>
 			               <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
 			             </div>
 			           </div>
@@ -702,6 +713,45 @@ $(document).ready(function(){
       </div>
     </div>
   </div>
+
+
+<!--Modal: Login with Avatar Form-->
+<div class="modal fade" id="modalLoginAvatar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog cascading-modal modal-avatar modal-sm" role="document">
+    <!--Content-->
+    <div class="modal-content">
+
+      <!--Header-->
+      <div class="modal-header">
+        <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20%281%29.jpg" alt="avatar" class="rounded-circle img-responsive">
+      </div>
+      <!--Body-->
+      <div class="modal-body text-center mb-1">
+
+        <h5 class="mt-1 mb-2">Maria Doe</h5>
+
+        <div class="md-form ml-0 mr-0">
+          <input type="password" type="text" id="form29" class="form-control form-control-sm validate ml-0">
+          <label data-error="wrong" data-success="right" for="form29" class="ml-0">Enter password</label>
+        </div>
+
+        <div class="text-center mt-4">
+          <button class="btn btn-cyan mt-1">Login <i class="fas fa-sign-in ml-1"></i></button>
+        </div>
+      </div>
+
+    </div>
+    <!--/.Content-->
+  </div>
+</div>
+<!--Modal: Login with Avatar Form-->
+
+<div class="text-center">
+  <a href="" class="btn btn-default btn-rounded" data-toggle="modal" data-target="#modalLoginAvatar">Launch
+    Modal Login with Avatar</a>
+</div>
+
 
   <!-- JavaScript Libraries -->
   <script src="/views/lib/jquery/jquery.min.js"></script>

@@ -23,4 +23,28 @@
 	<select id="getTravelers" parameterType="String" resultType="travelers">
 		SELECT T.*, P.*, PI.* FROM TRAVELERS T, PROFILE P, PROFILE_IMAGE PI WHERE T.M_ID=P.M_ID AND T.M_ID=PI.M_ID AND PI.P_MAIN=1 AND T.M_ID=#{m_id}
 	</select>
+	
+	<insert id="insertTravelers" parameterType="travelers">
+		INSERT INTO TRAVELERS 
+		(M_ID, T_VISITS, T_MOTIVE, T_COUNTRY, T_STARTDATE, T_ENDDATE)
+		VALUES (#{m_id}, #{t_visits}, #{t_motive}, #{t_country}, #{t_startdate}, #{t_enddate})    
+	</insert>
+	
+	<update id="updateTravelers" parameterType="travelers">
+		UPDATE TRAVELERS SET T_VISITS = #{t_visits},
+						T_MOTIVE = #{t_motive},
+						T_COUNTRY = #{t_country},
+						T_STARTDATE = #{t_startdate},
+						T_ENDDATE = #{t_enddate}
+					WHERE M_ID = #{m_id}
+	</update>
+	
+	<delete id="deleteTravelers">
+		DELETE FROM TRAVELERS WHERE M_ID = #{m_id}
+	</delete>
+	
+	<select id="checkTravelersJson" parameterType="String" resultType="int">
+		SELECT COUNT(*) FROM TRAVELERS
+		WHERE M_ID = #{m_id}
+	</select>
 </mapper>
