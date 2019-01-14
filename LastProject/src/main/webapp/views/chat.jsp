@@ -13,6 +13,7 @@
     <div>
         <input type="hidden" id="sender" value="${member.m_id }" style="display: none;"> 
         <input type="text" id="message">
+        <input type="hidden" id="receiver" value="admin" />
     </div>
     
     
@@ -76,12 +77,20 @@
         function insertDB() {
         	var id = $("#sender").val();
 			var message = $("#message").val();
-        	
-			alert(id);
-			alert(message);
+        	var receiver = $("#receiver").val();
 			console.log(id);
+			console.log(receiver);
 			console.log(message);
-			
+			var str = $("#form").serialize();
+			alert(str);
+			  location.href = "insertChatDB.do?c_sender="+id+"&c_context="+message+"&c_receiver="+receiver; 
+			 	
+			  /*$.ajax({
+			 		async : true,
+			 		type : 'GET',
+			 		dataType : 'json',
+			 		data : 
+			 	}) */
         }
         
         </script>

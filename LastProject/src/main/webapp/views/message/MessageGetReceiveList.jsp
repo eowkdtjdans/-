@@ -68,16 +68,35 @@
 		<c:forEach var="messageList" items="${messageList }">
 		<tr>
 			<td><img src="${messageList.p_route }" alt="" class="rounded-circle" style="width:100px; height:100px;"/></td>
+			
+			
+		
 			<td>
 				<a href="getReceiveMessage.do?receive_idx=${messageList.receive_idx }">
 					${messageList.receive_sender }
 				</a>
 			</td>
-			<td>
-				<a href="getReceiveMessage.do?receive_idx=${messageList.receive_idx }">
-					${messageList.receive_title }
-				</a>
-			</td>
+			
+		
+			
+			<c:if test="${ messageList.receive_read eq 0 }">
+				<td>
+				<strong>
+					<a href="getReceiveMessage.do?receive_idx=${messageList.receive_idx }">
+						${messageList.receive_title } (안읽음)
+					</a>
+					</strong>
+				</td>
+			</c:if>
+			
+			<c:if test="${ messageList.receive_read eq 1 }">
+				<td>
+					<a href="getReceiveMessage.do?receive_idx=${messageList.receive_idx }">
+						${messageList.receive_title }
+					</a>
+				</td>
+			</c:if>
+			
 			<td><fmt:formatDate value="${messageList.receive_regdate }" pattern="yyyy-MM-dd HH:mm:ss"/> </td>
 			
 		
