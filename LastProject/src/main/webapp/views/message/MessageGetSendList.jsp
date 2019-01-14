@@ -41,12 +41,12 @@
             </div> 
 		</div>
 
-		<div class="col-md-9">
+	<div class="col-md-9">
 		    <div class="card">
 		        <div class="card-body">
 		            <div class="row">
 		                <div class="col-md-12">
-		                    <h4>보낸 쪽</h4>
+		                    <h4>보낸 쪽지목록</h4>
 		                    <hr>
 		                </div>
 		            </div>
@@ -58,26 +58,34 @@
 	<table class="table">
 		<thead class="thead-light">
 		<tr>
+			<th width="50"></th>
+			<th width="100">받는이</th>
 			<th width="200">제목</th>
-			<th width="150">받는이</th>
-			<th width="150">날짜</th>
+			<th width="100">날짜</th>
 		</tr>
 		</thead>
 		<c:forEach var="messageList" items="${messageList }">
 		<tr>
+			<td><img src="${messageList.p_route }" alt="" class="rounded-circle" style="width:100px; height:100px;"/></td>
 			<td>
 				<a href="getSendMessage.do?send_idx=${messageList.send_idx }">
+					${messageList.send_receiver }
+				</a>
+			</td>
+			<td>
+				<a href="getSendMessage.do?receive_idx=${messageList.send_idx }">
 					${messageList.send_title }
 				</a>
 			</td>
-			<td>${messageList.send_receiver }</td>
-			<td><fmt:formatDate value="${messageList.send_regdate }" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+			<td><fmt:formatDate value="${messageList.send_regdate }" pattern="yyyy-MM-dd HH:mm:ss"/> </td>
 			
 		
 		</tr>
 		</c:forEach>
 	</table>
 	</form>
+	
+	
 				</div>
 			</div> 
 		</div>

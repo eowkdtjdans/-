@@ -23,7 +23,6 @@
     function phoneCheck(frm) {
 		var phonecheck = 0;
 		var m_phone = $('#m_phone').val();
-		alert("m_phone : " + m_phone);
 		var phone = document.getElementById("m_phone").value;
 		var phoneCheck = /^((01[1|6|7|8|9])[1-9]+[0-9]{6,7})|(010[1-9][0-9]{7})$/;
 		$.ajax({
@@ -55,8 +54,8 @@
 	             }
 	           },
 	           error : function(error) {
-	               
-	               alert("error : " + error);
+	        	   alert("핸드폰 번호를 입력하세요");
+					return false;
 	           }
 	       });
 	 };
@@ -65,7 +64,6 @@
  function idCheck(frm) {
 	 var idcheck = 0;
 	 var m_id = $('#m_id').val();
-	 alert("m_id : " + m_id);
 	 var email = document.getElementById("m_id").value;
 	 var emailCheck = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
 	$.ajax({
@@ -97,8 +95,8 @@
              }
            },
            error : function(error) {
-               
-               alert("error : " + error);
+               alert("아이디를 입력하세요");
+           
            }
        });
 }; 

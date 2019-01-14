@@ -87,22 +87,22 @@ table .noline {
    border: 0px;
 }
 #e_content{
-	font-size: 1em;
+   font-size: 1em;
 }
 #smalltable{
-	font-size: 0.95em;
+   font-size: 0.95em;
 }
 
 
 #slideimg{
-	width: 500px;
-	height: 350px;
+   width: 500px;
+   height: 350px;
 }
 </style>
 
 <script>
    function login_chk(frm) {
-	   alert("댓글입력시 검증");
+      alert("댓글입력시 검증");
       if ("${member.m_id}" == "") {
          alert("로그인이 필요한 서비스입니다.");
          location.href = ""; /* 로그인을 안하고 댓글 쓰려고할 때 로그인페이지로 이동 */
@@ -112,36 +112,36 @@ table .noline {
             frm.ec_content.focus();
             return false;
          } else {
-        	alert("입력값 : " + frm.ec_content.value);
+           alert("입력값 : " + frm.ec_content.value);
             var ec_content = frm.ec_content.value;  
             alert("게시글번호 : " + frm.e_idx.value);
             var e_idx = frm.e_idx.value;
             
-	     	   $.ajax({
-	               async : true,
-	               type : "POST",
-	               dataType : "json",
-	               data : ec_content,
-	               contentType : "application/json; charset=UTF-8",
-	               url : "/insertEventComment.do?e_idx="+e_idx,
-	
-	               success : function(data) {
-	                  alert("댓글 입력 성공부분");
-	                  // alert("e_idx : " + data.e_idx);
-	                  //alert("ec_content : " + data.ec_content);
-	                  //alert("m_id : " + data.m_id);
-	                  alert(data.getEventComment.ec_date);
-	                  //alert(data.getEventComment.ec_date.format('YYYYMMDD'));
-	                  //alert(data.getEventComment.p_route);
-	               
-	                  alert(data.getEventComment.ec_idx);
-						$("#table").last().append(
-							"<tr id='tr"+data.getEventComment.ec_idx+"' class='trclass"+data.getEventComment.ec_idx+"'><td class='update' id='td"+data.getEventComment.ec_idx+"'><img src='"+data.getEventComment.p_route+"' class='rounded-circle' id='profileImage2' onerror='this.src=\"/views/img/people/fuckyou.jpg\"'>&nbsp;&nbsp; "+data.m_id+"&emsp;&emsp;"+data.getEventComment.ec_date+"<span id='focusing'>&emsp;</span><button type='button' class='btn btn-outline-secondary' id='btn1"+data.getEventComment.ec_idx+"' onclick='update_button(\""+data.getEventComment.ec_idx+"\", \""+data.ec_content+"\")'>수정</button> <button type='button' class='btn btn-outline-secondary' id='btn2"+data.getEventComment.ec_idx+"' onclick='delete_button(\""+data.getEventComment.ec_idx+"\", \""+data.e_idx+"\")'>삭제</button><div id='"+data.getEventComment.ec_idx+"'><br>"+data.ec_content+"<br><br></div></td></tr>");
-							document.getElementById("textareadet").value='';
-							
-	               	}
-	           	 })
-						
+              $.ajax({
+                  async : true,
+                  type : "POST",
+                  dataType : "json",
+                  data : ec_content,
+                  contentType : "application/json; charset=UTF-8",
+                  url : "/insertEventComment.do?e_idx="+e_idx,
+   
+                  success : function(data) {
+                     alert("댓글 입력 성공부분");
+                     // alert("e_idx : " + data.e_idx);
+                     //alert("ec_content : " + data.ec_content);
+                     //alert("m_id : " + data.m_id);
+                     alert(data.getEventComment.ec_date);
+                     //alert(data.getEventComment.ec_date.format('YYYYMMDD'));
+                     //alert(data.getEventComment.p_route);
+                  
+                     alert(data.getEventComment.ec_idx);
+                  $("#table").last().append(
+                     "<tr id='tr"+data.getEventComment.ec_idx+"' class='trclass"+data.getEventComment.ec_idx+"'><td class='update' id='td"+data.getEventComment.ec_idx+"'><img src='"+data.getEventComment.p_route+"' class='rounded-circle' id='profileImage2' onerror='this.src=\"/views/img/people/fuckyou.jpg\"'>&nbsp;&nbsp; "+data.m_id+"&emsp;&emsp;"+data.getEventComment.ec_date+"<span id='focusing'>&emsp;</span><button type='button' class='btn btn-outline-secondary' id='btn1"+data.getEventComment.ec_idx+"' onclick='update_button(\""+data.getEventComment.ec_idx+"\", \""+data.ec_content+"\")'>수정</button> <button type='button' class='btn btn-outline-secondary' id='btn2"+data.getEventComment.ec_idx+"' onclick='delete_button(\""+data.getEventComment.ec_idx+"\", \""+data.e_idx+"\")'>삭제</button><div id='"+data.getEventComment.ec_idx+"'><br>"+data.ec_content+"<br><br></div></td></tr>");
+                     document.getElementById("textareadet").value='';
+                     
+                     }
+                  })
+                  
             
             
          }
@@ -149,7 +149,7 @@ table .noline {
    }
 
 
-	
+   
    $(document).ready(function() {
 
       if ('${focus_idx}' == "") {
@@ -169,14 +169,14 @@ table .noline {
 
 
 
-	function good(){
-	   alert("좋아요 ajax");
-	   var good = parseInt("${getEvent.e_upvote}");
-	   var e_idx = "${getEvent.e_idx}";
-	   alert(good);
-	   alert(e_idx);
-	   
-	   $.ajax({
+   function good(){
+      alert("좋아요 ajax");
+      var good = parseInt("${getEvent.e_upvote}");
+      var e_idx = "${getEvent.e_idx}";
+      alert(good);
+      alert(e_idx);
+      
+      $.ajax({
            async : true,
            type : "POST",
            dataType : "json",
@@ -190,8 +190,8 @@ table .noline {
               $("#span").empty();
               $("#span").text(good + data.count + " 명이 좋아합니다.");
               $("#span").append("&emsp;<a id='bad' href='#' onclick='bad()'><img src='views/img/good.png' style='width: 20px; height: 20px;'> 좋아요취소</a>");
-           	}
-       	 })
+              }
+           })
     };
     
     
@@ -240,61 +240,61 @@ table .noline {
     
     
     function json_update(ec_idx){
-    	alert("실질적인 update");
-    	var ec_content = $("#textarea"+ec_idx).val();
-    	alert("바뀐 ec_content : " + ec_content);
-    	var ec_idx = JSON.stringify(ec_idx);
-    	
-		$.ajax({
-	           async : true,
-	           type : "POST",
-	           dataType : "json",
-	           data : ec_idx,
-	           contentType : "application/json; charset=UTF-8",
-	           url : "/updateEventComment.do?ec_content="+ec_content,
+       alert("실질적인 update");
+       var ec_content = $("#textarea"+ec_idx).val();
+       alert("바뀐 ec_content : " + ec_content);
+       var ec_idx = JSON.stringify(ec_idx);
+       
+      $.ajax({
+              async : true,
+              type : "POST",
+              dataType : "json",
+              data : ec_idx,
+              contentType : "application/json; charset=UTF-8",
+              url : "/updateEventComment.do?ec_content="+ec_content,
 
-	           success : function(data) {
-	        	   alert("성공부분");
-	        	   alert(data.ec_idx);
-	        	   alert(data.ec_content);
-				   
-	        	   $("#" + data.ec_idx).empty();
-	        	   $("#" + data.ec_idx).html("<br>"+data.ec_content+"<br> <br>");
-	        	   
-	        	   var btn = document.getElementById('btn1'+data.ec_idx);
-	               btn.disabled = false;
-	           }
-	        }) 
+              success : function(data) {
+                 alert("성공부분");
+                 alert(data.ec_idx);
+                 alert(data.ec_content);
+               
+                 $("#" + data.ec_idx).empty();
+                 $("#" + data.ec_idx).html("<br>"+data.ec_content+"<br> <br>");
+                 
+                 var btn = document.getElementById('btn1'+data.ec_idx);
+                  btn.disabled = false;
+              }
+           }) 
     }
     
     
     function delete_button(ec_idx, e_idx){
-    	alert("delete ajax");
-    	alert("ec_idx : " + ec_idx);
-    	//var ec_idx1 = JSON.stringify(ec_idx);
-    	
-	   	 var con_test = confirm("정말 삭제하시겠습니까?");
-	        if (con_test == true) {
-	           alert("댓글삭제누를시 나오는 alert");
-	           alert("ec_idx : " + ec_idx);
-	           
-	           $.ajax({
-	              async : true,
-	              type : "POST",
-	              dataType : "json",
-	              data : ec_idx,
-	              contentType : "application/json; charset=UTF-8",
-	              url : "/deleteEventComment.do?e_idx="+e_idx,
-	
-	              success : function(data) {
-	            	  alert("ajax 성공부분");
-	                  $("#td" + data.ec_idx).remove();
-	                  $(".trclass" + data.ec_idx).remove();
-	              }
-	           })
-	        } else {
-	           return false;
-	        }
+       alert("delete ajax");
+       alert("ec_idx : " + ec_idx);
+       //var ec_idx1 = JSON.stringify(ec_idx);
+       
+          var con_test = confirm("정말 삭제하시겠습니까?");
+           if (con_test == true) {
+              alert("댓글삭제누를시 나오는 alert");
+              alert("ec_idx : " + ec_idx);
+              
+              $.ajax({
+                 async : true,
+                 type : "POST",
+                 dataType : "json",
+                 data : ec_idx,
+                 contentType : "application/json; charset=UTF-8",
+                 url : "/deleteEventComment.do?e_idx="+e_idx,
+   
+                 success : function(data) {
+                    alert("ajax 성공부분");
+                     $("#td" + data.ec_idx).remove();
+                     $(".trclass" + data.ec_idx).remove();
+                 }
+              })
+           } else {
+              return false;
+           }
     }
     
  
@@ -380,92 +380,94 @@ table .noline {
                      <td>관리자 &emsp;&emsp; ${date}</td>
                   </tr>
                   <tr>
-                  	 <td>
-                  	 	<c:choose>
-			               <c:when test="${not empty member.m_id}">
-			                  <span id="span">${getEvent.e_upvote } 명이 좋아합니다..</span>
-			                  &emsp;
-			                  <a id="good" href="#" onclick="good()"><img src="views/img/good.png" style="width: 20px; height: 20px;"> 좋아요!</a>
-			               </c:when>
-			               <c:otherwise>
-			                  <span id="span">${getLocalAdvice.l_upvote } 명이 좋아합니다..</span>
-			                  &emsp;
-			                  <a id="good" href="#"><img src="views/img/good.png" style="width: 20px; height: 20px;"> 좋아요!</a>
-			               </c:otherwise>
-			            </c:choose>
-                  	 </td>	
+                      <td>
+                         <c:choose>
+                        <c:when test="${not empty member.m_id}">
+                           <span id="span">${getEvent.e_upvote } 명이 좋아합니다..</span>
+                           &emsp;
+                           <a id="good" href="#" onclick="good()"><img src="views/img/good.png" style="width: 20px; height: 20px;"> 좋아요!</a>
+                        </c:when>
+                        <c:otherwise>
+                           <span id="span">${getLocalAdvice.l_upvote } 명이 좋아합니다..</span>
+                           &emsp;
+                           <a id="good" href="#"><img src="views/img/good.png" style="width: 20px; height: 20px;"> 좋아요!</a>
+                        </c:otherwise>
+                     </c:choose>
+                      </td>   
                   </tr>
                </table>
             </div>
             
             
-            <div class="container show-grid">			    
-			    <div class="row">
-			      <div class="col-md-6" style="text-align: center">
-				      <c:forEach var="list" items="${getEventImageList }">
-					  	  		<span><img src="${list.e_img }" style="width: 420px; height: 300px;" class="img-thumbnail"></span>
-					  	  		<br>
-					  </c:forEach>
-					  <!-- <button type="button" class="btn btn-outline-secondary" onclick="imagemodal()">사진 더보기</button> -->
-					  <button type="button" data-toggle="modal" data-target="#myModal">사진 더보기</button>
-					
-			      </div>
-			      
-			      
-			      <div class="col-md-6" id="e_content">
-			      ${getEvent.e_content } <br><br>
-			      <table class="table" id="smalltable">
-			      	<tr>
-			      		<td>시작일</td>
-			      		<td>${getEvent.e_startdate }</td>
-			      	</tr>
-			      	<tr>
-			      		<td>종료일</td>
-			      		<td>${getEvent.e_enddate }</td>
-			      	</tr>
-			      	<tr>
-			      		<td>태그</td>
-			      		<td>${getEvent.e_tag }</td>
-			      	</tr>
-			      	<tr>
-			      		<td>주소</td>
-			      		<td>${getEvent.e_address }</td>
-			      	</tr>			      	
-			      </table>			      			      
-			      </div>			      
-			    </div>		    			    
-			</div>
-			<br><br>
+            <div class="container show-grid">             
+             <div class="row">
+               <div class="col-md-6" style="text-align: center">
+                  <c:forEach var="list" items="${getEventImageList }">
+                            <span><img src="${list.e_img }" style="width: 420px; height: 300px;" class="img-thumbnail"></span>
+                            <br>
+                 </c:forEach>
+                 <!-- <button type="button" class="btn btn-outline-secondary" onclick="imagemodal()">사진 더보기</button> -->
+                 <button type="button" data-toggle="modal" data-target="#myModal">사진 더보기</button>
+               
+               </div>
+               
+               
+               <div class="col-md-6" id="e_content">
+               ${getEvent.e_content } <br><br>
+               <table class="table" id="smalltable">
+                  <tr>
+                     <td>시작일</td>
+                     <td>${getEvent.e_startdate }</td>
+                  </tr>
+                  <tr>
+                     <td>종료일</td>
+                     <td>${getEvent.e_enddate }</td>
+                  </tr>
+                  <tr>
+                     <td>태그</td>
+                     <td>${getEvent.e_tag }</td>
+                  </tr>
+                  <tr>
+                     <td>주소</td>
+                     <td>${getEvent.e_address }</td>
+                  </tr>                  
+               </table>                              
+               </div>               
+             </div>                       
+         </div>
+         <br><br>
 
 
  
 
-<!-- <div class="modal fade" id="myModal">
+<div class="modal fade" id="myModal">
 <div class="modal-dialog modal-lg">
-<div class="modal-content"> -->
-	  <div id="demo" class="carousel slide" data-ride="carousel">
-	
-	  <!-- The slideshow -->
-	  <div class="carousel-inner">
-	    <c:forEach var="list" items="${getEventImageList}">
-		    <div class="carousel-item">
-		      <img src="${list.e_img}" class="main${list.e_main }" id="slideimage">
-		    </div>
-	    </c:forEach>
-	
-	  </div>
-	  
-	  <!-- Left and right controls -->
-	  <a class="carousel-control-prev" href="#demo" data-slide="prev">
-	    <span class="carousel-control-prev-icon"></span>
-	  </a>
-	  <a class="carousel-control-next" href="#demo" data-slide="next">
-	    <span class="carousel-control-next-icon"></span>
-	  </a>
-	  </div>
-<!-- </div>
+<div class="modal-content">
+   <div class="modal-body">
+     <div id="demo" class="carousel slide" data-ride="carousel">
+   
+     <!-- The slideshow -->
+     <div class="carousel-inner">
+       <c:forEach var="list" items="${getEventImageList}">
+          <div class="carousel-item">
+            <img src="${list.e_img}" class="main${list.e_main }" id="slideimage">
+          </div>
+       </c:forEach>
+   
+     </div>
+     
+     <!-- Left and right controls -->
+     <a class="carousel-control-prev" href="#demo" data-slide="prev">
+       <span class="carousel-control-prev-icon"></span>
+     </a>
+     <a class="carousel-control-next" href="#demo" data-slide="next">
+       <span class="carousel-control-next-icon"></span>
+     </a>
+     </div>
 </div>
-</div> -->
+</div>
+</div>
+</div>
 
 
 
@@ -476,9 +478,9 @@ table .noline {
 
 
  
-	<!-- 댓글 폼 -->
- 		<br>
-		<form method="post" id="frm">
+   <!-- 댓글 폼 -->
+       <br>
+      <form method="post" id="frm">
               <table id="table" class="table" style="width: 1100px;">
                  <c:forEach var="list" items="${getEventCommentList}">
                  <%-- <fmt:formatDate value="${list.ec_date}" pattern="yyyy-MM-dd" var="ec_date"/> --%>
@@ -513,7 +515,7 @@ table .noline {
                   <input class="btn btn-outline-secondary" type="button"
                      value="댓글등록" onclick="login_chk(this.form)">
                </p>
-            </form>		
+            </form>      
          </div>
       </div>
    </section>

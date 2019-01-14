@@ -83,6 +83,7 @@
 		<tr>
 			<td colspan="2" class="center">
 				<a href="deleteSendMessage.do?send_idx=${message.send_idx }">쪽지삭제</a>
+				
 			</td>
 		</tr>
 	</table>

@@ -58,10 +58,8 @@
         function send(){
         	if(ws.readyState == 1) {
              var text = document.getElementById("sender").value+" : "+document.getElementById("message").value;  
-			             var chatting = $("#form").serialize();
-			             alert(chatting);
-			             console.log(chatting);
-            if(text) {
+				insertDB();
+             if(text) {
 			             ws.send(text);
              document.getElementById("message").value="";
             	}
@@ -74,6 +72,20 @@
         function writeResponse(text){
             messages.innerHTML+="<br/>"+text;
         }
-  </script>
+
+        function insertDB() {
+        	var id = $("#sender").val();
+			var message = $("#message").val();
+        	
+			alert(id);
+			alert(message);
+			console.log(id);
+			console.log(message);
+			
+        }
+        
+        </script>
+  
+  
 </body>
 </html> 
