@@ -1,6 +1,7 @@
 package com.spring.biz.message;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -45,6 +46,15 @@ public interface MessageService {
 
 
 	 int noticeMessageJson(MessageRecieveVO receivevo);
+
+
+	List<MessageRecieveVO> getAdminReceiveMessageList(MessageRecieveVO vo);
+
+
+
+
+
+
 
 
 

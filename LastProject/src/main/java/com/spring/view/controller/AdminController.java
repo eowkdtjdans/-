@@ -8,10 +8,12 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,7 +26,11 @@ import com.spring.biz.admin.UserAdminCommentVO;
 import com.spring.biz.admin.UserAdminPostVO;
 import com.spring.biz.admin.UserAdminViewVO;
 import com.spring.biz.event.EventVO;
+import com.spring.biz.member.Email;
+import com.spring.biz.member.EmailSender;
 import com.spring.biz.member.MemberVO;
+import com.spring.biz.message.MessageRecieveVO;
+import com.spring.biz.message.MessageService;
 import com.spring.biz.profileImage.FileUploadService;
 import com.spring.biz.profileImage.ProfileImageVO;
 
@@ -35,6 +41,12 @@ public class AdminController {
 	private AdminService adminService;
 	@Autowired
 	private FileUploadService fileUploadService;
+	@Autowired
+	private MessageService messageService;
+	@Autowired
+	private Email email;
+	@Autowired
+	private EmailSender emailSender;
 	
 	public AdminController() {
 		System.out.println("AdminController로 옴");
@@ -105,6 +117,37 @@ public class AdminController {
 		model.addAttribute("userAdminList", list);
 		return "redirect:/views/admin/pages/tables/userAdmin.jsp";
 	}
+	
+	@RequestMapping(value="/adminGetReceiveMessageList.do")
+	public String getAdminGetReceiveMessageList(MessageRecieveVO vo, HttpSession session) {
+			vo.setReceive_receiver("admin");
+			System.out.println("메세지리스트 컨트롤러 옴");
+			System.out.println(vo.getReceive_receiver());
+			List<MessageRecieveVO> messageList = messageService.getAdminReceiveMessageList(vo);
+			session.setAttribute("adminMessageList", messageList);
+		return "redirect:/views/admin/pages/tables/messageAdmin.jsp";	
+	}
+	@RequestMapping(value="/adminMessageGet.do")
+	public String adminMessageGet(MessageRecieveVO vo,  Model model, HttpSession session, @RequestParam("receive_idx") int receive_idx) {
+		session.setAttribute("adminMessage", messageService.getReceiveMessage(vo));
+		vo.setReceive_idx(receive_idx);
+		messageService.readRecieveMessage(vo);
+			
+		return "redirect:/views/admin/pages/tables/adminMessageGet.jsp";
+	}
+	
+	@RequestMapping(value="/adminSendEmail.do", method=RequestMethod.POST)
+    public String sendEmailFindId (@RequestParam("message_receiver") String message_receiver
+    		, @RequestParam("message_title") String message_title, 
+    		@RequestParam("message_content") String message_content) throws Exception {
+    	
+    		email.setSubject(message_title);
+    		email.setReceiver(message_receiver);
+    		email.setContent(message_content);
+    		emailSender.SendEmail(email);
+            return "redirect:/adminGetReceiveMessageList.do";
+    	}
+	
 	@RequestMapping(value="/userAdminView.do")
 	public String userAdminView(Model model, HttpServletRequest request) {
 		UserAdminViewVO uvo = null;

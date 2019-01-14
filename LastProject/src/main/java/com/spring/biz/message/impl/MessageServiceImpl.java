@@ -1,6 +1,7 @@
 package com.spring.biz.message.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -93,6 +94,12 @@ public class MessageServiceImpl implements MessageService {
 	public int noticeMessageJson(MessageRecieveVO receivevo) {
 		return messageDAO.noticeMessageJson(receivevo);
 	}
+
+	@Override
+	public List<MessageRecieveVO> getAdminReceiveMessageList(MessageRecieveVO vo) {
+		return messageDAO.getAdminReceiveMessageList(vo);
+	}
+
 
 
 	

@@ -41,7 +41,7 @@ public class MessageController {
         return map;
     }
 	
-	@RequestMapping(value="insertMessage.do", method=RequestMethod.GET) 
+	@RequestMapping(value="/insertMessage.do", method=RequestMethod.GET) 
 	public String insertMessageGet(MessageSendVO vo, @RequestParam("message_receiver") String message_receiver, HttpSession session) {
 		System.out.println("인서트 메세지 =========== GET");
 		System.out.println("message_receiver : " + message_receiver);
@@ -49,7 +49,8 @@ public class MessageController {
 		return "views/message/MessageInsert.jsp";
 	}
 	
-	@RequestMapping(value="insertMessage.do", method=RequestMethod.POST)
+	
+	@RequestMapping(value="/insertMessage.do", method=RequestMethod.POST)
 	public String insertMessagePost(MessageVO vo, 
 			@RequestParam("message_sender") String message_sender,
 			@RequestParam("message_receiver") String message_receiver,
@@ -74,6 +75,29 @@ public class MessageController {
 		session.setAttribute("message", vo);
 		return "redirect:/sub2.do";
 	}
+	
+	@RequestMapping(value="/MessageToAdmin.do", method=RequestMethod.POST)
+	public String MessageToAdmin(MessageVO vo, @RequestParam("message_sender") String message_sender,
+			@RequestParam("message_receiver") String message_receiver,
+			@RequestParam("message_title") String message_title, 
+			@RequestParam("message_content") String message_content, HttpSession session) throws Exception {
+		
+			vo.setMessage_sender(message_sender);
+			vo.setMessage_receiver(message_receiver);
+			vo.setMessage_title(message_title);
+			vo.setMessage_content(message_content);
+			
+			messageService.insertMessage(vo);
+			
+			System.out.println(message_sender);
+			System.out.println(message_receiver);
+			System.out.println(message_title);
+			System.out.println(message_content);
+			
+			session.setAttribute("messageToAdmin", vo);
+		return "redirect:/sub2.do";
+	}
+
 	
 	@RequestMapping(value="/getSendMessageList.do", method=RequestMethod.GET)
 	public String getSendMessageList(MessageSendVO vo, Model model, HttpSession session) throws Exception {

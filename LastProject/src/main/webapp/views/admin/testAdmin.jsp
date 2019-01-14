@@ -530,6 +530,22 @@
 									class="fa fa-arrow-circle-right"></i></a>
 							</div>
 						</div>
+						<div class="col-lg-3 col-6">
+						<div id="client" class="small-box">
+								<div class="inner">
+									<h3>${adminCnt.m_cnt}</h3>
+
+									<p>문의 관리</p>
+								</div>
+								<div class="icon">
+									<i class="ion ion-person-add"></i>
+								</div>
+								<a href="../../adminGetReceiveMessageList.do" class="small-box-footer">More info <i
+									class="fa fa-arrow-circle-right"></i></a>
+							</div>
+						</div>
+						
+						
 						<!-- ./col -->
 					</div>
 					<!-- /.row -->
