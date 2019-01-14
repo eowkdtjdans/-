@@ -247,7 +247,13 @@ function insertHost(frm) {
 };
 
 function deleteHost(m_id) {
-	location.href="../deleteHost.do?m_id=" + m_id;
+	 var con_test = confirm("정말 삭제하시겠습니까?");
+	   	if(con_test == true) {
+	   		location.href="../deleteHost.do?m_id=" + m_id;
+	   	} else{
+	   		return false;
+	   	}
+	
 }
 
 function cardOver(m_id) {
@@ -302,6 +308,21 @@ $(document).ready(function(){
        } 
     }); 
 });
+
+
+/* function login_chk(){
+	alert("ㅎㅇ");
+	if("${member.m_id}"==""){
+		alert("로그인이 필요한 서비스입니다.");
+		$(function () {
+		    $("#insertHostBtn").on('click', function() {
+		        $('#insertHost').modal('hide');
+		    });
+		});
+		$('#insertHost').modal('hide');
+	} 
+}
+ */
 </script>
 
 
@@ -456,7 +477,7 @@ $(document).ready(function(){
 					</c:otherwise>
 				</c:choose>
 					<li style="text-align:right;">
-						<button type="button" id="insertHostBtn" class="btn btn-outline-secondary" data-toggle="modal" data-target="#insertHost">호스트 등록</button>
+						<button type="button" id="insertHostBtn" class="btn btn-outline-secondary" data-toggle="modal" data-target="#insertHost" onclick="login_chk()">호스트 등록</button>
 					</li>
 				</ol>
 			</td>

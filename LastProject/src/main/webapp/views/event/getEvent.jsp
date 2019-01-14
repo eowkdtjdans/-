@@ -94,10 +94,16 @@ table .noline {
 }
 
 
-#slideimg{
-	width: 500px;
-	height: 350px;
-}
+/* #slideimg{
+	width: 600px;
+	height: 450px;
+} */
+
+
+
+
+
+
 </style>
 
 <script>
@@ -431,18 +437,22 @@ table .noline {
 			      		<td>주소</td>
 			      		<td>${getEvent.e_address }</td>
 			      	</tr>			      	
-			      </table>			      			      
+			      </table>
 			      </div>			      
 			    </div>		    			    
 			</div>
 			<br><br>
-
+			
 
  
+<!-- 모달부분 -->
 
 <!-- <div class="modal fade" id="myModal">
 <div class="modal-dialog modal-lg">
-<div class="modal-content"> -->
+<div class="modal-content"> --> 	
+
+
+
 	  <div id="demo" class="carousel slide" data-ride="carousel">
 	
 	  <!-- The slideshow -->
@@ -463,14 +473,11 @@ table .noline {
 	    <span class="carousel-control-next-icon"></span>
 	  </a>
 	  </div>
+	  	  
+
 <!-- </div>
 </div>
-</div> -->
-
-
-
-
-
+</div>  -->
 
 
 

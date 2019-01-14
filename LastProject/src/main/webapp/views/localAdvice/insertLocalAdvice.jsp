@@ -49,6 +49,11 @@
 
 <script>		 
 	function sendData(frm){
+	    if("${member.m_id}"==""){
+	    	alert("로그인이 필요한 서비스입니다.");
+	   		return false;
+	    }
+	    
 		if(frm.elements[0].value.trim()==""){
 			alert(frm.elements[0].title + "을 입력해주세요");
 			frm.elements[0].focus();
@@ -59,7 +64,6 @@
 			frm.elements[1].focus();
 			return false;
 		}
-		alert("인서트컨트롤러가는얼랏");
 		frm.action="../insertLocalAdvice.do";
 		frm.submit();
 	}

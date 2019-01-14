@@ -118,6 +118,20 @@ table .noline {
          }
       }
    }
+   
+   function deleteLocalAdvice(l_idx){
+	   alert("게시글 삭제버튼 클릭");
+	   alert("l_idx : " + l_idx);
+	   var con_test = confirm("정말 삭제하시겠습니까?");
+	   	if(con_test == true) {
+	   		location.href="../deleteLocalAdvice.do?l_idx="+l_idx
+	   	} else{
+	   		return false;
+	   	}
+	   
+	   
+   } 
+   
 
    function update_button(lc_idx, lc_content) {
       //alert("update_button()함수로옴");
@@ -513,8 +527,10 @@ table .noline {
                            test="${getLocalAdvice.m_id eq member.m_id }">
                            <a id="atag-size"
                               href="../updateLocalAdvice.do?l_idx=${getLocalAdvice.l_idx }">&nbsp;수정&nbsp;</a>|
-                     <a id="atag-size"
-                              href="../deleteLocalAdvice.do?l_idx=${getLocalAdvice.l_idx }">삭제&nbsp;</a>
+                     	   <%-- <a id="atag-size"
+                              href="../deleteLocalAdvice.do?l_idx=${getLocalAdvice.l_idx }">삭제&nbsp;</a> --%>
+                           <a id="atag-size" href="#" onclick="deleteLocalAdvice('${getLocalAdvice.l_idx }')">삭제</a>
+                              
                         </c:if>
                      </td>
                   </tr>
