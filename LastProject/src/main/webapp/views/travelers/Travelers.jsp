@@ -86,7 +86,7 @@ function fillInAddress() { //lat 와 lng 값을 넘겨줄 input 태그에 값 �
 function sendMessage(m_id){
    alert("sendMessage 함수로 옴");
    alert("m_id : " +m_id);
-   location.href="../insertMessage.do?message_receiver="+m_id;
+   location.href="../insertTrevelersMessage.do?message_receiver="+m_id;
 }
 
 function insertTravelers(frm) {

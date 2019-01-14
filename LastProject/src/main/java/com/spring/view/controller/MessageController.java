@@ -76,6 +76,77 @@ public class MessageController {
 		return "redirect:/sub2.do";
 	}
 	
+	@RequestMapping(value="/insertHostMessage.do", method=RequestMethod.GET) 
+	public String insertHostMessageGet(MessageSendVO vo, @RequestParam("message_receiver") String message_receiver, HttpSession session) {
+		System.out.println("인서트 메세지 =========== GET");
+		System.out.println("message_receiver : " + message_receiver);
+		session.setAttribute("message_receiver", message_receiver);
+		return "views/message/MessageHostInsert.jsp";
+	}
+	
+	
+	@RequestMapping(value="/insertHostMessage.do", method=RequestMethod.POST)
+	public String insertHostMessagePost(MessageVO vo, 
+			@RequestParam("message_sender") String message_sender,
+			@RequestParam("message_receiver") String message_receiver,
+			@RequestParam("message_title") String message_title, 
+			@RequestParam("message_content") String message_content, HttpSession session) throws Exception {
+		
+		System.out.println("message_sender : " + message_sender);
+		System.out.println("message_receiver : " + message_receiver);
+		System.out.println("message_title : " + message_title);
+		System.out.println("message_content : " + message_content);
+		
+		
+	
+		
+		System.out.println("인서트 메세지 =========== POST");
+		vo.setMessage_sender(message_sender);
+		vo.setMessage_receiver(message_receiver);
+		vo.setMessage_title(message_title);
+		vo.setMessage_content(message_content);
+		
+		messageService.insertMessage(vo);
+		session.setAttribute("message", vo);
+		return "redirect:/getHostList.do?cPage=1";
+	}
+	
+	
+	@RequestMapping(value="/insertTrevelersMessage.do", method=RequestMethod.GET) 
+	public String insertTrevelersMessageGet(MessageSendVO vo, @RequestParam("message_receiver") String message_receiver, HttpSession session) {
+		System.out.println("인서트 메세지 =========== GET");
+		System.out.println("message_receiver : " + message_receiver);
+		session.setAttribute("message_receiver", message_receiver);
+		return "views/message/MessageTrevlersInsert.jsp";
+	}
+	
+	
+	@RequestMapping(value="/insertTrevelersMessage.do", method=RequestMethod.POST)
+	public String insertTrevelersMessagePost(MessageVO vo, 
+			@RequestParam("message_sender") String message_sender,
+			@RequestParam("message_receiver") String message_receiver,
+			@RequestParam("message_title") String message_title, 
+			@RequestParam("message_content") String message_content, HttpSession session) throws Exception {
+		
+		System.out.println("message_sender : " + message_sender);
+		System.out.println("message_receiver : " + message_receiver);
+		System.out.println("message_title : " + message_title);
+		System.out.println("message_content : " + message_content);
+		
+		
+	
+		
+		System.out.println("트레블러인서트 메세지 =========== POST");
+		vo.setMessage_sender(message_sender);
+		vo.setMessage_receiver(message_receiver);
+		vo.setMessage_title(message_title);
+		vo.setMessage_content(message_content);
+		
+		messageService.insertMessage(vo);
+		session.setAttribute("message", vo);
+		return "redirect:/getTravelersList.do?cPage=1";
+	}
+	
 	@RequestMapping(value="/MessageToAdmin.do", method=RequestMethod.POST)
 	public String MessageToAdmin(MessageVO vo, @RequestParam("message_sender") String message_sender,
 			@RequestParam("message_receiver") String message_receiver,
