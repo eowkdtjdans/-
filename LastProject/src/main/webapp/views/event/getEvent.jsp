@@ -96,7 +96,7 @@ table .noline {
 
 /* #slideimg{
 	width: 600px;
-	height: 450px;
+	height: 450px; 
 } */
 
 

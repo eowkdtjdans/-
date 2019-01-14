@@ -470,7 +470,7 @@
 											<th id="noSorting">Admin</th>
 										</tr>
 									</thead>
-									<tbody> <!-- 하히후헤호 여기부터 하면됨 -->
+									<tbody>
 										<c:forEach var="list" items="${eventAdminList}">
 										<fmt:formatDate value="${list.e_startdate}" pattern="yyyy-MM-dd" var="startdate"/>
 										<fmt:formatDate value="${list.e_enddate}" pattern="yyyy-MM-dd" var="enddate"/>

@@ -23,6 +23,7 @@
   	<typeAlias alias="message" type="com.spring.biz.message.MessageVO"/>
   	<typeAlias alias="messageSend" type="com.spring.biz.message.MessageSendVO"/>
   	<typeAlias alias="messageReceive" type="com.spring.biz.message.MessageRecieveVO"/>
+  	<typeAlias alias="websocketChat" type="com.spring.biz.WebSocket.WebSocketVO"/>
   </typeAliases>
   
   <mappers>
@@ -38,6 +39,7 @@
     <mapper resource="mappings/country-mapper.xml"/>
     <mapper resource="mappings/countryImage-mapper.xml"/>
     <mapper resource="mappings/google-maaper.xml"/>
+    <mapper resource="mappings/websocket-mapper.xml"/>
     
     <mapper resource="mappings/event-mapper.xml"/>
     <mapper resource="mappings/eventComment-mapper.xml"/>

@@ -25,8 +25,8 @@
 		     <div class="list-group ">
 		      <a href="../../sub2.do" class="list-group-item list-group-item-action">메인페이지</a>
               <a href="../../myProfile.do" class="list-group-item list-group-item-action">마이 프로필</a>
-              <a href="../../getReceiveMessageList.do" class="list-group-item list-group-item-action">받은 쪽지함</a>
-              <a href="../../getSendMessageList.do" class="list-group-item list-group-item-action active">보낸 쪽지함</a>
+              <a href="../../getReceiveMessageList.do" class="list-group-item list-group-item-action active">받은 쪽지함</a>
+              <a href="../../getSendMessageList.do" class="list-group-item list-group-item-action">보낸 쪽지함</a>
               <a href="../../insertProfile.do" class="list-group-item list-group-item-action">프로필 수정</a>
               <a href="../../ModifyPwdMember.do" class="list-group-item list-group-item-action">비밀번호 변경</a>
               <a href="../../ModifyPhoneMember.do" class="list-group-item list-group-item-action">핸드폰 변경</a>
@@ -82,6 +82,8 @@
 		<tr>
 			<td colspan="2" class="center">
 				<a href="deleteReceiveMessage.do?receive_idx=${message.receive_idx }">쪽지삭제</a>
+				
+				<a href="insertMessage.do?message_receiver=${message.receive_sender}">쪽지보내기</a>
 			</td>
 		</tr>
 	</table>

@@ -12,13 +12,26 @@
 	</insert>
 	
 	<select id="getSendMessageList" resultType="messageSend">
-		SELECT * FROM MESSAGE_SEND WHERE SEND_SENDER = #{send_sender}
-		ORDER BY SEND_IDX DESC
+		<!-- SELECT * FROM MESSAGE_SEND WHERE SEND_SENDER = #{send_sender}
+		ORDER BY SEND_IDX DESC  -->
+			SELECT SEND.*, PI.P_ROUTE
+        FROM MESSAGE_SEND SEND, PROFILE_IMAGE PI
+        WHERE SEND.SEND_RECEIVER = PI.M_ID
+        AND SEND.SEND_SENDER = #{send_sender}
+        AND PI.P_MAIN = 1 
 	</select>
 	
-	<select id="getReceiveMessageList" resultType="messageReceive">
-		SELECT * FROM MESSAGE_RECEIVE WHERE RECEIVE_RECEIVER = #{receive_receiver} 
-		ORDER BY RECEIVE_IDX DESC
+	<select id="getReceiveMessageList" resultType="messageReceive" parameterType="messageReceive">
+		<!-- SELECT
+		 * FROM 
+		MESSAGE_RECEIVE 
+		WHERE RECEIVE_RECEIVER = #{receive_receiver} 
+		ORDER BY RECEIVE_IDX DESC -->
+	    SELECT RECEIVE.*, PI.P_ROUTE
+        FROM MESSAGE_RECEIVE RECEIVE, PROFILE_IMAGE PI
+        WHERE RECEIVE.RECEIVE_SENDER = PI.M_ID
+        AND RECEIVE.RECEIVE_RECEIVER = #{receive_receiver} 
+        AND PI.P_MAIN = 1
 	</select>
 	
 	<select id="MessageReceiveVO" resultType="messageReceive">

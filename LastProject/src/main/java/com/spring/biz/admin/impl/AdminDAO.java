@@ -52,8 +52,12 @@ public class AdminDAO {
 		return mybatis.selectList("eventAdminList");
 	}
 
-	public void insertEvent() {
-		mybatis.insert("insertEvent");
+	public void insertEvent(EventVO eventVO) {
+		mybatis.insert("insertEvent", eventVO);
+	}
+
+	public void insertEventImg(Map<String, String> eventImgMap) {
+		mybatis.insert("insertEventImg", eventImgMap);
 	}
 
 }

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.spring.biz.WebSocket.WebSocketVO;
 import com.spring.biz.WebSocket.WebSocketchatService;
 import com.spring.biz.member.MemberVO;
 
@@ -36,10 +37,19 @@ public class WebSocketController {
         System.out.println("웹소켓(서버) 객체생성");
     }
     @RequestMapping(value="/chat.do")
-    public ModelAndView getChatViewPage(ModelAndView mav) {
-        mav.setViewName("views/chat.jsp");
-        return mav;
+    public String getChatViewPage(ModelAndView mav) {
+        return "views/chat.jsp";
     }
+    @RequestMapping(value="insertChatDB.do")
+    public String insertChatDB(WebSocketVO vo) {
+    		
+    		System.out.println(vo.getC_sender());
+    		System.out.println(vo.getC_receiver());
+    		System.out.println(vo.getC_context());
+    		webSocketchatService.insertWebSocketChatting(vo);
+    	return "redirect:/chat.do";
+    }
+    
     @OnOpen
     public void onOpen(Session session) {
         logger.info("Open session id:"+session.getId());

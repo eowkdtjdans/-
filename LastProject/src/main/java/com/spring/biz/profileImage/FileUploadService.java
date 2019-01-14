@@ -18,10 +18,10 @@ public class FileUploadService {
 		
 		try {
 			String originFilename = multipartFile.getOriginalFilename();
+			System.out.println("originFilename: " + originFilename);
 			String extName = originFilename.substring(originFilename.lastIndexOf("."), originFilename.length());
 			
 			Long size = multipartFile.getSize();
-			
 			String saveFileName = saveFileName(extName);
 			
 			System.out.println("originFilename : " + originFilename);

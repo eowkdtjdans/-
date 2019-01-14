@@ -7,13 +7,21 @@ public class MessageRecieveVO {
 	private String receive_sender,
 	receive_receiver,
 	receive_title,
+	p_route,
 	receive_content;
+
 	private Date receive_regdate;
 	
 	
 	
 	
 	
+	public String getP_route() {
+		return p_route;
+	}
+	public void setP_route(String p_route) {
+		this.p_route = p_route;
+	}
 	public int getReceive_read() {
 		return receive_read;
 	}
@@ -60,8 +68,11 @@ public class MessageRecieveVO {
 	public String toString() {
 		return "MessageRecieveVO [receive_idx=" + receive_idx + ", receive_read=" + receive_read + ", receive_sender="
 				+ receive_sender + ", receive_receiver=" + receive_receiver + ", receive_title=" + receive_title
-				+ ", receive_content=" + receive_content + ", receive_regdate=" + receive_regdate + "]";
+				+ ", p_route=" + p_route + ", receive_content=" + receive_content + ", receive_regdate="
+				+ receive_regdate + "]";
 	}
+
+
 	
 	
 	

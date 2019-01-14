@@ -61,8 +61,13 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public void insertEvent() {
-		adminDAO.insertEvent();
+	public void insertEvent(EventVO eventVO) {
+		adminDAO.insertEvent(eventVO);
+	}
+
+	@Override
+	public void insertEventImg(Map<String, String> eventImgMap) {
+		adminDAO.insertEventImg(eventImgMap);
 	}
 
 }
