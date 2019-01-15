@@ -454,7 +454,7 @@ $(function(){
       <div class="container">
 
         <div class="section-header">
-          <h3>Contact Us</h3>
+          <h3>관리자에게 문의</h3>
           <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque</p>
         </div>
 
@@ -463,24 +463,24 @@ $(function(){
           <div class="col-md-4">
             <div class="contact-address">
               <i class="ion-ios-location-outline"></i>
-              <h3>Address</h3>
-              <address>A108 Adam Street, NY 535022, USA</address>
+              <h3>주소</h3>
+              <address>서강대 비트캠프</address>
             </div>
           </div>
 
           <div class="col-md-4">
             <div class="contact-phone">
               <i class="ion-ios-telephone-outline"></i>
-              <h3>Phone Number</h3>
-              <p><a href="tel:+155895548855">+1 5589 55488 55</a></p>
+              <h3>연락처</h3>
+              <p>+82 1039222459</p>
             </div>
           </div>
 
           <div class="col-md-4">
             <div class="contact-email">
               <i class="ion-ios-email-outline"></i>
-              <h3>Email</h3>
-              <p><a href="mailto:info@example.com">info@example.com</a></p>
+              <h3>이메일</h3>
+              <p>gukbongworld@gmail.com</p>
             </div>
           </div>
 
@@ -489,17 +489,13 @@ $(function(){
         <div class="form">
           <div id="sendmessage">Your message has been sent. Thank you!</div>
           <div id="errormessage"></div>
-          <form action="" method="post" role="form" class="contactForm">
-            <div class="form-row">
-              <div class="form-group col-md-6">
-                <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+       <!--    <form action="" method="post" role="form" class="contactForm">
+               <div class="form-group">
+                <input type="email" class="form-control" name="m_id" id="m_id" placeholder="연락 받으실 이메일을 입력하세요."/>
                 <div class="validation"></div>
               </div>
-              <div class="form-group col-md-6">
-                <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
-                <div class="validation"></div>
-              </div>
-            </div>
+			
+			
             <div class="form-group">
               <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
               <div class="validation"></div>
@@ -512,8 +508,54 @@ $(function(){
           </form>
         </div>
 
-      </div>
+      </div> -->
+      <form method="POST" class="my-login-validation" id="form">
+			<input id="m_id" type="hidden" class="form-control" name="m_id">	
+			<input id="message_receiver" name="message_receiver" type="hidden" class="form-control" value="admin">	
+			<div class="form-group">
+				 <input type="email" class="form-control" name="message_sender" id=message_sender placeholder="연락 받으실 이메일을 입력하세요."/>
+			</div>
+			
+			<div class="form-group">
+				<textarea rows="1" cols="10" id="message_title" name="message_title" class="form-control" placeholder="제목을 입력하세요."></textarea>
+			</div>
+			
+			<div class="form-group">
+				<textarea rows="5" cols="10" id="message_content" name="message_content" placeholder="문의내용을 입력하세요." class="form-control"></textarea>
+			</div>
+			
+			
+			<div class="form-group m-0">
+				<button type="button" class="btn btn-default" onclick="sendMessage(this.form)">
+					쪽지 보내기
+				</button>
+			</div>
+			
+		</form>
+	</div>
+</div>
     </section><!-- #contact -->
+    
+    <script>
+    function sendMessage(frm) {
+    	 var email = frm.message_sender.value;
+    	 alert(email);
+    	 var emailCheck = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
+
+    	 if(emailCheck.test(email)==false || email == ""){
+				alert("이 메일형식이 올바르지 않습니다.");
+				frm.m_id.value="";
+				frm.m_id.focus();
+				return false;
+		   } else {
+    	alert("관리자에게 문의사항이 전달 되었습니다. 최대한 빠르게 이메일로 문의사항을 보내겠습니다.");
+		frm.action = "../../MessageToAdmin.do";
+		frm.submit();
+			   
+		   }
+    	
+    }
+    </script>
 
 
 

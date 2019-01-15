@@ -62,6 +62,9 @@ public class MessageDAO {
 	public int noticeMessageJson(MessageRecieveVO receivevo) {
 		return mybatis.selectOne("noticeMessageJson", receivevo);
 	}
+	public List<MessageRecieveVO> getAdminReceiveMessageList(MessageRecieveVO vo) {
+		return mybatis.selectList("getAdminReceiveMessageList", vo);
+	}
 
 	
 }

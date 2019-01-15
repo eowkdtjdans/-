@@ -32,6 +32,10 @@
         WHERE RECEIVE.RECEIVE_SENDER = PI.M_ID
         AND RECEIVE.RECEIVE_RECEIVER = #{receive_receiver} 
         AND PI.P_MAIN = 1
+        ORDER BY RECEIVE_IDX DESC
+	</select>
+	<select id="getAdminReceiveMessageList" resultType="messageReceive" parameterType="messageReceive">
+		 SELECT * FROM MESSAGE_RECEIVE WHERE RECEIVE_RECEIVER = #{receive_receiver} ORDER BY RECEIVE_IDX DESC
 	</select>
 	
 	<select id="MessageReceiveVO" resultType="messageReceive">

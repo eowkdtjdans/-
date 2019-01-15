@@ -221,7 +221,7 @@ function move() {
 }
 
 function sendMessage(m_id){
-	location.href="/insertMessage.do?message_receiver="+m_id;
+	location.href="/insertHostMessage.do?message_receiver="+m_id;
 }
 
 function insertHost(frm) {
