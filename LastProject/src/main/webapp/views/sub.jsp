@@ -60,11 +60,28 @@
         margin-top: -30px;
    }
    #header {
-        background-color: #BDD3DE;
+        background-color: 	white;
    }
    #header.header-scrolled {
-        background-color: #BDD3DE;
+        background-color: white;
    }
+   
+   .nav-menu li a{
+   	color: black;
+   }	
+   #mainLogo{
+   	color: black;
+   	position: absolute;
+   	margin-left: 80px;
+   	margin-top: -10px;
+   	font-size: 2.15em;
+   }
+   #happy{
+   	position: absolute;
+   	margin-left: 20px;
+   	margin-top: -20px;
+   }
+
 </style>
 
 
@@ -131,6 +148,7 @@ $(function(){
       });    
    }
 
+
 </script>    
  
 </head>
@@ -144,10 +162,8 @@ $(function(){
   <form id="noticeMessage" method="GET">
     <div class="container-fluid">
       <input type="hidden" id="receive_receiver" name="receive_receiver" value="${member.m_id }" />
-      <div id="logo" class="pull-left">
-        <h1><a href="#intro" class="scrollto">Couch Surfing</a></h1>
-        <!-- Uncomment below if you prefer to use an image logo -->
-        <!-- <a href="#intro"><img src="img/logo.png" alt="" title="" /></a>-->
+      <div id="log" class="pull-left">
+        <img src="views/img/happy.png" id="happy"><a href="#intro" class="scrollto" id="mainLogo">&nbsp;couch surfing</a>        
       </div>
     </div>
   </form>
@@ -217,8 +233,8 @@ $(function(){
            
       
         
+<hr>
   </header><!-- #header -->
-
 
    <!--==========================
       About Us Section
@@ -282,160 +298,99 @@ $(function(){
       <div class="container">
 
         <header class="section-header">
-          <h3 class="section-title">Our Portfolio</h3>
+          <h3 class="section-title">Event Picture</h3>
         </header>
 
         <div class="row">
           <div class="col-lg-12">
             <ul id="portfolio-flters">
               <li data-filter="*" class="filter-active">All</li>
-              <li data-filter=".filter-app">App</li>
-              <li data-filter=".filter-card">Card</li>
-              <li data-filter=".filter-web">Web</li>
+              <li data-filter=".filter-asia" onclick="asia()">아시아</li>
+              <li data-filter=".filter-europe">유럽</li>
+              <li data-filter=".filter-oceania">오세아니아</li>
+              <li data-filter=".filter-northAmerica">북아메리카</li>
+              <li data-filter=".filter-southAmerica">남아메리카</li>
             </ul>
           </div>
         </div>
 
-        <div class="row portfolio-container">
+    <div class="row portfolio-container">
 
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app wow fadeInUp">
+	<c:forEach var="list" items="${selectRegionAsia }">
+          <div class="col-lg-4 col-md-6 portfolio-item filter-asia wow fadeInUp">
+            <div class="portfolio-wrap">             
+                <a href="../getEvent.do?e_idx=${list.e_idx }"><img src="${list.e_img }" class="img-fluid" alt=""></a>
+              
+              <div class="portfolio-info">
+                <h4><a href="../getEvent.do?e_idx=${list.e_idx }">${list.e_name }</a></h4>
+                <p>${list.e_tag }</p>
+              </div>
+            </div>
+          </div>          
+   </c:forEach>
+      
+          
+	<c:forEach var="list" items="${selectRegionEurope }">
+          <div class="col-lg-4 col-md-6 portfolio-item filter-europe wow fadeInUp" data-wow-delay="0.1s">
             <div class="portfolio-wrap">
-              <figure>
-                <img src="img/portfolio/app1.jpg" class="img-fluid" alt="">
-                <a href="img/portfolio/app1.jpg" data-lightbox="portfolio" data-title="App 1" class="link-preview" title="Preview"><i class="ion ion-eye"></i></a>
-                <a href="#" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
-              </figure>
+                <a href="../getEvent.do?e_idx=${list.e_idx }"><img src="${list.e_img }" class="img-fluid" alt=""></a>
 
               <div class="portfolio-info">
-                <h4><a href="#">App 1</a></h4>
-                <p>App</p>
+                <h4><a href="../getEvent.do?e_idx=${list.e_idx }">${list.e_name }</a></h4>
+                <p>${list.e_tag }</p>
               </div>
             </div>
           </div>
+	</c:forEach>
 
-          <div class="col-lg-4 col-md-6 portfolio-item filter-web wow fadeInUp" data-wow-delay="0.1s">
+
+	<c:forEach var="list" items="${selectRegionOceania }">
+          <div class="col-lg-4 col-md-6 portfolio-item filter-oceania wow fadeInUp" data-wow-delay="0.2s">
             <div class="portfolio-wrap">
-              <figure>
-                <img src="img/portfolio/web3.jpg" class="img-fluid" alt="">
-                <a href="img/portfolio/web3.jpg" class="link-preview" data-lightbox="portfolio" data-title="Web 3" title="Preview"><i class="ion ion-eye"></i></a>
-                <a href="#" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
-              </figure>
+                <a href="../getEvent.do?e_idx=${list.e_idx }"><img src="${list.e_img }" class="img-fluid" alt=""></a>
 
               <div class="portfolio-info">
-                <h4><a href="#">Web 3</a></h4>
-                <p>Web</p>
+                <h4><a href="../getEvent.do?e_idx=${list.e_idx }">${list.e_name }</a></h4>
+                <p>${list.e_tag }</p>
               </div>
             </div>
           </div>
+	</c:forEach>
 
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app wow fadeInUp" data-wow-delay="0.2s">
+
+
+	<c:forEach var="list" items="${selectRegionNorthAmerica }">
+          <div class="col-lg-4 col-md-6 portfolio-item filter-northAmerica wow fadeInUp">
             <div class="portfolio-wrap">
-              <figure>
-                <img src="img/portfolio/app2.jpg" class="img-fluid" alt="">
-                <a href="img/portfolio/app2.jpg" class="link-preview" data-lightbox="portfolio" data-title="App 2" title="Preview"><i class="ion ion-eye"></i></a>
-                <a href="#" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
-              </figure>
+                <a href="../getEvent.do?e_idx=${list.e_idx }"><img src="${list.e_img }" class="img-fluid" alt=""></a>
 
               <div class="portfolio-info">
-                <h4><a href="#">App 2</a></h4>
-                <p>App</p>
+                <h4><a href="../getEvent.do?e_idx=${list.e_idx }">${list.e_name }</a></h4>
+                <p>${list.e_tag }</p>
               </div>
             </div>
           </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-card wow fadeInUp">
+    </c:forEach>    
+          
+                    
+	<c:forEach var="list" items="${selectRegionSouthAmerica }">
+          <div class="col-lg-4 col-md-6 portfolio-item filter-southAmerica wow fadeInUp" data-wow-delay="0.1s">
             <div class="portfolio-wrap">
-              <figure>
-                <img src="img/portfolio/card2.jpg" class="img-fluid" alt="">
-                <a href="img/portfolio/card2.jpg" class="link-preview" data-lightbox="portfolio" data-title="Card 2" title="Preview"><i class="ion ion-eye"></i></a>
-                <a href="#" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
-              </figure>
+                <a href="../getEvent.do?e_idx=${list.e_idx }"><img src="${list.e_img }" class="img-fluid" alt=""></a>
 
               <div class="portfolio-info">
-                <h4><a href="#">Card 2</a></h4>
-                <p>Card</p>
+                <h4><a href="../getEvent.do?e_idx=${list.e_idx }">${list.e_name }</a></h4>
+                <p>${list.e_tag }</p>
               </div>
             </div>
           </div>
+	 </c:forEach>    
 
-          <div class="col-lg-4 col-md-6 portfolio-item filter-web wow fadeInUp" data-wow-delay="0.1s">
-            <div class="portfolio-wrap">
-              <figure>
-                <img src="img/portfolio/web2.jpg" class="img-fluid" alt="">
-                <a href="img/portfolio/web2.jpg" class="link-preview" data-lightbox="portfolio" data-title="Web 2" title="Preview"><i class="ion ion-eye"></i></a>
-                <a href="#" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
-              </figure>
 
-              <div class="portfolio-info">
-                <h4><a href="#">Web 2</a></h4>
-                <p>Web</p>
-              </div>
-            </div>
-          </div>
 
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app wow fadeInUp" data-wow-delay="0.2s">
-            <div class="portfolio-wrap">
-              <figure>
-                <img src="img/portfolio/app3.jpg" class="img-fluid" alt="">
-                <a href="img/portfolio/app3.jpg" class="link-preview" data-lightbox="portfolio" data-title="App 3" title="Preview"><i class="ion ion-eye"></i></a>
-                <a href="#" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
-              </figure>
+     </div>
 
-              <div class="portfolio-info">
-                <h4><a href="#">App 3</a></h4>
-                <p>App</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-card wow fadeInUp">
-            <div class="portfolio-wrap">
-              <figure>
-                <img src="img/portfolio/card1.jpg" class="img-fluid" alt="">
-                <a href="img/portfolio/card1.jpg" class="link-preview" data-lightbox="portfolio" data-title="Card 1" title="Preview"><i class="ion ion-eye"></i></a>
-                <a href="#" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
-              </figure>
-
-              <div class="portfolio-info">
-                <h4><a href="#">Card 1</a></h4>
-                <p>Card</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-card wow fadeInUp" data-wow-delay="0.1s">
-            <div class="portfolio-wrap">
-              <figure>
-                <img src="img/portfolio/card3.jpg" class="img-fluid" alt="">
-                <a href="img/portfolio/card3.jpg" class="link-preview" data-lightbox="portfolio" data-title="Card 3" title="Preview"><i class="ion ion-eye"></i></a>
-                <a href="#" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
-              </figure>
-
-              <div class="portfolio-info">
-                <h4><a href="#">Card 3</a></h4>
-                <p>Card</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-web wow fadeInUp" data-wow-delay="0.2s">
-            <div class="portfolio-wrap">
-              <figure>
-                <img src="img/portfolio/web1.jpg" class="img-fluid" alt="">
-                <a href="img/portfolio/web1.jpg" class="link-preview" data-lightbox="portfolio" data-title="Web 1" title="Preview"><i class="ion ion-eye"></i></a>
-                <a href="#" class="link-details" title="More Details"><i class="ion ion-android-open"></i></a>
-              </figure>
-
-              <div class="portfolio-info">
-                <h4><a href="#">Web 1</a></h4>
-                <p>Web</p>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
+     </div>
     </section><!-- #portfolio -->
 
 
@@ -444,42 +399,44 @@ $(function(){
       <div class="container">
 
         <header class="section-header wow fadeInUp">
-          <h3>Services</h3>
-          <p>Laudem latine persequeris id sed, ex fabulas delectus quo. No vel partiendo abhorreant vituperatoribus, ad pro quaestio laboramus. Ei ubique vivendum pro. At ius nisl accusam lorenta zanos paradigno tridexa panatarel.</p>
+          <h3><img src="/views/img/saysomething.png" style="width: 60px; height: 60px;">&nbsp;Say something</h3>
+          <p>카우치 서핑에 대한 안좋은 뉴스를 본 분들도 있을 것입니다.
+			하지만 정말 극소수의 일이고 너무 걱정이 되는 사람은 하지 않는 편이 좋다고 생각합니다.
+			혹시 모를 상황에 대비해 미리 내가 어떻게 처신할지 
+			생각해 놓는 것도 좋은 방법입니다. 단편적인 일들로 
+			카우치 서핑에 대해 안좋은 인식을 갖지 않았으면 좋겠습니다.</p>
         </header>
 
         <div class="row">
 
-          <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-duration="1.4s">
-            <div class="icon"><i class="ion-ios-analytics-outline"></i></div>
-            <h4 class="title"><a href="">Lorem Ipsum</a></h4>
-            <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
+          <div class="col-md-12 box wow bounceInUp" data-wow-duration="1.4s">
+            <div class="icon"><img src="/views/img/why.png" style="width: 70px; height: 70px;"></div>
+            <h4 class="title"><a href="">Why do Couch Surfing</a></h4>
+            <p class="description">개인적인 이유들이 있을테지만 가장 큰 장점은
+			여행자와 호스트가 서로의 생활에 깊숙히 관여하게 됨으로써			
+			여행지에 대한 이해도를 넓히고 서로의 문화를 느낄 수			
+			있게 되는 점입니다.</p>
           </div>
-          <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-duration="1.4s">
-            <div class="icon"><i class="ion-ios-bookmarks-outline"></i></div>
-            <h4 class="title"><a href="">Dolor Sitema</a></h4>
-            <p class="description">Minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat tarad limino ata</p>
+          <div class="col-md-12 box wow bounceInUp" data-wow-duration="1.4s">
+            <div class="icon">&emsp;<img src="/views/img/problem.png" style="width: 40px; height: 40px;">&nbsp;&nbsp;&nbsp;</div>
+            <h4 class="title"><a href="">Couch Surfing Notice</a></h4>
+            <p class="description">&nbsp;많은 사람들이 단순히 호스트를 구하는데에만 너무 집중하는 것 같습니다.
+			가장 중요한 것은 카우치 서핑에 대한 서로의 이해도가 높아야한다는 점입니다.
+			카우치 서핑을 구하는 사람의 입장에서 얘기 하자면 카우치 서핑은 무료 호텔이 아닙니다.
+			혼자있고 싶다면, 그리고 단순히 잠자리만을 위한다면 절대로 하지 않아야 합니다.
+			여행을 즐기며 문화나 그들의 이야기를 나누는 소통의 자세가 필요합니다.</p>
           </div>
-          <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-duration="1.4s">
-            <div class="icon"><i class="ion-ios-paper-outline"></i></div>
-            <h4 class="title"><a href="">Sed ut perspiciatis</a></h4>
-            <p class="description">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur</p>
+          <div class="col-md-12 box wow bounceInUp" data-wow-duration="1.4s"> 
+            <div class="icon">&nbsp;&nbsp;  <img src="/views/img/tip.png" style="width: 45px; height: 45px;"></i></div>
+            <h4 class="title"><a href="">&nbsp;Couch Surfing Tip</a></h4>
+            <p class="description">&nbsp;카우치 서핑을 하면서 호스트가 무언가 불편한 요구를 할 수 있습니다.
+			강제로 청소를 시킨다던지 심하면 성적인 발언까지 하는 경우입니다.
+			그런 상황에 직면했을 때 가장 중요한 것은 자신이 생각했을때 불편한 생각이
+			든다면 정확하게 싫다는 표현을 하는 것입니다.
+            </p>
           </div>
-          <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s">
-            <div class="icon"><i class="ion-ios-speedometer-outline"></i></div>
-            <h4 class="title"><a href="">Magni Dolores</a></h4>
-            <p class="description">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
-          </div>
-          <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s">
-            <div class="icon"><i class="ion-ios-barcode-outline"></i></div>
-            <h4 class="title"><a href="">Nemo Enim</a></h4>
-            <p class="description">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque</p>
-          </div>
-          <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s">
-            <div class="icon"><i class="ion-ios-people-outline"></i></div>
-            <h4 class="title"><a href="">Eiusmod Tempor</a></h4>
-            <p class="description">Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi</p>
-          </div>
+      
+    
 
         </div>
 

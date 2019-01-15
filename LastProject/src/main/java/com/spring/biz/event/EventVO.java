@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class EventVO {
 	private int e_idx, e_upvote, e_reviewcount, e_count;
-	private String e_address, e_name, e_content, e_region, e_tag;
+	private String e_address, e_name, e_content, e_region, e_tag, e_img, e_main;
 	private Date e_startdate, e_enddate;
 	private double lat, lng;
 
@@ -89,13 +89,26 @@ public class EventVO {
 		this.e_count = e_count;
 	}
 	
+	public String getE_img() {
+		return e_img;
+	}
+	public void setE_img(String e_img) {
+		this.e_img = e_img;
+	}
+	public String getE_main() {
+		return e_main;
+	}
+	public void setE_main(String e_main) {
+		this.e_main = e_main;
+	}
 	@Override
 	public String toString() {
-		return "EventVO [e_idx=" + e_idx + ", e_upvote=" + e_upvote + ", e_reviewcount=" + e_reviewcount + ", lat="
-				+ lat + ", lng=" + lng + ", e_count=" + e_count + ", e_address=" + e_address + ", e_name=" + e_name
-				+ ", e_content=" + e_content + ", e_region=" + e_region + ", e_tag=" + e_tag + ", e_startdate="
-				+ e_startdate + ", e_enddate=" + e_enddate + "]";
+		return "EventVO [e_idx=" + e_idx + ", e_upvote=" + e_upvote + ", e_reviewcount=" + e_reviewcount + ", e_count="
+				+ e_count + ", e_address=" + e_address + ", e_name=" + e_name + ", e_content=" + e_content
+				+ ", e_region=" + e_region + ", e_tag=" + e_tag + ", e_img=" + e_img + ", e_main=" + e_main
+				+ ", e_startdate=" + e_startdate + ", e_enddate=" + e_enddate + ", lat=" + lat + ", lng=" + lng + "]";
 	}
+	
 	
 	
 	

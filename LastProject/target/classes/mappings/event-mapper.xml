@@ -41,7 +41,51 @@
 		UPDATE EVENT SET E_REVIEWCOUNT = E_REVIEWCOUNT+1  WHERE E_IDX = #{e_idx }
 	</update>
 	
+	<select id="EventList" resultType="event">
+		SELECT E.*, EI.* FROM (EVENT)E, (EVENT_IMAGE)EI WHERE E.E_IDX=EI.E_IDX AND E_MAIN=1
+	</select>
+	
+	<select id="selectRegion" parameterType="String" resultType="event">
+		SELECT E.*, EI.* FROM (EVENT)E, (EVENT_IMAGE)EI WHERE E.E_IDX=EI.E_IDX AND E.E_REGION=#{e_region} AND EI.E_MAIN=1
+	</select>
+	
+	
+	
+	<!-- region 5가지 -->
+	<select id="selectRegionAsia" resultType="event">
+		SELECT E.*, EI.* FROM (EVENT)E, (EVENT_IMAGE)EI WHERE E.E_IDX=EI.E_IDX AND E.E_REGION='아시아' AND EI.E_MAIN=1
+	</select>
+	
+	<select id="selectRegionEurope" resultType="event">
+		SELECT E.*, EI.* FROM (EVENT)E, (EVENT_IMAGE)EI WHERE E.E_IDX=EI.E_IDX AND E.E_REGION='유럽' AND EI.E_MAIN=1
+	</select>
+	
+	<select id="selectRegionOceania" resultType="event">
+		SELECT E.*, EI.* FROM (EVENT)E, (EVENT_IMAGE)EI WHERE E.E_IDX=EI.E_IDX AND E.E_REGION='오세아니아' AND EI.E_MAIN=1
+	</select>
+	
+	<select id="selectRegionNorthAmerica" resultType="event">
+		SELECT E.*, EI.* FROM (EVENT)E, (EVENT_IMAGE)EI WHERE E.E_IDX=EI.E_IDX AND E.E_REGION='북아메리카' AND EI.E_MAIN=1
+	</select>
+	
+	<select id="selectRegionSouthAmerica" resultType="event">
+		SELECT E.*, EI.* FROM (EVENT)E, (EVENT_IMAGE)EI WHERE E.E_IDX=EI.E_IDX AND E.E_REGION='남아메리카' AND EI.E_MAIN=1
+	</select>
+	
+	
+	
+	
+	
+	
 </mapper>
+
+
+
+
+
+
+
+
 
 
 

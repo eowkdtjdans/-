@@ -46,4 +46,42 @@ public class EventDAO {
 	public void upreviewcount(int e_idx) {
 		mybatis.update("upreviewcount", e_idx);
 	}
+	
+	public List<EventVO> EventList(){
+		return mybatis.selectList("EventList");
+	}
+	
+	public List<EventVO> selectRegion(String e_region){
+		return mybatis.selectList("selectRegion", e_region);
+	}
+	
+	/*List<EventVO> selectRegionAsia();
+	List<EventVO> selectRegionEurope();
+	List<EventVO> selectRegionOceania();
+	List<EventVO> selectRegionNorthAmerica();
+	List<EventVO> selectRegionSouthAmerica();*/
+	public List<EventVO> selectRegionAsia(){
+		return mybatis.selectList("selectRegionAsia");
+	}
+	public List<EventVO> selectRegionEurope(){
+		return mybatis.selectList("selectRegionEurope");
+	}
+	public List<EventVO> selectRegionOceania(){
+		return mybatis.selectList("selectRegionOceania");
+	}
+	public List<EventVO> selectRegionNorthAmerica(){
+		return mybatis.selectList("selectRegionNorthAmerica");
+	}
+	public List<EventVO> selectRegionSouthAmerica(){
+		return mybatis.selectList("selectRegionSouthAmerica");
+	}
+	
+	
+	
+	
+	
 }
+
+
+
+

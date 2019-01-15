@@ -96,7 +96,7 @@ table .noline {
 
 /* #slideimg{
 	width: 600px;
-	height: 450px; 
+	height: 450px;
 } */
 
 
@@ -380,7 +380,7 @@ table .noline {
                   </tr>
                   <%-- <fmt:formatDate value="${getEvent.e_startdate}" pattern="yyyy-MM-dd" var="startdate"/>
                   <fmt:formatDate value="${getEvent.e_enddate}" pattern="yyyy-MM-dd" var="enddate"/> --%>
-                  <fmt:formatDate value="${getEvent.e_date }" pattern="yyyy-MM-dd" var="date"/>
+                  <fmt:formatDate value="${getEvent.e_startdate }" pattern="yyyy-MM-dd" var="date"/>
                   <tr>
                      <%-- <td>관리자&emsp;&emsp;${startdate} ~ ${enddate}</td> --%>
                      <td>관리자 &emsp;&emsp; ${date}</td>
@@ -394,7 +394,7 @@ table .noline {
 			                  <a id="good" href="#" onclick="good()"><img src="views/img/good.png" style="width: 20px; height: 20px;"> 좋아요!</a>
 			               </c:when>
 			               <c:otherwise>
-			                  <span id="span">${getLocalAdvice.l_upvote } 명이 좋아합니다..</span>
+			                  <span id="span">${getEvent.e_upvote } 명이 좋아합니다..</span>
 			                  &emsp;
 			                  <a id="good" href="#"><img src="views/img/good.png" style="width: 20px; height: 20px;"> 좋아요!</a>
 			               </c:otherwise>

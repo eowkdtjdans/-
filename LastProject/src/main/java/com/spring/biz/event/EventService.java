@@ -25,4 +25,21 @@ public interface EventService {
 	void downdet(int e_idx);
 	
 	void upreviewcount(int e_idx);
+	
+	//서브페이지에서 사진보여주기
+	List<EventVO> EventList();
+	
+	List<EventVO> selectRegion(String e_region);
+	
+	
+	//region 5가지
+	List<EventVO> selectRegionAsia();
+	List<EventVO> selectRegionEurope();
+	List<EventVO> selectRegionOceania();
+	List<EventVO> selectRegionNorthAmerica();
+	List<EventVO> selectRegionSouthAmerica();
+	
+	
+	
+	
 }

@@ -111,7 +111,12 @@ function insertTravelers(frm) {
 };
 
 function deleteTravelers(m_id) {
-	location.href="../deleteTravelers.do?m_id="+m_id;
+	 var con_test = confirm("정말 삭제하시겠습니까?");
+	   	if(con_test == true) {
+	   		location.href="../deleteTravelers.do?m_id="+m_id;
+	   	} else{
+	   		return false;
+	   	}	
 }
 </script>
 <script>
@@ -247,9 +252,8 @@ $(document).ready(function(){
                   <h6 class="card-title">${list.m_id}</h6>
                   <hr />
                   <p class="card-text">${list.t_country}</p>
-                  <hr />
-                  <a href="../../travelersGetInfo.do?m_id=${list.m_id }" class="btn btn-light">See Profile</a>
-                  <button type="button" class="btn btn-light" data-toggle="modal" data-target="#myModal${list.m_id }">Open modal</button>
+                  <hr />                  
+                  <button type="button" class="btn btn-light" data-toggle="modal" data-target="#myModal${list.m_id }">See Profile</button>
                 </span>
              </span>
             </c:forEach>

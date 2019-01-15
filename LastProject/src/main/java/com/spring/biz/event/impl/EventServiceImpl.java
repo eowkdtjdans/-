@@ -54,4 +54,39 @@ public class EventServiceImpl implements EventService {
 		eventDAO.upreviewcount(e_idx);
 	}
 
+	@Override
+	public List<EventVO> EventList() {
+		return eventDAO.EventList();
+	}
+
+	@Override
+	public List<EventVO> selectRegion(String e_region) {
+		return eventDAO.selectRegion(e_region);
+	}
+
+	@Override
+	public List<EventVO> selectRegionAsia() {
+		return eventDAO.selectRegionAsia();
+	}
+
+	@Override
+	public List<EventVO> selectRegionEurope() {
+		return eventDAO.selectRegionEurope();
+	}
+
+	@Override
+	public List<EventVO> selectRegionOceania() {
+		return eventDAO.selectRegionOceania();
+	}
+
+	@Override
+	public List<EventVO> selectRegionNorthAmerica() {
+		return eventDAO.selectRegionNorthAmerica();
+	}
+
+	@Override
+	public List<EventVO> selectRegionSouthAmerica() {
+		return eventDAO.selectRegionSouthAmerica();
+	}
+
 }
