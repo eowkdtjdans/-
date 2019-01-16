@@ -10,6 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 @Service("fileUploadService")
 public class FileUploadService {
 	private static final String SAVE_PATH = "C:/MyStudy/GIT/gukbong/LastProject/src/main/webapp/views/img/upload";
+	private static final String SERVER_SAVE_PATH = "C:/MyStudy/GIT/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/LastProject/views/img/upload";
 	/*private static final String SAVE_PATH = "C:/MyStudy/GIT/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/LastProject/views/img/upload/";*/
 	private static final String PREFIX_URL = "/views/img/upload/";
 	
@@ -63,6 +64,10 @@ public class FileUploadService {
 		FileOutputStream fos = new FileOutputStream(SAVE_PATH + "/" + saveFileName);
 		fos.write(data);
 		fos.close();
+		
+		FileOutputStream fos2 = new FileOutputStream(SERVER_SAVE_PATH + "/" + saveFileName);
+		fos2.write(data);
+		fos2.close();
 		
 		return result;
 	}
