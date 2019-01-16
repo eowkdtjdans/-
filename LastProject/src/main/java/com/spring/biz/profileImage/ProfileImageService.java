@@ -23,6 +23,8 @@ public interface ProfileImageService {
 	void updateMainProfileImage(ProfileImageVO vo);
 
 	void mainProfileImageInit(ProfileImageVO vo);
+	
+	ProfileImageVO getProfileImageRoute(String m_id);
 
 	
 }

@@ -29,17 +29,24 @@ public class MessageController {
 	public MessageController() {
 		System.out.println("===== 메세지 컨트롤러 시작");
 	}
-	@RequestMapping(value="/noticeMessageJson.do", method=RequestMethod.POST)
-    @ResponseBody
-    public Map<Object, Object> noticeMessageJson(MessageRecieveVO receivevo) {
-        int count = 0;
-        Map<Object, Object> map = new HashMap<Object, Object>();
-        
-        count = messageService.noticeMessageJson(receivevo);
-        map.put("cnt", count);
- 
-        return map;
-    }
+	
+	
+	
+	
+	   @RequestMapping(value="/noticeMessageJson.do", method=RequestMethod.POST)
+	    @ResponseBody
+	    public Map<Object, Object> noticeMessageJson(HttpSession session, MessageRecieveVO receivevo) {
+	        int count = 0;
+	        Map<Object, Object> map = new HashMap<Object, Object>();
+	        
+	        count = messageService.noticeMessageJson(receivevo);
+	        map.put("cnt", count);
+	        session.setAttribute("messageCount", count);
+	        return map;
+	   }
+	
+	
+	
 	
 	@RequestMapping(value="/insertMessage.do", method=RequestMethod.GET) 
 	public String insertMessageGet(MessageSendVO vo, @RequestParam("message_receiver") String message_receiver, HttpSession session) {
