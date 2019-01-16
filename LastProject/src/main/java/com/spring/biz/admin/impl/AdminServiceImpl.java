@@ -11,9 +11,9 @@ import com.spring.biz.admin.AdminService;
 import com.spring.biz.admin.UserAdminCommentVO;
 import com.spring.biz.admin.UserAdminPostVO;
 import com.spring.biz.admin.UserAdminViewVO;
+import com.spring.biz.admin.logLoginVO;
 import com.spring.biz.event.EventVO;
 import com.spring.biz.member.MemberVO;
-import com.spring.biz.profileImage.ProfileImageVO;
 
 @Service("adminService")
 public class AdminServiceImpl implements AdminService {

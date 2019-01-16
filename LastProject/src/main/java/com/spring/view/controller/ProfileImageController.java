@@ -154,7 +154,7 @@ public class ProfileImageController {
 	@RequestMapping(value="profileImageInsert.do", method=RequestMethod.GET)
 	public String ProfileImageInsert() {
 		System.out.println("프로필이미지인서트");
-		return "/views/profile/ProfileImageInsert.jsp";
+		return "redirect:/views/profile/ProfileImageInsert.jsp";
 	}
 	
 	@RequestMapping(value="uploadProfileImg.do", method=RequestMethod.POST)
@@ -186,7 +186,7 @@ public class ProfileImageController {
 			session.setAttribute("profile", profileVO2);
 		}
 		
-		return "redirect:/sub2.do";
+		return "redirect:/profileImageList.do?m_id="+m_id;
 	}
 	
 	

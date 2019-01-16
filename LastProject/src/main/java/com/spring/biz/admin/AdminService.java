@@ -3,11 +3,8 @@ package com.spring.biz.admin;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.web.multipart.MultipartFile;
-
 import com.spring.biz.event.EventVO;
 import com.spring.biz.member.MemberVO;
-import com.spring.biz.profileImage.ProfileImageVO;
 
 public interface AdminService {
 	void logVisit(Map<String, String> lvMap);
