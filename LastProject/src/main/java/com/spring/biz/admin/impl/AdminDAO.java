@@ -11,7 +11,6 @@ import com.spring.biz.admin.AdminCntVO;
 import com.spring.biz.admin.UserAdminCommentVO;
 import com.spring.biz.admin.UserAdminPostVO;
 import com.spring.biz.admin.UserAdminViewVO;
-import com.spring.biz.admin.logLoginVO;
 import com.spring.biz.event.EventVO;
 import com.spring.biz.member.MemberVO;
 import com.spring.biz.profileImage.ProfileImageVO;
@@ -61,6 +60,10 @@ public class AdminDAO {
 		mybatis.insert("insertEventImg", eventImgMap);
 	}
 
+	public void adminDeleteProfileImage(Map<String, String> delParam) {
+		mybatis.delete("adminDeleteProfileImage", delParam);
+	}
+	
 	public List<logLoginVO> getLoginRecord(logLoginVO vo) {
 		return mybatis.selectList("getLoginRecord", vo);
 	}

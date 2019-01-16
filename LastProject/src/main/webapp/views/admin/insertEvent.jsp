@@ -148,40 +148,42 @@ $(function(){
 </script>
 <script>
 $(function(){
-	localStorage.imgFileCnt = 0;
+	localStorage.imgFileCnt = 1;
 	localStorage.totSize = 0;
 	
-	$(".userFile").change(function(){
-		var imgFile = $("#e_img").val();
-		var imgFileLength = $("#e_img").val().length;
+	$(document).on("change",".userFile",function(){
+		var imgFile = $("#e_img"+localStorage.imgFileCnt).val();
+		var imgFileLength = $("#e_img"+localStorage.imgFileCnt).val().length;
 		var imgFileExtendArray = imgFile.split('.');
 		var idArray = imgFile.split('\\');
 		var imgFileExtend = imgFileExtendArray[1];
 		
 		var id = idArray[2] + localStorage.imgFileCnt;
 		
-		var size = document.getElementById("e_img").files[0].size;
+		var size = document.getElementById("e_img"+localStorage.imgFileCnt).files[0].size;
 		
 		if(localStorage.imgFileCnt >= 10) {
 			$("#typeWrong").remove();
-			$("<div id='typeWrong'><b>파일은 최대 10개까지 올릴 수 있습니다.</b></div>").insertAfter("#e_img");
+			$("<div id='typeWrong'><b>파일은 최대 10개까지 올릴 수 있습니다.</b></div>").insertAfter("#e_img"+localStorage.imgFileCnt);
 		} else {
 			if(imgFileExtend=="jpg" || imgFileExtend=="png" || imgFileExtend=="gif" || imgFileExtend=="jpeg" || imgFileExtend=="JPG" || imgFileExtend=="PNG" || imgFileExtend=="GIF" || imgFileExtend=="JPEG") {
 				if(size <= 20971520 && localStorage.totSize <= 20971520) {
-					localStorage.imgFileCnt = (localStorage.imgFileCnt * 1 + 1);
 					localStorage.totSize = (localStorage.totSize * 1 + size);
 					$("#typeWrong").remove();
-					$("<input type='file' id='upload"+id+"' name='file"+localStorage.imgFileCnt+"' style='display:none'>").insertAfter("#e_img");
+					$("#e_img"+localStorage.imgFileCnt).attr("name", "file"+localStorage.imgFileCnt);
+					$(".custom-file").css("display", "none");
+					
+					localStorage.imgFileCnt = (localStorage.imgFileCnt * 1 + 1);
+					$("<div class='custom-file'><input type='file' class='custom-file-input userFile' id='e_img"+localStorage.imgFileCnt+"'><label id='file-label' class='custom-file-label' for='e_img"+localStorage.imgFileCnt+"'>이미지 업로드</label></div>").insertAfter("#fileAfter");
+					
 					$("<tr id='"+id+"'><td>"+imgFile+"</td><td id='size"+id+"'>"+size+"</td><td class='file_remove'><button type='button' class='btn btn-outline-secondary' onclick='file_remove(\""+id+"\")'><i class='fas fa-trash-alt'></i></button></td></tr>").insertAfter("#fileTr");
-					$("#e_img").value = "";
 				} else {
 					$("#typeWrong").remove();
-					$("<div id='typeWrong'><b>파일 용량이 너무 큽니다.</b></div>").insertAfter("#e_img");
+					$("<div id='typeWrong'><b>파일 용량이 너무 큽니다.</b></div>").insertAfter("#e_img"+localStorage.imgFileCnt);
 				}
 			} else {
 				$("#typeWrong").remove();
-				$("<div id='typeWrong'><b>파일 유형이 잘못되었습니다.</b></div>").insertAfter("#e_img");
-				$("#e_img").value = "";
+				$("<div id='typeWrong'><b>파일 유형이 잘못되었습니다.</b></div>").insertAfter("#e_img"+localStorage.imgFileCnt);
 			}
 		}
 		
@@ -190,43 +192,15 @@ $(function(){
 });
 
 function file_remove(id) {
-	localStorage.imgFileCnt = (localStorage.imgFileCnt * 1 - 1);
 	localStorage.totSize =  (localStorage.totSize * 1 - document.getElementById("size" + id).childNodes[0].nodeValue);
 	document.getElementById(id).remove();
-	document.getElementById("upload"+id).remove();
+	document.getElementById("e_img"+localStorage.imgFileCnt).remove();
+	localStorage.imgFileCnt = (localStorage.imgFileCnt * 1 - 1);
 }
 
 function insertEvent(frm) {
-	
-	if (frm.e_name.value == "" || frm.e_name.value == null) {
-		alert("제목을 입력하세요.");
-		frm.e_name.value = "";
-		frm.e_name.focus();
-	} else if (frm.e_content.value == "" || frm.e_content.value == null) {
-		alert("내용을 입력하세요.");
-		frm.e_content.value = "";
-		frm.e_content.focus();
-	}  else if (frm.h_startdate.value == "" || frm.h_startdate.value == null && frm.h_enddate.value == "" || frm.h_enddate.value == null) {
-		alert("이벤트 기간을 입력하세요.");
-		frm.h_startdate.value == "";
-		frm.h_startdate.focus();
-	}  else if (frm.e_address.value == "" || frm.e_address.value == null) {
-		alert("주소를 입력하세요.");
-		frm.e_address.value = "";
-		frm.e_address.focus();
-	}  else if (frm.e_region.value == "choose") {
-		alert("대륙을 선택하세요.");
-		frm.e_region.value = "choose";
-		frm.e_region.focus();
-	}  else if (frm.e_tag.value == "" || frm.e_tag.value == null) {
-		alert("태그를 선택하세요.");
-		frm.e_tag.value = "";
-		frm.e_tag.focus();
-	}else {
-	alert("등록 완료!");
 	frm.action="/insertEvent.do";
 	frm.submit();
-	}
 }
 
 
@@ -472,12 +446,12 @@ function insertEvent(frm) {
 						<!-- text input -->
 						<div class="form-group">
 							<label>제목</label>
-							<input type="text" class="form-control" placeholder="이벤트명" name="e_name" id="e_name">
+							<input type="text" class="form-control" placeholder="이벤트명" name="e_name">
 						</div>
 						<!-- textarea -->
 						<div class="form-group">
 							<label>내용</label>
-							<textarea class="form-control" rows="3" placeholder="이벤트 내용" name="e_content" id="e_content"></textarea>
+							<textarea class="form-control" rows="3" placeholder="이벤트 내용" name="e_content"></textarea>
 						</div>
 						
 						<!-- input states -->
@@ -487,14 +461,14 @@ function insertEvent(frm) {
 	                          <div class="t-check-in"></div>
 	                          <div class="t-check-out"></div>
 	                        </div>
-	                        <input id="h_startdate" type="hidden" class="form-control" name="e_startdate" id="h_startdate" required data-eye> 
-                            <input id="h_enddate" type="hidden" class="form-control" name="e_enddate" id="h_enddate" required data-eye>
+	                        <input id="h_startdate" type="hidden" class="form-control" name="e_startdate" required data-eye> 
+                            <input id="h_enddate" type="hidden" class="form-control" name="e_enddate" required data-eye>
 						</div>
 						
 						<div class="주소">
 							<label class="control-label" for="inputWarning">
 							<i class="fa fa-bell-o"></i>주소</label>
-							<input id="autocomplete" type="text" class="form-control" name="e_address" id="e_address">
+							<input id="autocomplete" type="text" class="form-control" name="e_address">
                             <input class="field" id="lat" type="hidden" class="form-control" name="lat"/>
                             <input class="field" id="lng" type="hidden" class="form-control" name="lng"/>
 						</div>
@@ -502,8 +476,7 @@ function insertEvent(frm) {
 						<!-- select -->
 						<div class="form-group">
 							<label>대륙</label>
-							<select class="form-control" name="e_region" id="e_region">
-								<option>choose</option>
+							<select class="form-control" name="e_region">
 								<option>아시아</option>
 								<option>유럽</option>
 								<option>북아메리카</option>
@@ -529,10 +502,10 @@ function insertEvent(frm) {
 						</div>
 						
 						<div class="form-group">
-							<label>이미지 업로드</label>
+							<label id="fileAfter">이미지 업로드</label>
 							<div class="custom-file">
-								<input type="file" class="custom-file-input" id="e_img">
-								<label id="file-label" class="custom-file-label" for="e_img">이미지 업로드</label>
+								<input type="file" class="custom-file-input userFile" id="e_img1">
+								<label id="file-label" class="custom-file-label" for="e_img1">이미지 업로드</label>
 							</div>
 						</div>
 						

@@ -48,6 +48,7 @@ function getIpCountry() {
 </head>
 <body onload="getIpCountry()">
 	<h2>ㅎㅇ</h2>
+	<hr>
 
 
 	<a href="/views/test2.jsp" id="main">모달</a>
@@ -70,6 +71,7 @@ function getIpCountry() {
 	<a href="/facebookLogin.do">페이스북 로그인</a>
 	<a href="/kakaoLogin.do">카카오</a>
 	<a href="/views/loginAPI/kakaoLogout.jsp">카카오 로그아웃</a>
+	<a href="/NaverRegister.do">네이버회원가입</a>
 	<a href="/NaverRegister.do">네이버회원가입</a>
 	<p>세션 : [${m_id}] 앙기무리</p>
 	

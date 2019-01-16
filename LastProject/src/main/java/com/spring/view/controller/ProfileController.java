@@ -78,7 +78,7 @@ public class ProfileController {
 		session.setAttribute("profile", vo);
 		
 		
-		return "redirect:/myProfile.do";
+		return "redirect:/sub2.do";
 	}
 	
 	
@@ -112,7 +112,7 @@ public class ProfileController {
 		session.setAttribute("profile", vo);
 		
 		
-		return "redirect:/myProfile.do";
+		return "redirect:/sub2.do";
 	}
 	
 	@RequestMapping(value="/insetProfileJson.do", method=RequestMethod.POST)

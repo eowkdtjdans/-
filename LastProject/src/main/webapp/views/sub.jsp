@@ -48,7 +48,6 @@
    body{
       padding-top: 70px;
    }
-   
    .scrollto {
      font-family: 'Kaushan Script', cursive;
    }
