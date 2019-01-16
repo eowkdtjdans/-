@@ -186,7 +186,7 @@ public class ProfileImageController {
 			session.setAttribute("profile", profileVO2);
 		}
 		
-		return "redirect:/sub2.do";
+		return "redirect:/myProfile.do";
 	}
 	
 	
@@ -227,7 +227,7 @@ public class ProfileImageController {
 			session.setAttribute("hostImg", hostimageVO2);
 		}
 		
-		return "redirect:/sub2.do";
+		return "redirect:/myProfile.do";
 	}
 	
 	private int hostMainCnt(String m_id) {

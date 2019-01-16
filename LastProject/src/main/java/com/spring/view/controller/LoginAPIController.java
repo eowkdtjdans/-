@@ -111,7 +111,7 @@ public class LoginAPIController {
         session.setAttribute("googleProfileEmail", profile.getAccountEmail());
         session.setAttribute("googleProfileBirth", profile.getBirthday());
         session.setAttribute("googleProfileGender", profile.getGender());
-        String realName = profile.getFamilyName()+ profile.getGivenName();
+        String realName = profile.getFamilyName()+ " " +  profile.getGivenName();
         session.setAttribute("googleRealName", realName);
         // Access Token 취소
         try {
