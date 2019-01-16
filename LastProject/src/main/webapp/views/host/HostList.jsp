@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -258,12 +259,6 @@ function deleteHost(m_id) {
 
 function cardOver(m_id) {
 	
-	
-	
-	
-	
-	
-	
 }
 
 </SCRIPT>
@@ -309,20 +304,22 @@ $(document).ready(function(){
     }); 
 });
 
-
-/* function login_chk(){
-	alert("ㅎㅇ");
-	if("${member.m_id}"==""){
-		alert("로그인이 필요한 서비스입니다.");
-		$(function () {
-		    $("#insertHostBtn").on('click', function() {
-		        $('#insertHost').modal('hide');
-		    });
-		});
-		$('#insertHost').modal('hide');
-	} 
-}
- */
+</script>
+<script>
+	function openInsHostModalBtn(){
+		if('${member.m_id}' == null || '${member.m_id}' == "") {
+			alert("로그인이 필요한 서비스입니다.");
+			location.href="/loginMember.do";
+		} else {
+			$("#insertHost").modal();
+		}
+	}
+	$(document).on("click", "#viewModalBtn", function(){
+		if('${member.m_id}' == null || '${member.m_id}' == "") {
+			alert("로그인이 필요한 서비스입니다.");
+			location.href="/loginMember.do";
+		}
+	})
 </script>
 
 
@@ -414,7 +411,7 @@ $(document).ready(function(){
 	      	</c:when>                    
 	      	<c:otherwise>
       		<c:forEach var="list" items="${hostList}">
-      		<input type="hidden" name="m_id" value="${list.m_id }" id="m_id" />
+      		<input type="hidden" name="m_id" value="${list.m_id }" id="${list.m_id }" />
 	      		<span class="card" style="width:200px; height: 500px; margin : auto; text-align: center;" onmouseover="cardOver('${list.m_id}')">
 				    <img class="card-img-top" src="${list.p_route}" alt="Card image" style="width:200px; height: 200px;">
 				    <span class="card-body">
@@ -422,7 +419,7 @@ $(document).ready(function(){
 				      <hr />
 				      <p class="card-text">${list.m_address}</p>
 				      <hr />
-				      <button type="button" class="btn btn-light" data-toggle="modal" data-target="#myModal${list.m_id }">Open modal</button>
+				      <button type="button" id="viewModalBtn" class="btn btn-light" data-toggle="modal" data-target="#myModal${list.m_id }">상세보기</button>
 				    </span>
 			    </span>
       		</c:forEach>
@@ -476,7 +473,7 @@ $(document).ready(function(){
 					</c:otherwise>
 				</c:choose>
 					<li style="text-align:right;">
-						<button type="button" id="insertHostBtn" class="btn btn-outline-secondary" data-toggle="modal" data-target="#insertHost" onclick="login_chk()">호스트 등록</button>
+						<button type="button" class="btn btn-outline-secondary" onclick="openInsHostModalBtn()">호스트 등록</button>
 					</li>
 				</ol>
 			</td>
@@ -604,7 +601,7 @@ $(document).ready(function(){
 	          <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" onclick='sendMessage("${list.m_id}")'>Send Message</button>
 	        </form>   
 	          <c:if test="${list.m_id eq member.m_id}">
-	            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" onclick='deleteHost("${list.m_id}")'>등록해제</button>
+	            <button type="button" class="btn btn-outline-secondary" id="hostRegistBtn" data-dismiss="modal" onclick='deleteHost("${list.m_id}")'>등록해제</button>
 	          </c:if>
 	        </div>
 	        
@@ -630,7 +627,7 @@ $(document).ready(function(){
           <div class="row">
             <div class="col-md-12">
               <form method="POST" id="form">
-                    <input id="m_id" type="hidden" class="form-control" name="m_id" value="${member.m_id }">
+                    <input id="${member.m_id}" type="hidden" class="form-control" name="m_id" value="${member.m_id }">
                     
                     <div class="form-group row">
                          <label for="h_startdate" class="col-4 col-form-label">입실/퇴실 날짜</label> 

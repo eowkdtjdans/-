@@ -23,4 +23,6 @@ public interface AdminService {
 	List<EventVO> eventAdminList();
 	
 	AdminCntVO adminCnt();
+	
+	void adminDeleteProfileImage(Map<String, String> delParam);
 }

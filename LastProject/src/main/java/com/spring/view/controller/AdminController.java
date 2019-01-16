@@ -32,10 +32,11 @@ import com.spring.biz.member.MemberVO;
 import com.spring.biz.message.MessageRecieveVO;
 import com.spring.biz.message.MessageService;
 import com.spring.biz.profileImage.FileUploadService;
+import com.spring.biz.profileImage.ProfileImageService;
 import com.spring.biz.profileImage.ProfileImageVO;
 
 @Controller
-@SessionAttributes({"userAdminList", "userAdminViewVO", "userAdminPostList", "userAdminCommentList", "userAdminImageSelect", "eventAdminList", "adminCnt"})
+@SessionAttributes({"userAdminList", "userAdminViewVO", "userAdminPostList", "userAdminCommentList", "userAdminImageSelect", "eventAdminList", "adminCnt", "userAdminImageSelect"})
 public class AdminController {
 	@Autowired
 	private AdminService adminService;
@@ -47,6 +48,8 @@ public class AdminController {
 	private Email email;
 	@Autowired
 	private EmailSender emailSender;
+	@Autowired
+	private ProfileImageService profileImageService;
 	
 	public AdminController() {
 		System.out.println("AdminController로 옴");
@@ -154,16 +157,19 @@ public class AdminController {
 		
 		List<UserAdminPostVO> uplist = null;
 		List<UserAdminCommentVO> upclist = null;
+		List<ProfileImageVO> uilist = null;
 		
 		String m_id = request.getParameter("m_id");
 		
 		uvo = adminService.userAdminView(m_id);
 		uplist = adminService.userAdminPostList(m_id);
 		upclist = adminService.userAdminCommentList(m_id);
+		uilist = profileImageService.getProfileImageList(m_id);
 		
 		model.addAttribute("userAdminViewVO", uvo);
 		model.addAttribute("userAdminPostList", uplist);
 		model.addAttribute("userAdminCommentList", upclist);
+		model.addAttribute("userAdminImageSelect", uilist);
 		
 		return "redirect:/views/admin/pages/examples/userAdminView.jsp";
 	}
@@ -210,6 +216,16 @@ public class AdminController {
 		Date startdate = transFormat.parse(e_startdate);
 		Date enddate = transFormat.parse(e_enddate);
 		
+		System.out.println("e_name: " + e_name);
+		System.out.println("e_content: " + e_content);
+		System.out.println("startdate: " + startdate);
+		System.out.println("enddate: " + enddate);
+		System.out.println("e_address: " + e_address);
+		System.out.println("lat: " + lat);
+		System.out.println("lng: " + lng);
+		System.out.println("e_region: " + e_region);
+		System.out.println("e_tag: " + e_tag);
+		
 		EventVO eventVO = new EventVO();
 		eventVO.setE_name(e_name);
 		eventVO.setE_content(e_content);
@@ -225,9 +241,11 @@ public class AdminController {
 		
 		if(e_img1 != null) {
 			String url = fileUploadService.fileUpload(e_img1);
+			System.out.println("url: " + url);
 			Map<String, String> eventImgMap = new HashMap<String, String>();
 			eventImgMap.put("e_img", url);
 			eventImgMap.put("e_main", "1");
+			System.out.println("eventImgMap: " + eventImgMap);
 			adminService.insertEventImg(eventImgMap);
 		}
 		if(e_img2 != null) {
@@ -238,6 +256,7 @@ public class AdminController {
 			adminService.insertEventImg(eventImgMap);
 		}
 		if(e_img3 != null) {
+			System.out.println("싴발e_img3: " + e_img3);
 			String url = fileUploadService.fileUpload(e_img3);
 			Map<String, String> eventImgMap = new HashMap<String, String>();
 			eventImgMap.put("e_img", url);
@@ -295,5 +314,16 @@ public class AdminController {
 		}
 		
 		return "redirect:/eventAdmin.do";
+	}
+	
+	@RequestMapping(value="/adminDeleteProfileImage.do", method=RequestMethod.GET)
+	public String adminDeleteProfileImage(@RequestParam("m_id") String m_id, @RequestParam("p_route") String p_route) {
+		Map<String, String> delParam = new HashMap<String, String>();
+		delParam.put("m_id", m_id);
+		delParam.put("p_route", p_route);
+		
+		adminService.adminDeleteProfileImage(delParam);
+		
+		return "redirect:/userAdminView.do?m_id="+m_id;
 	}
 }

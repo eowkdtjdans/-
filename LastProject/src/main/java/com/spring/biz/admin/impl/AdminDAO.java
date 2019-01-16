@@ -60,4 +60,8 @@ public class AdminDAO {
 		mybatis.insert("insertEventImg", eventImgMap);
 	}
 
+	public void adminDeleteProfileImage(Map<String, String> delParam) {
+		mybatis.delete("adminDeleteProfileImage", delParam);
+	}
+
 }

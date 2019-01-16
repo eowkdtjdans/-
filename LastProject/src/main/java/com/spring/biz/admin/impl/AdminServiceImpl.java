@@ -70,4 +70,9 @@ public class AdminServiceImpl implements AdminService {
 		adminDAO.insertEventImg(eventImgMap);
 	}
 
+	@Override
+	public void adminDeleteProfileImage(Map<String, String> delParam) {
+		adminDAO.adminDeleteProfileImage(delParam);
+	}
+
 }
