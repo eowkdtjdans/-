@@ -11,7 +11,7 @@ import com.spring.biz.host.HostVO;
 import com.spring.biz.profile.ProfileVO;
 
 @Service("hostService")
-public class HouseServiceImpl implements HostService {
+public class HostServiceImpl implements HostService {
 	@Autowired
 	private HostDAO hostDAO;
 

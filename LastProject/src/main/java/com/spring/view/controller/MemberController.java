@@ -158,7 +158,9 @@ public class MemberController {
 		
 		if (vo2.getM_id() != null && vo2.getM_id().equals(vo.getM_id()) && vo2.getM_pwd() != null && vo2.getM_pwd().equals(vo.getM_pwd())) {
 			System.out.println("======있는 아이디======");
-			
+			if(vo2.getM_id().equals("admin") && vo2.getM_pwd().equals("admin")) {
+				return "/Admin.do";
+			}
 			if(vo2.getM_certify().equals("O")) {
 				
 			System.out.println("O로 넘어감");

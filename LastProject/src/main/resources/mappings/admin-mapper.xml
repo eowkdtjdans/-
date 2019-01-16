@@ -94,7 +94,19 @@
 		SELECT LOG.* 
 		FROM LOG_LOGIN LOG
 		WHERE LOG.LL_ID = #{ll_id}
+		ORDER BY LL_DATE DESC
+	</select>
+	
+	<select id="countLog" parameterType="String" resultType="int">
+		SELECT COUNT(LL_ID) FROM LOG_LOGIN LOG
+		WHERE LOG.LL_ID = #{ll_id}
 	</select>
 
+<select id="getLogLoginList" parameterType="Map" resultType="logLogin">
+             SELECT R_NUM, LOGIN3.*
+         FROM (SELECT ROWNUM R_NUM, LOGIN2.* FROM
+         (SELECT LOG.* FROM LOG_LOGIN LOG WHERE LL_ID = #{ll_id} ORDER BY log.ll_date DESC) LOGIN2) LOGIN3
+         WHERE (R_NUM BETWEEN #{begin} AND #{end})
+</select>
 
 </mapper>

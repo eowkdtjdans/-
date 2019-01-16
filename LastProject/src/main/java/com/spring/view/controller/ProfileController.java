@@ -15,10 +15,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.spring.biz.admin.AdminService;
+import com.spring.biz.admin.UserAdminCommentVO;
+import com.spring.biz.admin.UserAdminPostVO;
 import com.spring.biz.admin.logLoginVO;
+import com.spring.biz.host.HostVO;
 import com.spring.biz.member.MemberVO;
 import com.spring.biz.profile.ProfileService;
 import com.spring.biz.profile.ProfileVO;
+import com.spring.pagination.PagingVO;
 
 @Controller
 public class ProfileController {
@@ -32,6 +36,18 @@ public class ProfileController {
 	public ProfileController() {
 		System.out.println("=======프로필 컨트롤러 시작");
 	}
+	
+	//내글===================================
+	@RequestMapping(value="myPost.do", method=RequestMethod.GET)
+		public String myPost(Model model, @RequestParam("m_id") String m_id) {
+		List<UserAdminPostVO> uplist = null;
+		
+		uplist = adminService.userAdminPostList(m_id);
+		
+		model.addAttribute("userAdminPostList", uplist);
+		return "views/profile/ProfileMyPost.jsp";
+	}
+	
 	//=======================================
 	//마이 프로필
 	@RequestMapping(value="myProfile.do", method=RequestMethod.GET)
@@ -43,11 +59,54 @@ public class ProfileController {
 	//프로필 등록
 	
 	@RequestMapping(value="loginRecordList.do", method=RequestMethod.GET)
-		public String loginRecord(logLoginVO vo, HttpSession session) {
-		MemberVO member = (MemberVO) session.getAttribute("member");
+		public String loginRecord(Model model, logLoginVO vo,
+				HttpSession session, @RequestParam("cPage") String cPage
+				,@RequestParam("ll_id") String ll_id) {
+	/*	MemberVO member = (MemberVO) session.getAttribute("member");
 		vo.setLl_id(member.getM_id());
 		List<logLoginVO> logList = adminService.getLoginRecord(vo);
+		session.setAttribute("logList", logList);*/
+		
+		PagingVO p = new PagingVO();
+		p.setNumPerPage(7);
+		p.setPagePerBlock(5);
+		int countLog = adminService.countLog(vo.getLl_id());
+		System.out.println("countHost : " + countLog);
+		p.setTotalRecord(countLog);
+		p.setTotalPage();
+		
+		if (cPage != null) {
+			p.setNowPage(Integer.parseInt(cPage));
+		}
+		
+		p.setEnd(p.getNowPage() * p.getNumPerPage());
+		p.setBegin(p.getEnd() - p.getNumPerPage() + 1);
+				
+		int nowPage = p.getNowPage();
+		p.setBeginPage((nowPage - 1) / p.getPagePerBlock() * p.getPagePerBlock() + 1);
+		p.setEndPage(p.getBeginPage() + p.getPagePerBlock() - 1);
+		
+		if (p.getEndPage() > p.getTotalPage()) {
+			p.setEndPage(p.getTotalPage());
+		}
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("begin", p.getBegin());
+		map.put("end", p.getEnd());
+		map.put("ll_id", ll_id);
+		
+		List<logLoginVO> logLoginList = adminService.getLogLoginList(map);
+		System.out.println("logLoginList: " + logLoginList);
+		
+		List<logLoginVO> logList = adminService.getLoginRecord(vo);
 		session.setAttribute("logList", logList);
+		
+		session.setAttribute("logLoginList", logLoginList);
+		model.addAttribute("countLog", countLog);
+		model.addAttribute("pvo", p);
+		
+		session.setAttribute("cPage", cPage);
+		
 		return "views/profile/loginRecordList.jsp";
 	}
 	

@@ -136,7 +136,7 @@ $(function(){
             if (data.cnt > 0) {
                $("#noticeMessageCount").append(data.cnt);
                $("#noticeMessageCount2").append(data.cnt);
-               sessionStorage.setItem("noticeCount", data.cnt);
+              
                setInteval(function() {
                   noticeMessage()
                }, 3000);
@@ -215,21 +215,12 @@ $(function(){
             
             </ul> 
           </li>
-          
-               
-         
-       <li>
-       	 <a href="../../getReceiveMessageList.do"> <!--  id="noticeMessageCount2" -->
-       	 <i class="far fa-envelope fa-2x">${messageCount }</i></a>
-        </li>
-        
-        
-  
+  <!--==================================메세지 -->
 		  <li>    
 		    <span class="fa-layers fa-fw">
 		     <a href="../../getReceiveMessageList.do">
 		    <i class="far fa-envelope fa-2x"></i>
-		    <span class="fa-layers-counter" style="color : red;">${messageCount }</span>
+		    <span class="fa-layers-counter" style="color : red;" id="noticeMessageCount"></span>
 		    </a>
 			</span>
 		</li> 

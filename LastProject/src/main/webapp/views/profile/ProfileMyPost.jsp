@@ -8,12 +8,12 @@
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-<title>로그인 기록</title>
+<title>내 댓글</title>
 
 	<meta charset="utf-8">
 	<meta name="author" content="Kodinger">
 	<meta name="viewport" content="width=device-width,initial-scale=1">
-	<title>로그인 기록</title>
+	<title>내 댓글 </title>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 
 <style>
@@ -73,7 +73,7 @@
 		        <div class="card-body">
 		            <div class="row">
 		                <div class="col-md-12">
-		                    <h4>로그인 기록</h4>
+		                    <h4></h4>
 		                    <hr>
 		                </div>
 		            </div>
@@ -85,20 +85,17 @@
 	<table class="table">
 		<thead class="thead-light">
 		<tr>
-			<th width="50"style="text-align :center;">결과</th>
-			<th width="80"style="text-align :center;">아이피</th>
-			<th width="250" style="text-align :center;">기기정보</th>
+			
+			<th width="100"style="text-align :center;">작성글</th>
+			<th width="100"style="text-align :center;">내용</th>
 			<th width="100"style="text-align :center;">날짜</th>
-			<th width="100"style="text-align :center;">접속 국가</th>
 		</tr>
 		</thead>
-		<c:forEach var="logLoginList" items="${logLoginList }">
+		<c:forEach var="userAdminPostList" items="${userAdminPostList }">
 		<tr>
-			<td style="text-align :center;">${logLoginList.ll_result }</td>
-			<td style="text-align :center;">${logLoginList.ll_ip }</td>
-			<td style="text-align :center; font-size : 0.8em;">${logLoginList.ll_device }</td>
-			<td><fmt:formatDate value="${logLoginList.ll_date }" pattern="yyyy-MM-dd HH:mm:ss"/> </td>
-			<td style="text-align :center;">${logLoginList.ll_country }</td>
+			<td style="text-align :center;">${userAdminPostList.l_subject }</td>
+			<td style="text-align :center;">${userAdminPostList.l_content }</td>
+			<td><fmt:formatDate value="${userAdminPostList.l_date }" pattern="yyyy-MM-dd HH:mm:ss"/> </td>
 		</tr>
 		</c:forEach>
 		

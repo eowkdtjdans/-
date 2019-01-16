@@ -23,4 +23,6 @@ public interface AdminService {
 	
 	List<logLoginVO> getLoginRecord(logLoginVO vo);
 	void adminDeleteProfileImage(Map<String, String> delParam);
+	int countLog(String ll_id);
+	List<logLoginVO> getLogLoginList(Map<String, Object> map);
 }

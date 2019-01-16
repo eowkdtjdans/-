@@ -81,6 +81,16 @@ public class AdminServiceImpl implements AdminService {
 		return adminDAO.getLoginRecord(vo);
 	}
 
+	@Override
+	public int countLog(String ll_id) {
+		return adminDAO.countLog(ll_id);
+	}
+
+	@Override
+	public List<logLoginVO> getLogLoginList(Map<String, Object> map) {
+		return adminDAO.getLogLoginList(map);
+	}
+
 
 
 }

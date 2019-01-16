@@ -68,4 +68,12 @@ public class AdminDAO {
 		return mybatis.selectList("getLoginRecord", vo);
 	}
 
+	public int countLog(String ll_id) {
+		return mybatis.selectOne("countLog", ll_id);
+	}
+
+	public List<logLoginVO> getLogLoginList(Map<String, Object> map) {
+		return mybatis.selectList("getLogLoginList", map);
+	}
+
 }

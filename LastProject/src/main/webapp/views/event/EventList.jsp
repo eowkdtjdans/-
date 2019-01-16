@@ -275,7 +275,7 @@ function move() {
 					</c:forEach> --%>
 					<option value="find_travler">여행자검색
 					<option value="find_host">호스트검색
-					<option value="find_event">이벤트검색
+					<option value="find_event" selected="selected">이벤트검색
 					<option value="find_advice">현지정보검색
 				</select>
 				<input id="autocomplete" placeholder="Enter your address" type="text" name="searchKeyword">
