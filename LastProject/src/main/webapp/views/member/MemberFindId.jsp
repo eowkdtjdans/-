@@ -102,7 +102,5 @@
       </div>
    </section>
 
-   <script src="js/jquery.min.js"></script>
-   <script src="js/my-login.js"></script>
 </body>
 </html>

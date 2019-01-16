@@ -88,20 +88,19 @@
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 	<title>로그인페이지</title>
 	<link rel="stylesheet" type="text/css" href="views/bootstrapModal/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="views/cssModal/my-login.css">
 </head>
 
-<body class="my-login-page">
-	<section class="h-100">
-		<div class="container h-100">
-			<div class="row justify-content-md-center h-100">
-				<div class="card-wrapper">
-					<div class="brand">
+<body>
+	<section>
+		<div>
+			<div>
+				<div>
+					<div>
 					</div>
-					<div class="card fat">
-						<div class="card-body">
-							<h4 class="card-title" style="text-align : center;">로그인</h4>
-							<form onsubmit="return false"method="POST" class="my-login-validation" id="form"  >
+					<div>
+						<div>
+							<h4 style="text-align : center;">로그인</h4>
+							<form onsubmit="return false"method="POST" id="form"  >
 								<div class="form-group">
 									<label for="email">아이디</label>
 									<input type="email" class="form-control" name="m_id" onkeypress="enterkey()" required autofocus>
@@ -120,6 +119,9 @@
 								</div>
 								
 					
+								<a href="../../findIdMember.do" class="float-right">
+									아이디 찾기
+								</a>
 								<a href="../../findPwdMember.do" class="float-right">
 									비밀번호 찾기
 								</a>
@@ -138,8 +140,5 @@
 		</div>
 	</section>
 
-	<script src="js/jquery.min.js"></script>
-	<script src="bootstrap/js/bootstrap.min.js"></script>
-	<script src="js/my-login.js"></script>
 </body>
 </html>

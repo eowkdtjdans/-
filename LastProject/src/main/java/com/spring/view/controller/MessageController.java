@@ -31,13 +31,13 @@ public class MessageController {
 	}
 	@RequestMapping(value="/noticeMessageJson.do", method=RequestMethod.POST)
     @ResponseBody
-    public Map<Object, Object> noticeMessageJson(MessageRecieveVO receivevo) {
+    public Map<Object, Object> noticeMessageJson(HttpSession session, MessageRecieveVO receivevo) {
         int count = 0;
         Map<Object, Object> map = new HashMap<Object, Object>();
         
         count = messageService.noticeMessageJson(receivevo);
         map.put("cnt", count);
- 
+        session.setAttribute("messageCount", count);
         return map;
     }
 	
