@@ -74,5 +74,11 @@ public class AdminServiceImpl implements AdminService {
 	public void adminDeleteProfileImage(Map<String, String> delParam) {
 		adminDAO.adminDeleteProfileImage(delParam);
 	}
+	
+	@Override
+	public List<logLoginVO> getLoginRecord(logLoginVO vo) {
+	
+		return adminDAO.getLoginRecord(vo);
+	}
 
 }

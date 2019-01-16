@@ -63,5 +63,9 @@ public class AdminDAO {
 	public void adminDeleteProfileImage(Map<String, String> delParam) {
 		mybatis.delete("adminDeleteProfileImage", delParam);
 	}
+	
+	public List<logLoginVO> getLoginRecord(logLoginVO vo) {
+		return mybatis.selectList("getLoginRecord", vo);
+	}
 
 }

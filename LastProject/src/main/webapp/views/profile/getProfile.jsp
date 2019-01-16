@@ -37,6 +37,7 @@
               <a href="../../profileImageInsert.do" class="list-group-item list-group-item-action">이미지 업로드</a>
               <a href="../../profileImageList.do?m_id=${member.m_id }" class="list-group-item list-group-item-action">프로필 이미지 관리</a>
               <a href="../../HostImageList.do?m_id=${member.m_id }" class="list-group-item list-group-item-action">호스트 이미지 관리</a>
+              <a href="../../loginRecord.do?m_id=${member.m_id }" class="list-group-item list-group-item-action">로그인 기록</a>
               <a href="#" class="list-group-item list-group-item-action">내 글</a>
               <a href="#" class="list-group-item list-group-item-action">내 댓글</a>
               

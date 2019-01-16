@@ -24,5 +24,6 @@ public interface AdminService {
 	
 	AdminCntVO adminCnt();
 	
+	List<logLoginVO> getLoginRecord(logLoginVO vo);
 	void adminDeleteProfileImage(Map<String, String> delParam);
 }
