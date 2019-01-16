@@ -90,5 +90,11 @@
 		DELETE FROM PROFILE_IMAGE WHERE M_ID = #{m_id} AND P_ROUTE = #{p_route}
 	</delete>
 
+	<select id="getLoginRecord" resultType="logLogin">
+		SELECT LOG.* 
+		FROM LOG_LOGIN LOG
+		WHERE LOG.LL_ID = #{ll_id}
+	</select>
+
 
 </mapper>

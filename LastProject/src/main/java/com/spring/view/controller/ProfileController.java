@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.spring.biz.admin.AdminService;
 import com.spring.biz.admin.logLoginVO;
+import com.spring.biz.member.MemberVO;
 import com.spring.biz.profile.ProfileService;
 import com.spring.biz.profile.ProfileVO;
 
@@ -41,13 +42,13 @@ public class ProfileController {
 	//=============================================================
 	//프로필 등록
 	
-	@RequestMapping(value="loginRecord.do", method=RequestMethod.GET)
-		public String loginRecord(logLoginVO vo, HttpSession session, @RequestParam("m_id")String m_id) {
-		vo.setLl_id(m_id);
-		
+	@RequestMapping(value="loginRecordList.do", method=RequestMethod.GET)
+		public String loginRecord(logLoginVO vo, HttpSession session) {
+		MemberVO member = (MemberVO) session.getAttribute("member");
+		vo.setLl_id(member.getM_id());
 		List<logLoginVO> logList = adminService.getLoginRecord(vo);
 		session.setAttribute("logList", logList);
-		return "views/profile.loginRecord.jsp";
+		return "views/profile/loginRecordList.jsp";
 	}
 	
 	
