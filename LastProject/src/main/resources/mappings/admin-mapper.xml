@@ -79,5 +79,11 @@
 		VALUES (EVENT_SEQ.CURRVAL, #{url}, #{e_main})
 	</insert>
 
+	<select id="getLoginRecord" resultType="logLogin">
+		SELECT LOG.* 
+		FROM LOG_LOGIN LOG
+		WHERE LOG.LL_ID = #{ll_id}
+	</select>
+
 
 </mapper>

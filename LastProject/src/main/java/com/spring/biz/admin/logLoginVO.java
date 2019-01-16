@@ -66,6 +66,9 @@ public class logLoginVO {
 				+ ll_result + ", ll_country=" + ll_country + ", ll_date=" + ll_date + "]";
 	}
 
+
+
+
 	
 	
 	
