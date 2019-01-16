@@ -559,5 +559,5 @@ var receive_receiver =$("#receive_receiver").val();
   <!-- Template Main Javascript File -->
   <script src="views/js/main.js"></script>
 
-</body>
+</body> 
 </html>

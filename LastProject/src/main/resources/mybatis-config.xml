@@ -24,6 +24,8 @@
   	<typeAlias alias="messageSend" type="com.spring.biz.message.MessageSendVO"/>
   	<typeAlias alias="messageReceive" type="com.spring.biz.message.MessageRecieveVO"/>
   	<typeAlias alias="websocketChat" type="com.spring.biz.WebSocket.WebSocketVO"/>
+  	<typeAlias alias="logLogin" type="com.spring.biz.admin.logLoginVO"/>
+  
   </typeAliases>
   
   <mappers>

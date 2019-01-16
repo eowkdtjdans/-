@@ -11,9 +11,9 @@ import com.spring.biz.admin.AdminService;
 import com.spring.biz.admin.UserAdminCommentVO;
 import com.spring.biz.admin.UserAdminPostVO;
 import com.spring.biz.admin.UserAdminViewVO;
+import com.spring.biz.admin.logLoginVO;
 import com.spring.biz.event.EventVO;
 import com.spring.biz.member.MemberVO;
-import com.spring.biz.profileImage.ProfileImageVO;
 
 @Service("adminService")
 public class AdminServiceImpl implements AdminService {
@@ -69,5 +69,28 @@ public class AdminServiceImpl implements AdminService {
 	public void insertEventImg(Map<String, String> eventImgMap) {
 		adminDAO.insertEventImg(eventImgMap);
 	}
+
+	@Override
+	public void adminDeleteProfileImage(Map<String, String> delParam) {
+		adminDAO.adminDeleteProfileImage(delParam);
+	}
+	
+	@Override
+	public List<logLoginVO> getLoginRecord(logLoginVO vo) {
+	
+		return adminDAO.getLoginRecord(vo);
+	}
+
+	@Override
+	public int countLog(String ll_id) {
+		return adminDAO.countLog(ll_id);
+	}
+
+	@Override
+	public List<logLoginVO> getLogLoginList(Map<String, Object> map) {
+		return adminDAO.getLogLoginList(map);
+	}
+
+
 
 }

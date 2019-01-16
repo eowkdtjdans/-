@@ -431,5 +431,5 @@
   <!-- Template Main Javascript File -->
   <script src="views/js/main.js"></script>
 
-</body>
+</body> 
 </html>

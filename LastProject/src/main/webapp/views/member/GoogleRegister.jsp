@@ -10,7 +10,6 @@
    <meta name="viewport" content="width=device-width,initial-scale=1">
    <title>회원가입</title>
    <link rel="stylesheet" type="text/css" href="views/bootstrapModal/css/bootstrap.min.css">
-   <link rel="stylesheet" type="text/css" href="views/cssModal/my-login.css">
    
    <link rel="stylesheet" href="views/datepicker/public/theme/css/t-datepicker.min.css">
    <link rel="stylesheet" href="views/datepicker/public/theme/css/themes/t-datepicker-teal.css">

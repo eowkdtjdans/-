@@ -245,7 +245,7 @@ function noticeMessage() {
 	}
 
 	
-</script>
+</script> 
 
 	<!-- 이거 추가시 네비 이상해짐 -->
 	<!-- <link rel="stylesheet" type="text/css" href="views/cssModal/my-login.css"> -->

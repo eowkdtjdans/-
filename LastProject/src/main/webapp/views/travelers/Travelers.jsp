@@ -395,7 +395,7 @@ function noticeMessage() {
                   <p class="card-text">${list.t_country}</p>
                   <hr />                  
                   <button type="button" class="btn btn-light" data-toggle="modal" data-target="#myModal${list.m_id }">See Profile</button>
-                </span>
+                </span> 
              </span>
             </c:forEach>
             </c:otherwise>           

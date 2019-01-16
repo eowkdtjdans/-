@@ -10,7 +10,6 @@
    <meta name="viewport" content="width=device-width,initial-scale=1">
    <title>회원가입</title>
    <link rel="stylesheet" type="text/css" href="views/bootstrapModal/css/bootstrap.min.css">
-   <link rel="stylesheet" type="text/css" href="views/cssModal/my-login.css">
    
    <link rel="stylesheet" href="views/datepicker/public/theme/css/t-datepicker.min.css">
    <link rel="stylesheet" href="views/datepicker/public/theme/css/themes/t-datepicker-teal.css">
@@ -209,15 +208,15 @@ $('.t-datepicker').tDatePicker({
 <script src="https://maps.googleapis.com/maps/api/js?v=3&sensor=false&libraries=places&callback=initAutocomplete&key=AIzaSyAfB2qQnvAuU2YFFqi8hrPWfjJNyxl5kWc" async defer></script>
 
 </head>
-<body class="my-login-page">
-   <section class="h-100">
-      <div class="container h-100">
-         <div class="row justify-content-md-center h-100">
-            <div class="card-wrapper">
-               <div class="card fat">
-                  <div class="card-body">
-                     <h4 class="card-title" style="text-align : center;">회원가입</h4>
-                     <form method="POST" class="my-login-validation" id="form">
+<body>
+   <section>
+      <div>
+         <div>
+            <div>
+               <div>
+                  <div>
+                     <h4 style="text-align : center;">회원가입</h4>
+                     <form method="POST" id="form">
                         <div class="form-group">
                            <label for="text">아이디</label>
                            <input id="m_id" type="text" class="form-control" name="m_id">
@@ -315,8 +314,5 @@ $('.t-datepicker').tDatePicker({
       </div>
    </section>
    
-   <script src="js/jquery.min.js"></script>
-   <script src="bootstrap/js/bootstrap.min.js"></script>
-   <script src="js/my-login.js"></script>
 </body>
 </html>

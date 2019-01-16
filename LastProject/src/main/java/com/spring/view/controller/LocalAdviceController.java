@@ -40,7 +40,7 @@ public class LocalAdviceController {
    private LocalAdviceCommentService localAdviceCommentService;
    
    //키값을 받아 localAdvice게시판 전체조회
-   @RequestMapping(value="/getLocalAdviceList.do" , method=RequestMethod.POST)
+   @RequestMapping(value="/getLocalAdviceList.do" , method=RequestMethod.GET)
    public String getLocalAdviceList(Model model, @ModelAttribute("key") String key, @RequestParam("cPage") String cPage, HttpSession session, RedirectAttributes rttr) {
       System.out.println("getLocalAdviceList.do로 왔습니다.");
       PagingVO p = new PagingVO();
@@ -160,7 +160,7 @@ public class LocalAdviceController {
       
       session.getAttribute("searchCondition");
       session.getAttribute("searchKeyword");
-      return "/getLocalAdviceList.do?cPage=1";
+      return "redirect:/getLocalAdviceList.do?cPage=1";
    }
    
    

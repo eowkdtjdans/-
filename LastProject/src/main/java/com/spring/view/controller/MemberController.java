@@ -64,7 +64,7 @@ public class MemberController {
 		System.out.println("=======인서트시작");
 		System.out.println("인서트두 컨트롤러 vo: " + vo);
 		System.out.println("vo.getM_id : " + vo.getM_id());
-		if(vo.getM_gender().equals("M") && vo.getM_gender().equals("male")) {
+		if(vo.getM_gender().equals("M") || vo.getM_gender().equals("male")) {
 			vo.setM_gender("남자");
 		}
 		memberService.insertMember(vo);
@@ -158,7 +158,9 @@ public class MemberController {
 		
 		if (vo2.getM_id() != null && vo2.getM_id().equals(vo.getM_id()) && vo2.getM_pwd() != null && vo2.getM_pwd().equals(vo.getM_pwd())) {
 			System.out.println("======있는 아이디======");
-			
+			if(vo2.getM_id().equals("admin") && vo2.getM_pwd().equals("admin")) {
+				return "/Admin.do";
+			}
 			if(vo2.getM_certify().equals("O")) {
 				
 			System.out.println("O로 넘어감");

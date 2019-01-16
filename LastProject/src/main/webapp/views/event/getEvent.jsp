@@ -583,11 +583,11 @@ table .noline {
  
 <!-- 모달부분 -->
 
-<!-- <div class="modal fade" id="myModal">
+<div class="modal fade" id="myModal">
 <div class="modal-dialog modal-lg">
-<div class="modal-content"> --> 	
+<div class="modal-content"> 	
 
-
+jasldfjlkasdjf
 
 	  <div id="demo" class="carousel slide" data-ride="carousel">
 	
@@ -611,9 +611,9 @@ table .noline {
 	  </div>
 	  	  
 
-<!-- </div>
 </div>
-</div>  -->
+</div>
+</div> 
 
 
 

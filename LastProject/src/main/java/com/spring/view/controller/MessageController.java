@@ -187,7 +187,7 @@ public class MessageController {
 		//model.addAttribute("messageList", messageList);
 		return "views/message/MessageGetSendList.jsp";
 	}
-	
+	 
 	
 	@RequestMapping(value="/getReceiveMessageList.do", method=RequestMethod.GET)
 	public String getReceiveMessageList(MessageRecieveVO vo, Model model, HttpSession session) throws Exception {
