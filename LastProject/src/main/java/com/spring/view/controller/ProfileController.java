@@ -1,6 +1,7 @@
 package com.spring.view.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.spring.biz.admin.AdminService;
+import com.spring.biz.admin.logLoginVO;
 import com.spring.biz.profile.ProfileService;
 import com.spring.biz.profile.ProfileVO;
 
@@ -21,6 +24,9 @@ public class ProfileController {
 		
 	@Autowired
 	private ProfileService profileService;
+	
+	@Autowired
+	private AdminService adminService;
 	
 	public ProfileController() {
 		System.out.println("=======프로필 컨트롤러 시작");
@@ -34,7 +40,16 @@ public class ProfileController {
 	}
 	//=============================================================
 	//프로필 등록
-
+	
+	@RequestMapping(value="loginRecord.do", method=RequestMethod.GET)
+		public String loginRecord(logLoginVO vo, HttpSession session, @RequestParam("m_id")String m_id) {
+		vo.setLl_id(m_id);
+		
+		List<logLoginVO> logList = adminService.getLoginRecord(vo);
+		session.setAttribute("logList", logList);
+		return "views/profile.loginRecord.jsp";
+	}
+	
 	
 	@RequestMapping(value="insertProfile.do", method=RequestMethod.GET)
 		public String insertProfileGet(ProfileVO vo, HttpSession session) {

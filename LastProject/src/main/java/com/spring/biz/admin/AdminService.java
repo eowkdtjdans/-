@@ -23,4 +23,7 @@ public interface AdminService {
 	List<EventVO> eventAdminList();
 	
 	AdminCntVO adminCnt();
+	
+	
+	List<logLoginVO> getLoginRecord(logLoginVO vo);
 }

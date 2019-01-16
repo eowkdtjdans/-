@@ -64,7 +64,7 @@ public class MemberController {
 		System.out.println("=======인서트시작");
 		System.out.println("인서트두 컨트롤러 vo: " + vo);
 		System.out.println("vo.getM_id : " + vo.getM_id());
-		if(vo.getM_gender().equals("M") && vo.getM_gender().equals("male")) {
+		if(vo.getM_gender().equals("M") || vo.getM_gender().equals("male")) {
 			vo.setM_gender("남자");
 		}
 		/*if(vo.getM_gender() == "M" &&vo.getM_gender() == "male") {
