@@ -222,12 +222,14 @@ $(function(){
        	 <a href="../../getReceiveMessageList.do"> <!--  id="noticeMessageCount2" -->
        	 <i class="far fa-envelope fa-2x">${messageCount }</i></a>
         </li>
+        
+        
   
 		  <li>    
 		    <span class="fa-layers fa-fw">
 		     <a href="../../getReceiveMessageList.do">
 		    <i class="far fa-envelope fa-2x"></i>
-		    <span class="fa-layers-counter">${messageCount }</span>
+		    <span class="fa-layers-counter" style="color : red;">${messageCount }</span>
 		    </a>
 			</span>
 		</li> 

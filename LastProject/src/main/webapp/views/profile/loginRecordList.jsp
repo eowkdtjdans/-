@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
- <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+  <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
 
 <!DOCTYPE html>
 <html lang="en">
@@ -26,7 +26,7 @@
 		     <div class="list-group ">
 		      <a href="../../sub2.do" class="list-group-item list-group-item-action">메인페이지</a>
               <a href="../../myProfile.do" class="list-group-item list-group-item-action">마이 프로필</a>
-              <a href="../../getReceiveMessageList.do" class="list-group-item list-group-item-action active">받은 쪽지함</a>
+              <a href="../../getReceiveMessageList.do" class="list-group-item list-group-item-action">받은 쪽지함</a>
               <a href="../../getSendMessageList.do" class="list-group-item list-group-item-action">보낸 쪽지함</a>
               <a href="../../insertProfile.do" class="list-group-item list-group-item-action">프로필 수정</a>
               <a href="../../ModifyPwdMember.do" class="list-group-item list-group-item-action">비밀번호 변경</a>
@@ -35,6 +35,7 @@
               <a href="../../profileImageInsert.do" class="list-group-item list-group-item-action">이미지 업로드</a>
      		  <a href="../../profileImageList.do?m_id=${member.m_id }" class="list-group-item list-group-item-action">프로필 이미지 관리</a>
               <a href="../../HostImageList.do?m_id=${member.m_id }" class="list-group-item list-group-item-action">호스트 이미지 관리</a>
+               <a href="../../loginRecordList.do?m_id=${member.m_id }" class="list-group-item list-group-item-action active">로그인 기록</a>
               <a href="#" class="list-group-item list-group-item-action">내 글</a>
               <a href="#" class="list-group-item list-group-item-action">내 댓글</a>
               
@@ -47,7 +48,7 @@
 		        <div class="card-body">
 		            <div class="row">
 		                <div class="col-md-12">
-		                    <h4>받은 쪽지목록</h4>
+		                    <h4>로그인 기록</h4>
 		                    <hr>
 		                </div>
 		            </div>
@@ -71,7 +72,7 @@
 			<td style="text-align :center;">${logList.ll_result }</td>
 			<td style="text-align :center;">${logList.ll_ip }</td>
 			<td style="text-align :center;">${logList.ll_device }</td>
-			<td style="text-align :center;"><fmt:formatDate value="${logList.ll_date }" pattern="yyyy-MM-dd HH:mm:ss"/> </td>
+			<td><fmt:formatDate value="${logList.ll_date }" pattern="yyyy-MM-dd HH:mm:ss"/> </td>
 			<td style="text-align :center;">${logList.ll_country }</td>
 		</tr>
 		</c:forEach>
