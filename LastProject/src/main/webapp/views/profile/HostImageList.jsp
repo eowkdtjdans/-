@@ -154,19 +154,182 @@ function test(h_route, m_id) {
    }
 
 </script>
+<style>
+   body{
+      padding-top: 75px; 
+   }
+   
+   .scrollto {    
+     font-family: 'Kalam', cursive;
+     padding-top: 8px;
+   }
+   .border-none {
+        margin-left: 490px;
+   }
+   
+   #nav-menu-container {
+        margin-top: -30px;
+   }
+   #header {
+        background-color: 	white;
+   }
+   #header.header-scrolled {
+        background-color: white;
+   }
+   
+   .nav-menu li a{
+   	color: black;
+   }	
+   #mainLogo{
+   	color: black;
+   	position: absolute;
+   	margin-left: 80px;
+   	margin-top: -10px;
+   	font-size: 2.15em;
+   }
+   #happy{
+   	position: absolute;
+   	margin-left: 20px;
+   	margin-top: -20px;
+   }
+   #navProfileImg{
+   	position: relative;
+   	margin-top: -10px;
+   }
+   
 
+select {
+    width: 128px; /* 원하는 너비설정 */
+    padding: .3em .3em; /* 여백으로 높이 설정 */
+    font-family: inherit;  /* 폰트 상속 */
+    border:  1px solid #999; 
+    border-radius: 30px; /* iOS 둥근모서리 제거 */
+    -moz-appearance: none;
+    appearance: none;
+}
+
+#autocomplete {
+	width: 50%; 
+	border: 1px solid #999; 
+	border-radius: 30px; 
+	padding: .3em .3em;
+	
+}
+#advice{
+	width: 50%; 
+	border: 1px solid #999; 
+	border-radius: 30px; 
+	padding: .3em .3em;
+}
+
+/* .hr{
+	height: 20px;
+	color: red;
+} */
+</style>
 </head>
 <body>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 <!------ Include the above in your HEAD tag ---------->
+
+
+
+
+<header id="header">
+  <form id="noticeMessage" method="GET">
+    <div class="container-fluid">
+      <input type="hidden" id="receive_receiver" name="receive_receiver" value="${member.m_id }" />
+      <div id="log" class="pull-left">
+        <img src="views/img/happy.png" id="happy"><a href="../sub2.do" class="scrollto" id="mainLogo">&nbsp;Gukbong WorlD</a>        
+      </div>
+    </div>
+  </form>
+      
+      <form action="../sub.do" method="post">
+      <table class="border-none">
+         <tr>
+            <td id="td1">             
+               <select id="condition" name="searchCondition">         
+                  <option value="find_travler">여행자검색
+                  <option value="find_host">호스트검색
+                  <option value="find_event">이벤트검색
+                  <option value="find_advice">현지정보검색
+               </select>
+               
+               <input id="autocomplete" placeholder="" type="text" name="searchKeyword">
+               
+               <input class="field" id="lat" type="hidden" name="lat"/>
+               <input class="field" id="lng" type="hidden" name="lng"/>              
+               <!-- <input type="submit" id="search"> -->
+               
+               <input  style="width: 30px; height: 30px;"  TYPE="IMAGE" src="views/img/search.png" name="Submit" value="Submit" align="absmiddle" id="search">
+
+            </td>
+         </tr>
+      </table>
+   </form>
+
+    
+
+         
+<nav id="nav-menu-container">
+	<ul class="nav-menu">
+	
+	<c:if test="${empty member.m_id}">
+		<li><a href="../../loginMember.do" >로그인</a></li>
+		<li><a  href="../../insertMember.do" >회원가입</a></li>
+		<li><a href="../../findIdMember.do">아이디찾기</a></li >
+	    <li><a href="../../findPwdMember.do">비밀번호찾기</a></li>
+	</c:if>	
+	
+	<c:if test="${!empty member.m_id}">
+		<li>
+			<div>
+			<strong>
+			<span style="color: red;">W</span>
+			<span style="color: blue;">e</span>
+			<span style="color: darkviolet;">l</span>
+			<span style="color: #FFC100;">c</span>
+			<span style="color: green;">o</span>
+			<span style="color: orange;">m</span>
+			<span style="color: navy;">e</span>			
+			&nbsp;&nbsp;			
+			${member.m_id } 님 
+			</strong>
+			</div>
+		</li>
+	
+		<li class="menu-has-children"><img src="${getProfileImageRoute.p_route }" style="width: 45px; height: 45px;" class="rounded-circle" id="navProfileImg"></a>
+          <ul>                                      
+            <li><a  href="../../myProfile.do" >마이 프로필</a></li> 
+            <li><a href="../../logoutMember.do">로그아웃</a></li>            
+          </ul> 
+        </li>
+               
+   		<li>    
+          <span class="fa-layers fa-fw">
+           <a href="../../getReceiveMessageList.do">
+          <i class="far fa-envelope fa-2x"></i>
+          <span class="fa-layers-counter" style="color:red;" id="noticeMessageCount"></span>
+          </a>
+         </span>
+     	 </li>         
+	</c:if>
+	</ul> 
+</nav>               
+<hr>
+  </header><!-- #header -->
+
+
+<br>  
 <section>
 <div class="container">
    <div class="row">
       <div class="col-md-3 ">
            <div class="list-group ">
-               <a href="../../myProfile.do" class="list-group-item list-group-item-action ">My Profile 메인</a>
+              <a href="../../myProfile.do" class="list-group-item list-group-item-action ">My Profile 메인</a>
               <a href="../../insertProfile.do" class="list-group-item list-group-item-action">프로필 수정</a>
               <a href="../../ModifyPhoneMember.do" class="list-group-item list-group-item-action">핸드폰 변경</a>
               <a href="../../ModifyPwdMember.do" class="list-group-item list-group-item-action">비밀번호 변경</a>
@@ -180,7 +343,7 @@ function test(h_route, m_id) {
               <a href="../../myPost2.do?m_id=${member.m_id }&cPage=1" class="list-group-item list-group-item-action">내 댓글</a>
               <a href="../../loginRecordList.do?ll_id=${member.m_id }&cPage=1" class="list-group-item list-group-item-action">로그인 기록</a>
               <a href="../../DeleteMember.do?m_id=${member.m_id }" class="list-group-item list-group-item-action">회원탈퇴</a>
-
+              
               
               
             </div> 
@@ -228,6 +391,6 @@ function test(h_route, m_id) {
 </div>
 </section>
 
-
+<%@include file="/views/footer.jsp"%>
 </body>
 </html>

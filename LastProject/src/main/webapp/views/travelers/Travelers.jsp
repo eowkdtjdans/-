@@ -416,7 +416,7 @@ function noticeMessage() {
       
         <!-- Modal Header -->
         <div class="modal-header">
-          <h4 class="modal-title">호스트 등록</h4>
+          <h4 class="modal-title">여행자 등록</h4>
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         
