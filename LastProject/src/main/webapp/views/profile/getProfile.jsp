@@ -6,13 +6,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+ <%@include file="/views/header.jsp"%>
 
 <script>
 	function profileModify() {
 		location.href = "../../insertProfile.do";
 	}
 </script>
- <%@include file="/views/header.jsp"%>
 
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 
