@@ -62,6 +62,11 @@
     <bean id="email" class="com.spring.biz.member.Email"></bean>
     <bean id="emailSender" class="com.spring.biz.member.EmailSender"/>
     
+    
+    
+    
+    
+    
     <!-- ========== 구글 로그인 api 관련 ========== -->
     <!-- Google 소셜 로그인 연결 설정 -->
 	<bean id = "googleConnectionFactory" class="org.springframework.social.google.connect.GoogleConnectionFactory">

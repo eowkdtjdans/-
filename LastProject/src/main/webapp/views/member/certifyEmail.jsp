@@ -12,47 +12,17 @@
    <title>이메일 인증</title>
    <link rel="stylesheet" type="text/css" href="views/bootstrapModal/css/bootstrap.min.css">
    
-   
-   
-   
-   
-   
-   <!-- Favicons -->
-  <link href="views/img/favicon.png" rel="icon">
-  <link href="views/img/apple-touch-icon.png" rel="apple-touch-icon">
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Kalam" rel="stylesheet">
-  
-  <!-- Bootstrap CSS File -->
-  <link href="/views/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-  <!-- Libraries CSS Files -->
-  <link href="views/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-  <link href="views/lib/animate/animate.min.css" rel="stylesheet">
-  <link href="views/lib/ionicons/css/ionicons.min.css" rel="stylesheet">
-  <link href="views/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-  <link href="views/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
-  <!-- Main Stylesheet File -->
-  <link href="/views/css/style.css" rel="stylesheet">
-  
-  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-   
-   
-   
-   
+    <%@include file="/views/header.jsp"%>
    
 <script>
 
 	function findId(frm) {
-		alert("양김모띠");
 		var certifyCode = frm.certifyCode.value;
 		var emailCheck = "${emailCheck}";
+		alert("인증코드발송 :" + emailCheck);
+		alert("내가 입력한 코드 : " + certifyCode);
 		if (emailCheck == certifyCode) {
-			
+			alert("코드 일치")
 		frm.action = "../../certifyCodeUpdate.do";
 		frm.submit();
 		} else {
@@ -319,19 +289,8 @@ select {
          </div>
       </div>
 
-	<hr class="hr">
-	<footer>
-    	<br>   
-        <div class="row">
-        	<div class="col-lg-8 col-md-10 mx-auto">
-        		<p class="text-primary text-center">© GUKBONG WORLD COMPANY. ALL RIGHTS RESERVED.</p>
-        		<p class="copyright text-muted text-center">상호:국봉월드 &nbsp;| &nbsp; 사업자등록번호:123-456-78910[사업자정보확인]  &nbsp;| &nbsp; 대표:방국봉  &nbsp;| &nbsp; TEL:1544-1444 
-             <br>FAX:031-123-1234  &nbsp;| &nbsp; 주소:비트캠프 신촌센터  &nbsp; |  &nbsp; E-mail:kz1234@naver.com </p>
-		    <p style="font-size: 0.8em;" class="text-muted text-right">© 1999 - 2019 Couchsurfing International, Inc</p>
-        	</div>	
-        </div>
-    <br> 
-    </footer>	
+<%@include file="/views/footer.jsp"%>
+	
   <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
 
 

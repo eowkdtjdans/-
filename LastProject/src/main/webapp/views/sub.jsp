@@ -9,310 +9,19 @@
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <meta content="" name="keywords">
   <meta content="" name="description"> 
- 
+<!--   <link href="/views/css/headercss.css" rel="stylesheet" type="text/css"> -->
 
-  <!-- Favicons -->
-  <link href="views/img/favicon.png" rel="icon">
-  <link href="views/img/apple-touch-icon.png" rel="apple-touch-icon">
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Kalam" rel="stylesheet">
-  <!-- Bootstrap CSS File -->
-  <link href="views/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-  <!-- Libraries CSS Files -->
-  <link href="views/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-  <link href="views/lib/animate/animate.min.css" rel="stylesheet">
-  <link href="views/lib/ionicons/css/ionicons.min.css" rel="stylesheet">
-  <link href="views/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-  <link href="views/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
-  <!-- Main Stylesheet File -->
-  <link href="views/css/style.css" rel="stylesheet">
+  <script><%@include file="/views/headerScript.jsp"%></script>
+ <%@include file="/views/header.jsp"%>
   
-  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-  
-  
-  
-  
-<style>
-   body{
-      padding-top: 75px; 
-   }
-   
-   .scrollto {    
-     font-family: 'Kalam', cursive;
-     padding-top: 8px;
-   }
-   .border-none {
-        margin-left: 490px;
-   }
-   
-   #nav-menu-container {
-        margin-top: -30px;
-   }
-   #header {
-        background-color: 	white;
-   }
-   #header.header-scrolled {
-        background-color: white;
-   }
-   
-   .nav-menu li a{
-   	color: black;
-   }	
-   #mainLogo{
-   	color: black;
-   	position: absolute;
-   	margin-left: 80px;
-   	margin-top: -10px;
-   	font-size: 2.15em;
-   }
-   #happy{
-   	position: absolute;
-   	margin-left: 20px;
-   	margin-top: -20px;
-   }
-   #navProfileImg{
-   	position: relative;
-   	margin-top: -10px;
-   }
-   
+  </head>
 
-select {
-    width: 128px; /* 원하는 너비설정 */
-    padding: .3em .3em; /* 여백으로 높이 설정 */
-    font-family: inherit;  /* 폰트 상속 */
-    border:  1px solid #999; 
-    border-radius: 30px; /* iOS 둥근모서리 제거 */
-    -moz-appearance: none;
-    appearance: none;
-}
-
-#autocomplete {
-	width: 50%; 
-	border: 1px solid #999; 
-	border-radius: 30px; 
-	padding: .3em .3em;
-	
-}
-#advice{
-	width: 50%; 
-	border: 1px solid #999; 
-	border-radius: 30px; 
-	padding: .3em .3em;
-}
-
-/* .hr{
-	height: 20px;
-	color: red;
-} */
-</style>
-
-
-<script>
-var placeSearch, autocomplete;
-
-function initAutocomplete() {
-  autocomplete = new google.maps.places.Autocomplete((document.getElementById('autocomplete')),{types: ['geocode']});
-  autocomplete.addListener('place_changed', fillInAddress);
-}
-
-function fillInAddress() { //lat 와 lng 값을 넘겨줄 input 태그에 값 넣어주기
-  var place = autocomplete.getPlace();
-    document.getElementById("lat").value=place.geometry.location.lat();
-    document.getElementById("lng").value=place.geometry.location.lng();
-}
-
-
-$(function(){
-   $("#condition").change(function(){
-      var condition = $("#condition").val();
-      
-      if(condition == "find_advice") {
-         $("#autocomplete").removeAttr("name");
-         $("#autocomplete").hide();
-         $("<input type='text' id='advice' name='searchKeyword'>").insertBefore("#search");
-         
-      } else {
-         $("#advice").remove();
-         $("#autocomplete").show();
-         $("#autocomplete").attr("name", "searchKeyword");
-      }
-   })
-   
-})
-</script>
-<script src="https://maps.googleapis.com/maps/api/js?v=3&sensor=false&libraries=places&callback=initAutocomplete&key=AIzaSyAfB2qQnvAuU2YFFqi8hrPWfjJNyxl5kWc" async defer></script>
- 
- 
-<script type="text/javascript">
-   function noticeMessage() {
-      var noticeMessage = $("#noticeMessage").serialize();
-      var receive_receiver =$("#receive_receiver").val();
-       
-         $.ajax({
-         async : true,
-         type : "POST",
-         dataType : "json",
-         data : noticeMessage,
-         url : "../../noticeMessageJson.do",
-         success : function(data) {
-            if (data.cnt > 0) {
-               $("#noticeMessageCount").append(data.cnt);
-               $("#noticeMessageCount2").append(data.cnt);
-               setInteval(function() {
-                  noticeMessage()
-               }, 3000);
-       
-            }
-         }
-         
-         
-      });    
-   }
-
-
-</script>    
- 
-</head>
 
 <body onload="noticeMessage()">
 
-  <!--==========================
-    Header
-  ============================-->
-   <header id="header">
-  <form id="noticeMessage" method="GET">
-    <div class="container-fluid">
-      <input type="hidden" id="receive_receiver" name="receive_receiver" value="${member.m_id }" />
-      <div id="log" class="pull-left">
-        <img src="views/img/happy.png" id="happy"><a href="../sub2.do" class="scrollto" id="mainLogo">&nbsp;Gukbong WorlD</a>        
-      </div>
-    </div>
-  </form>
-      
-      <form action="../sub.do" method="post">
-      <table class="border-none">
-         <tr>
-            <td id="td1">             
-               <select id="condition" name="searchCondition">         
-                  <option value="find_travler">여행자검색
-                  <option value="find_host">호스트검색
-                  <option value="find_event">이벤트검색
-                  <option value="find_advice">현지정보검색
-               </select>
-               
-               <input id="autocomplete" placeholder="" type="text" name="searchKeyword">
-               
-               <input class="field" id="lat" type="hidden" name="lat"/>
-               <input class="field" id="lng" type="hidden" name="lng"/>              
-               <!-- <input type="submit" id="search"> -->
-               
-               <input  style="width: 30px; height: 30px;"  TYPE="IMAGE" src="views/img/search.png" name="Submit" value="Submit" align="absmiddle" id="search">
-
-            </td>
-         </tr>
-      </table>
-   </form>
-
-    
-
-         
-<nav id="nav-menu-container">
-	<ul class="nav-menu">
-	
-	<c:if test="${empty member.m_id}">
-		<li><a href="../../loginMember.do" >로그인</a></li>
-		<li><a  href="../../insertMember.do" >회원가입</a></li>
-		<li><a href="../../findIdMember.do">아이디찾기</a></li >
-	    <li><a href="../../findPwdMember.do">비밀번호찾기</a></li>
-	</c:if>	
-	
-	<c:if test="${!empty member.m_id}">
-		<li>
-			<div>
-			<strong>
-			<span style="color: red;">W</span>
-			<span style="color: blue;">e</span>
-			<span style="color: darkviolet;">l</span>
-			<span style="color: #FFC100;">c</span>
-			<span style="color: green;">o</span>
-			<span style="color: orange;">m</span>
-			<span style="color: navy;">e</span>			
-			&nbsp;&nbsp;			
-			${member.m_id } 님 
-			</strong>
-			</div>
-		</li>
-	
-		<li class="menu-has-children"><img src="${getProfileImageRoute.p_route }" style="width: 45px; height: 45px;" class="rounded-circle" id="navProfileImg"></a>
-          <ul>                                      
-            <li><a  href="../../myProfile.do" >마이 프로필</a></li> 
-            <li><a href="../../logoutMember.do">로그아웃</a></li>            
-          </ul> 
-        </li>
-               
-   		<li>    
-          <span class="fa-layers fa-fw">
-           <a href="../../getReceiveMessageList.do">
-          <i class="far fa-envelope fa-2x"></i>
-          <span class="fa-layers-counter" style="color:red;" id="noticeMessageCount"></span>
-          </a>
-         </span>
-     	 </li>         
-	</c:if>
-	</ul> 
-</nav>               
-<hr>
-  </header><!-- #header -->
+ <%@include file="/views/navHeader.jsp"%>
   
-  
-  
-<%--       <nav id="nav-menu-container">
-        <ul class="nav-menu">
-        <li class="menu-has-children"><a href="#">내 정보</a>
-            <ul>            
-              <li><a href="../../ModifyPwdMember.do">비밀번호 변경</a></li> <!-- Ajax  -->
-              <li><a href="../../ModifyPhoneMember.do">핸드폰 변경</a></li> <!-- Ajax -->
-              <li><a href="../../ModifyAddressMember.do">주소 변경</a></li> <!-- 그냥 처리 -->
-              <li><a href="../../DeleteMember.do">회원 탈퇴</a></li> <!-- 그냥 처리 -->
-              <li><a  href="../../insertMessage.do" >쪽지 작성</a></li>  
-              <li><a  href="../../chat.do" >웹소켓 채팅</a></li> 
-              <li><a href="../../loginMember.do" >로그인</a></li>
-            <li><a  href="../../insertMember.do" >회원가입</a></li> 
-            <li><a  href="../../insertProfile.do" >프로필 관리</a></li> 
-            <li><a  href="../../myProfile.do" >마이 프로필</a></li> 
-            <li><a  href="../../profileImageInsert.do" >프로필 이미지 관리</a></li> 
-            <li><a  href="../../getSendMessageList.do" >보낸 쪽지 리스트</a></li> 
-            <li><a  href="../../getReceiveMessageList.do" >받은 쪽지 리스트</a></li> 
-            <li><a  href="../../checkMessage.do" >쪽지 체크</a></li> 
-            <li><a  href="../../noticeMessage.do" >쪽지 알림</a></li> 
-            <li><a href="../testImage.do?m_id=${member.m_id }">테스트이미지</a></li>            
-            </ul> 
-          </li>
-                  
-        <li>
-       	 <a href="../../getReceiveMessageList.do">
-       	 <i class="far fa-envelope fa-2x" id="noticeMessageCount2"></i></a>
-        </li>
-          
-          <li><a href="#portfolio">포트폴리오</a></li>      
-          <li><a href="../../findIdMember.do">아이디</a></li >
-          <li><a href="../../findPwdMember.do">비밀번호</a></li>
-          <li><a href="../../logoutMember.do">로그아웃</a></li>
-                    
-        </ul>
-        </nav> --%>  
-  
-  
-  
-  
-  
-  
-
    <!--==========================
       About Us Section
     ============================-->    
@@ -566,26 +275,7 @@ $(function(){
         <div class="form">
           <div id="sendmessage">Your message has been sent. Thank you!</div>
           <div id="errormessage"></div>
-       <!--    <form action="" method="post" role="form" class="contactForm">
-               <div class="form-group">
-                <input type="email" class="form-control" name="m_id" id="m_id" placeholder="연락 받으실 이메일을 입력하세요."/>
-                <div class="validation"></div>
-              </div>
-			
-			
-            <div class="form-group">
-              <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
-              <div class="validation"></div>
-            </div>
-            <div class="form-group">
-              <textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
-              <div class="validation"></div>
-            </div>
-            <div class="text-center"><button type="submit">Send Message</button></div>
-          </form>
-        </div>
 
-      </div> -->
       <form method="POST" class="my-login-validation" id="form">
 			<input id="m_id" type="hidden" class="form-control" name="m_id">	
 			<input id="message_receiver" name="message_receiver" type="hidden" class="form-control" value="admin">	
@@ -628,9 +318,7 @@ $(function(){
     	alert("관리자에게 문의사항이 전달 되었습니다. 최대한 빠르게 이메일로 문의사항을 보내겠습니다.");
 		frm.action = "../../MessageToAdmin.do";
 		frm.submit();
-			   
 		   }
-    	
     }
     </script>
 
@@ -640,43 +328,9 @@ $(function(){
 
 
 
- 	<hr class="hr">
-    <footer>
-    	<br>   
-        <div class="row">
-        	<div class="col-lg-8 col-md-10 mx-auto">
-        		<p class="text-primary text-center">© GUKBONG WORLD COMPANY. ALL RIGHTS RESERVED.</p>
-        		<p class="copyright text-muted text-center">상호:국봉월드 &nbsp;| &nbsp; 사업자등록번호:123-456-78910[사업자정보확인]  &nbsp;| &nbsp; 대표:방국봉  &nbsp;| &nbsp; TEL:1544-1444 
-             <br>FAX:031-123-1234  &nbsp;| &nbsp; 주소:비트캠프 신촌센터  &nbsp; |  &nbsp; E-mail:kz1234@naver.com </p>
-		    <p style="font-size: 0.8em;" class="text-muted text-right">© 1999 - 2019 Couchsurfing International, Inc</p>
-        	</div>	
-        </div>
-    <br> 
-    </footer>	
+  <script><%@include file="/views/footerScript.jsp"%></script>
+ <%@include file="/views/footer.jsp"%>
     
-  <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
-
-  <!-- JavaScript Libraries -->
-  <script src="views/lib/jquery/jquery.min.js"></script>
-  <script src="views/lib/jquery/jquery-migrate.min.js"></script>
-  <script src="views/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="views/lib/easing/easing.min.js"></script>
-  <script src="views/lib/superfish/hoverIntent.js"></script>
-  <script src="views/lib/superfish/superfish.min.js"></script>
-  <script src="views/lib/wow/wow.min.js"></script>
-  <script src="views/lib/waypoints/waypoints.min.js"></script>
-  <script src="views/lib/counterup/counterup.min.js"></script>
-  <script src="views/lib/owlcarousel/owl.carousel.min.js"></script>
-  <script src="views/lib/isotope/isotope.pkgd.min.js"></script>
-  <script src="views/lib/lightbox/js/lightbox.min.js"></script>
-  <script src="views/lib/touchSwipe/jquery.touchSwipe.min.js"></script>
-  <!-- Contact Form JavaScript File -->
-  <script src="views/contactform/contactform.js"></script>
-
-  <!-- Template Main Javascript File -->
-  <script src="views/js/main.js"></script>
-
-  <script src="jsModal/placeholders.min.js"></script> <!-- polyfill for the HTML5 placeholder attribute -->
-  <script src="jsModal/main.js"></script> <!-- Resource JavaScript -->
+ 
 </body>
 </html>
