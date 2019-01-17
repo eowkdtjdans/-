@@ -11,7 +11,7 @@
   <meta content="" name="keywords">
   <meta content="" name="description">
  
- <%@include file="/views/listHeader.jsp"%>
+ <%@include file="/views/header.jsp"%>
  
 
  <!-- 데이트 피커 -->
