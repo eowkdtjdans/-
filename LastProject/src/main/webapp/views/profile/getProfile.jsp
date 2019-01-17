@@ -27,7 +27,7 @@
 	<div class="row">
 		<div class="col-md-3 ">
 		     <div class="list-group ">
-              <a href="../../myProfile.do" class="list-group-item list-group-item-action active">My Profile 메인</a>
+		      <a href="../../myProfile.do" class="list-group-item list-group-item-action active">My Profile 메인</a>
               <a href="../../insertProfile.do" class="list-group-item list-group-item-action">프로필 수정</a>
               <a href="../../ModifyPhoneMember.do" class="list-group-item list-group-item-action">핸드폰 변경</a>
               <a href="../../ModifyPwdMember.do" class="list-group-item list-group-item-action">비밀번호 변경</a>
@@ -41,6 +41,7 @@
               <a href="../../myPost2.do?m_id=${member.m_id }&cPage=1" class="list-group-item list-group-item-action">내 댓글</a>
               <a href="../../loginRecordList.do?ll_id=${member.m_id }&cPage=1" class="list-group-item list-group-item-action">로그인 기록</a>
               <a href="../../DeleteMember.do?m_id=${member.m_id }" class="list-group-item list-group-item-action">회원탈퇴</a>
+              
 
               
             </div> 
@@ -52,82 +53,47 @@
 		        <div class="card-body">
 		            <div class="row">
 		                <div class="col-md-12">
-		                    <h4>Your Profile</h4>
+		                    <h4><img src="/views/img/profileIcon.png" style="width: 50px; height: 50px;"> my Profile</h4>
 		                    <hr>
 		                </div>
 		            </div>
 		            <div class="row">
 		                <div class="col-md-12">
 		                    <form>
-                                <div class="col-8" >  <!-- style=" text-align:center; margin-left: 120px -->
-                                <img src="${profile.p_route }" style="width:250px;" class="rounded" /> <!--  -->
-                                 </div> 
-                                   <hr />
-                                    <div class="col-8" >  <!-- style=" text-align:center; margin-left: 120px -->
-                                <img src="${hostImg.h_route }" style="width:250px;" class="rounded" /> <!--  -->
-                                 </div> 
-                                   <hr />
-                              <div class="form-group row">
-                                <label for="username" class="col-4 col-form-label">ID</label> 
-                                <div class="col-8">
-                                <p>${member.m_id }</p>
-                                </div>
-                              </div>
-                             	 <hr />
-                              <div class="form-group row">
-                                <label for="name" class="col-4 col-form-label">이름</label> 
-                                <div class="col-8">
-                                  <p>${member.m_name }</p>
-                                </div>
-                              </div>
-                                 <hr />
-                              <div class="form-group row">
-                                <label for="lastname" class="col-4 col-form-label">취미</label> 
-                                <div class="col-8">
-                                  <p>${profile.p_hobby }</p>
-                                </div>
-                              </div>
-                                 <hr />
-                              <div class="form-group row">
-                                <label for="text" class="col-4 col-form-label">사용가능한 언어</label> 
-                                <div class="col-8">
-                                 <p>${profile.p_language }</p>
-                                </div>
-                              </div>
-                                 <hr />
-                              <div class="form-group row">
-                                <label for="select" class="col-4 col-form-label">직업</label> 
-                                <div class="col-8">
-                                  <p>${profile.p_job }</p>
-                                </div>
-                              </div>
-                                 <hr />
-                              <div class="form-group row">
-                                <label for="email" class="col-4 col-form-label">나에 대해서</label> 
-                                <div class="col-8">
-                                 <p>${profile.p_aboutme }</p>
-                                </div>
-                              </div>
-                                 <hr />
-                              <div class="form-group row">
-                                <label for="website" class="col-4 col-form-label">목적</label> 
-                                <div class="col-8">
-                                      <p>${profile.p_purpose }</p>
-                                </div>
-                              </div>
-                                 <hr />
-                              <div class="form-group row">
-                                <label for="publicinfo" class="col-4 col-form-label">방문했던 국가</label> 
-                                <div class="col-8">
-                                 <p>${profile.p_visitcountry }</p>
-                                </div>
-                              </div>
-                                <hr />
-                              <div class="form-group row">
-                                <div class="offset-4 col-8">
-                                  <button name=button type="button" class="btn btn-primary" onclick="profileModify()">프로필 수정하기</button>
-                                </div>
-                              </div>
+                              <table class="table">
+                              	<tr>
+                              		<td colspan="2" style="text-align: center;"><h5 class="text-muted">Profile Image</h5><br><img src="${profile.p_route }" style="width:250px; height: 250px;" class="rounded"/></td>
+                              		<td colspan="2" style="text-align: center;"><h5 class="text-muted">Host Image</h5><br><img src="${hostImg.h_route }" style="width:250px; height: 250px;" class="rounded"/></td>
+                              	</tr>
+                              	<tr>
+                              		<th style="width: 22%; text-align: center;" >이름 </th>
+                              		<td style="width: 28%">${member.m_name }</td>
+                              		<th style="width: 18%; text-align: center;">취미 </th>
+                              		<td style="width: 32%">${profile.p_hobby }</td>
+                              	</tr>
+                              	<tr>
+                              		<th style="width: 22%; text-align: center;" >사용가능 언어 </th>
+                              		<td style="width: 28%">${profile.p_language }</td>
+                              		<th style="width: 18%; text-align: center;">직업 </th>
+                              		<td style="width: 32%">${profile.p_job }</td>
+                              	</tr>
+                              	<tr>
+                            		<th style="width: 22%; text-align: center;">방문해본 국가</th>
+                            		<td colspan="3">${profile.p_visitcountry }</td>
+                            	</tr>
+                            	<tr>
+                            		<th style="width: 22%; text-align: center;">사이트방문 목적</th>
+                            		<td colspan="3">${profile.p_purpose }</td>
+                            	</tr>
+                              	<tr>
+                              		<th style="width: 22%; text-align: center;" >나에 대해서 </th>
+                              		<td colspan="3">${profile.p_aboutme }</td>  		
+                              	</tr>  	
+                              </table>
+                              
+                              
+                              
+                              
                             </form>
 		                </div>
 		            </div>
@@ -137,7 +103,6 @@
 		</div>
 	</div>
 </div>
-
 <%@include file="/views/footer.jsp"%>
 </body>
 </html>

@@ -33,6 +33,8 @@ public class ProfileImageController {
 	private ProfileService profileService;
 	@Autowired
 	private HostImageService hostImageService;
+	
+	
 	public ProfileImageController () {
 		System.out.println("ProfileImageController 컨트롤러");
 	}
