@@ -36,18 +36,6 @@ public class ProfileController {
 	public ProfileController() {
 		System.out.println("=======프로필 컨트롤러 시작");
 	}
-	
-	//내글===================================
-	@RequestMapping(value="myPost.do", method=RequestMethod.GET)
-		public String myPost(Model model, @RequestParam("m_id") String m_id) {
-		List<UserAdminPostVO> uplist = null;
-		
-		uplist = adminService.userAdminPostList(m_id);
-		
-		model.addAttribute("userAdminPostList", uplist);
-		return "views/profile/ProfileMyPost.jsp";
-	}
-	
 	//=======================================
 	//마이 프로필
 	@RequestMapping(value="myProfile.do", method=RequestMethod.GET)
@@ -55,17 +43,108 @@ public class ProfileController {
 		session.getAttribute("profile");
 		return "views/profile/getProfile.jsp";
 	}
+	//내글===================================
+	@RequestMapping(value="/myPost.do", method=RequestMethod.GET)
+		public String myPost(Model model, HttpSession session, @RequestParam("cPage") String cPage,
+				@RequestParam("m_id") String m_id) {
+		int countPost = adminService.countPost(m_id);
+		PagingVO p = new PagingVO();
+		p.setNumPerPage(5);
+		p.setPagePerBlock(5);
+		p.setTotalRecord(countPost);
+		p.setTotalPage();
+		
+		if (cPage != null) {
+			p.setNowPage(Integer.parseInt(cPage));
+		}
+		
+		p.setEnd(p.getNowPage() * p.getNumPerPage());
+		p.setBegin(p.getEnd() - p.getNumPerPage() + 1);
+				
+		int nowPage = p.getNowPage();
+		p.setBeginPage((nowPage - 1) / p.getPagePerBlock() * p.getPagePerBlock() + 1);
+		p.setEndPage(p.getBeginPage() + p.getPagePerBlock() - 1);
+		
+		if (p.getEndPage() > p.getTotalPage()) {
+			p.setEndPage(p.getTotalPage());
+		}
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("begin", p.getBegin());
+		map.put("end", p.getEnd());
+		map.put("m_id", m_id);
+		
+		List<logLoginVO> myPostList = adminService.getmyPostList(map);
+		
+		
+		
+		session.setAttribute("myPostList", myPostList);
+		model.addAttribute("countPost", countPost);
+		model.addAttribute("pvo", p);
+		
+		session.setAttribute("cPage", cPage);
+		return "views/profile/ProfileMyPost.jsp";
+	}
+	//내글===================================
+	@RequestMapping(value="/myPost2.do", method=RequestMethod.GET)
+		public String myPost2(Model model, HttpSession session, @RequestParam("cPage") String cPage,
+				@RequestParam("m_id") String m_id) {
+		int countPost = adminService.countComment(m_id);
+		PagingVO p = new PagingVO();
+		p.setNumPerPage(5);
+		p.setPagePerBlock(5);
+		p.setTotalRecord(countPost);
+		p.setTotalPage();
+		System.out.println("아이디 : " + m_id);
+		System.out.println("넘버퍼페이지 " + p.getNumPerPage());
+		System.out.println(" 페이지퍼블록 " + p.getPagePerBlock());
+		System.out.println("토탈레코드 " + p.getTotalRecord());
+		System.out.println(" 토탈페이지 " + p.getTotalPage());
+		if (cPage != null) {
+			p.setNowPage(Integer.parseInt(cPage));
+		}
+		
+		p.setEnd(p.getNowPage() * p.getNumPerPage());
+		p.setBegin(p.getEnd() - p.getNumPerPage() + 1);
+				System.out.println(" 엔드" + p.getEnd());
+				System.out.println(" 비긴" + p.getBegin());
+		int nowPage = p.getNowPage();
+		p.setBeginPage((nowPage - 1) / p.getPagePerBlock() * p.getPagePerBlock() + 1);
+		p.setEndPage(p.getBeginPage() + p.getPagePerBlock() - 1);
+			System.out.println(" 비긴페이지" + p.getBeginPage());
+			System.out.println(" 엔드페이지" + p.getEndPage());
+		if (p.getEndPage() > p.getTotalPage()) {
+			p.setEndPage(p.getTotalPage());
+			System.out.println(" 엔드페이지" + p.getEndPage());
+		}
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("begin", p.getBegin());
+		map.put("end", p.getEnd());
+		map.put("m_id", m_id);
+		List<logLoginVO> myPostList = adminService.getmyCommentList(map);
+		
+		
+		
+		System.out.println("============================");
+		System.out.println(myPostList);
+		System.out.println("============================");
+		session.setAttribute("myPostList2", myPostList);
+		model.addAttribute("countPost", countPost);
+		session.setAttribute("pvo", p);
+		
+		session.setAttribute("cPage", cPage);
+		return "views/profile/ProfileMyComment.jsp";
+	}
+	
+	
 	//=============================================================
 	//프로필 등록
 	
-	@RequestMapping(value="loginRecordList.do", method=RequestMethod.GET)
+	@RequestMapping(value="/loginRecordList.do", method=RequestMethod.GET)
 		public String loginRecord(Model model, logLoginVO vo,
 				HttpSession session, @RequestParam("cPage") String cPage
 				,@RequestParam("ll_id") String ll_id) {
-	/*	MemberVO member = (MemberVO) session.getAttribute("member");
-		vo.setLl_id(member.getM_id());
-		List<logLoginVO> logList = adminService.getLoginRecord(vo);
-		session.setAttribute("logList", logList);*/
 		
 		PagingVO p = new PagingVO();
 		p.setNumPerPage(7);
@@ -94,12 +173,11 @@ public class ProfileController {
 		map.put("begin", p.getBegin());
 		map.put("end", p.getEnd());
 		map.put("ll_id", ll_id);
-		
 		List<logLoginVO> logLoginList = adminService.getLogLoginList(map);
+		
 		System.out.println("logLoginList: " + logLoginList);
 		
-		List<logLoginVO> logList = adminService.getLoginRecord(vo);
-		session.setAttribute("logList", logList);
+		
 		
 		session.setAttribute("logLoginList", logLoginList);
 		model.addAttribute("countLog", countLog);

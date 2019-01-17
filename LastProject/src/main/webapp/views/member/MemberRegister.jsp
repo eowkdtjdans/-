@@ -19,6 +19,9 @@
    <script src="views/datepicker/public/theme/js/t-datepicker.min.js"></script>
 
 <script>
+var idck = 0;
+var phoneck = 0;
+
     function phoneCheck(frm) {
 		var phonecheck = 0;
 		var m_phone = $('#m_phone').val();
@@ -104,7 +107,6 @@
 
 function register(frm) {
 	var nameCheck = /^[가-힣]{2,4}|[a-zA-Z]{2,10}\s[a-zA-Z]{2,10}$/;
-
 	var name = frm.m_name.value;
 	
 	if(confirm("회원가입을 하시겠습니까?")){
@@ -122,11 +124,7 @@ function register(frm) {
         	alert("비밀번호를 8~16자리로 설정해주세요.");
         	frm.m_pwd.value = ""; 
 			frm.m_pwd.focus();
-		} /* else if (frm.m_name.value == "" || frm.m_name.value == null) {
-			alert("성함을 기입하세요.");
-			frm.m_name.value = ""; 
-			frm.m_name.focus();
-		} */ else if (nameCheck.test(name)==false || frm.m_name.value =="") {
+		}  else if (nameCheck.test(name)==false || frm.m_name.value =="") {
 			alert("성함은 한글 또는 영어로 작성해주세요.");
 			frm.m_name.value = ""; 
 			frm.m_name.focus();
@@ -138,7 +136,12 @@ function register(frm) {
 			alert("주소를 기입하세요.");
 			frm.m_address.value = ""; 
 			frm.m_address.focus();
-        }else{
+		} else if ($("#agree").prop("checked", false)) {
+			alert("씨발련아 안처누름");
+			frm.agree.value= "";
+			frm.agree.focus();
+		} 
+		else{
         alert("이메일 인증을 완료해야 사이트를 이용하실 수 있습니다. 이메일을 확인해주세요.");
      	frm.action = "../../insertMember.do"; //로그인 작업 처리
 		frm.submit(); 
@@ -146,6 +149,11 @@ function register(frm) {
     }
 
 };
+
+function checkbox() {
+	   document.getElementById("sampleCheckbox").value = 1;
+}
+</script>
 </script>   
 <script>   
 var placeSearch, autocomplete;
@@ -287,7 +295,9 @@ $('.t-datepicker').tDatePicker({
                   
                          <div class="form-group">
                            <div class="custom-checkbox custom-control">
-                              <input type="checkbox" name="agree" id="agree" class="custom-control-input">
+                              <input type="checkbox" name="agree" id="agree" class="custom-control-input"onclick="checkbox()">
+                              <input type="hidden" name="sampleCheckbox" id="sampleCheckbox" />
+
                               <label for="agree" class="custom-control-label">사이트 가입 하시겠습니까? <a href="#">가입약관</a></label>
                               <div class="invalid-feedback">
                                  You must agree with our Terms and Conditions
@@ -313,6 +323,8 @@ $('.t-datepicker').tDatePicker({
          </div>
       </div>
    </section>
+   
+  
    
 </body>
 </html>

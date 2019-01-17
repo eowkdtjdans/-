@@ -85,20 +85,39 @@
 	<table class="table">
 		<thead class="thead-light">
 		<tr>
-			
-			<th width="100"style="text-align :center;">작성글</th>
-			<th width="100"style="text-align :center;">내용</th>
+			<th width="100"style="text-align :center;">게시판</th>
+			<th width="100"style="text-align :center;">댓글</th>
 			<th width="100"style="text-align :center;">날짜</th>
 		</tr>
 		</thead>
-		<c:forEach var="myPostList" items="${myPostList }">
+		<c:forEach var="myPostList" items="${myPostList2 }">
 		<tr>
+		<c:if test="${myPostList.c_type eq '이벤트 게시판' }">
 			<td style="text-align :center;">
-			<a href="../getLocalAdvice.do?l_idx=${myPostList.l_idx }&m_id=${myPostList.m_id }&cPage=1">${myPostList.l_subject }</a>
-			
+				<a href="getLocalAdviceList2.do?cPage=1&firstLat=&firstLng=&key=&searchCondition=find_advice">${myPostList.c_type }</a>
 			</td>
-			<td style="text-align :center;">${myPostList.l_content }</td>
-			<td><fmt:formatDate value="${myPostList.l_date }" pattern="yyyy-MM-dd HH:mm:ss"/> </td>
+		</c:if>
+		
+		<c:if test="${myPostList.c_type eq '현지정보 문의 게시판' }">
+			<td style="text-align :center;">
+				<a href="getLocalAdviceList2.do?cPage=1&searchCondition=find_advice&firstLat=&firstLng=&key=">${myPostList.c_type }</a>
+			</td>
+		</c:if>
+		
+			<c:if test="${myPostList.c_type eq '이벤트 게시판' }">
+			<td style="text-align :center;">
+				<a href="../getEvent.do?e_idx=${myPostList.idx }">${myPostList.c_content }</a>
+			</td>
+		</c:if>
+		
+		<c:if test="${myPostList.c_type eq '현지정보 문의 게시판' }">
+			<td style="text-align :center;">
+				<a href="../getLocalAdvice.do?l_idx=${myPostList.idx }">${myPostList.c_content }</a>
+			</td>
+		</c:if>
+		
+			
+			<td><fmt:formatDate value="${myPostList.c_date }" pattern="yyyy-MM-dd HH:mm:ss"/> </td>
 		</tr>
 		</c:forEach>
 		
@@ -116,7 +135,7 @@
 				<%--사용가능(enable) : 두번째 이상(첫번째 아닌경우) --%>
 					<c:otherwise>
 						<li>
-							<a href="../../myPost.do?m_id=${member.m_id }&cPage=${pvo.endPage + 1 }">◀</a>
+							<a href="../../myPost2.do?m_id=${member.m_id }&cPage=${pvo.endPage + 1 }">◀</a>
 						</li>
 					</c:otherwise>	
 				</c:choose>
@@ -130,7 +149,7 @@
 					</c:when>
 					<c:otherwise>
 						<li>
-							<a href="../../myPost.do?m_id=${member.m_id }&cPage=${k }">${k }</a>
+							<a href="../../myPost2.do?m_id=${member.m_id }&cPage=${k }">${k }</a>
 						</li>
 					</c:otherwise>
 				</c:choose>
@@ -145,7 +164,7 @@
 					<%--사용가능(enable) --%>
 					<c:otherwise>
 						<li>
-							<a href="../../myPost.do?m_id=${member.m_id }&cPage=${pvo.endPage + 1 }">▶</a>
+							<a href="../../myPost2.do?m_id=${member.m_id }&cPage=${pvo.endPage + 1 }">▶</a>
 						</li>
 					</c:otherwise>
 				</c:choose>

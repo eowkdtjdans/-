@@ -76,4 +76,25 @@ public class AdminDAO {
 		return mybatis.selectList("getLogLoginList", map);
 	}
 
+	public int countPost(String m_id) {
+		return mybatis.selectOne("countPost", m_id);
+	}
+
+	public List<logLoginVO> getMyPostList(Map<String, Object> map) {
+		return mybatis.selectList("getMyPostList", map);
+	}
+
+	public int countComment(String m_id) {
+		return mybatis.selectOne("countComment", m_id);
+	}
+
+	public List<logLoginVO> getmyCommentList(Map<String, Object> map) {
+		return mybatis.selectList("getMyCommentList", map);
+	}
+
+	public int countComment2(String m_id) {
+		return mybatis.selectOne("countComment2", m_id);
+	}
+
+
 }
