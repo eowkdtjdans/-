@@ -119,10 +119,14 @@ select {
 	function findPwdAndUpdate(frm) {
 		var certifyCode = frm.certifyCode.value;
 		var findPwdEmailCheck = "${findPwdEmailCheck}";
+		alert("이메일 발송코드 : " + findPwdEmailCheck);
+		alert("내가 쓴 코드 : " + certifyCode);
 		var pwdCheck = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,15}$/;
-		
+		var m_id = frm.m_id.value;
 		var m_pwd = frm.m_pwd.value;
 		var m_pwd2 = frm.m_pwd2.value;
+		alert("m_id :" + m_id);
+		alert("변경할 비밀번호 : " + m_pwd);
 		 if(frm.m_pwd.value == "" || frm.m_pwd.value == null){
 			   alert("변경할 비밀번호를 기입하세요.");
 				frm.m_pwd.value="";
@@ -299,7 +303,7 @@ select {
                  <br>
                  <form method="POST" onsubmit="return false;" class="my-login-validation" id="findId">
                 
-				<input id="m_id"  value="${member.m_id }" type="hidden" class="form-control" name="m_id">
+				<input id="m_id"  value="${findPwdId.m_id }" type="hidden" class="form-control" name="m_id">
            	         
                     <div class="form-group" >
                        <label for="certifyCode">인증번호</label>

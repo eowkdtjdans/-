@@ -48,11 +48,12 @@
 <script>
 
 	function findId(frm) {
-		alert("양김모띠");
 		var certifyCode = frm.certifyCode.value;
 		var emailCheck = "${emailCheck}";
+		alert("인증코드발송 :" + emailCheck);
+		alert("내가 입력한 코드 : " + certifyCode);
 		if (emailCheck == certifyCode) {
-			
+			alert("코드 일치")
 		frm.action = "../../certifyCodeUpdate.do";
 		frm.submit();
 		} else {
