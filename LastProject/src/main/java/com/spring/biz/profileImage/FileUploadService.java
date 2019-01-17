@@ -15,7 +15,7 @@ public class FileUploadService {
 	private static final String PREFIX_URL = "/views/img/upload/";
 	
 	public String fileUpload(MultipartFile multipartFile) {
-		String url = null;
+		String saveName = null;
 		
 		try {
 			String originFilename = multipartFile.getOriginalFilename();
@@ -32,13 +32,13 @@ public class FileUploadService {
 			
 			saveFileDir(multipartFile, saveFileName);
 			
-			url = PREFIX_URL + saveFileName;
+			saveName = saveFileName;
 			
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
 		
-		return url;
+		return saveName;
 	}
 	
 	private String saveFileName(String extName) {

@@ -162,7 +162,7 @@ $(function(){
 		
 		var size = document.getElementById("e_img"+localStorage.imgFileCnt).files[0].size;
 		
-		if(localStorage.imgFileCnt >= 10) {
+		if(localStorage.imgFileCnt > 10) {
 			$("#typeWrong").remove();
 			$("<div id='typeWrong'><b>파일은 최대 10개까지 올릴 수 있습니다.</b></div>").insertAfter("#e_img"+localStorage.imgFileCnt);
 		} else {
@@ -173,10 +173,13 @@ $(function(){
 					$("#e_img"+localStorage.imgFileCnt).attr("name", "file"+localStorage.imgFileCnt);
 					$(".custom-file").css("display", "none");
 					
+					$("<input type='hidden' id='size"+localStorage.imgFileCnt+"' value='"+size+"' name='e_size"+localStorage.imgFileCnt+"'>").insertAfter("#fileTr");
+					$("<tr id='"+id+"'><td><img src='#' id='pre' class='preview'></td><td>"+imgFile+"</td><td id='size"+id+"'>"+size+"</td><td class='file_remove'><button type='button' class='btn btn-outline-secondary' onclick='file_remove(\""+id+"\", \""+localStorage.imgFileCnt+"\")'><i class='fas fa-trash-alt'></i></button></td></tr>").insertAfter("#fileTr");
+					
 					localStorage.imgFileCnt = (localStorage.imgFileCnt * 1 + 1);
 					$("<div class='custom-file'><input type='file' class='custom-file-input userFile' id='e_img"+localStorage.imgFileCnt+"'><label id='file-label' class='custom-file-label' for='e_img"+localStorage.imgFileCnt+"'>이미지 업로드</label></div>").insertAfter("#fileAfter");
 					
-					$("<tr id='"+id+"'><td>"+imgFile+"</td><td id='size"+id+"'>"+size+"</td><td class='file_remove'><button type='button' class='btn btn-outline-secondary' onclick='file_remove(\""+id+"\")'><i class='fas fa-trash-alt'></i></button></td></tr>").insertAfter("#fileTr");
+					readURL(this, id);
 				} else {
 					$("#typeWrong").remove();
 					$("<div id='typeWrong'><b>파일 용량이 너무 큽니다.</b></div>").insertAfter("#e_img"+localStorage.imgFileCnt);
@@ -191,17 +194,35 @@ $(function(){
 	
 });
 
-function file_remove(id) {
+function file_remove(id, cnt) {
 	localStorage.totSize =  (localStorage.totSize * 1 - document.getElementById("size" + id).childNodes[0].nodeValue);
 	document.getElementById(id).remove();
-	document.getElementById("e_img"+localStorage.imgFileCnt).remove();
+	$("#e_img"+cnt).parent().remove();
+	$("#e_img"+localStorage.imgFileCnt).parent().remove();
+	document.getElementById("size"+cnt).remove();
+	
+	
 	localStorage.imgFileCnt = (localStorage.imgFileCnt * 1 - 1);
+	$("<div class='custom-file'><input type='file' class='custom-file-input userFile' id='e_img"+localStorage.imgFileCnt+"'><label id='file-label' class='custom-file-label' for='e_img"+localStorage.imgFileCnt+"'>이미지 업로드</label></div>").insertAfter("#fileAfter");
 }
 
 function insertEvent(frm) {
 	frm.action="/insertEvent.do";
 	frm.submit();
 }
+
+function readURL(input, id) {
+	if(input.files && input.files[0]) {
+		var reader = new FileReader();
+		
+		reader.onload = function(e) {
+			$("#pre").attr("src", e.target.result);
+		}
+		
+		reader.readAsDataURL(input.files[0]);
+	}
+}
+
 
 
 </script>
@@ -219,6 +240,10 @@ function insertEvent(frm) {
 	}
 	table .file_remove{
 		text-align: center;
+	}
+	
+	.preview {
+		width:30px; height: 30px;
 	}
 </style>
 </head>
@@ -511,6 +536,7 @@ function insertEvent(frm) {
 						
 						<table class="table table-bordered table-hover">
 							<tr id="fileTr">
+								<th>미리보기</th>
 								<th style="width: 70%">파일</th>
 								<th>용량</th>
 								<th><i class='fas fa-trash-alt'></i></th>

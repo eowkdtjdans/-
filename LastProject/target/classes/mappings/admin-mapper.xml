@@ -82,8 +82,8 @@
 	</insert>
 	
 	<insert id="insertEventImg" parameterType="Map">
-		INSERT INTO EVENT_IMAGE (E_IDX, E_IMG, E_MAIN)
-		VALUES (EVENT_SEQ.CURRVAL, #{e_img}, #{e_main})
+		INSERT INTO EVENT_IMAGE (E_IDX, E_IMG, E_MAIN, E_SIZE, E_REALPATH, E_SERVER)
+		VALUES (EVENT_SEQ.CURRVAL, #{e_img}, #{e_main}, #{e_size}, #{e_realpath}, #{e_server})
 	</insert>
 	
 	<delete id="adminDeleteProfileImage" parameterType="Map">
@@ -95,6 +95,32 @@
 		FROM LOG_LOGIN LOG
 		WHERE LOG.LL_ID = #{ll_id}
 	</select>
+	
+	<delete id="deleteEvent">
+		DELETE FROM EVENT WHERE E_IDX = #{e_idx}
+	</delete>
+	
+	<delete id="deleteEventImg" parameterType="Map">
+		DELETE FROM EVENT_IMAGE WHERE E_IDX = #{e_idx} AND E_IMG = #{e_img}
+	</delete>
+	
+	<update id="modifyEvent" parameterType="event">
+		UPDATE EVENT SET E_NAME = #{e_name},
+						 E_CONTENT = #{e_content},
+						 E_STARTDATE = #{e_startdate},
+						 E_ENDDATE = #{e_enddate},
+						 E_ADDRESS = #{e_address},
+						 LAT = #{lat},
+						 LNG = #{lng},
+						 E_REGION = #{e_region},
+						 E_TAG = #{e_tag}
+		WHERE E_IDX = #{e_idx}
+	</update>
+	
+	<insert id="insertModifyEventImg" parameterType="Map">
+		INSERT INTO EVENT_IMAGE (E_IDX, E_IMG, E_MAIN, E_SIZE, E_REALPATH, E_SERVER)
+		VALUES (#{e_idx}, #{e_img}, #{e_main}, #{e_size}, #{e_realpath}, #{e_server})
+	</insert>
 
 
 </mapper>

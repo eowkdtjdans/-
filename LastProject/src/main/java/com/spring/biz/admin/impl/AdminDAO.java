@@ -68,4 +68,20 @@ public class AdminDAO {
 		return mybatis.selectList("getLoginRecord", vo);
 	}
 
+	public void deleteEvent(int e_idx) {
+		mybatis.delete("deleteEvent", e_idx);
+	}
+
+	public void deleteEventImg(Map<String, String> delImgMap) {
+		mybatis.delete("deleteEventImg", delImgMap);
+	}
+
+	public void modifyEvent(EventVO eventVO) {
+		mybatis.update("modifyEvent", eventVO);
+	}
+
+	public void insertModifyEventImg(Map<String, String> eventImgMap) {
+		mybatis.insert("insertModifyEventImg", eventImgMap);
+	}
+
 }

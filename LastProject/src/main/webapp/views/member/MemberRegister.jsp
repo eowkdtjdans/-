@@ -267,6 +267,9 @@ $('.t-datepicker').tDatePicker({
                         <select id="year" onchange="yearChange()">
                            <c:forEach begin="1969" end="1999" step="1">
                               <c:set var="yearStart" value="${yearStart + 1}"/>
+                              <c:if test="${yearStart eq 1990}">
+                              	<option selected="selected">${yearStart}</option>
+                              </c:if>
                               <option>${yearStart}</option>
                            </c:forEach>
                         </select>

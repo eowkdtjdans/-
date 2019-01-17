@@ -417,17 +417,18 @@ table .noline {
 					
 			      </div>
 			      
-			      
+			      <fmt:formatDate var="startdate" value="${getEvent.e_startdate}" pattern="yyyy-MM-dd E요일"/>
+   				  <fmt:formatDate var="enddate" value="${getEvent.e_enddate}" pattern="yyyy-MM-dd E요일"/>
 			      <div class="col-md-6" id="e_content">
 			      ${getEvent.e_content } <br><br>
 			      <table class="table" id="smalltable">
 			      	<tr>
 			      		<td>시작일</td>
-			      		<td>${getEvent.e_startdate }</td>
+			      		<td>${startdate }</td>
 			      	</tr>
 			      	<tr>
 			      		<td>종료일</td>
-			      		<td>${getEvent.e_enddate }</td>
+			      		<td>${enddate }</td>
 			      	</tr>
 			      	<tr>
 			      		<td>태그</td>

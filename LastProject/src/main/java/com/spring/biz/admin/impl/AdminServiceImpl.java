@@ -81,4 +81,24 @@ public class AdminServiceImpl implements AdminService {
 		return adminDAO.getLoginRecord(vo);
 	}
 
+	@Override
+	public void deleteEvent(int e_idx) {
+		adminDAO.deleteEvent(e_idx);
+	}
+
+	@Override
+	public void deleteEventImg(Map<String, String> delImgMap) {
+		adminDAO.deleteEventImg(delImgMap);
+	}
+
+	@Override
+	public void modifyEvent(EventVO eventVO) {
+		adminDAO.modifyEvent(eventVO);
+	}
+
+	@Override
+	public void insertModifyEventImg(Map<String, String> eventImgMap) {
+		adminDAO.insertModifyEventImg(eventImgMap);
+	}
+
 }

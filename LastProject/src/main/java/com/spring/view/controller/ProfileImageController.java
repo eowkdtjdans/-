@@ -33,6 +33,9 @@ public class ProfileImageController {
 	private ProfileService profileService;
 	@Autowired
 	private HostImageService hostImageService;
+	
+	private static final String PREFIX_URL = "/views/img/upload/";
+	
 	public ProfileImageController () {
 		System.out.println("ProfileImageController 컨트롤러");
 	}
@@ -160,7 +163,7 @@ public class ProfileImageController {
 	@RequestMapping(value="uploadProfileImg.do", method=RequestMethod.POST)
 	public String uploadProfileImg(MemberVO vo,HttpSession session, ProfileVO profilevo, @RequestParam("profileImg") MultipartFile profileImg, @RequestParam("m_id") String m_id) {
 		
-		String url = fileUploadService.fileUpload(profileImg);
+		String url = PREFIX_URL + fileUploadService.fileUpload(profileImg);
 		String path = session.getServletContext().getRealPath("/");
 		System.out.println(path);
 		
@@ -203,7 +206,7 @@ public class ProfileImageController {
 	@RequestMapping(value="uploadHostImg.do", method=RequestMethod.POST)
 	public String uploadHostImg(MemberVO vo, HostImageVO hostimageVO, HttpSession session, @RequestParam("uploadHostImg") MultipartFile hostImg, @RequestParam("m_id") String m_id) {
 		
-		String url = fileUploadService.fileUpload(hostImg);
+		String url = PREFIX_URL + fileUploadService.fileUpload(hostImg);
 		
 		int hostMainCnt = hostMainCnt(m_id);
 		String h_main = "0";

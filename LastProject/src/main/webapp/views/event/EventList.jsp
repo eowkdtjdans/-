@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -149,7 +150,7 @@ function viewMarker() {
 	{
 		$.ajax({
 			type: "GET",
-			url: "../google.do",
+			url: "../getEventGoogle.do",
 			 beforeSend: function() {			
 				fnRemoveMarker();
 			 },
@@ -165,7 +166,7 @@ function viewMarker() {
 							draggable: false,
 							html: markerList[i].cont,
 							label: {
-					            text: markerList[i].m_name, // $100,000
+					            text: markerList[i].e_name, // $100,000
 					            color: 'black',
 					            fontWeight: 'bold'
 					        },
@@ -311,9 +312,12 @@ function move() {
 	      	<c:otherwise>
       		<c:forEach var="list" items="${eventList}">
 	      		<tr>	      			
-	      			<th style="width: 70%">
-	      				<a href="../getEvent.do?e_idx=${list.e_idx }">${list.e_name }</a>&nbsp;&nbsp;<span id="detcnt">[${list.e_count}]</span> &emsp;<span id="date">${list.e_startdate } ~ ${list.e_enddate }</span>
+	      			<th style="width: 40%">
+	      				<fmt:formatDate var="startdate" value="${list.e_startdate}" pattern="yyyy-MM-dd E요일"/>
+	      				<fmt:formatDate var="enddate" value="${list.e_enddate}" pattern="yyyy-MM-dd E요일"/>
+	      				<a href="../getEvent.do?e_idx=${list.e_idx }">${list.e_name }</a>&nbsp;&nbsp;<span id="detcnt">[${list.e_count}]</span>
 	      			</th>
+	      			<td style="width:30%; text-align: center;"><div id="date">${startdate } ~ ${enddate }</div></td>
 	      			<td style="width:15%"> &nbsp;&nbsp;&nbsp;&nbsp; <a id="good" href="#" ><img src="views/img/good.png" style="width: 20px; height: 20px;">  좋아요 ${list.e_upvote }</a> &nbsp;&nbsp;&nbsp;&nbsp; </td>
 	      			<td style="width:15%"><img src="views/img/lookup.PNG" style="width: 20px; height: 20px;"> ${list.e_reviewcount }</td>
 	      		</tr>
