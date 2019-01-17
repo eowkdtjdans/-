@@ -1,5 +1,6 @@
 package com.spring.view.controller;
 
+import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -13,10 +14,10 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -25,7 +26,10 @@ import com.spring.biz.admin.AdminService;
 import com.spring.biz.admin.UserAdminCommentVO;
 import com.spring.biz.admin.UserAdminPostVO;
 import com.spring.biz.admin.UserAdminViewVO;
+import com.spring.biz.event.EventService;
 import com.spring.biz.event.EventVO;
+import com.spring.biz.eventImage.EventImageService;
+import com.spring.biz.eventImage.EventImageVO;
 import com.spring.biz.member.Email;
 import com.spring.biz.member.EmailSender;
 import com.spring.biz.member.MemberVO;
@@ -36,7 +40,7 @@ import com.spring.biz.profileImage.ProfileImageService;
 import com.spring.biz.profileImage.ProfileImageVO;
 
 @Controller
-@SessionAttributes({"userAdminList", "userAdminViewVO", "userAdminPostList", "userAdminCommentList", "userAdminImageSelect", "eventAdminList", "adminCnt", "userAdminImageSelect"})
+@SessionAttributes({"userAdminList", "userAdminViewVO", "userAdminPostList", "userAdminCommentList", "userAdminImageSelect", "eventAdminList", "adminCnt", "userAdminImageSelect", "eventVO", "eventImageList"})
 public class AdminController {
 	@Autowired
 	private AdminService adminService;
@@ -50,10 +54,15 @@ public class AdminController {
 	private EmailSender emailSender;
 	@Autowired
 	private ProfileImageService profileImageService;
+	@Autowired
+	private EventService eventService;
+	@Autowired
+	private EventImageService eventImageService;
 	
-	public AdminController() {
-		System.out.println("AdminController로 옴");
-	}
+	private static final String PREFIX_URL = "/views/img/upload/";
+	private static final String SAVE_PATH = "C:/MyStudy/GIT/gukbong/LastProject/src/main/webapp/views/img/upload/";
+	private static final String SERVER_SAVE_PATH = "C:/MyStudy/GIT/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/LastProject/views/img/upload/";
+	
 	
 	@RequestMapping(value="/Admin.do")
 	public String AdminMain(HttpServletRequest request, Model model) {
@@ -201,6 +210,16 @@ public class AdminController {
 			@RequestParam("lng") String lng,
 			@RequestParam("e_region") String e_region,
 			@RequestParam(value="e_tag", required=false) String e_tag,
+			@RequestParam(value="e_size1", required=false) String e_size1,
+			@RequestParam(value="e_size2", required=false) String e_size2,
+			@RequestParam(value="e_size3", required=false) String e_size3,
+			@RequestParam(value="e_size4", required=false) String e_size4,
+			@RequestParam(value="e_size5", required=false) String e_size5,
+			@RequestParam(value="e_size6", required=false) String e_size6,
+			@RequestParam(value="e_size7", required=false) String e_size7,
+			@RequestParam(value="e_size8", required=false) String e_size8,
+			@RequestParam(value="e_size9", required=false) String e_size9,
+			@RequestParam(value="e_size10", required=false) String e_size10,
 			@RequestParam(value="file1", required=false) MultipartFile e_img1,
 			@RequestParam(value="file2", required=false) MultipartFile e_img2,
 			@RequestParam(value="file3", required=false) MultipartFile e_img3,
@@ -216,16 +235,6 @@ public class AdminController {
 		Date startdate = transFormat.parse(e_startdate);
 		Date enddate = transFormat.parse(e_enddate);
 		
-		System.out.println("e_name: " + e_name);
-		System.out.println("e_content: " + e_content);
-		System.out.println("startdate: " + startdate);
-		System.out.println("enddate: " + enddate);
-		System.out.println("e_address: " + e_address);
-		System.out.println("lat: " + lat);
-		System.out.println("lng: " + lng);
-		System.out.println("e_region: " + e_region);
-		System.out.println("e_tag: " + e_tag);
-		
 		EventVO eventVO = new EventVO();
 		eventVO.setE_name(e_name);
 		eventVO.setE_content(e_content);
@@ -240,76 +249,153 @@ public class AdminController {
 		adminService.insertEvent(eventVO);
 		
 		if(e_img1 != null) {
-			String url = fileUploadService.fileUpload(e_img1);
-			System.out.println("url: " + url);
+			String saveName = fileUploadService.fileUpload(e_img1);
+			String url = PREFIX_URL + saveName;
+			String realPath = SAVE_PATH + saveName;
+			String serverPath = SERVER_SAVE_PATH + saveName;
+			
 			Map<String, String> eventImgMap = new HashMap<String, String>();
 			eventImgMap.put("e_img", url);
 			eventImgMap.put("e_main", "1");
-			System.out.println("eventImgMap: " + eventImgMap);
+			eventImgMap.put("e_size", e_size1);
+			eventImgMap.put("e_realpath", realPath);
+			eventImgMap.put("e_server", serverPath);
+			
 			adminService.insertEventImg(eventImgMap);
 		}
 		if(e_img2 != null) {
-			String url = fileUploadService.fileUpload(e_img2);
+			String saveName = fileUploadService.fileUpload(e_img2);
+			String url = PREFIX_URL + saveName;
+			String realPath = SAVE_PATH + saveName;
+			String serverPath = SERVER_SAVE_PATH + saveName;
+			
 			Map<String, String> eventImgMap = new HashMap<String, String>();
 			eventImgMap.put("e_img", url);
 			eventImgMap.put("e_main", "2");
+			eventImgMap.put("e_size", e_size2);
+			eventImgMap.put("e_realpath", realPath);
+			eventImgMap.put("e_server", serverPath);
+			
 			adminService.insertEventImg(eventImgMap);
 		}
 		if(e_img3 != null) {
-			System.out.println("싴발e_img3: " + e_img3);
-			String url = fileUploadService.fileUpload(e_img3);
+			String saveName = fileUploadService.fileUpload(e_img3);
+			String url = PREFIX_URL + saveName;
+			String realPath = SAVE_PATH + saveName;
+			String serverPath = SERVER_SAVE_PATH + saveName;
+			
 			Map<String, String> eventImgMap = new HashMap<String, String>();
 			eventImgMap.put("e_img", url);
 			eventImgMap.put("e_main", "3");
+			eventImgMap.put("e_size", e_size3);
+			eventImgMap.put("e_realpath", realPath);
+			eventImgMap.put("e_server", serverPath);
+			
 			adminService.insertEventImg(eventImgMap);
 		}
 		if(e_img4 != null) {
-			String url = fileUploadService.fileUpload(e_img4);
+			String saveName = fileUploadService.fileUpload(e_img4);
+			String url = PREFIX_URL + saveName;
+			String realPath = SAVE_PATH + saveName;
+			String serverPath = SERVER_SAVE_PATH + saveName;
+			
 			Map<String, String> eventImgMap = new HashMap<String, String>();
 			eventImgMap.put("e_img", url);
 			eventImgMap.put("e_main", "4");
+			eventImgMap.put("e_size", e_size4);
+			eventImgMap.put("e_realpath", realPath);
+			eventImgMap.put("e_server", serverPath);
+			
 			adminService.insertEventImg(eventImgMap);
 		}
 		if(e_img5 != null) {
-			String url = fileUploadService.fileUpload(e_img5);
+			String saveName = fileUploadService.fileUpload(e_img5);
+			String url = PREFIX_URL + saveName;
+			String realPath = SAVE_PATH + saveName;
+			String serverPath = SERVER_SAVE_PATH + saveName;
+			
 			Map<String, String> eventImgMap = new HashMap<String, String>();
 			eventImgMap.put("e_img", url);
 			eventImgMap.put("e_main", "5");
+			eventImgMap.put("e_size", e_size5);
+			eventImgMap.put("e_realpath", realPath);
+			eventImgMap.put("e_server", serverPath);
+			
 			adminService.insertEventImg(eventImgMap);
 		}
 		if(e_img6 != null) {
-			String url = fileUploadService.fileUpload(e_img6);
+			String saveName = fileUploadService.fileUpload(e_img6);
+			String url = PREFIX_URL + saveName;
+			String realPath = SAVE_PATH + saveName;
+			String serverPath = SERVER_SAVE_PATH + saveName;
+			
 			Map<String, String> eventImgMap = new HashMap<String, String>();
 			eventImgMap.put("e_img", url);
 			eventImgMap.put("e_main", "6");
+			eventImgMap.put("e_size", e_size6);
+			eventImgMap.put("e_realpath", realPath);
+			eventImgMap.put("e_server", serverPath);
+			
 			adminService.insertEventImg(eventImgMap);
 		}
 		if(e_img7 != null) {
-			String url = fileUploadService.fileUpload(e_img7);
+			String saveName = fileUploadService.fileUpload(e_img7);
+			String url = PREFIX_URL + saveName;
+			String realPath = SAVE_PATH + saveName;
+			String serverPath = SERVER_SAVE_PATH + saveName;
+			
 			Map<String, String> eventImgMap = new HashMap<String, String>();
 			eventImgMap.put("e_img", url);
 			eventImgMap.put("e_main", "7");
+			eventImgMap.put("e_size", e_size7);
+			eventImgMap.put("e_realpath", realPath);
+			eventImgMap.put("e_server", serverPath);
+			
 			adminService.insertEventImg(eventImgMap);
 		}
 		if(e_img8 != null) {
-			String url = fileUploadService.fileUpload(e_img8);
+			String saveName = fileUploadService.fileUpload(e_img8);
+			String url = PREFIX_URL + saveName;
+			String realPath = SAVE_PATH + saveName;
+			String serverPath = SERVER_SAVE_PATH + saveName;
+			
 			Map<String, String> eventImgMap = new HashMap<String, String>();
 			eventImgMap.put("e_img", url);
 			eventImgMap.put("e_main", "8");
+			eventImgMap.put("e_size", e_size8);
+			eventImgMap.put("e_realpath", realPath);
+			eventImgMap.put("e_server", serverPath);
+			
 			adminService.insertEventImg(eventImgMap);
 		}
 		if(e_img9 != null) {
-			String url = fileUploadService.fileUpload(e_img9);
+			String saveName = fileUploadService.fileUpload(e_img9);
+			String url = PREFIX_URL + saveName;
+			String realPath = SAVE_PATH + saveName;
+			String serverPath = SERVER_SAVE_PATH + saveName;
+			
 			Map<String, String> eventImgMap = new HashMap<String, String>();
 			eventImgMap.put("e_img", url);
 			eventImgMap.put("e_main", "9");
+			eventImgMap.put("e_size", e_size9);
+			eventImgMap.put("e_realpath", realPath);
+			eventImgMap.put("e_server", serverPath);
+			
 			adminService.insertEventImg(eventImgMap);
 		}
 		if(e_img10 != null) {
-			String url = fileUploadService.fileUpload(e_img10);
+			String saveName = fileUploadService.fileUpload(e_img10);
+			String url = PREFIX_URL + saveName;
+			String realPath = SAVE_PATH + saveName;
+			String serverPath = SERVER_SAVE_PATH + saveName;
+			
 			Map<String, String> eventImgMap = new HashMap<String, String>();
 			eventImgMap.put("e_img", url);
 			eventImgMap.put("e_main", "10");
+			eventImgMap.put("e_size", e_size10);
+			eventImgMap.put("e_realpath", realPath);
+			eventImgMap.put("e_server", serverPath);
+			
 			adminService.insertEventImg(eventImgMap);
 		}
 		
@@ -325,5 +411,280 @@ public class AdminController {
 		adminService.adminDeleteProfileImage(delParam);
 		
 		return "redirect:/userAdminView.do?m_id="+m_id;
+	}
+	
+	@RequestMapping(value="/modifyEvent.do", method=RequestMethod.GET)
+	public String modifyEvent(Model model, @RequestParam("e_idx") int e_idx) {
+		EventVO eventVO = eventService.getEvent(e_idx);
+		List<EventImageVO> list = eventImageService.getEventImageList(e_idx);
+		
+		model.addAttribute("eventVO", eventVO);
+		model.addAttribute("eventImageList", list);
+		
+		return "redirect:/views/admin/modifyEvent.jsp";
+	}
+	
+	@RequestMapping(value = "/deleteEvent.do")
+	public String deleteEvent(@RequestParam("e_idx") int e_idx) {
+		adminService.deleteEvent(e_idx);
+		
+		return "redirect:/eventAdmin.do";				
+	}
+	
+	
+	@RequestMapping(value="/existFileRemove.do", method=RequestMethod.GET)
+	@ResponseBody
+	public String existFileRemove(@RequestParam("e_idx") String e_idx, @RequestParam("e_realpath") String e_realpath, @RequestParam("e_server") String e_server, @RequestParam("e_img") String e_img) {
+		String msg = "";
+		System.out.println(e_idx);
+		System.out.println(e_realpath);
+		System.out.println(e_server);
+		System.out.println(e_img);
+		
+		File file = new File(e_realpath);
+		File file2 = new File(e_server);
+		
+		Map<String,String> delImgMap = new HashMap<String,String>();
+		delImgMap.put("e_idx", e_idx);
+		delImgMap.put("e_img", e_img);
+		
+		if(file.exists()) {
+			if(file.delete()) {
+				msg = "Remove Success";
+			} else {
+				msg = "Remove Fail";
+			}
+		} else {
+			msg = "None Exists";
+		}
+		
+		if(file2.exists()) {
+			if(file2.delete()) {
+				msg = "Server Remove Success";
+				System.out.println("delImgMap: " + delImgMap);
+				adminService.deleteEventImg(delImgMap);
+			} else {
+				msg = "Server Remove Fail";
+			}
+		} else {
+			msg = "Server None Exists";
+		}
+		
+		return msg;
+	}
+	
+	@RequestMapping(value="/modifyEvent.do", method=RequestMethod.POST)
+	public String modifyEvent(Model model,
+			@RequestParam("e_idx") String e_idx,
+			@RequestParam("e_name") String e_name,
+			@RequestParam("e_content") String e_content,
+			@RequestParam("e_startdate") String e_startdate,
+			@RequestParam("e_enddate") String e_enddate,
+			@RequestParam("e_address") String e_address,
+			@RequestParam("lat") String lat,
+			@RequestParam("lng") String lng,
+			@RequestParam("e_region") String e_region,
+			@RequestParam(value="e_tag", required=false) String e_tag,
+			@RequestParam(value="e_size1", required=false) String e_size1,
+			@RequestParam(value="e_size2", required=false) String e_size2,
+			@RequestParam(value="e_size3", required=false) String e_size3,
+			@RequestParam(value="e_size4", required=false) String e_size4,
+			@RequestParam(value="e_size5", required=false) String e_size5,
+			@RequestParam(value="e_size6", required=false) String e_size6,
+			@RequestParam(value="e_size7", required=false) String e_size7,
+			@RequestParam(value="e_size8", required=false) String e_size8,
+			@RequestParam(value="e_size9", required=false) String e_size9,
+			@RequestParam(value="e_size10", required=false) String e_size10,
+			@RequestParam(value="file1", required=false) MultipartFile e_img1,
+			@RequestParam(value="file2", required=false) MultipartFile e_img2,
+			@RequestParam(value="file3", required=false) MultipartFile e_img3,
+			@RequestParam(value="file4", required=false) MultipartFile e_img4,
+			@RequestParam(value="file5", required=false) MultipartFile e_img5,
+			@RequestParam(value="file6", required=false) MultipartFile e_img6,
+			@RequestParam(value="file7", required=false) MultipartFile e_img7,
+			@RequestParam(value="file8", required=false) MultipartFile e_img8,
+			@RequestParam(value="file9", required=false) MultipartFile e_img9,
+			@RequestParam(value="file10", required=false) MultipartFile e_img10) throws ParseException {
+		
+		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date startdate = transFormat.parse(e_startdate);
+		Date enddate = transFormat.parse(e_enddate);
+		
+		EventVO eventVO = new EventVO();
+		eventVO.setE_idx(Integer.parseInt(e_idx));
+		eventVO.setE_name(e_name);
+		eventVO.setE_content(e_content);
+		eventVO.setE_startdate(startdate);
+		eventVO.setE_enddate(enddate);
+		eventVO.setE_address(e_address);
+		eventVO.setLat(Double.parseDouble(lat));
+		eventVO.setLng(Double.parseDouble(lng));
+		eventVO.setE_region(e_region);
+		eventVO.setE_tag(e_tag);
+		
+		adminService.modifyEvent(eventVO);
+		
+		if(e_img1 != null) {
+			String saveName = fileUploadService.fileUpload(e_img1);
+			String url = PREFIX_URL + saveName;
+			String realPath = SAVE_PATH + saveName;
+			String serverPath = SERVER_SAVE_PATH + saveName;
+			
+			Map<String, String> eventImgMap = new HashMap<String, String>();
+			eventImgMap.put("e_idx", e_idx);
+			eventImgMap.put("e_img", url);
+			eventImgMap.put("e_main", "1");
+			eventImgMap.put("e_size", e_size1);
+			eventImgMap.put("e_realpath", realPath);
+			eventImgMap.put("e_server", serverPath);
+			
+			adminService.insertModifyEventImg(eventImgMap);
+		}
+		if(e_img2 != null) {
+			String saveName = fileUploadService.fileUpload(e_img2);
+			String url = PREFIX_URL + saveName;
+			String realPath = SAVE_PATH + saveName;
+			String serverPath = SERVER_SAVE_PATH + saveName;
+			
+			Map<String, String> eventImgMap = new HashMap<String, String>();
+			eventImgMap.put("e_idx", e_idx);
+			eventImgMap.put("e_img", url);
+			eventImgMap.put("e_main", "2");
+			eventImgMap.put("e_size", e_size2);
+			eventImgMap.put("e_realpath", realPath);
+			eventImgMap.put("e_server", serverPath);
+			
+			adminService.insertModifyEventImg(eventImgMap);
+		}
+		if(e_img3 != null) {
+			String saveName = fileUploadService.fileUpload(e_img3);
+			String url = PREFIX_URL + saveName;
+			String realPath = SAVE_PATH + saveName;
+			String serverPath = SERVER_SAVE_PATH + saveName;
+			
+			Map<String, String> eventImgMap = new HashMap<String, String>();
+			eventImgMap.put("e_idx", e_idx);
+			eventImgMap.put("e_img", url);
+			eventImgMap.put("e_main", "3");
+			eventImgMap.put("e_size", e_size3);
+			eventImgMap.put("e_realpath", realPath);
+			eventImgMap.put("e_server", serverPath);
+			
+			adminService.insertModifyEventImg(eventImgMap);
+		}
+		if(e_img4 != null) {
+			String saveName = fileUploadService.fileUpload(e_img4);
+			String url = PREFIX_URL + saveName;
+			String realPath = SAVE_PATH + saveName;
+			String serverPath = SERVER_SAVE_PATH + saveName;
+			
+			Map<String, String> eventImgMap = new HashMap<String, String>();
+			eventImgMap.put("e_idx", e_idx);
+			eventImgMap.put("e_img", url);
+			eventImgMap.put("e_main", "4");
+			eventImgMap.put("e_size", e_size4);
+			eventImgMap.put("e_realpath", realPath);
+			eventImgMap.put("e_server", serverPath);
+			
+			adminService.insertModifyEventImg(eventImgMap);
+		}
+		if(e_img5 != null) {
+			String saveName = fileUploadService.fileUpload(e_img5);
+			String url = PREFIX_URL + saveName;
+			String realPath = SAVE_PATH + saveName;
+			String serverPath = SERVER_SAVE_PATH + saveName;
+			
+			Map<String, String> eventImgMap = new HashMap<String, String>();
+			eventImgMap.put("e_idx", e_idx);
+			eventImgMap.put("e_img", url);
+			eventImgMap.put("e_main", "5");
+			eventImgMap.put("e_size", e_size5);
+			eventImgMap.put("e_realpath", realPath);
+			eventImgMap.put("e_server", serverPath);
+			
+			adminService.insertModifyEventImg(eventImgMap);
+		}
+		if(e_img6 != null) {
+			String saveName = fileUploadService.fileUpload(e_img6);
+			String url = PREFIX_URL + saveName;
+			String realPath = SAVE_PATH + saveName;
+			String serverPath = SERVER_SAVE_PATH + saveName;
+			
+			Map<String, String> eventImgMap = new HashMap<String, String>();
+			eventImgMap.put("e_idx", e_idx);
+			eventImgMap.put("e_img", url);
+			eventImgMap.put("e_main", "6");
+			eventImgMap.put("e_size", e_size6);
+			eventImgMap.put("e_realpath", realPath);
+			eventImgMap.put("e_server", serverPath);
+			
+			adminService.insertModifyEventImg(eventImgMap);
+		}
+		if(e_img7 != null) {
+			String saveName = fileUploadService.fileUpload(e_img7);
+			String url = PREFIX_URL + saveName;
+			String realPath = SAVE_PATH + saveName;
+			String serverPath = SERVER_SAVE_PATH + saveName;
+			
+			Map<String, String> eventImgMap = new HashMap<String, String>();
+			eventImgMap.put("e_idx", e_idx);
+			eventImgMap.put("e_img", url);
+			eventImgMap.put("e_main", "7");
+			eventImgMap.put("e_size", e_size7);
+			eventImgMap.put("e_realpath", realPath);
+			eventImgMap.put("e_server", serverPath);
+			
+			adminService.insertModifyEventImg(eventImgMap);
+		}
+		if(e_img8 != null) {
+			String saveName = fileUploadService.fileUpload(e_img8);
+			String url = PREFIX_URL + saveName;
+			String realPath = SAVE_PATH + saveName;
+			String serverPath = SERVER_SAVE_PATH + saveName;
+			
+			Map<String, String> eventImgMap = new HashMap<String, String>();
+			eventImgMap.put("e_idx", e_idx);
+			eventImgMap.put("e_img", url);
+			eventImgMap.put("e_main", "8");
+			eventImgMap.put("e_size", e_size8);
+			eventImgMap.put("e_realpath", realPath);
+			eventImgMap.put("e_server", serverPath);
+			
+			adminService.insertModifyEventImg(eventImgMap);
+		}
+		if(e_img9 != null) {
+			String saveName = fileUploadService.fileUpload(e_img9);
+			String url = PREFIX_URL + saveName;
+			String realPath = SAVE_PATH + saveName;
+			String serverPath = SERVER_SAVE_PATH + saveName;
+			
+			Map<String, String> eventImgMap = new HashMap<String, String>();
+			eventImgMap.put("e_idx", e_idx);
+			eventImgMap.put("e_img", url);
+			eventImgMap.put("e_main", "9");
+			eventImgMap.put("e_size", e_size9);
+			eventImgMap.put("e_realpath", realPath);
+			eventImgMap.put("e_server", serverPath);
+			
+			adminService.insertModifyEventImg(eventImgMap);
+		}
+		if(e_img10 != null) {
+			String saveName = fileUploadService.fileUpload(e_img10);
+			String url = PREFIX_URL + saveName;
+			String realPath = SAVE_PATH + saveName;
+			String serverPath = SERVER_SAVE_PATH + saveName;
+			
+			Map<String, String> eventImgMap = new HashMap<String, String>();
+			eventImgMap.put("e_idx", e_idx);
+			eventImgMap.put("e_img", url);
+			eventImgMap.put("e_main", "10");
+			eventImgMap.put("e_size", e_size10);
+			eventImgMap.put("e_realpath", realPath);
+			eventImgMap.put("e_server", serverPath);
+			
+			adminService.insertModifyEventImg(eventImgMap);
+		}
+		
+		return "redirect:/eventAdmin.do";
 	}
 }

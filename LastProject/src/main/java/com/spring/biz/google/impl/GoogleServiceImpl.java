@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.spring.biz.google.GoogleService;
-import com.spring.biz.google.GoogleVO;
+import com.spring.biz.google.HostGoogleVO;
 
 @Service("googleService")
 public class GoogleServiceImpl implements GoogleService{
@@ -18,8 +18,13 @@ public class GoogleServiceImpl implements GoogleService{
 	}
 
 	@Override
-	public List<GoogleVO> getHostGoogle() {
+	public List<HostGoogleVO> getHostGoogle() {
 		return googleDAO.getHostGoogle();
+	}
+
+	@Override
+	public List<HostGoogleVO> getEventGoogle() {
+		return googleDAO.getEventGoogle();
 	}
 
 }

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.spring.biz.google.GoogleService;
-import com.spring.biz.google.GoogleVO;
+import com.spring.biz.google.HostGoogleVO;
 
 @Controller
 public class GoogleController {
@@ -22,8 +22,15 @@ public class GoogleController {
 	
 	@RequestMapping("/getHostGoogle.do")
 	@ResponseBody
-	public List<GoogleVO> getHostGoogle() {
-		List<GoogleVO> list = googleService.getHostGoogle();
+	public List<HostGoogleVO> getHostGoogle() {
+		List<HostGoogleVO> list = googleService.getHostGoogle();
+		return list;
+	}
+	
+	@RequestMapping("/getEventGoogle.do")
+	@ResponseBody
+	public List<HostGoogleVO> getEventGoogle() {
+		List<HostGoogleVO> list = googleService.getEventGoogle();
 		return list;
 	}
 	

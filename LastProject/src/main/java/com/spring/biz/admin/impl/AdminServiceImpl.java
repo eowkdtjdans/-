@@ -82,6 +82,26 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
+	public void deleteEvent(int e_idx) {
+		adminDAO.deleteEvent(e_idx);
+	}
+
+	@Override
+	public void deleteEventImg(Map<String, String> delImgMap) {
+		adminDAO.deleteEventImg(delImgMap);
+	}
+
+	@Override
+	public void modifyEvent(EventVO eventVO) {
+		adminDAO.modifyEvent(eventVO);
+	}
+
+	@Override
+	public void insertModifyEventImg(Map<String, String> eventImgMap) {
+		adminDAO.insertModifyEventImg(eventImgMap);
+	}
+
+	@Override
 	public int countLog(String ll_id) {
 		return adminDAO.countLog(ll_id);
 	}
@@ -110,9 +130,5 @@ public class AdminServiceImpl implements AdminService {
 	public List<logLoginVO> getmyCommentList(Map<String, Object> map) {
 		return adminDAO.getmyCommentList(map);
 	}
-
-
-
-
 
 }
