@@ -27,4 +27,10 @@ public interface AdminService {
 	void deleteEventImg(Map<String, String> delImgMap);
 	void modifyEvent(EventVO eventVO);
 	void insertModifyEventImg(Map<String, String> eventImgMap);
+	int countLog(String ll_id);
+	List<logLoginVO> getLogLoginList(Map<String, Object> map);
+	int countPost(String m_id);
+	List<logLoginVO> getmyPostList(Map<String, Object> map);
+	int countComment(String m_id);
+	List<logLoginVO> getmyCommentList(Map<String, Object> map);
 }

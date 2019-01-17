@@ -19,6 +19,7 @@
   	<typeAlias alias="event" type="com.spring.biz.event.EventVO"/>
   	<typeAlias alias="eventcomment" type="com.spring.biz.eventComment.EventCommentVO"/>
   	<typeAlias alias="profile" type="com.spring.biz.profile.ProfileVO"/>
+  	<typeAlias alias="profileComment" type="com.spring.biz.profile.ProfileCommentVO"/>
   	<typeAlias alias="profileImg" type="com.spring.biz.profileImage.ProfileImageVO"/>
   	<typeAlias alias="hostImg" type="com.spring.biz.hostImage.HostImageVO"/>
   	<typeAlias alias="message" type="com.spring.biz.message.MessageVO"/>

@@ -101,4 +101,34 @@ public class AdminServiceImpl implements AdminService {
 		adminDAO.insertModifyEventImg(eventImgMap);
 	}
 
+	@Override
+	public int countLog(String ll_id) {
+		return adminDAO.countLog(ll_id);
+	}
+
+	@Override
+	public List<logLoginVO> getLogLoginList(Map<String, Object> map) {
+		return adminDAO.getLogLoginList(map);
+	}
+
+	@Override
+	public int countPost(String m_id) {
+		return adminDAO.countPost(m_id);
+	}
+
+	@Override
+	public List<logLoginVO> getmyPostList(Map<String, Object> map) {
+		return adminDAO.getMyPostList(map);
+	}
+
+	@Override
+	public int countComment(String m_id) {
+		return adminDAO.countComment(m_id);
+	}
+
+	@Override
+	public List<logLoginVO> getmyCommentList(Map<String, Object> map) {
+		return adminDAO.getmyCommentList(map);
+	}
+
 }

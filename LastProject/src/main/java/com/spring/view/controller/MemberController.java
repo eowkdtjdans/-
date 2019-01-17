@@ -64,7 +64,7 @@ public class MemberController {
 		System.out.println("=======인서트시작");
 		System.out.println("인서트두 컨트롤러 vo: " + vo);
 		System.out.println("vo.getM_id : " + vo.getM_id());
-		if(vo.getM_gender().equals("M") || vo.getM_gender().equals("male")) {
+		if(vo.getM_gender().equals("M") && vo.getM_gender().equals("male")) {
 			vo.setM_gender("남자");
 		}
 		memberService.insertMember(vo);
@@ -98,35 +98,27 @@ public class MemberController {
 		emailSender.SendEmail(email);
 		session.setAttribute("emailCheck", emailCheck);
 		session.setAttribute("member", vo);
-		return "/certifyEmail.do?m_id="+vo.getM_id();
+		String id = vo.getM_id();
+		
+
+
+		return "/certifyEmail.do?m_id="+vo.getM_id(); 
 	}
 	
 	@RequestMapping(value="/certifyEmail.do", method=RequestMethod.GET)
 	public String certifyEmail(MemberVO vo, @RequestParam("m_id") String m_id) {
 		System.out.println("=certifyEmail===get가즈아ㅏㅏ=============");
-		System.out.println("vo.getM_id : " + vo.getM_id());
-		
 		System.out.println("vo : " + vo);
 		return "views/member/certifyEmail.jsp";
 	}
 	@RequestMapping(value="/certifyEmail.do", method=RequestMethod.POST)
 	public String certifyEmailPost(MemberVO vo, @RequestParam("m_id") String m_id) {
-		System.out.println("=certifyEmail===get가즈아ㅏㅏ=============");
-		System.out.println("vo.getM_id : " + vo.getM_id());
-		
+		System.out.println("=certifyEmail GET");
 		System.out.println("vo : " + vo);
 		return "views/member/certifyEmail.jsp";
 	}
 
-	@RequestMapping(value="certifyCodeUpdate.do", method=RequestMethod.POST)
-	public String certifyCodeUpdate(MemberVO vo, @RequestParam("m_id") String m_id) {
-		vo.setM_id(m_id);
-		System.out.println("=certifyCodeUpdate===get가즈아ㅏㅏ=============");
-		System.out.println("vo.getM_id : " + vo.getM_id());
-		memberService.certifyCodeUpdate(vo);
-		
-		return "redirect:/loginMember.do";
-	}
+
 	
 	//=======================================================================
 	@RequestMapping(value="/loginMember.do", method=RequestMethod.GET) 
@@ -399,14 +391,7 @@ public class MemberController {
 		return "views/member/MemberFindId.jsp";
 	}
 	
-	@RequestMapping(value="/findPwdMember.do", method=RequestMethod.GET)
-	public String findPwd(MemberVO vo) {
-		System.out.println("findPwd === get ");
-		return "views/member/MemberFindPwd.jsp";
-	}
-	
-	
-	
+
 	//======================================================================
 	
 	@RequestMapping(value="ModifyPwdMember.do", method=RequestMethod.GET)
@@ -449,12 +434,14 @@ public class MemberController {
     }
 	
 	
-	
+	@RequestMapping(value="/findPwdMember.do", method=RequestMethod.GET)
+	public String findPwd(MemberVO vo) {
+		System.out.println("findPwdMember === get ");
+		return "views/member/MemberFindPwd.jsp";
+	}
 	@RequestMapping(value="/findPwdMember.do", method=RequestMethod.POST)
-    public String sendEmailFindPwd (@RequestParam Map<String, Object> paramMap, ModelMap model, HttpSession session) throws Exception {
-    	String m_id= (String) paramMap.get("m_id");
+    public String sendEmailFindPwd (@RequestParam Map<String, Object> paramMap, ModelMap model, HttpSession session, @RequestParam("m_id") String m_id) throws Exception {
     	MemberVO vo= memberService.getPw(paramMap);
-    	
     	StringBuffer temp = new StringBuffer();
 		Random rnd = new Random();
 		for (int i = 0; i < 10; i++) {
@@ -483,16 +470,23 @@ public class MemberController {
     		session.setAttribute("findPwdEmailCheck", findPwdEmailCheck);
     		email.setContent("비밀번호찾기 인증번호는 ["+findPwdEmailCheck+ "]입니다.");
     		emailSender.SendEmail(email);
-            return "redirect:/FindAndUpdatePassword.do?m_id="+vo.getM_id();
-            
+    		session.setAttribute("findPwdId", vo);
+            return "redirect:/FindAndUpdatePassword.do";
     	}else {
     		System.out.println("회원정보가 없습니다.");
     		return "redirect:/findPwdMember.do";
     	}
     }
 	
+	
 	@RequestMapping(value="/FindAndUpdatePassword.do", method=RequestMethod.GET)
-	public String FindAndUpdatePassword(MemberVO vo, @RequestParam("m_id") String m_id) {
+	public String FindAndUpdatePassword(MemberVO vo) {
+		
+		return "views/member/FindAndUpdatePassWord.jsp";
+		
+	}
+	@RequestMapping(value="/FindAndUpdatePassword.do", method=RequestMethod.POST)
+	public String FindAndUpdatePassword2(MemberVO vo) {
 		
 		return "views/member/FindAndUpdatePassWord.jsp";
 		
@@ -502,9 +496,20 @@ public class MemberController {
 	public String PwdUpdate(MemberVO vo, @RequestParam("m_id") String m_id, @RequestParam("m_pwd") String m_pwd) {
 		vo.setM_id(m_id);
 		vo.setM_pwd(m_pwd);
-		System.out.println("=certifyCodeUpdate===get가즈아ㅏㅏ=============");
-		System.out.println("vo.getM_id : " + vo.getM_id());
+		System.out.println("아이디 : " + vo.getM_id());
+		System.out.println("변경 비밀번호 : " + vo.getM_pwd());
+		System.out.println("=PwdUpdate===GET");
 		memberService.PwdUpdate(vo);
+		
+		return "redirect:/loginMember.do";
+	}
+	
+	@RequestMapping(value="certifyCodeUpdate.do", method=RequestMethod.POST)
+	public String certifyCodeUpdate(MemberVO vo, @RequestParam("m_id") String m_id) {
+		vo.setM_id(m_id);
+		System.out.println("=certifyCodeUpdate POST");
+		System.out.println("vo.getM_id : " + vo.getM_id());
+		memberService.certifyCodeUpdate(vo);
 		
 		return "redirect:/loginMember.do";
 	}

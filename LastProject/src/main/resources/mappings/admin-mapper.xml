@@ -93,6 +93,11 @@
 	<select id="getLoginRecord" resultType="logLogin">
 		SELECT LOG.* 
 		FROM LOG_LOGIN LOG
+		ORDER BY LL_DATE DESC
+	</select>
+	
+	<select id="countLog" parameterType="String" resultType="int">
+		SELECT COUNT(LL_ID) FROM LOG_LOGIN LOG
 		WHERE LOG.LL_ID = #{ll_id}
 	</select>
 	
@@ -121,6 +126,58 @@
 		INSERT INTO EVENT_IMAGE (E_IDX, E_IMG, E_MAIN, E_SIZE, E_REALPATH, E_SERVER)
 		VALUES (#{e_idx}, #{e_img}, #{e_main}, #{e_size}, #{e_realpath}, #{e_server})
 	</insert>
+	
+	<select id="getLogLoginList" parameterType="Map" resultType="logLogin">
+             SELECT R_NUM, LOGIN3.*
+         FROM (SELECT ROWNUM R_NUM, LOGIN2.* FROM
+         (SELECT LOG.* FROM LOG_LOGIN LOG WHERE LL_ID = #{ll_id} ORDER BY log.ll_date DESC) LOGIN2) LOGIN3
+         WHERE (R_NUM BETWEEN #{begin} AND #{end})
+</select>
+
+<select id="countPost" parameterType="String" resultType="int">
+	        	SELECT COUNT(m_id) FROM LOCALADVICE L
+            WHERE L.m_id = #{m_id}
+</select>
+
+<select id="getMyPost" parameterType="Map" resultType="localAdvice">
+	  SELECT R_NUM, L3.*
+        FROM (SELECT ROWNUM R_NUM, L2.* FROM
+        (SELECT L.* FROM LOCALADVICE L WHERE L.M_ID = #{m_id} ORDER BY l.l_date DESC) L2) L3
+        WHERE (R_NUM BETWEEN #{begin} AND #{end})
+</select>
+
+<select id="getMyPostList" parameterType="Map" resultType="localadvice">
+	   SELECT R_NUM, L3.*
+        FROM (SELECT ROWNUM R_NUM, L2.* FROM
+        (SELECT L.* FROM LOCALADVICE L WHERE L.M_ID = #{m_id} ORDER BY l.l_date DESC) L2) L3
+          WHERE (R_NUM BETWEEN #{begin} AND #{end})
+</select>
+
+
+<select id="countComment" parameterType="String" resultType="int">
+          SELECT LC+EC FROM 
+       ( SELECT COUNT(*) LC FROM L_COMMENT WHERE M_ID = #{m_id}), 
+        ( SELECT COUNT(*) EC FROM EVENT_COMMENT WHERE M_ID = #{m_id})
+</select>
+	
+	<select id="getMyCommentList" parameterType="Map" resultType="profileComment">
+         SELECT B2.*    
+         FROM (SELECT ROWNUM R_NUM, B.* FROM(
+			  (SELECT LC.LC_IDX C_IDX, LC.L_IDX IDX, LC.M_ID, LC.LC_DATE C_DATE, LC.LC_CONTENT C_CONTENT, PI.P_ROUTE, '현지정보 문의 게시판' AS C_TYPE
+      		  		FROM L_COMMENT LC, PROFILE_IMAGE PI
+      	 WHERE LC.M_ID = PI.M_ID
+      	 AND PI.P_MAIN = 1
+      	 AND LC.M_ID = #{m_id})
+      	 UNION
+		(SELECT EC.EC_IDX C_IDX, EC.E_IDX IDX, EC.M_ID, EC.EC_DATE C_DATE, EC.EC_CONTENT C_CONTENT, PI.P_ROUTE, '이벤트 게시판' AS C_TYPE
+        	FROM EVENT_COMMENT EC, PROFILE_IMAGE PI
+        	WHERE EC.M_ID = PI.M_ID
+        	AND PI.P_MAIN = 1
+        	AND EC.M_ID = #{m_id})
+        ORDER BY C_DATE desc)B)B2
+        WHERE (R_NUM BETWEEN #{begin} AND #{end})
+        
+</select>
 
 
 </mapper>

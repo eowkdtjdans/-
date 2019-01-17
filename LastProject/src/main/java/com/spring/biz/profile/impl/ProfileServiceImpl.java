@@ -42,7 +42,6 @@ public class ProfileServiceImpl implements ProfileService {
 
 	@Override
 	public ProfileVO getProfile(ProfileVO vo, HttpSession session) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

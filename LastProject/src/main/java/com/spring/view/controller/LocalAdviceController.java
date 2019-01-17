@@ -40,7 +40,7 @@ public class LocalAdviceController {
    private LocalAdviceCommentService localAdviceCommentService;
    
    //키값을 받아 localAdvice게시판 전체조회
-   @RequestMapping(value="/getLocalAdviceList.do" , method=RequestMethod.POST)
+   @RequestMapping(value="/getLocalAdviceList.do" , method=RequestMethod.GET)
    public String getLocalAdviceList(Model model, @ModelAttribute("key") String key, @RequestParam("cPage") String cPage, HttpSession session, RedirectAttributes rttr) {
       System.out.println("getLocalAdviceList.do로 왔습니다.");
       PagingVO p = new PagingVO();
@@ -160,7 +160,7 @@ public class LocalAdviceController {
       
       session.getAttribute("searchCondition");
       session.getAttribute("searchKeyword");
-      return "/getLocalAdviceList.do?cPage=1";
+      return "redirect:/getLocalAdviceList.do?cPage=1";
    }
    
    
@@ -168,7 +168,7 @@ public class LocalAdviceController {
    
    //로컬어드바이스 게시판에서 상세화면페이지로 이동
    @RequestMapping(value="/getLocalAdvice.do", method = {RequestMethod.GET, RequestMethod.POST})
-   public String moveGetLocalAdvice(LocalAdviceVO vo,LocalAdviceCommentVO cvo, Model model, @RequestParam("l_idx") String l_idx, @RequestParam("m_id") String m_id, HttpSession session, RedirectAttributes rttr) {
+   public String moveGetLocalAdvice(LocalAdviceVO vo,LocalAdviceCommentVO cvo, Model model, @RequestParam("l_idx") String l_idx, @RequestParam(value="m_id", required=false) String m_id, HttpSession session, RedirectAttributes rttr) {
 	 System.out.println("로컬어드바이스게시판에서 -> 상세페이지");   
 	 
       Map<String, Object> map = new HashMap<>();
