@@ -340,45 +340,6 @@ function noticeMessage() {
 
 
 
-
-
-<!-- <br><br>
-<div class="container">
-  <form id="frmLogin" name="frmLogin" method="post">
-	<table class="table" style="text-align : center; " >
-		<thead>
-			<tr>
-				<th colspan="3">
-					<h3>Happy Dog 로그인</h3>
-				</th>
-			</tr>
-		</thead>
-		<tbody>
-	<tr>
-   		 <td>ID&emsp;&nbsp;&nbsp;<input type="text" id="c_id" name="c_id" oninput="check(this.form)" placeholder="아이디" style="width:200px"/><br/></td>
-    </tr>	
-	<tr>   
-     	<td>PWD&nbsp;&nbsp;<input type="password" id="c_pwd" name="c_pwd" oninput="check(this.form)" placeholder="패스워드" style="width:200px"/><br/></td>   		
-    </tr>   
-    <tr>	   
-		<td style="text-algin: left" colspan="3">
-		<input class="btn btn-outline-secondary" type="submit"value="로그인" id="login" onclick="login_go(this.form)"/>
-		<input type="hidden" name="login_chk" value="chk"/>
-		</td>
-	</tr>				
-		</tbody>
-		</table>
-  </form>
-  
-  <p class="text-center">해피독이 처음이신가요?&emsp;<a href="CustomerRegister.jsp">회원가입</a></p>
-  <p class="text-center">아이디를 잊으셨나요?&emsp;<a href="CustomerFindId.jsp">아이디찾기</a></p>
-  <p class="text-center">비밀번호를 잊으셨나요?&emsp;<a href="CustomerFindPwd.jsp">비밀번호찾기</a></p>  
-</div> -->
-
-
-
-
-
 	
 		
 
@@ -401,7 +362,7 @@ function noticeMessage() {
                
                
                <div class="form-group">
-                   <button type="submit" id="loginBtn" class="btn btn-primary btn-block" onclick="login(this.form)" >
+                   <button type="submit" id="loginBtn" class="btn btn-outline-secondary btn-block" onclick="login(this.form)" >
                      Login
                   </button> 
                </div>
@@ -417,16 +378,7 @@ function noticeMessage() {
          <div class="col-md-4"></div> 
    </div>   
    </div>
-      
-         
-
-
-
-
-
-
-
-	
+<br><br>      
 
 	<hr class="hr">
 	<footer>
@@ -443,48 +395,6 @@ function noticeMessage() {
     </footer>	
   <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
 
-  <!-- JavaScript Libraries -->
-  <script src="views/lib/jquery/jquery.min.js"></script>
-  <script src="views/lib/jquery/jquery-migrate.min.js"></script>
-  <script src="views/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="views/lib/easing/easing.min.js"></script>
-  <script src="views/lib/superfish/hoverIntent.js"></script>
-  <script src="views/lib/superfish/superfish.min.js"></script>
-  <script src="views/lib/wow/wow.min.js"></script>
-  <script src="views/lib/waypoints/waypoints.min.js"></script>
-  <script src="views/lib/counterup/counterup.min.js"></script>
-  <script src="views/lib/owlcarousel/owl.carousel.min.js"></script>
-  <script src="views/lib/isotope/isotope.pkgd.min.js"></script>
-  <script src="views/lib/lightbox/js/lightbox.min.js"></script>
-  <script src="views/lib/touchSwipe/jquery.touchSwipe.min.js"></script>
-  <!-- Contact Form JavaScript File -->
-  <script src="views/contactform/contactform.js"></script>
 
-  <!-- Template Main Javascript File -->
-  <script src="views/js/main.js"></script>
-
-  <script src="jsModal/placeholders.min.js"></script> <!-- polyfill for the HTML5 placeholder attribute -->
-  <script src="jsModal/main.js"></script> <!-- Resource JavaScript -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	<script src="js/jquery.min.js"></script>
-	<script src="bootstrap/js/bootstrap.min.js"></script>
-	<script src="js/my-login.js"></script>
 </body>
 </html>
