@@ -20,12 +20,16 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.spring.biz.event.EventService;
 import com.spring.biz.event.EventVO;
+import com.spring.biz.profileImage.ProfileImageService;
+import com.spring.biz.profileImage.ProfileImageVO;
 
 @Controller
 @SessionAttributes({"key", "searchCondition", "firstLat", "firstLng"})
 public class SubController {
 	@Autowired
 	private EventService eventService;
+	@Autowired
+	private ProfileImageService profileImageService;
 	HttpSession session;
 	
 	@RequestMapping("/sub.do")
@@ -57,7 +61,7 @@ public class SubController {
 	
 	
 	@RequestMapping(value="/sub2.do", method=RequestMethod.GET)
-	public String moveController(Model model) {
+	public String moveController(Model model, HttpSession session) {
 		System.out.println("sub2.do === get방식");
 		List<EventVO> eventList =  eventService.EventList();
 		System.out.println("eventList : " + eventList);
@@ -77,6 +81,18 @@ public class SubController {
 		
 		List<EventVO> selectRegionSouthAmerica = eventService.selectRegionSouthAmerica();
 		model.addAttribute("selectRegionSouthAmerica", selectRegionSouthAmerica);			
+		
+		
+		
+		String m_id = (String)session.getAttribute("m_id");
+		System.out.println("m_id : " + m_id );
+		if (m_id != null) {
+			ProfileImageVO getProfileImageRoute = profileImageService.getProfileImageRoute(m_id);
+			System.out.println("getProfileImageRoute : " + getProfileImageRoute);
+			//model.addAttribute("getProfileImageRoute", getProfileImageRoute);
+			session.setAttribute("getProfileImageRoute", getProfileImageRoute);
+		}
+		
 		
 		return "views/sub.jsp";
 	}

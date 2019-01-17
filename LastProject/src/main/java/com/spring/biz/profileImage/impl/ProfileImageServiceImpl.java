@@ -61,5 +61,10 @@ public class ProfileImageServiceImpl implements ProfileImageService{
 		profileImageDAO.mainProfileImageInit(vo);
 	}
 
+	@Override
+	public ProfileImageVO getProfileImageRoute(String m_id) {
+		return profileImageDAO.getProfileImageRoute(m_id);
+	}
+
 
 }

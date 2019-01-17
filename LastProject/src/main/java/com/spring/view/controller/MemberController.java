@@ -97,6 +97,10 @@ public class MemberController {
 		email.setContent("[국봉월드] 인증번호는 " + " ["+emailCheck+"] " +" 입니다. 인증번호를 기입 후 확인버튼을 눌러주세요.");
 		emailSender.SendEmail(email);
 		session.setAttribute("emailCheck", emailCheck);
+<<<<<<< HEAD
+=======
+		/*session.setAttribute("member", vo);*/
+>>>>>>> branch 'master' of https://github.com/eowkdtjdans/Its-dissapointing.git
 		return "/certifyEmail.do?m_id="+vo.getM_id();
 	}
 	
@@ -504,6 +508,7 @@ public class MemberController {
 		vo.setM_id(m_id);
 		vo.setM_pwd(m_pwd);
 		System.out.println("=certifyCodeUpdate===get가즈아ㅏㅏ=============");
+		System.out.println("PwdUpdate.do");
 		System.out.println("vo.getM_id : " + vo.getM_id());
 		memberService.PwdUpdate(vo);
 		

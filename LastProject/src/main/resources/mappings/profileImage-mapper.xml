@@ -41,4 +41,13 @@
 		 UPDATE PROFILE_IMAGE SET P_MAIN = 0 WHERE M_ID = #{m_id}
 	</update> 
 	
+	<select id="getProfileImageRoute" parameterType="String" resultType="profileImg">
+		SELECT P_ROUTE FROM PROFILE_IMAGE WHERE M_ID =#{m_id} AND P_MAIN=1
+	</select>
+	
+	
+	
 </mapper>
+
+
+

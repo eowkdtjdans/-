@@ -49,5 +49,9 @@ public class ProfileImageDAO {
 	public void mainProfileImageInit(ProfileImageVO vo) {
 		mybatis.update("mainProfileImageInit", vo);
 	}
+	
+	public ProfileImageVO getProfileImageRoute(String m_id) {
+		return mybatis.selectOne("getProfileImageRoute", m_id);
+	}
 
 }

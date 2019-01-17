@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8"> 
-  <title>BizPage Bootstrap Template</title>
+  <title>호스트 찾기</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <meta content="" name="keywords">
   <meta content="" name="description">
@@ -18,6 +18,8 @@
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Kalam" rel="stylesheet">	
 
   <!-- Bootstrap CSS File -->
   <link href="/views/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -28,7 +30,7 @@
   <link href="/views/lib/ionicons/css/ionicons.min.css" rel="stylesheet">
   <link href="/views/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
   <link href="/views/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
-
+   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">	
   <!-- Main Stylesheet File -->
   <link href="/views/css/style.css" rel="stylesheet">
   
@@ -48,7 +50,7 @@
   
 <style>
 	body{
-		padding-top: 70px;
+		padding-top: 75px;
 	}
 	a{
 		color:#5e7e9b;
@@ -73,8 +75,72 @@
 		padding: 3px 3px;
 		font-weight: bold;
 	} 
-</style>
+	.rounded-circle { width: 80px; height: 70px;} 
+   .card {float : left;}
+   
+   .scrollto {    
+     font-family: 'Kalam', cursive;
+     padding-top: 8px;
+   }
 
+   .border-none {
+        margin-left: 490px;
+   }
+   
+   #nav-menu-container {
+        margin-top: -30px;
+   }
+   #header {
+        background-color: 	white;
+   }
+   #header.header-scrolled {
+        background-color: white;
+   }
+   
+   .nav-menu li a{
+   	color: black;
+   }	
+   #mainLogo{
+   	color: black;
+   	position: absolute;
+   	margin-left: 80px;
+   	margin-top: -10px;
+   	font-size: 2.15em;
+   }
+   #happy{
+   	position: absolute;
+   	margin-left: 20px;
+   	margin-top: -20px;
+   }  
+	#navProfileImg{
+   	position: relative;
+   	margin-top: -10px;
+   }
+	select {
+	    width: 128px; /* 원하는 너비설정 */
+	    padding: .3em .3em; /* 여백으로 높이 설정 */
+	    font-family: inherit;  /* 폰트 상속 */
+	    border:  1px solid #999; 
+	    border-radius: 30px; /* iOS 둥근모서리 제거 */
+	    -moz-appearance: none;
+	    appearance: none;
+	}
+
+	#autocomplete {
+		width: 50%; 
+		border: 1px solid #999; 
+		border-radius: 30px; 
+		padding: .3em .3em;
+		
+	}
+	#advice{
+		width: 50%; 
+		border: 1px solid #999; 
+		border-radius: 30px; 
+		padding: .3em .3em;
+	}
+</style>
+<script src="https://maps.googleapis.com/maps/api/js?v=3&sensor=false&libraries=places&callback=initAutocomplete&key=AIzaSyAfB2qQnvAuU2YFFqi8hrPWfjJNyxl5kWc" async defer></script>
 <SCRIPT LANGUAGE="JavaScript">
 
 var contentArray = [];
@@ -259,6 +325,12 @@ function deleteHost(m_id) {
 
 function cardOver(m_id) {
 	
+	
+	
+	
+	
+	
+	
 }
 
 </SCRIPT>
@@ -304,22 +376,48 @@ $(document).ready(function(){
     }); 
 });
 
-</script>
-<script>
-	function openInsHostModalBtn(){
-		if('${member.m_id}' == null || '${member.m_id}' == "") {
-			alert("로그인이 필요한 서비스입니다.");
-			location.href="/loginMember.do";
-		} else {
-			$("#insertHost").modal();
-		}
-	}
-	$(document).on("click", "#viewModalBtn", function(){
-		if('${member.m_id}' == null || '${member.m_id}' == "") {
-			alert("로그인이 필요한 서비스입니다.");
-			location.href="/loginMember.do";
-		}
+
+$(function(){
+	   $("#condition").change(function(){
+	      var condition = $("#condition").val();
+	      
+	      if(condition == "find_advice") {
+	         $("#autocomplete").removeAttr("name");
+	         $("#autocomplete").hide();
+	         $("<input type='text' id='advice' name='searchKeyword'>&nbsp;&nbsp;").insertBefore("#search");
+	      } else {
+	         $("#advice").remove();
+	         $("#autocomplete").show();
+	         $("#autocomplete").attr("name", "searchKeyword");
+	      }
+	   })
+	   
 	})
+
+function noticeMessage() {
+var noticeMessage = $("#noticeMessage").serialize();
+var receive_receiver =$("#receive_receiver").val();
+ 
+   $.ajax({
+   async : true,
+   type : "POST",
+   dataType : "json",
+   data : noticeMessage,
+   url : "../../noticeMessageJson.do",
+   success : function(data) {
+      if (data.cnt > 0) {
+         $("#noticeMessageCount").append(data.cnt);
+         $("#noticeMessageCount2").append(data.cnt);
+         setInteval(function() {
+            noticeMessage()
+         }, 3000);
+ 
+      }
+   }
+   
+   
+});    
+}
 </script>
 
 
@@ -331,62 +429,90 @@ $(document).ready(function(){
 
 </head>
 
-<body>
+<body onload="noticeMessage()">
 
   <!--==========================
     Header
   ============================-->
-  <header id="header">
+<header id="header">
+  <form id="noticeMessage" method="GET">
     <div class="container-fluid">
-
-      <div id="logo" class="pull-left">
-        <h1><a href="views/sub.jsp" class="scrollto">Couch Surfing</a></h1>
+      <input type="hidden" id="receive_receiver" name="receive_receiver" value="${member.m_id }" />
+      <div id="log" class="pull-left">
+        <img src="views/img/happy.png" id="happy"><a href="../sub2.do" class="scrollto" id="mainLogo">&nbsp;Gukbong WorlD</a>        
       </div>
-
-      <nav id="nav-menu-container">
-        <ul class="nav-menu">
-        <li class="menu-has-children"><a href="">Drop Down</a>
-            <ul>
-              <li><a href="#">Drop Down 1</a></li>
-              <li><a href="#">Drop Down 3</a></li>
-              <li><a href="#">Drop Down 4</a></li>
-              <li><a href="#">Drop Down 5</a></li>
-            </ul>
-          </li>
-          <li><a href="#about">쪽지</a></li>
-          <li><a href="#portfolio">마이 프로필</a></li>         
-        </ul>
-      </nav><!-- #nav-menu-container -->
     </div>
-  </header><!-- #header -->
+  </form>
+      
+      <form action="../sub.do" method="post">
+      <table class="border-none">
+         <tr>
+            <td id="td1">             
+               <select id="condition" name="searchCondition">         
+                  <option value="find_travler">여행자검색
+                  <option value="find_host">호스트검색
+                  <option value="find_event">이벤트검색
+                  <option value="find_advice">현지정보검색
+               </select>
+               
+               <input id="autocomplete" placeholder="" type="text" name="searchKeyword">
+               
+               <input class="field" id="lat" type="hidden" name="lat"/>
+               <input class="field" id="lng" type="hidden" name="lng"/>              
+               <!-- <input type="submit" id="search"> -->
+               <input  style="width: 30px; height: 30px;"  TYPE="IMAGE" src="views/img/search.png" name="Submit" value="Submit" align="absmiddle" id="search">
 
- 
-    
-
-<!-- 키워드로 검색 -->
-<form action="../sub.do" method="post">
-	<table class="border-none">
-		<tr>
-			<td>
-				<select name="searchCondition">			
-					<%-- <c:forEach var="option" items="${conditionMap }">
-						<option value="${option.value }">${option.key }
-					</c:forEach> --%>
-					<option value="find_travler">여행자검색
-					<option value="find_host" selected="selected">호스트검색
-					<option value="find_event">이벤트검색
-					<option value="find_advice">현지정보검색
-				</select>
-				<input id="autocomplete" placeholder="Enter your address" type="text" name="searchKeyword">
-				
-				<input class="field" id="lat" type="hidden" name="lat"/>
-				<input class="field" id="lng" type="hidden" name="lng"/>
-				
-				<input type="submit" value="검색">
-			</td>
-		</tr>
-	</table>
-</form>
+            </td>
+         </tr>
+      </table>
+   </form>
+   
+<nav id="nav-menu-container">
+	<ul class="nav-menu">
+		<c:if test="${empty member.m_id}">
+		<li><a href="../../loginMember.do" >로그인</a></li>
+		<li><a  href="../../insertMember.do" >회원가입</a></li>
+		<li><a href="../../findIdMember.do">아이디찾기</a></li >
+	    <li><a href="../../findPwdMember.do">비밀번호찾기</a></li>
+	</c:if>	
+	
+	<c:if test="${!empty member.m_id}">
+		<li>
+			<div>
+			<strong>
+			<span style="color: red;">W</span>
+			<span style="color: blue;">e</span>
+			<span style="color: darkviolet;">l</span>
+			<span style="color: #FFC100;">c</span>
+			<span style="color: green;">o</span>
+			<span style="color: orange;">m</span>
+			<span style="color: navy;">e</span>			
+			&nbsp;&nbsp;			
+			${member.m_id } 님 
+			</strong>
+			</div>
+		</li>
+	
+		<li class="menu-has-children"><img src="${getProfileImageRoute.p_route }" style="width: 45px; height: 45px;" class="rounded-circle" id="navProfileImg"></a>
+          <ul>                                      
+            <li><a  href="../../myProfile.do" >마이 프로필</a></li> 
+            <li><a href="../../logoutMember.do">로그아웃</a></li>            
+          </ul> 
+        </li>
+               
+   		<li>    
+          <span class="fa-layers fa-fw">
+           <a href="../../getReceiveMessageList.do">
+          <i class="far fa-envelope fa-2x"></i>
+          <span class="fa-layers-counter" style="color:red;" id="noticeMessageCount"></span>
+          </a>
+         </span>
+     	 </li>         
+	</c:if>
+	</ul> 	
+</nav>               
+<hr>
+  </header>
 
 
    <!--==========================
@@ -411,7 +537,7 @@ $(document).ready(function(){
 	      	</c:when>                    
 	      	<c:otherwise>
       		<c:forEach var="list" items="${hostList}">
-      		<input type="hidden" name="m_id" value="${list.m_id }" id="${list.m_id }" />
+      		<input type="hidden" name="m_id" value="${list.m_id }" id="m_id" />
 	      		<span class="card" style="width:200px; height: 500px; margin : auto; text-align: center;" onmouseover="cardOver('${list.m_id}')">
 				    <img class="card-img-top" src="${list.p_route}" alt="Card image" style="width:200px; height: 200px;">
 				    <span class="card-body">
@@ -419,7 +545,7 @@ $(document).ready(function(){
 				      <hr />
 				      <p class="card-text">${list.m_address}</p>
 				      <hr />
-				      <button type="button" id="viewModalBtn" class="btn btn-light" data-toggle="modal" data-target="#myModal${list.m_id }">상세보기</button>
+				      <button type="button" class="btn btn-light" data-toggle="modal" data-target="#myModal${list.m_id }">Open modal</button>
 				    </span>
 			    </span>
       		</c:forEach>
@@ -473,7 +599,7 @@ $(document).ready(function(){
 					</c:otherwise>
 				</c:choose>
 					<li style="text-align:right;">
-						<button type="button" class="btn btn-outline-secondary" onclick="openInsHostModalBtn()">호스트 등록</button>
+						<button type="button" id="insertHostBtn" class="btn btn-outline-secondary" data-toggle="modal" data-target="#insertHost" onclick="login_chk()">호스트 등록</button>
 					</li>
 				</ol>
 			</td>
@@ -489,73 +615,19 @@ $(document).ready(function(){
   <!--==========================
     Footer
   ============================-->
-  <footer id="footer">
-    <div class="footer-top">
-      <div class="container">
+<hr class="hr">
+	<footer>
+    	<br>   
         <div class="row">
-
-          <div class="col-lg-3 col-md-6 footer-info">
-            <h3>Couch Surfing</h3>
-            <p>카우치 서핑(Couch Surfing)은 잠을 잘수 있는 쇼파를 의미하는 카우치(Couch)와 파도를 타다는 서핑(Surfing)의 합성어로 숙박 혹은 가이드까지 받을 수 있는, 여행자들을 위한 비영리 커뮤니티 이다.</p>
-          </div>
-
-          <div class="col-lg-3 col-md-6 footer-links">
-            <h4>Useful Links</h4>
-            <ul>
-              <li><i class="ion-ios-arrow-right"></i> <a href="#">Home</a></li>
-              <li><i class="ion-ios-arrow-right"></i> <a href="#">About us</a></li>
-              <li><i class="ion-ios-arrow-right"></i> <a href="#">Services</a></li>
-              <li><i class="ion-ios-arrow-right"></i> <a href="#">Terms of service</a></li>
-              <li><i class="ion-ios-arrow-right"></i> <a href="#">Privacy policy</a></li>
-            </ul>
-          </div>
-
-          <div class="col-lg-3 col-md-6 footer-contact">
-            <h4>Contact Us</h4>
-            <p>
-             	 비트캠프 신촌센터 <br>
-              Seoul, NY 535022<br>
-              Korea <br>
-              <strong>Phone:</strong> 010-5575-4786<br>
-              <strong>Email:</strong> test@test.com<br>
-            </p>
-
-            <div class="social-links">
-              <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
-              <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
-              <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
-              <a href="#" class="google-plus"><i class="fa fa-google-plus"></i></a>
-              <a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
-            </div>
-
-          </div>
-
-          <div class="col-lg-3 col-md-6 footer-newsletter">
-            <h4>Couch Surfing tip</h4>
-            <p>만나는 사람들과 대화를 많이 하려고 시도하세요.
-				그 의사소통보다 더 중요한 건 안전이다. 인증이 된 멤버인지, 타인들이 남긴 레퍼런스(리뷰)는 긍정적인지, 올려둔 사진은 괜찮은지... 감각을 키워가자.
-				호스트든 게스트든 집에서는 위생을 유지하도록 하자.</p>
-          </div>
-
+        	<div class="col-lg-8 col-md-10 mx-auto">
+        		<p class="text-primary text-center">© GUKBONG WORLD COMPANY. ALL RIGHTS RESERVED.</p>
+        		<p class="copyright text-muted text-center">상호:국봉월드 &nbsp;| &nbsp; 사업자등록번호:123-456-78910[사업자정보확인]  &nbsp;| &nbsp; 대표:방국봉  &nbsp;| &nbsp; TEL:1544-1444 
+             <br>FAX:031-123-1234  &nbsp;| &nbsp; 주소:비트캠프 신촌센터  &nbsp; |  &nbsp; E-mail:kz1234@naver.com </p>
+		    <p style="font-size: 0.8em;" class="text-muted text-right">© 1999 - 2019 Couchsurfing International, Inc</p>
+        	</div>	
         </div>
-      </div>
-    </div>
-
-    <div class="container">
-      <div class="copyright">
-        &copy; Copyright <strong>Couch Surfing</strong>. All Rights Reserved
-      </div>
-      <div class="credits">
-        <!--
-          All the links in the footer should remain intact.
-          You can delete the links only if you purchased the pro version.
-          Licensing information: https://bootstrapmade.com/license/
-          Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=BizPage
-        -->
-        Best <a href="https://bootstrapmade.com/">Bootstrap Templates</a> by BootstrapMade
-      </div>
-    </div> 
-  </footer><!-- #footer -->
+    <br> 
+    </footer>	
 
   <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
   
@@ -601,7 +673,7 @@ $(document).ready(function(){
 	          <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" onclick='sendMessage("${list.m_id}")'>Send Message</button>
 	        </form>   
 	          <c:if test="${list.m_id eq member.m_id}">
-	            <button type="button" class="btn btn-outline-secondary" id="hostRegistBtn" data-dismiss="modal" onclick='deleteHost("${list.m_id}")'>등록해제</button>
+	            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" onclick='deleteHost("${list.m_id}")'>등록해제</button>
 	          </c:if>
 	        </div>
 	        
@@ -627,7 +699,7 @@ $(document).ready(function(){
           <div class="row">
             <div class="col-md-12">
               <form method="POST" id="form">
-                    <input id="${member.m_id}" type="hidden" class="form-control" name="m_id" value="${member.m_id }">
+                    <input id="m_id" type="hidden" class="form-control" name="m_id" value="${member.m_id }">
                     
                     <div class="form-group row">
                          <label for="h_startdate" class="col-4 col-form-label">입실/퇴실 날짜</label> 
@@ -792,4 +864,4 @@ $(document).ready(function(){
   <script src="/views/js/main.js"></script>
 
 </body>
-</html>
+</html> 
