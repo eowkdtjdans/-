@@ -203,18 +203,18 @@ body {font-family: Arial, Helvetica, sans-serif;}
 </style>
 
 <script>
-function test(p_route, m_id) {
+function test(h_route, m_id) {
    var modal = document.getElementById('myModal');
    
-   var img = document.getElementById(p_route);
+   var img = document.getElementById(h_route);
    var modalImg = document.getElementById("img01");
    var captionText = document.getElementById("caption");
    
    var m_id_value = document.getElementById('m_id');
-   var p_route_value = document.getElementById('p_route');
+   var h_route_value = document.getElementById('h_route');
    
    m_id_value.value=m_id;
-   p_route_value.value=p_route;
+   h_route_value.value=h_route;
    
    modal.style.display = "block";
    modalImg.src = img.src;
@@ -229,24 +229,24 @@ function test(p_route, m_id) {
 </script>
 
 <script>
-   function deleteImage(frm) {
+   function deleteHostImage(frm) {
       var m_id = frm.m_id.value;
-      var p_route = frm.p_route.value;
+      var h_route = frm.h_route.value;
       var str = $("#modalBtn").serialize();
-   
-      frm.action = "../../deleteProfileImage.do";
+      
+      frm.action = "../../deleteHostImage.do";
       frm.submit();
-      return false; 
+      return false;  
    }
    
-   function updateMainProfileImage(frm) {
-	  var m_id = frm.m_id.value;
-      var p_route = frm.p_route.value;
+   function updateMainHostImage(frm) {
+     var m_id = frm.m_id.value;
+      var h_route = frm.h_route.value;
       var str = $("#modalBtn").serialize();
    
-   	  frm.action = "../../updateMainProfileImage.do";
-   	  frm.submit();
-   	  return false;
+        frm.action = "../../updateMainHostImage.do";
+        frm.submit();
+        return false;
    }
 
 </script>
@@ -323,7 +323,108 @@ select {
    color: red;
 } */
 </style>
+
+<script>
+function test(p_route, m_id) {
+   var modal = document.getElementById('myModal');
+   
+   var img = document.getElementById(p_route);
+   var modalImg = document.getElementById("img01");
+   var captionText = document.getElementById("caption");
+   
+   var m_id_value = document.getElementById('m_id');
+   var p_route_value = document.getElementById('p_route');
+   
+   m_id_value.value=m_id;
+   p_route_value.value=p_route;
+   
+   modal.style.display = "block";
+   modalImg.src = img.src;
+   captionText.innerHTML = img.alt;
+   
+   var span = document.getElementsByClassName("close")[0];
+
+   span.onclick = function() { 
+     modal.style.display = "none";
+   }
+}
+</script>
+
+<script>
+   function deleteImage(frm) {
+      var m_id = frm.m_id.value;
+      var p_route = frm.p_route.value;
+      var str = $("#modalBtn").serialize();
+   
+      frm.action = "../../deleteProfileImage.do";
+      frm.submit();
+      return false; 
+   }
+   
+   function updateMainProfileImage(frm) {
+	  var m_id = frm.m_id.value;
+      var p_route = frm.p_route.value;
+      var str = $("#modalBtn").serialize();
+   
+   	  frm.action = "../../updateMainProfileImage.do";
+   	  frm.submit();
+   	  return false;
+   }
+
+</script>
+</style>
+
+<script>
+function test(p_route, m_id) {
+   var modal = document.getElementById('myModal');
+   
+   var img = document.getElementById(p_route);
+   var modalImg = document.getElementById("img01");
+   var captionText = document.getElementById("caption");
+   
+   var m_id_value = document.getElementById('m_id');
+   var p_route_value = document.getElementById('p_route');
+   
+   m_id_value.value=m_id;
+   p_route_value.value=p_route;
+   
+   modal.style.display = "block";
+   modalImg.src = img.src;
+   captionText.innerHTML = img.alt;
+   
+   var span = document.getElementsByClassName("close")[0];
+
+   span.onclick = function() { 
+     modal.style.display = "none";
+   }
+}
+</script>
+
+<script>
+   function deleteImage(frm) {
+      var m_id = frm.m_id.value;
+      var p_route = frm.p_route.value;
+      var str = $("#modalBtn").serialize();
+   
+      frm.action = "../../deleteProfileImage.do";
+      frm.submit();
+      return false; 
+   }
+   
+   function updateMainProfileImage(frm) {
+	  var m_id = frm.m_id.value;
+      var p_route = frm.p_route.value;
+      var str = $("#modalBtn").serialize();
+   
+   	  frm.action = "../../updateMainProfileImage.do";
+   	  frm.submit();
+   	  return false;
+   }
+
+</script>
+
 </head>
+<body>
 <body>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -420,19 +521,18 @@ select {
 
 
 <br>  
-<section>
 <div class="container">
    <div class="row">
       <div class="col-md-3 ">
            <div class="list-group ">
-              <a href="../../myProfile.do" class="list-group-item list-group-item-action ">My Profile 메인</a>
+        <a href="../../myProfile.do" class="list-group-item list-group-item-action ">My Profile 메인</a>
               <a href="../../insertProfile.do" class="list-group-item list-group-item-action">프로필 수정</a>
               <a href="../../ModifyPhoneMember.do" class="list-group-item list-group-item-action">핸드폰 변경</a>
               <a href="../../ModifyPwdMember.do" class="list-group-item list-group-item-action">비밀번호 변경</a>
               <a href="../../ModifyAddressMember.do" class="list-group-item list-group-item-action">주소 변경</a>
               <a href="../../profileImageInsert.do" class="list-group-item list-group-item-action">이미지 업로드</a>
               <a href="../../profileImageList.do?m_id=${member.m_id }" class="list-group-item list-group-item-action">프로필 이미지 관리</a>
-              <a href="../../HostImageList.do?m_id=${member.m_id }" class="list-group-item list-group-item-action ">호스트 이미지 관리</a>
+              <a href="../../HostImageList.do?m_id=${member.m_id }" class="list-group-item list-group-item-action">호스트 이미지 관리</a>
               <a href="../../getReceiveMessageList.do" class="list-group-item list-group-item-action">받은 쪽지함</a>
               <a href="../../getSendMessageList.do" class="list-group-item list-group-item-action">보낸 쪽지함</a>
               <a href="../../myPost.do?m_id=${member.m_id }&cPage=1" class="list-group-item list-group-item-action">내 글</a>
@@ -485,8 +585,8 @@ select {
 </div>
 </div>
 </div>
-</section>
 
 <%@include file="/views/footer.jsp"%>
+
 </body>
 </html>
