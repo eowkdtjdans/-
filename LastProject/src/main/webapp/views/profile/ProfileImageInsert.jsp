@@ -14,64 +14,7 @@
 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 
-<script>
-	$(function(){
-		$("#profileModal").click(function(){
-			$("#profile").modal({
-				backdrop: 'static',
-				keyboard: false
-			});
-		});
-		
-		$("#uploadProfileImg").change(function(){
-			var imgFile = $("#uploadProfileImg").val();
-			var imgFileLength = $("#uploadProfileImg").val().length;
-			var imgFileExtend = imgFile.substring(imgFileLength - 3);
-			
-			if(imgFileExtend=="jpg" || imgFileExtend=="png" || imgFileExtend=="gif" || imgFileExtend=="jpeg") {
-				$("#profileWrong").remove();
-				$("#profileImgBtn").prop("disabled", false);
-			} else {
-				$("#profileWrong").remove();
-				$("#profileImgBtn").prop("disabled", true);
-				$("<div id='profileWrong'><b>파일 유형이 잘못되었습니다.</b></div>").insertAfter("#uploadProfileImg");
-			}
-		});
-		
-		$("#hostModal").click(function(){
-			$("#host").modal({
-				backdrop: 'static',
-				keyboard: false
-			});
-		});
-		
-		$("#uploadHostImg").change(function(){
-			var imgFile = $("#uploadHostImg").val();
-			var imgFileLength = $("#uploadHostImg").val().length;
-			var imgFileExtend = imgFile.substring(imgFileLength - 3);
-			
-			if(imgFileExtend=="jpg" || imgFileExtend=="png" || imgFileExtend=="gif" || imgFileExtend=="jpeg") {
-				$("#hostWrong").remove();
-				$("#hostImgBtn").prop("disabled", false);
-			} else {
-				$("#hostWrong").remove();
-				$("#hostImgBtn").prop("disabled", true);
-				$("<div id='hostWrong'><b>파일 유형이 잘못되었습니다.</b></div>").insertAfter("#uploadHostImg");
-			}
-		});
-		
-	});
-</script>
-<script>
-function uploadProfile(profileFrm) {
-	profileFrm.action="/uploadProfileImg.do";
-	profileFrm.submit();
-}
-function uploadHost(hostFrm) {
-	hostFrm.action="/uploadHostImg.do";
-	hostFrm.submit();
-}
-</script>
+
 
 
 

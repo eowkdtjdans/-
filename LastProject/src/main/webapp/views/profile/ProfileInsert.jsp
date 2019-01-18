@@ -407,7 +407,7 @@ select {
             
       </div>
       
-      <div class="col-md-9">
+		<div class="col-md-9">
 		    <div class="card">
 		        <div class="card-body">
 		            <div class="row">
@@ -482,6 +482,6 @@ select {
 		    </div>
 		</div>
 	</div>
-</div>
-<%@include file="/views/footer.jsp"%></body>
+</div><%@include file="/views/footer.jsp"%>
+</body>
 </html>
