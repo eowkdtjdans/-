@@ -12,31 +12,89 @@
  
 
   <!-- Favicons -->
-  <link href="views/img/favicon.png" rel="icon">
-  <link href="views/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="/views/img/favicon.png" rel="icon">
+  <link href="/views/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Kalam" rel="stylesheet">
   <!-- Bootstrap CSS File -->
-  <link href="views/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/views/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
   <!-- Libraries CSS Files -->
-  <link href="views/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-  <link href="views/lib/animate/animate.min.css" rel="stylesheet">
-  <link href="views/lib/ionicons/css/ionicons.min.css" rel="stylesheet">
-  <link href="views/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-  <link href="views/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+  <link href="/views/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link href="/views/lib/animate/animate.min.css" rel="stylesheet">
+  <link href="/views/lib/ionicons/css/ionicons.min.css" rel="stylesheet">
+  <link href="/views/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+  <link href="/views/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
   <!-- Main Stylesheet File -->
-  <link href="views/css/style.css" rel="stylesheet">
+  <link href="/views/css/style.css" rel="stylesheet">
   
   <script src="http://code.jquery.com/jquery-latest.min.js"></script>
   
   
-  
-  
+<script>
+	$(function(){
+		$("#profileModal").click(function(){
+			$("#profile").modal({
+				backdrop: 'static',
+				keyboard: false
+			});
+		});
+		
+		$("#uploadProfileImg").change(function(){
+			var imgFile = $("#uploadProfileImg").val();
+			var imgFileLength = $("#uploadProfileImg").val().length;
+			var imgFileExtend = imgFile.substring(imgFileLength - 3);
+			
+			if(imgFileExtend=="jpg" || imgFileExtend=="png" || imgFileExtend=="gif" || imgFileExtend=="jpeg") {
+				$("#profileWrong").remove();
+				$("#profileImgBtn").prop("disabled", false);
+			} else {
+				$("#profileWrong").remove();
+				$("#profileImgBtn").prop("disabled", true);
+				$("<div id='profileWrong'><b>파일 유형이 잘못되었습니다.</b></div>").insertAfter("#uploadProfileImg");
+			}
+		});
+		
+		$("#hostModal").click(function(){
+			$("#host").modal({
+				backdrop: 'static',
+				keyboard: false
+			});
+		});
+		
+		$("#uploadHostImg").change(function(){
+			var imgFile = $("#uploadHostImg").val();
+			var imgFileLength = $("#uploadHostImg").val().length;
+			var imgFileExtend = imgFile.substring(imgFileLength - 3);
+			
+			if(imgFileExtend=="jpg" || imgFileExtend=="png" || imgFileExtend=="gif" || imgFileExtend=="jpeg") {
+				$("#hostWrong").remove();
+				$("#hostImgBtn").prop("disabled", false);
+			} else {
+				$("#hostWrong").remove();
+				$("#hostImgBtn").prop("disabled", true);
+				$("<div id='hostWrong'><b>파일 유형이 잘못되었습니다.</b></div>").insertAfter("#uploadHostImg");
+			}
+		});
+		
+	});
+</script>
+<script>
+function uploadProfile(profileFrm) {
+	profileFrm.action="/uploadProfileImg.do";
+	profileFrm.submit();
+}
+function uploadHost(hostFrm) {
+	hostFrm.action="/uploadHostImg.do";
+	hostFrm.submit();
+}
+</script>
+
+
 <style>
    body{
       padding-top: 75px; 
@@ -110,95 +168,23 @@ select {
    color: red;
 } */
 </style>
-
-
-<script>
-var placeSearch, autocomplete;
-
-function initAutocomplete() {
-  autocomplete = new google.maps.places.Autocomplete((document.getElementById('autocomplete')),{types: ['geocode']});
-  autocomplete.addListener('place_changed', fillInAddress);
-}
-
-function fillInAddress() { //lat 와 lng 값을 넘겨줄 input 태그에 값 넣어주기
-  var place = autocomplete.getPlace();
-    document.getElementById("lat").value=place.geometry.location.lat();
-    document.getElementById("lng").value=place.geometry.location.lng();
-}
-
-
-$(function(){
-   $("#condition").change(function(){
-      var condition = $("#condition").val();
-      
-      if(condition == "find_advice") {
-         $("#autocomplete").removeAttr("name");
-         $("#autocomplete").hide();
-         $("<input type='text' id='advice' name='searchKeyword'>").insertBefore("#search");
-         
-      } else {
-         $("#advice").remove();
-         $("#autocomplete").show();
-         $("#autocomplete").attr("name", "searchKeyword");
-      }
-   })
-   
-})
-</script>
-<script src="https://maps.googleapis.com/maps/api/js?v=3&sensor=false&libraries=places&callback=initAutocomplete&key=AIzaSyAfB2qQnvAuU2YFFqi8hrPWfjJNyxl5kWc" async defer></script>
- 
- 
-<script type="text/javascript">
-   function noticeMessage() {
-      var noticeMessage = $("#noticeMessage").serialize();
-      var receive_receiver =$("#receive_receiver").val();
-       
-         $.ajax({
-         async : true,
-         type : "POST",
-         dataType : "json",
-         data : noticeMessage,
-         url : "../../noticeMessageJson.do",
-         success : function(data) {
-            if (data.cnt > 0) {
-               $("#noticeMessageCount").append(data.cnt);
-               $("#noticeMessageCount2").append(data.cnt);
-               setInteval(function() {
-                  noticeMessage()
-               }, 3000);
-       
-            }
-         }
-         
-         
-      });    
-   }
-
-
-</script>    
- 
 </head>
 
 <body>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-<!------ Include the above in your HEAD tag ---------->
-
-
-
-
 <header id="header">
   <form id="noticeMessage" method="GET">
     <div class="container-fluid">
       <input type="hidden" id="receive_receiver" name="receive_receiver" value="${member.m_id }" />
       <div id="log" class="pull-left">
-        <img src="views/img/happy.png" id="happy"><a href="../sub2.do" class="scrollto" id="mainLogo">&nbsp;Gukbong WorlD</a>        
+        <img src="/views/img/happy.png" id="happy"><a href="/sub2.do" class="scrollto" id="mainLogo">&nbsp;Gukbong WorlD</a>        
       </div>
     </div>
   </form>
       
-      <form action="../sub.do" method="post">
+      <form action="/sub.do" method="post">
       <table class="border-none">
          <tr>
             <td id="td1">             
@@ -215,7 +201,7 @@ $(function(){
                <input class="field" id="lng" type="hidden" name="lng"/>              
                <!-- <input type="submit" id="search"> -->
                
-               <input  style="width: 30px; height: 30px;"  TYPE="IMAGE" src="views/img/search.png" name="Submit" value="Submit" align="absmiddle" id="search">
+               <input  style="width: 30px; height: 30px;"  TYPE="IMAGE" src="/views/img/search.png" name="Submit" value="Submit" align="absmiddle" id="search">
 
             </td>
          </tr>
@@ -252,16 +238,16 @@ $(function(){
          </div>
       </li>
    
-      <li class="menu-has-children"><a><img src="${getProfileImageRoute.p_route }" style="width: 45px; height: 45px;" class="rounded-circle" id="navProfileImg"></a>
+      <li class="menu-has-children"><img src="${getProfileImageRoute.p_route }" style="width: 45px; height: 45px;" class="rounded-circle" id="navProfileImg"></a>
           <ul>                                      
-            <li><a  href="../../myProfile.do" >마이 프로필</a></li> 
-            <li><a href="../../logoutMember.do">로그아웃</a></li>            
+            <li><a  href="/myProfile.do" >마이 프로필</a></li> 
+            <li><a href="/logoutMember.do">로그아웃</a></li>            
           </ul> 
         </li>
                
          <li>    
           <span class="fa-layers fa-fw">
-           <a href="../../getReceiveMessageList.do">
+           <a href="/getReceiveMessageList.do">
           <i class="far fa-envelope fa-2x"></i>
           <span class="fa-layers-counter" style="color:red;" id="noticeMessageCount"></span>
           </a>
@@ -274,88 +260,126 @@ $(function(){
   </header><!-- #header -->
 
 
-<br>  
+<section>
 <div class="container">
    <div class="row">
       <div class="col-md-3 ">
            <div class="list-group ">
-            <a href="../../myProfile.do" class="list-group-item list-group-item-action active">My Profile 메인</a>
-              <a href="../../insertProfile.do" class="list-group-item list-group-item-action ">프로필 수정</a>
-              <a href="../../ModifyPhoneMember.do" class="list-group-item list-group-item-action">핸드폰 변경</a>
-              <a href="../../ModifyPwdMember.do" class="list-group-item list-group-item-action">비밀번호 변경</a>
-              <a href="../../ModifyAddressMember.do" class="list-group-item list-group-item-action">주소 변경</a>
-              <a href="../../profileImageInsert.do" class="list-group-item list-group-item-action">이미지 업로드</a>
-              <a href="../../profileImageList.do?m_id=${member.m_id }" class="list-group-item list-group-item-action">프로필 이미지 관리</a>
-              <a href="../../HostImageList.do?m_id=${member.m_id }" class="list-group-item list-group-item-action">호스트 이미지 관리</a>
-              <a href="../../getReceiveMessageList.do" class="list-group-item list-group-item-action">받은 쪽지함</a>
-              <a href="../../getSendMessageList.do" class="list-group-item list-group-item-action">보낸 쪽지함</a>
-              <a href="../../myPost.do?m_id=${member.m_id }&cPage=1" class="list-group-item list-group-item-action">내 글</a>
-              <a href="../../myPost2.do?m_id=${member.m_id }&cPage=1" class="list-group-item list-group-item-action">내 댓글</a>
-              <a href="../../loginRecordList.do?ll_id=${member.m_id }&cPage=1" class="list-group-item list-group-item-action">로그인 기록</a>
-              <a href="../../DeleteMember.do?m_id=${member.m_id }" class="list-group-item list-group-item-action">회원탈퇴</a>
-              
-
+            <a href="/sub2.do" class="list-group-item list-group-item-action">메인페이지</a>
+              <a href="/myProfile.do" class="list-group-item list-group-item-action">마이 프로필</a>
+              <a href="/getReceiveMessageList.do" class="list-group-item list-group-item-action">받은 쪽지함</a>
+              <a href="/getSendMessageList.do" class="list-group-item list-group-item-action">보낸 쪽지함</a>
+              <a href="#" class="list-group-item list-group-item-action">프로필 수정</a>
+              <a href="/ModifyPwdMember.do" class="list-group-item list-group-item-action">비밀번호 변경</a>
+              <a href="/ModifyPhoneMember.do" class="list-group-item list-group-item-action">핸드폰 변경</a>
+              <a href="/ModifyAddressMember.do" class="list-group-item list-group-item-action">주소 변경</a>
+              <a href="/profileImageInsert.do" class="list-group-item list-group-item-action active">이미지 업로드</a>
+              <a href="/profileImageList.do?m_id=${member.m_id }" class="list-group-item list-group-item-action">프로필 이미지 관리</a>
+              <a href="/HostImageList.do?m_id=${member.m_id }" class="list-group-item list-group-item-action">호스트 이미지 관리</a>
+              <a href="#" class="list-group-item list-group-item-action">내 글</a>
+              <a href="#" class="list-group-item list-group-item-action">내 댓글</a>
               
             </div> 
             
       </div>
-      
       <div class="col-md-9">
-          <div class="card">
-              <div class="card-body">
-                  <div class="row">
-                      <div class="col-md-12">
-                          <h4><img src="/views/img/profileIcon.png" style="width: 50px; height: 50px;"> my Profile</h4>
-                          <hr>
-                      </div>
-                  </div>
-                  
-                  <div class="row">
-                      <div class="col-md-12">
-                          <form>
-                              <table class="table">
-                                 <tr>
-                                    <td colspan="2" style="text-align: center;"><h5 class="text-muted">Profile Image</h5><img src="${profile.p_route }" style="width:250px; height: 250px;" class="rounded"/></td>
-                                    <td colspan="2" style="text-align: center;"><h5 class="text-muted">Host Image</h5><img src="${hostImg.h_route }" style="width:250px; height: 250px;" class="rounded"/></td>
-                                 </tr>
-                                 <tr>
-                                    <th style="width: 22%; text-align: center;" >이름 </th>
-                                    <td style="width: 28%">${member.m_name }</td>
-                                    <th style="width: 18%; text-align: center;">취미 </th>
-                                    <td style="width: 32%">${profile.p_hobby }</td>
-                                 </tr>
-                                 <tr>
-                                    <th style="width: 22%; text-align: center;" >사용가능 언어 </th>
-                                    <td style="width: 28%">${profile.p_language }</td>
-                                    <th style="width: 18%; text-align: center;">직업 </th>
-                                    <td style="width: 32%">${profile.p_job }</td>
-                                 </tr>
-                                 <tr>
-                                  <th style="width: 22%; text-align: center;">방문해본 국가</th>
-                                  <td colspan="3">${profile.p_visitcountry }</td>
-                               </tr>
-                               <tr>
-                                  <th style="width: 22%; text-align: center;">사이트방문 목적</th>
-                                  <td colspan="3">${profile.p_purpose }</td>
-                               </tr>
-                                 <tr>
-                                    <th style="width: 22%; text-align: center;" >나에 대해서 </th>
-                                    <td colspan="3">${profile.p_aboutme }</td>        
-                                 </tr>     
-                              </table>
+		    <div class="card">
+		        <div class="card-body">
+		            <div class="row">
+		                <div class="col-md-12">
+		                    <h4>이미지 업로드</h4>
+		                    <hr>
+		                </div>
+		            </div>
+		            <div class="row">
+		                <div class="col-md-12">
+		                    	<input id="m_id" type="hidden" class="form-control" name="m_id" value="${member.m_id }">
+                             
+                             
+                              <div class="form-group row">
+                                <label for="profile_img" class="col-4 col-form-label">프로필 이미지 업로드</label> 
+                                <div class="col-8">
+                                	<button type="button" class="btn btn-primary btn-block" id="profileModal" >ADD PROFILE IMG+</button>
+                                </div>
+                              </div>
                               
-                              
-                              
-                              
-                            </form>
-                      </div>
-                  </div>
-                  
-              </div>
-          </div>
-      </div>
-   </div>
+                              <form id="profileFrm" name="profileFrm" method="POST" enctype="multipart/form-data">
+							<div class="modal fade" id="profile">
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h4>Upload File</h4>
+											<button type="button" class="close" data-dismiss="modal">×</button>
+										</div>
+										<div class="modal-body">
+											<b>Select Image: </b><br>
+											<input type="file" id="uploadProfileImg" name="profileImg"/>
+											
+											<ul>
+												<li>이미지는 JPG, JPEG, GIF, PNG 타입만 허용됩니다.</li>
+												<li>이미지는 최대 20MB까지 허용됩니다.</li>
+												<li>Script Blockers를 사용할경우 이미지 업로드 기능이 안될 수 있습니다.</li>
+											</ul>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-primary" id="profileImgBtn" disabled="disabled" onclick="uploadProfile(this.form)">업로드</button>
+											<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+											
+											<input type="hidden" value="${member.m_id}" name="m_id">
+										</div>
+									</div>
+								</div>
+							</div>
+							</form>
+                            
+                            <div class="form-group row">
+                               	<label for="home_img"  class="col-4 col-form-label">호스트 이미지 업로드</label>
+                                <div class="col-8">
+                                	<button type="button" class="btn btn-primary btn-block" id="hostModal" >ADD HOST IMG+</button>
+                                </div>
+                              </div>
+                            
+                          	 <form id="hostFrm" name="hostFrm" method="POST" enctype="multipart/form-data">
+							<div class="modal fade" id="host">
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h4>Upload File</h4>
+											<button type="button" class="close" data-dismiss="modal">×</button>
+										</div>
+										<div class="modal-body">
+											<b>Select Image: </b><br>
+											<input type="file" id="uploadHostImg" name="uploadHostImg"/>
+											
+											<ul>
+												<li>이미지는 JPG, JPEG, GIF, PNG 타입만 허용됩니다.</li>
+												<li>이미지는 최대 20MB까지 허용됩니다.</li>
+												<li>Script Blockers를 사용할경우 이미지 업로드 기능이 안될 수 있습니다.</li>
+											</ul>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-primary" id="hostImgBtn" disabled="disabled" onclick="uploadHost(this.form)">업로드</button>
+											<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+											
+											<input type="hidden" value="${member.m_id}" name="m_id">
+										</div>
+									</div>
+								</div>
+							</div>
+							</form>	
+		                </div>
+		            </div>
+		            
+		        </div>
+		    </div>
+		</div>
+	</div>
 </div>
-<%@include file="/views/footer.jsp"%>
+<script src="js/jquery.min.js"></script>
+<script src="bootstrap/js/bootstrap.min.js"></script>
+<script src="js/my-login.js"></script>
+	
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+</section>
 </body>
 </html>

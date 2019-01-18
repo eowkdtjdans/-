@@ -99,7 +99,6 @@ select {
     appearance: none;
 }
 
-<<<<<<< HEAD
 .myImg:hover {opacity: 0.7;}
 
 /* The Modal (background) */
@@ -116,7 +115,6 @@ select {
   background-color: rgb(0,0,0);  
   background-color: rgba(0,0,0,0.9);  
  
-=======
 #autocomplete {
    width: 50%; 
    border: 1px solid #999; 
@@ -129,7 +127,6 @@ select {
    border: 1px solid #999; 
    border-radius: 30px; 
    padding: .3em .3em;
->>>>>>> branch 'master' of https://github.com/eowkdtjdans/Its-dissapointing.git
 }
 
 /* .hr{

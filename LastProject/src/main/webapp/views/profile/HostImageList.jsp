@@ -91,6 +91,22 @@ select {
     appearance: none;
 }
 
+.myImg:hover {opacity: 0.7;}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */ 
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0);  
+  background-color: rgba(0,0,0,0.9);  
+ 
 #autocomplete {
    width: 50%; 
    border: 1px solid #999; 
@@ -201,6 +217,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
 }
 
 </style>
+
 
 <script>
 function test(h_route, m_id) {
