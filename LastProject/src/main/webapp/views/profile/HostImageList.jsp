@@ -233,20 +233,20 @@ function test(h_route, m_id) {
       var m_id = frm.m_id.value;
       var h_route = frm.h_route.value;
       var str = $("#modalBtn").serialize();
-   	
+      
       frm.action = "../../deleteHostImage.do";
       frm.submit();
       return false;  
    }
    
    function updateMainHostImage(frm) {
-	  var m_id = frm.m_id.value;
+     var m_id = frm.m_id.value;
       var h_route = frm.h_route.value;
       var str = $("#modalBtn").serialize();
    
-   	  frm.action = "../../updateMainHostImage.do";
-   	  frm.submit();
-   	  return false;
+        frm.action = "../../updateMainHostImage.do";
+        frm.submit();
+        return false;
    }
 
 </script>
@@ -371,49 +371,49 @@ select {
 
          
 <nav id="nav-menu-container">
-	<ul class="nav-menu">
-	
-	<c:if test="${empty member.m_id}">
-		<li><a href="../../loginMember.do" >로그인</a></li>
-		<li><a  href="../../insertMember.do" >회원가입</a></li>
-		<li><a href="../../findIdMember.do">아이디찾기</a></li >
-	    <li><a href="../../findPwdMember.do">비밀번호찾기</a></li>
-	</c:if>	
-	
-	<c:if test="${!empty member.m_id}">
-		<li>
-			<div>
-			<strong>
-			<span style="color: red;">W</span>
-			<span style="color: blue;">e</span>
-			<span style="color: darkviolet;">l</span>
-			<span style="color: #FFC100;">c</span>
-			<span style="color: green;">o</span>
-			<span style="color: orange;">m</span>
-			<span style="color: navy;">e</span>			
-			&nbsp;&nbsp;			
-			${member.m_id } 님 
-			</strong>
-			</div>
-		</li>
-	
-		<li class="menu-has-children"><img src="${getProfileImageRoute.p_route }" style="width: 45px; height: 45px;" class="rounded-circle" id="navProfileImg"></a>
+   <ul class="nav-menu">
+   
+   <c:if test="${empty member.m_id}">
+      <li><a href="../../loginMember.do" >로그인</a></li>
+      <li><a  href="../../insertMember.do" >회원가입</a></li>
+      <li><a href="../../findIdMember.do">아이디찾기</a></li >
+       <li><a href="../../findPwdMember.do">비밀번호찾기</a></li>
+   </c:if>   
+   
+   <c:if test="${!empty member.m_id}">
+      <li>
+         <div>
+         <strong>
+         <span style="color: red;">W</span>
+         <span style="color: blue;">e</span>
+         <span style="color: darkviolet;">l</span>
+         <span style="color: #FFC100;">c</span>
+         <span style="color: green;">o</span>
+         <span style="color: orange;">m</span>
+         <span style="color: navy;">e</span>         
+         &nbsp;&nbsp;         
+         ${member.m_id } 님 
+         </strong>
+         </div>
+      </li>
+   
+      <li class="menu-has-children"><img src="${getProfileImageRoute.p_route }" style="width: 45px; height: 45px;" class="rounded-circle" id="navProfileImg"></a>
           <ul>                                      
             <li><a  href="../../myProfile.do" >마이 프로필</a></li> 
             <li><a href="../../logoutMember.do">로그아웃</a></li>            
           </ul> 
         </li>
                
-   		<li>    
+         <li>    
           <span class="fa-layers fa-fw">
            <a href="../../getReceiveMessageList.do">
           <i class="far fa-envelope fa-2x"></i>
           <span class="fa-layers-counter" style="color:red;" id="noticeMessageCount"></span>
           </a>
          </span>
-     	 </li>         
-	</c:if>
-	</ul> 
+         </li>         
+   </c:if>
+   </ul> 
 </nav>               
 <hr>
   </header><!-- #header -->
