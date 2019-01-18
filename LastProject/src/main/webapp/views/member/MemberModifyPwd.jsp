@@ -5,7 +5,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8"> 
-  <title>Gukbong WorlD</title>
+  <title>비밀번호 변경</title>
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <meta content="" name="keywords">
   <meta content="" name="description"> 
@@ -353,7 +353,7 @@ $(function(){
 		        <div class="card-body">
 		            <div class="row">
 		                <div class="col-md-12">
-		                    <h4>비밀번호 변경</h4>
+		                    <h4><img src="views/img/profile_pen.png" style="width: 50px; height: 50px;"> 비밀번호 변경</h4>
 		                    <hr>
 		                </div>
 		            </div>
@@ -362,20 +362,20 @@ $(function(){
 		                    <form method="POST" onsubmit="return false;"class="my-login-validation" id="ModifyPwd">
 		                    	<input id="m_id" type="hidden" class="form-control" name="m_id" value="${member.m_id }">
                               <div class="form-group row">
-                                <label for="m_pwd" class="col-4 col-form-label">기존 비밀번호</label> 
-                                <div class="col-8">
+                                <label for="m_pwd" class="col-3 col-form-label">기존 비밀번호</label> 
+                                <div class="col-9">
                                 	<input onkeypress="enterkey()"id="m_pwd" name="m_pwd" type="password" class="form-control" >
                                 </div>
                               </div>
                               <div class="form-group row">
-                               <label for="pwdModify" class="col-4 col-form-label">변경할 비밀번호</label>
-                                <div class="col-8">
+                               <label for="pwdModify" class="col-3 col-form-label">변경할 비밀번호</label>
+                                <div class="col-9">
                                   	<input onkeypress="enterkey()"id="pwdModify" name="pwdModify" type="password" class="form-control" >
                                 </div>
                               </div>
-                              
+                               
                               <div class="form-group row">
-                               		<button type="submit" id="modifyBtn"class="btn btn-primary btn-block" onclick="ModifyPwd(this.form)">
+                               		<button type="submit" id="modifyBtn"class="btn btn-outline-secondary btn-block" onclick="ModifyPwd(this.form)">
 										비밀번호 변경
 									</button>
                               </div>

@@ -332,16 +332,21 @@ function fillInAddress() { //lat 와 lng 값을 넘겨줄 input 태그에 값 �
 
               
             </div> 
+<<<<<<< HEAD
+             
+		</div>
+=======
             
       </div>
       
       
+>>>>>>> branch 'master' of https://github.com/eowkdtjdans/Its-dissapointing.git
 		<div class="col-md-9">
 		    <div class="card">
 		        <div class="card-body">
 		            <div class="row">
 		                <div class="col-md-12">
-		                    <h4>주소 번호 변경</h4>
+		                    <h4><img src="views/img/profile_pen.png" style="width: 50px; height: 50px;"> 주소 번호 변경</h4>
 		                    <hr>
 		                </div>
 		            </div>
@@ -359,9 +364,9 @@ function fillInAddress() { //lat 와 lng 값을 넘겨줄 input 태그에 값 �
                       		  </div>
                       		 
                         
-                              
+                            
                                <div class="form-group m-0">
-		                           <button type="button" class="btn btn-primary btn-block" onclick="ModifyAddress(this.form)">
+		                           <button type="button" class="btn btn-outline-secondary btn-block" onclick="ModifyAddress(this.form)">
 		                              주소 변경
 		                           </button>
                       		  </div>

@@ -279,8 +279,13 @@ $(function(){
    <div class="row">
       <div class="col-md-3 ">
            <div class="list-group ">
+<<<<<<< HEAD
             <a href="../../myProfile.do" class="list-group-item list-group-item-action active">My Profile 메인</a>
               <a href="../../insertProfile.do" class="list-group-item list-group-item-action">프로필 수정</a>
+=======
+            <a href="../../myProfile.do" class="list-group-item list-group-item-action active">My Profile 메인</a>
+              <a href="../../insertProfile.do" class="list-group-item list-group-item-action">프로필 수정</a>
+>>>>>>> branch 'master' of https://github.com/eowkdtjdans/Its-dissapointing.git
               <a href="../../ModifyPhoneMember.do" class="list-group-item list-group-item-action">핸드폰 변경</a>
               <a href="../../ModifyPwdMember.do" class="list-group-item list-group-item-action">비밀번호 변경</a>
               <a href="../../ModifyAddressMember.do" class="list-group-item list-group-item-action">주소 변경</a>
@@ -294,7 +299,7 @@ $(function(){
               <a href="../../loginRecordList.do?ll_id=${member.m_id }&cPage=1" class="list-group-item list-group-item-action">로그인 기록</a>
               <a href="../../DeleteMember.do?m_id=${member.m_id }" class="list-group-item list-group-item-action">회원탈퇴</a>
               
-
+ 
               
             </div> 
             

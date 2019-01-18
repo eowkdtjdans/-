@@ -381,12 +381,12 @@ select {
   </header><!-- #header -->
 
 
-<br>  
+<br>
 <div class="container">
    <div class="row">
       <div class="col-md-3 ">
            <div class="list-group ">
-            <a href="../../myProfile.do" class="list-group-item list-group-item-action ">My Profile 메인</a>
+           <a href="../../myProfile.do" class="list-group-item list-group-item-action ">My Profile 메인</a>
               <a href="../../insertProfile.do" class="list-group-item list-group-item-action active">프로필 수정</a>
               <a href="../../ModifyPhoneMember.do" class="list-group-item list-group-item-action">핸드폰 변경</a>
               <a href="../../ModifyPwdMember.do" class="list-group-item list-group-item-action">비밀번호 변경</a>
@@ -399,89 +399,94 @@ select {
               <a href="../../myPost.do?m_id=${member.m_id }&cPage=1" class="list-group-item list-group-item-action">내 글</a>
               <a href="../../myPost2.do?m_id=${member.m_id }&cPage=1" class="list-group-item list-group-item-action">내 댓글</a>
               <a href="../../loginRecordList.do?ll_id=${member.m_id }&cPage=1" class="list-group-item list-group-item-action">로그인 기록</a>
-              <a href="../../DeleteMember.do?m_id=${member.m_id }" class="list-group-item list-group-item-action">회원탈퇴</a>
-              
-
-              
-            </div> 
-            
+              <a href="../../DeleteMember.do?m_id=${member.m_id }" class="list-group-item list-group-item-action">회원탈퇴</a>     
+            </div>             
       </div>
       
-		<div class="col-md-9">
-		    <div class="card">
-		        <div class="card-body">
-		            <div class="row">
-		                <div class="col-md-12">
-		                    <h4>프로필</h4>
-		                    <hr>
-		                </div>
-		            </div>
-		            
-		            
-		            <div class="row">
-		                <div class="col-md-12">
-		                 <form method="POST" class="my-login-validation" id="form">
-		                    	<input id="m_id" type="hidden" class="form-control" name="m_id" value="${member.m_id }">
-		                    	<input id="p_route" type="hidden" class="form-control" name="p_route" value="${profile.p_route }">
+      
+      
+
+      <div class="col-md-9">
+          <div class="card">
+              <div class="card-body">
+                  <div class="row">
+                      <div class="col-md-12">     
+                          <h4><img src="views/img/profile_pen.png" style="width: 50px; height: 50px;"> 프로필 수정</h4>
+                          <hr>
+                      </div>
+                  </div>
+                  
+                  
+                  <div class="row">
+                      <div class="col-md-12">
+                       <form method="POST" class="my-login-validation" id="form">
+                             <input id="m_id" type="hidden" class="form-control" name="m_id" value="${member.m_id }">
+                             <input id="p_route" type="hidden" class="form-control" name="p_route" value="${profile.p_route }">
                              
                                <div class="form-group row">
-                                <label for="p_hobby" class="col-4 col-form-label">취미</label> 
-                                <div class="col-8">
-                                	<textarea rows="5" cols="10" id="p_hobby" name="p_hobby" class="form-control">${profile.p_hobby }</textarea>
-                                </div>
-                              </div>
-                        	   
-                              <div class="form-group row">
-                                <label for="p_language" class="col-4 col-form-label">사용가능한 언어</label> 
-                                <div class="col-8">
-                                	<textarea rows="5" cols="10" id="p_language" name="p_language" class="form-control">${profile.p_language }</textarea>
-                                </div>
-                              </div>
-                           
-                              <div class="form-group row">
-                                <label for="p_job" class="col-4 col-form-label">직업</label> 
-                                <div class="col-8">
-                                	<textarea rows="5" cols="10" id="p_job" name="p_job" class="form-control">${profile.p_job }</textarea>
-                                </div>
-                              </div>
-                           
-                              <div class="form-group row">
-                                <label for="p_aboutme" class="col-4 col-form-label">자기소개</label> 
-                                <div class="col-8">
-                                	<textarea rows="5" cols="10" id="aboutme" name="p_aboutme" class="form-control">${profile.p_aboutme }</textarea>
-                                </div>
-                              </div>
-                        
-                              <div class="form-group row">
-                                <label for="p_purpose" class="col-4 col-form-label">목적</label> 
-                                <div class="col-8">
-                                	<textarea rows="5" cols="10" id="p_purpose" name="p_purpose" class="form-control">${profile.p_purpose }</textarea>
-                                </div>
-                              </div>
-                        
-                              <div class="form-group row">
-                                <label for="p_visitcountry" class="col-4 col-form-label">방문했던 국가</label> 
-                                <div class="col-8">
-                                	<textarea rows="5" cols="10" id="p_visitcountry" name="p_visitcountry" class="form-control">${profile.p_visitcountry }</textarea>
-                                </div>
-                              </div>
-                        
+                                <label for="p_hobby" class="col-3 col-form-label">취미</label> 
+                                <div class="col-9">
+                                   <textarea rows="2" cols="10" id="p_hobby" name="p_hobby" class="form-control" >${profile.p_hobby }</textarea>
+                                </div>                             
+                              </div>                             
+                              <hr>
                               
-                               <div class="form-group m-0">
-		                          	<button type="button" class="btn btn-primary btn-block" onclick="insertProfile(this.form)">
-										프로필 등록
-									</button>
-                      		  </div>
-                            
+                              <div class="form-group row">
+                                <label for="p_language" class="col-3 col-form-label">사용가능한 언어</label> 
+                                <div class="col-9">
+                                   <textarea rows="2" cols="10" id="p_language" name="p_language" class="form-control">${profile.p_language }</textarea>
+                                </div>
+                              </div>
+                           	  <hr>
                            
+                              <div class="form-group row">
+                                <label for="p_job" class="col-3 col-form-label">직업</label> 
+                                <div class="col-9">
+                                   <textarea rows="2" cols="10" id="p_job" name="p_job" class="form-control">${profile.p_job }</textarea>
+                                </div>
+                              </div>
+                              <hr>
+                              
+                              <div class="form-group row">
+                                <label for="p_visitcountry" class="col-3 col-form-label">방문했던 국가</label> 
+                                <div class="col-9">
+                                   <textarea rows="2" cols="10" id="p_visitcountry" name="p_visitcountry" class="form-control">${profile.p_visitcountry }</textarea>
+                                </div>
+                              </div>
+                              <hr>
+                           
+                              <div class="form-group row">
+                                <label for="p_aboutme" class="col-3 col-form-label">자기소개</label> 
+                                <div class="col-9">
+                                   <textarea rows="4" cols="10" id="aboutme" name="p_aboutme" class="form-control">${profile.p_aboutme }</textarea>
+                                </div>
+                              </div> 
+                              <hr>
+                           
+                              <div class="form-group row">
+                                <label for="p_purpose" class="col-3 col-form-label">목적</label> 
+                                <div class="col-9">
+                                   <textarea rows="4" cols="10" id="p_purpose" name="p_purpose" class="form-control">${profile.p_purpose }</textarea>
+                                </div>
+                              </div>
+                              <hr>
+                                                                                                           
+                               <div class="form-group m-0">
+                                   <button type="button" class="btn btn-outline-secondary btn-block" onclick="insertProfile(this.form)">
+                             	 프로필 수정
+                           		   </button>
+                               </div>
+                            
+                          
                             </form>
-		                </div>
-		            </div>
-		            
-		        </div>
-		    </div>
-		</div>
-	</div>
+                      </div>
+                  </div>
+                  
+              </div>
+          </div>
+      </div>
+   </div>
+</div> 
 </div><%@include file="/views/footer.jsp"%>
 </body>
 </html>

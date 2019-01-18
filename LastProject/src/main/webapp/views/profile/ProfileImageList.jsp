@@ -1,12 +1,26 @@
-﻿ <%@ page language="java" contentType="text/html; charset=UTF-8"
+﻿﻿ <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<<<<<<< HEAD
   <meta charset="utf-8"> 
   <title>Gukbong WorlD</title>
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
+=======
+<meta charset="UTF-8">
+<title>프로필 이미지 수정</title>
+
+<<<<<<< HEAD
+ 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+=======
+
+>>>>>>> branch 'master' of https://github.com/eowkdtjdans/Its-dissapointing.git
+
+ <meta content="width=device-width, initial-scale=1.0" name="viewport">
+>>>>>>> branch 'master' of https://github.com/eowkdtjdans/Its-dissapointing.git
   <meta content="" name="keywords">
   <meta content="" name="description"> 
  
@@ -91,6 +105,24 @@ select {
     appearance: none;
 }
 
+<<<<<<< HEAD
+.myImg:hover {opacity: 0.7;}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */ 
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0);  
+  background-color: rgba(0,0,0,0.9);  
+ 
+=======
 #autocomplete {
    width: 50%; 
    border: 1px solid #999; 
@@ -103,6 +135,7 @@ select {
    border: 1px solid #999; 
    border-radius: 30px; 
    padding: .3em .3em;
+>>>>>>> branch 'master' of https://github.com/eowkdtjdans/Its-dissapointing.git
 }
 
 /* .hr{
@@ -577,7 +610,7 @@ function test(p_route, m_id) {
           
   </div>
   <div id="caption"></div>
-</div>
+</div> 
 </form>
 
 </div>
