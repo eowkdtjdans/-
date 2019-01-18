@@ -577,7 +577,7 @@ function test(p_route, m_id) {
 </div>
 </div>
 </div>
-</div>
+</div> 
 </div>
 
 <%@include file="/views/footer.jsp"%>

@@ -319,7 +319,7 @@ $(function(){
 		<thead class="thead-light">
 		<tr>
 			<th width="50"></th>
-			<th width="100">보낸이</th>
+			<th width="100">보낸이</th> 
 			<th width="200">제목</th>
 			<th width="100">날짜</th>
 		</tr>
