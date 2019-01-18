@@ -1,4 +1,4 @@
-﻿﻿ <%@ page language="java" contentType="text/html; charset=UTF-8"
+﻿ <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -7,14 +7,6 @@
   <meta charset="utf-8"> 
   <title>Gukbong WorlD</title>
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-<meta charset="UTF-8">
-<title>프로필 이미지 수정</title>
-
- 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-
- <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <meta content="" name="keywords">
   <meta content="" name="description"> 
  
@@ -99,22 +91,6 @@ select {
     appearance: none;
 }
 
-.myImg:hover {opacity: 0.7;}
-
-/* The Modal (background) */
-.modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */ 
-  padding-top: 100px; /* Location of the box */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0);  
-  background-color: rgba(0,0,0,0.9);  
- 
 #autocomplete {
    width: 50%; 
    border: 1px solid #999; 
@@ -227,18 +203,18 @@ body {font-family: Arial, Helvetica, sans-serif;}
 </style>
 
 <script>
-function test(h_route, m_id) {
+function test(p_route, m_id) {
    var modal = document.getElementById('myModal');
    
-   var img = document.getElementById(h_route);
+   var img = document.getElementById(p_route);
    var modalImg = document.getElementById("img01");
    var captionText = document.getElementById("caption");
    
    var m_id_value = document.getElementById('m_id');
-   var h_route_value = document.getElementById('h_route');
+   var p_route_value = document.getElementById('p_route');
    
    m_id_value.value=m_id;
-   h_route_value.value=h_route;
+   p_route_value.value=p_route;
    
    modal.style.display = "block";
    modalImg.src = img.src;
@@ -253,24 +229,24 @@ function test(h_route, m_id) {
 </script>
 
 <script>
-   function deleteHostImage(frm) {
+   function deleteImage(frm) {
       var m_id = frm.m_id.value;
-      var h_route = frm.h_route.value;
+      var p_route = frm.p_route.value;
       var str = $("#modalBtn").serialize();
-      
-      frm.action = "../../deleteHostImage.do";
+   
+      frm.action = "../../deleteProfileImage.do";
       frm.submit();
-      return false;  
+      return false; 
    }
    
-   function updateMainHostImage(frm) {
-     var m_id = frm.m_id.value;
-      var h_route = frm.h_route.value;
+   function updateMainProfileImage(frm) {
+	  var m_id = frm.m_id.value;
+      var p_route = frm.p_route.value;
       var str = $("#modalBtn").serialize();
    
-        frm.action = "../../updateMainHostImage.do";
-        frm.submit();
-        return false;
+   	  frm.action = "../../updateMainProfileImage.do";
+   	  frm.submit();
+   	  return false;
    }
 
 </script>
@@ -347,108 +323,7 @@ select {
    color: red;
 } */
 </style>
-
-<script>
-function test(p_route, m_id) {
-   var modal = document.getElementById('myModal');
-   
-   var img = document.getElementById(p_route);
-   var modalImg = document.getElementById("img01");
-   var captionText = document.getElementById("caption");
-   
-   var m_id_value = document.getElementById('m_id');
-   var p_route_value = document.getElementById('p_route');
-   
-   m_id_value.value=m_id;
-   p_route_value.value=p_route;
-   
-   modal.style.display = "block";
-   modalImg.src = img.src;
-   captionText.innerHTML = img.alt;
-   
-   var span = document.getElementsByClassName("close")[0];
-
-   span.onclick = function() { 
-     modal.style.display = "none";
-   }
-}
-</script>
-
-<script>
-   function deleteImage(frm) {
-      var m_id = frm.m_id.value;
-      var p_route = frm.p_route.value;
-      var str = $("#modalBtn").serialize();
-   
-      frm.action = "../../deleteProfileImage.do";
-      frm.submit();
-      return false; 
-   }
-   
-   function updateMainProfileImage(frm) {
-	  var m_id = frm.m_id.value;
-      var p_route = frm.p_route.value;
-      var str = $("#modalBtn").serialize();
-   
-   	  frm.action = "../../updateMainProfileImage.do";
-   	  frm.submit();
-   	  return false;
-   }
-
-</script>
-</style>
-
-<script>
-function test(p_route, m_id) {
-   var modal = document.getElementById('myModal');
-   
-   var img = document.getElementById(p_route);
-   var modalImg = document.getElementById("img01");
-   var captionText = document.getElementById("caption");
-   
-   var m_id_value = document.getElementById('m_id');
-   var p_route_value = document.getElementById('p_route');
-   
-   m_id_value.value=m_id;
-   p_route_value.value=p_route;
-   
-   modal.style.display = "block";
-   modalImg.src = img.src;
-   captionText.innerHTML = img.alt;
-   
-   var span = document.getElementsByClassName("close")[0];
-
-   span.onclick = function() { 
-     modal.style.display = "none";
-   }
-}
-</script>
-
-<script>
-   function deleteImage(frm) {
-      var m_id = frm.m_id.value;
-      var p_route = frm.p_route.value;
-      var str = $("#modalBtn").serialize();
-   
-      frm.action = "../../deleteProfileImage.do";
-      frm.submit();
-      return false; 
-   }
-   
-   function updateMainProfileImage(frm) {
-	  var m_id = frm.m_id.value;
-      var p_route = frm.p_route.value;
-      var str = $("#modalBtn").serialize();
-   
-   	  frm.action = "../../updateMainProfileImage.do";
-   	  frm.submit();
-   	  return false;
-   }
-
-</script>
-
 </head>
-<body>
 <body>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -545,18 +420,19 @@ function test(p_route, m_id) {
 
 
 <br>  
+<section>
 <div class="container">
    <div class="row">
       <div class="col-md-3 ">
            <div class="list-group ">
-        <a href="../../myProfile.do" class="list-group-item list-group-item-action ">My Profile 메인</a>
+              <a href="../../myProfile.do" class="list-group-item list-group-item-action ">My Profile 메인</a>
               <a href="../../insertProfile.do" class="list-group-item list-group-item-action">프로필 수정</a>
               <a href="../../ModifyPhoneMember.do" class="list-group-item list-group-item-action">핸드폰 변경</a>
               <a href="../../ModifyPwdMember.do" class="list-group-item list-group-item-action">비밀번호 변경</a>
               <a href="../../ModifyAddressMember.do" class="list-group-item list-group-item-action">주소 변경</a>
               <a href="../../profileImageInsert.do" class="list-group-item list-group-item-action">이미지 업로드</a>
               <a href="../../profileImageList.do?m_id=${member.m_id }" class="list-group-item list-group-item-action">프로필 이미지 관리</a>
-              <a href="../../HostImageList.do?m_id=${member.m_id }" class="list-group-item list-group-item-action">호스트 이미지 관리</a>
+              <a href="../../HostImageList.do?m_id=${member.m_id }" class="list-group-item list-group-item-action ">호스트 이미지 관리</a>
               <a href="../../getReceiveMessageList.do" class="list-group-item list-group-item-action">받은 쪽지함</a>
               <a href="../../getSendMessageList.do" class="list-group-item list-group-item-action">보낸 쪽지함</a>
               <a href="../../myPost.do?m_id=${member.m_id }&cPage=1" class="list-group-item list-group-item-action">내 글</a>
@@ -601,7 +477,7 @@ function test(p_route, m_id) {
           
   </div>
   <div id="caption"></div>
-</div> 
+</div>
 </form>
 
 </div>
@@ -609,8 +485,8 @@ function test(p_route, m_id) {
 </div>
 </div>
 </div>
+</section>
 
 <%@include file="/views/footer.jsp"%>
-
 </body>
 </html>

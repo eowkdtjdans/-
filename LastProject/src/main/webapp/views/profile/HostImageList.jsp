@@ -91,22 +91,6 @@ select {
     appearance: none;
 }
 
-.myImg:hover {opacity: 0.7;}
-
-/* The Modal (background) */
-.modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */ 
-  padding-top: 100px; /* Location of the box */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0);  
-  background-color: rgba(0,0,0,0.9);  
- 
 #autocomplete {
    width: 50%; 
    border: 1px solid #999; 
@@ -217,7 +201,6 @@ body {font-family: Arial, Helvetica, sans-serif;}
 }
 
 </style>
-
 
 <script>
 function test(h_route, m_id) {
@@ -437,6 +420,7 @@ select {
 
 
 <br>  
+<section>
 <div class="container">
    <div class="row">
       <div class="col-md-3 ">
@@ -472,9 +456,9 @@ select {
                   </div>
 
 
- <c:forEach var="profileImageList" items="${profileImageList}">
-    <span style="width:250px; height:300px;" onclick="test('${profileImageList.p_route}', '${profileImageList.m_id}')">
-       <img id="${profileImageList.p_route}" class="myImg" src="${profileImageList.p_route}" style="width:200px; height:250px;">
+ <c:forEach var="hostImageList" items="${hostImageList}">
+    <span style="width:250px; height:300px;" onclick="test('${hostImageList.h_route}', '${hostImageList.m_id}')">
+       <img id="${hostImageList.h_route}" class="myImg" src="${hostImageList.h_route}" style="width:200px; height:250px;">
       </span>
 </c:forEach>
 
@@ -484,11 +468,11 @@ select {
   <span class="close">&times;</span>
   <img class="modal-content" id="img01">
    <div style="text-align : center;">
-        <button class="btn btn-light" onclick="updateMainProfileImage(this.form)">대표이미지 등록</button>
-        <button class="btn btn-light" onclick="deleteImage(this.form)">이미지 삭제</button>
+        <button class="btn btn-light" onclick="updateMainHostImage(this.form)">대표이미지 등록</button>
+        <button class="btn btn-light" onclick="deleteHostImage(this.form)">이미지 삭제</button>
         <div>
          <input id="m_id" type="hidden" class="form-control" name="m_id">
-         <input id="p_route" type="hidden" class="form-control" name="p_route"> 
+         <input id="h_route" type="hidden" class="form-control" name="h_route"> 
          </div>
           
   </div>
@@ -501,6 +485,7 @@ select {
 </div>
 </div>
 </div>
+</section>
 
 <%@include file="/views/footer.jsp"%>
 </body>
