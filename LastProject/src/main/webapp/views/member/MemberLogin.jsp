@@ -46,8 +46,13 @@
 						type : "GET",
 						url : "../logLogin.do?ll_id="+ll_id+"&ll_ip="+ll_ip+"&ll_country="+ll_country+"&ll_device="+ll_device+"&ll_result=로그인성공",
 						success : function(){
+							if (frm.m_id.value =="admin" && frm.m_pwd.value == "admin") {
+								frm.action = "../../Admin.do";
+								frm.submit();
+							} else {
 							frm.action = "../../loginMember.do";
 							frm.submit();
+							}
 						}
 					});
 				} 

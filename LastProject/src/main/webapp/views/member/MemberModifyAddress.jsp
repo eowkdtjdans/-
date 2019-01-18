@@ -326,60 +326,52 @@ function fillInAddress() { //lat 와 lng 값을 넘겨줄 input 태그에 값 �
               <a href="../../myPost.do?m_id=${member.m_id }&cPage=1" class="list-group-item list-group-item-action">내 글</a>
               <a href="../../myPost2.do?m_id=${member.m_id }&cPage=1" class="list-group-item list-group-item-action">내 댓글</a>
               <a href="../../loginRecordList.do?ll_id=${member.m_id }&cPage=1" class="list-group-item list-group-item-action">로그인 기록</a>
-              <a href="../../DeleteMember.do?m_id=${member.m_id }" class="list-group-item list-group-item-action">회원탈퇴</a>
-              
-              
+              <a href="../../DeleteMember.do?m_id=${member.m_id }" class="list-group-item list-group-item-action">회원탈퇴</a>             
+            </div>        
+      </div>          
+      
+      
+      
 
-              
-            </div> 
-<<<<<<< HEAD
-             
-		</div>
-=======
-            
-      </div>
-      
-      
->>>>>>> branch 'master' of https://github.com/eowkdtjdans/Its-dissapointing.git
-		<div class="col-md-9">
-		    <div class="card">
-		        <div class="card-body">
-		            <div class="row">
-		                <div class="col-md-12">
-		                    <h4><img src="views/img/profile_pen.png" style="width: 50px; height: 50px;"> 주소 번호 변경</h4>
-		                    <hr>
-		                </div>
-		            </div>
-		            <div class="row">
-		                <div class="col-md-12">
-		                    
-		                    <form method="POST" class="my-login-validation" id="ModifyPhoneForm">
-		                    	<input id="m_id" type="hidden" class="form-control" name="m_id" value="${member.m_id }">
+      <div class="col-md-9">
+          <div class="card">
+              <div class="card-body">
+                  <div class="row">
+                      <div class="col-md-12">
+                          <h4><img src="views/img/profile_pen.png" style="width: 50px; height: 50px;"> 주소 번호 변경</h4>
+                          <hr>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="col-md-12">
+                          
+                          <form method="POST" class="my-login-validation" id="ModifyPhoneForm">
+                             <input id="m_id" type="hidden" class="form-control" name="m_id" value="${member.m_id }">
                              
                                 <div id="locationField" class="form-group">
-		                           <label for="address">변경할 주소를 입력하세요.</label>
-		                           <input id="autocomplete" type="text" class="form-control" name="m_address">
-		                           <input class="field" id="lat" type="hidden" class="form-control" name="lat"/>
-		                           <input class="field" id="lng" type="hidden" class="form-control" name="lng"/>
-                      		  </div>
-                      		 
+                                 <label for="address">변경할 주소를 입력하세요.</label>
+                                 <input id="autocomplete" type="text" class="form-control" name="m_address">
+                                 <input class="field" id="lat" type="hidden" class="form-control" name="lat"/>
+                                 <input class="field" id="lng" type="hidden" class="form-control" name="lng"/>
+                              </div>
+                             
                         
                             
                                <div class="form-group m-0">
-		                           <button type="button" class="btn btn-outline-secondary btn-block" onclick="ModifyAddress(this.form)">
-		                              주소 변경
-		                           </button>
-                      		  </div>
+                                 <button type="button" class="btn btn-outline-secondary btn-block" onclick="ModifyAddress(this.form)">
+                                    주소 변경
+                                 </button>
+                              </div>
                             
                           
                             </form>
-		                </div>
-		            </div>
-		            
-		        </div>
-		    </div>
-		</div>
-	</div><%@include file="/views/footer.jsp"%>
+                      </div>
+                  </div>
+                  
+              </div>
+          </div>
+      </div>
+   </div><%@include file="/views/footer.jsp"%>
 </div>
 </body>
 </html>
