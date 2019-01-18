@@ -87,7 +87,7 @@ var phoneck= 0;
          success : function(data) {
             console.log("data.cnt : " + data.cnt);
             if(emailCheck.test(email)==false || email == ""){
-               alert("이 메일형식이 올바르지 않습니다.");
+               alert("이메일형식이 올바르지 않습니다.");
                 $("#m_id").focus();
                     $("#m_id").val("");
                return false;
