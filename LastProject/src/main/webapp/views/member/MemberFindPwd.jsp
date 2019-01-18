@@ -21,7 +21,6 @@
 
 	function findPwd(frm) {
 		 var str = $("#form").serialize();
-		 alert("str : " + str);
 		 $.ajax({
 			async : true,
 			type : "POST",
@@ -29,14 +28,13 @@
 			data : str,
 			url : "../../findPwdMemberJson.do",
 			success : function(data) {
-				alert("data.cnt : " + data.cnt);
 				if (data.cnt > 0) {
 					alert("기입하신 이메일을 확인하세요!");
 					frm.action="../../findPwdMember.do";
 					frm.submit(); 
 					return false;
 				} else {
-					alert("회원정보가 없습니다. 다시 입력하세요.");
+					alert("회원정보를 찾을 수 없습니다. 다시 입력하세요.");
 					frm.m_id.value = "";
 					frm.m_phone.value = "";
 					frm.m_name.value = "";

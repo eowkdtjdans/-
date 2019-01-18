@@ -10,7 +10,7 @@
   <meta content="" name="keywords">
   <meta content="" name="description"> 
  
-
+ 
   <!-- Favicons -->
   <link href="views/img/favicon.png" rel="icon">
   <link href="views/img/apple-touch-icon.png" rel="apple-touch-icon">
@@ -199,11 +199,11 @@ function fillInAddress() { //lat 와 lng 값을 넘겨줄 input 태그에 값 �
 <script>
    function ModifyAddress(frm) {
       if (frm.m_address.value == "" || frm.m_address.value == null) {
-         alert("주소를 기입하세요.");
+         alert("변경할 주소를 입력해주세요.");
          frm.m_address.value = ""; 
          frm.m_address.focus();
         } else {
-         alert("기입하신 주소로 변경이 되었습니다.");
+         alert("입력하신 주소로 변경이 되었습니다.");
          frm.action = "../../ModifyAddressMember.do";
          frm.submit();   
          return false;
@@ -213,7 +213,7 @@ function fillInAddress() { //lat 와 lng 값을 넘겨줄 input 태그에 값 �
 </script>
 
 
-<body>
+<body onload="noticeMessage()">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
@@ -328,50 +328,50 @@ function fillInAddress() { //lat 와 lng 값을 넘겨줄 input 태그에 값 �
               <a href="../../loginRecordList.do?ll_id=${member.m_id }&cPage=1" class="list-group-item list-group-item-action">로그인 기록</a>
               <a href="../../DeleteMember.do?m_id=${member.m_id }" class="list-group-item list-group-item-action">회원탈퇴</a>             
             </div>        
-		</div>           
+      </div>          
       
       
       
 
-		<div class="col-md-9">
-		    <div class="card">
-		        <div class="card-body">
-		            <div class="row">
-		                <div class="col-md-12">
-		                    <h4><img src="views/img/profile_pen.png" style="width: 50px; height: 50px;"> 주소 번호 변경</h4>
-		                    <hr>
-		                </div>
-		            </div>
-		            <div class="row">
-		                <div class="col-md-12">
-		                    
-		                    <form method="POST" class="my-login-validation" id="ModifyPhoneForm">
-		                    	<input id="m_id" type="hidden" class="form-control" name="m_id" value="${member.m_id }">
+      <div class="col-md-9">
+          <div class="card">
+              <div class="card-body">
+                  <div class="row">
+                      <div class="col-md-12">
+                          <h4><img src="views/img/profile_pen.png" style="width: 50px; height: 50px;"> 주소 번호 변경</h4>
+                          <hr>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="col-md-12">
+                          
+                          <form method="POST" class="my-login-validation" id="ModifyPhoneForm">
+                             <input id="m_id" type="hidden" class="form-control" name="m_id" value="${member.m_id }">
                              
                                 <div id="locationField" class="form-group">
-		                           <label for="address">변경할 주소를 입력하세요.</label>
-		                           <input id="autocomplete" type="text" class="form-control" name="m_address">
-		                           <input class="field" id="lat" type="hidden" class="form-control" name="lat"/>
-		                           <input class="field" id="lng" type="hidden" class="form-control" name="lng"/>
-                      		  </div>
-                      		 
+                                 <label for="address">변경할 주소를 입력하세요.</label>
+                                 <input id="autocomplete" type="text" class="form-control" name="m_address">
+                                 <input class="field" id="lat" type="hidden" class="form-control" name="lat"/>
+                                 <input class="field" id="lng" type="hidden" class="form-control" name="lng"/>
+                              </div>
+                             
                         
                             
                                <div class="form-group m-0">
-		                           <button type="button" class="btn btn-outline-secondary btn-block" onclick="ModifyAddress(this.form)">
-		                              주소 변경
-		                           </button>
-                      		  </div>
+                                 <button type="button" class="btn btn-outline-secondary btn-block" onclick="ModifyAddress(this.form)">
+                                    주소 변경
+                                 </button>
+                              </div>
                             
                           
                             </form>
-		                </div>
-		            </div>
-		            
-		        </div>
-		    </div>
-		</div>
-	</div><%@include file="/views/footer.jsp"%>
+                      </div>
+                  </div>
+                  
+              </div>
+          </div>
+      </div>
+   </div><%@include file="/views/footer.jsp"%>
 </div>
 </body>
 </html>

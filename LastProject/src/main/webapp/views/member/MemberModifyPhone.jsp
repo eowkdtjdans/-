@@ -133,7 +133,7 @@ select {
 						frm.phoneModify.value = "";
 						frm.m_phone.focus();
 				   } if(phoneCheck.test(phoneModify)==false || phoneModify == ""){
-						alert("변경할 핸드폰번호를 제대로 기입하세요.");
+						alert("변경할 핸드폰번호를 양식에 맞춰 입력하세요.");
 		                 frm.phoneModify.value = "";
 		                 frm.phoneModify.focus();
 				   } else {
@@ -221,7 +221,7 @@ $(function(){
  
 </head>
 
-<body>
+<body onload="noticeMessage()">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 

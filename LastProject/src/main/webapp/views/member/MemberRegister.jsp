@@ -29,6 +29,7 @@
 <script>
 var idck = 0;
 var phoneck= 0;
+
     function phoneCheck(frm) {
       var phonecheck = 0;
       var m_phone = $('#m_phone').val();
@@ -44,7 +45,7 @@ var phoneck= 0;
          
             success : function(data) {
               console.log("data.cnt : " + data.cnt);
-               if(phoneCheck.test(콜)==false || phone == ""){
+               if(phoneCheck.test(phone)==false || phone == ""){
                   alert("핸드폰번호를 제대로 기입하세요.");
                    $("#m_phone").focus();
                        $("#m_phone").val("");
@@ -86,7 +87,7 @@ var phoneck= 0;
          success : function(data) {
             console.log("data.cnt : " + data.cnt);
             if(emailCheck.test(email)==false || email == ""){
-               alert("이 메일형식이 올바르지 않습니다.");
+               alert("이메일형식이 올바르지 않습니다.");
                 $("#m_id").focus();
                     $("#m_id").val("");
                return false;

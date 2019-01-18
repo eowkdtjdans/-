@@ -44,7 +44,6 @@ function getIpCountry() {
 }
 </script>
 
-
 </head>
 <body onload="getIpCountry()">
 	<h2>ㅎㅇ</h2>

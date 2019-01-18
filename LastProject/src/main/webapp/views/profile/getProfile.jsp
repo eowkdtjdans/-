@@ -179,7 +179,7 @@ $(function(){
  
 </head>
 
-<body>
+<body onload="noticeMessage()">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
@@ -278,8 +278,8 @@ $(function(){
 <div class="container">
    <div class="row">
       <div class="col-md-3 ">
-           <div class="list-group "> 
-              <a href="../../myProfile.do" class="list-group-item list-group-item-action active">My Profile 메인</a>
+           <div class="list-group ">
+            <a href="../../myProfile.do" class="list-group-item list-group-item-action active">My Profile 메인</a>
               <a href="../../insertProfile.do" class="list-group-item list-group-item-action">프로필 수정</a>
               <a href="../../ModifyPhoneMember.do" class="list-group-item list-group-item-action">핸드폰 변경</a>
               <a href="../../ModifyPwdMember.do" class="list-group-item list-group-item-action">비밀번호 변경</a>

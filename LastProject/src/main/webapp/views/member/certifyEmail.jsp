@@ -19,14 +19,11 @@
 	function findId(frm) {
 		var certifyCode = frm.certifyCode.value;
 		var emailCheck = "${emailCheck}";
-		alert("인증코드발송 :" + emailCheck);
-		alert("내가 입력한 코드 : " + certifyCode);
 		if (emailCheck == certifyCode) {
-			alert("코드 일치")
 		frm.action = "../../certifyCodeUpdate.do";
 		frm.submit();
 		} else {
-			alert("코드가 잘못됨 다시쓰셈");
+			alert("인증번호를 잘못입력하셨습니다. 다시 입력해주세요.");
 			frm.certifyCode.value = "";
 			frm.certifyCode.focus();
 			return false;

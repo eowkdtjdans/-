@@ -229,8 +229,7 @@ public class ProfileImageController {
 			HostImageVO hostimageVO2 = hostImageService.getHostImage(hostimageVO);
 			session.setAttribute("hostImg", hostimageVO2);
 		}
-		
-		return "redirect:/sub2.do";
+		return "redirect:/HostImageList.do?m_id="+m_id;
 	}
 	
 	private int hostMainCnt(String m_id) {
