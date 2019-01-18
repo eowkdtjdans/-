@@ -199,11 +199,11 @@ function fillInAddress() { //lat 와 lng 값을 넘겨줄 input 태그에 값 �
 <script>
    function ModifyAddress(frm) {
       if (frm.m_address.value == "" || frm.m_address.value == null) {
-         alert("주소를 기입하세요.");
+         alert("변경할 주소를 입력해주세요.");
          frm.m_address.value = ""; 
          frm.m_address.focus();
         } else {
-         alert("기입하신 주소로 변경이 되었습니다.");
+         alert("입력하신 주소로 변경이 되었습니다.");
          frm.action = "../../ModifyAddressMember.do";
          frm.submit();   
          return false;

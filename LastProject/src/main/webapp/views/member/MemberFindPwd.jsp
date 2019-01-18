@@ -36,7 +36,7 @@
 					frm.submit(); 
 					return false;
 				} else {
-					alert("회원정보가 없습니다. 다시 입력하세요.");
+					alert("회원정보를 찾을 수 없습니다. 다시 입력하세요.");
 					frm.m_id.value = "";
 					frm.m_phone.value = "";
 					frm.m_name.value = "";
