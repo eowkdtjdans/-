@@ -242,17 +242,20 @@ public class MemberController {
 	public String ModifyAddressMember(MemberVO vo, @RequestParam("m_id") String m_id, @RequestParam("m_address") String m_address, 
 			@RequestParam("lat") Double lat, @RequestParam("lng") Double lng, HttpSession session) throws Exception {
 		System.out.println("=====주소 변경 시작=====");
-		System.out.println(lat);
-		System.out.println(lng);
 		vo.setM_id(m_id);
 		vo.setM_address(m_address);
 		vo.setLat(lat);
 		vo.setLng(lng);
+		System.out.println(m_id);
+		System.out.println(m_address);
+		System.out.println(lat);
+		System.out.println(lng);
 		
 		memberService.ModifyAddress(vo);
 		session.setAttribute("member", vo);
-		return "redirect:/myProfile.do";
+		return "redirect:/sub2.do";
 	}
+
 	
 	
 	
