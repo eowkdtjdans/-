@@ -106,9 +106,8 @@ public class MessageController {
       
       
    
-      System.out.println("==================================="); 
+      
       System.out.println("인서트 메세지 =========== POST");
-      System.out.println("==================================="); 
       vo.setMessage_sender(message_sender);
       vo.setMessage_receiver(message_receiver);
       vo.setMessage_title(message_title);
@@ -177,7 +176,6 @@ public class MessageController {
       return "redirect:/sub2.do";
    }
 
-<<<<<<< HEAD
    
    @RequestMapping(value="/getSendMessageList.do", method=RequestMethod.GET)
    public String getSendMessageList(MessageSendVO vo, Model model, HttpSession session) throws Exception {
@@ -210,42 +208,7 @@ public class MessageController {
       messageService.readSendMessage(sendvo);
       return "views/message/MessageGetSend.jsp";
    }
-=======
-	
-	@RequestMapping(value="/getSendMessageList.do", method=RequestMethod.GET)
-	public String getSendMessageList(MessageSendVO vo, Model model, HttpSession session) throws Exception {
-		System.out.println("getSendMessageList.do ===== GET ");
-		MemberVO member = (MemberVO) session.getAttribute("member");
-		vo.setSend_sender(member.getM_id());
-		List<MessageSendVO> messageList = messageService.getSendMessageList(vo);
-		session.setAttribute("messageList", messageList);
-		System.out.println("얘는 모니? : " + messageList); 
-		//model.addAttribute("messageList", messageList);
-		return "views/message/MessageGetSendList.jsp";
-	}
-	 
-	
-	@RequestMapping(value="/getReceiveMessageList.do", method=RequestMethod.GET)
-	public String getReceiveMessageList(MessageRecieveVO vo, Model model, HttpSession session) throws Exception {
-		System.out.println("getReceiveMessageList.do ===== GET ");
-		MemberVO member = (MemberVO) session.getAttribute("member");
-		vo.setReceive_receiver(member.getM_id());
-		List<MessageRecieveVO> messageList = messageService.getReceiveMessageList(vo);
-		session.setAttribute("messageList", messageList);
-		//model.addAttribute("messageList", messageList);
-		return "views/message/MessageGetReceiveList.jsp";
-	}
-	@RequestMapping(value="/getSendMessage.do", method=RequestMethod.GET)
-	public String getSendMessage(MessageVO vo,MessageSendVO sendvo, Model model, @RequestParam("send_idx") int send_idx, HttpSession session) throws Exception {
-		//model.addAttribute("message",messageService.getSendMessage(sendvo));
-		session.setAttribute("message", messageService.getSendMessage(sendvo));
-		sendvo.setSend_idx(send_idx);
-		messageService.readSendMessage(sendvo);
-		return "views/message/MessageGetSend.jsp";
-	}
->>>>>>> refs/remotes/origin/master
 
-<<<<<<< HEAD
    @RequestMapping(value="/getReceiveMessage.do", method=RequestMethod.GET)
    public String getReceiveMessage(MessageVO vo,MessageRecieveVO receivevo, Model model, @RequestParam("receive_idx") int receive_idx, HttpSession session) throws Exception {
       //model.addAttribute("message",messageService.getReceiveMessage(receivevo));
@@ -271,31 +234,4 @@ public class MessageController {
    
    
    
-=======
-	@RequestMapping(value="/getReceiveMessage.do", method=RequestMethod.GET)
-	public String getReceiveMessage(MessageVO vo,MessageRecieveVO receivevo, Model model, @RequestParam("receive_idx") int receive_idx, HttpSession session) throws Exception {
-		//model.addAttribute("message",messageService.getReceiveMessage(receivevo));
-		session.setAttribute("message", messageService.getReceiveMessage(receivevo));
-		System.out.println("여기몰까? : " + messageService.getReceiveMessage(receivevo));
-		receivevo.setReceive_idx(receive_idx);
-		messageService.readRecieveMessage(receivevo);
-		return "views/message/MessaGetReceive.jsp";
-	}
-	
-	
-	@RequestMapping(value="/deleteReceiveMessage.do", method=RequestMethod.GET)
-	public String deleteMessage(MessageVO vo, MessageRecieveVO receivevo, Model model) throws Exception {
-		messageService.deleteReceiveMessage(receivevo);
-		return "redirect:/getReceiveMessageList.do";
-	}
-	
-	@RequestMapping(value="/deleteSendMessage.do", method=RequestMethod.GET)
-	public String deleteMessage(MessageVO vo, MessageSendVO sendvo, Model model) throws Exception {
-		messageService.deleteSendMessage(sendvo);
-		return "redirect:/getSendMessageList.do";
-	}
-	
-	
-	
->>>>>>> refs/remotes/origin/master
 }
