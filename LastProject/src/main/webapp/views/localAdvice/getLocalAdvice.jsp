@@ -695,7 +695,7 @@ select {
                                  <c:if test="${!empty member.m_id }">
                                     <button type="button" id="detdetgobtn${list.lc_idx }" class="btn btn-outline-secondary" onclick="detdetgo('${list.lc_idx}', '${list.p_route }', '${list.lc_date }')">댓글달기</button>
                                  </c:if> 
-                                 <c:if test="${list.m_id eq member.m_id}">
+                                 <c:if test="${list.m_id eq member.m_id or list.m_id eq admin}">
                                     <!-- 조건에 로그인한아이디와 프로필의 m_id가 같으면 -->
                                     <button type="button" class="btn btn-outline-secondary" id="btn1${list.lc_idx}"  
                                        onclick="update_button('${list.lc_idx}','${list.lc_content }')">수정</button>

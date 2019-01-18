@@ -566,7 +566,7 @@ function noticeMessage() {
                     <div class="form-group row">
                          <label for="h_rule" class="col-4 col-form-label">방문국가</label> 
                          <div class="col-8">
-                            <input id="t_country" type="hidden" name="t_country" value="${key}">${key}
+                            <input id="t_country" class="form-control" name="t_country" value="${key}">${key}
                          </div>
                        </div>
                     

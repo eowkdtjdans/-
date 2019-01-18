@@ -82,13 +82,13 @@
 		});
 		
 	});
-</script>
-<script>
 function uploadProfile(profileFrm) {
 	profileFrm.action="/uploadProfileImg.do";
 	profileFrm.submit();
 }
+</script>
 
+<style>
 #autocomplete {
    width: 50%; 
    border: 1px solid #999; 
@@ -424,7 +424,6 @@ function uploadHost(hostFrm) {
 
 <section>
 <div class="container">
-<<<<<<< HEAD
    <div class="row">
       <div class="col-md-3 ">
            <div class="list-group ">
@@ -443,28 +442,9 @@ function uploadHost(hostFrm) {
               <a href="../../myPost2.do?m_id=${member.m_id }&cPage=1" class="list-group-item list-group-item-action">내 댓글</a>
               <a href="../../loginRecordList.do?ll_id=${member.m_id }&cPage=1" class="list-group-item list-group-item-action">로그인 기록</a>
               <a href="../../DeleteMember.do?m_id=${member.m_id }" class="list-group-item list-group-item-action">회원탈퇴</a>
-=======
+            </div>
+    </div>
 	<div class="row">
-		<div class="col-md-3 ">
-		     <div class="list-group ">
-		      <a href="/sub2.do" class="list-group-item list-group-item-action">메인페이지</a>
-              <a href="/myProfile.do" class="list-group-item list-group-item-action">마이 프로필</a>
-              <a href="/getReceiveMessageList.do" class="list-group-item list-group-item-action">받은 쪽지함</a>
-              <a href="/getSendMessageList.do" class="list-group-item list-group-item-action">보낸 쪽지함</a>
-              <a href="#" class="list-group-item list-group-item-action">프로필 수정</a>
-              <a href="/ModifyPwdMember.do" class="list-group-item list-group-item-action">비밀번호 변경</a>
-              <a href="/ModifyPhoneMember.do" class="list-group-item list-group-item-action">핸드폰 변경</a>
-              <a href="/ModifyAddressMember.do" class="list-group-item list-group-item-action">주소 변경</a>
-              <a href="/profileImageInsert.do" class="list-group-item list-group-item-action active">이미지 업로드</a>
-              <a href="/profileImageList.do?m_id=${member.m_id }" class="list-group-item list-group-item-action">프로필 이미지 관리</a>
-              <a href="/HostImageList.do?m_id=${member.m_id }" class="list-group-item list-group-item-action">호스트 이미지 관리</a>
-              <a href="#" class="list-group-item list-group-item-action">내 글</a>
-              <a href="#" class="list-group-item list-group-item-action">내 댓글</a>
->>>>>>> refs/remotes/origin/master
-              
-            </div> 
-            
-		</div>
 		<div class="col-md-9">
 		    <div class="card">
 		        <div class="card-body">
@@ -486,34 +466,6 @@ function uploadHost(hostFrm) {
                                 </div>
                               </div>
                               
-                              <form id="profileFrm" name="profileFrm" method="POST" enctype="multipart/form-data">
-							<div class="modal fade" id="profile">
-								<div class="modal-dialog">
-									<div class="modal-content">
-										<div class="modal-header">
-											<h4>Upload File</h4>
-											<button type="button" class="close" data-dismiss="modal">×</button>
-										</div>
-										<div class="modal-body">
-											<b>Select Image: </b><br>
-											<input type="file" id="uploadProfileImg" name="profileImg"/>
-											
-											<ul>
-												<li>이미지는 JPG, JPEG, GIF, PNG 타입만 허용됩니다.</li>
-												<li>이미지는 최대 20MB까지 허용됩니다.</li>
-												<li>Script Blockers를 사용할경우 이미지 업로드 기능이 안될 수 있습니다.</li>
-											</ul>
-										</div>
-										<div class="modal-footer">
-											<button type="button" class="btn btn-primary" id="profileImgBtn" disabled="disabled" onclick="uploadProfile(this.form)">업로드</button>
-											<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-											
-											<input type="hidden" value="${member.m_id}" name="m_id">
-										</div>
-									</div>
-								</div>
-							</div>
-							</form>
                             
                             <div class="form-group row">
                                	<label for="home_img"  class="col-4 col-form-label">호스트 이미지 업로드</label>
@@ -522,34 +474,6 @@ function uploadHost(hostFrm) {
                                 </div>
                               </div>
                             
-                          	 <form id="hostFrm" name="hostFrm" method="POST" enctype="multipart/form-data">
-							<div class="modal fade" id="host">
-								<div class="modal-dialog">
-									<div class="modal-content">
-										<div class="modal-header">
-											<h4>Upload File</h4>
-											<button type="button" class="close" data-dismiss="modal">×</button>
-										</div>
-										<div class="modal-body">
-											<b>Select Image: </b><br>
-											<input type="file" id="uploadHostImg" name="uploadHostImg"/>
-											
-											<ul>
-												<li>이미지는 JPG, JPEG, GIF, PNG 타입만 허용됩니다.</li>
-												<li>이미지는 최대 20MB까지 허용됩니다.</li>
-												<li>Script Blockers를 사용할경우 이미지 업로드 기능이 안될 수 있습니다.</li>
-											</ul>
-										</div>
-										<div class="modal-footer">
-											<button type="button" class="btn btn-primary" id="hostImgBtn" disabled="disabled" onclick="uploadHost(this.form)">업로드</button>
-											<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-											
-											<input type="hidden" value="${member.m_id}" name="m_id">
-										</div>
-									</div>
-								</div>
-							</div>
-							</form>	
 		                </div>
 		            </div>
 		            
@@ -558,8 +482,67 @@ function uploadHost(hostFrm) {
 		</div>
 	</div>
 </div>
+</div>
 </section>
 
 <%@include file="/views/footer.jsp"%>
+
+<form id="profileFrm" name="profileFrm" method="POST" enctype="multipart/form-data">
+<div class="modal fade" id="profile">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4>Upload File</h4>
+				<button type="button" class="close" data-dismiss="modal">×</button>
+			</div>
+			<div class="modal-body">
+				<b>Select Image: </b><br>
+				<input type="file" id="uploadProfileImg" name="profileImg"/>
+				
+				<ul>
+					<li>이미지는 JPG, JPEG, GIF, PNG 타입만 허용됩니다.</li>
+					<li>이미지는 최대 20MB까지 허용됩니다.</li>
+					<li>Script Blockers를 사용할경우 이미지 업로드 기능이 안될 수 있습니다.</li>
+				</ul>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" id="profileImgBtn" disabled="disabled" onclick="uploadProfile(this.form)">업로드</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+				
+				<input type="hidden" value="${member.m_id}" name="m_id">
+			</div>
+		</div>
+	</div>
+</div>
+</form>
+
+<form id="hostFrm" name="hostFrm" method="POST" enctype="multipart/form-data">
+<div class="modal fade" id="host">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4>Upload File</h4>
+				<button type="button" class="close" data-dismiss="modal">×</button>
+			</div>
+			<div class="modal-body">
+				<b>Select Image: </b><br>
+				<input type="file" id="uploadHostImg" name="uploadHostImg"/>
+				
+				<ul>
+					<li>이미지는 JPG, JPEG, GIF, PNG 타입만 허용됩니다.</li>
+					<li>이미지는 최대 20MB까지 허용됩니다.</li>
+					<li>Script Blockers를 사용할경우 이미지 업로드 기능이 안될 수 있습니다.</li>
+				</ul>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" id="hostImgBtn" disabled="disabled" onclick="uploadHost(this.form)">업로드</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+				
+				<input type="hidden" value="${member.m_id}" name="m_id">
+			</div>
+		</div>
+	</div>
+</div>
+</form>
 </body>
 </html>
