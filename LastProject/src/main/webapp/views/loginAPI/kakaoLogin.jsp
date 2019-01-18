@@ -10,21 +10,28 @@
 
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 
+<script>
+function kakaoLogin() {
+	$("#kakao-login-btn").click();
+}
+</script>
+
 </head>
 
 
 
-<body>
+<body onload="kakaoLogin()">
 
-<a id="kakao-login-btn"></a>
-
+ <a id="kakao-login-btn"></a>
 <a href="http://developers.kakao.com/logout"></a>
  
  
 <!-- Kakao Login -->
 
 <script type="text/javascript">
-      // 사용할 앱의 JavaScript 키를 설정해 주세요.
+    	
+  
+	// 사용할 앱의 JavaScript 키를 설정해 주세요.
       Kakao.init('b1e43adeb3cee961d9cd07fd536a4f4b');
       // 카카오 로그인 버튼을 생성합니다.
       Kakao.Auth.createLoginButton({
@@ -57,7 +64,6 @@
           alert(JSON.stringify(err));
         }
       });
-
 </script>
 
 <script>

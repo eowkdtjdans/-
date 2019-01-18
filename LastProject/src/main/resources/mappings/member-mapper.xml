@@ -117,6 +117,11 @@
 		WHERE M_ID = #{m_id}
 	</select>
 	
+	<select id="MemberModifyPhoneCheckJson" parameterType="String" resultType="Integer">
+		SELECT COUNT(*) FROM MEMBER
+		WHERE M_PWD = #{phoneModify}
+	</select>
+	
 	<update id="PwdUpdate" parameterType="member">
 	 UPDATE MEMBER SET M_PWD = #{m_pwd} WHERE M_ID = #{m_id}
 	</update>

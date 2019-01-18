@@ -77,6 +77,8 @@ public interface MemberService {
 
 	void PwdUpdate(MemberVO vo);
 
+	int MemberModifyPhoneCheckJson(MemberVO vo);
+
 
 	
 	

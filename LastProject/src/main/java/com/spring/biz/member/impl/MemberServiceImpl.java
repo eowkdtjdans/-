@@ -131,6 +131,12 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 
+	@Override
+	public int MemberModifyPhoneCheckJson(MemberVO vo) {
+		return memberDAO.MemberModifyPhoneCheckJson(vo);
+	}
+
+
 
 
 

@@ -221,6 +221,13 @@
 	            <a href="../../findPwdMember.do">비밀번호 찾기 | </a>
 	            <a href="../../insertMember.do">회원가입</a>
             </div>
+  
+            <div>
+            	<a href="/naverLogin.do">네이버 로그인</a>
+				<a href="/googleLogin.do">구글 로그인</a>
+				<a href="/kakaoLogin.do">카카오로그인</a>
+				<a href="/naverLogin.do">네이버<img src="/views/img/icon/naverIcon.PNG" alt="" / style="width:100px; height:20px;"></a>
+            </div>
             
          </div> 
          <div class="col-md-4"></div> 

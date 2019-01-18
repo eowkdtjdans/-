@@ -11,9 +11,9 @@
 
 <link rel="stylesheet" href="/views/datepicker/public/theme/css/t-datepicker.min.css">
 <link rel="stylesheet" href="/views/datepicker/public/theme/css/themes/t-datepicker-teal.css">
+<script src="/views/datepicker/public/theme/js/t-datepicker.min.js"></script>
 <!-- blue, bluegrey, cyan, green, lime, main, orange, purple, teal, yellow -->
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script src="/views/datepicker/public/theme/js/t-datepicker.min.js"></script>
 
 <script>
    function insertHost(frm) {

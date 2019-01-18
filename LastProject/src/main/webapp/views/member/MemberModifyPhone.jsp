@@ -137,9 +137,27 @@ select {
 		                 frm.phoneModify.value = "";
 		                 frm.phoneModify.focus();
 				   } else {
-					    alert("변경이 완료되었습니다.");
-						frm.action = "../../ModifyPhoneMember.do";
-					    frm.submit();    
+					   $.ajax({
+						   async : true,
+					   		type : "post",
+					   		dataType : "json",
+					   		data : phoneModify,
+					   		url : "../../MemberModifyPhoneCheckJson.do",
+					   		success : function(data) {
+					   			if (data.cnt >= 1) {
+					   				alert("기입된 핸드폰번호가 중복됩니다.");
+					   				frm.m_phone.value = "";
+					   				frm.m.phoneModify.value = "";
+					   				frm.m_phone.focus();
+					   			} else {
+					   			  alert("변경이 완료되었습니다.");
+									frm.action = "../../ModifyPhoneMember.do";
+								    frm.submit();    
+					   			}
+					   		}
+					   
+					   })
+					  
 				   } 
 			}
 				 

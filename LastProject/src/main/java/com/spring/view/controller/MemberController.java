@@ -263,6 +263,19 @@ public class MemberController {
 	//====================================================================== JSON
 	//====================================================================== JSON
 	//====================================================================== JSON 
+	@RequestMapping(value="/MemberModifyPhoneCheckJson.do", method=RequestMethod.POST)
+    @ResponseBody
+    public Map<Object, Object> MemberModifyPhoneCheckJson(MemberVO vo) {
+        int count = 0;
+        Map<Object, Object> map = new HashMap<Object, Object>();
+        
+        count = memberService.MemberModifyPhoneCheckJson(vo);
+        map.put("cnt", count);
+ 
+        return map;
+    }
+	
+	
 	@RequestMapping(value="/MemberDeleteJson.do", method=RequestMethod.POST)
     @ResponseBody
     public Map<Object, Object> MemberDeleteJson(MemberVO vo) {
