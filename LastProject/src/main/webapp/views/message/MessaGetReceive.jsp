@@ -305,47 +305,51 @@ $(function(){
 		    <div class="card">
 		        <div class="card-body">
 		            <div class="row">
-		                <div class="col-md-12">
-		                    <h4>받은 쪽지</h4>
-		                    <hr>
+		                <div class="col-md-12" style="font-size: 1.2em">
+		                    <img src="views/img/messageImg.png" style="width: 60px; height: 60px;"> <strong>받은 쪽지함</strong> 
+               
+							<!-- 데이타 표시 -->
+							<form>
+							<input type="hidden" name="receive_idx" value="${message.receive_idx }">
+							<table class="table">							
+								<tr style="font-size: 0.9em;">
+									<th width="130">제목</th>
+									<td colspan="2">
+										${message.receive_title }
+									</td>
+								</tr>
+								<tr style="font-size: 0.9em;">
+									<th>보낸사람</th>
+									<td>${message.receive_sender}</td>							
+									<td style="text-align: right;"><fmt:formatDate value="${message.receive_regdate }" pattern="yyyy-MM-dd HH:mm:ss"/> </td>
+								</tr>
+								<tr style="font-size: 0.9em;">
+									<th>내용</th>
+									<td style="height : 300px;" colspan="2">
+										${message.receive_content}
+									</td>
+								</tr>
+								  
+								<tr>
+								<%-- 	<td colspan="3" style="text-align: right; font-size: 0.9em;">
+										<a href="deleteReceiveMessage.do?receive_idx=${message.receive_idx }">쪽지삭제</a>
+									</td> --%>
+									<td colspan="3" style="text-align: right;"><input type="button" value="쪽지삭제" class="btn btn-outline-secondary" onclick="deleteReceiveMessage.do?receive_idx=${message.receive_idx }"></td>
+								</tr>
+							</table>
+							</form>
 		                </div>
 		            </div>
 	             </div>
-<div id="container">
-	
-	<!-- 데이타 표시 -->
-	<form>
-	<input type="hidden" name="receive_idx" value="${message.receive_idx }">
-	<table class="table">
-	
-		<tr>
-			<th width="150">제목</th>
-			<td>
-				${message.receive_title }
-			</td>
-		</tr>
-		<tr>
-			<th>보낸사람</th>
-			<td>${message.receive_sender}</td>
-		</tr>
-		<tr>
-			<th>내용</th>
-			<td style="height : 300px;">
-				${message.receive_content}
-			</td>
-		</tr>
-		<tr>
-			<th>보낸 날짜</th>
-			<td><fmt:formatDate value="${message.receive_regdate }" pattern="yyyy-MM-dd HH:mm:ss"/> </td>
-		</tr>
-		<tr>
-			<td colspan="2" class="center">
-				<a href="deleteReceiveMessage.do?receive_idx=${message.receive_idx }">쪽지삭제</a>
-			</td>
-		</tr>
-	</table>
-	</form>
-				</div>
+	             
+	             
+	             
+	             
+	             
+	             
+
+					
+							
 			</div> 
 		</div>
 	</div> 

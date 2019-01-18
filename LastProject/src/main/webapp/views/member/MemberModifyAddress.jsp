@@ -326,21 +326,13 @@ function fillInAddress() { //lat 와 lng 값을 넘겨줄 input 태그에 값 �
               <a href="../../myPost.do?m_id=${member.m_id }&cPage=1" class="list-group-item list-group-item-action">내 글</a>
               <a href="../../myPost2.do?m_id=${member.m_id }&cPage=1" class="list-group-item list-group-item-action">내 댓글</a>
               <a href="../../loginRecordList.do?ll_id=${member.m_id }&cPage=1" class="list-group-item list-group-item-action">로그인 기록</a>
-              <a href="../../DeleteMember.do?m_id=${member.m_id }" class="list-group-item list-group-item-action">회원탈퇴</a>
-              
-              
+              <a href="../../DeleteMember.do?m_id=${member.m_id }" class="list-group-item list-group-item-action">회원탈퇴</a>             
+            </div>        
+		</div>           
+      
+      
+      
 
-              
-            </div> 
-<<<<<<< HEAD
-             
-		</div>
-=======
-            
-      </div>
-      
-      
->>>>>>> branch 'master' of https://github.com/eowkdtjdans/Its-dissapointing.git
 		<div class="col-md-9">
 		    <div class="card">
 		        <div class="card-body">

@@ -106,10 +106,11 @@ select {
 	padding: .3em .3em;
 }
 
-/* .hr{
-	height: 20px;
-	color: red;
-} */
+
+
+	a{
+		color: #4B89DC;  
+	}
 </style>
 
 
@@ -275,7 +276,7 @@ $(function(){
   </header><!-- #header -->
 
 
-<br>  
+<br>   
 <div class="container">
 	<div class="row">
 		<div class="col-md-3 ">
@@ -293,60 +294,53 @@ $(function(){
               <a href="../../myPost.do?m_id=${member.m_id }&cPage=1" class="list-group-item list-group-item-action">내 글</a>
               <a href="../../myPost2.do?m_id=${member.m_id }&cPage=1" class="list-group-item list-group-item-action">내 댓글</a>
               <a href="../../loginRecordList.do?ll_id=${member.m_id }&cPage=1" class="list-group-item list-group-item-action">로그인 기록</a>
-              <a href="../../DeleteMember.do?m_id=${member.m_id }" class="list-group-item list-group-item-action">회원탈퇴</a>
-              
-
-              
-            </div> 
-            
+              <a href="../../DeleteMember.do?m_id=${member.m_id }" class="list-group-item list-group-item-action">회원탈퇴</a>          
+            </div>             
 		</div>
+		
+
+		
 		
 		<div class="col-md-9">
-		    <div class="card">
-		        <div class="card-body">
-		            <div class="row">
-		                <div class="col-md-12">
-		                    <h4>받은 쪽지목록</h4>
-		                    <hr>
-		                </div>
-		            </div>
-	             </div>
-<div id="container">
-	
-	<!-- 데이타 표시 -->
-	<form>
-	<table class="table">
-		<thead class="thead-light">
-		<tr>
-			<th width="50"></th>
-			<th width="100">보낸이</th>
-			<th width="200">제목</th>
-			<th width="100">날짜</th>
-		</tr>
-		</thead>
-		<c:forEach var="messageList" items="${messageList }">
-		<tr>
-			<td><img src="${hostImg.h_route }" alt="" class="rounded-circle" style="width:100px; height:100px;"/></td>
-			<td>
-				<a href="getReceiveMessage.do?receive_idx=${messageList.receive_idx }">
-					${messageList.receive_sender }
-				</a>
-			</td>
-			<td>
-				<a href="getReceiveMessage.do?receive_idx=${messageList.receive_idx }">
-					${messageList.receive_title }
-				</a>
-			</td>
-			<td><fmt:formatDate value="${messageList.receive_regdate }" pattern="yyyy-MM-dd HH:mm:ss"/> </td>
-			
+			<div class="card">
+			    <table class="table">
+			    	<tr>
+			    		<td colspan="3"><h4><img src="views/img/messageImg.png" style="width: 60px; height: 60px;"> 받은 쪽지목록</h4></td>			    		
+			    	</tr>
+			    	<c:forEach var="messageList" items="${messageList }">
+						<tr>
+							<td style="width: 35%">
+								<img src="${messageList.p_route}" alt="" class="rounded-circle" style="width:50px; height:50px;"/> &nbsp;
+								<a href="getReceiveMessage.do?receive_idx=${messageList.receive_idx }">
+									${messageList.receive_sender }
+								</a>
+							</td> 
+							<td style="width: 35%; padding-top: 21px;" >
+								<a href="getReceiveMessage.do?receive_idx=${messageList.receive_idx }">
+									${messageList.receive_title }
+								</a>
+							</td>
+							<td style="width: 30%; padding-top: 21px;"><fmt:formatDate value="${messageList.receive_regdate }" pattern="yyyy-MM-dd HH:mm:ss"/> </td>
+						</tr>
+						</c:forEach>
+			    </table>
+		    </div>
+	    </div>
+	             
 		
-		</tr>
-		</c:forEach>
-	</table>
-	</form>
-				</div>
-			</div> 
-		</div>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	</div> 
 </div>
 <%@include file="/views/footer.jsp"%>

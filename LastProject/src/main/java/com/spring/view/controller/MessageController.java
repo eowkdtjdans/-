@@ -184,6 +184,7 @@ public class MessageController {
 		vo.setSend_sender(member.getM_id());
 		List<MessageSendVO> messageList = messageService.getSendMessageList(vo);
 		session.setAttribute("messageList", messageList);
+		System.out.println("얘는 모니? : " + messageList); 
 		//model.addAttribute("messageList", messageList);
 		return "views/message/MessageGetSendList.jsp";
 	}
@@ -212,6 +213,7 @@ public class MessageController {
 	public String getReceiveMessage(MessageVO vo,MessageRecieveVO receivevo, Model model, @RequestParam("receive_idx") int receive_idx, HttpSession session) throws Exception {
 		//model.addAttribute("message",messageService.getReceiveMessage(receivevo));
 		session.setAttribute("message", messageService.getReceiveMessage(receivevo));
+		System.out.println("여기몰까? : " + messageService.getReceiveMessage(receivevo));
 		receivevo.setReceive_idx(receive_idx);
 		messageService.readRecieveMessage(receivevo);
 		return "views/message/MessaGetReceive.jsp";

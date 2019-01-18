@@ -4,15 +4,12 @@
 <!DOCTYPE>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
+<meta charset="UTF-8"> 
 <title>프로필 이미지 수정</title>
 
-<<<<<<< HEAD
  
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-=======
 
->>>>>>> branch 'master' of https://github.com/eowkdtjdans/Its-dissapointing.git
 
  <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <meta content="" name="keywords">

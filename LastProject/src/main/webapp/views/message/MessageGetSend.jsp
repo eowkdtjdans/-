@@ -305,49 +305,47 @@ $(function(){
 		    <div class="card">
 		        <div class="card-body">
 		            <div class="row">
-		                <div class="col-md-12">
-		                    <h4>보낸 쪽지목록</h4>
-		                    <hr>
+		                <div class="col-md-12" style="font-size: 1.2em">
+		                	<img src="views/img/messageImg.png" style="width: 60px; height: 60px;"> <strong>보낸 쪽지함</strong> 
+		                	 
+		                	<!-- 데이타 표시 -->
+							<form>
+							<input type="hidden" name="send_idx" value="${message.send_idx }">
+							<table class="table">							
+								<tr style="font-size: 0.9em;">
+									<th width="130">제목</th>
+									<td colspan="2">
+										${message.send_title }
+									</td>
+								</tr>
+								<tr style="font-size: 0.9em;">
+									<th>보낸사람</th>
+									<td>${message.send_sender}</td>
+									<td style="text-align: right;"><fmt:formatDate value="${message.send_regdate }" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+								</tr>
+								<tr style="font-size: 0.9em;">
+									<th>내용</th>
+									<td style="height : 300px;" colspan="2">
+										${message.send_content}
+									</td>
+								</tr>
+
+								<tr>
+									<td colspan="3" class="right">
+										<%-- <a href="deleteSendMessage.do?send_idx=${message.send_idx }">쪽지삭제</a> --%>
+										<input type="button" value="쪽지삭제" class="btn btn-outline-secondary" onclick="deleteSendMessage.do?send_idx=${message.send_idx }">
+									</td>
+								</tr>
+							</table>
+							</form>     
+		                   
 		                </div>
 		            </div>
 	             </div>
-<div id="container">
+
 	
-	<!-- 데이타 표시 -->
-	<form>
-	<input type="hidden" name="send_idx" value="${message.send_idx }">
-	<table class="table">
 	
-		<tr>
-			<th width="150">제목</th>
-			<td>
-				${message.send_title }
-			</td>
-		</tr>
-		<tr>
-			<th>보낸사람</th>
-			<td>
-			${message.send_sender}
-			</td>
-		</tr>
-		<tr>
-			<th>내용</th>
-			<td style="height : 300px;">
-				${message.send_content}
-			</td>
-		</tr>
-		<tr>
-			<th>보낸 날짜</th>
-			<td><fmt:formatDate value="${message.send_regdate }" pattern="yyyy-MM-dd HH:mm:ss"/></td>
-		</tr>
-		<tr>
-			<td colspan="2" class="center">
-				<a href="deleteSendMessage.do?send_idx=${message.send_idx }">쪽지삭제</a>
-			</td>
-		</tr>
-	</table>
-	</form>
-				</div>
+				
 			</div> 
 		</div>
 	</div> 
