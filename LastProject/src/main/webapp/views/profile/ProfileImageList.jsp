@@ -1,21 +1,18 @@
 ﻿ <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE>
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>프로필 이미지 수정</title>
-
-
-
- <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta charset="utf-8"> 
+  <title>Gukbong WorlD</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <meta content="" name="keywords">
   <meta content="" name="description"> 
  
 
   <!-- Favicons -->
-  <link href="views/img/upload/2018112745738975.jpg" rel="icon">
+  <link href="views/img/favicon.png" rel="icon">
   <link href="views/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
@@ -37,14 +34,9 @@
   
   <script src="http://code.jquery.com/jquery-latest.min.js"></script>
   
-
-
-
-
-
-
-
-
+  
+  
+  
 <style>
    body{
       padding-top: 75px; 
@@ -113,85 +105,226 @@ select {
    padding: .3em .3em;
 }
 
+/* .hr{
+   height: 20px;
+   color: red;
+} */
+
+
+body {font-family: Arial, Helvetica, sans-serif;}
+
+.myImg {
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.myImg:hover {opacity: 0.7;}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0);  
+  background-color: rgba(0,0,0,0.9);  
+ 
+}
+
+/* Modal Content (image) */
+.modal-content {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+}
+
+/* Caption of Modal Image */
+#caption {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+  text-align: center;
+  color: #ccc;
+  padding: 10px 0;
+  height: 150px;
+}
+
+/* Add Animation */
+.modal-content, #caption {  
+  -webkit-animation-name: zoom;
+  -webkit-animation-duration: 0.6s;
+  animation-name: zoom;
+  animation-duration: 0.6s;
+}
+
+@-webkit-keyframes zoom {
+  from {-webkit-transform:scale(0)} 
+  to {-webkit-transform:scale(1)}
+}
+
+@keyframes zoom {
+  from {transform:scale(0)} 
+  to {transform:scale(1)}
+}
+
+/* The Close Button */
+.close {
+  position: static;
+  top: 15px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* 100% Image Width on Smaller Screens */
+@media only screen and (max-width: 700px){
+  .modal-content {
+    width: 100%;
+  }
+}
 
 </style>
-<script src="https://maps.googleapis.com/maps/api/js?v=3&sensor=false&libraries=places&callback=initAutocomplete&key=AIzaSyAfB2qQnvAuU2YFFqi8hrPWfjJNyxl5kWc" async defer></script>
+
 <script>
-var placeSearch, autocomplete;
-
-function initAutocomplete() {
-  autocomplete = new google.maps.places.Autocomplete((document.getElementById('autocomplete')),{types: ['geocode']});
-  autocomplete.addListener('place_changed', fillInAddress);
-}
-
-function fillInAddress() { //lat 와 lng 값을 넘겨줄 input 태그에 값 넣어주기
-  var place = autocomplete.getPlace();
-    document.getElementById("lat").value=place.geometry.location.lat();
-    document.getElementById("lng").value=place.geometry.location.lng();
-}
-
-
-$(function(){
-   $("#condition").change(function(){
-      var condition = $("#condition").val();
-      
-      if(condition == "find_advice") {
-         $("#autocomplete").removeAttr("name");
-         $("#autocomplete").hide();
-         $("<input type='text' id='advice' name='searchKeyword'>").insertBefore("#search");
-         
-      } else {
-         $("#advice").remove();
-         $("#autocomplete").show();
-         $("#autocomplete").attr("name", "searchKeyword");
-      }
-   })
+function test(h_route, m_id) {
+   var modal = document.getElementById('myModal');
    
-})
+   var img = document.getElementById(h_route);
+   var modalImg = document.getElementById("img01");
+   var captionText = document.getElementById("caption");
+   
+   var m_id_value = document.getElementById('m_id');
+   var h_route_value = document.getElementById('h_route');
+   
+   m_id_value.value=m_id;
+   h_route_value.value=h_route;
+   
+   modal.style.display = "block";
+   modalImg.src = img.src;
+   captionText.innerHTML = img.alt;
+   
+   var span = document.getElementsByClassName("close")[0];
 
+   span.onclick = function() { 
+     modal.style.display = "none";
+   }
+}
+</script>
 
-
-
-function noticeMessage() {
-      var noticeMessage = $("#noticeMessage").serialize();
-      var receive_receiver =$("#receive_receiver").val();
-       
-         $.ajax({
-         async : true,
-         type : "POST",
-         dataType : "json",
-         data : noticeMessage,
-         url : "../../noticeMessageJson.do",
-         success : function(data) {
-            if (data.cnt > 0) {
-               $("#noticeMessageCount").append(data.cnt);
-               $("#noticeMessageCount2").append(data.cnt);
-               setInteval(function() {
-                  noticeMessage()
-               }, 3000);
-       
-            }
-         }
-         
-         
-      });    
+<script>
+   function deleteHostImage(frm) {
+      var m_id = frm.m_id.value;
+      var h_route = frm.h_route.value;
+      var str = $("#modalBtn").serialize();
+      
+      frm.action = "../../deleteHostImage.do";
+      frm.submit();
+      return false;  
+   }
+   
+   function updateMainHostImage(frm) {
+     var m_id = frm.m_id.value;
+      var h_route = frm.h_route.value;
+      var str = $("#modalBtn").serialize();
+   
+        frm.action = "../../updateMainHostImage.do";
+        frm.submit();
+        return false;
    }
 
+</script>
+<style>
+   body{
+      padding-top: 75px; 
+   }
+   
+   .scrollto {    
+     font-family: 'Kalam', cursive;
+     padding-top: 8px;
+   }
+   .border-none {
+        margin-left: 490px;
+   }
+   
+   #nav-menu-container {
+        margin-top: -30px;
+   }
+   #header {
+        background-color:    white;
+   }
+   #header.header-scrolled {
+        background-color: white;
+   }
+   
+   .nav-menu li a{
+      color: black;
+   }   
+   #mainLogo{
+      color: black;
+      position: absolute;
+      margin-left: 80px;
+      margin-top: -10px;
+      font-size: 2.15em;
+   }
+   #happy{
+      position: absolute;
+      margin-left: 20px;
+      margin-top: -20px;
+   }
+   #navProfileImg{
+      position: relative;
+      margin-top: -10px;
+   }
+   
 
+select {
+    width: 128px; /* 원하는 너비설정 */
+    padding: .3em .3em; /* 여백으로 높이 설정 */
+    font-family: inherit;  /* 폰트 상속 */
+    border:  1px solid #999; 
+    border-radius: 30px; /* iOS 둥근모서리 제거 */
+    -moz-appearance: none;
+    appearance: none;
+}
 
+#autocomplete {
+   width: 50%; 
+   border: 1px solid #999; 
+   border-radius: 30px; 
+   padding: .3em .3em;
+   
+}
+#advice{
+   width: 50%; 
+   border: 1px solid #999; 
+   border-radius: 30px; 
+   padding: .3em .3em;
+}
 
+/* .hr{
+   height: 20px;
+   color: red;
+} */
+</style>
 
-
-
-
-
-
-
-
-
-
-
-
+<script>
 function test(p_route, m_id) {
    var modal = document.getElementById('myModal');
    
@@ -229,24 +362,79 @@ function test(p_route, m_id) {
    }
    
    function updateMainProfileImage(frm) {
-     var m_id = frm.m_id.value;
+	  var m_id = frm.m_id.value;
       var p_route = frm.p_route.value;
       var str = $("#modalBtn").serialize();
    
-        frm.action = "../../updateMainProfileImage.do";
-        frm.submit();
-        return false;
+   	  frm.action = "../../updateMainProfileImage.do";
+   	  frm.submit();
+   	  return false;
+   }
+
+</script>
+</style>
+
+<script>
+function test(p_route, m_id) {
+   var modal = document.getElementById('myModal');
+   
+   var img = document.getElementById(p_route);
+   var modalImg = document.getElementById("img01");
+   var captionText = document.getElementById("caption");
+   
+   var m_id_value = document.getElementById('m_id');
+   var p_route_value = document.getElementById('p_route');
+   
+   m_id_value.value=m_id;
+   p_route_value.value=p_route;
+   
+   modal.style.display = "block";
+   modalImg.src = img.src;
+   captionText.innerHTML = img.alt;
+   
+   var span = document.getElementsByClassName("close")[0];
+
+   span.onclick = function() { 
+     modal.style.display = "none";
+   }
+}
+</script>
+
+<script>
+   function deleteImage(frm) {
+      var m_id = frm.m_id.value;
+      var p_route = frm.p_route.value;
+      var str = $("#modalBtn").serialize();
+   
+      frm.action = "../../deleteProfileImage.do";
+      frm.submit();
+      return false; 
+   }
+   
+   function updateMainProfileImage(frm) {
+	  var m_id = frm.m_id.value;
+      var p_route = frm.p_route.value;
+      var str = $("#modalBtn").serialize();
+   
+   	  frm.action = "../../updateMainProfileImage.do";
+   	  frm.submit();
+   	  return false;
    }
 
 </script>
 
 </head>
-<body onload="noticeMessage()">
+<body>
+<body>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-  <!--==========================
-    Header
-  ============================-->
-   <header id="header">
+<!------ Include the above in your HEAD tag ---------->
+
+
+
+
+<header id="header">
   <form id="noticeMessage" method="GET">
     <div class="container-fluid">
       <input type="hidden" id="receive_receiver" name="receive_receiver" value="${member.m_id }" />
@@ -332,25 +520,26 @@ function test(p_route, m_id) {
   </header><!-- #header -->
 
 
-<!------ Include the above in your HEAD tag ---------->
-
+<br>  
 <div class="container">
    <div class="row">
       <div class="col-md-3 ">
            <div class="list-group ">
-              <a href="../../sub2.do" class="list-group-item list-group-item-action">메인페이지</a>
-              <a href="../../myProfile.do" class="list-group-item list-group-item-action">마이 프로필</a>
-              <a href="../../getReceiveMessageList.do" class="list-group-item list-group-item-action">받은 쪽지함</a>
-              <a href="../../getSendMessageList.do" class="list-group-item list-group-item-action">보낸 쪽지함</a>
-              <a href="#" class="list-group-item list-group-item-action">프로필 수정</a>
-              <a href="../../ModifyPwdMember.do" class="list-group-item list-group-item-action">비밀번호 변경</a>
+        <a href="../../myProfile.do" class="list-group-item list-group-item-action ">My Profile 메인</a>
+              <a href="../../insertProfile.do" class="list-group-item list-group-item-action">프로필 수정</a>
               <a href="../../ModifyPhoneMember.do" class="list-group-item list-group-item-action">핸드폰 변경</a>
+              <a href="../../ModifyPwdMember.do" class="list-group-item list-group-item-action">비밀번호 변경</a>
               <a href="../../ModifyAddressMember.do" class="list-group-item list-group-item-action">주소 변경</a>
               <a href="../../profileImageInsert.do" class="list-group-item list-group-item-action">이미지 업로드</a>
               <a href="../../profileImageList.do?m_id=${member.m_id }" class="list-group-item list-group-item-action">프로필 이미지 관리</a>
               <a href="../../HostImageList.do?m_id=${member.m_id }" class="list-group-item list-group-item-action">호스트 이미지 관리</a>
-              <a href="#" class="list-group-item list-group-item-action">내 글</a>
-              <a href="#" class="list-group-item list-group-item-action">내 댓글</a>
+              <a href="../../getReceiveMessageList.do" class="list-group-item list-group-item-action">받은 쪽지함</a>
+              <a href="../../getSendMessageList.do" class="list-group-item list-group-item-action">보낸 쪽지함</a>
+              <a href="../../myPost.do?m_id=${member.m_id }&cPage=1" class="list-group-item list-group-item-action">내 글</a>
+              <a href="../../myPost2.do?m_id=${member.m_id }&cPage=1" class="list-group-item list-group-item-action">내 댓글</a>
+              <a href="../../loginRecordList.do?ll_id=${member.m_id }&cPage=1" class="list-group-item list-group-item-action">로그인 기록</a>
+              <a href="../../DeleteMember.do?m_id=${member.m_id }" class="list-group-item list-group-item-action">회원탈퇴</a>
+              
               
               
             </div> 
@@ -361,7 +550,7 @@ function test(p_route, m_id) {
               <div class="card-body">
                   <div class="row">
                       <div class="col-md-12">
-                          <h4>나의 이미지 관리</h4>
+                          <h4>나의 이미지</h4>
                           <hr>
                       </div>
                   </div>
@@ -369,7 +558,7 @@ function test(p_route, m_id) {
 
  <c:forEach var="profileImageList" items="${profileImageList}">
     <span style="width:250px; height:300px;" onclick="test('${profileImageList.p_route}', '${profileImageList.m_id}')">
-       <img id="${profileImageList.p_route}" class="myImg1" src="${profileImageList.p_route}" style="width:200px; height:250px;">
+       <img id="${profileImageList.p_route}" class="myImg" src="${profileImageList.p_route}" style="width:200px; height:250px;">
       </span>
 </c:forEach>
 
@@ -397,55 +586,7 @@ function test(p_route, m_id) {
 </div>
 </div>
 
-
-
-<hr class="hr">
-    <footer>
-       <br>   
-        <div class="row">
-           <div class="col-lg-8 col-md-10 mx-auto">
-              <p class="text-primary text-center">© GUKBONG WORLD COMPANY. ALL RIGHTS RESERVED.</p>
-              <p class="copyright text-muted text-center">상호:국봉월드 &nbsp;| &nbsp; 사업자등록번호:123-456-78910[사업자정보확인]  &nbsp;| &nbsp; 대표:방국봉  &nbsp;| &nbsp; TEL:1544-1444 
-             <br>FAX:031-123-1234  &nbsp;| &nbsp; 주소:비트캠프 신촌센터  &nbsp; |  &nbsp; E-mail:kz1234@naver.com </p>
-          <p style="font-size: 0.8em;" class="text-muted text-right">© 1999 - 2019 Couchsurfing International, Inc</p>
-           </div>   
-        </div>
-    <br> 
-    </footer>   
-    
-  <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
-
-
-
-
-<!-- JavaScript Libraries -->
-  <script src="views/lib/jquery/jquery.min.js"></script>
-  <script src="views/lib/jquery/jquery-migrate.min.js"></script>
-  <script src="views/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="views/lib/easing/easing.min.js"></script>
-  <script src="views/lib/superfish/hoverIntent.js"></script>
-  <script src="views/lib/superfish/superfish.min.js"></script>
-  <script src="views/lib/wow/wow.min.js"></script>
-  <script src="views/lib/waypoints/waypoints.min.js"></script>
-  <script src="views/lib/counterup/counterup.min.js"></script>
-  <script src="views/lib/owlcarousel/owl.carousel.min.js"></script>
-  <script src="views/lib/isotope/isotope.pkgd.min.js"></script>
-  <script src="views/lib/lightbox/js/lightbox.min.js"></script>
-  <script src="views/lib/touchSwipe/jquery.touchSwipe.min.js"></script>
-  <!-- Contact Form JavaScript File -->
-  <script src="views/contactform/contactform.js"></script>
-
-  <!-- Template Main Javascript File -->
-  <script src="views/js/main.js"></script>
-
-  <script src="jsModal/placeholders.min.js"></script> <!-- polyfill for the HTML5 placeholder attribute -->
-  <script src="jsModal/main.js"></script> <!-- Resource JavaScript -->
-
-
-
-
-
-
+<%@include file="/views/footer.jsp"%>
 
 </body>
 </html>
