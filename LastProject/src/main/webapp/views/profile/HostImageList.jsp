@@ -35,9 +35,9 @@
   <script src="http://code.jquery.com/jquery-latest.min.js"></script>
   
   
+  <%@include file="/views/headerScript.jsp"%>
   
-  
-<style>
+  <style>
    body{
       padding-top: 75px; 
    }
@@ -54,30 +54,30 @@
         margin-top: -30px;
    }
    #header {
-        background-color:    white;
+        background-color: 	white;
    }
    #header.header-scrolled {
         background-color: white;
    }
    
    .nav-menu li a{
-      color: black;
-   }   
+   	color: black;
+   }	
    #mainLogo{
-      color: black;
-      position: absolute;
-      margin-left: 80px;
-      margin-top: -10px;
-      font-size: 2.15em;
+   	color: black;
+   	position: absolute;
+   	margin-left: 80px;
+   	margin-top: -10px;
+   	font-size: 2.15em;
    }
    #happy{
-      position: absolute;
-      margin-left: 20px;
-      margin-top: -20px;
+   	position: absolute;
+   	margin-left: 20px;
+   	margin-top: -20px;
    }
    #navProfileImg{
-      position: relative;
-      margin-top: -10px;
+   	position: relative;
+   	margin-top: -10px;
    }
    
 
@@ -92,26 +92,23 @@ select {
 }
 
 #autocomplete {
-   width: 50%; 
-   border: 1px solid #999; 
-   border-radius: 30px; 
-   padding: .3em .3em;
-   
+	width: 50%; 
+	border: 1px solid #999; 
+	border-radius: 30px; 
+	padding: .3em .3em;
+	
 }
 #advice{
-   width: 50%; 
-   border: 1px solid #999; 
-   border-radius: 30px; 
-   padding: .3em .3em;
+	width: 50%; 
+	border: 1px solid #999; 
+	border-radius: 30px; 
+	padding: .3em .3em;
 }
 
-/* .hr{
-   height: 20px;
-   color: red;
-} */
+</style>
 
+<style>
 
-body {font-family: Arial, Helvetica, sans-serif;}
 
 .myImg {
   border-radius: 5px;
@@ -177,7 +174,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
 
 /* The Close Button */
 .close {
-  position: absolute;
+  position: static;
   top: 15px;
   right: 35px;
   color: #f1f1f1;
@@ -318,13 +315,9 @@ select {
    padding: .3em .3em;
 }
 
-/* .hr{
-   height: 20px;
-   color: red;
-} */
 </style>
 </head>
-<body>
+<body onload="noticeMessage()">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
@@ -397,7 +390,7 @@ select {
          </div>
       </li>
    
-      <li class="menu-has-children"><img src="${getProfileImageRoute.p_route }" style="width: 45px; height: 45px;" class="rounded-circle" id="navProfileImg"></a>
+      <li class="menu-has-children"><a><img src="${getProfileImageRoute.p_route }" style="width: 45px; height: 45px;" class="rounded-circle" id="navProfileImg"></a>
           <ul>                                      
             <li><a  href="../../myProfile.do" >마이 프로필</a></li> 
             <li><a href="../../logoutMember.do">로그아웃</a></li>            
@@ -432,7 +425,7 @@ select {
               <a href="../../ModifyAddressMember.do" class="list-group-item list-group-item-action">주소 변경</a>
               <a href="../../profileImageInsert.do" class="list-group-item list-group-item-action">이미지 업로드</a>
               <a href="../../profileImageList.do?m_id=${member.m_id }" class="list-group-item list-group-item-action">프로필 이미지 관리</a>
-              <a href="../../HostImageList.do?m_id=${member.m_id }" class="list-group-item list-group-item-action active">호스트 이미지 관리</a>
+              <a href="../../HostImageList.do?m_id=${member.m_id }" class="list-group-item list-group-item-action">호스트 이미지 관리</a>
               <a href="../../getReceiveMessageList.do" class="list-group-item list-group-item-action">받은 쪽지함</a>
               <a href="../../getSendMessageList.do" class="list-group-item list-group-item-action">보낸 쪽지함</a>
               <a href="../../myPost.do?m_id=${member.m_id }&cPage=1" class="list-group-item list-group-item-action">내 글</a>

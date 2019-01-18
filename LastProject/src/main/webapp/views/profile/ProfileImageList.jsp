@@ -10,7 +10,8 @@
   <meta content="" name="keywords">
   <meta content="" name="description"> 
  
-
+  
+  <%@include file="/views/headerScript.jsp"%>
   <!-- Favicons -->
   <link href="views/img/favicon.png" rel="icon">
   <link href="views/img/apple-touch-icon.png" rel="apple-touch-icon">
@@ -34,10 +35,7 @@
   
   <script src="http://code.jquery.com/jquery-latest.min.js"></script>
   
-  
-  
-  
-<style>
+  <style>
    body{
       padding-top: 75px; 
    }
@@ -54,30 +52,30 @@
         margin-top: -30px;
    }
    #header {
-        background-color:    white;
+        background-color: 	white;
    }
    #header.header-scrolled {
         background-color: white;
    }
    
    .nav-menu li a{
-      color: black;
-   }   
+   	color: black;
+   }	
    #mainLogo{
-      color: black;
-      position: absolute;
-      margin-left: 80px;
-      margin-top: -10px;
-      font-size: 2.15em;
+   	color: black;
+   	position: absolute;
+   	margin-left: 80px;
+   	margin-top: -10px;
+   	font-size: 2.15em;
    }
    #happy{
-      position: absolute;
-      margin-left: 20px;
-      margin-top: -20px;
+   	position: absolute;
+   	margin-left: 20px;
+   	margin-top: -20px;
    }
    #navProfileImg{
-      position: relative;
-      margin-top: -10px;
+   	position: relative;
+   	margin-top: -10px;
    }
    
 
@@ -92,26 +90,23 @@ select {
 }
 
 #autocomplete {
-   width: 50%; 
-   border: 1px solid #999; 
-   border-radius: 30px; 
-   padding: .3em .3em;
-   
+	width: 50%; 
+	border: 1px solid #999; 
+	border-radius: 30px; 
+	padding: .3em .3em;
+	
 }
 #advice{
-   width: 50%; 
-   border: 1px solid #999; 
-   border-radius: 30px; 
-   padding: .3em .3em;
+	width: 50%; 
+	border: 1px solid #999; 
+	border-radius: 30px; 
+	padding: .3em .3em;
 }
 
-/* .hr{
-   height: 20px;
-   color: red;
-} */
+</style>
 
+<style>
 
-body {font-family: Arial, Helvetica, sans-serif;}
 
 .myImg {
   border-radius: 5px;
@@ -424,8 +419,7 @@ function test(p_route, m_id) {
 </script>
 
 </head>
-<body>
-<body>
+<body onload="noticeMessage()">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 

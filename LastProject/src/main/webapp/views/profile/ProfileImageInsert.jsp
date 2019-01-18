@@ -10,7 +10,8 @@
   <meta content="" name="keywords">
   <meta content="" name="description"> 
  
-
+  
+  <%@include file="/views/headerScript.jsp"%>
   <!-- Favicons -->
   <link href="/views/img/favicon.png" rel="icon">
   <link href="/views/img/apple-touch-icon.png" rel="apple-touch-icon">
@@ -54,30 +55,30 @@
         margin-top: -30px;
    }
    #header {
-        background-color:    white;
+        background-color: 	white;
    }
    #header.header-scrolled {
         background-color: white;
    }
    
    .nav-menu li a{
-      color: black;
-   }   
+   	color: black;
+   }	
    #mainLogo{
-      color: black;
-      position: absolute;
-      margin-left: 80px;
-      margin-top: -10px;
-      font-size: 2.15em;
+   	color: black;
+   	position: absolute;
+   	margin-left: 80px;
+   	margin-top: -10px;
+   	font-size: 2.15em;
    }
    #happy{
-      position: absolute;
-      margin-left: 20px;
-      margin-top: -20px;
+   	position: absolute;
+   	margin-left: 20px;
+   	margin-top: -20px;
    }
    #navProfileImg{
-      position: relative;
-      margin-top: -10px;
+   	position: relative;
+   	margin-top: -10px;
    }
    
 
@@ -92,23 +93,19 @@ select {
 }
 
 #autocomplete {
-   width: 50%; 
-   border: 1px solid #999; 
-   border-radius: 30px; 
-   padding: .3em .3em;
-   
+	width: 50%; 
+	border: 1px solid #999; 
+	border-radius: 30px; 
+	padding: .3em .3em;
+	
 }
 #advice{
-   width: 50%; 
-   border: 1px solid #999; 
-   border-radius: 30px; 
-   padding: .3em .3em;
+	width: 50%; 
+	border: 1px solid #999; 
+	border-radius: 30px; 
+	padding: .3em .3em;
 }
 
-/* .hr{
-   height: 20px;
-   color: red;
-} */
 </style>
 
 
@@ -182,7 +179,7 @@ function uploadHost(hostFrm) {
 
 </head>
 
-<body>
+<body onload="noticeMessage()">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
@@ -271,14 +268,12 @@ function uploadHost(hostFrm) {
 <hr>
   </header><!-- #header -->
 
-
-<section>
+<br>
 <div class="container">
    <div class="row">
       <div class="col-md-3 ">
            <div class="list-group ">
           <a href="../../myProfile.do" class="list-group-item list-group-item-action">My Profile 메인</a>
-              <a href="../../insertProfile.do" class="list-group-item list-group-item-action">프로필 수정</a>
               <a href="../../insertProfile.do" class="list-group-item list-group-item-action">프로필 수정</a>
               <a href="../../ModifyPhoneMember.do" class="list-group-item list-group-item-action">핸드폰 변경</a>
               <a href="../../ModifyPwdMember.do" class="list-group-item list-group-item-action">비밀번호 변경</a>
@@ -388,8 +383,10 @@ function uploadHost(hostFrm) {
       </div>
    </div>
 </div>
+<script src="js/jquery.min.js"></script>
+<script src="bootstrap/js/bootstrap.min.js"></script>
+<script src="js/my-login.js"></script>
    
-</section>
-<%@include file="/views/footer.jsp"%>
+   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 </body>
 </html>
