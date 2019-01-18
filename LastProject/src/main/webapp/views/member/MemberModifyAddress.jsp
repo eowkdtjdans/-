@@ -313,7 +313,8 @@ function fillInAddress() { //lat 와 lng 값을 넘겨줄 input 태그에 값 �
    <div class="row">
       <div class="col-md-3 ">
            <div class="list-group ">
-            <a href="../../myProfile.do" class="list-group-item list-group-item-action ">My Profile 메인</a>
+             <a href="../../myProfile.do" class="list-group-item list-group-item-action ">My Profile 메인</a>
+              <a href="../../insertProfile.do" class="list-group-item list-group-item-action">프로필 수정</a>
               <a href="../../ModifyPhoneMember.do" class="list-group-item list-group-item-action">핸드폰 변경</a>
               <a href="../../ModifyPwdMember.do" class="list-group-item list-group-item-action">비밀번호 변경</a>
               <a href="../../ModifyAddressMember.do" class="list-group-item list-group-item-action active">주소 변경</a>
@@ -326,6 +327,7 @@ function fillInAddress() { //lat 와 lng 값을 넘겨줄 input 태그에 값 �
               <a href="../../myPost2.do?m_id=${member.m_id }&cPage=1" class="list-group-item list-group-item-action">내 댓글</a>
               <a href="../../loginRecordList.do?ll_id=${member.m_id }&cPage=1" class="list-group-item list-group-item-action">로그인 기록</a>
               <a href="../../DeleteMember.do?m_id=${member.m_id }" class="list-group-item list-group-item-action">회원탈퇴</a>
+              
               
 
               

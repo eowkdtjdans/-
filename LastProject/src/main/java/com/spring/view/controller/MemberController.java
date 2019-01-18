@@ -253,7 +253,7 @@ public class MemberController {
 		
 		memberService.ModifyAddress(vo);
 		session.setAttribute("member", vo);
-		return "redirect:/sub2.do";
+		return "redirect:/myProfile.do";
 	}
 
 	
