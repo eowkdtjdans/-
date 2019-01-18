@@ -436,7 +436,7 @@
 				<div class="container-fluid">
 					<div class="row mb-2">
 						<div class="col-sm-6">
-							<h1>회원 관리</h1>
+							<h1>이벤트 관리</h1>
 						</div>
 						<div class="col-sm-6">
 							<ol class="breadcrumb float-sm-right">
@@ -455,7 +455,7 @@
 					<div class="col-12">
 						<div class="card">
 							<div class="card-header">
-								<h3 class="card-title">회원목록</h3>
+								<h3 class="card-title">이벤트목록</h3>
 								<div style="text-align: right;"><button type="button" class="btn btn-outline-secondary" onclick="location.href='/insertEvent.do'">이벤트등록</button></div>
 							</div>
 							<!-- /.card-header -->
@@ -479,7 +479,7 @@
 											<td><div class="userContent">${list.e_content}</div></td>
 											<td><div class="userAddress">${list.e_address}</div></td>
 											<td><div class="userDate">${startdate} ~ ${enddate}</div></td>
-											<td><button type="button" class="btn btn-default" onclick="location.href='/userAdminView.do'">관리</button></td>
+											<td><button type="button" class="btn btn-default" onclick="location.href='/modifyEvent.do?e_idx=${list.e_idx}'">관리</button></td>
 										</tr>
 										</c:forEach>
 									</tbody>

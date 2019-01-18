@@ -6,7 +6,7 @@
 <!-- mapper 태그의 namespace 속성 필수 작성  -->  
 <mapper namespace="googleDAO">
 	
-	<select id="getHostGoogle" resultType="google">
+	<select id="getHostGoogle" resultType="hostGoogle">
 		SELECT H.M_ID M_ID, PI.P_ROUTE P_ROUTE, H_MAXIMUMGUEST MAXIMUMGUEST, H_STARTDATE STARTDATE, H_ENDDATE ENDDATE, M.LAT, M.LNG, M.M_NAME
 		FROM PROFILE_IMAGE PI, HOST H, MEMBER M
 		WHERE H.M_ID = PI.M_ID
@@ -14,6 +14,15 @@
         AND H.H_ENDDATE >= TO_CHAR(SYSDATE, 'YYYY-MM-DD')
         AND PI.P_MAIN = 1
 		ORDER BY PI.P_ROUTE
+	</select>
+	
+	<select id="getEventGoogle" resultType="eventGoogle">
+		SELECT E.*
+		FROM EVENT E, EVENT_IMAGE EI
+		WHERE E.E_IDX = EI.E_IDX
+		AND E.E_ENDDATE >= TO_CHAR(SYSDATE, 'YYYY-MM-DD')
+		AND EI.E_MAIN = 1
+		ORDER BY E.E_STARTDATE
 	</select>
 	
 </mapper>

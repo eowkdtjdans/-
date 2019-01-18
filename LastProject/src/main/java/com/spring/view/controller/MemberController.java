@@ -214,7 +214,7 @@ public class MemberController {
 		vo.setM_id(m_id);
 		memberService.ModifyPwd(vo);	
 		session.setAttribute("member", vo);
-		return "redirect:/sub2.do";
+		return "redirect:/myProfile.do";
 	}
 	//핸드폰 번호 변경
 	@RequestMapping(value="ModifyPhoneMember.do", method=RequestMethod.POST)
@@ -236,7 +236,7 @@ public class MemberController {
 		vo.setM_phone(m_phone);
 		memberService.DeleteMember(vo);	
 		session.invalidate();
-		return "redirect:/sub2.do";
+		return "redirect:/myProfile.do";
 	}
 	@RequestMapping(value="ModifyAddressMember.do", method=RequestMethod.POST) 
 	public String ModifyAddressMember(MemberVO vo, @RequestParam("m_id") String m_id, @RequestParam("m_address") String m_address, 
@@ -251,7 +251,7 @@ public class MemberController {
 		
 		memberService.ModifyAddress(vo);
 		session.setAttribute("member", vo);
-		return "redirect:/sub2.do";
+		return "redirect:/myProfile.do";
 	}
 	
 	

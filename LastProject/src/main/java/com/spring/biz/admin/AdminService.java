@@ -23,6 +23,10 @@ public interface AdminService {
 	
 	List<logLoginVO> getLoginRecord(logLoginVO vo);
 	void adminDeleteProfileImage(Map<String, String> delParam);
+	void deleteEvent(int e_idx);
+	void deleteEventImg(Map<String, String> delImgMap);
+	void modifyEvent(EventVO eventVO);
+	void insertModifyEventImg(Map<String, String> eventImgMap);
 	int countLog(String ll_id);
 	List<logLoginVO> getLogLoginList(Map<String, Object> map);
 	int countPost(String m_id);

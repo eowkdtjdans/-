@@ -68,6 +68,22 @@ public class AdminDAO {
 		return mybatis.selectList("getLoginRecord", vo);
 	}
 
+	public void deleteEvent(int e_idx) {
+		mybatis.delete("deleteEvent", e_idx);
+	}
+
+	public void deleteEventImg(Map<String, String> delImgMap) {
+		mybatis.delete("deleteEventImg", delImgMap);
+	}
+
+	public void modifyEvent(EventVO eventVO) {
+		mybatis.update("modifyEvent", eventVO);
+	}
+
+	public void insertModifyEventImg(Map<String, String> eventImgMap) {
+		mybatis.insert("insertModifyEventImg", eventImgMap);
+	}
+	
 	public int countLog(String ll_id) {
 		return mybatis.selectOne("countLog", ll_id);
 	}
@@ -95,6 +111,5 @@ public class AdminDAO {
 	public int countComment2(String m_id) {
 		return mybatis.selectOne("countComment2", m_id);
 	}
-
 
 }

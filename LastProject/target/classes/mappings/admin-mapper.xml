@@ -82,8 +82,8 @@
 	</insert>
 	
 	<insert id="insertEventImg" parameterType="Map">
-		INSERT INTO EVENT_IMAGE (E_IDX, E_IMG, E_MAIN)
-		VALUES (EVENT_SEQ.CURRVAL, #{e_img}, #{e_main})
+		INSERT INTO EVENT_IMAGE (E_IDX, E_IMG, E_MAIN, E_SIZE, E_REALPATH, E_SERVER)
+		VALUES (EVENT_SEQ.CURRVAL, #{e_img}, #{e_main}, #{e_size}, #{e_realpath}, #{e_server})
 	</insert>
 	
 	<delete id="adminDeleteProfileImage" parameterType="Map">
@@ -93,7 +93,6 @@
 	<select id="getLoginRecord" resultType="logLogin">
 		SELECT LOG.* 
 		FROM LOG_LOGIN LOG
-		WHERE LOG.LL_ID = #{ll_id}
 		ORDER BY LL_DATE DESC
 	</select>
 	
@@ -101,8 +100,34 @@
 		SELECT COUNT(LL_ID) FROM LOG_LOGIN LOG
 		WHERE LOG.LL_ID = #{ll_id}
 	</select>
-
-<select id="getLogLoginList" parameterType="Map" resultType="logLogin">
+	
+	<delete id="deleteEvent">
+		DELETE FROM EVENT WHERE E_IDX = #{e_idx}
+	</delete>
+	
+	<delete id="deleteEventImg" parameterType="Map">
+		DELETE FROM EVENT_IMAGE WHERE E_IDX = #{e_idx} AND E_IMG = #{e_img}
+	</delete>
+	
+	<update id="modifyEvent" parameterType="event">
+		UPDATE EVENT SET E_NAME = #{e_name},
+						 E_CONTENT = #{e_content},
+						 E_STARTDATE = #{e_startdate},
+						 E_ENDDATE = #{e_enddate},
+						 E_ADDRESS = #{e_address},
+						 LAT = #{lat},
+						 LNG = #{lng},
+						 E_REGION = #{e_region},
+						 E_TAG = #{e_tag}
+		WHERE E_IDX = #{e_idx}
+	</update>
+	
+	<insert id="insertModifyEventImg" parameterType="Map">
+		INSERT INTO EVENT_IMAGE (E_IDX, E_IMG, E_MAIN, E_SIZE, E_REALPATH, E_SERVER)
+		VALUES (#{e_idx}, #{e_img}, #{e_main}, #{e_size}, #{e_realpath}, #{e_server})
+	</insert>
+	
+	<select id="getLogLoginList" parameterType="Map" resultType="logLogin">
              SELECT R_NUM, LOGIN3.*
          FROM (SELECT ROWNUM R_NUM, LOGIN2.* FROM
          (SELECT LOG.* FROM LOG_LOGIN LOG WHERE LL_ID = #{ll_id} ORDER BY log.ll_date DESC) LOGIN2) LOGIN3
@@ -134,22 +159,21 @@
        ( SELECT COUNT(*) LC FROM L_COMMENT WHERE M_ID = #{m_id}), 
         ( SELECT COUNT(*) EC FROM EVENT_COMMENT WHERE M_ID = #{m_id})
 </select>
-
-<select id="getMyCommentList" parameterType="Map" resultType="profileComment">
-         SELECT B2.*    FROM    
-(SELECT ROWNUM R_NUM, B.* FROM(
-(SELECT LC.LC_IDX C_IDX, LC.L_IDX IDX, LC.M_ID, LC.LC_DATE C_DATE, LC.LC_CONTENT C_CONTENT, PI.P_ROUTE, '현지정보 문의 게시판' AS C_TYPE
-      FROM L_COMMENT LC, PROFILE_IMAGE PI
-      WHERE LC.M_ID = PI.M_ID
-      AND PI.P_MAIN = 1
-      AND LC.M_ID = #{m_id})
-      UNION
-(SELECT EC.EC_IDX C_IDX, EC.E_IDX IDX, EC.M_ID, EC.EC_DATE C_DATE, EC.EC_CONTENT C_CONTENT, PI.P_ROUTE, '이벤트 게시판' AS C_TYPE
-        FROM EVENT_COMMENT EC, PROFILE_IMAGE PI
-        WHERE EC.M_ID = PI.M_ID
-        AND PI.P_MAIN = 1
-        AND EC.M_ID = #{m_id})
-        
+	
+	<select id="getMyCommentList" parameterType="Map" resultType="profileComment">
+         SELECT B2.*    
+         FROM (SELECT ROWNUM R_NUM, B.* FROM(
+			  (SELECT LC.LC_IDX C_IDX, LC.L_IDX IDX, LC.M_ID, LC.LC_DATE C_DATE, LC.LC_CONTENT C_CONTENT, PI.P_ROUTE, '현지정보 문의 게시판' AS C_TYPE
+      		  		FROM L_COMMENT LC, PROFILE_IMAGE PI
+      	 WHERE LC.M_ID = PI.M_ID
+      	 AND PI.P_MAIN = 1
+      	 AND LC.M_ID = #{m_id})
+      	 UNION
+		(SELECT EC.EC_IDX C_IDX, EC.E_IDX IDX, EC.M_ID, EC.EC_DATE C_DATE, EC.EC_CONTENT C_CONTENT, PI.P_ROUTE, '이벤트 게시판' AS C_TYPE
+        	FROM EVENT_COMMENT EC, PROFILE_IMAGE PI
+        	WHERE EC.M_ID = PI.M_ID
+        	AND PI.P_MAIN = 1
+        	AND EC.M_ID = #{m_id})
         ORDER BY C_DATE desc)B)B2
         WHERE (R_NUM BETWEEN #{begin} AND #{end})
         

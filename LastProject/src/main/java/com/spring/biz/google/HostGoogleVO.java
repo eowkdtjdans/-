@@ -2,7 +2,7 @@ package com.spring.biz.google;
 
 import java.util.Date;
 
-public class GoogleVO {
+public class HostGoogleVO {
 	private double lat, lng;
 	private String p_route, m_id, m_name, h_maximumguest;
 	
