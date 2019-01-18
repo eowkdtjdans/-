@@ -14,72 +14,7 @@
 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 
-<script>
-	$(function(){
-		$("#profileModal").click(function(){
-			$("#profile").modal({
-				backdrop: 'static',
-				keyboard: false
-			});
-		});
-		
-		$("#uploadProfileImg").change(function(){
-			var imgFile = $("#uploadProfileImg").val();
-			var imgFileExtendArray = imgFile.split('.');
-			var imgFileLength = $("#uploadProfileImg").val().length;
-			var imgFileExtend = imgFileExtendArray[1];
-			
-			var size = document.getElementById("uploadProfileImg").files[0].size;
-			
-			if(imgFileExtend=="jpg" || imgFileExtend=="png" || imgFileExtend=="gif" || imgFileExtend=="jpeg" || imgFileExtend=="JPG" || imgFileExtend=="PNG" || imgFileExtend=="GIF" || imgFileExtend=="JPEG") {
-				if (size <= 20971520) {
-					$("#profileWrong").remove();
-					$("#profileImgBtn").prop("disabled", false);
-				} else {
-					$("#profileWrong").remove();
-					$("<div id='typeWrong'><b>파일 용량이 너무 큽니다.</b></div>").insertAfter("#uploadProfileImg");
-				}
-			} else {
-				$("#profileWrong").remove();
-				$("#profileImgBtn").prop("disabled", true);
-				$("<div id='profileWrong'><b>파일 유형이 잘못되었습니다.</b></div>").insertAfter("#uploadProfileImg");
-			}
-		});
-		
-		$("#hostModal").click(function(){
-			$("#host").modal({
-				backdrop: 'static',
-				keyboard: false
-			});
-		});
-		
-		$("#uploadHostImg").change(function(){
-			var imgFile = $("#uploadHostImg").val();
-			var imgFileLength = $("#uploadHostImg").val().length;
-			var imgFileExtend = imgFile.substring(imgFileLength - 3);
-			
-			if(imgFileExtend=="jpg" || imgFileExtend=="png" || imgFileExtend=="gif" || imgFileExtend=="jpeg") {
-				$("#hostWrong").remove();
-				$("#hostImgBtn").prop("disabled", false);
-			} else {
-				$("#hostWrong").remove();
-				$("#hostImgBtn").prop("disabled", true);
-				$("<div id='hostWrong'><b>파일 유형이 잘못되었습니다.</b></div>").insertAfter("#uploadHostImg");
-			}
-		});
-		
-	});
-</script>
-<script>
-function uploadProfile(profileFrm) {
-	profileFrm.action="/uploadProfileImg.do";
-	profileFrm.submit();
-}
-function uploadHost(hostFrm) {
-	hostFrm.action="/uploadHostImg.do";
-	hostFrm.submit();
-}
-</script>
+
 
 
 
@@ -95,21 +30,19 @@ function uploadHost(hostFrm) {
 	<div class="row">
 		<div class="col-md-3 ">
 		     <div class="list-group ">
-		        <a href="../../myProfile.do" class="list-group-item list-group-item-action ">My Profile 메인</a>
-              <a href="../../insertProfile.do" class="list-group-item list-group-item-action">프로필 수정</a>
-              <a href="../../ModifyPhoneMember.do" class="list-group-item list-group-item-action">핸드폰 변경</a>
+		      <a href="../../sub2.do" class="list-group-item list-group-item-action">메인페이지</a>
+              <a href="../../myProfile.do" class="list-group-item list-group-item-action">마이 프로필</a>
+              <a href="../../getReceiveMessageList.do" class="list-group-item list-group-item-action">받은 쪽지함</a>
+              <a href="../../getSendMessageList.do" class="list-group-item list-group-item-action">보낸 쪽지함</a>
+              <a href="#" class="list-group-item list-group-item-action">프로필 수정</a>
               <a href="../../ModifyPwdMember.do" class="list-group-item list-group-item-action">비밀번호 변경</a>
+              <a href="../../ModifyPhoneMember.do" class="list-group-item list-group-item-action">핸드폰 변경</a>
               <a href="../../ModifyAddressMember.do" class="list-group-item list-group-item-action">주소 변경</a>
               <a href="../../profileImageInsert.do" class="list-group-item list-group-item-action active">이미지 업로드</a>
               <a href="../../profileImageList.do?m_id=${member.m_id }" class="list-group-item list-group-item-action">프로필 이미지 관리</a>
               <a href="../../HostImageList.do?m_id=${member.m_id }" class="list-group-item list-group-item-action">호스트 이미지 관리</a>
-              <a href="../../getReceiveMessageList.do" class="list-group-item list-group-item-action">받은 쪽지함</a>
-              <a href="../../getSendMessageList.do" class="list-group-item list-group-item-action">보낸 쪽지함</a>
-              <a href="../../myPost.do?m_id=${member.m_id }&cPage=1" class="list-group-item list-group-item-action">내 글</a>
-              <a href="../../myPost2.do?m_id=${member.m_id }&cPage=1" class="list-group-item list-group-item-action">내 댓글</a>
-              <a href="../../loginRecordList.do?ll_id=${member.m_id }&cPage=1" class="list-group-item list-group-item-action">로그인 기록</a>
-              <a href="../../DeleteMember.do?m_id=${member.m_id }" class="list-group-item list-group-item-action">회원탈퇴</a>
-
+              <a href="#" class="list-group-item list-group-item-action">내 글</a>
+              <a href="#" class="list-group-item list-group-item-action">내 댓글</a>
               
             </div> 
             
