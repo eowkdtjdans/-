@@ -12,7 +12,7 @@
  
 
   <!-- Favicons -->
-  <link href="views/img/upload/2018112745738975.jpg" rel="icon">
+   <link href="views/img/favicon.png" rel="icon">
   <link href="views/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
