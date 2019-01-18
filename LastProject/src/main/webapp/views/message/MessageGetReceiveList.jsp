@@ -326,7 +326,7 @@ $(function(){
 		</thead>
 		<c:forEach var="messageList" items="${messageList }">
 		<tr>
-			<td><img src="${hostImg.h_route }" alt="" class="rounded-circle" style="width:100px; height:100px;"/></td>
+			<td><img src="${messageList.p_route}" alt="" class="rounded-circle" style="width:100px; height:100px;"/></td>
 			<td>
 				<a href="getReceiveMessage.do?receive_idx=${messageList.receive_idx }">
 					${messageList.receive_sender }

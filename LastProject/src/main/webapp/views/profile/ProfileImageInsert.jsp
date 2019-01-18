@@ -88,13 +88,117 @@ function uploadProfile(profileFrm) {
 	profileFrm.action="/uploadProfileImg.do";
 	profileFrm.submit();
 }
-function uploadHost(hostFrm) {
-	hostFrm.action="/uploadHostImg.do";
-	hostFrm.submit();
+
+#autocomplete {
+   width: 50%; 
+   border: 1px solid #999; 
+   border-radius: 30px; 
+   padding: .3em .3em;
+   
 }
-</script>
+#advice{
+   width: 50%; 
+   border: 1px solid #999; 
+   border-radius: 30px; 
+   padding: .3em .3em;
+}
+
+/* .hr{
+   height: 20px;
+   color: red;
+} */
 
 
+body {font-family: Arial, Helvetica, sans-serif;}
+
+.myImg {
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.myImg:hover {opacity: 0.7;}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0);  
+  background-color: rgba(0,0,0,0.9);  
+ 
+}
+
+/* Modal Content (image) */
+.modal-content {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+}
+
+/* Caption of Modal Image */
+#caption {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+  text-align: center;
+  color: #ccc;
+  padding: 10px 0;
+  height: 150px;
+}
+
+/* Add Animation */
+.modal-content, #caption {  
+  -webkit-animation-name: zoom;
+  -webkit-animation-duration: 0.6s;
+  animation-name: zoom;
+  animation-duration: 0.6s;
+}
+
+@-webkit-keyframes zoom {
+  from {-webkit-transform:scale(0)} 
+  to {-webkit-transform:scale(1)}
+}
+
+@keyframes zoom {
+  from {transform:scale(0)} 
+  to {transform:scale(1)}
+}
+
+/* The Close Button */
+.close {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* 100% Image Width on Smaller Screens */
+@media only screen and (max-width: 700px){
+  .modal-content {
+    width: 100%;
+  }
+}
+
+</style>
 <style>
    body{
       padding-top: 75px; 
@@ -168,6 +272,64 @@ select {
    color: red;
 } */
 </style>
+<script>
+	$(function(){
+		$("#profileModal").click(function(){
+			$("#profile").modal({
+				backdrop: 'static',
+				keyboard: false
+			});
+		});
+		
+		$("#uploadProfileImg").change(function(){
+			var imgFile = $("#uploadProfileImg").val();
+			var imgFileLength = $("#uploadProfileImg").val().length;
+			var imgFileExtend = imgFile.substring(imgFileLength - 3);
+			
+			if(imgFileExtend=="jpg" || imgFileExtend=="png" || imgFileExtend=="gif" || imgFileExtend=="jpeg") {
+				$("#profileWrong").remove();
+				$("#profileImgBtn").prop("disabled", false);
+			} else {
+				$("#profileWrong").remove();
+				$("#profileImgBtn").prop("disabled", true);
+				$("<div id='profileWrong'><b>파일 유형이 잘못되었습니다.</b></div>").insertAfter("#uploadProfileImg");
+			}
+		});
+		
+		$("#hostModal").click(function(){
+			$("#host").modal({
+				backdrop: 'static',
+				keyboard: false
+			});
+		});
+		
+		$("#uploadHostImg").change(function(){
+			var imgFile = $("#uploadHostImg").val();
+			var imgFileLength = $("#uploadHostImg").val().length;
+			var imgFileExtend = imgFile.substring(imgFileLength - 3);
+			
+			if(imgFileExtend=="jpg" || imgFileExtend=="png" || imgFileExtend=="gif" || imgFileExtend=="jpeg") {
+				$("#hostWrong").remove();
+				$("#hostImgBtn").prop("disabled", false);
+			} else {
+				$("#hostWrong").remove();
+				$("#hostImgBtn").prop("disabled", true);
+				$("<div id='hostWrong'><b>파일 유형이 잘못되었습니다.</b></div>").insertAfter("#uploadHostImg");
+			}
+		});
+		
+	});
+</script>
+<script>
+function uploadProfile(profileFrm) {
+	profileFrm.action="/uploadProfileImg.do";
+	profileFrm.submit();
+}
+function uploadHost(hostFrm) {
+	hostFrm.action="/uploadHostImg.do";
+	hostFrm.submit();
+}
+</script>
 </head>
 
 <body>
@@ -212,49 +374,49 @@ select {
 
          
 <nav id="nav-menu-container">
-   <ul class="nav-menu">
-   
-   <c:if test="${empty member.m_id}">
-      <li><a href="../../loginMember.do" >로그인</a></li>
-      <li><a  href="../../insertMember.do" >회원가입</a></li>
-      <li><a href="../../findIdMember.do">아이디찾기</a></li >
-       <li><a href="../../findPwdMember.do">비밀번호찾기</a></li>
-   </c:if>   
-   
-   <c:if test="${!empty member.m_id}">
-      <li>
-         <div>
-         <strong>
-         <span style="color: red;">W</span>
-         <span style="color: blue;">e</span>
-         <span style="color: darkviolet;">l</span>
-         <span style="color: #FFC100;">c</span>
-         <span style="color: green;">o</span>
-         <span style="color: orange;">m</span>
-         <span style="color: navy;">e</span>         
-         &nbsp;&nbsp;         
-         ${member.m_id } 님 
-         </strong>
-         </div>
-      </li>
-   
-      <li class="menu-has-children"><img src="${getProfileImageRoute.p_route }" style="width: 45px; height: 45px;" class="rounded-circle" id="navProfileImg"></a>
+	<ul class="nav-menu">
+	
+	<c:if test="${empty member.m_id}">
+		<li><a href="../../loginMember.do" >로그인</a></li>
+		<li><a  href="../../insertMember.do" >회원가입</a></li>
+		<li><a href="../../findIdMember.do">아이디찾기</a></li >
+	    <li><a href="../../findPwdMember.do">비밀번호찾기</a></li>
+	</c:if>	
+	
+	<c:if test="${!empty member.m_id}">
+		<li>
+			<div>
+			<strong>
+			<span style="color: red;">W</span>
+			<span style="color: blue;">e</span>
+			<span style="color: darkviolet;">l</span>
+			<span style="color: #FFC100;">c</span>
+			<span style="color: green;">o</span>
+			<span style="color: orange;">m</span>
+			<span style="color: navy;">e</span>			
+			&nbsp;&nbsp;			
+			${member.m_id } 님 
+			</strong>
+			</div>
+		</li>
+	
+		<li class="menu-has-children"><img src="${getProfileImageRoute.p_route }" style="width: 45px; height: 45px;" class="rounded-circle" id="navProfileImg"></a>
           <ul>                                      
             <li><a  href="/myProfile.do" >마이 프로필</a></li> 
             <li><a href="/logoutMember.do">로그아웃</a></li>            
           </ul> 
         </li>
                
-         <li>    
+   		<li>    
           <span class="fa-layers fa-fw">
            <a href="/getReceiveMessageList.do">
           <i class="far fa-envelope fa-2x"></i>
           <span class="fa-layers-counter" style="color:red;" id="noticeMessageCount"></span>
           </a>
          </span>
-         </li>         
-   </c:if>
-   </ul> 
+     	 </li>         
+	</c:if>
+	</ul> 
 </nav>               
 <hr>
   </header><!-- #header -->
@@ -262,6 +424,7 @@ select {
 
 <section>
 <div class="container">
+<<<<<<< HEAD
    <div class="row">
       <div class="col-md-3 ">
            <div class="list-group ">
@@ -280,11 +443,29 @@ select {
               <a href="../../myPost2.do?m_id=${member.m_id }&cPage=1" class="list-group-item list-group-item-action">내 댓글</a>
               <a href="../../loginRecordList.do?ll_id=${member.m_id }&cPage=1" class="list-group-item list-group-item-action">로그인 기록</a>
               <a href="../../DeleteMember.do?m_id=${member.m_id }" class="list-group-item list-group-item-action">회원탈퇴</a>
+=======
+	<div class="row">
+		<div class="col-md-3 ">
+		     <div class="list-group ">
+		      <a href="/sub2.do" class="list-group-item list-group-item-action">메인페이지</a>
+              <a href="/myProfile.do" class="list-group-item list-group-item-action">마이 프로필</a>
+              <a href="/getReceiveMessageList.do" class="list-group-item list-group-item-action">받은 쪽지함</a>
+              <a href="/getSendMessageList.do" class="list-group-item list-group-item-action">보낸 쪽지함</a>
+              <a href="#" class="list-group-item list-group-item-action">프로필 수정</a>
+              <a href="/ModifyPwdMember.do" class="list-group-item list-group-item-action">비밀번호 변경</a>
+              <a href="/ModifyPhoneMember.do" class="list-group-item list-group-item-action">핸드폰 변경</a>
+              <a href="/ModifyAddressMember.do" class="list-group-item list-group-item-action">주소 변경</a>
+              <a href="/profileImageInsert.do" class="list-group-item list-group-item-action active">이미지 업로드</a>
+              <a href="/profileImageList.do?m_id=${member.m_id }" class="list-group-item list-group-item-action">프로필 이미지 관리</a>
+              <a href="/HostImageList.do?m_id=${member.m_id }" class="list-group-item list-group-item-action">호스트 이미지 관리</a>
+              <a href="#" class="list-group-item list-group-item-action">내 글</a>
+              <a href="#" class="list-group-item list-group-item-action">내 댓글</a>
+>>>>>>> refs/remotes/origin/master
               
             </div> 
             
-      </div>
-      <div class="col-md-9">
+		</div>
+		<div class="col-md-9">
 		    <div class="card">
 		        <div class="card-body">
 		            <div class="row">
@@ -377,11 +558,8 @@ select {
 		</div>
 	</div>
 </div>
-<script src="js/jquery.min.js"></script>
-<script src="bootstrap/js/bootstrap.min.js"></script>
-<script src="js/my-login.js"></script>
-	
-	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 </section>
+
+<%@include file="/views/footer.jsp"%>
 </body>
 </html>
