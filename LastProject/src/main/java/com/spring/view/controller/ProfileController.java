@@ -215,7 +215,7 @@ public class ProfileController {
 		session.setAttribute("profile", vo);
 		
 		
-		return "redirect:/sub2.do";
+		return "redirect:/myProfile.do";
 	}
 	
 	
@@ -227,7 +227,7 @@ public class ProfileController {
 	public String modifyProfileGet(ProfileVO vo, HttpSession session) {
 		System.out.println("=======겟방식");
 		session.getAttribute("profile");
-		return "views/profile/ProfileModify.jsp";
+		return "redirect:/myProfile.do";
 		}	
 	//
 	@RequestMapping(value = "/modifyProfile.do",  method=RequestMethod.POST) 
@@ -249,7 +249,7 @@ public class ProfileController {
 		session.setAttribute("profile", vo);
 		
 		
-		return "redirect:/sub2.do";
+		return "redirect:/myProfile.do";
 	}
 	
 	@RequestMapping(value="/insetProfileJson.do", method=RequestMethod.POST)

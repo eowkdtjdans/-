@@ -92,29 +92,31 @@
 		        <div class="card-body">
 		            <div class="row">
 		                <div class="col-md-12">
-		                    <h4>핸드폰 번호 변경</h4>
+		                    <h4><img src="views/img/profile_pen.png" style="width: 50px; height: 50px;"> 핸드폰 번호 변경</h4>
 		                    <hr>
 		                </div>
 		            </div>
+		            
+		            
 		            <div class="row">
 		                <div class="col-md-12">
 		                    <form onsubmit="return false;" method="POST" class="my-login-validation" id="ModifyPhoneForm">
 		                    	<input id="m_id" type="hidden" class="form-control" name="m_id" value="${member.m_id }">
                               <div class="form-group row">
-                                <label for="m_phone" class="col-4 col-form-label">기존 핸드폰 번호</label> 
-                                <div class="col-8">
+                                <label for="m_phone" class="col-3 col-form-label">기존 핸드폰 번호</label> 
+                                <div class="col-9">
                                 	<input id="m_phone" name="m_phone" type="text" class="form-control" onkeypress="enterkey()">
                                 </div>
                               </div>
                               <div class="form-group row">
-                               <label for="phoneModify" class="col-4 col-form-label">변경할 핸드폰 번호</label>
-                                <div class="col-8">
+                               <label for="phoneModify" class="col-3 col-form-label">변경할 핸드폰 번호</label>
+                                <div class="col-9">
                                   	<input id="phoneModify" name="phoneModify" type="text" class="form-control" onkeypress="enterkey()">
                                 </div>
                               </div>
                               
                               <div class="form-group row">
-                               	<button type="submit" id="modifyBtn" class="btn btn-primary btn-block" onclick="ModifyPhone(this.form)" >
+                               	<button type="submit" id="modifyBtn" class="btn btn-outline-secondary btn-block" onclick="ModifyPhone(this.form)" >
 										핸드폰 변경
 									</button>
                               </div>
