@@ -35,60 +35,58 @@
   <script src="http://code.jquery.com/jquery-latest.min.js"></script>
   
   
-  
-  
-<style>
-   body{
-      padding-top: 75px; 
-   }
-   
-   .scrollto {    
-     font-family: 'Kalam', cursive;
-     padding-top: 8px;
-   }
-   .border-none {
-        margin-left: 490px;
-   }
-   
-   #nav-menu-container {
-        margin-top: -30px;
-   }
-   #header {
-        background-color:    white;
-   }
-   #header.header-scrolled {
-        background-color: white;
-   }
-   
-   .nav-menu li a{
-      color: black;
-   }   
-   #mainLogo{
-      color: black;
-      position: absolute;
-      margin-left: 80px;
-      margin-top: -10px;
-      font-size: 2.15em;
-   }
-   #happy{
-      position: absolute;
-      margin-left: 20px;
-      margin-top: -20px;
-   }
-   #navProfileImg{
-      position: relative;
-      margin-top: -10px;
-   }
-   
-
-select {
-    width: 128px; /* 원하는 너비설정 */
-    padding: .3em .3em; /* 여백으로 높이 설정 */
-    font-family: inherit;  /* 폰트 상속 */
-    border:  1px solid #999; 
-    border-radius: 30px; /* iOS 둥근모서리 제거 */
-    -moz-appearance: none;
-    appearance: none;
+<script>
+	$(function(){
+		$("#profileModal").click(function(){
+			$("#profile").modal({
+				backdrop: 'static',
+				keyboard: false
+			});
+		});
+		
+		$("#uploadProfileImg").change(function(){
+			var imgFile = $("#uploadProfileImg").val();
+			var imgFileLength = $("#uploadProfileImg").val().length;
+			var imgFileExtend = imgFile.substring(imgFileLength - 3);
+			
+			if(imgFileExtend=="jpg" || imgFileExtend=="png" || imgFileExtend=="gif" || imgFileExtend=="jpeg") {
+				$("#profileWrong").remove();
+				$("#profileImgBtn").prop("disabled", false);
+			} else {
+				$("#profileWrong").remove();
+				$("#profileImgBtn").prop("disabled", true);
+				$("<div id='profileWrong'><b>파일 유형이 잘못되었습니다.</b></div>").insertAfter("#uploadProfileImg");
+			}
+		});
+		
+		$("#hostModal").click(function(){
+			$("#host").modal({
+				backdrop: 'static',
+				keyboard: false
+			});
+		});
+		
+		$("#uploadHostImg").change(function(){
+			var imgFile = $("#uploadHostImg").val();
+			var imgFileLength = $("#uploadHostImg").val().length;
+			var imgFileExtend = imgFile.substring(imgFileLength - 3);
+			
+			if(imgFileExtend=="jpg" || imgFileExtend=="png" || imgFileExtend=="gif" || imgFileExtend=="jpeg") {
+				$("#hostWrong").remove();
+				$("#hostImgBtn").prop("disabled", false);
+			} else {
+				$("#hostWrong").remove();
+				$("#hostImgBtn").prop("disabled", true);
+				$("<div id='hostWrong'><b>파일 유형이 잘못되었습니다.</b></div>").insertAfter("#uploadHostImg");
+			}
+		});
+		
+	});
+</script>
+<script>
+function uploadProfile(profileFrm) {
+	profileFrm.action="/uploadProfileImg.do";
+	profileFrm.submit();
 }
 
 #autocomplete {
