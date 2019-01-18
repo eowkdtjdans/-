@@ -21,7 +21,6 @@
 
 	function findPwd(frm) {
 		 var str = $("#form").serialize();
-		 alert("str : " + str);
 		 $.ajax({
 			async : true,
 			type : "POST",
@@ -29,7 +28,6 @@
 			data : str,
 			url : "../../findPwdMemberJson.do",
 			success : function(data) {
-				alert("data.cnt : " + data.cnt);
 				if (data.cnt > 0) {
 					alert("기입하신 이메일을 확인하세요!");
 					frm.action="../../findPwdMember.do";
