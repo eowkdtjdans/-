@@ -147,7 +147,6 @@ public class EventController {
 		
 		model.addAttribute("getEvent", getEvent);
 		model.addAttribute("getEventImageList", getEventImageList);
-		model.addAttribute("getEventImageList0", getEventImageList.get(0));
 		model.addAttribute("getEventCommentList", getEventCommentList);
 		
 		return "/views/event/getEvent.jsp";				

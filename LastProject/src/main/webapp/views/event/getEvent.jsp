@@ -2,6 +2,7 @@
    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -41,8 +42,6 @@
   
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?v=3&sensor=false&libraries=places&callback=initAutocomplete&key=AIzaSyAfB2qQnvAuU2YFFqi8hrPWfjJNyxl5kWc" async defer></script>
-
-
 
 
 <style>
@@ -158,16 +157,41 @@ table .noline {
 		border-radius: 30px; 
 		padding: .3em .3em;
 	}
-
-/* #slideimg{
-	width: 600px;
-	height: 450px;
-} */
-
-
-
-
-
+	
+	.modal-content {
+		width: 1000px;
+		height: 700px;
+	}
+	
+	.modalImg {
+		width: 100%;
+		height: 700px;
+	}
+	
+	.modal {
+		margin-left:-450px;;
+	}
+	
+	.modal-body {
+		padding: 0px;
+	}
+	
+	#e_content {
+      display: inline-block;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      
+      white-space: normal;
+      line-height: 1.2;
+      text-align: left;
+      word-wrap: break-word;
+      display: -webkit-box;
+      -webkit-line-clamp: 7;
+      -webkit-box-orient: vertical;
+	}
+	
+	
 
 </style>
 
@@ -222,7 +246,6 @@ table .noline {
 
 	
    $(document).ready(function() {
-
       if ('${focus_idx}' == "") {
 
       } else {
@@ -231,11 +254,8 @@ table .noline {
          console.log('${focus_idx}');
 
          $("#" + "${focus_idx}").attr("tabindex", -1).focus();
-
    }
-      
      $(".main1").parent().addClass("carousel-item active");
-      
    });
 
 
@@ -411,9 +431,21 @@ table .noline {
  });    
  }
     
+    $(document).on("click", "#e_content_more", function(){
+    	$("#e_content").css("-webkit-line-clamp", "100");
+    	$("#e_content_more").text("접기");
+    	$("#e_content_more").attr("id", "e_content_no_more");
+    })
+    
+    $(document).on("click", "#e_content_no_more", function(){
+    	$("#e_content").css("-webkit-line-clamp", "7");
+    	$("#e_content_no_more").text("더보기");
+    	$("#e_content_no_more").attr("id", "e_content_more");
+    })
+    
+    
  
 </script>
-
 </head>
 
 <body onload="noticeMessage()">
@@ -545,18 +577,24 @@ table .noline {
 			    <div class="row">
 			      <div class="col-md-6" style="text-align: center">
 				      <c:forEach var="list" items="${getEventImageList }">
-					  	  		<span><img src="${list.e_img }" style="width: 420px; height: 300px;" class="img-thumbnail"></span>
-					  	  		<br>
+				      <c:if test="${list.e_main eq 1}">
+			  	  		<span><img src="${list.e_img }" style="width: 420px; height: 300px;" class="img-thumbnail"></span>
+		  	  		  </c:if>
 					  </c:forEach>
+			  	  	  <br>
 					  <!-- <button type="button" class="btn btn-outline-secondary" onclick="imagemodal()">사진 더보기</button> -->
-					  <button type="button" data-toggle="modal" data-target="#myModal">사진 더보기</button>
+					  <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#myModal">사진 더보기</button>
 					
 			      </div>
 			      
 			      <fmt:formatDate var="startdate" value="${getEvent.e_startdate}" pattern="yyyy-MM-dd E요일"/>
    				  <fmt:formatDate var="enddate" value="${getEvent.e_enddate}" pattern="yyyy-MM-dd E요일"/>
-			      <div class="col-md-6" id="e_content">
-			      ${getEvent.e_content } <br><br>
+			      <div class="col-md-6">
+			      <div id="e_content">
+			      	${getEvent.e_content }
+			      </div>
+			      <a href="#" id="e_content_more">더보기</a>
+			      <br>
 			      <table class="table" id="smalltable">
 			      	<tr>
 			      		<td>시작일</td>
@@ -575,50 +613,10 @@ table .noline {
 			      		<td>${getEvent.e_address }</td>
 			      	</tr>			      	
 			      </table>
-			      </div>			      
+			      </div>
 			    </div>		    			    
 			</div>
 			<br><br>
-			
-
- 
-<!-- 모달부분 -->
-
-<div class="modal fade" id="myModal">
-<div class="modal-dialog modal-lg">
-<div class="modal-content"> 	
-
-jasldfjlkasdjf
-
-	  <div id="demo" class="carousel slide" data-ride="carousel">
-	
-	  <!-- The slideshow -->
-	  <div class="carousel-inner">
-	    <c:forEach var="list" items="${getEventImageList}">
-		    <div class="carousel-item">
-		      <img src="${list.e_img}" class="main${list.e_main }" id="slideimage">
-		    </div>
-	    </c:forEach>
-	
-	  </div>
-	  
-	  <!-- Left and right controls -->
-	  <a class="carousel-control-prev" href="#demo" data-slide="prev">
-	    <span class="carousel-control-prev-icon"></span>
-	  </a>
-	  <a class="carousel-control-next" href="#demo" data-slide="next">
-	    <span class="carousel-control-next-icon"></span>
-	  </a>
-	  </div>
-	  	  
-
-</div>
-</div>
-</div> 
-
-
-
-
  
 	<!-- 댓글 폼 -->
  		<br>
@@ -700,6 +698,52 @@ jasldfjlkasdjf
     </footer>	
       
      <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>  
+     
+     
+     
+     <!--begin modal window-->
+	<div class="modal fade" id="myModal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+			
+				<div class="modal-body">
+					<div id="introCarousel" class="carousel slide" data-ride="carousel">
+
+					  <!-- Indicators -->
+					  <ul class="carousel-indicators">
+					  </ul>
+					
+					  <!-- The slideshow -->
+					  <div class="carousel-inner">
+					    <c:forEach var="list" items="${getEventImageList}">
+					    <c:if test="${list.e_main eq 1}">
+					    	<div class="carousel-item active">
+						      <img src="${list.e_img}" alt="메인 이미지" class="modalImg">
+						    </div>
+						</c:if>
+						<c:if test="${list.e_main ne 1}">
+					    	<div class="carousel-item">
+						      <img src="${list.e_img}" alt="이미지" class="modalImg">
+						    </div>
+						</c:if>
+					    </c:forEach>
+					
+					  <!-- Left and right controls -->
+					  <a class="carousel-control-prev" href="#introCarousel" data-slide="prev">
+					    <span class="carousel-control-prev-icon"></span>
+					  </a>
+					  <a class="carousel-control-next" href="#introCarousel" data-slide="next">
+					    <span class="carousel-control-next-icon"></span>
+					  </a>
+					
+					</div>
+				</div>
+				
+			</div>
+		</div>
+		</div>
+	</div>
+
       
       <!-- JavaScript Libraries -->
   <script src="/views/lib/jquery/jquery.min.js"></script>

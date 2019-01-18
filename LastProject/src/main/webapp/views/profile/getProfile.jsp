@@ -280,7 +280,8 @@ $(function(){
       <div class="col-md-3 ">
            <div class="list-group ">
             <a href="../../myProfile.do" class="list-group-item list-group-item-action active">My Profile 메인</a>
-              <a href="../../insertProfile.do" class="list-group-item list-group-item-action ">프로필 수정</a>
+
+              <a href="../../insertProfile.do" class="list-group-item list-group-item-action">프로필 수정</a>
               <a href="../../ModifyPhoneMember.do" class="list-group-item list-group-item-action">핸드폰 변경</a>
               <a href="../../ModifyPwdMember.do" class="list-group-item list-group-item-action">비밀번호 변경</a>
               <a href="../../ModifyAddressMember.do" class="list-group-item list-group-item-action">주소 변경</a>
@@ -309,14 +310,13 @@ $(function(){
                           <hr>
                       </div>
                   </div>
-                  
                   <div class="row">
                       <div class="col-md-12">
                           <form>
                               <table class="table">
                                  <tr>
-                                    <td colspan="2" style="text-align: center;"><h5 class="text-muted">Profile Image</h5><img src="${profile.p_route }" style="width:250px; height: 250px;" class="rounded"/></td>
-                                    <td colspan="2" style="text-align: center;"><h5 class="text-muted">Host Image</h5><img src="${hostImg.h_route }" style="width:250px; height: 250px;" class="rounded"/></td>
+                                    <td colspan="2" style="text-align: center;"><h5 class="text-muted">Profile Image</h5><br><img src="${profile.p_route }" style="width:250px; height: 250px;" class="rounded"/></td>
+                                    <td colspan="2" style="text-align: center;"><h5 class="text-muted">Host Image</h5><br><img src="${hostImg.h_route }" style="width:250px; height: 250px;" class="rounded"/></td>
                                  </tr>
                                  <tr>
                                     <th style="width: 22%; text-align: center;" >이름 </th>

@@ -819,7 +819,7 @@ var receive_receiver =$("#receive_receiver").val();
       </div>
 
     </div>
-    <!--/.Content-->
+    <!--/.Content--> 
   </div>
 </div>
 <!--Modal: Login with Avatar Form-->

@@ -227,7 +227,7 @@ public class ProfileController {
 	public String modifyProfileGet(ProfileVO vo, HttpSession session) {
 		System.out.println("=======겟방식");
 		session.getAttribute("profile");
-		return "views/profile/ProfileModify.jsp";
+		return "redirect:/myProfile.do";
 		}	
 	//
 	@RequestMapping(value = "/modifyProfile.do",  method=RequestMethod.POST) 
