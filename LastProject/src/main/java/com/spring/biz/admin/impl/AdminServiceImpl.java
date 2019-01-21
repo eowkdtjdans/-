@@ -8,11 +8,13 @@ import org.springframework.stereotype.Service;
 
 import com.spring.biz.admin.AdminCntVO;
 import com.spring.biz.admin.AdminService;
+import com.spring.biz.admin.LVChartVO;
 import com.spring.biz.admin.UserAdminCommentVO;
 import com.spring.biz.admin.UserAdminPostVO;
 import com.spring.biz.admin.UserAdminViewVO;
 import com.spring.biz.admin.logLoginVO;
 import com.spring.biz.event.EventVO;
+import com.spring.biz.localAdvice.LocalAdviceVO;
 import com.spring.biz.member.MemberVO;
 
 @Service("adminService")
@@ -129,6 +131,16 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public List<logLoginVO> getmyCommentList(Map<String, Object> map) {
 		return adminDAO.getmyCommentList(map);
+	}
+
+	@Override
+	public List<LVChartVO> logVisitChart() {
+		return adminDAO.logVisitChart();
+	}
+	
+	@Override
+	public List<LocalAdviceVO> localAdviceAdminList() {
+		return adminDAO.localAdviceAdminList();
 	}
 
 }

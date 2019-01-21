@@ -153,7 +153,7 @@ select {
          var imgFileLength = $("#uploadHostImg").val().length;
          var imgFileExtend = imgFile.substring(imgFileLength - 3);
          
-         if(imgFileExtend=="jpg" || imgFileExtend=="png" || imgFileExtend=="gif" || imgFileExtend=="jpeg") {
+         if(imgFileExtend=="jpg" || imgFileExtend=="png" || imgFileExtend=="gif" || imgFileExtend=="jpeg" || imgFileExtend=="JPG" || imgFileExtend=="PNG" || imgFileExtend=="GIF" || imgFileExtend=="JPEG") {
             $("#hostWrong").remove();
             $("#hostImgBtn").prop("disabled", false);
          } else {
@@ -247,7 +247,7 @@ function uploadHost(hostFrm) {
          </div>
       </li>
    
-      <li class="menu-has-children"><img src="${getProfileImageRoute.p_route }" style="width: 45px; height: 45px;" class="rounded-circle" id="navProfileImg"></a>
+      <li class="menu-has-children"><img src="${profile.p_route }" style="width: 45px; height: 45px;" class="rounded-circle" id="navProfileImg"></a>
           <ul>                                      
             <li><a  href="/myProfile.do" >마이 프로필</a></li> 
             <li><a href="/logoutMember.do">로그아웃</a></li>            
@@ -311,7 +311,7 @@ function uploadHost(hostFrm) {
                                 </div>
                               </div>
                               
-                              <form id="profileFrm" name="profileFrm" method="POST" enctype="multipart/form-data">
+                     <form id="profileFrm" name="profileFrm" method="POST" enctype="multipart/form-data">
                      <div class="modal fade" id="profile">
                         <div class="modal-dialog">
                            <div class="modal-content">

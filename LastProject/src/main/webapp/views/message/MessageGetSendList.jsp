@@ -253,7 +253,7 @@ $(function(){
 			</div>
 		</li>
 	
-		<li class="menu-has-children"><img src="${getProfileImageRoute.p_route }" style="width: 45px; height: 45px;" class="rounded-circle" id="navProfileImg"></a>
+		<li class="menu-has-children"><img src="${profile.p_route }" style="width: 45px; height: 45px;" class="rounded-circle" id="navProfileImg"></a>
           <ul>                                      
             <li><a  href="../../myProfile.do" >마이 프로필</a></li> 
             <li><a href="../../logoutMember.do">로그아웃</a></li>            
@@ -308,7 +308,8 @@ $(function(){
 			    	<tr>
 			    		<td style="width: 35%;"><img src="${messageList.p_route }" style="width: 50px; height: 50px;" class="rounded-circle"> &nbsp;<a href="getSendMessage.do?send_idx=${messageList.send_idx }">${messageList.send_receiver }</a></td> 
 			    		
-			    		<td style="width: 35%; padding-top: 21px;"><a href="getSendMessage.do?send_idx=${messageList.send_idx }">
+			    		<td style="width: 35%; padding-top: 21px;">
+			    			<a href="getSendMessage.do?send_idx=${messageList.send_idx }">
 								${messageList.send_title }
 							</a>
 						</td> 

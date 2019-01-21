@@ -366,7 +366,7 @@ var receive_receiver =$("#receive_receiver").val();
                <select id="condition" name="searchCondition">         
                   <option value="find_travler">여행자검색
                   <option value="find_host">호스트검색
-                  <option value="find_event">이벤트검색
+                  <option value="find_event" selected="selected">이벤트검색
                   <option value="find_advice">현지정보검색
                </select>
                
@@ -440,7 +440,7 @@ var receive_receiver =$("#receive_receiver").val();
       	<img src="views/img/star.jpg" style="width: 40px; height: 40px;"><span style="font-size: 1.2em; font-weight: bold;">이벤트 검색 게시판</span>
       	<h6>요청하신 키워드에 관한 게시글 수 : ${countEvent }</h6>
       	
-      	<div id="map" style="width:760px;height:400px;margin-top:20px;"></div>
+      	<div id="map" style="width:760px;height:400px;margin-top:20px;margin:auto;"></div>
       	<br>
       	<form method="post" name="frm">
       	<table class="table">
@@ -452,7 +452,8 @@ var receive_receiver =$("#receive_receiver").val();
 	      	</c:when>                    
 	      	<c:otherwise>
       		<c:forEach var="list" items="${eventList}">
-	      		<tr>	      			
+	      		<tr>
+	      			<th><img src="/views/img/administrator.png" alt="Card image" style="width:30px; height: 30px; border-radius: 50%;"></th>
 	      			<th style="width: 40%">
 	      				<fmt:formatDate var="startdate" value="${list.e_startdate}" pattern="yyyy-MM-dd E요일"/>
 	      				<fmt:formatDate var="enddate" value="${list.e_enddate}" pattern="yyyy-MM-dd E요일"/>

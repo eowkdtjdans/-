@@ -151,7 +151,6 @@ $(function(){
 
 
 function sendMessage(m_id){
-	alert("왓다!");
    location.href="/insertHostMessage.do?message_receiver="+m_id;
 }
 </script>
@@ -262,7 +261,7 @@ function sendMessage(m_id){
 			</div>
 		</li>
 	
-		<li class="menu-has-children"><img src="${getProfileImageRoute.p_route }" style="width: 45px; height: 45px;" class="rounded-circle" id="navProfileImg"></a>
+		<li class="menu-has-children"><img src="${profile.p_route }" style="width: 45px; height: 45px;" class="rounded-circle" id="navProfileImg"></a>
           <ul>                                      
             <li><a  href="../../myProfile.do" >마이 프로필</a></li> 
             <li><a href="../../logoutMember.do">로그아웃</a></li>            
@@ -337,6 +336,7 @@ function sendMessage(m_id){
 								  
 								<tr>
 									<td colspan="3" style="text-align: right;">
+										<input type="button" value="목록으로" class="btn btn-outline-secondary " onclick="location.href='getReceiveMessageList.do'">
 										<input type="button" value="쪽지 보내기" class="btn btn-outline-secondary" onclick='sendMessage("${message.receive_sender}")'>
 										<input type="button" value="쪽지삭제" class="btn btn-outline-secondary" onclick="location.href='deleteReceiveMessage.do?receive_idx=${message.receive_idx }'">
 									</td>
@@ -354,7 +354,7 @@ function sendMessage(m_id){
 	             
 
 					
-							
+							  
 			</div> 
 		</div>
 	</div> 

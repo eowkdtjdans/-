@@ -88,8 +88,6 @@ public class SubController {
 		System.out.println("m_id : " + m_id );
 		if (m_id != null) {
 			ProfileImageVO getProfileImageRoute = profileImageService.getProfileImageRoute(m_id);
-			System.out.println("getProfileImageRoute : " + getProfileImageRoute);
-			//model.addAttribute("getProfileImageRoute", getProfileImageRoute);
 			session.setAttribute("getProfileImageRoute", getProfileImageRoute);
 		}
 		

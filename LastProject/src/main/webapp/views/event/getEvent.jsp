@@ -422,7 +422,12 @@ table .noline {
 /*     $(".close").click(function(){
     	$('#myModal').modal('hide')
 	}); */
- 
+	
+	    $(function(){
+    	if(!($("#thumbnail").length > 0)) {
+    		$("#thumbnailDiv").append("<img src='/views/img/noImg.png' style='width: 420px; height: 300px;' class='img-thumbnail'>");
+    	}
+    }) 
 </script>
 </head>
 
@@ -448,7 +453,7 @@ table .noline {
                <select id="condition" name="searchCondition">         
                   <option value="find_travler">여행자검색
                   <option value="find_host">호스트검색
-                  <option value="find_event">이벤트검색
+                  <option value="find_event" selected="selected">이벤트검색
                   <option value="find_advice">현지정보검색
                </select>
                
@@ -555,16 +560,18 @@ table .noline {
             
             <div class="container show-grid">			    
 			    <div class="row">
-			      <div class="col-md-6" style="text-align: center">
+			      <div class="col-md-6" style="text-align: center" id="thumbnailDiv">
 				      <c:forEach var="list" items="${getEventImageList }">
 				      <c:if test="${list.e_main eq 1}">
-			  	  		<span><img src="${list.e_img }" style="width: 420px; height: 300px;" class="img-thumbnail"></span>
+			  	  		<span><img src="${list.e_img }" style="width: 420px; height: 300px;" class="img-thumbnail" id="thumbnail"></span>
 		  	  		  </c:if>
 					  </c:forEach>
 			  	  	  <br>
 					  <!-- <button type="button" class="btn btn-outline-secondary" onclick="imagemodal()">사진 더보기</button> -->
+					  <c:if test="${list ne null}">
 					  <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#myModal">사진 더보기</button>
-					
+					  </c:if>
+					  
 			      </div>
 			      
 			      <fmt:formatDate var="startdate" value="${getEvent.e_startdate}" pattern="yyyy-MM-dd E요일"/>
@@ -733,5 +740,5 @@ table .noline {
   
    
 
-   </body>
+   </body> 
 </html>

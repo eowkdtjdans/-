@@ -67,13 +67,14 @@ public class MessageVO {
 	public void setMessage_enddate(Date message_enddate) {
 		this.message_enddate = message_enddate;
 	}
-	@Override
-	public String toString() {
-		return "MessageVO [message_idx=" + message_idx + ", message_sender=" + message_sender + ", message_receiver="
-				+ message_receiver + ", message_title=" + message_title + ", message_content=" + message_content
-				+ ", message_read=" + message_read + ", message_regdate=" + message_regdate + ", message_startdate="
-				+ message_startdate + ", message_enddate=" + message_enddate + "]";
-	}
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

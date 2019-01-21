@@ -102,30 +102,30 @@ table .noline {
         margin-top: -30px;
    }
    #header {
-        background-color: 	white;
+        background-color:    white;
    }
    #header.header-scrolled {
         background-color: white;
    }
    
    .nav-menu li a{
-   	color: black;
-   }	
+      color: black;
+   }   
    #mainLogo{
-   	color: black;
-   	position: absolute;
-   	margin-left: 80px;
-   	margin-top: -10px;
-   	font-size: 2.15em;
+      color: black;
+      position: absolute;
+      margin-left: 80px;
+      margin-top: -10px;
+      font-size: 2.15em;
    }
    #happy{
-   	position: absolute;
-   	margin-left: 20px;
-   	margin-top: -20px;
+      position: absolute;
+      margin-left: 20px;
+      margin-top: -20px;
    }
    #navProfileImg{
-   	position: relative;
-   	margin-top: -10px;
+      position: relative;
+      margin-top: -10px;
    }
    
 
@@ -140,17 +140,17 @@ select {
 }
 
 #autocomplete {
-	width: 50%; 
-	border: 1px solid #999; 
-	border-radius: 30px; 
-	padding: .3em .3em;
-	
+   width: 50%; 
+   border: 1px solid #999; 
+   border-radius: 30px; 
+   padding: .3em .3em;
+   
 }
 #advice{
-	width: 50%; 
-	border: 1px solid #999; 
-	border-radius: 30px; 
-	padding: .3em .3em;
+   width: 50%; 
+   border: 1px solid #999; 
+   border-radius: 30px; 
+   padding: .3em .3em;
 }
 
 </style>
@@ -173,14 +173,14 @@ select {
    }
    
    function deleteLocalAdvice(l_idx){
-	   var con_test = confirm("정말 삭제하시겠습니까?");
-	   	if(con_test == true) {
-	   		location.href="../deleteLocalAdvice.do?l_idx="+l_idx
-	   	} else{
-	   		return false;
-	   	}
-	   
-	   
+      var con_test = confirm("정말 삭제하시겠습니까?");
+         if(con_test == true) {
+            location.href="../deleteLocalAdvice.do?l_idx="+l_idx
+         } else{
+            return false;
+         }
+      
+      
    } 
    
 
@@ -232,7 +232,7 @@ select {
 
       } else {
          $("#" + "${focus_idx}").attr("tabindex", -1).focus();
-		<%session.removeAttribute("focus_idx");%>
+      <%session.removeAttribute("focus_idx");%>
    }
 
    });
@@ -266,7 +266,7 @@ select {
       var good = ${getLocalAdvice.l_upvote};
       var l_idx = "${getLocalAdvice.l_idx}";
      
-      	$.ajax({
+         $.ajax({
                async : true,
                type : "POST",
                dataType : "json",
@@ -279,8 +279,8 @@ select {
                   $("#span").empty();
                   $("#span").text(good + data.count + " 명이 좋아합니다.");
                   $("#span").append("&emsp;<a id='bad' href='#' onclick='bad()'><img src='views/img/good.png' style='width: 20px; height: 20px;'> 좋아요취소</a>");
-               	}
-           	 })
+                  }
+               })
    };
 
    
@@ -307,8 +307,8 @@ select {
    }
 
    function detdetgo(lc_idx, p_route, lc_date) {
-		var p_route = String(p_route);
-				
+      var p_route = String(p_route);
+            
       var textareaTag = "&emsp;&emsp;<div id='div"+lc_idx+"'><img id='bentarrow' src='views/img/bentarrow.png'><textarea class='textareaComment' id='textareaComment" + lc_idx + "' rows='3' cols='134' name='lc_content'></textarea>"+ "&emsp;&emsp;<button type='button' class='btn btn-outline-secondary' id='detdetgo2' onclick='json_insertComment("+ lc_idx +",\""+lc_date+"\")'>댓글입력</div>";
       $("#" + lc_idx).append(textareaTag);
 
@@ -325,12 +325,12 @@ select {
 
    
    function json_insertComment(lc_idx, lc_date) {    
-      var lc_content = $("#textareaComment" + lc_idx).val();	
+      var lc_content = $("#textareaComment" + lc_idx).val();   
       var lc_idx = JSON.stringify(lc_idx);
       var l_idx = ${getLocalAdvice.l_idx };
     
       if(lc_content== ""){
-    	  alert("내용을 입력해주세요");
+         alert("내용을 입력해주세요");
       }else {
       
       
@@ -344,113 +344,113 @@ select {
 
                success : function(data) {                 
                   var values = data.selectdetdetComment; 
-				 				  
-				  $("#detdetgobtn"+lc_idx).show();				 
-			      $("#btn1"+lc_idx+"").attr('disabled',false);
-			      $("#btn2"+lc_idx+"").attr('disabled',false);				  
+                           
+              $("#detdetgobtn"+lc_idx).show();             
+               $("#btn1"+lc_idx+"").attr('disabled',false);
+               $("#btn2"+lc_idx+"").attr('disabled',false);              
                   $("#div"+lc_idx).remove();                                                                              // onerror="this.src="../views img people fuckyou.jpg'' 크롬에 나온거
                                                                                                                           // onerror='this.src="../views/img/people/fuckyou.jpg"' 정상         
                   //var detdetDiv = "<tr><td>&emsp;&emsp;<img src='${list.p_route }' class='rounded-circle' id='profileImage3' onerror='this.src='../views/img/people/fuckyou.jpg''>${list.m_id}${list.p_route}<br>&emsp;&emsp;"+value.lc_content+"</td></tr>"; '${list.m_id eq member.m_id}'
                   var detdetDiv = "<tr class='trclass"+lc_idx+"'><td class='tdclass"+data.detdetlc_idx+"'>&emsp;&emsp;<img src="+data.p_route+" class='rounded-circle' id='profileImage3' onerror='this.src='../views/img/people/fuckyou.jpg'>&nbsp;&nbsp;"+data.m_id+"&emsp;"+lc_date+"&emsp;<button type='button' class='btn btn-outline-secondary btn-sm' onclick='updatedetdet("+data.detdetlc_idx+", "+lc_idx+")'>수정</button>&nbsp;<button type='button' class='btn btn-outline-secondary btn-sm'onclick='deletedetdet("+data.detdetlc_idx+")'>삭제</button><br>&emsp;&emsp;"+lc_content+"</td></tr>";
-                  		                 			
-                  		$(".trclass"+lc_idx).last().after(detdetDiv);
-					
-					
+                                                  
+                        $(".trclass"+lc_idx).last().after(detdetDiv);
+               
+               
                }
             })
    }
    }
    
    
-	function updatedetdet(detdetlc_idx, detdet){
-		var detdetlc_idx = JSON.stringify(detdetlc_idx);
-				      
-	     $.ajax({
-	           async : true,
-	           type : "POST",
-	           dataType : "json",
-	           data : detdetlc_idx,  //618
-	           contentType : "application/json; charset=UTF-8",
-	           url : "/updatedetdet.do",
+   function updatedetdet(detdetlc_idx, detdet){
+      var detdetlc_idx = JSON.stringify(detdetlc_idx);
+                  
+        $.ajax({
+              async : true,
+              type : "POST",
+              dataType : "json",
+              data : detdetlc_idx,  //618
+              contentType : "application/json; charset=UTF-8",
+              url : "/updatedetdet.do",
 
-	           success : function(detdetList) {
+              success : function(detdetList) {
 
-				   $(".tdclass"+detdetlc_idx).empty();  //"&emsp;&emsp;<img src="+detdetList.p_route+" class='rounded-circle' id='profileImage3' onerror='this.src='../views/img/people/fuckyou.jpg'>"+detdetList.m_id+"<button type='button' class='btn btn-outline-secondary' onclick='updatedetdetgo("+data.detdetlc_idx+", "+lc_idx+")'>수정완료</button><button type='button' class='btn btn-outline-secondary'onclick='deletedetdet("+data.detdetlc_idx+")'>삭제</button><br>&emsp;&emsp;"+detdetList.lc_content+"
-				   $(".tdclass"+detdetlc_idx).append("&emsp;&emsp;<img src="+detdetList.p_route+" class='rounded-circle' id='profileImage3' onerror='this.src=\"../views/img/people/fuckyou.jpg\"'>&nbsp;"+detdetList.m_id+"&emsp;<button type='button' class='btn btn-outline-secondary btn-sm' onclick='updatedetdetgo("+detdetList.lc_idx+")'>수정완료</button>&nbsp;<button type='button' class='btn btn-outline-secondary btn-sm'onclick='deletedetdet("+detdetList.lc_idx+")'>삭제</button><br>&emsp;&emsp;<textarea id='textarea" + detdetList.lc_idx + "'  rows='3' cols='134' name='lc_content'>"+detdetList.lc_content+"</textarea></td>");
-				  // $(".tdclass"+detdetlc_idx).append("&emsp;&emsp;<img src="+detdetList.p_route+" class='rounded-circle' id='profileImage3' onerror='this.src=\"../views/img/people/fuckyou.jpg\"'>"+detdetList.m_id+"<button type='button' class='btn btn-outline-secondary' onclick='updatedetdetgo("+detdetList.lc_idx+")'>수정완료</button>");
-				 
-	           }
-	        }) 		 		
-	}
-	
-	
-	
-	function updatedetdetgo(detdetlc_idx){
-		var lc_content = $("#textarea"+detdetlc_idx).val();		
-		var detdetlc_idx = JSON.stringify(detdetlc_idx);
-		
-		$.ajax({
-	           async : true,
-	           type : "POST",
-	           dataType : "json",
-	           data : detdetlc_idx,
-	           contentType : "application/json; charset=UTF-8",
-	           url : "/updatedetdetgo.do?lc_content="+lc_content,
+               $(".tdclass"+detdetlc_idx).empty();  //"&emsp;&emsp;<img src="+detdetList.p_route+" class='rounded-circle' id='profileImage3' onerror='this.src='../views/img/people/fuckyou.jpg'>"+detdetList.m_id+"<button type='button' class='btn btn-outline-secondary' onclick='updatedetdetgo("+data.detdetlc_idx+", "+lc_idx+")'>수정완료</button><button type='button' class='btn btn-outline-secondary'onclick='deletedetdet("+data.detdetlc_idx+")'>삭제</button><br>&emsp;&emsp;"+detdetList.lc_content+"
+               $(".tdclass"+detdetlc_idx).append("&emsp;&emsp;<img src="+detdetList.p_route+" class='rounded-circle' id='profileImage3' onerror='this.src=\"../views/img/people/fuckyou.jpg\"'>&nbsp;"+detdetList.m_id+"&emsp;<button type='button' class='btn btn-outline-secondary btn-sm' onclick='updatedetdetgo("+detdetList.lc_idx+")'>수정완료</button>&nbsp;<button type='button' class='btn btn-outline-secondary btn-sm'onclick='deletedetdet("+detdetList.lc_idx+")'>삭제</button><br>&emsp;&emsp;<textarea id='textarea" + detdetList.lc_idx + "'  rows='3' cols='134' name='lc_content'>"+detdetList.lc_content+"</textarea></td>");
+              // $(".tdclass"+detdetlc_idx).append("&emsp;&emsp;<img src="+detdetList.p_route+" class='rounded-circle' id='profileImage3' onerror='this.src=\"../views/img/people/fuckyou.jpg\"'>"+detdetList.m_id+"<button type='button' class='btn btn-outline-secondary' onclick='updatedetdetgo("+detdetList.lc_idx+")'>수정완료</button>");
+             
+              }
+           })              
+   }
+   
+   
+   
+   function updatedetdetgo(detdetlc_idx){
+      var lc_content = $("#textarea"+detdetlc_idx).val();      
+      var detdetlc_idx = JSON.stringify(detdetlc_idx);
+      
+      $.ajax({
+              async : true,
+              type : "POST",
+              dataType : "json",
+              data : detdetlc_idx,
+              contentType : "application/json; charset=UTF-8",
+              url : "/updatedetdetgo.do?lc_content="+lc_content,
 
-	           success : function(data) {
-	        					   
-				   $(".tdclass"+detdetlc_idx).empty();                                                                                
-				   $(".tdclass"+detdetlc_idx).append("&emsp;&emsp;<img src="+data.p_route+" class='rounded-circle' id='profileImage3' onerror='this.src=\"/views/img/people/fuckyou.jpg\"'>&nbsp;"+data.m_id+"&emsp;"+data.lc_date+"&emsp;<button type='button' class='btn btn-outline-secondary btn-sm' onclick='updatedetdet("+data.lc_idx+","+data.detdet+")'>수정</button>&nbsp;<button type='button' class='btn btn-outline-secondary btn-sm' onclick='deletedetdet("+data.lc_idx+")'>삭제</button><br>&emsp;&emsp;"+data.lc_content+"      ");
-	           }
-	        }) 		 	
-		
-	}
-	
-	
-	function deletedetdet(detdetlc_idx){
-		var detdetlc_idx = JSON.stringify(detdetlc_idx);
-		
-		$.ajax({
-	           async : true,
-	           type : "POST",
-	           dataType : "json",
-	           data : detdetlc_idx,
-	           contentType : "application/json; charset=UTF-8",
-	           url : "/deletedetdetgo.do",
+              success : function(data) {
+                             
+               $(".tdclass"+detdetlc_idx).empty();                                                                                
+               $(".tdclass"+detdetlc_idx).append("&emsp;&emsp;<img src="+data.p_route+" class='rounded-circle' id='profileImage3' onerror='this.src=\"/views/img/people/fuckyou.jpg\"'>&nbsp;"+data.m_id+"&emsp;"+data.lc_date+"&emsp;<button type='button' class='btn btn-outline-secondary btn-sm' onclick='updatedetdet("+data.lc_idx+","+data.detdet+")'>수정</button>&nbsp;<button type='button' class='btn btn-outline-secondary btn-sm' onclick='deletedetdet("+data.lc_idx+")'>삭제</button><br>&emsp;&emsp;"+data.lc_content+"      ");
+              }
+           })           
+      
+   }
+   
+   
+   function deletedetdet(detdetlc_idx){
+      var detdetlc_idx = JSON.stringify(detdetlc_idx);
+      
+      $.ajax({
+              async : true,
+              type : "POST",
+              dataType : "json",
+              data : detdetlc_idx,
+              contentType : "application/json; charset=UTF-8",
+              url : "/deletedetdetgo.do",
 
-	           success : function(data) {
-	        	   $(".tdclass"+data.detdetlc_idx).remove();
-				 
-	           }
-	        }) 		 	
-		
-	}
+              success : function(data) {
+                 $(".tdclass"+data.detdetlc_idx).remove();
+             
+              }
+           })           
+      
+   }
 
    
-	function noticeMessage() {
-	      var noticeMessage = $("#noticeMessage").serialize();
-	      var receive_receiver =$("#receive_receiver").val();
-	       
-	         $.ajax({
-	         async : true,
-	         type : "POST",
-	         dataType : "json",
-	         data : noticeMessage,
-	         url : "../../noticeMessageJson.do",
-	         success : function(data) {
-	            if (data.cnt > 0) {
-	               $("#noticeMessageCount").append(data.cnt);
-	               $("#noticeMessageCount2").append(data.cnt);
-	               setInteval(function() {
-	                  noticeMessage()
-	               }, 3000);
-	       
-	            }
-	         }
-	         
-	         
-	      });    
-	   }
+   function noticeMessage() {
+         var noticeMessage = $("#noticeMessage").serialize();
+         var receive_receiver =$("#receive_receiver").val();
+          
+            $.ajax({
+            async : true,
+            type : "POST",
+            dataType : "json",
+            data : noticeMessage,
+            url : "../../noticeMessageJson.do",
+            success : function(data) {
+               if (data.cnt > 0) {
+                  $("#noticeMessageCount").append(data.cnt);
+                  $("#noticeMessageCount2").append(data.cnt);
+                  setInteval(function() {
+                     noticeMessage()
+                  }, 3000);
+          
+               }
+            }
+            
+            
+         });    
+      }
 </script>
 
 </head>
@@ -498,49 +498,49 @@ select {
 
          
 <nav id="nav-menu-container">
-	<ul class="nav-menu">
-	
-	<c:if test="${empty member.m_id}">
-		<li><a href="../../loginMember.do" >로그인</a></li>
-		<li><a  href="../../insertMember.do" >회원가입</a></li>
-		<li><a href="../../findIdMember.do">아이디찾기</a></li >
-	    <li><a href="../../findPwdMember.do">비밀번호찾기</a></li>
-	</c:if>	
-	
-	<c:if test="${!empty member.m_id}">
-		<li>
-			<div>
-			<strong>
-			<span style="color: red;">W</span>
-			<span style="color: blue;">e</span>
-			<span style="color: darkviolet;">l</span>
-			<span style="color: #FFC100;">c</span>
-			<span style="color: green;">o</span>
-			<span style="color: orange;">m</span>
-			<span style="color: navy;">e</span>			
-			&nbsp;&nbsp;			
-			${member.m_id } 님 
-			</strong>
-			</div>
-		</li>
-	
-		<li class="menu-has-children"><img src="${getProfileImageRoute.p_route }" style="width: 45px; height: 45px;" class="rounded-circle" id="navProfileImg"></a>
+   <ul class="nav-menu">
+   
+   <c:if test="${empty member.m_id}">
+      <li><a href="../../loginMember.do" >로그인</a></li>
+      <li><a  href="../../insertMember.do" >회원가입</a></li>
+      <li><a href="../../findIdMember.do">아이디찾기</a></li >
+       <li><a href="../../findPwdMember.do">비밀번호찾기</a></li>
+   </c:if>   
+   
+   <c:if test="${!empty member.m_id}">
+      <li>
+         <div>
+         <strong>
+         <span style="color: red;">W</span>
+         <span style="color: blue;">e</span>
+         <span style="color: darkviolet;">l</span>
+         <span style="color: #FFC100;">c</span>
+         <span style="color: green;">o</span>
+         <span style="color: orange;">m</span>
+         <span style="color: navy;">e</span>         
+         &nbsp;&nbsp;         
+         ${member.m_id } 님 
+         </strong>
+         </div>
+      </li>
+   
+      <li class="menu-has-children"><img src="${profile.p_route }" style="width: 45px; height: 45px;" class="rounded-circle" id="navProfileImg"></a>
           <ul>                                      
             <li><a  href="../../myProfile.do" >마이 프로필</a></li> 
             <li><a href="../../logoutMember.do">로그아웃</a></li>            
           </ul> 
         </li>
                
-   		<li>    
+         <li>    
           <span class="fa-layers fa-fw">
            <a href="../../getReceiveMessageList.do">
           <i class="far fa-envelope fa-2x"></i>
           <span class="fa-layers-counter" style="color:red;" id="noticeMessageCount"></span>
           </a>
          </span>
-     	 </li>         
-	</c:if>
-	</ul> 
+         </li>         
+   </c:if>
+   </ul> 
 </nav>               
 <hr>
   </header><!-- #header -->
@@ -552,11 +552,11 @@ select {
     ============================-->
 <br>
       <div class="container">
-      	<img src="views/img/star.jpg" style="width: 40px; height: 40px;"><span style="font-size: 1.2em; font-weight: bold;">현지정보 문의 게시판</span>  	
-      	<hr>
+         <img src="views/img/star.jpg" style="width: 40px; height: 40px;"><span style="font-size: 1.2em; font-weight: bold;">현지정보 문의 게시판</span>     
+         <hr>
          <div class="row from-group">
 
-			
+         
             <div id="tableDiv">
                <table>
                   <tr>
@@ -569,10 +569,15 @@ select {
                   <tr>
                      <td>${getLocalAdvice.m_id}&emsp;&emsp; ${getLocalAdvice.l_date }</td>
                       <td>
-                     	<c:if test="${getLocalAdvice.m_id eq member.m_id }">
-                           <a id="atag-size" href="../updateLocalAdvice.do?l_idx=${getLocalAdvice.l_idx }">&nbsp;수정&nbsp;</a>|                     	   
+                        <c:if test="${getLocalAdvice.m_id eq member.m_id }">
+                           <a id="atag-size" href="../updateLocalAdvice.do?l_idx=${getLocalAdvice.l_idx }">&nbsp;수정&nbsp;</a>|                           
                            <a id="atag-size" href="#" onclick="deleteLocalAdvice('${getLocalAdvice.l_idx }')">삭제</a>          
                         </c:if> 
+                       
+                        <c:if test="${member.m_id eq 'admin' }">
+			             	<a id="atag-size" href="#" onclick="deleteLocalAdvice('${getLocalAdvice.l_idx }')">삭제</a>    
+			             </c:if>
+                       
                      </td>
                   </tr>
                </table>
@@ -583,7 +588,7 @@ select {
                      <br>${getLocalAdvice.l_content }</p>
                </div>
             </div>
-			
+         
 
 
            <c:choose>
@@ -601,7 +606,10 @@ select {
                      style="width: 20px; height: 20px;"> 좋아요!</a>
                </c:otherwise>
             </c:choose>
-
+			 
+			
+			
+			
 
             <!-- 여기서부터 댓글폼 -->
             <form method="post" id="frm">
@@ -657,27 +665,27 @@ select {
                   <input class="btn btn-outline-secondary" type="button"
                      value="댓글등록" onclick="login_chk(this.form)">
                </p>
-            </form>		
+            </form>      
          </div>
       </div>
-	
+   
    <!-- #about -->
    <!--==========================
     Footer
   ============================-->
    <hr class="hr">
     <footer>
-    	<br>   
+       <br>   
         <div class="row">
-        	<div class="col-lg-8 col-md-10 mx-auto">
-        		<p class="text-primary text-center">© GUKBONG WORLD COMPANY. ALL RIGHTS RESERVED.</p>
-        		<p class="copyright text-muted text-center">상호:국봉월드 &nbsp;| &nbsp; 사업자등록번호:123-456-78910[사업자정보확인]  &nbsp;| &nbsp; 대표:방국봉  &nbsp;| &nbsp; TEL:1544-1444 
+           <div class="col-lg-8 col-md-10 mx-auto">
+              <p class="text-primary text-center">© GUKBONG WORLD COMPANY. ALL RIGHTS RESERVED.</p>
+              <p class="copyright text-muted text-center">상호:국봉월드 &nbsp;| &nbsp; 사업자등록번호:123-456-78910[사업자정보확인]  &nbsp;| &nbsp; 대표:방국봉  &nbsp;| &nbsp; TEL:1544-1444 
              <br>FAX:031-123-1234  &nbsp;| &nbsp; 주소:비트캠프 신촌센터  &nbsp; |  &nbsp; E-mail:kz1234@naver.com </p>
-		    <p style="font-size: 0.8em;" class="text-muted text-right">© 1999 - 2019 Couchsurfing International, Inc</p>
-        	</div>	
+          <p style="font-size: 0.8em;" class="text-muted text-right">© 1999 - 2019 Couchsurfing International, Inc</p>
+           </div>   
         </div>
     <br> 
-    </footer>	
+    </footer>   
    <!-- #footer -->
    <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
 
