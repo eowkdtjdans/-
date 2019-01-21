@@ -222,6 +222,7 @@
 	            <a href="../../insertMember.do">회원가입</a>
             </div>
             
+            
          </div> 
          <div class="col-md-4"></div> 
    </div>   

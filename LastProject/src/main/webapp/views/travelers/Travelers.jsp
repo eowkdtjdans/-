@@ -38,7 +38,7 @@
   <link rel="stylesheet" href="/views/datepicker/public/theme/css/themes/t-datepicker-teal.css">
   
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?v=3&sensor=false&libraries=places&callback=initAutocomplete&key=AIzaSyAfB2qQnvAuU2YFFqi8hrPWfjJNyxl5kWc" async defer></script>
+<script src="https://maps.googleapis.com/maps/api/js?v=3&libraries=places&callback=initAutocomplete&key=AIzaSyAfB2qQnvAuU2YFFqi8hrPWfjJNyxl5kWc" async defer></script>
 
     
 <style>
@@ -132,47 +132,95 @@
 		border-radius: 30px; 
 		padding: .3em .3em;
 	}
+	
+	.pac-container {
+    z-index: 1051 !important;
+	}
+	
+	#inTable tr td {
+		border: none;
+	}
     
+    #cardContent {
+    display: inline-block;
+    width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    
+    white-space: normal;
+    line-height: 1.2;
+    height: 3.6em;
+    text-align: center;
+    word-wrap: break-word;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+	}
+	
 </style>
-
-<script src="https://maps.googleapis.com/maps/api/js?v=3&sensor=false&libraries=places&callback=initAutocomplete&key=AIzaSyAfB2qQnvAuU2YFFqi8hrPWfjJNyxl5kWc" async defer></script>
 <script>
 var placeSearch, autocomplete;
-
+var placeSearch2, autocomplete2;
 function initAutocomplete() {
   autocomplete = new google.maps.places.Autocomplete((document.getElementById('autocomplete')),{types: ['geocode']});
   autocomplete.addListener('place_changed', fillInAddress);
+  
+  autocomplete2 = new google.maps.places.Autocomplete((document.getElementById('autocomplete2')),{types: ['geocode']});
+  autocomplete2.addListener('place_changed', fillInAddress);
 }
-
 function fillInAddress() { //lat 와 lng 값을 넘겨줄 input 태그에 값 넣어주기
-  var place = autocomplete.getPlace();
-    document.getElementById("lat").value=place.geometry.location.lat();
-    document.getElementById("lng").value=place.geometry.location.lng();
+   var place = autocomplete.getPlace();
+   document.getElementById("lat").value=place.geometry.location.lat();
+   document.getElementById("lng").value=place.geometry.location.lng();
+   
+   var place2 = autocomplete.getPlace();
+   document.getElementById("lat2").value=place2.geometry.location.lat();
+   document.getElementById("lng2").value=place2.geometry.location.lng();
 }
-
+</script>
+<script>
 function sendMessage(m_id){
    location.href="../insertTrevelersMessage.do?message_receiver="+m_id;
 }
 
 function insertTravelers(frm) {
-    var str = $("#form").serialize();
-    alert(str);
-     $.ajax({
-      async : true,
-      type : "POST",
-      dataType : "json",
-      data : str,
-      url : "../../checkTravelersJson.do",
-      success : function(data) {
-         if (data.cnt == 0) {
-      		frm.action = "../../insertTravelers.do";
-            frm.submit(); 
-          } else {
-       	  	frm.action = "../../updateTravelers.do";
-            frm.submit();
-         }
-      } 
-   });  
+	if (frm.t_country.value == "" || frm.t_country.value == null) {
+		alert("방문하실 국가를 기입하세요.");
+		frm.t_country.value = ""; 
+		frm.t_country.focus();
+	} else if (frm.t_startdate.value == "" || frm.t_startdate.value == null) {
+		alert("입실일을 선택해주세요.");
+		frm.t_startdate.value = ""; 
+		frm.t_startdate.focus();
+	} else if (frm.t_enddate.value == "" || frm.t_enddate.value == null) {
+		alert("퇴실일을 선택해주세요");
+		frm.t_enddate.value = ""; 
+		frm.t_enddate.focus();
+	} else if (frm.t_motive.value == "" || frm.t_motive.value == null) {
+		alert("여행동기를 작성해주세요");
+		frm.t_motive.value = ""; 
+		frm.t_motive.focus();
+	} else {
+		var str = $("#form").serialize();
+	     $.ajax({
+	      async : true,
+	      type : "POST",
+	      dataType : "json",
+	      data : str,
+	      url : "../../checkTravelersJson.do",
+	      success : function(data) {
+	         if (data.cnt == 0) {
+	      		frm.action = "../../insertTravelers.do";
+	            frm.submit(); 
+	          } else {
+	       	  	frm.action = "../../updateTravelers.do";
+	            frm.submit();
+	         }
+	      } 
+	   });
+	}
+	
 };
 
 function deleteTravelers(m_id) {
@@ -243,6 +291,13 @@ $(function(){
 	   })
 	   
 	})
+	
+$(document).on("click", "#insertTravelersBtn", function(){
+	if("${member.m_id}" == null || "${member.m_id}" == "") {
+		alert("로그인이 필요한 서비스입니다.");
+		location.href="/loginMember.do";
+	}
+});
 
 function noticeMessage() {
    var noticeMessage = $("#noticeMessage").serialize();
@@ -268,6 +323,7 @@ function noticeMessage() {
       
    });    
 }
+
 
 </script>
  
@@ -363,9 +419,10 @@ function noticeMessage() {
    <!--==========================
       About Us Section
     ============================-->    
-<section id="about">
+<section>
+	  <br>
       <div class="container">
-         <h2><strong>Find Travelers</strong></h2>
+         <h2><strong>여행자 검색 게시판</strong></h2>
          
          <h5>요청하신 키워드에 관한 게시글 수 : ${countTravelers }</h5>
          
@@ -385,14 +442,16 @@ function noticeMessage() {
             <c:forEach var="list" items="${travelersList}">
    
                <input type="hidden" name="m_id" value="${list.m_id }" id="m_id" />
-               <span class="card" style="width:200px; height: 500px; margin : auto; text-align: center;">
-                <img class="card-img-top" src="${list.p_route}" alt="Card image" style="width:200px; height: 200px;">
+               <span class="card" style="width:221px; height: 460px; margin : auto; text-align: center;">
+                <img class="card-img-top" src="${list.p_route}" alt="Card image" style="width:100%; height: 210px;">
                 <span class="card-body">
                   <h6 class="card-title">${list.m_id}</h6>
                   <hr />
-                  <p class="card-text">${list.t_country}</p>
-                  <hr />                  
-                  <button type="button" class="btn btn-light" data-toggle="modal" data-target="#myModal${list.m_id }">See Profile</button>
+                  <div id="cardContent">
+                  	<p class="card-text">${list.t_country}</p>
+                  </div>
+                  <hr>
+                  <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#myModal${list.m_id }">여행자 상세보기</button>
                 </span> 
              </span>
             </c:forEach>
@@ -446,7 +505,7 @@ function noticeMessage() {
                   </li>
                </c:otherwise>
             </c:choose>
-               <li><button type="button" id="insertTravelersBtn" class="btn btn-outline-secondary" data-toggle="modal" data-target="#insertModal">글작성</button></li>
+               <li><button type="button" id="insertTravelersBtn" class="btn btn-outline-secondary" data-toggle="modal" data-target="#insertModal">여행객 등록</button></li>
                      
             </ol>
          </td>
@@ -503,33 +562,60 @@ function noticeMessage() {
         </div>
         
         <!-- Modal body -->
-        <div class="modal-body">
+        <div class="modal-body" style="padding-top: 0px;">
+          <table class="table" id="inTable">
+          	<tr class="text-center">
+          		<td rowspan="8" width="40%;"><img class="rounded" style="width: 200px; height: 200px; margin-top: 50px;" src="${list.p_route }"></td>
+          	</tr>
+          	<tr class="text-center">
+          		<td width="20%;" style="vertical-align: middle;">여행 목적지</td>
+          		<td width="80%;">${list.t_country}</td>
+          	</tr>
+          	<tr class="text-center">
+          		<td style="vertical-align: middle;">입실일자</td>
+          		<td>${list.t_startdate}</td>
+          	</tr>
+          	<tr class="text-center">
+          		<td style="vertical-align: middle;">퇴실일자</td>
+          		<td>${list.t_enddate}</td>
+          	</tr>
+          	<tr class="text-center">
+          		<td style="vertical-align: middle;">방문인원</td>
+          		<td>${list.t_visits}명</td>
+          	</tr>
+          	<tr class="text-center">
+          		<td style="vertical-align: middle;">취미</td>
+          		<td>${list.p_hobby }</td>
+          	</tr>
+          	<tr class="text-center">
+          		<td style="vertical-align: middle;">직업</td>
+          		<td>${list.p_job}</td>
+          	</tr>
+          	<tr class="text-center">
+          		<td style="vertical-align: middle;">사용언어</td>
+          		<td>${list.p_language}</td>
+          	</tr>
+          </table>
           <table class="table">
-             <tr class="text-center">
-                <td><img class="rounded" style="width: 200px; height: 200px; margin-top: 50px;" src="${list.p_route }"></td>
-                <td>주소<br><br>StartDate<br><br>EndDate<br><br>방문인원<br><br>취미<br><br>직업<br><br>사용언어</td>
-                <td>${list.t_country }<br><br>${list.t_startdate }<br><br>${list.t_enddate }<br><br>${list.t_visits } 명<br><br>${list.p_hobby }<br><br>${list.p_job }<br><br>${list.p_language }</td>
-             </tr>
-             <tr class="text-center">
-                <td>사이트 방문목적</td>
+             <tr class="text-center" style="width: 40%;">
+                <td width="30%;" style="text-align: center; vertical-align: middle;">사이트 방문목적</td>
                 <td colspan="2">${list.p_purpose }</td>
              </tr>
              <tr class="text-center">
-                <td>자기소개</td>
+                <td style="text-align: center; vertical-align: middle;">자기소개</td>
                 <td colspan="2">${list.p_aboutme }</td>
              </tr>
              <tr class="text-center">
-                <td>[${list.t_country }] 방문동기</td>
+                <td style="text-align: center; vertical-align: middle;">방문동기</td>
                 <td colspan="2">${list.t_motive }</td>
              </tr>
-             
           </table>
         </div>
 
         <!-- Modal footer -->
         <div class="modal-footer">
         <form name="frm">                                                           <!-- onclick="../insertMessage.do?message_receiver=${list.m_id}" -->
-          <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" onclick='sendMessage("${list.m_id}")'>Send Message</button>
+          <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" onclick='sendMessage("${list.m_id}")'>숙박제의</button>
         </form>   
         <c:if test="${list.m_id eq member.m_id}">
           <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" onclick='deleteTravelers("${list.m_id}")'>등록해제</button>
@@ -562,9 +648,11 @@ function noticeMessage() {
             <div class="col-md-12">
               <form method="POST" id="form">
                     <div class="form-group row">
-                         <label for="h_rule" class="col-4 col-form-label">방문국가</label> 
-                         <div class="col-8">
-                            <input id="t_country" class="form-control" name="t_country" value="${key}">${key}
+                         <label for="h_rule" class="col-4 col-form-label">여행 목적지</label>
+                         <div class="col-8" id="locationField">
+                         	<input id="autocomplete2" type="text" class="form-control" name="t_country">
+                         	<input class="field" id="lat2" type="hidden" class="form-control" name="lat"/>
+                            <input class="field" id="lng2" type="hidden" class="form-control" name="lng"/>
                          </div>
                        </div>
                     
@@ -604,7 +692,7 @@ function noticeMessage() {
                               
                        <div class="modal-footer">
                            <div class="form-group m-0">
-                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" onclick="insertTravelers(this.form)">완료</button>
+                        <button type="button" class="btn btn-outline-secondary" onclick="insertTravelers(this.form)">완료</button>
                         <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
                       </div>
                     </div>
@@ -642,7 +730,5 @@ function noticeMessage() {
   <!-- Template Main Javascript File -->
   <script src="/views/js/main.js"></script>
 	
-	<script src="jsModal/placeholders.min.js"></script> <!-- polyfill for the HTML5 placeholder attribute -->
-  <script src="jsModal/main.js"></script> <!-- Resource JavaScript -->
 </body>
 </html>
