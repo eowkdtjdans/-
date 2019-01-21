@@ -46,44 +46,44 @@
   ======================================================= -->
   
 <style>
-	body{
-		padding-top: 75px;
-	}
-	a{
-		color:#5e7e9b;
-	}
-	.paging { list-style: none; }
-	.paging li {
-		float: left;
-		margin-right: 30px;
-	}
-	.paging li a {
-		text-decoration: none;
-		 display: block;
-		padding: 3px 3px; 
-		color: black;
-	}
+   body{
+      padding-top: 75px;
+   }
+   a{
+      color:#5e7e9b;
+   }
+   .paging { list-style: none; }
+   .paging li {
+      float: left;
+      margin-right: 30px;
+   }
+   .paging li a {
+      text-decoration: none;
+       display: block;
+      padding: 3px 3px; 
+      color: black;
+   }
 
-	.paging .disable {
-		padding: 3px 3px;
-		color: silver;
-	}
-	.paging .now {
-		padding: 3px 3px;
-		font-weight: bold;
-	} 
-	#detcnt{
-		color: orange;
-	}
-	#profileImage{
-		width: 40px;
-		height: 40px;
-	}
-	#date{
-		font-size: 0.9em;
-		opacity: 0.6;
-	}
-	.rounded-circle { width: 80px; height: 70px;} 
+   .paging .disable {
+      padding: 3px 3px;
+      color: silver;
+   }
+   .paging .now {
+      padding: 3px 3px;
+      font-weight: bold;
+   } 
+   #detcnt{
+      color: orange;
+   }
+   #profileImage{
+      width: 40px;
+      height: 40px;
+   }
+   #date{
+      font-size: 0.9em;
+      opacity: 0.6;
+   }
+   .rounded-circle { width: 80px; height: 70px;} 
    .card {float : left;}
    
    .scrollto {    
@@ -98,115 +98,115 @@
         margin-top: -30px;
    }
    #header {
-        background-color: 	white;
+        background-color:    white;
    }
    #header.header-scrolled {
         background-color: white;
    }
    
    .nav-menu li a{
-   	color: black;
-   }	
+      color: black;
+   }   
    #mainLogo{
-   	color: black;
-   	position: absolute;
-   	margin-left: 80px;
-   	margin-top: -10px;
-   	font-size: 2.15em;
+      color: black;
+      position: absolute;
+      margin-left: 80px;
+      margin-top: -10px;
+      font-size: 2.15em;
    }
    #happy{
-   	position: absolute;
-   	margin-left: 20px;
-   	margin-top: -20px;
+      position: absolute;
+      margin-left: 20px;
+      margin-top: -20px;
    }  
-	#navProfileImg{
-   	position: relative;
-   	margin-top: -10px;
+   #navProfileImg{
+      position: relative;
+      margin-top: -10px;
    }
-	select {
-	    width: 128px; /* 원하는 너비설정 */
-	    padding: .3em .3em; /* 여백으로 높이 설정 */
-	    font-family: inherit;  /* 폰트 상속 */
-	    border:  1px solid #999; 
-	    border-radius: 30px; /* iOS 둥근모서리 제거 */
-	    -moz-appearance: none;
-	    appearance: none;
-	}
+   select {
+       width: 128px; /* 원하는 너비설정 */
+       padding: .3em .3em; /* 여백으로 높이 설정 */
+       font-family: inherit;  /* 폰트 상속 */
+       border:  1px solid #999; 
+       border-radius: 30px; /* iOS 둥근모서리 제거 */
+       -moz-appearance: none;
+       appearance: none;
+   }
 
-	#autocomplete {
-		width: 50%; 
-		border: 1px solid #999; 
-		border-radius: 30px; 
-		padding: .3em .3em;
-		
-	}
-	#advice{
-		width: 50%; 
-		border: 1px solid #999; 
-		border-radius: 30px; 
-		padding: .3em .3em;
-	}
-	
+   #autocomplete {
+      width: 50%; 
+      border: 1px solid #999; 
+      border-radius: 30px; 
+      padding: .3em .3em;
+      
+   }
+   #advice{
+      width: 50%; 
+      border: 1px solid #999; 
+      border-radius: 30px; 
+      padding: .3em .3em;
+   }
+   
 </style>
 
 <script>
-	
-	//주소를 좌표로 변환
-	var placeSearch, autocomplete;
+   
+   //주소를 좌표로 변환
+   var placeSearch, autocomplete;
 
-	function initAutocomplete() {
-	  autocomplete = new google.maps.places.Autocomplete((document.getElementById('autocomplete')),{types: ['geocode']});
-	  autocomplete.addListener('place_changed', fillInAddress);
-	}
+   function initAutocomplete() {
+     autocomplete = new google.maps.places.Autocomplete((document.getElementById('autocomplete')),{types: ['geocode']});
+     autocomplete.addListener('place_changed', fillInAddress);
+   }
 
-	function fillInAddress() { //lat 와 lng 값을 넘겨줄 input 태그에 값 넣어주기
-	  var place = autocomplete.getPlace();
-	    document.getElementById("lat").value=place.geometry.location.lat();
-	    document.getElementById("lng").value=place.geometry.location.lng();
-	}
-	
-	$(function(){
-		   $("#condition").change(function(){
-		      var condition = $("#condition").val();
-		      
-		      if(condition == "find_advice") {
-		         $("#autocomplete").removeAttr("name");
-		         $("#autocomplete").hide();
-		         $("<input type='text' id='advice' name='searchKeyword'>&nbsp;&nbsp;").insertBefore("#search");
-		      } else {
-		         $("#advice").remove();
-		         $("#autocomplete").show();
-		         $("#autocomplete").attr("name", "searchKeyword");
-		      }
-		   })
-		   
-		})
+   function fillInAddress() { //lat 와 lng 값을 넘겨줄 input 태그에 값 넣어주기
+     var place = autocomplete.getPlace();
+       document.getElementById("lat").value=place.geometry.location.lat();
+       document.getElementById("lng").value=place.geometry.location.lng();
+   }
+   
+   $(function(){
+         $("#condition").change(function(){
+            var condition = $("#condition").val();
+            
+            if(condition == "find_advice") {
+               $("#autocomplete").removeAttr("name");
+               $("#autocomplete").hide();
+               $("<input type='text' id='advice' name='searchKeyword'>&nbsp;&nbsp;").insertBefore("#search");
+            } else {
+               $("#advice").remove();
+               $("#autocomplete").show();
+               $("#autocomplete").attr("name", "searchKeyword");
+            }
+         })
+         
+      })
 
-	function noticeMessage() {
-	var noticeMessage = $("#noticeMessage").serialize();
-	var receive_receiver =$("#receive_receiver").val();
-	 
-	   $.ajax({
-	   async : true,
-	   type : "POST",
-	   dataType : "json",
-	   data : noticeMessage,
-	   url : "../../noticeMessageJson.do",
-	   success : function(data) {
-	      if (data.cnt > 0) {
-	         $("#noticeMessageCount").append(data.cnt);
-	         $("#noticeMessageCount2").append(data.cnt);
-	         setInteval(function() {
-	            noticeMessage()
-	         }, 3000);
-	 
-	      }
-	   }
-	   
-	   
-	});    
-	}	
-	
+   function noticeMessage() {
+   var noticeMessage = $("#noticeMessage").serialize();
+   var receive_receiver =$("#receive_receiver").val();
+    
+      $.ajax({
+      async : true,
+      type : "POST",
+      dataType : "json",
+      data : noticeMessage,
+      url : "../../noticeMessageJson.do",
+      success : function(data) {
+         if (data.cnt > 0) {
+            $("#noticeMessageCount").append(data.cnt);
+            $("#noticeMessageCount2").append(data.cnt);
+            setInteval(function() {
+               noticeMessage()
+            }, 3000);
+    
+         }
+      }
+      
+      
+   });    
+   }   
+   
 </script> 
  
 </head>
@@ -250,48 +250,48 @@
    </form>
    
 <nav id="nav-menu-container">
-	<ul class="nav-menu">
-		<c:if test="${empty member.m_id}">
-		<li><a href="../../loginMember.do" >로그인</a></li>
-		<li><a  href="../../insertMember.do" >회원가입</a></li>
-		<li><a href="../../findIdMember.do">아이디찾기</a></li >
-	    <li><a href="../../findPwdMember.do">비밀번호찾기</a></li>
-	</c:if>	
-	
-	<c:if test="${!empty member.m_id}">
-		<li>
-			<div>
-			<strong>
-			<span style="color: red;">W</span>
-			<span style="color: blue;">e</span>
-			<span style="color: darkviolet;">l</span>
-			<span style="color: #FFC100;">c</span>
-			<span style="color: green;">o</span>
-			<span style="color: orange;">m</span>
-			<span style="color: navy;">e</span>			
-			&nbsp;&nbsp;			
-			${member.m_id } 님 
-			</strong>
-			</div>
-		</li>
-	
-		<li class="menu-has-children"><img src="${getProfileImageRoute.p_route }" style="width: 45px; height: 45px;" class="rounded-circle" id="navProfileImg"></a>
+   <ul class="nav-menu">
+      <c:if test="${empty member.m_id}">
+      <li><a href="../../loginMember.do" >로그인</a></li>
+      <li><a  href="../../insertMember.do" >회원가입</a></li>
+      <li><a href="../../findIdMember.do">아이디찾기</a></li >
+       <li><a href="../../findPwdMember.do">비밀번호찾기</a></li>
+   </c:if>   
+   
+   <c:if test="${!empty member.m_id}">
+      <li>
+         <div>
+         <strong>
+         <span style="color: red;">W</span>
+         <span style="color: blue;">e</span>
+         <span style="color: darkviolet;">l</span>
+         <span style="color: #FFC100;">c</span>
+         <span style="color: green;">o</span>
+         <span style="color: orange;">m</span>
+         <span style="color: navy;">e</span>         
+         &nbsp;&nbsp;         
+         ${member.m_id } 님 
+         </strong>
+         </div>
+      </li>
+   
+      <li class="menu-has-children"><img src="${getProfileImageRoute.p_route }" style="width: 45px; height: 45px;" class="rounded-circle" id="navProfileImg"></a>
           <ul>                                      
             <li><a  href="../../myProfile.do" >마이 프로필</a></li> 
             <li><a href="../../logoutMember.do">로그아웃</a></li>            
           </ul> 
         </li>
                
-   		<li>    
+         <li>    
           <span class="fa-layers fa-fw">
            <a href="../../getReceiveMessageList.do">
           <i class="far fa-envelope fa-2x"></i>
           <span class="fa-layers-counter" style="color:red;" id="noticeMessageCount"></span>
           </a>
          </span>
-     	 </li>         
-	</c:if>
-	</ul> 	
+         </li>         
+   </c:if>
+   </ul>    
 </nav>               
 <hr> 
   </header>
@@ -303,89 +303,89 @@
 
       <div class="container">
       <br>
-      	<img src="views/img/star.jpg" style="width: 40px; height: 40px;"><span style="font-size: 1.2em; font-weight: bold;">현지정보 문의 게시판</span>
-      	<h6>요청하신 키워드에 관한 게시글 수 : ${countLocalAdvice }</h6>
+         <img src="views/img/star.jpg" style="width: 40px; height: 40px;"><span style="font-size: 1.2em; font-weight: bold;">현지정보 문의 게시판</span>
+         <h6>요청하신 키워드에 관한 게시글 수 : ${countLocalAdvice }</h6>
 
-      	<form method="post" name="frm">
-      	<table class="table">
-      	<c:choose>
-	      	<c:when test="${empty localAdviceList}">
-	      			<tr>
-	      				<td>요청하신 도시의 정보가 존재하지 않습니다.</td>
-	      			</tr>
-	      	</c:when>                    
-	      	<c:otherwise>
-      		<c:forEach var="list" items="${localAdviceList}">
-	      		<tr>
-	      			<td style="width: 7%; text-align: center;"><img src="${list.p_route }"
+         <form method="post" name="frm">
+         <table class="table">
+         <c:choose>
+            <c:when test="${empty localAdviceList}">
+                  <tr>
+                     <td>요청하신 도시의 정보가 존재하지 않습니다.</td>
+                  </tr>
+            </c:when>                    
+            <c:otherwise>
+            <c:forEach var="list" items="${localAdviceList}">
+               <tr>
+                  <td style="width: 7%; text-align: center;"><img src="${list.p_route }"
                         class="rounded-circle" id="profileImage"
                         onerror='this.src="../views/img/people/fuckyou.jpg"'></td>
-	      			<th style="width: 63%; font-size: 0.95em;">
-	      				<a href="../getLocalAdvice.do?l_idx=${list.l_idx }&m_id=${list.m_id}&cPage=1">${list.l_subject }</a>&nbsp;&nbsp;<span id="detcnt">[${list.lc_cnt}]</span> &emsp;<span id="date">${list.l_date }</span>
-	      				<br>${list.m_id }
-	      			</th>
-	      			<td style="width:15%; font-size: 0.95em;"> &nbsp;&nbsp;&nbsp;&nbsp; <a id="good" href="#" ><img src="views/img/good.png" style="width: 20px; height: 20px;">  좋아요 ${list.l_upvote }</a> &nbsp;&nbsp;&nbsp;&nbsp; </td>
-	      			<td style="width:15%; font-size: 0.95em;"><img src="views/img/lookup.PNG" style="width: 20px; height: 20px;"> ${list.l_reviewcount }</td>
-	      		</tr>
-      		</c:forEach>
-      		</c:otherwise>     		
-      	</c:choose>	
-      	<!-- ---------------------------------------------------------------- -->
-      	
-      	<tr>
-			<td colspan="3">
-				<ol class="paging">
-				
-				<%--[이전으로]에 대한 사용여부 처리 --%>
-				<c:choose>
-				<%-- 사용불가(disable) : 첫번째 블록인 경우 --%>
-					<c:when test="${pvo.beginPage == 1 }">
-						<li class="disable">◀</li>
-					</c:when>
-				<%--사용가능(enable) : 두번째 이상(첫번째 아닌경우) --%>
-					<c:otherwise>
-						<li>
-							<a href="../getLocalAdviceList2.do?cPage=${pvo.beginPage - 1 }">◀</a>
-						</li>
-					</c:otherwise>	
-				</c:choose>
-				
-				<%-- 블록내에 표시할 페이지 반복처리(시작페이지~끝페이지)--%>
-				<c:forEach var="k" 
-						begin="${pvo.beginPage }" end="${pvo.endPage }">
-				<c:choose>
-					<c:when test="${k == pvo.nowPage }">
-						<li class="now">${k }</li>
-					</c:when>
-					<c:otherwise>
-						<li>
-							<a href="../getLocalAdviceList2.do?cPage=${k }">${k }</a>
-						</li>
-					</c:otherwise>
-				</c:choose>
-				</c:forEach>
-				
-				<%--[다음으로]에 대한 사용여부 처리 --%>
-				<c:choose>	
-					<%--사용불가(disable) : endPage가 전체페이지수 보다 크거나 같으면 --%>
-					<c:when test="${pvo.endPage >= pvo.totalPage }">
-						<li class="disable">▶</li>
-					</c:when>
-					<%--사용가능(enable) --%>
-					<c:otherwise>
-						<li>
-							<a href="../getLocalAdviceList2.do?cPage=${pvo.endPage + 1 }">▶</a>
-						</li>
-					</c:otherwise>
-				</c:choose>
-				</ol>
-			</td>
-      	<td><a href="../writeLocalAdvice.do" class="btn btn-outline-secondary">게시글 작성</a></td>
-		</tr>
-      	
-      	<!-- ---------------------------------------------------------------- -->
-      	</table>
-      	</form>
+                  <th style="width: 63%; font-size: 0.95em;">
+                     <a href="../getLocalAdvice.do?l_idx=${list.l_idx }&m_id=${list.m_id}&cPage=1">${list.l_subject }</a>&nbsp;&nbsp;<span id="detcnt">[${list.lc_cnt}]</span> &emsp;<span id="date">${list.l_date }</span>
+                     <br>${list.m_id }
+                  </th>
+                  <td style="width:15%; font-size: 0.95em;"> &nbsp;&nbsp;&nbsp;&nbsp; <a id="good" href="#" ><img src="views/img/good.png" style="width: 20px; height: 20px;">  좋아요 ${list.l_upvote }</a> &nbsp;&nbsp;&nbsp;&nbsp; </td>
+                  <td style="width:15%; font-size: 0.95em;"><img src="views/img/lookup.PNG" style="width: 20px; height: 20px;"> ${list.l_reviewcount }</td>
+               </tr>
+            </c:forEach>
+            </c:otherwise>           
+         </c:choose>   
+         <!-- ---------------------------------------------------------------- -->
+         
+         <tr>
+         <td colspan="3">
+            <ol class="paging">
+            
+            <%--[이전으로]에 대한 사용여부 처리 --%>
+            <c:choose>
+            <%-- 사용불가(disable) : 첫번째 블록인 경우 --%>
+               <c:when test="${pvo.beginPage == 1 }">
+                  <li class="disable">◀</li>
+               </c:when>
+            <%--사용가능(enable) : 두번째 이상(첫번째 아닌경우) --%>
+               <c:otherwise>
+                  <li>
+                     <a href="../getLocalAdviceList2.do?cPage=${pvo.beginPage - 1 }">◀</a>
+                  </li>
+               </c:otherwise>   
+            </c:choose>
+            
+            <%-- 블록내에 표시할 페이지 반복처리(시작페이지~끝페이지)--%>
+            <c:forEach var="k" 
+                  begin="${pvo.beginPage }" end="${pvo.endPage }">
+            <c:choose>
+               <c:when test="${k == pvo.nowPage }">
+                  <li class="now">${k }</li>
+               </c:when>
+               <c:otherwise>
+                  <li>
+                     <a href="../getLocalAdviceList2.do?cPage=${k }">${k }</a>
+                  </li>
+               </c:otherwise>
+            </c:choose>
+            </c:forEach>
+            
+            <%--[다음으로]에 대한 사용여부 처리 --%>
+            <c:choose>   
+               <%--사용불가(disable) : endPage가 전체페이지수 보다 크거나 같으면 --%>
+               <c:when test="${pvo.endPage >= pvo.totalPage }">
+                  <li class="disable">▶</li>
+               </c:when>
+               <%--사용가능(enable) --%>
+               <c:otherwise>
+                  <li>
+                     <a href="../getLocalAdviceList2.do?cPage=${pvo.endPage + 1 }">▶</a>
+                  </li>
+               </c:otherwise>
+            </c:choose>
+            </ol>
+         </td>
+         <td><a href="../writeLocalAdvice.do" class="btn btn-outline-secondary">게시글 작성</a></td>
+      </tr>
+         
+         <!-- ---------------------------------------------------------------- -->
+         </table>
+         </form>
       </div>
 
 
@@ -396,18 +396,18 @@
     Footer
   ============================-->
   <hr class="hr">
-	<footer>
-    	<br>   
+   <footer>
+       <br>   
         <div class="row">
-        	<div class="col-lg-8 col-md-10 mx-auto">
-        		<p class="text-primary text-center">© GUKBONG WORLD COMPANY. ALL RIGHTS RESERVED.</p>
-        		<p class="copyright text-muted text-center">상호:국봉월드 &nbsp;| &nbsp; 사업자등록번호:123-456-78910[사업자정보확인]  &nbsp;| &nbsp; 대표:방국봉  &nbsp;| &nbsp; TEL:1544-1444 
+           <div class="col-lg-8 col-md-10 mx-auto">
+              <p class="text-primary text-center">© GUKBONG WORLD COMPANY. ALL RIGHTS RESERVED.</p>
+              <p class="copyright text-muted text-center">상호:국봉월드 &nbsp;| &nbsp; 사업자등록번호:123-456-78910[사업자정보확인]  &nbsp;| &nbsp; 대표:방국봉  &nbsp;| &nbsp; TEL:1544-1444 
              <br>FAX:031-123-1234  &nbsp;| &nbsp; 주소:비트캠프 신촌센터  &nbsp; |  &nbsp; E-mail:kz1234@naver.com </p>
-		    <p style="font-size: 0.8em;" class="text-muted text-right">© 1999 - 2019 Couchsurfing International, Inc</p>
-        	</div>	
+          <p style="font-size: 0.8em;" class="text-muted text-right">© 1999 - 2019 Couchsurfing International, Inc</p>
+           </div>   
         </div>
     <br> 
-    </footer>	
+    </footer>   
 
   <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
 

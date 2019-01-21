@@ -346,7 +346,7 @@ function noticeMessage() {
          <tr>
             <td id="td1">             
                <select id="condition" name="searchCondition">         
-                  <option value="find_travler">여행자검색
+                  <option value="find_travler" selected="selected">여행자검색
                   <option value="find_host">호스트검색
                   <option value="find_event">이벤트검색
                   <option value="find_advice">현지정보검색

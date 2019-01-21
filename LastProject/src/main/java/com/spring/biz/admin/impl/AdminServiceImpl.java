@@ -13,6 +13,7 @@ import com.spring.biz.admin.UserAdminPostVO;
 import com.spring.biz.admin.UserAdminViewVO;
 import com.spring.biz.admin.logLoginVO;
 import com.spring.biz.event.EventVO;
+import com.spring.biz.localAdvice.LocalAdviceVO;
 import com.spring.biz.member.MemberVO;
 
 @Service("adminService")
@@ -130,5 +131,12 @@ public class AdminServiceImpl implements AdminService {
 	public List<logLoginVO> getmyCommentList(Map<String, Object> map) {
 		return adminDAO.getmyCommentList(map);
 	}
+
+	@Override
+	public List<LocalAdviceVO> localAdviceAdminList() {
+		return adminDAO.localAdviceAdminList();
+	}
+
+
 
 }

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.spring.biz.event.EventVO;
+import com.spring.biz.localAdvice.LocalAdviceVO;
 import com.spring.biz.member.MemberVO;
 
 public interface AdminService {
@@ -33,4 +34,5 @@ public interface AdminService {
 	List<logLoginVO> getmyPostList(Map<String, Object> map);
 	int countComment(String m_id);
 	List<logLoginVO> getmyCommentList(Map<String, Object> map);
+	List<LocalAdviceVO> localAdviceAdminList();
 }

@@ -30,6 +30,7 @@ import com.spring.biz.event.EventService;
 import com.spring.biz.event.EventVO;
 import com.spring.biz.eventImage.EventImageService;
 import com.spring.biz.eventImage.EventImageVO;
+import com.spring.biz.localAdvice.LocalAdviceVO;
 import com.spring.biz.member.Email;
 import com.spring.biz.member.EmailSender;
 import com.spring.biz.member.MemberVO;
@@ -65,7 +66,7 @@ public class AdminController {
 	
 	
 	@RequestMapping(value="/Admin.do")
-	public String AdminMain(HttpServletRequest request, Model model) {
+	public String AdminMain(HttpServletRequest request, Model model, HttpSession session) {
 		System.out.println("AdminController의 사이트 조회수 누적 메소드");
 		
 		AdminCntVO adminCnt = adminService.adminCnt();
@@ -130,6 +131,15 @@ public class AdminController {
 		return "redirect:/views/admin/pages/tables/userAdmin.jsp";
 	}
 	
+	@RequestMapping(value="/localAdviceAdminList.do")
+	public String localAdviceList(HttpSession session) {
+		List<LocalAdviceVO> AdminlocalAdviceList = adminService.localAdviceAdminList();
+		System.out.println(AdminlocalAdviceList);
+		session.setAttribute("AdminlocalAdviceList", AdminlocalAdviceList);
+		return "redirect:/views/admin/pages/tables/localAdviceList.jsp";
+	}
+	
+	
 	@RequestMapping(value="/adminGetReceiveMessageList.do")
 	public String getAdminGetReceiveMessageList(MessageRecieveVO vo, HttpSession session) {
 			vo.setReceive_receiver("admin");
@@ -139,6 +149,8 @@ public class AdminController {
 			session.setAttribute("adminMessageList", messageList);
 		return "redirect:/views/admin/pages/tables/messageAdmin.jsp";	
 	}
+	
+	
 	@RequestMapping(value="/adminMessageGet.do")
 	public String adminMessageGet(MessageRecieveVO vo,  Model model, HttpSession session, @RequestParam("receive_idx") int receive_idx) {
 		session.setAttribute("adminMessage", messageService.getReceiveMessage(vo));
@@ -188,10 +200,12 @@ public class AdminController {
 		List<EventVO> list = null;
 		
 		list = adminService.eventAdminList();
-		
+		System.out.println(list);
 		model.addAttribute("eventAdminList", list);
 		return "redirect:/views/admin/pages/tables/eventAdmin.jsp";
 	}
+	
+
 	
 	@RequestMapping(value="/insertEvent.do", method=RequestMethod.GET)
 	public String insertEvent(Model model) {

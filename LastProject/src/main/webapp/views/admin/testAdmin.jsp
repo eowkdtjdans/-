@@ -386,6 +386,21 @@
 							</div>
 						</div>
 						
+							<div class="col-lg-3 col-6">
+						<div id="client" class="small-box">
+								<div class="inner">
+									<h3>${adminCnt.l_cnt}</h3>
+
+									<p>게시글 관리</p>
+								</div>
+								<div class="icon">
+									<i class="ion ion-person-add"></i>
+								</div>
+								<a href="../../localAdviceAdminList.do" class="small-box-footer">More info <i
+									class="fa fa-arrow-circle-right"></i></a>
+							</div>
+						</div>
+						
 						
 						<!-- ./col -->
 					</div>

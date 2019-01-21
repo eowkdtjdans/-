@@ -179,5 +179,11 @@
         
 </select>
 
+<select id="localAdviceAdminList"  parameterType="Map" resultType="localadvice">
+	     SELECT *
+    		FROM LOCALADVICE
+</select>
+
+
 
 </mapper>
