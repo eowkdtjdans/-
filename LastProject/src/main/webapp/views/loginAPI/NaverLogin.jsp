@@ -18,9 +18,9 @@
   </style>
   
   <script>
-     function naverLogin() {
-       location.href="${url}";
-     }
+  	function naverLogin() {
+  	  location.href="${url}";
+  	}
   </script>
   
 </head>

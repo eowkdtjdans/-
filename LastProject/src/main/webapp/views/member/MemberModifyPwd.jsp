@@ -29,7 +29,6 @@
 					   $("#m_id").focus();
 					   $("#m_pwd").val("");
 				   } else if(frm.pwdModify.value == "" || frm.m_pwd.value == null){
-					   alert(data.cnt);
 					   alert("변경할 비밀번호를 기입하세요.");
 						frm.pwdModify.value="";
 						frm.pwdModify.focus();
@@ -40,7 +39,6 @@
 						frm.pwdModify.focus();
 						return false;
 				   }  else {
-					   alert(data.cnt);
 					    alert("변경이 완료되었습니다.");
 						frm.action = "../../ModifyPwdMember.do";
 					    frm.submit();    

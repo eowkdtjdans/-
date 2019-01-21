@@ -50,12 +50,12 @@
    }
 </script>
 </head>
-<body>
-   <div id="gSignInWrapper">
+<body onload="move()")>
+  <!--  <div id="gSignInWrapper">
       <div id="customBtn" class="customGPlusSignIn" onclick="move()">
          <span class="icon"><img src="/views/img/g-normal.png"></span>
          <span class="buttonText">Google</span>
       </div>
-   </div>
+   </div> -->
 </body>
 </html>

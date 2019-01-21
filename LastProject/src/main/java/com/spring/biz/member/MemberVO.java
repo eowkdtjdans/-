@@ -17,8 +17,18 @@ public class MemberVO {
 	    private String m_birthday;
 	    // 주소 
 	    private double lat;
+	    private String phoneModify;
 	    
-	    private String m_certify;
+
+		public String getPhoneModify() {
+			return phoneModify;
+		}
+
+		public void setPhoneModify(String phoneModify) {
+			this.phoneModify = phoneModify;
+		}
+
+		private String m_certify;
 	 
 
 		public String getM_certify() {
