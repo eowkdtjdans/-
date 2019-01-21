@@ -52,30 +52,30 @@
         margin-top: -30px;
    }
    #header {
-        background-color: 	white;
+        background-color:    white;
    }
    #header.header-scrolled {
         background-color: white;
    }
    
    .nav-menu li a{
-   	color: black;
-   }	
+      color: black;
+   }   
    #mainLogo{
-   	color: black;
-   	position: absolute;
-   	margin-left: 80px;
-   	margin-top: -10px;
-   	font-size: 2.15em;
+      color: black;
+      position: absolute;
+      margin-left: 80px;
+      margin-top: -10px;
+      font-size: 2.15em;
    }
    #happy{
-   	position: absolute;
-   	margin-left: 20px;
-   	margin-top: -20px;
+      position: absolute;
+      margin-left: 20px;
+      margin-top: -20px;
    }
    #navProfileImg{
-   	position: relative;
-   	margin-top: -10px;
+      position: relative;
+      margin-top: -10px;
    }
    
 
@@ -90,17 +90,17 @@ select {
 }
 
 #autocomplete {
-	width: 50%; 
-	border: 1px solid #999; 
-	border-radius: 30px; 
-	padding: .3em .3em;
-	
+   width: 50%; 
+   border: 1px solid #999; 
+   border-radius: 30px; 
+   padding: .3em .3em;
+   
 }
 #advice{
-	width: 50%; 
-	border: 1px solid #999; 
-	border-radius: 30px; 
-	padding: .3em .3em;
+   width: 50%; 
+   border: 1px solid #999; 
+   border-radius: 30px; 
+   padding: .3em .3em;
 }
 
 </style>
@@ -357,13 +357,13 @@ function test(p_route, m_id) {
    }
    
    function updateMainProfileImage(frm) {
-	  var m_id = frm.m_id.value;
+     var m_id = frm.m_id.value;
       var p_route = frm.p_route.value;
       var str = $("#modalBtn").serialize();
    
-   	  frm.action = "../../updateMainProfileImage.do";
-   	  frm.submit();
-   	  return false;
+        frm.action = "../../updateMainProfileImage.do";
+        frm.submit();
+        return false;
    }
 
 </script>
@@ -407,13 +407,13 @@ function test(p_route, m_id) {
    }
    
    function updateMainProfileImage(frm) {
-	  var m_id = frm.m_id.value;
+     var m_id = frm.m_id.value;
       var p_route = frm.p_route.value;
       var str = $("#modalBtn").serialize();
    
-   	  frm.action = "../../updateMainProfileImage.do";
-   	  frm.submit();
-   	  return false;
+        frm.action = "../../updateMainProfileImage.do";
+        frm.submit();
+        return false;
    }
 
 </script>
@@ -544,15 +544,15 @@ function test(p_route, m_id) {
               <div class="card-body">
                   <div class="row">
                       <div class="col-md-12">
-                          <h4>나의 이미지</h4>
+                          <img src="views/img/post.png" style="width: 60px; height: 60px;"> <strong style="font-size: 1.2em;"> 내 프로필 이미지</strong>
                           <hr>
                       </div>
                   </div>
 
 
- <c:forEach var="profileImageList" items="${profileImageList}">
-    <span style="width:250px; height:300px;" onclick="test('${profileImageList.p_route}', '${profileImageList.m_id}')">
-       <img id="${profileImageList.p_route}" class="myImg" src="${profileImageList.p_route}" style="width:200px; height:250px;">
+ <c:forEach var="profileImageList" items="${profileImageList}"> 
+    <span style="width:250px; height:300px; padding-left: 8px;" onclick="test('${profileImageList.p_route}', '${profileImageList.m_id}')">   
+       <img id="${profileImageList.p_route}" class="myImg" src="${profileImageList.p_route}" style="width:250px; height:250px; margin-bottom: 12px;">
       </span>
 </c:forEach>
 

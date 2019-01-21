@@ -119,7 +119,7 @@
 	
 	<select id="MemberModifyPhoneCheckJson" parameterType="String" resultType="Integer">
 		SELECT COUNT(*) FROM MEMBER
-		WHERE M_PWD = #{phoneModify}
+		WHERE M_PHONE = #{phoneModify} 
 	</select>
 	
 	<update id="PwdUpdate" parameterType="member">

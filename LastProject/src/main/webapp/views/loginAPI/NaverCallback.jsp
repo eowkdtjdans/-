@@ -24,7 +24,6 @@
 <script>
    function ApiRegisterCheck() {
        var naverId = ${result}.response.email;
-       alert("naverId :" + naverId);
         $.ajax({
           async: true,
          type : 'POST',

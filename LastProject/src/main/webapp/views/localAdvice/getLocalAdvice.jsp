@@ -54,13 +54,17 @@ a {
 }
 
 #profileImage {
-   width: 80px;
-   height: 80px;
+   width: 60px;
+   height: 60px;
 }
 
 #profileImage2 {
-   width: 60px;
-   height: 60px;
+   width: 50px;
+   height: 50px;
+}
+#profileImage3 {
+   width: 40px;
+   height: 40px;
 }
 
 td {
@@ -81,10 +85,7 @@ td {
    width: 1000px;
 }
 
-#profileImage3 {
-   width: 45px;
-   height: 45px;
-}
+
 
 table .noline {
    border: 0px;
@@ -162,12 +163,9 @@ select {
       } else {
          if (frm.lc_content2.value == "") {
             alert("댓글을 입력해주세요");
-            alert(frm.lc_content2.value);
             frm.lc_content2.focus();
             return false;
          } else {
-        	alert(frm.lc_content2.value);
-        	alert("../insertLocalAdviceComment.do");
             frm.action = "../insertLocalAdviceComment.do?l_idx=${getLocalAdvice.l_idx }&lc_content="+frm.lc_content2.value+"";
             frm.submit();
          }
@@ -175,8 +173,6 @@ select {
    }
    
    function deleteLocalAdvice(l_idx){
-	   alert("게시글 삭제버튼 클릭");
-	   alert("l_idx : " + l_idx);
 	   var con_test = confirm("정말 삭제하시겠습니까?");
 	   	if(con_test == true) {
 	   		location.href="../deleteLocalAdvice.do?l_idx="+l_idx
@@ -189,7 +185,6 @@ select {
    
 
    function update_button(lc_idx, lc_content) {
-      //alert("update_button()함수로옴");
       var textareaTag = "<br><textarea id='textarea" + lc_idx + "'  rows='3' cols='134' name='lc_content'>"+lc_content+"</textarea><button type='button' class='btn btn-outline-secondary' onclick='json_update("+ lc_idx + ")' id='focus'>수정완료</button>"
             + "<input type='hidden' id='lc_idx' value="+lc_idx+">"
             + "<input type='hidden' name='focus_idx' id='focus_idx' value="+lc_idx+">";
@@ -197,7 +192,6 @@ select {
 
       $("#" + lc_idx).empty();
       $("#" + lc_idx).append(textareaTag);
-     // $("#textarea" + lc_idx).text(lc_content);
 
       var btn = document.getElementById('btn');
       btn.disabled = 'disabled';
@@ -237,10 +231,6 @@ select {
       if ('${focus_idx}' == "") {
 
       } else {
-         console.log($("#" + "${focus_idx}"));
-         console.log('#');
-         console.log('${focus_idx}');
-
          $("#" + "${focus_idx}").attr("tabindex", -1).focus();
 		<%session.removeAttribute("focus_idx");%>
    }
@@ -251,15 +241,12 @@ select {
    function delete_button(lc_idx, l_idx) {
       var con_test = confirm("정말 삭제하시겠습니까?");
       if (con_test == true) {
-         alert("댓글삭제누를시 나오는 alert");
-         alert("lc_idx : " + lc_idx);
-         alert("l_idx : " + l_idx);
+
          $.ajax({
             async : true,
             type : "POST",
             dataType : "json",
             data : lc_idx,
-            //data : {lc_idx:lc_idx, l_idx:l_idx},
             contentType : "application/json; charset=UTF-8",
             url : "/deleteLocalAdviceCommentJson.do?l_idx=" + l_idx,
 
@@ -276,13 +263,9 @@ select {
 
    
    function good() {
-      alert("좋아요 ajax");
       var good = ${getLocalAdvice.l_upvote};
-      /* var l_idx = ${getLocalAdvice.l_idx}; */
       var l_idx = "${getLocalAdvice.l_idx}";
-      alert("good " + good);
-      alert("l_idx : " + l_idx);
-      
+     
       	$.ajax({
                async : true,
                type : "POST",
@@ -292,7 +275,6 @@ select {
                url : "/goodJson.do",
 
                success : function(data) {
-                  alert(data.count);
                   $("#good").remove();
                   $("#span").empty();
                   $("#span").text(good + data.count + " 명이 좋아합니다.");
@@ -303,11 +285,8 @@ select {
 
    
    function bad() {
-      alert("싫어요 ajax");
       var good = ${getLocalAdvice.l_upvote}+1;
-      alert("good : " + good);
       var l_idx = "${getLocalAdvice.l_idx}";
-      alert("l_idx : " + l_idx);
 
       $.ajax({
            async : true,
@@ -318,7 +297,6 @@ select {
            url : "/badJson.do",
 
            success : function(data) {
-              alert(data.count);
               $("#good").remove();
               $("#span").empty();
               $("#span").text(good - data.count + " 명이 좋아합니다.");
@@ -329,13 +307,8 @@ select {
    }
 
    function detdetgo(lc_idx, p_route, lc_date) {
-      alert("댓글속댓글");
-		alert("p_route : " + p_route);
 		var p_route = String(p_route);
-		alert("lc_date : " + lc_date);
-		
-		
-		
+				
       var textareaTag = "&emsp;&emsp;<div id='div"+lc_idx+"'><img id='bentarrow' src='views/img/bentarrow.png'><textarea class='textareaComment' id='textareaComment" + lc_idx + "' rows='3' cols='134' name='lc_content'></textarea>"+ "&emsp;&emsp;<button type='button' class='btn btn-outline-secondary' id='detdetgo2' onclick='json_insertComment("+ lc_idx +",\""+lc_date+"\")'>댓글입력</div>";
       $("#" + lc_idx).append(textareaTag);
 
@@ -351,21 +324,11 @@ select {
    }
 
    
-   function json_insertComment(lc_idx, lc_date) {
-      alert("댓글속댓글 json방식으로");
-      alert("lc_idx : " + lc_idx);
-      alert("lc_date : " + lc_date);
- 
-      //alert("p_route : " + ${list.p_route});
-     
-      var lc_content = $("#textareaComment" + lc_idx).val();
-      alert("lc_content : " + lc_content);
-	
+   function json_insertComment(lc_idx, lc_date) {    
+      var lc_content = $("#textareaComment" + lc_idx).val();	
       var lc_idx = JSON.stringify(lc_idx);
       var l_idx = ${getLocalAdvice.l_idx };
-      alert("l_idx : " + l_idx);
-      
-      
+    
       if(lc_content== ""){
     	  alert("내용을 입력해주세요");
       }else {
@@ -379,27 +342,12 @@ select {
                contentType : "application/json; charset=UTF-8",
                url : "/json_insertComment.do?lc_content=" + lc_content+ "&l_idx=" + l_idx,
 
-               success : function(data) {
-                  alert("ajax성공");
-      			  alert("lc_idx : " + lc_idx);
-				  alert("글작성한m_id : " + data.m_id);
-				  alert("현재로그인한m_id : " + "${member.m_id}");
-				  alert("p_route : " + data.p_route);
-				  //alert("detdetnum : " + data.detdetnum);
+               success : function(data) {                 
                   var values = data.selectdetdetComment; 
-				  alert(values);
-				  alert("detdetlc_idx : " + data.detdetlc_idx);
-				  alert(data.lc_date);
-				  
-				  
-				  $("#detdetgobtn"+lc_idx).show();
-				  //var btn1 = document.getElementById("btn1"+lc_idx+"");
-			      //var btn2 = document.getElementById("btn2"+lc_idx+"");
-
+				 				  
+				  $("#detdetgobtn"+lc_idx).show();				 
 			      $("#btn1"+lc_idx+"").attr('disabled',false);
-			      $("#btn2"+lc_idx+"").attr('disabled',false);
-
-				  
+			      $("#btn2"+lc_idx+"").attr('disabled',false);				  
                   $("#div"+lc_idx).remove();                                                                              // onerror="this.src="../views img people fuckyou.jpg'' 크롬에 나온거
                                                                                                                           // onerror='this.src="../views/img/people/fuckyou.jpg"' 정상         
                   //var detdetDiv = "<tr><td>&emsp;&emsp;<img src='${list.p_route }' class='rounded-circle' id='profileImage3' onerror='this.src='../views/img/people/fuckyou.jpg''>${list.m_id}${list.p_route}<br>&emsp;&emsp;"+value.lc_content+"</td></tr>"; '${list.m_id eq member.m_id}'
@@ -415,13 +363,6 @@ select {
    
    
 	function updatedetdet(detdetlc_idx, detdet){
-		alert("update뎃뎃");
-		alert(detdetlc_idx);
-		alert(detdet);
-		
-		/* $(".trclass"+detdet).last().empty();
-		$(".trclass"+detdet).last().append("<tr><td>h</td></tr>"); */
-	
 		var detdetlc_idx = JSON.stringify(detdetlc_idx);
 				      
 	     $.ajax({
@@ -433,13 +374,9 @@ select {
 	           url : "/updatedetdet.do",
 
 	           success : function(detdetList) {
-	        	   alert("성공부분");
-				   alert(detdetList.lc_idx);  //624
-				   alert(detdetList.lc_content);
-				   alert(detdetList.m_id);
 
 				   $(".tdclass"+detdetlc_idx).empty();  //"&emsp;&emsp;<img src="+detdetList.p_route+" class='rounded-circle' id='profileImage3' onerror='this.src='../views/img/people/fuckyou.jpg'>"+detdetList.m_id+"<button type='button' class='btn btn-outline-secondary' onclick='updatedetdetgo("+data.detdetlc_idx+", "+lc_idx+")'>수정완료</button><button type='button' class='btn btn-outline-secondary'onclick='deletedetdet("+data.detdetlc_idx+")'>삭제</button><br>&emsp;&emsp;"+detdetList.lc_content+"
-				   $(".tdclass"+detdetlc_idx).append("&emsp;&emsp;<img src="+detdetList.p_route+" class='rounded-circle' id='profileImage3' onerror='this.src=\"../views/img/people/fuckyou.jpg\"'>"+detdetList.m_id+"&emsp;<button type='button' class='btn btn-outline-secondary btn-sm' onclick='updatedetdetgo("+detdetList.lc_idx+")'>수정완료</button>&nbsp;<button type='button' class='btn btn-outline-secondary btn-sm'onclick='deletedetdet("+detdetList.lc_idx+")'>삭제</button><br>&emsp;&emsp;<textarea id='textarea" + detdetList.lc_idx + "'  rows='3' cols='134' name='lc_content'>"+detdetList.lc_content+"</textarea></td>");
+				   $(".tdclass"+detdetlc_idx).append("&emsp;&emsp;<img src="+detdetList.p_route+" class='rounded-circle' id='profileImage3' onerror='this.src=\"../views/img/people/fuckyou.jpg\"'>&nbsp;"+detdetList.m_id+"&emsp;<button type='button' class='btn btn-outline-secondary btn-sm' onclick='updatedetdetgo("+detdetList.lc_idx+")'>수정완료</button>&nbsp;<button type='button' class='btn btn-outline-secondary btn-sm'onclick='deletedetdet("+detdetList.lc_idx+")'>삭제</button><br>&emsp;&emsp;<textarea id='textarea" + detdetList.lc_idx + "'  rows='3' cols='134' name='lc_content'>"+detdetList.lc_content+"</textarea></td>");
 				  // $(".tdclass"+detdetlc_idx).append("&emsp;&emsp;<img src="+detdetList.p_route+" class='rounded-circle' id='profileImage3' onerror='this.src=\"../views/img/people/fuckyou.jpg\"'>"+detdetList.m_id+"<button type='button' class='btn btn-outline-secondary' onclick='updatedetdetgo("+detdetList.lc_idx+")'>수정완료</button>");
 				 
 	           }
@@ -449,11 +386,7 @@ select {
 	
 	
 	function updatedetdetgo(detdetlc_idx){
-		alert("실질적인 업데이트");
-		alert("detdetlc_idx : " + detdetlc_idx);
-		var lc_content = $("#textarea"+detdetlc_idx).val();
-		alert("lc_content : " + lc_content);
-		
+		var lc_content = $("#textarea"+detdetlc_idx).val();		
 		var detdetlc_idx = JSON.stringify(detdetlc_idx);
 		
 		$.ajax({
@@ -465,12 +398,7 @@ select {
 	           url : "/updatedetdetgo.do?lc_content="+lc_content,
 
 	           success : function(data) {
-	        	   alert("성공부분");
-	        	   alert(data.lc_idx); //624
-				   alert(data.lc_content); //바뀐내용
-				   alert(data.m_id);  //로그인ㅇ한아이디
-				   alert(data.p_route);  ///views/img/people/people2.jpg
-				   
+	        					   
 				   $(".tdclass"+detdetlc_idx).empty();                                                                                
 				   $(".tdclass"+detdetlc_idx).append("&emsp;&emsp;<img src="+data.p_route+" class='rounded-circle' id='profileImage3' onerror='this.src=\"/views/img/people/fuckyou.jpg\"'>&nbsp;"+data.m_id+"&emsp;"+data.lc_date+"&emsp;<button type='button' class='btn btn-outline-secondary btn-sm' onclick='updatedetdet("+data.lc_idx+","+data.detdet+")'>수정</button>&nbsp;<button type='button' class='btn btn-outline-secondary btn-sm' onclick='deletedetdet("+data.lc_idx+")'>삭제</button><br>&emsp;&emsp;"+data.lc_content+"      ");
 	           }
@@ -480,8 +408,6 @@ select {
 	
 	
 	function deletedetdet(detdetlc_idx){
-		alert("deletedetdet");
-		alert("detdetlc_idx : " + detdetlc_idx);
 		var detdetlc_idx = JSON.stringify(detdetlc_idx);
 		
 		$.ajax({
@@ -493,9 +419,6 @@ select {
 	           url : "/deletedetdetgo.do",
 
 	           success : function(data) {
-	        	   alert("성공부분");
-	        	   alert(data.detdetlc_idx);
-	        	   
 	        	   $(".tdclass"+data.detdetlc_idx).remove();
 				 
 	           }
@@ -621,50 +544,49 @@ select {
 </nav>               
 <hr>
   </header><!-- #header -->
-  
+ 
 
 
    <!--==========================
       About Us Section
     ============================-->
-   <section id="about">
+<br>
       <div class="container">
+      	<img src="views/img/star.jpg" style="width: 40px; height: 40px;"><span style="font-size: 1.2em; font-weight: bold;">현지정보 문의 게시판</span>  	
+      	<hr>
          <div class="row from-group">
 
-
+			
             <div id="tableDiv">
                <table>
                   <tr>
-                     <td rowspan="3"><img src="${getLocalAdvice.getP_route() }"
-                        class="rounded-circle" id="profileImage"
-                        onerror='this.src="../views/img/people/fuckyou.jpg"'></td>
-                     <td><strong>${getLocalAdvice.l_subject }</strong></td>                     
-                     <td>
-                        <%-- <c:if test="${getProfileImage.m_id eq m_id }">  --%> <c:if
-                           test="${getLocalAdvice.m_id eq member.m_id }">
-                           <a id="atag-size"
-                              href="../updateLocalAdvice.do?l_idx=${getLocalAdvice.l_idx }">&nbsp;수정&nbsp;</a>|
-                     	   <%-- <a id="atag-size"
-                              href="../deleteLocalAdvice.do?l_idx=${getLocalAdvice.l_idx }">삭제&nbsp;</a> --%>
-                           <a id="atag-size" href="#" onclick="deleteLocalAdvice('${getLocalAdvice.l_idx }')">삭제</a>
-                              
-                        </c:if>
+                     <td rowspan="3" style="text-align: right;"><img src="${getLocalAdvice.getP_route() }"
+                        class="rounded-circle" id="profileImage" 
+                        onerror='this.src="../views/img/people/fuckyou.jpg"'>
                      </td>
+                     <td><strong>${getLocalAdvice.l_subject }</strong></td>                                         
                   </tr>
                   <tr>
-                     <td>${getLocalAdvice.m_id}&emsp;&emsp;
-                        ${getLocalAdvice.l_date }</td>
+                     <td>${getLocalAdvice.m_id}&emsp;&emsp; ${getLocalAdvice.l_date }</td>
+                      <td>
+                     	<c:if test="${getLocalAdvice.m_id eq member.m_id }">
+                           <a id="atag-size" href="../updateLocalAdvice.do?l_idx=${getLocalAdvice.l_idx }">&nbsp;수정&nbsp;</a>|                     	   
+                           <a id="atag-size" href="#" onclick="deleteLocalAdvice('${getLocalAdvice.l_idx }')">삭제</a>          
+                        </c:if> 
+                     </td>
                   </tr>
                </table>
+               
+               
                <div>
                   <p>
                      <br>${getLocalAdvice.l_content }</p>
                </div>
             </div>
+			
 
 
-
-            <c:choose>
+           <c:choose>
                <c:when test="${not empty member.m_id}">
                   <span id="span">${getLocalAdvice.l_upvote } 명이 좋아합니다..</span>
                   &emsp;
@@ -705,7 +627,7 @@ select {
                                  
                                  </c:if>
                                  <div id="${list.lc_idx}">
-                                    <br>${list.lc_content }<br> <br>
+                                    <br>${list.lc_content }<br>
                                  </div>
                                  </td>
                            </tr>
@@ -738,7 +660,7 @@ select {
             </form>		
          </div>
       </div>
-   </section>
+	
    <!-- #about -->
    <!--==========================
     Footer

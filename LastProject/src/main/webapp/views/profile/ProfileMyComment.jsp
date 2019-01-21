@@ -110,6 +110,9 @@ select {
    height: 20px;
    color: red;
 } */
+a{
+		color: #4B89DC;  
+	}
 </style>
 <style>
 
@@ -316,65 +319,57 @@ $(function(){
               <a href="../../myPost2.do?m_id=${member.m_id }&cPage=1" class="list-group-item list-group-item-action active">내 댓글</a>
               <a href="../../loginRecordList.do?ll_id=${member.m_id }&cPage=1" class="list-group-item list-group-item-action">로그인 기록</a>
               <a href="../../DeleteMember.do?m_id=${member.m_id }" class="list-group-item list-group-item-action">회원탈퇴</a>
-              
-
-              
-            </div> 
-            
+          </div>            
       </div>
 
 		<div class="col-md-9">
-		    <div class="card">
-		        <div class="card-body">
-		            <div class="row">
-		                <div class="col-md-12">
-		                    <h4></h4>
-		                    <hr>
-		                </div>
-		            </div>
-	             </div>
-<div id="container">
-	
+		    <div class="card">		        
+		                
+
 	<!-- 데이타 표시 -->
 	<form>
-	<table class="table">
-		<thead class="thead-light">
+	<table class="table">	
 		<tr>
-			<th width="100"style="text-align :center;">게시판</th>
-			<th width="100"style="text-align :center;">댓글</th>
-			<th width="100"style="text-align :center;">날짜</th>
+			<td colspan="3" style="font-size: 1.2em;"><img src="views/img/post.png" style="width: 60px; height: 60px;"> <strong>내가 쓴 댓글</strong></td>
 		</tr>
-		</thead>
-		<c:forEach var="myPostList" items="${myPostList2 }">
-		<tr>
+      <c:forEach var="myPostList" items="${myPostList2 }">
+      <tr>
+<%--       <c:if test="${myPostList.c_type eq '이벤트 게시판' }">
+         <td style="text-align :center;">
+            <a href="/getEventList.do?cPage=1&searchCondition=find_event&firstLat=&firstLng=&key=">${myPostList.c_type }</a>
+         </td>
+      </c:if>
+       
+      <c:if test="${myPostList.c_type eq '현지정보 문의 게시판' }">
+         <td style="text-align :center;">
+            <a href="getLocalAdviceList2.do?cPage=1&firstLat=&firstLng=&key=&searchCondition=find_advice">${myPostList.c_type }</a>
+         </td>
+      </c:if> --%>
+      
+        <c:if test="${myPostList.c_type eq '이벤트 게시판' }">
+	    	<td style="width: 33%"><img src="${profile.p_route }" style="width: 50px; height: 50px;" class="rounded-circle"><a href="../getEvent.do?e_idx=${myPostList.idx }"> &nbsp;${member.m_id }</a></td>
+		</c:if> 
+		
+		<c:if test="${myPostList.c_type eq '현지정보 문의 게시판' }">
+			<td style="width: 33%"><img src="${profile.p_route }" style="width: 50px; height: 50px;" class="rounded-circle"><a href="../getLocalAdvice.do?l_idx=${myPostList.idx }"> &nbsp;${member.m_id }</a></td>	
+		</c:if>
+		
 		<c:if test="${myPostList.c_type eq '이벤트 게시판' }">
-			<td style="text-align :center;">
-				<a href="/getEventList.do?cPage=1&searchCondition=find_event&firstLat=&firstLng=&key=">${myPostList.c_type }</a>
-			</td>
-		</c:if>
-		
-		<c:if test="${myPostList.c_type eq '현지정보 문의 게시판' }">
-			<td style="text-align :center;">
-				<a href="getLocalAdviceList2.do?cPage=1&firstLat=&firstLng=&key=&searchCondition=find_advice">${myPostList.c_type }</a>
-			</td>
-		</c:if>
-		
-			<c:if test="${myPostList.c_type eq '이벤트 게시판' }">
-			<td style="text-align :center;">
+			<td style="text-align :left; padding-top: 21px;; width: 44%">
 				<a href="../getEvent.do?e_idx=${myPostList.idx }">${myPostList.c_content }</a>
-			</td>
+			</td> 
 		</c:if>
 		
 		<c:if test="${myPostList.c_type eq '현지정보 문의 게시판' }">
-			<td style="text-align :center;">
+			<td style="text-align :left; padding-top: 21px;; width: 44%;">   
 				<a href="../getLocalAdvice.do?l_idx=${myPostList.idx }">${myPostList.c_content }</a>
 			</td>
 		</c:if>
 		
 			
-			<td><fmt:formatDate value="${myPostList.c_date }" pattern="yyyy-MM-dd HH:mm:ss"/> </td>
-		</tr>
+			<td style="width: 23%; padding-top: 21px;" class="text-muted"><fmt:formatDate value="${myPostList.c_date }" pattern="yyyy-MM-dd HH:mm:ss"/> </td>
 		</c:forEach>
+		</tr>
 		
   	<!-- ---------------------------------------------------------------- -->
       	<tr>
@@ -390,7 +385,7 @@ $(function(){
 				<%--사용가능(enable) : 두번째 이상(첫번째 아닌경우) --%>
 					<c:otherwise>
 						<li>
-							<a href="../../myPost2.do?m_id=${member.m_id }&cPage=${pvo.endPage + 1 }">◀</a>
+							<a href="../../myPost2.do?m_id=${member.m_id }&cPage=${pvo.beginPage - 1 }">◀</a>
 						</li>
 					</c:otherwise>	
 				</c:choose>
@@ -435,6 +430,6 @@ $(function(){
 			</div> 
 		</div>
 	</div> 
-</div>
+
 </body>
 </html>

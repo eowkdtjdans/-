@@ -76,8 +76,8 @@
 		color: orange;
 	}
 	#profileImage{
-		width: 50px;
-		height: 50px;
+		width: 40px;
+		height: 40px;
 	}
 	#date{
 		font-size: 0.9em;
@@ -300,12 +300,12 @@
    <!--==========================
       About Us Section
     ============================-->    
-<section id="about">
+
       <div class="container">
-      	<h2><strong>Find Local Advice</strong></h2>
-      	<h5>요청하신 키워드에 관한 게시글 수 : ${countLocalAdvice }</h5>
-      	<div class="text-right"><a href="../writeLocalAdvice.do" class="btn btn-outline-secondary">게시글 작성</a></div>
-      	<br>
+      <br>
+      	<img src="views/img/star.jpg" style="width: 40px; height: 40px;"><span style="font-size: 1.2em; font-weight: bold;">현지정보 문의 게시판</span>
+      	<h6>요청하신 키워드에 관한 게시글 수 : ${countLocalAdvice }</h6>
+
       	<form method="post" name="frm">
       	<table class="table">
       	<c:choose>
@@ -317,15 +317,15 @@
 	      	<c:otherwise>
       		<c:forEach var="list" items="${localAdviceList}">
 	      		<tr>
-	      			<td style="width: 7%"><img src="${list.p_route }"
+	      			<td style="width: 7%; text-align: center;"><img src="${list.p_route }"
                         class="rounded-circle" id="profileImage"
                         onerror='this.src="../views/img/people/fuckyou.jpg"'></td>
-	      			<th style="width: 63%">
+	      			<th style="width: 63%; font-size: 0.95em;">
 	      				<a href="../getLocalAdvice.do?l_idx=${list.l_idx }&m_id=${list.m_id}&cPage=1">${list.l_subject }</a>&nbsp;&nbsp;<span id="detcnt">[${list.lc_cnt}]</span> &emsp;<span id="date">${list.l_date }</span>
 	      				<br>${list.m_id }
 	      			</th>
-	      			<td style="width:15%"> &nbsp;&nbsp;&nbsp;&nbsp; <a id="good" href="#" ><img src="views/img/good.png" style="width: 20px; height: 20px;">  좋아요 ${list.l_upvote }</a> &nbsp;&nbsp;&nbsp;&nbsp; </td>
-	      			<td style="width:15%"><img src="views/img/lookup.PNG" style="width: 20px; height: 20px;"> ${list.l_reviewcount }</td>
+	      			<td style="width:15%; font-size: 0.95em;"> &nbsp;&nbsp;&nbsp;&nbsp; <a id="good" href="#" ><img src="views/img/good.png" style="width: 20px; height: 20px;">  좋아요 ${list.l_upvote }</a> &nbsp;&nbsp;&nbsp;&nbsp; </td>
+	      			<td style="width:15%; font-size: 0.95em;"><img src="views/img/lookup.PNG" style="width: 20px; height: 20px;"> ${list.l_reviewcount }</td>
 	      		</tr>
       		</c:forEach>
       		</c:otherwise>     		
@@ -333,7 +333,7 @@
       	<!-- ---------------------------------------------------------------- -->
       	
       	<tr>
-			<td colspan="4">
+			<td colspan="3">
 				<ol class="paging">
 				
 				<%--[이전으로]에 대한 사용여부 처리 --%>
@@ -380,14 +380,14 @@
 				</c:choose>
 				</ol>
 			</td>
+      	<td><a href="../writeLocalAdvice.do" class="btn btn-outline-secondary">게시글 작성</a></td>
 		</tr>
       	
       	<!-- ---------------------------------------------------------------- -->
       	</table>
       	</form>
-      	
       </div>
-    </section><!-- #about -->
+
 
 
   

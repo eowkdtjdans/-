@@ -1,6 +1,7 @@
  <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+  <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -323,95 +324,87 @@ $(function(){
       </div>
 
 	<div class="col-md-9">
-		    <div class="card">
-		        <div class="card-body">
-		            <div class="row">
-		                <div class="col-md-12">
-		                    <h4>로그인 기록</h4>
-		                    <hr>
-		                </div>
-		            </div>
-	             </div>
-<div id="container">
-	
-	<!-- 데이타 표시 -->
-	<form>
-	<table class="table">
-		<thead class="thead-light">
-		<tr>
-			<th width="50"style="text-align :center;">결과</th>
-			<th width="80"style="text-align :center;">아이피</th>
-			<th width="250" style="text-align :center;">기기정보</th>
-			<th width="100"style="text-align :center;">날짜</th>
-			<th width="100"style="text-align :center;">접속 국가</th>
-		</tr>
-		</thead>
-		<c:forEach var="logLoginList" items="${logLoginList }">
-		<tr>
-			<td style="text-align :center;">${logLoginList.ll_result }</td>
-			<td style="text-align :center;">${logLoginList.ll_ip }</td>
-			<td style="text-align :center; font-size : 0.8em;">${logLoginList.ll_device }</td>
-			<td><fmt:formatDate value="${logLoginList.ll_date }" pattern="yyyy-MM-dd HH:mm:ss"/> </td>
-			<td style="text-align :center;">${logLoginList.ll_country }</td>
-		</tr>
-		</c:forEach>
-		
-  	<!-- ---------------------------------------------------------------- -->
-      	<tr>
-			<td colspan="4">
-				<ol class="paging">
-				
-				<%--[이전으로]에 대한 사용여부 처리 --%>
-				<c:choose>
-				<%-- 사용불가(disable) : 첫번째 블록인 경우 --%>
-					<c:when test="${pvo.beginPage == 1 }">
-						<li class="disable">◀</li>
-					</c:when>
-				<%--사용가능(enable) : 두번째 이상(첫번째 아닌경우) --%>
-					<c:otherwise>
-						<li>
-							<a href="../../loginRecordList.do?ll_id=${member.m_id }&cPage=${pvo.endPage + 1 }">◀</a>
-						</li>
-					</c:otherwise>	
-				</c:choose>
-				
-				<%-- 블록내에 표시할 페이지 반복처리(시작페이지~끝페이지)--%>
-				<c:forEach var="k" 
-						begin="${pvo.beginPage }" end="${pvo.endPage }">
-				<c:choose>
-					<c:when test="${k == pvo.nowPage }">
-						<li class="now">${k }</li>
-					</c:when>
-					<c:otherwise>
-						<li>
-							<a href="../../loginRecordList.do?ll_id=${member.m_id }&cPage=${k }">${k }</a>
-						</li>
-					</c:otherwise>
-				</c:choose>
-				</c:forEach>
-				
-				<%--[다음으로]에 대한 사용여부 처리 --%>
-				<c:choose>	
-					<%--사용불가(disable) : endPage가 전체페이지수 보다 크거나 같으면 --%>
-					<c:when test="${pvo.endPage >= pvo.totalPage }">
-						<li class="disable">▶</li>
-					</c:when>
-					<%--사용가능(enable) --%>
-					<c:otherwise>
-						<li>
-							<a href="../../loginRecordList.do?ll_id=${member.m_id }&cPage=${pvo.endPage + 1 }">▶</a>
-						</li>
-					</c:otherwise>
-				</c:choose>
-				</ol>
-			</td>
-		</tr>
+		<div class="card">
+
+		<!-- 데이타 표시 -->
+		<form>
+		<table class="table">
+			<tr>
+				<td colspan="5" style="font-size: 1.2em;"><img src="views/img/loginIcon.jpg" style="width: 60px; height: 50px;"> <strong> 로그인 기록</strong></td>
+			</tr>
+			<tr>
+				<th width="50"style="text-align :center;">결과</th>
+				<th width="80"style="text-align :center;">아이피</th>
+				<th width="250" style="text-align :center;">기기정보</th>
+				<th width="100"style="text-align :center;">날짜</th>
+				<th width="100"style="text-align :center;">접속 국가</th>
+			</tr>
+			<c:forEach var="logLoginList" items="${logLoginList }">
+			<tr>
+				<td style="text-align :center;">${logLoginList.ll_result }</td>
+				<td style="text-align :center;">${logLoginList.ll_ip }</td>
+				<td style="text-align :center; font-size : 0.8em;">${logLoginList.ll_device }</td>
+				<td><fmt:formatDate value="${logLoginList.ll_date }" pattern="yyyy-MM-dd HH:mm:ss"/> </td>
+				<td style="text-align :center;">${logLoginList.ll_country }</td>
+			</tr>
+			</c:forEach>
+			
+	  	<!-- ---------------------------------------------------------------- -->
+	      	<tr>
+				<td colspan="4">
+					<ol class="paging">
+					
+					<%--[이전으로]에 대한 사용여부 처리 --%>
+					<c:choose>
+					<%-- 사용불가(disable) : 첫번째 블록인 경우 --%>
+						<c:when test="${pvo.beginPage == 1 }">
+							<li class="disable">◀</li>
+						</c:when>
+					<%--사용가능(enable) : 두번째 이상(첫번째 아닌경우) --%>
+						<c:otherwise>
+							<li>
+								<a href="../../loginRecordList.do?ll_id=${member.m_id }&cPage=${pvo.beginPage - 1 }">◀</a>
+							</li>
+						</c:otherwise>	
+					</c:choose>
+					
+					<%-- 블록내에 표시할 페이지 반복처리(시작페이지~끝페이지)--%>
+					<c:forEach var="k" 
+							begin="${pvo.beginPage }" end="${pvo.endPage }">
+					<c:choose>
+						<c:when test="${k == pvo.nowPage }">
+							<li class="now">${k }</li>
+						</c:when>
+						<c:otherwise>
+							<li>
+								<a href="../../loginRecordList.do?ll_id=${member.m_id }&cPage=${k }">${k }</a>
+							</li>
+						</c:otherwise>
+					</c:choose>
+					</c:forEach>
+					
+					<%--[다음으로]에 대한 사용여부 처리 --%>
+					<c:choose>	
+						<%--사용불가(disable) : endPage가 전체페이지수 보다 크거나 같으면 --%>
+						<c:when test="${pvo.endPage >= pvo.totalPage }">
+							<li class="disable">▶</li>
+						</c:when>
+						<%--사용가능(enable) --%>
+						<c:otherwise>
+							<li>
+								<a href="../../loginRecordList.do?ll_id=${member.m_id }&cPage=${pvo.endPage + 1 }">▶</a>
+							</li>
+						</c:otherwise>
+					</c:choose>
+					</ol>
+				</td>
+			</tr>
+	      	
+	      	<!-- ---------------------------------------------------------------- -->
+	      	</table>
+	      	</form>
       	
-      	<!-- ---------------------------------------------------------------- -->
-      	</table>
-      	</form>
-      	
-				</div>
+				
 			</div> 
 		</div>
 	</div> 

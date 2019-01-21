@@ -110,6 +110,9 @@ select {
 	height: 20px;
 	color: red;
 } */
+a{
+		color: #4B89DC;  
+	}
 </style>
 
 
@@ -293,12 +296,8 @@ $(function(){
               <a href="../../myPost.do?m_id=${member.m_id }&cPage=1" class="list-group-item list-group-item-action">내 글</a>
               <a href="../../myPost2.do?m_id=${member.m_id }&cPage=1" class="list-group-item list-group-item-action">내 댓글</a>
               <a href="../../loginRecordList.do?ll_id=${member.m_id }&cPage=1" class="list-group-item list-group-item-action">로그인 기록</a>
-              <a href="../../DeleteMember.do?m_id=${member.m_id }" class="list-group-item list-group-item-action">회원탈퇴</a>
-              
-
-              
-            </div> 
-            
+              <a href="../../DeleteMember.do?m_id=${member.m_id }" class="list-group-item list-group-item-action">회원탈퇴</a>           
+            </div>             
 		</div>
 		
 <div class="col-md-9">
@@ -334,7 +333,7 @@ $(function(){
 								<%-- 	<td colspan="3" style="text-align: right; font-size: 0.9em;">
 										<a href="deleteReceiveMessage.do?receive_idx=${message.receive_idx }">쪽지삭제</a>
 									</td> --%>
-									<td colspan="3" style="text-align: right;"><input type="button" value="쪽지삭제" class="btn btn-outline-secondary" onclick="deleteReceiveMessage.do?receive_idx=${message.receive_idx }"></td>
+									<td colspan="3" style="text-align: right;"><input type="button" value="쪽지삭제" class="btn btn-outline-secondary" onclick="location.href='deleteReceiveMessage.do?receive_idx=${message.receive_idx }'"></td>
 								</tr>
 							</table>
 							</form>

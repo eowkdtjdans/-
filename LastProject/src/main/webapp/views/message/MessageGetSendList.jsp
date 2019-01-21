@@ -297,77 +297,28 @@ $(function(){
            </div>            
 		</div>
 		
-<%-- 		<div class="col-md-9">
-		    <div class="card">
-		        <div class="card-body">
-		            <div class="row">
-		                <div class="col-md-12">
-		                    <h4>보낸 쪽지</h4> 
-		                    <hr>
-		                </div>
-		            </div>
-	             </div>
-<div id="container">
-	
-	<!-- 데이타 표시 -->
-	<form>
-	<table class="table">
-		<thead class="thead-light">
-		<tr>
-			<th width="200">제목</th>
-			<th width="150">받는이</th>
-			<th width="150">날짜</th>
-		</tr>
-		</thead>
-		<c:forEach var="messageList" items="${messageList }">
-		<tr>
-			<td>
-				<a href="getSendMessage.do?send_idx=${messageList.send_idx }">
-					${messageList.send_title }
-				</a>
-			</td>
-			<td>${messageList.send_receiver }</td>
-			<td><fmt:formatDate value="${messageList.send_regdate }" pattern="yyyy-MM-dd HH:mm:ss"/></td>
-			
 		
-		</tr>
-		</c:forEach>
-	</table>
-	</form>
-				</div>
-			</div> 
-		</div>  --%>
+		<div class="col-md-9">
+			<div class="card">
+			    <table class="table">
+			    	<tr> 
+			    		<td colspan="3" style="font-size: 1.2em;"><img src="views/img/messageImg.png" style="width: 60px; height: 60px;"><strong> 보낸 쪽지목록</strong></td>	    		
+			    	</tr> 
+			    	<c:forEach var="messageList" items="${messageList }">
+			    	<tr>
+			    		<td style="width: 35%;"><img src="${messageList.p_route }" style="width: 50px; height: 50px;" class="rounded-circle"> &nbsp;<a href="getSendMessage.do?send_idx=${messageList.send_idx }">${messageList.send_receiver }</a></td> 
+			    		
+			    		<td style="width: 35%; padding-top: 21px;"><a href="getSendMessage.do?send_idx=${messageList.send_idx }">
+								${messageList.send_title }
+							</a>
+						</td> 
+			    		<td style="width: 30%; padding-top: 21px;" class="text-muted"><fmt:formatDate value="${messageList.send_regdate }" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+			    	</tr>
+			    	</c:forEach>
 		
-<div class="col-md-9">
-	<div class="card">
-	    <table class="table">
-	    	<tr> 
-	    		<td colspan="3"><h4><img src="views/img/messageImg.png" style="width: 60px; height: 60px;"> 보낸 쪽지목록</h4></td>	    		
-	    	</tr> 
-	    	<c:forEach var="messageList" items="${messageList }">
-	    	<tr>
-	    		<td style="width: 35%;"><img src="${messageList.p_route }" style="width: 50px; height: 50px;" class="rounded-circle"> &nbsp;<a href="getSendMessage.do?send_idx=${messageList.send_idx }">${messageList.send_receiver }</a></td> 
-	    		
-	    		<td style="width: 35%; padding-top: 21px;"><a href="getSendMessage.do?send_idx=${messageList.send_idx }">
-						${messageList.send_title }
-					</a>
-				</td> 
-	    		<td style="width: 30%; padding-top: 21px;" class="text-muted"><fmt:formatDate value="${messageList.send_regdate }" pattern="yyyy-MM-dd HH:mm:ss"/></td>
-	    	</tr>
-	    	</c:forEach>
-
-	    </table>
-	</div>
-</div>		
-		 
-		
-		
-		
-		
-		
-		
-		
-		
+			    </table>
+			</div>
+		</div>			
 	</div> 
 </div><%@include file="/views/footer.jsp"%>
 </body>
