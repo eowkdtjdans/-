@@ -36,6 +36,7 @@
 	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700"
 	rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR" rel="stylesheet">
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	
 <style>
 	.inner {
@@ -428,7 +429,7 @@
 								<div class="card-body">
 									<div class="tab-content p-0">
 										<!-- Morris chart - Sales -->
-										<div class="chart tab-pane active" id="own-chart"
+										<div class="chart tab-pane active" id="weekChart"
 											style="position: relative; height: 300px;"></div>
 										<div class="chart tab-pane" id="own-chart2"
 											style="position: relative; height: 300px;"></div>
@@ -467,15 +468,23 @@
 	<!-- ./wrapper -->
 	
 	<script>
+	$(function(){
 		$.ajax({ //모리스 차트 마저하기
 			type:"POST",
-			url:"/userLogVisit.do",
-			data: document.getElementById().val(),
-			dataType:"JSON",
+			url:"/logVisitChart.do",
 			success: function(result){
-				
+				var cons = result;
+				new Morris.Line({
+		            element: 'weekChart',
+		            data: cons,
+		            xkey: 'lv_date',
+		            ykeys: ['value'],
+		            labels: ['value']
+		        
+		        });
 			}
 		});
+	})
 	
 	</script>
 	
