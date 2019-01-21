@@ -35,7 +35,7 @@
 	<a href="/ModifyPwdMember.do">비밀번호 수정</a>
 	<a href="/Admin.do">관리자 페이지</a>
 	<hr>
-	<a href="/naverLogin.do">네이버 로그인</a>
+	<a href="/naverLogin.do">네이버 로그인</a> 
 	<a href="/googleLogin.do">구글 로그인</a>
 	<a href="/kakaoLogin.do">카카오</a>
 	<a href="/NaverRegister.do">네이버회원가입</a>
