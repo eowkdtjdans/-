@@ -174,16 +174,42 @@ $(function(){
       });    
    }
 
+   function DeleteMember(frm) {
+   
+       var str = $("#DeleteMember").serialize();
+       alert("str : " + str);
+      $.ajax({
+         async : true,
+         type : "POST",
+         dataType : "json",
+         data : str,
+         url : "../../MemberDeleteJson.do",
+         success : function(data) {
+            if (data.cnt >= 1) {
+               alert("회원탈퇴가 완료되었습니다.");
+               frm.action = "../../DeleteMember.do";
+                frm.submit();   
+                return false;
+            } else {
+               alert("기존에 등록된 핸드폰번호가 일치하지않습니다. 다시 확인해주세요.");
+               frm.m_phone.value = "";
+               frm.modifyM_phone.value = "";
+               frm.m_phone.focus();
+            }
+         }
+      })
+      
+   };
+      
+   function enterkey(event) {
+      if(event.keyCode == 13) {
+         $("#deleteBtn").click();
+      }
+   }
+   
+</script>
+   
 
-   
-   
-   
-   
-   
-   
-   
-   
-</script>    
  
 </head>
 
@@ -313,48 +339,28 @@ $(function(){
 		        <div class="card-body">
 		            <div class="row">
 		                <div class="col-md-12">
-		                    <h4><img src="/views/img/profileIcon.png" style="width: 50px; height: 50px;"> my Profile</h4>
-		                    <hr>
-		                </div>
-		            </div>
-		            <div class="row">
-		                <div class="col-md-12">
-		                    <form>
-                              <table class="table">
-                              	<tr>
-                              		<td colspan="2" style="text-align: center;"><h5 class="text-muted">Profile Image</h5><br><img src="${profile.p_route }" style="width:250px; height: 250px;" class="rounded"/></td>
-                              		<td colspan="2" style="text-align: center;"><h5 class="text-muted">Host Image</h5><br><img src="${hostImg.h_route }" style="width:250px; height: 250px;" class="rounded"/></td>
-                              	</tr>
-                              	<tr>
-                              		<th style="width: 22%; text-align: center;" >이름 </th>
-                              		<td style="width: 28%">${member.m_name }</td>
-                              		<th style="width: 18%; text-align: center;">취미 </th>
-                              		<td style="width: 32%">${profile.p_hobby }</td>
-                              	</tr>
-                              	<tr>
-                              		<th style="width: 22%; text-align: center;" >사용가능 언어 </th>
-                              		<td style="width: 28%">${profile.p_language }</td>
-                              		<th style="width: 18%; text-align: center;">직업 </th>
-                              		<td style="width: 32%">${profile.p_job }</td>
-                              	</tr>
-                              	<tr>
-                            		<th style="width: 22%; text-align: center;">방문해본 국가</th>
-                            		<td colspan="3">${profile.p_visitcountry }</td>
-                            	</tr>
-                            	<tr>
-                            		<th style="width: 22%; text-align: center;">사이트방문 목적</th>
-                            		<td colspan="3">${profile.p_purpose }</td>
-                            	</tr>
-                              	<tr>
-                              		<th style="width: 22%; text-align: center;" >나에 대해서 </th>
-                              		<td colspan="3">${profile.p_aboutme }</td>  		
-                              	</tr>  	
-                              </table>
-                              
-                              
-                              
-                              
-                            </form>
+		                    <h4 class="card-title" style="text-align : center;">회원 탈퇴</h4>
+                     <form onsubmit="return false;"method="POST" class="my-login-validation" id="DeleteMember">
+                     <label for="id">아이디</label>
+                           <input readonly="readonly" id="m_id" type="text" class="form-control" name="m_id" value="${member.m_id }" required autofocus>
+                        <div class="form-group">
+                           <label for="password">비밀번호</label>
+                           <input onkeypress="enterkey()"id="m_pwd" type="password" class="form-control" name="m_pwd" required data-eye>
+                        </div>
+                        
+                        <div class="form-group">
+                           <label for="phone">핸드폰 번호</label>
+                           <input onkeypress="enterkey()"id="m_phone" type="text" class="form-control" name="m_phone" required autofocus>
+                        </div>
+
+                        
+                        <div class="form-group m-0">
+                           <button type="submit" id="deleteBtn"class="btn btn-primary btn-block" onclick="DeleteMember(this.form)">
+                              회원 정보 삭제
+                           </button>
+                        </div>
+               
+                     </form> 
 		                </div>
 		            </div>
 		            
