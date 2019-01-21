@@ -333,7 +333,7 @@ $(function(){
 								<tr>
 									<td colspan="3" class="right">
 										<%-- <a href="deleteSendMessage.do?send_idx=${message.send_idx }">쪽지삭제</a> --%>
-										<input type="button" value="쪽지삭제" class="btn btn-outline-secondary" onclick="deleteSendMessage.do?send_idx=${message.send_idx }">
+										<input type="button" value="쪽지삭제" class="btn btn-outline-secondary" onclick="location.href='deleteSendMessage.do?send_idx=${message.send_idx }'">
 									</td>
 								</tr>
 							</table>

@@ -334,7 +334,7 @@ $(function(){
 								<%-- 	<td colspan="3" style="text-align: right; font-size: 0.9em;">
 										<a href="deleteReceiveMessage.do?receive_idx=${message.receive_idx }">쪽지삭제</a>
 									</td> --%>
-									<td colspan="3" style="text-align: right;"><input type="button" value="쪽지삭제" class="btn btn-outline-secondary" onclick="deleteReceiveMessage.do?receive_idx=${message.receive_idx }"></td>
+									<td colspan="3" style="text-align: right;"><input type="button" value="쪽지삭제" class="btn btn-outline-secondary" onclick="location.href='deleteReceiveMessage.do?receive_idx=${message.receive_idx }'"></td>
 								</tr>
 							</table>
 							</form>
