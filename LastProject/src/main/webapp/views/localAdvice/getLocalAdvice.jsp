@@ -574,6 +574,10 @@ select {
                            <a id="atag-size" href="#" onclick="deleteLocalAdvice('${getLocalAdvice.l_idx }')">삭제</a>          
                         </c:if> 
                        
+                        <c:if test="${member.m_id eq 'admin' }">
+			             	<a id="atag-size" href="#" onclick="deleteLocalAdvice('${getLocalAdvice.l_idx }')">삭제</a>    
+			             </c:if>
+                       
                      </td>
                   </tr>
                </table>
@@ -603,9 +607,7 @@ select {
                </c:otherwise>
             </c:choose>
 			 
-			 <c:if test="${member.m_id eq 'admin' }">
-             	<a id="atag-size" href="#" onclick="deleteLocalAdvice('${getLocalAdvice.l_idx }')">관리자삭제</a>    
-             </c:if>
+			
 			
 			
 

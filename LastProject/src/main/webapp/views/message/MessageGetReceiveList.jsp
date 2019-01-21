@@ -314,11 +314,24 @@ $(function(){
 									${messageList.receive_sender }
 								</a>
 							</td> 
+							
+							<c:if test="${messageList.receive_read eq 0 }">
+							
+							<td style="width: 35%; padding-top: 21px;" >
+								<a href="getReceiveMessage.do?receive_idx=${messageList.receive_idx }">
+									${messageList.receive_title } (안읽음)
+								</a>
+							</td>
+							</c:if>
+							
+							<c:if test="${messageList.receive_read eq 1 }">
+							
 							<td style="width: 35%; padding-top: 21px;" >
 								<a href="getReceiveMessage.do?receive_idx=${messageList.receive_idx }">
 									${messageList.receive_title }
 								</a>
 							</td>
+							</c:if>
 							<td style="width: 30%; padding-top: 21px;"><fmt:formatDate value="${messageList.receive_regdate }" pattern="yyyy-MM-dd HH:mm:ss"/> </td>
 						</tr>
 						</c:forEach>
