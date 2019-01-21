@@ -37,6 +37,8 @@ import com.spring.biz.member.MemberService;
 import com.spring.biz.member.MemberVO;
 import com.spring.biz.message.MessageRecieveVO;
 import com.spring.biz.message.MessageService;
+import com.spring.biz.profile.ProfileService;
+import com.spring.biz.profile.ProfileVO;
 import com.spring.biz.profileImage.FileUploadService;
 import com.spring.biz.profileImage.ProfileImageService;
 import com.spring.biz.profileImage.ProfileImageVO;
@@ -62,18 +64,23 @@ public class AdminController {
 	private EventImageService eventImageService;
 	@Autowired
 	private MemberService memberService;
+	@Autowired
+	private ProfileService profileService;
+	
 	private static final String PREFIX_URL = "/views/img/upload/";
 	private static final String SAVE_PATH = "C:/MyStudy/GIT/gukbong/LastProject/src/main/webapp/views/img/upload/";
 	private static final String SERVER_SAVE_PATH = "C:/MyStudy/GIT/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/LastProject/views/img/upload/";
 	
 	
 	@RequestMapping(value="/Admin.do")
-	public String AdminMain(HttpServletRequest request, MemberVO vo, Model model, HttpSession session) throws Exception {
+	public String AdminMain(HttpServletRequest request, MemberVO membervo, ProfileVO profilevo,Model model, HttpSession session) throws Exception {
 		System.out.println("AdminController의 사이트 조회수 누적 메소드");
-		MemberVO vo2 = memberService.loginMember(vo, session);
+		MemberVO membervo2 = memberService.loginMember(membervo, session);
 		AdminCntVO adminCnt = adminService.adminCnt();
+		ProfileVO profilevo2 = profileService.getProfile2(profilevo, session);
 		
-		session.setAttribute("member", vo2);
+		session.setAttribute("profile", profilevo2);
+		session.setAttribute("member", membervo2);
 		model.addAttribute("adminCnt", adminCnt);
 		
 		return "redirect:/views/admin/testAdmin.jsp";

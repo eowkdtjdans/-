@@ -573,6 +573,7 @@ select {
                            <a id="atag-size" href="../updateLocalAdvice.do?l_idx=${getLocalAdvice.l_idx }">&nbsp;수정&nbsp;</a>|                           
                            <a id="atag-size" href="#" onclick="deleteLocalAdvice('${getLocalAdvice.l_idx }')">삭제</a>          
                         </c:if> 
+                       
                      </td>
                   </tr>
                </table>
@@ -601,7 +602,12 @@ select {
                      style="width: 20px; height: 20px;"> 좋아요!</a>
                </c:otherwise>
             </c:choose>
-
+			 
+			 <c:if test="${member.m_id eq 'admin' }">
+             	<a id="atag-size" href="#" onclick="deleteLocalAdvice('${getLocalAdvice.l_idx }')">관리자삭제</a>    
+             </c:if>
+			
+			
 
             <!-- 여기서부터 댓글폼 -->
             <form method="post" id="frm">
