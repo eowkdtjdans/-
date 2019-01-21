@@ -353,7 +353,7 @@ public class LocalAdviceController {
 		localAdviceCommentService.deleteLocalAdviceCommentAll(vo);
 		localAdviceService.deleteLocalAdvice(vo);
 		
-		return "redirect:/getLocalAdviceList2.do?cPage=1";
+		return "redirect:/getLocalAdviceList2.do?cPage=1&firstLat=&firstLng=&key=&searchCondition=find_advice";
 	}
 
 	

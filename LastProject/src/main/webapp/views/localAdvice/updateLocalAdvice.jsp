@@ -44,25 +44,25 @@
   ======================================================= -->
   
 <style>
-	body{
-		padding-top: 75px;
-	}
-	a{
-		color:#5e7e9b;
-	}
-	#profileImage { width: 60px; height: 60px;} 
-	td{
-		padding-right: 30px;
-	}
-	#tableDiv{
-		width: 1100px;
-		height: 400px;
-	}
-	textarea{
-		overflow: hidden;
-	}
-	
-	.scrollto {    
+   body{
+      padding-top: 75px;
+   }
+   a{
+      color:#5e7e9b;
+   }
+   #profileImage { width: 60px; height: 60px;} 
+   td{
+      padding-right: 30px;
+   }
+   #tableDiv{
+      width: 1100px;
+      height: 400px;
+   }
+   textarea{
+      overflow: hidden;
+   }
+   
+   .scrollto {    
      font-family: 'Kalam', cursive;
      padding-top: 8px;
    }
@@ -74,30 +74,30 @@
         margin-top: -30px;
    }
    #header {
-        background-color: 	white;
+        background-color:    white;
    }
    #header.header-scrolled {
         background-color: white;
    }
    
    .nav-menu li a{
-   	color: black;
-   }	
+      color: black;
+   }   
    #mainLogo{
-   	color: black;
-   	position: absolute;
-   	margin-left: 80px;
-   	margin-top: -10px;
-   	font-size: 2.15em;
+      color: black;
+      position: absolute;
+      margin-left: 80px;
+      margin-top: -10px;
+      font-size: 2.15em;
    }
    #happy{
-   	position: absolute;
-   	margin-left: 20px;
-   	margin-top: -20px;
+      position: absolute;
+      margin-left: 20px;
+      margin-top: -20px;
    }
    #navProfileImg{
-   	position: relative;
-   	margin-top: -10px;
+      position: relative;
+      margin-top: -10px;
    }
    
 
@@ -112,52 +112,52 @@ select {
 }
 
 #autocomplete {
-	width: 50%; 
-	border: 1px solid #999; 
-	border-radius: 30px; 
-	padding: .3em .3em;
-	
+   width: 50%; 
+   border: 1px solid #999; 
+   border-radius: 30px; 
+   padding: .3em .3em;
+   
 }
 #advice{
-	width: 50%; 
-	border: 1px solid #999; 
-	border-radius: 30px; 
-	padding: .3em .3em;
+   width: 50%; 
+   border: 1px solid #999; 
+   border-radius: 30px; 
+   padding: .3em .3em;
 }
 
 </style>
 
 <script>
-	function updatego(frm){
-		frm.action="../updateLocalAdvice.do";
-		frm.submit();
-	}
-	
-	
-	function noticeMessage() {
-	      var noticeMessage = $("#noticeMessage").serialize();
-	      var receive_receiver =$("#receive_receiver").val();
-	       
-	         $.ajax({
-	         async : true,
-	         type : "POST",
-	         dataType : "json",
-	         data : noticeMessage,
-	         url : "../../noticeMessageJson.do",
-	         success : function(data) {
-	            if (data.cnt > 0) {
-	               $("#noticeMessageCount").append(data.cnt);
-	               $("#noticeMessageCount2").append(data.cnt);
-	               setInteval(function() {
-	                  noticeMessage()
-	               }, 3000);
-	       
-	            }
-	         }
-	         
-	         
-	      });    
-	   }
+   function updatego(frm){
+      frm.action="../updateLocalAdvice.do";
+      frm.submit();
+   }
+   
+   
+   function noticeMessage() {
+         var noticeMessage = $("#noticeMessage").serialize();
+         var receive_receiver =$("#receive_receiver").val();
+          
+            $.ajax({
+            async : true,
+            type : "POST",
+            dataType : "json",
+            data : noticeMessage,
+            url : "../../noticeMessageJson.do",
+            success : function(data) {
+               if (data.cnt > 0) {
+                  $("#noticeMessageCount").append(data.cnt);
+                  $("#noticeMessageCount2").append(data.cnt);
+                  setInteval(function() {
+                     noticeMessage()
+                  }, 3000);
+          
+               }
+            }
+            
+            
+         });    
+      }
 
 </script>  
  
@@ -206,49 +206,49 @@ select {
 
          
 <nav id="nav-menu-container">
-	<ul class="nav-menu">
-	
-	<c:if test="${empty member.m_id}">
-		<li><a href="../../loginMember.do" >로그인</a></li>
-		<li><a  href="../../insertMember.do" >회원가입</a></li>
-		<li><a href="../../findIdMember.do">아이디찾기</a></li >
-	    <li><a href="../../findPwdMember.do">비밀번호찾기</a></li>
-	</c:if>	
-	
-	<c:if test="${!empty member.m_id}">
-		<li>
-			<div>
-			<strong>
-			<span style="color: red;">W</span>
-			<span style="color: blue;">e</span>
-			<span style="color: darkviolet;">l</span>
-			<span style="color: #FFC100;">c</span>
-			<span style="color: green;">o</span>
-			<span style="color: orange;">m</span>
-			<span style="color: navy;">e</span>			
-			&nbsp;&nbsp;			
-			${member.m_id } 님 
-			</strong>
-			</div>
-		</li>
-	
-		<li class="menu-has-children"><img src="${getProfileImageRoute.p_route }" style="width: 45px; height: 45px;" class="rounded-circle" id="navProfileImg"></a>
+   <ul class="nav-menu">
+   
+   <c:if test="${empty member.m_id}">
+      <li><a href="../../loginMember.do" >로그인</a></li>
+      <li><a  href="../../insertMember.do" >회원가입</a></li>
+      <li><a href="../../findIdMember.do">아이디찾기</a></li >
+       <li><a href="../../findPwdMember.do">비밀번호찾기</a></li>
+   </c:if>   
+   
+   <c:if test="${!empty member.m_id}">
+      <li>
+         <div>
+         <strong>
+         <span style="color: red;">W</span>
+         <span style="color: blue;">e</span>
+         <span style="color: darkviolet;">l</span>
+         <span style="color: #FFC100;">c</span>
+         <span style="color: green;">o</span>
+         <span style="color: orange;">m</span>
+         <span style="color: navy;">e</span>         
+         &nbsp;&nbsp;         
+         ${member.m_id } 님 
+         </strong>
+         </div>
+      </li>
+   
+      <li class="menu-has-children"><img src="${getProfileImageRoute.p_route }" style="width: 45px; height: 45px;" class="rounded-circle" id="navProfileImg"></a>
           <ul>                                      
             <li><a  href="../../myProfile.do" >마이 프로필</a></li> 
             <li><a href="../../logoutMember.do">로그아웃</a></li>            
           </ul> 
         </li>
                
-   		<li>    
+         <li>    
           <span class="fa-layers fa-fw">
            <a href="../../getReceiveMessageList.do">
           <i class="far fa-envelope fa-2x"></i>
           <span class="fa-layers-counter" style="color:red;" id="noticeMessageCount"></span>
           </a>
          </span>
-     	 </li>         
-	</c:if>
-	</ul> 
+         </li>         
+   </c:if>
+   </ul> 
 </nav>               
 <hr>
   </header><!-- #header -->
@@ -260,44 +260,44 @@ select {
 <div class="container">
 <br>
 <img src="views/img/star.jpg" style="width: 40px; height: 40px;"><span style="font-size: 1.2em; font-weight: bold;">현지정보 문의 게시판 - 게시글 수정</span>
-		
-		<div id="tableDiv">
-		<form name="frm" method="post">
-		  
-			<table>		 		
-				<tr> 
-					<td rowspan="2" style="text-align: center; width: 10%;"><img src="${getLocalAdvice.getP_route() }" class="rounded-circle"  id="profileImage" onerror='this.src="../views/img/people/fuckyou.jpg"'></td>
-					<td><textarea class="form-control" rows="1" cols="90" name="l_subject">${getLocalAdvice.l_subject }</textarea></td>
-				<%-- 	<td>					
-						<c:if test="${getLocalAdvice.m_id eq member.m_id }"> 
-							<input type="button" class="btn btn-outline-secondary" value="수정완료" onclick="updatego(this.form)">
-							<input type="hidden" name="l_idx" value="${getLocalAdvice.l_idx }">
-						</c:if>
-					    </td> --%>
-				</tr>
-				<tr>
-					<td colspan="3">${getLocalAdvice.m_id }&emsp;&emsp; ${getLocalAdvice.l_date }</td>
-				</tr>
-				 
-				<tr>
-				<br>
-					<td colspan="3">          
-					<br>
-						<textarea class="form-control" rows="10" cols="150" name="l_content">${getLocalAdvice.l_content }</textarea>
-					</td>
-				</tr>
-				<tr>
-					<td colspan="3" style="text-align: right;">					
-						<c:if test="${getLocalAdvice.m_id eq member.m_id }"> 
-							<input type="button" class="btn btn-outline-secondary" value="수정완료" onclick="updatego(this.form)">
-							<input type="hidden" name="l_idx" value="${getLocalAdvice.l_idx }">
-						</c:if>
-					</td>	 
-				</tr>
-			</table>			
-		</form>
-		</div>						
-</div>	   
+      
+      <div id="tableDiv">
+      <form name="frm" method="post">
+        
+         <table>             
+            <tr> 
+               <td rowspan="2" style="text-align: center; width: 10%;"><img src="${getLocalAdvice.getP_route() }" class="rounded-circle"  id="profileImage" onerror='this.src="../views/img/people/fuckyou.jpg"'></td>
+               <td><textarea class="form-control" rows="1" cols="90" name="l_subject">${getLocalAdvice.l_subject }</textarea></td>
+            <%--    <td>               
+                  <c:if test="${getLocalAdvice.m_id eq member.m_id }"> 
+                     <input type="button" class="btn btn-outline-secondary" value="수정완료" onclick="updatego(this.form)">
+                     <input type="hidden" name="l_idx" value="${getLocalAdvice.l_idx }">
+                  </c:if>
+                   </td> --%>
+            </tr>
+            <tr>
+               <td colspan="3">${getLocalAdvice.m_id }&emsp;&emsp; ${getLocalAdvice.l_date }</td>
+            </tr>
+             
+            <tr>
+            <br>
+               <td colspan="3">          
+               <br>
+                  <textarea class="form-control" rows="10" cols="150" name="l_content">${getLocalAdvice.l_content }</textarea>
+               </td>
+            </tr>
+            <tr>
+               <td colspan="3" style="text-align: right;">               
+                  <c:if test="${getLocalAdvice.m_id eq member.m_id }"> 
+                     <input type="button" class="btn btn-outline-secondary" value="수정완료" onclick="updatego(this.form)">
+                     <input type="hidden" name="l_idx" value="${getLocalAdvice.l_idx }">
+                  </c:if>
+               </td>    
+            </tr>
+         </table>         
+      </form>
+      </div>                  
+</div>      
 <!-- #about -->
 
  <!--==========================
@@ -305,17 +305,17 @@ select {
   ============================-->
     <hr class="hr">
     <footer>
-    	<br>   
+       <br>   
         <div class="row">
-        	<div class="col-lg-8 col-md-10 mx-auto">
-        		<p class="text-primary text-center">© GUKBONG WORLD COMPANY. ALL RIGHTS RESERVED.</p>
-        		<p class="copyright text-muted text-center">상호:국봉월드 &nbsp;| &nbsp; 사업자등록번호:123-456-78910[사업자정보확인]  &nbsp;| &nbsp; 대표:방국봉  &nbsp;| &nbsp; TEL:1544-1444 
+           <div class="col-lg-8 col-md-10 mx-auto">
+              <p class="text-primary text-center">© GUKBONG WORLD COMPANY. ALL RIGHTS RESERVED.</p>
+              <p class="copyright text-muted text-center">상호:국봉월드 &nbsp;| &nbsp; 사업자등록번호:123-456-78910[사업자정보확인]  &nbsp;| &nbsp; 대표:방국봉  &nbsp;| &nbsp; TEL:1544-1444 
              <br>FAX:031-123-1234  &nbsp;| &nbsp; 주소:비트캠프 신촌센터  &nbsp; |  &nbsp; E-mail:kz1234@naver.com </p>
-		    <p style="font-size: 0.8em;" class="text-muted text-right">© 1999 - 2019 Couchsurfing International, Inc</p>
-        	</div>	
+          <p style="font-size: 0.8em;" class="text-muted text-right">© 1999 - 2019 Couchsurfing International, Inc</p>
+           </div>   
         </div>
     <br> 
-    </footer>	
+    </footer>   
    <!-- #footer -->
    <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
 

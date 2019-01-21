@@ -308,7 +308,8 @@ $(function(){
 			    	<tr>
 			    		<td style="width: 35%;"><img src="${messageList.p_route }" style="width: 50px; height: 50px;" class="rounded-circle"> &nbsp;<a href="getSendMessage.do?send_idx=${messageList.send_idx }">${messageList.send_receiver }</a></td> 
 			    		
-			    		<td style="width: 35%; padding-top: 21px;"><a href="getSendMessage.do?send_idx=${messageList.send_idx }">
+			    		<td style="width: 35%; padding-top: 21px;">
+			    			<a href="getSendMessage.do?send_idx=${messageList.send_idx }">
 								${messageList.send_title }
 							</a>
 						</td> 

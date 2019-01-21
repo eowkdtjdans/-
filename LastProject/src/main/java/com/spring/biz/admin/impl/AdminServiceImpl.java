@@ -14,6 +14,7 @@ import com.spring.biz.admin.UserAdminPostVO;
 import com.spring.biz.admin.UserAdminViewVO;
 import com.spring.biz.admin.logLoginVO;
 import com.spring.biz.event.EventVO;
+import com.spring.biz.localAdvice.LocalAdviceVO;
 import com.spring.biz.member.MemberVO;
 
 @Service("adminService")
@@ -135,6 +136,11 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public List<LVChartVO> logVisitChart() {
 		return adminDAO.logVisitChart();
+	}
+	
+	@Override
+	public List<LocalAdviceVO> localAdviceAdminList() {
+		return adminDAO.localAdviceAdminList();
 	}
 
 }

@@ -31,11 +31,15 @@ import com.spring.biz.event.EventService;
 import com.spring.biz.event.EventVO;
 import com.spring.biz.eventImage.EventImageService;
 import com.spring.biz.eventImage.EventImageVO;
+import com.spring.biz.localAdvice.LocalAdviceVO;
 import com.spring.biz.member.Email;
 import com.spring.biz.member.EmailSender;
+import com.spring.biz.member.MemberService;
 import com.spring.biz.member.MemberVO;
 import com.spring.biz.message.MessageRecieveVO;
 import com.spring.biz.message.MessageService;
+import com.spring.biz.profile.ProfileService;
+import com.spring.biz.profile.ProfileVO;
 import com.spring.biz.profileImage.FileUploadService;
 import com.spring.biz.profileImage.ProfileImageService;
 import com.spring.biz.profileImage.ProfileImageVO;
@@ -59,6 +63,10 @@ public class AdminController {
 	private EventService eventService;
 	@Autowired
 	private EventImageService eventImageService;
+	@Autowired
+	private MemberService memberService;
+	@Autowired
+	private ProfileService profileService;
 	
 	private static final String PREFIX_URL = "/views/img/upload/";
 	private static final String SAVE_PATH = "C:/MyStudy/GIT/gukbong/LastProject/src/main/webapp/views/img/upload/";
@@ -66,11 +74,14 @@ public class AdminController {
 	
 	
 	@RequestMapping(value="/Admin.do")
-	public String AdminMain(HttpServletRequest request, Model model) {
+	public String AdminMain(HttpServletRequest request, MemberVO membervo, ProfileVO profilevo,Model model, HttpSession session) throws Exception {
 		System.out.println("AdminController의 사이트 조회수 누적 메소드");
-		
+		MemberVO membervo2 = memberService.loginMember(membervo, session);
 		AdminCntVO adminCnt = adminService.adminCnt();
+		ProfileVO profilevo2 = profileService.getProfile2(profilevo, session);
 		
+		session.setAttribute("profile", profilevo2);
+		session.setAttribute("member", membervo2);
 		model.addAttribute("adminCnt", adminCnt);
 		
 		return "redirect:/views/admin/testAdmin.jsp";
@@ -131,6 +142,15 @@ public class AdminController {
 		return "redirect:/views/admin/pages/tables/userAdmin.jsp";
 	}
 	
+	@RequestMapping(value="/localAdviceAdminList.do")
+	public String localAdviceList(HttpSession session) {
+		List<LocalAdviceVO> AdminlocalAdviceList = adminService.localAdviceAdminList();
+		System.out.println(AdminlocalAdviceList);
+		session.setAttribute("AdminlocalAdviceList", AdminlocalAdviceList);
+		return "redirect:/views/admin/pages/tables/localAdviceList.jsp";
+	}
+	
+	
 	@RequestMapping(value="/adminGetReceiveMessageList.do")
 	public String getAdminGetReceiveMessageList(MessageRecieveVO vo, HttpSession session) {
 			vo.setReceive_receiver("admin");
@@ -140,6 +160,8 @@ public class AdminController {
 			session.setAttribute("adminMessageList", messageList);
 		return "redirect:/views/admin/pages/tables/messageAdmin.jsp";	
 	}
+	
+	
 	@RequestMapping(value="/adminMessageGet.do")
 	public String adminMessageGet(MessageRecieveVO vo,  Model model, HttpSession session, @RequestParam("receive_idx") int receive_idx) {
 		session.setAttribute("adminMessage", messageService.getReceiveMessage(vo));
@@ -189,10 +211,12 @@ public class AdminController {
 		List<EventVO> list = null;
 		
 		list = adminService.eventAdminList();
-		
+		System.out.println(list);
 		model.addAttribute("eventAdminList", list);
 		return "redirect:/views/admin/pages/tables/eventAdmin.jsp";
 	}
+	
+
 	
 	@RequestMapping(value="/insertEvent.do", method=RequestMethod.GET)
 	public String insertEvent(Model model) {

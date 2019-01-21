@@ -45,13 +45,13 @@
   ======================================================= -->
   
 <style>
-	body{
-		padding-top: 75px;
-	}
-	a{
-		color:#5e7e9b;
-	}
-	.scrollto {    
+   body{
+      padding-top: 75px;
+   }
+   a{
+      color:#5e7e9b;
+   }
+   .scrollto {    
      font-family: 'Kalam', cursive;
      padding-top: 8px;
    }
@@ -63,110 +63,110 @@
         margin-top: -30px;
    }
    #header {
-        background-color: 	white;
+        background-color:    white;
    }
    #header.header-scrolled {
         background-color: white;
    }
    
    .nav-menu li a{
-   	color: black;
-   }	
+      color: black;
+   }   
    #mainLogo{
-   	color: black;
-   	position: absolute;
-   	margin-left: 80px;
-   	margin-top: -10px;
-   	font-size: 2.15em;
+      color: black;
+      position: absolute;
+      margin-left: 80px;
+      margin-top: -10px;
+      font-size: 2.15em;
    }
    #happy{
-   	position: absolute;
-   	margin-left: 20px;
-   	margin-top: -20px;
+      position: absolute;
+      margin-left: 20px;
+      margin-top: -20px;
    }
    #navProfileImg{
-   	position: relative;
-   	margin-top: -10px;
+      position: relative;
+      margin-top: -10px;
    }
    
 
-	select {
-	    width: 128px; /* 원하는 너비설정 */
-	    padding: .3em .3em; /* 여백으로 높이 설정 */
-	    font-family: inherit;  /* 폰트 상속 */
-	    border:  1px solid #999; 
-	    border-radius: 30px; /* iOS 둥근모서리 제거 */
-	    -moz-appearance: none;
-	    appearance: none;
-	}
-	
-	#autocomplete {
-		width: 50%; 
-		border: 1px solid #999; 
-		border-radius: 30px; 
-		padding: .3em .3em;
-		
-	}
-	#advice{
-		width: 50%; 
-		border: 1px solid #999; 
-		border-radius: 30px; 
-		padding: .3em .3em;
-	}
+   select {
+       width: 128px; /* 원하는 너비설정 */
+       padding: .3em .3em; /* 여백으로 높이 설정 */
+       font-family: inherit;  /* 폰트 상속 */
+       border:  1px solid #999; 
+       border-radius: 30px; /* iOS 둥근모서리 제거 */
+       -moz-appearance: none;
+       appearance: none;
+   }
+   
+   #autocomplete {
+      width: 50%; 
+      border: 1px solid #999; 
+      border-radius: 30px; 
+      padding: .3em .3em;
+      
+   }
+   #advice{
+      width: 50%; 
+      border: 1px solid #999; 
+      border-radius: 30px; 
+      padding: .3em .3em;
+   }
 </style>
 
-<script>		 
-	function sendData(frm){
-	    if("${member.m_id}"==""){
-	    	alert("로그인이 필요한 서비스입니다.");
-	   		return false;
-	    }
-	    
-		if(frm.elements[0].value.trim()==""){
-			alert(frm.elements[0].title + "을 입력해주세요");
-			frm.elements[0].focus();
-			return false;
-		}
-		if(frm.elements[1].value.trim()==""){
-			alert(frm.elements[1].title + "을 입력해주세요");
-			frm.elements[1].focus();
-			return false;
-		}
-		frm.action="../insertLocalAdvice.do";
-		frm.submit();
-	}
-	
-	
-	function list_go() {
-		location.href="../sub2.do";
-	}
-	
-	
-	function noticeMessage() {
-	      var noticeMessage = $("#noticeMessage").serialize();
-	      var receive_receiver =$("#receive_receiver").val();
-	       
-	         $.ajax({
-	         async : true,
-	         type : "POST",
-	         dataType : "json",
-	         data : noticeMessage,
-	         url : "../../noticeMessageJson.do",
-	         success : function(data) {
-	            if (data.cnt > 0) {
-	               $("#noticeMessageCount").append(data.cnt);
-	               $("#noticeMessageCount2").append(data.cnt);
-	               setInteval(function() {
-	                  noticeMessage()
-	               }, 3000);
-	       
-	            }
-	         }
-	         
-	         
-	      });    
-	   }
-	
+<script>       
+   function sendData(frm){
+       if("${member.m_id}"==""){
+          alert("로그인이 필요한 서비스입니다.");
+            return false;
+       }
+       
+      if(frm.elements[0].value.trim()==""){
+         alert(frm.elements[0].title + "을 입력해주세요");
+         frm.elements[0].focus();
+         return false;
+      }
+      if(frm.elements[1].value.trim()==""){
+         alert(frm.elements[1].title + "을 입력해주세요");
+         frm.elements[1].focus();
+         return false;
+      }
+      frm.action="../insertLocalAdvice.do";
+      frm.submit();
+   }
+   
+   
+   function list_go() {
+      location.href="../sub2.do";
+   }
+   
+   
+   function noticeMessage() {
+         var noticeMessage = $("#noticeMessage").serialize();
+         var receive_receiver =$("#receive_receiver").val();
+          
+            $.ajax({
+            async : true,
+            type : "POST",
+            dataType : "json",
+            data : noticeMessage,
+            url : "../../noticeMessageJson.do",
+            success : function(data) {
+               if (data.cnt > 0) {
+                  $("#noticeMessageCount").append(data.cnt);
+                  $("#noticeMessageCount2").append(data.cnt);
+                  setInteval(function() {
+                     noticeMessage()
+                  }, 3000);
+          
+               }
+            }
+            
+            
+         });    
+      }
+   
 </script>   
 
 
@@ -216,49 +216,49 @@
 
          
 <nav id="nav-menu-container">
-	<ul class="nav-menu">
-	
-	<c:if test="${empty member.m_id}">
-		<li><a href="../../loginMember.do" >로그인</a></li>
-		<li><a  href="../../insertMember.do" >회원가입</a></li>
-		<li><a href="../../findIdMember.do">아이디찾기</a></li >
-	    <li><a href="../../findPwdMember.do">비밀번호찾기</a></li>
-	</c:if>	
-	
-	<c:if test="${!empty member.m_id}">
-		<li>
-			<div>
-			<strong>
-			<span style="color: red;">W</span>
-			<span style="color: blue;">e</span>
-			<span style="color: darkviolet;">l</span>
-			<span style="color: #FFC100;">c</span>
-			<span style="color: green;">o</span>
-			<span style="color: orange;">m</span>
-			<span style="color: navy;">e</span>			
-			&nbsp;&nbsp;			
-			${member.m_id } 님 
-			</strong>
-			</div>
-		</li>
-	
-		<li class="menu-has-children"><img src="${getProfileImageRoute.p_route }" style="width: 45px; height: 45px;" class="rounded-circle" id="navProfileImg"></a>
+   <ul class="nav-menu">
+   
+   <c:if test="${empty member.m_id}">
+      <li><a href="../../loginMember.do" >로그인</a></li>
+      <li><a  href="../../insertMember.do" >회원가입</a></li>
+      <li><a href="../../findIdMember.do">아이디찾기</a></li >
+       <li><a href="../../findPwdMember.do">비밀번호찾기</a></li>
+   </c:if>   
+   
+   <c:if test="${!empty member.m_id}">
+      <li>
+         <div>
+         <strong>
+         <span style="color: red;">W</span>
+         <span style="color: blue;">e</span>
+         <span style="color: darkviolet;">l</span>
+         <span style="color: #FFC100;">c</span>
+         <span style="color: green;">o</span>
+         <span style="color: orange;">m</span>
+         <span style="color: navy;">e</span>         
+         &nbsp;&nbsp;         
+         ${member.m_id } 님 
+         </strong>
+         </div>
+      </li>
+   
+      <li class="menu-has-children"><img src="${getProfileImageRoute.p_route }" style="width: 45px; height: 45px;" class="rounded-circle" id="navProfileImg"></a>
           <ul>                                      
             <li><a  href="../../myProfile.do" >마이 프로필</a></li> 
             <li><a href="../../logoutMember.do">로그아웃</a></li>            
           </ul> 
         </li>
                
-   		<li>    
+         <li>    
           <span class="fa-layers fa-fw">
            <a href="../../getReceiveMessageList.do">
           <i class="far fa-envelope fa-2x"></i>
           <span class="fa-layers-counter" style="color:red;" id="noticeMessageCount"></span>
           </a>
          </span>
-     	 </li>         
-	</c:if>
-	</ul> 
+         </li>         
+   </c:if>
+   </ul> 
 </nav>               
 <hr>
   </header><!-- #header -->
@@ -270,40 +270,40 @@
 <div class="container">
 <br>
 <img src="views/img/star.jpg" style="width: 40px; height: 40px;"><span style="font-size: 1.2em; font-weight: bold;">현지정보 문의 게시판 - 게시글 작성</span>
-		<form name="frm" method="post">			
+      <form name="frm" method="post">         
 <br>  
-			<table class="table">				
-				<tr>
-					<td style="width: 10%; text-align: center;">제목</td>    
-					<td style="width: 90%;"><textarea class="form-control" rows="1" cols="150" name="l_subject" title="제목"></textarea></td>
-				</tr>
-				<tr>
-					<td style="width: 10%; text-align: center;">내용</td>
-					<td style="width: 90%;"><textarea class="form-control" rows="14" cols="150" name="l_content" title="내용"></textarea></td>	
-				</tr>
-				<tr>
-				  	<td class="text-muted" colspan="2">
-						저작권 등 다른 사람의 권리를 침해하거나 명예를 훼손하는 게시글은 이용약관 및 관련법률에 의해 제재를 받으실 수 있습니다.
-					</td>				 
-				</tr> 
-				<tr>
-					<td colspan="2">					
-						<input type="button" value="저장" class="btn btn-outline-secondary"
-							onclick="sendData(this.form)">					
-						<input type="reset" value="다시작성" class="btn btn-outline-secondary">
-						
-						<input type="hidden" name="searchCondition" value="${searchCondition }">
-						<input type="hidden" name="searchKeyword" value="${key }" >
-						<input type="hidden" name="m_address" value="${member.m_address}">
-						<input type="hidden" name="lat" value="${firstLat}">
-						<input type="hidden" name="lng" value="${firstLng}">
-					</td>
-				</tr>		
-			</table>			
-		</form>
-		
-		
-</div>	   
+         <table class="table">            
+            <tr>
+               <td style="width: 10%; text-align: center;">제목</td>    
+               <td style="width: 90%;"><textarea class="form-control" rows="1" cols="150" name="l_subject" title="제목"></textarea></td>
+            </tr>
+            <tr>
+               <td style="width: 10%; text-align: center;">내용</td>
+               <td style="width: 90%;"><textarea class="form-control" rows="14" cols="150" name="l_content" title="내용"></textarea></td>   
+            </tr>
+            <tr>
+                 <td class="text-muted" colspan="2">
+                  저작권 등 다른 사람의 권리를 침해하거나 명예를 훼손하는 게시글은 이용약관 및 관련법률에 의해 제재를 받으실 수 있습니다.
+               </td>             
+            </tr> 
+            <tr>
+               <td colspan="2">               
+                  <input type="button" value="저장" class="btn btn-outline-secondary"
+                     onclick="sendData(this.form)">               
+                  <input type="reset" value="다시작성" class="btn btn-outline-secondary">
+                  
+                  <input type="hidden" name="searchCondition" value="${searchCondition }">
+                  <input type="hidden" name="searchKeyword" value="${key }" >
+                  <input type="hidden" name="m_address" value="${member.m_address}">
+                  <input type="hidden" name="lat" value="${firstLat}">
+                  <input type="hidden" name="lng" value="${firstLng}">
+               </td>
+            </tr>      
+         </table>         
+      </form>
+      
+      
+</div>      
 <!-- #about -->
 
 
@@ -312,17 +312,17 @@
   ============================-->
   <hr class="hr">
     <footer>
-    	<br>   
+       <br>   
         <div class="row">
-        	<div class="col-lg-8 col-md-10 mx-auto">
-        		<p class="text-primary text-center">© GUKBONG WORLD COMPANY. ALL RIGHTS RESERVED.</p>
-        		<p class="copyright text-muted text-center">상호:국봉월드 &nbsp;| &nbsp; 사업자등록번호:123-456-78910[사업자정보확인]  &nbsp;| &nbsp; 대표:방국봉  &nbsp;| &nbsp; TEL:1544-1444 
+           <div class="col-lg-8 col-md-10 mx-auto">
+              <p class="text-primary text-center">© GUKBONG WORLD COMPANY. ALL RIGHTS RESERVED.</p>
+              <p class="copyright text-muted text-center">상호:국봉월드 &nbsp;| &nbsp; 사업자등록번호:123-456-78910[사업자정보확인]  &nbsp;| &nbsp; 대표:방국봉  &nbsp;| &nbsp; TEL:1544-1444 
              <br>FAX:031-123-1234  &nbsp;| &nbsp; 주소:비트캠프 신촌센터  &nbsp; |  &nbsp; E-mail:kz1234@naver.com </p>
-		    <p style="font-size: 0.8em;" class="text-muted text-right">© 1999 - 2019 Couchsurfing International, Inc</p>
-        	</div>	
+          <p style="font-size: 0.8em;" class="text-muted text-right">© 1999 - 2019 Couchsurfing International, Inc</p>
+           </div>   
         </div>
     <br> 
-    </footer>	
+    </footer>   
    <!-- #footer -->
    <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
 
