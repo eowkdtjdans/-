@@ -561,9 +561,9 @@ function test(p_route, m_id) {
 <div id="myModal" class="modal">
   <span class="close">&times;</span>
   <img class="modal-content" id="img01">
-   <div style="text-align : center;">
-        <button class="btn btn-light" onclick="updateMainProfileImage(this.form)">대표이미지 등록</button>
-        <button class="btn btn-light" onclick="deleteImage(this.form)">이미지 삭제</button>
+   <div style="text-align : center; margin-top: 10px;">
+        <button class="btn btn-outline-secondary" onclick="updateMainProfileImage(this.form)">대표이미지 등록</button>
+        <button class="btn btn-outline-secondary" onclick="deleteImage(this.form)">이미지 삭제</button>
         <div>
          <input id="m_id" type="hidden" class="form-control" name="m_id">
          <input id="p_route" type="hidden" class="form-control" name="p_route"> 

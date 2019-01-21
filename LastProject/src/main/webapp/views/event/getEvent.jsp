@@ -197,7 +197,6 @@ table .noline {
 
 <script>
    function login_chk(frm) {
-	   alert("댓글입력시 검증");
       if ("${member.m_id}" == "") {
          alert("로그인이 필요한 서비스입니다.");
          location.href = ""; /* 로그인을 안하고 댓글 쓰려고할 때 로그인페이지로 이동 */
@@ -207,9 +206,7 @@ table .noline {
             frm.ec_content.focus();
             return false;
          } else {
-        	alert("입력값 : " + frm.ec_content.value);
             var ec_content = frm.ec_content.value;  
-            alert("게시글번호 : " + frm.e_idx.value);
             var e_idx = frm.e_idx.value;
             
 	     	   $.ajax({
@@ -221,15 +218,6 @@ table .noline {
 	               url : "/insertEventComment.do?e_idx="+e_idx,
 	
 	               success : function(data) {
-	                  alert("댓글 입력 성공부분");
-	                  // alert("e_idx : " + data.e_idx);
-	                  //alert("ec_content : " + data.ec_content);
-	                  //alert("m_id : " + data.m_id);
-	                  alert(data.getEventComment.ec_date);
-	                  //alert(data.getEventComment.ec_date.format('YYYYMMDD'));
-	                  //alert(data.getEventComment.p_route);
-	               
-	                  alert(data.getEventComment.ec_idx);
 						$("#table").last().append(
 							"<tr id='tr"+data.getEventComment.ec_idx+"' class='trclass"+data.getEventComment.ec_idx+"'><td class='update' id='td"+data.getEventComment.ec_idx+"'><img src='"+data.getEventComment.p_route+"' class='rounded-circle' id='profileImage2' onerror='this.src=\"/views/img/people/fuckyou.jpg\"'>&nbsp;&nbsp; "+data.m_id+"&emsp;&emsp;"+data.getEventComment.ec_date+"<span id='focusing'>&emsp;</span><button type='button' class='btn btn-outline-secondary' id='btn1"+data.getEventComment.ec_idx+"' onclick='update_button(\""+data.getEventComment.ec_idx+"\", \""+data.ec_content+"\")'>수정</button> <button type='button' class='btn btn-outline-secondary' id='btn2"+data.getEventComment.ec_idx+"' onclick='delete_button(\""+data.getEventComment.ec_idx+"\", \""+data.e_idx+"\")'>삭제</button><div id='"+data.getEventComment.ec_idx+"'><br>"+data.ec_content+"<br><br></div></td></tr>");
 							document.getElementById("textareadet").value='';
@@ -261,11 +249,8 @@ table .noline {
 
 
 	function good(){
-	   alert("좋아요 ajax");
 	   var good = parseInt("${getEvent.e_upvote}");
 	   var e_idx = "${getEvent.e_idx}";
-	   alert(good);
-	   alert(e_idx);
 	   
 	   $.ajax({
            async : true,
@@ -276,7 +261,6 @@ table .noline {
            url : "/goodEventJson.do",
 
            success : function(data) {
-              alert(data.count);
               $("#good").remove();
               $("#span").empty();
               $("#span").text(good + data.count + " 명이 좋아합니다.");
@@ -287,11 +271,8 @@ table .noline {
     
     
     function bad() {
-        alert("싫어요 ajax");
         var good = parseInt("${getEvent.e_upvote}")+1;
-        alert("good : " + good);
         var e_idx = "${getEvent.e_idx}";
-        alert("e_idx : " + e_idx);
 
         $.ajax({
              async : true,
@@ -302,7 +283,6 @@ table .noline {
              url : "/badEventJson.do",
 
              success : function(data) {
-                alert(data.count);
                 $("#good").remove();
                 $("#span").empty();
                 $("#span").text(good - data.count + " 명이 좋아합니다.");
@@ -314,8 +294,6 @@ table .noline {
 
    
     function update_button(ec_idx, ec_content) {
-        alert("update_button()함수로옴");
-        alert("ec_idx : " + ec_idx + ", ec_content : " + ec_content);
         var textareaTag = "<br><textarea id='textarea" + ec_idx + "'  rows='3' cols='134' name='lc_content'>"+ec_content+"</textarea><button type='button' class='btn btn-outline-secondary' onclick='json_update("+ ec_idx + ")' id='focus'>수정완료</button>"
               + "<input type='hidden' id='lc_idx' value="+ec_idx+">"
               + "<input type='hidden' name='focus_idx' id='focus_idx' value="+ec_idx+">";
@@ -331,9 +309,7 @@ table .noline {
     
     
     function json_update(ec_idx){
-    	alert("실질적인 update");
     	var ec_content = $("#textarea"+ec_idx).val();
-    	alert("바뀐 ec_content : " + ec_content);
     	var ec_idx = JSON.stringify(ec_idx);
     	
 		$.ajax({
@@ -345,10 +321,6 @@ table .noline {
 	           url : "/updateEventComment.do?ec_content="+ec_content,
 
 	           success : function(data) {
-	        	   alert("성공부분");
-	        	   alert(data.ec_idx);
-	        	   alert(data.ec_content);
-				   
 	        	   $("#" + data.ec_idx).empty();
 	        	   $("#" + data.ec_idx).html("<br>"+data.ec_content+"<br> <br>");
 	        	   
@@ -360,15 +332,8 @@ table .noline {
     
     
     function delete_button(ec_idx, e_idx){
-    	alert("delete ajax");
-    	alert("ec_idx : " + ec_idx);
-    	//var ec_idx1 = JSON.stringify(ec_idx);
-    	
 	   	 var con_test = confirm("정말 삭제하시겠습니까?");
 	        if (con_test == true) {
-	           alert("댓글삭제누를시 나오는 alert");
-	           alert("ec_idx : " + ec_idx);
-	           
 	           $.ajax({
 	              async : true,
 	              type : "POST",
@@ -378,7 +343,6 @@ table .noline {
 	              url : "/deleteEventComment.do?e_idx="+e_idx,
 	
 	              success : function(data) {
-	            	  alert("ajax 성공부분");
 	                  $("#td" + data.ec_idx).remove();
 	                  $(".trclass" + data.ec_idx).remove();
 	              }
@@ -439,10 +403,15 @@ table .noline {
     
     $(document).on("click", "#e_content_no_more", function(){
     	$("#e_content").css("-webkit-line-clamp", "7");
-    	$("#e_content_no_more").text("더보기");
+    	$("#e_content_more").text("더보기");
     	$("#e_content_no_more").attr("id", "e_content_more");
     })
     
+    $(function(){
+    	if(!($("#thumbnail").length > 0)) {
+    		$("#thumbnailDiv").append("<img src='/views/img/noImg.png' style='width: 420px; height: 300px;' class='img-thumbnail'>");
+    	}
+    })
     
  
 </script>
@@ -536,7 +505,7 @@ table .noline {
    <!--==========================
       About Us Section
     ============================-->
-<section id="about">
+<section>
       <div class="container">
          <div class="row from-group">
 
@@ -575,15 +544,16 @@ table .noline {
             
             <div class="container show-grid">			    
 			    <div class="row">
-			      <div class="col-md-6" style="text-align: center">
+			      <div class="col-md-6" style="text-align: center" id="thumbnailDiv">
 				      <c:forEach var="list" items="${getEventImageList }">
 				      <c:if test="${list.e_main eq 1}">
-			  	  		<span><img src="${list.e_img }" style="width: 420px; height: 300px;" class="img-thumbnail"></span>
+			  	  		<span><img src="${list.e_img }" style="width: 420px; height: 300px;" class="img-thumbnail" id="thumbnail"></span>
 		  	  		  </c:if>
 					  </c:forEach>
 			  	  	  <br>
-					  <!-- <button type="button" class="btn btn-outline-secondary" onclick="imagemodal()">사진 더보기</button> -->
+			  	  	  <c:if test="${list ne null}">
 					  <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#myModal">사진 더보기</button>
+					  </c:if>
 					
 			      </div>
 			      
@@ -623,7 +593,6 @@ table .noline {
 		<form method="post" id="frm">
               <table id="table" class="table" style="width: 1100px;">
                  <c:forEach var="list" items="${getEventCommentList}">
-                 <%-- <fmt:formatDate value="${list.ec_date}" pattern="yyyy-MM-dd" var="ec_date"/> --%>
                           <tr id="tr${list.ec_idx}" class="trclass${list.ec_idx}">
                              <td class="update" id="td${list.ec_idx}"><img src="${list.p_route }" class="rounded-circle" id="profileImage2" onerror='this.src="../views/img/people/fuckyou.jpg"'>
                                 &nbsp;&nbsp;${list.m_id }&emsp;&emsp;${list.ec_date }<span id="focusing">&emsp;</span> 

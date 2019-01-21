@@ -153,7 +153,7 @@ select {
          var imgFileLength = $("#uploadHostImg").val().length;
          var imgFileExtend = imgFile.substring(imgFileLength - 3);
          
-         if(imgFileExtend=="jpg" || imgFileExtend=="png" || imgFileExtend=="gif" || imgFileExtend=="jpeg") {
+         if(imgFileExtend=="jpg" || imgFileExtend=="png" || imgFileExtend=="gif" || imgFileExtend=="jpeg" || imgFileExtend=="JPG" || imgFileExtend=="PNG" || imgFileExtend=="GIF" || imgFileExtend=="JPEG") {
             $("#hostWrong").remove();
             $("#hostImgBtn").prop("disabled", false);
          } else {
@@ -311,7 +311,7 @@ function uploadHost(hostFrm) {
                                 </div>
                               </div>
                               
-                              <form id="profileFrm" name="profileFrm" method="POST" enctype="multipart/form-data">
+                     <form id="profileFrm" name="profileFrm" method="POST" enctype="multipart/form-data">
                      <div class="modal fade" id="profile">
                         <div class="modal-dialog">
                            <div class="modal-content">

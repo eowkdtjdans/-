@@ -438,7 +438,7 @@ var receive_receiver =$("#receive_receiver").val();
       	<h2><strong>Find Event</strong></h2>
       	<h5>요청하신 키워드에 관한 게시글 수 : ${countEvent }</h5>
       	
-      	<div id="map" style="width:760px;height:400px;margin-top:20px;"></div>
+      	<div id="map" style="width:760px;height:400px;margin-top:20px;margin:auto;"></div>
       	<br>
       	<form method="post" name="frm">
       	<table class="table">
@@ -450,7 +450,8 @@ var receive_receiver =$("#receive_receiver").val();
 	      	</c:when>                    
 	      	<c:otherwise>
       		<c:forEach var="list" items="${eventList}">
-	      		<tr>	      			
+	      		<tr>
+	      			<th><img src="/views/img/administrator.png" alt="Card image" style="width:30px; height: 30px; border-radius: 50%;"></th>
 	      			<th style="width: 40%">
 	      				<fmt:formatDate var="startdate" value="${list.e_startdate}" pattern="yyyy-MM-dd E요일"/>
 	      				<fmt:formatDate var="enddate" value="${list.e_enddate}" pattern="yyyy-MM-dd E요일"/>

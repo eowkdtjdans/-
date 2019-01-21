@@ -460,9 +460,9 @@ select {
 <div id="myModal" class="modal">
   <span class="close">&times;</span>
   <img class="modal-content" id="img01">
-   <div style="text-align : center;">
-        <button class="btn btn-light" onclick="updateMainHostImage(this.form)">대표이미지 등록</button>
-        <button class="btn btn-light" onclick="deleteHostImage(this.form)">이미지 삭제</button>
+   <div style="text-align: center; margin-top: 10px;">
+        <button class="btn btn-outline-secondary" onclick="updateMainHostImage(this.form)">대표이미지 등록</button>
+        <button class="btn btn-outline-secondary" onclick="deleteHostImage(this.form)">이미지 삭제</button>
         <div>
          <input id="m_id" type="hidden" class="form-control" name="m_id">
          <input id="h_route" type="hidden" class="form-control" name="h_route"> 
