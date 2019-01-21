@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.spring.biz.admin.AdminCntVO;
+import com.spring.biz.admin.LVChartVO;
 import com.spring.biz.admin.UserAdminCommentVO;
 import com.spring.biz.admin.UserAdminPostVO;
 import com.spring.biz.admin.UserAdminViewVO;
@@ -110,6 +111,10 @@ public class AdminDAO {
 
 	public int countComment2(String m_id) {
 		return mybatis.selectOne("countComment2", m_id);
+	}
+
+	public List<LVChartVO> logVisitChart() {
+		return mybatis.selectList("logVisitChart");
 	}
 
 }

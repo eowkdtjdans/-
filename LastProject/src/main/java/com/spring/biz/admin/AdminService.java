@@ -33,4 +33,5 @@ public interface AdminService {
 	List<logLoginVO> getmyPostList(Map<String, Object> map);
 	int countComment(String m_id);
 	List<logLoginVO> getmyCommentList(Map<String, Object> map);
+	List<LVChartVO> logVisitChart();
 }

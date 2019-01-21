@@ -23,6 +23,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.spring.biz.admin.AdminCntVO;
 import com.spring.biz.admin.AdminService;
+import com.spring.biz.admin.LVChartVO;
 import com.spring.biz.admin.UserAdminCommentVO;
 import com.spring.biz.admin.UserAdminPostVO;
 import com.spring.biz.admin.UserAdminViewVO;
@@ -686,5 +687,15 @@ public class AdminController {
 		}
 		
 		return "redirect:/eventAdmin.do";
+	}
+	
+	@RequestMapping(value="/logVisitChart.do", method=RequestMethod.POST)
+	@ResponseBody
+	public List<LVChartVO> logVisitChart(Model model) {
+		List<LVChartVO> list = null;
+		
+		list = adminService.logVisitChart();
+		
+		return list;
 	}
 }

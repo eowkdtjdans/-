@@ -179,5 +179,13 @@
         
 </select>
 
+<select id="logVisitChart" resultType="com.spring.biz.admin.LVChartVO">
+SELECT TO_DATE(LV_DATE, 'YYYY-MM-DD') LV_DATE, COUNT(*) VALUE
+FROM LOG_VISIT
+WHERE TO_DATE(LV_DATE, 'YYYY-MM-DD') >= TO_DATE(SYSDATE-7, 'YYYY-MM-DD')
+GROUP BY TO_DATE(LV_DATE, 'YYYY-MM-DD')
+ORDER BY TO_DATE(LV_DATE, 'YYYY-MM-DD')
+</select>
+
 
 </mapper>
