@@ -432,11 +432,13 @@ var receive_receiver =$("#receive_receiver").val();
 
    <!--==========================
       About Us Section
-    ============================-->    
-<section id="about">
+    ============================--> 
+    <!-- <img src="views/img/star.jpg" style="width: 40px; height: 40px;"><span style="font-size: 1.2em; font-weight: bold;">현지정보 문의 게시판</span> -->   
+<section>
       <div class="container">
-      	<h2><strong>Find Event</strong></h2>
-      	<h5>요청하신 키워드에 관한 게시글 수 : ${countEvent }</h5>
+      	<br>   
+      	<img src="views/img/star.jpg" style="width: 40px; height: 40px;"><span style="font-size: 1.2em; font-weight: bold;">이벤트 검색 게시판</span>
+      	<h6>요청하신 키워드에 관한 게시글 수 : ${countEvent }</h6>
       	
       	<div id="map" style="width:760px;height:400px;margin-top:20px;margin:auto;"></div>
       	<br>

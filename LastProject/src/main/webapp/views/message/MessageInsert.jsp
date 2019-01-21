@@ -51,6 +51,8 @@
                         </div>
                         
                         
+                        
+                        
                         <div class="form-group m-0">
                            <button type="button" class="btn btn-primary btn-block" onclick="insertMessage(this.form)">
                               쪽지 보내기

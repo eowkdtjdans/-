@@ -148,6 +148,11 @@ $(function(){
    })
    
 })
+
+
+function sendMessage(m_id){
+   location.href="/insertHostMessage.do?message_receiver="+m_id;
+}
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?v=3&sensor=false&libraries=places&callback=initAutocomplete&key=AIzaSyAfB2qQnvAuU2YFFqi8hrPWfjJNyxl5kWc" async defer></script>
  
@@ -256,7 +261,7 @@ $(function(){
 			</div>
 		</li>
 	
-		<li class="menu-has-children"><img src="${getProfileImageRoute.p_route }" style="width: 45px; height: 45px;" class="rounded-circle" id="navProfileImg"></a>
+		<li class="menu-has-children"><img src="${profile.p_route }" style="width: 45px; height: 45px;" class="rounded-circle" id="navProfileImg"></a>
           <ul>                                      
             <li><a  href="../../myProfile.do" >마이 프로필</a></li> 
             <li><a href="../../logoutMember.do">로그아웃</a></li>            
@@ -330,10 +335,11 @@ $(function(){
 								</tr>
 								  
 								<tr>
-								<%-- 	<td colspan="3" style="text-align: right; font-size: 0.9em;">
-										<a href="deleteReceiveMessage.do?receive_idx=${message.receive_idx }">쪽지삭제</a>
-									</td> --%>
-									<td colspan="3" style="text-align: right;"><input type="button" value="쪽지삭제" class="btn btn-outline-secondary" onclick="location.href='deleteReceiveMessage.do?receive_idx=${message.receive_idx }'"></td>
+									<td colspan="3" style="text-align: right;">
+										<input type="button" value="목록으로" class="btn btn-outline-secondary " onclick="location.href='getReceiveMessageList.do'">
+										<input type="button" value="쪽지 보내기" class="btn btn-outline-secondary" onclick='sendMessage("${message.receive_sender}")'>
+										<input type="button" value="쪽지삭제" class="btn btn-outline-secondary" onclick="location.href='deleteReceiveMessage.do?receive_idx=${message.receive_idx }'">
+									</td>
 								</tr>
 							</table>
 							</form>
@@ -348,7 +354,7 @@ $(function(){
 	             
 
 					
-							
+							  
 			</div> 
 		</div>
 	</div> 

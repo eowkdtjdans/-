@@ -54,13 +54,13 @@ a {
 }
 
 #profileImage {
-   width: 80px;
-   height: 80px;
+   width: 60px;
+   height: 60px;
 }
 
 #profileImage2 {
-   width: 60px;
-   height: 60px; 
+   width: 50px;  
+   height: 50px; 
 }
 
 td {
@@ -158,14 +158,23 @@ table .noline {
 		padding: .3em .3em;
 	}
 	
+	
+	/* .modal-content {
+	  margin: auto;
+	  display: block;
+	  width: 80%;
+	  max-width: 700px;
+	} */
+	
 	.modal-content {
-		width: 1000px;
-		height: 700px;
+		
+		width: 900px;
+		height: 600px;
 	}
 	
 	.modalImg {
-		width: 100%;
-		height: 700px;
+		width: 100%;  
+		height: 600px;
 	}
 	
 	.modal {
@@ -190,8 +199,7 @@ table .noline {
       -webkit-line-clamp: 7;
       -webkit-box-orient: vertical;
 	}
-	
-	
+
 
 </style>
 
@@ -218,6 +226,7 @@ table .noline {
 	               url : "/insertEventComment.do?e_idx="+e_idx,
 	
 	               success : function(data) {
+
 						$("#table").last().append(
 							"<tr id='tr"+data.getEventComment.ec_idx+"' class='trclass"+data.getEventComment.ec_idx+"'><td class='update' id='td"+data.getEventComment.ec_idx+"'><img src='"+data.getEventComment.p_route+"' class='rounded-circle' id='profileImage2' onerror='this.src=\"/views/img/people/fuckyou.jpg\"'>&nbsp;&nbsp; "+data.m_id+"&emsp;&emsp;"+data.getEventComment.ec_date+"<span id='focusing'>&emsp;</span><button type='button' class='btn btn-outline-secondary' id='btn1"+data.getEventComment.ec_idx+"' onclick='update_button(\""+data.getEventComment.ec_idx+"\", \""+data.ec_content+"\")'>수정</button> <button type='button' class='btn btn-outline-secondary' id='btn2"+data.getEventComment.ec_idx+"' onclick='delete_button(\""+data.getEventComment.ec_idx+"\", \""+data.e_idx+"\")'>삭제</button><div id='"+data.getEventComment.ec_idx+"'><br>"+data.ec_content+"<br><br></div></td></tr>");
 							document.getElementById("textareadet").value='';
@@ -237,9 +246,9 @@ table .noline {
       if ('${focus_idx}' == "") {
 
       } else {
-         console.log($("#" + "${focus_idx}"));
+         /* console.log($("#" + "${focus_idx}"));
          console.log('#');
-         console.log('${focus_idx}');
+         console.log('${focus_idx}'); */
 
          $("#" + "${focus_idx}").attr("tabindex", -1).focus();
    }
@@ -321,6 +330,7 @@ table .noline {
 	           url : "/updateEventComment.do?ec_content="+ec_content,
 
 	           success : function(data) {
+				   
 	        	   $("#" + data.ec_idx).empty();
 	        	   $("#" + data.ec_idx).html("<br>"+data.ec_content+"<br> <br>");
 	        	   
@@ -332,8 +342,10 @@ table .noline {
     
     
     function delete_button(ec_idx, e_idx){
+    	
 	   	 var con_test = confirm("정말 삭제하시겠습니까?");
 	        if (con_test == true) {
+	           
 	           $.ajax({
 	              async : true,
 	              type : "POST",
@@ -342,7 +354,7 @@ table .noline {
 	              contentType : "application/json; charset=UTF-8",
 	              url : "/deleteEventComment.do?e_idx="+e_idx,
 	
-	              success : function(data) {
+	              success : function(data) {	            	 
 	                  $("#td" + data.ec_idx).remove();
 	                  $(".trclass" + data.ec_idx).remove();
 	              }
@@ -403,17 +415,19 @@ table .noline {
     
     $(document).on("click", "#e_content_no_more", function(){
     	$("#e_content").css("-webkit-line-clamp", "7");
-    	$("#e_content_more").text("더보기");
+    	$("#e_content_no_more").text("더보기");
     	$("#e_content_no_more").attr("id", "e_content_more");
     })
     
-    $(function(){
+/*     $(".close").click(function(){
+    	$('#myModal').modal('hide')
+	}); */
+	
+	    $(function(){
     	if(!($("#thumbnail").length > 0)) {
     		$("#thumbnailDiv").append("<img src='/views/img/noImg.png' style='width: 420px; height: 300px;' class='img-thumbnail'>");
     	}
-    })
-    
- 
+    }) 
 </script>
 </head>
 
@@ -507,10 +521,12 @@ table .noline {
     ============================-->
 <section>
       <div class="container">
+         <br>
          <div class="row from-group">
-
+		 <img src="views/img/star.jpg" style="width: 40px; height: 40px;"><span style="font-size: 1.2em; font-weight: bold;">이벤트 검색 게시판</span>
 
             <div id="tableDiv">
+            <br>
                <table class="table">
                   <tr>                     
                      <td><strong>${getEvent.e_name }</strong></td>                     
@@ -551,8 +567,11 @@ table .noline {
 		  	  		  </c:if>
 					  </c:forEach>
 			  	  	  <br>
-				  	  <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#myModal">사진 더보기</button>
-					
+					  <!-- <button type="button" class="btn btn-outline-secondary" onclick="imagemodal()">사진 더보기</button> -->
+					  <c:if test="${list ne null}">
+					  <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#myModal">사진 더보기</button>
+					  </c:if>
+					  
 			      </div>
 			      
 			      <fmt:formatDate var="startdate" value="${getEvent.e_startdate}" pattern="yyyy-MM-dd E요일"/>
@@ -584,13 +603,15 @@ table .noline {
 			      </div>
 			    </div>		    			    
 			</div>
-			<br><br>
+		
  
 	<!-- 댓글 폼 -->
- 		<br>
+ 	
 		<form method="post" id="frm">
+			<br>
               <table id="table" class="table" style="width: 1100px;">
                  <c:forEach var="list" items="${getEventCommentList}">
+                 <%-- <fmt:formatDate value="${list.ec_date}" pattern="yyyy-MM-dd" var="ec_date"/> --%>
                           <tr id="tr${list.ec_idx}" class="trclass${list.ec_idx}">
                              <td class="update" id="td${list.ec_idx}"><img src="${list.p_route }" class="rounded-circle" id="profileImage2" onerror='this.src="../views/img/people/fuckyou.jpg"'>
                                 &nbsp;&nbsp;${list.m_id }&emsp;&emsp;${list.ec_date }<span id="focusing">&emsp;</span> 
@@ -628,24 +649,7 @@ table .noline {
    </section>
    <!-- #about -->
    
-   
-   
-   
 
-
- 
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
    
    <!--==========================
     Footer
@@ -670,6 +674,7 @@ table .noline {
      
      <!--begin modal window-->
 	<div class="modal fade" id="myModal">
+	<!-- <span class="close">&times;</span> -->
 		<div class="modal-dialog">
 			<div class="modal-content">
 			
@@ -735,5 +740,5 @@ table .noline {
   
    
 
-   </body>
+   </body> 
 </html>

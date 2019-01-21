@@ -390,7 +390,7 @@ select {
          </div>
       </li>
    
-      <li class="menu-has-children"><a><img src="${getProfileImageRoute.p_route }" style="width: 45px; height: 45px;" class="rounded-circle" id="navProfileImg"></a>
+      <li class="menu-has-children"><a><img src="${profile.p_route }" style="width: 45px; height: 45px;" class="rounded-circle" id="navProfileImg"></a>
           <ul>                                      
             <li><a  href="../../myProfile.do" >마이 프로필</a></li> 
             <li><a href="../../logoutMember.do">로그아웃</a></li>            
@@ -443,15 +443,15 @@ select {
               <div class="card-body">
                   <div class="row">
                       <div class="col-md-12">
-                          <h4>나의 이미지</h4>
+                          <img src="views/img/camera2.png" style="width: 80px; height: 60px;"> <strong style="font-size: 1.2em;">내 호스트 이미지</strong>
                           <hr>
                       </div>
                   </div>
-
-
+<div class="text-muted"> &nbsp;대표이미지 등록시 아래 이미지를 클릭해주세요</div>
+<br>
  <c:forEach var="hostImageList" items="${hostImageList}">
-    <span style="width:250px; height:300px;" onclick="test('${hostImageList.h_route}', '${hostImageList.m_id}')">
-       <img id="${hostImageList.h_route}" class="myImg" src="${hostImageList.h_route}" style="width:200px; height:250px;">
+    <span style="width:250px; height:300px; padding-left: 8px;" onclick="test('${hostImageList.h_route}', '${hostImageList.m_id}')">
+       <img id="${hostImageList.h_route}" class="myImg" src="${hostImageList.h_route}" style="width:250px; height:250px; margin-bottom: 12px;">
       </span>
 </c:forEach>
 
@@ -460,9 +460,9 @@ select {
 <div id="myModal" class="modal">
   <span class="close">&times;</span>
   <img class="modal-content" id="img01">
-   <div style="text-align: center; margin-top: 10px;">
-        <button class="btn btn-outline-secondary" onclick="updateMainHostImage(this.form)">대표이미지 등록</button>
-        <button class="btn btn-outline-secondary" onclick="deleteHostImage(this.form)">이미지 삭제</button>
+   <div style="text-align : center;">
+        <button class="btn btn-outline-secondary" onclick="updateMainHostImage(this.form)"><strong>대표이미지 등록</strong></button>
+        <button class="btn btn-outline-secondary" onclick="deleteHostImage(this.form)"><strong>이미지 삭제</strong></button>
         <div>
          <input id="m_id" type="hidden" class="form-control" name="m_id">
          <input id="h_route" type="hidden" class="form-control" name="h_route"> 
@@ -482,4 +482,4 @@ select {
 
 <%@include file="/views/footer.jsp"%>
 </body>
-</html>
+</html>  

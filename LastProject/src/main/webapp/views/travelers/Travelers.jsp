@@ -390,7 +390,7 @@ function noticeMessage() {
 			</div>
 		</li>
 	
-		<li class="menu-has-children"><img src="${getProfileImageRoute.p_route }" style="width: 45px; height: 45px;" class="rounded-circle" id="navProfileImg"></a>
+		<li class="menu-has-children"><img src="${profile.p_route }" style="width: 45px; height: 45px;" class="rounded-circle" id="navProfileImg"></a>
           <ul>                                      
             <li><a  href="../../myProfile.do" >마이 프로필</a></li> 
             <li><a href="../../logoutMember.do">로그아웃</a></li>            
@@ -419,12 +419,12 @@ function noticeMessage() {
    <!--==========================
       About Us Section
     ============================-->    
+    
 <section>
-	  <br>
       <div class="container">
-         <h2><strong>여행자 검색 게시판</strong></h2>
-         
-         <h5>요청하신 키워드에 관한 게시글 수 : ${countTravelers }</h5>
+      	 <br>
+         <img src="views/img/star.jpg" style="width: 40px; height: 40px;"><span style="font-size: 1.2em; font-weight: bold;">여행자 검색 게시판</span>         
+         <h6>요청하신 키워드에 관한 게시글 수 : ${countTravelers }</h6>
          
          
          

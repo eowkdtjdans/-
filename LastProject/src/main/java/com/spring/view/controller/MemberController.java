@@ -422,8 +422,8 @@ public class MemberController {
 	}
 	@RequestMapping(value="DeleteMember.do", method=RequestMethod.GET)
 	public String DeleteMember(MemberVO vo) {
-		System.out.println("핸드폰번호 변경 GET ====");
-		return "views/member/MemberDelete.jsp";
+		System.out.println("회원탈퇴 GET ====");
+		return "redirect:/sub2.do";
 	}
 	@RequestMapping(value="ModifyAddressMember.do", method=RequestMethod.GET)
 	public String ModifyAddressMember(MemberVO vo) {

@@ -31,6 +31,8 @@ import com.spring.biz.event.EventService;
 import com.spring.biz.event.EventVO;
 import com.spring.biz.eventImage.EventImageService;
 import com.spring.biz.eventImage.EventImageVO;
+import com.spring.biz.hostImage.HostImageService;
+import com.spring.biz.hostImage.HostImageVO;
 import com.spring.biz.localAdvice.LocalAdviceVO;
 import com.spring.biz.member.Email;
 import com.spring.biz.member.EmailSender;
@@ -67,21 +69,27 @@ public class AdminController {
 	private MemberService memberService;
 	@Autowired
 	private ProfileService profileService;
-	
+	@Autowired
+	private HostImageService hostImageService;
 	private static final String PREFIX_URL = "/views/img/upload/";
 	private static final String SAVE_PATH = "C:/MyStudy/GIT/gukbong/LastProject/src/main/webapp/views/img/upload/";
 	private static final String SERVER_SAVE_PATH = "C:/MyStudy/GIT/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/LastProject/views/img/upload/";
 	
 	
 	@RequestMapping(value="/Admin.do")
-	public String AdminMain(HttpServletRequest request, MemberVO membervo, ProfileVO profilevo,Model model, HttpSession session) throws Exception {
+	public String AdminMain(HttpServletRequest request, MessageRecieveVO receivevo, HostImageVO hostimagevo, MemberVO membervo, ProfileVO profilevo,Model model, HttpSession session) throws Exception {
 		System.out.println("AdminController의 사이트 조회수 누적 메소드");
 		MemberVO membervo2 = memberService.loginMember(membervo, session);
 		AdminCntVO adminCnt = adminService.adminCnt();
+		profilevo.setM_id(membervo.getM_id());
 		ProfileVO profilevo2 = profileService.getProfile2(profilevo, session);
-		
+		HostImageVO hostimagevo2 = hostImageService.getHostImage(hostimagevo);
+		receivevo.setReceive_receiver(membervo.getM_id());
+		MessageRecieveVO receivevo2 = messageService.getReceiveMessage2(receivevo, session);
 		session.setAttribute("profile", profilevo2);
 		session.setAttribute("member", membervo2);
+		session.setAttribute("hostImg", hostimagevo2);
+		session.setAttribute("messageInfo", receivevo2);
 		model.addAttribute("adminCnt", adminCnt);
 		
 		return "redirect:/views/admin/testAdmin.jsp";

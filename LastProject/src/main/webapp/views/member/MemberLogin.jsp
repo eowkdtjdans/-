@@ -96,6 +96,11 @@
 	
 </script> 
 
+<style>
+a{
+	color: #4B89DC;  
+} 
+</style>
 	<!-- 이거 추가시 네비 이상해짐 -->
 	<!-- <link rel="stylesheet" type="text/css" href="views/cssModal/my-login.css"> -->
 </head>
@@ -164,7 +169,7 @@
 			</div>
 		</li>
 	
-		<li class="menu-has-children"><a><img src="${getProfileImageRoute.p_route }" style="width: 45px; height: 45px;" class="rounded-circle" id="navProfileImg"></a>
+		<li class="menu-has-children"><a><img src="${profile.p_route }" style="width: 45px; height: 45px;" class="rounded-circle" id="navProfileImg"></a>
           <ul>                                      
             <li><a  href="../../myProfile.do" >마이 프로필</a></li> 
             <li><a href="../../logoutMember.do">로그아웃</a></li>            

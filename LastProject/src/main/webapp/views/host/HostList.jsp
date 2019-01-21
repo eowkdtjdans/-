@@ -510,7 +510,7 @@ var receive_receiver =$("#receive_receiver").val();
          </div>
       </li>
    
-      <li class="menu-has-children"><img src="${getProfileImageRoute.p_route }" style="width: 45px; height: 45px;" class="rounded-circle" id="navProfileImg"></a>
+      <li class="menu-has-children"><img src="${profile.p_route }" style="width: 45px; height: 45px;" class="rounded-circle" id="navProfileImg"></a>
           <ul>                                      
             <li><a  href="../../myProfile.do" >마이 프로필</a></li> 
             <li><a href="../../logoutMember.do">로그아웃</a></li>            
@@ -534,12 +534,14 @@ var receive_receiver =$("#receive_receiver").val();
 
    <!--==========================
       About Us Section
-    ============================-->    
-<section id="about">
-      <div class="container">
-         <h2><strong>Find Host</strong></h2>
+    ============================-->  
+    <!-- <img src="views/img/star.jpg" style="width: 40px; height: 40px;"><span style="font-size: 1.2em; font-weight: bold;">현지정보 문의 게시판</span> -->  
+<section>
+      <div class="container"> 
+      	 <br>           
+         <img src="views/img/star.jpg" style="width: 40px; height: 40px;"><span style="font-size: 1.2em; font-weight: bold;">호스트 검색 게시판</span>
       
-         <h5>요청하신 키워드에 관한 게시글 수 : ${countHost }</h5>
+         <h6>요청하신 키워드에 관한 게시글 수 : ${countHost }</h6>
          
          <div id="map" style="width:760px;height:400px;margin-top:20px; margin:auto;"></div>
          
@@ -571,6 +573,7 @@ var receive_receiver =$("#receive_receiver").val();
             </c:otherwise>           
          </c:choose>   
          <!-- ---------------------------------------------------------------- -->
+        
          <tr>
          <td colspan="4">
             <ol class="paging">

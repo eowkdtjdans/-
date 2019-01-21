@@ -1,5 +1,6 @@
 package com.spring.view.controller;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -7,6 +8,7 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -97,7 +99,10 @@ public class MessageController {
          @RequestParam("message_sender") String message_sender,
          @RequestParam("message_receiver") String message_receiver,
          @RequestParam("message_title") String message_title, 
-         @RequestParam("message_content") String message_content, HttpSession session) throws Exception {
+         @RequestParam("message_content") String message_content, 
+         @RequestParam("h_startdate") @DateTimeFormat(pattern="yyyy-MM-dd") Date message_startdate,
+         @RequestParam("h_enddate") @DateTimeFormat(pattern="yyyy-MM-dd") Date message_enddate,
+         HttpSession session) throws Exception {
       
       System.out.println("message_sender : " + message_sender);
       System.out.println("message_receiver : " + message_receiver);
@@ -112,7 +117,8 @@ public class MessageController {
       vo.setMessage_receiver(message_receiver);
       vo.setMessage_title(message_title);
       vo.setMessage_content(message_content);
-      
+      vo.setMessage_startdate(message_startdate);
+      vo.setMessage_enddate(message_enddate);
       messageService.insertMessage(vo);
       session.setAttribute("message", vo);
       return "redirect:/getHostList.do?cPage=1";
@@ -133,7 +139,10 @@ public class MessageController {
          @RequestParam("message_sender") String message_sender,
          @RequestParam("message_receiver") String message_receiver,
          @RequestParam("message_title") String message_title, 
-         @RequestParam("message_content") String message_content, HttpSession session) throws Exception {
+         @RequestParam("message_content") String message_content,
+         @RequestParam("h_startdate") @DateTimeFormat(pattern="yyyy-MM-dd") Date message_startdate,
+         @RequestParam("h_enddate") @DateTimeFormat(pattern="yyyy-MM-dd") Date message_enddate,
+         HttpSession session) throws Exception {
       
       System.out.println("message_sender : " + message_sender);
       System.out.println("message_receiver : " + message_receiver);
@@ -148,6 +157,8 @@ public class MessageController {
       vo.setMessage_receiver(message_receiver);
       vo.setMessage_title(message_title);
       vo.setMessage_content(message_content);
+      vo.setMessage_startdate(message_startdate);
+      vo.setMessage_enddate(message_enddate);
       
       messageService.insertMessage(vo);
       session.setAttribute("message", vo);
@@ -182,6 +193,7 @@ public class MessageController {
       System.out.println("getSendMessageList.do ===== GET ");
       MemberVO member = (MemberVO) session.getAttribute("member");
       vo.setSend_sender(member.getM_id());
+      
       List<MessageSendVO> messageList = messageService.getSendMessageList(vo);
       session.setAttribute("messageList", messageList);
       System.out.println("얘는 모니? : " + messageList); 
@@ -195,14 +207,16 @@ public class MessageController {
       System.out.println("getReceiveMessageList.do ===== GET ");
       MemberVO member = (MemberVO) session.getAttribute("member");
       vo.setReceive_receiver(member.getM_id());
+      System.out.println(member.getM_id());
       List<MessageRecieveVO> messageList = messageService.getReceiveMessageList(vo);
       session.setAttribute("messageList", messageList);
-      //model.addAttribute("messageList", messageList);
+      
+      List<MessageRecieveVO> getAdminReceiveMessageList2 = messageService.getAdminReceiveMessageList(vo);
+      session.setAttribute("getAdminReceiveMessageList2", getAdminReceiveMessageList2);
       return "views/message/MessageGetReceiveList.jsp";
    }
    @RequestMapping(value="/getSendMessage.do", method=RequestMethod.GET)
    public String getSendMessage(MessageVO vo,MessageSendVO sendvo, Model model, @RequestParam("send_idx") int send_idx, HttpSession session) throws Exception {
-      //model.addAttribute("message",messageService.getSendMessage(sendvo));
       session.setAttribute("message", messageService.getSendMessage(sendvo));
       sendvo.setSend_idx(send_idx);
       messageService.readSendMessage(sendvo);
