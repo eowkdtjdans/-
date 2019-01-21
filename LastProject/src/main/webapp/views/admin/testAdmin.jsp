@@ -19,7 +19,7 @@
 <!-- iCheck -->
 <link rel="stylesheet" href="plugins/iCheck/flat/blue.css">
 <!-- Morris chart -->
-<link rel="stylesheet" href="plugins/morris/morris.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
 <!-- jvectormap -->
 <link rel="stylesheet"
 	href="plugins/jvectormap/jquery-jvectormap-1.2.2.css">
@@ -227,7 +227,7 @@
 							</a>
 						</li>
 						<li class="nav-item has-treeview">
-							<a href="#" class="nav-link"><i class="nav-icon fa fa-dashboard"></i>
+							<a href="/localAdviceAdminList.do" class="nav-link"><i class="nav-icon fa fa-dashboard"></i>
 								<p>게시글 관리</p>
 							</a>
 						</li>
@@ -411,29 +411,26 @@
 						<!-- Left col -->
 						<section class="col-lg-7 connectedSortable">
 							<!-- Custom tabs (Charts with tabs)-->
-							<div class="card">
+							<div class="card" style="width: 1300px;">
 								<div class="card-header d-flex p-0">
 									<h3 class="card-title p-3">
 										<i class="fa fa-pie-chart mr-1"></i> 방문자
 									</h3>
 									<ul class="nav nav-pills ml-auto p-2">
 										<li class="nav-item"><a class="nav-link active"
-											href="#own-chart" data-toggle="tab">주</a></li>
+											href="#weekChart" data-toggle="tab">주</a></li>
 										<li class="nav-item"><a class="nav-link"
-											href="#own-chart2" data-toggle="tab">월</a></li>
+											href="#monthChart" data-toggle="tab">월</a></li>
 										<li class="nav-item"><a class="nav-link"
-											href="#own-chart3" data-toggle="tab">년</a></li>
+											href="#monthChart2" data-toggle="tab">년</a></li>
 									</ul>
 								</div>
 								<!-- /.card-header -->
 								<div class="card-body">
 									<div class="tab-content p-0">
-										<!-- Morris chart - Sales -->
-										<div class="chart tab-pane active" id="weekChart"
-											style="position: relative; height: 300px;"></div>
-										<div class="chart tab-pane" id="own-chart2"
-											style="position: relative; height: 300px;"></div>
-										<div class="chart tab-pane" id="own-chart3"
+										<div class="chart tab-pane active" id="weekChart" style="position: relative; height: 300px;"></div>
+										<div class="userChart" id="monthChart" style="position: relative; height: 300px;"></div>
+										<div class="chart tab-pane" id="monthChart2"
 											style="position: relative; height: 300px;"></div>
 									</div>
 								</div>
@@ -472,25 +469,42 @@
 		$.ajax({ //모리스 차트 마저하기
 			type:"POST",
 			url:"/logVisitChart.do",
+			dataType:"json",
 			success: function(result){
-				var cons = result;
 				new Morris.Line({
 		            element: 'weekChart',
-		            data: cons,
+		            data: result,
+		            parseTime: false,
 		            xkey: 'lv_date',
 		            ykeys: ['value'],
-		            labels: ['value']
+		            labels: ['방문자수']
 		        
 		        });
 			}
 		});
+		
+		$.ajax({
+			type:"POST",
+			url:"/logVisitChartMonth.do",
+			dataType:"json",
+			success: function(result){
+				new Morris.Line({
+		            element: 'monthChart',
+		            data: result,
+		            parseTime: false,
+		            xkey: 'lv_date_mon',
+		            ykeys: ['mon_value'],
+		            labels: ['방문자수']
+		        
+		        });
+			}
+		});
+		
 	})
 	
 	</script>
 	
 
-	<!-- jQuery -->
-	<script src="plugins/jquery/jquery.min.js"></script>
 	<!-- jQuery UI 1.11.4 -->
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 	<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
@@ -500,8 +514,8 @@
 	<!-- Bootstrap 4 -->
 	<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 	<!-- Morris.js charts -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
-	<script src="plugins/morris/morris.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
 	<!-- Sparkline -->
 	<script src="plugins/sparkline/jquery.sparkline.min.js"></script>
 	<!-- jvectormap -->

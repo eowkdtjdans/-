@@ -551,9 +551,7 @@ table .noline {
 		  	  		  </c:if>
 					  </c:forEach>
 			  	  	  <br>
-			  	  	  <c:if test="${list ne null}">
-					  <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#myModal">사진 더보기</button>
-					  </c:if>
+				  	  <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#myModal">사진 더보기</button>
 					
 			      </div>
 			      

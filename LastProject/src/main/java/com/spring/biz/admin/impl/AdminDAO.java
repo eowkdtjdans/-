@@ -122,4 +122,8 @@ public class AdminDAO {
 		return mybatis.selectList("localAdviceAdminList");
 	}
 
+	public List<LVChartVO> logVisitChartMonth() {
+		return mybatis.selectList("logVisitChartMonth");
+	}
+
 }

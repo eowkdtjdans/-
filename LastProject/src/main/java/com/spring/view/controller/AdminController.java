@@ -715,10 +715,20 @@ public class AdminController {
 	
 	@RequestMapping(value="/logVisitChart.do", method=RequestMethod.POST)
 	@ResponseBody
-	public List<LVChartVO> logVisitChart(Model model) {
+	public List<LVChartVO> logVisitChart() {
 		List<LVChartVO> list = null;
 		
 		list = adminService.logVisitChart();
+		
+		return list;
+	}
+	@RequestMapping(value="/logVisitChartMonth.do", method=RequestMethod.POST)
+	@ResponseBody
+	public List<LVChartVO> logVisitChartMonth() {
+		List<LVChartVO> list = null;
+		
+		list = adminService.logVisitChartMonth();
+		System.out.println(list);
 		
 		return list;
 	}
