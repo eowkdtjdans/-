@@ -419,12 +419,12 @@ function noticeMessage() {
    <!--==========================
       About Us Section
     ============================-->    
+    
 <section>
-	  <br>
       <div class="container">
-         <h2><strong>여행자 검색 게시판</strong></h2>
-         
-         <h5>요청하신 키워드에 관한 게시글 수 : ${countTravelers }</h5>
+      	 <br>
+         <img src="views/img/star.jpg" style="width: 40px; height: 40px;"><span style="font-size: 1.2em; font-weight: bold;">여행자 검색 게시판</span>         
+         <h6>요청하신 키워드에 관한 게시글 수 : ${countTravelers }</h6>
          
          
          

@@ -54,13 +54,13 @@ a {
 }
 
 #profileImage {
-   width: 80px;
-   height: 80px;
+   width: 60px;
+   height: 60px;
 }
 
 #profileImage2 {
-   width: 60px;
-   height: 60px; 
+   width: 50px;  
+   height: 50px; 
 }
 
 td {
@@ -158,14 +158,23 @@ table .noline {
 		padding: .3em .3em;
 	}
 	
+	
+	/* .modal-content {
+	  margin: auto;
+	  display: block;
+	  width: 80%;
+	  max-width: 700px;
+	} */
+	
 	.modal-content {
-		width: 1000px;
-		height: 700px;
+		
+		width: 900px;
+		height: 600px;
 	}
 	
 	.modalImg {
-		width: 100%;
-		height: 700px;
+		width: 100%;  
+		height: 600px;
 	}
 	
 	.modal {
@@ -190,14 +199,12 @@ table .noline {
       -webkit-line-clamp: 7;
       -webkit-box-orient: vertical;
 	}
-	
-	
+
 
 </style>
 
 <script>
    function login_chk(frm) {
-	   alert("댓글입력시 검증");
       if ("${member.m_id}" == "") {
          alert("로그인이 필요한 서비스입니다.");
          location.href = ""; /* 로그인을 안하고 댓글 쓰려고할 때 로그인페이지로 이동 */
@@ -207,9 +214,7 @@ table .noline {
             frm.ec_content.focus();
             return false;
          } else {
-        	alert("입력값 : " + frm.ec_content.value);
             var ec_content = frm.ec_content.value;  
-            alert("게시글번호 : " + frm.e_idx.value);
             var e_idx = frm.e_idx.value;
             
 	     	   $.ajax({
@@ -221,15 +226,7 @@ table .noline {
 	               url : "/insertEventComment.do?e_idx="+e_idx,
 	
 	               success : function(data) {
-	                  alert("댓글 입력 성공부분");
-	                  // alert("e_idx : " + data.e_idx);
-	                  //alert("ec_content : " + data.ec_content);
-	                  //alert("m_id : " + data.m_id);
-	                  alert(data.getEventComment.ec_date);
-	                  //alert(data.getEventComment.ec_date.format('YYYYMMDD'));
-	                  //alert(data.getEventComment.p_route);
-	               
-	                  alert(data.getEventComment.ec_idx);
+
 						$("#table").last().append(
 							"<tr id='tr"+data.getEventComment.ec_idx+"' class='trclass"+data.getEventComment.ec_idx+"'><td class='update' id='td"+data.getEventComment.ec_idx+"'><img src='"+data.getEventComment.p_route+"' class='rounded-circle' id='profileImage2' onerror='this.src=\"/views/img/people/fuckyou.jpg\"'>&nbsp;&nbsp; "+data.m_id+"&emsp;&emsp;"+data.getEventComment.ec_date+"<span id='focusing'>&emsp;</span><button type='button' class='btn btn-outline-secondary' id='btn1"+data.getEventComment.ec_idx+"' onclick='update_button(\""+data.getEventComment.ec_idx+"\", \""+data.ec_content+"\")'>수정</button> <button type='button' class='btn btn-outline-secondary' id='btn2"+data.getEventComment.ec_idx+"' onclick='delete_button(\""+data.getEventComment.ec_idx+"\", \""+data.e_idx+"\")'>삭제</button><div id='"+data.getEventComment.ec_idx+"'><br>"+data.ec_content+"<br><br></div></td></tr>");
 							document.getElementById("textareadet").value='';
@@ -249,9 +246,9 @@ table .noline {
       if ('${focus_idx}' == "") {
 
       } else {
-         console.log($("#" + "${focus_idx}"));
+         /* console.log($("#" + "${focus_idx}"));
          console.log('#');
-         console.log('${focus_idx}');
+         console.log('${focus_idx}'); */
 
          $("#" + "${focus_idx}").attr("tabindex", -1).focus();
    }
@@ -261,11 +258,8 @@ table .noline {
 
 
 	function good(){
-	   alert("좋아요 ajax");
 	   var good = parseInt("${getEvent.e_upvote}");
 	   var e_idx = "${getEvent.e_idx}";
-	   alert(good);
-	   alert(e_idx);
 	   
 	   $.ajax({
            async : true,
@@ -276,7 +270,6 @@ table .noline {
            url : "/goodEventJson.do",
 
            success : function(data) {
-              alert(data.count);
               $("#good").remove();
               $("#span").empty();
               $("#span").text(good + data.count + " 명이 좋아합니다.");
@@ -287,11 +280,8 @@ table .noline {
     
     
     function bad() {
-        alert("싫어요 ajax");
         var good = parseInt("${getEvent.e_upvote}")+1;
-        alert("good : " + good);
         var e_idx = "${getEvent.e_idx}";
-        alert("e_idx : " + e_idx);
 
         $.ajax({
              async : true,
@@ -302,7 +292,6 @@ table .noline {
              url : "/badEventJson.do",
 
              success : function(data) {
-                alert(data.count);
                 $("#good").remove();
                 $("#span").empty();
                 $("#span").text(good - data.count + " 명이 좋아합니다.");
@@ -314,8 +303,6 @@ table .noline {
 
    
     function update_button(ec_idx, ec_content) {
-        alert("update_button()함수로옴");
-        alert("ec_idx : " + ec_idx + ", ec_content : " + ec_content);
         var textareaTag = "<br><textarea id='textarea" + ec_idx + "'  rows='3' cols='134' name='lc_content'>"+ec_content+"</textarea><button type='button' class='btn btn-outline-secondary' onclick='json_update("+ ec_idx + ")' id='focus'>수정완료</button>"
               + "<input type='hidden' id='lc_idx' value="+ec_idx+">"
               + "<input type='hidden' name='focus_idx' id='focus_idx' value="+ec_idx+">";
@@ -331,9 +318,7 @@ table .noline {
     
     
     function json_update(ec_idx){
-    	alert("실질적인 update");
     	var ec_content = $("#textarea"+ec_idx).val();
-    	alert("바뀐 ec_content : " + ec_content);
     	var ec_idx = JSON.stringify(ec_idx);
     	
 		$.ajax({
@@ -345,9 +330,6 @@ table .noline {
 	           url : "/updateEventComment.do?ec_content="+ec_content,
 
 	           success : function(data) {
-	        	   alert("성공부분");
-	        	   alert(data.ec_idx);
-	        	   alert(data.ec_content);
 				   
 	        	   $("#" + data.ec_idx).empty();
 	        	   $("#" + data.ec_idx).html("<br>"+data.ec_content+"<br> <br>");
@@ -360,14 +342,9 @@ table .noline {
     
     
     function delete_button(ec_idx, e_idx){
-    	alert("delete ajax");
-    	alert("ec_idx : " + ec_idx);
-    	//var ec_idx1 = JSON.stringify(ec_idx);
     	
 	   	 var con_test = confirm("정말 삭제하시겠습니까?");
 	        if (con_test == true) {
-	           alert("댓글삭제누를시 나오는 alert");
-	           alert("ec_idx : " + ec_idx);
 	           
 	           $.ajax({
 	              async : true,
@@ -377,8 +354,7 @@ table .noline {
 	              contentType : "application/json; charset=UTF-8",
 	              url : "/deleteEventComment.do?e_idx="+e_idx,
 	
-	              success : function(data) {
-	            	  alert("ajax 성공부분");
+	              success : function(data) {	            	 
 	                  $("#td" + data.ec_idx).remove();
 	                  $(".trclass" + data.ec_idx).remove();
 	              }
@@ -443,7 +419,9 @@ table .noline {
     	$("#e_content_no_more").attr("id", "e_content_more");
     })
     
-    
+/*     $(".close").click(function(){
+    	$('#myModal').modal('hide')
+	}); */
  
 </script>
 </head>
@@ -536,12 +514,14 @@ table .noline {
    <!--==========================
       About Us Section
     ============================-->
-<section id="about">
+<section>
       <div class="container">
+         <br>
          <div class="row from-group">
-
+		 <img src="views/img/star.jpg" style="width: 40px; height: 40px;"><span style="font-size: 1.2em; font-weight: bold;">이벤트 검색 게시판</span>
 
             <div id="tableDiv">
+            <br>
                <table class="table">
                   <tr>                     
                      <td><strong>${getEvent.e_name }</strong></td>                     
@@ -616,11 +596,12 @@ table .noline {
 			      </div>
 			    </div>		    			    
 			</div>
-			<br><br>
+		
  
 	<!-- 댓글 폼 -->
- 		<br>
+ 	
 		<form method="post" id="frm">
+			<br>
               <table id="table" class="table" style="width: 1100px;">
                  <c:forEach var="list" items="${getEventCommentList}">
                  <%-- <fmt:formatDate value="${list.ec_date}" pattern="yyyy-MM-dd" var="ec_date"/> --%>
@@ -661,24 +642,7 @@ table .noline {
    </section>
    <!-- #about -->
    
-   
-   
-   
 
-
- 
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
    
    <!--==========================
     Footer
@@ -703,6 +667,7 @@ table .noline {
      
      <!--begin modal window-->
 	<div class="modal fade" id="myModal">
+	<!-- <span class="close">&times;</span> -->
 		<div class="modal-dialog">
 			<div class="modal-content">
 			
