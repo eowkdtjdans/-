@@ -118,7 +118,6 @@ select {
 	 	var phoneCheck = /^((01[1|6|7|8|9])[1-9]+[0-9]{6,7})|(010[1-9][0-9]{7})$/;
 	
 	 	var str = $("#ModifyPhoneForm").serialize();
-
 		$.ajax({
 			async : true,
 			type : "POST",
@@ -132,23 +131,26 @@ select {
 						frm.m_phone.value = "";
 						frm.phoneModify.value = "";
 						frm.m_phone.focus();
+						return false;
 				   } if(phoneCheck.test(phoneModify)==false || phoneModify == ""){
 						alert("변경할 핸드폰번호를 양식에 맞춰 입력하세요.");
 		                 frm.phoneModify.value = "";
 		                 frm.phoneModify.focus();
+		                 return false;
 				   } else {
 					   $.ajax({
 						   async : true,
 					   		type : "post",
 					   		dataType : "json",
-					   		data : phoneModify,
+					   		data : str,
 					   		url : "../../MemberModifyPhoneCheckJson.do",
 					   		success : function(data) {
 					   			if (data.cnt >= 1) {
-					   				alert("기입된 핸드폰번호가 중복됩니다.");
+					   				alert("변경하실 핸드폰번호가 중복됩니다.");
 					   				frm.m_phone.value = "";
-					   				frm.m.phoneModify.value = "";
+					   				frm.phoneModify.value = "";
 					   				frm.m_phone.focus();
+					   				return false;
 					   			} else {
 					   			  alert("변경이 완료되었습니다.");
 									frm.action = "../../ModifyPhoneMember.do";

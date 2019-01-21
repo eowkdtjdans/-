@@ -14,7 +14,7 @@
    <%@include file="/views/header.jsp"%>
 
   <script><%@include file="/views/headerScript.jsp"%></script>
-
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 
 
 
@@ -44,7 +44,7 @@
 				if (data.cnt > 0) {
 					$.ajax({
 						type : "GET",
-						url : "../logLogin.do?ll_id="+ll_id+"&ll_ip="+ll_ip+"&ll_country="+ll_country+"&ll_device="+ll_device+"&ll_result=로그인성공",
+						url : "../logLogin.do?ll_id="+ll_id+"&ll_ip="+ll_ip+"&ll_country="+ll_country+"&ll_device="+ll_device+"&ll_result=성공",
 						success : function(){
 							if (frm.m_id.value =="admin" && frm.m_pwd.value == "admin") {
 								frm.action = "../../Admin.do";
@@ -59,7 +59,7 @@
 				else {
 					$.ajax({
 						type : "GET",
-						url : "../logLogin.do?ll_id="+ll_id+"&ll_ip="+ll_ip+"&ll_country="+ll_country+"&ll_device="+ll_device+"&ll_result=로그인실패",
+						url : "../logLogin.do?ll_id="+ll_id+"&ll_ip="+ll_ip+"&ll_country="+ll_country+"&ll_device="+ll_device+"&ll_result=실패",
 						success : function(){
 							alert("아이디 또는 비밀번호가 일치하지않습니다. 다시 입력해주세요.");
 							
@@ -208,7 +208,7 @@
                   <input type="password" class="form-control" name="m_pwd" onkeypress="enterkey()" required data-eye>
                </div>
                
-               
+               	
                <div class="form-group">
                    <button type="submit" id="loginBtn" class="btn btn-outline-secondary btn-block" onclick="login(this.form)" >
                      Login
@@ -221,12 +221,28 @@
 	            <a href="../../findPwdMember.do">비밀번호 찾기 | </a>
 	            <a href="../../insertMember.do">회원가입</a>
             </div>
-  
-            <div>
-            	<a href="/naverLogin.do">네이버 로그인</a>
-				<a href="/googleLogin.do">구글 로그인</a>
-				<a href="/kakaoLogin.do">카카오로그인</a>
-				<a href="/naverLogin.do">네이버<img src="/views/img/icon/naverIcon.PNG" alt="" / style="width:100px; height:20px;"></a>
+            
+			<div>
+				<br />
+			</div>
+			  
+            <div style="text-align : center;">
+            	<a href="/naverLogin.do">
+            	<img src="/views/img/icon/naverLogo.PNG" alt=""  style=" width:222px; height:50px;"/></a>
+				
+				
+				
+				<a id="kakao-login-btn">
+						<img id="kakao-login-btn"  id="apiLogin"
+						src="https://kauth.kakao.com/public/widget/login/kr/kr_02_medium.png"
+						
+						  onmouseover="this.src='https://kauth.kakao.com/public/widget/login/kr/kr_02_medium_press.png'"
+						  onmouseout="this.src='https://kauth.kakao.com/public/widget/login/kr/kr_02_medium.png'">
+				</a>
+				
+				<a href="/googleLogin.do">
+				<img src="/views/img/icon/googleLogo.png" alt=""  style=" width:230px; height:50px;"/></a>
+				
             </div>
             
          </div> 
@@ -234,9 +250,73 @@
    </div>   
    </div>
 <br><br>      
+<script type="text/javascript">
 
+      // 사용할 앱의 JavaScript 키를 설정해 주세요.
+      Kakao.init('50cb82f2f1f35634b122ac5232622e83');
+      // 카카오 로그인 버튼을 생성합니다.
+      Kakao.Auth.createLoginButton({
+        container: '#kakao-login-btn',
+        success: function(authObj) {
+          // 로그인 성공시, API를 호출합니다.
+          Kakao.API.request({
+             url: '/v1/user/me',
+            success: function(res) {
+               var kakaoInfo = JSON.stringify(res.properties);
+               
+               var kakaoName = JSON.stringify(res.properties.nickname); 
+               var kakaoName2 = res.properties.nickname; 
+            
+               var kakaoEmail = JSON.stringify(res.kaccount_email);
+               var kakaoEmail2 = res.kaccount_email;
+            
+               sessionStorage.setItem("kakaoEmailSession", kakaoEmail2);
+               sessionStorage.setItem("kakaoNameSession", kakaoName2);
+               $("#kakaoId").val(kakaoEmail2);
+               checkAJax();
+							
+            },
+            
+          });
+        },
+        fail: function(err) {
+          alert(JSON.stringify(err));
+        }
+      });
+</script>
+<script>
+function checkAJax() {
+   var str = $("#kakaoId").val();
+   $.ajax({
+      async: true,
+      type : 'POST',
+      dataType : "json",
+      data : str,
+       contentType: "application/json; charset=UTF-8",  
+      url : '../../checkMemberJson.do',
+      
+         success : function(data) {
+          alert(data.cnt);
+          if (data.cnt == 1) {
+            alert("사이트 이용 시 로그인을 해야 가능합니다.");
+            location.href = "../../loginMember.do";
+         } else  if(data.cnt == 0){
+            alert("사이트 이용 시 회원가입을 해야 사용 가능합니다.");
+            location.href = "../../kakaoCallback.do";
+         } 
+       }
+    });
+}
+</script>
+	<form onsubmit="return false"method="POST" class="my-login-validation" id="kakaoForm"  >
+<div>
+  <input id="kakaoId" type="hidden" class="form-control" name="m_id">
+</div>
+</form>
+	
 	
  <%@include file="/views/footer.jsp"%>
+ 
 
 
 </body>

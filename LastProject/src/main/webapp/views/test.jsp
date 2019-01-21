@@ -68,7 +68,6 @@ function getIpCountry() {
 	<a href="/naverLogin.do">네이버 로그인</a>
 	<a href="/googleLogin.do">구글 로그인</a>
 	<a href="/kakaoLogin.do">카카오</a>
-	<a href="/views/loginAPI/kakaoLogout.jsp">카카오 로그아웃</a>
 	<a href="/NaverRegister.do">네이버회원가입</a>
 	<a href="/NaverRegister.do">네이버회원가입</a>
 	<p>세션 : [${m_id}] 앙기무리</p>
