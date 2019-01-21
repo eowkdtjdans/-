@@ -33,6 +33,7 @@ import com.spring.biz.eventImage.EventImageVO;
 import com.spring.biz.localAdvice.LocalAdviceVO;
 import com.spring.biz.member.Email;
 import com.spring.biz.member.EmailSender;
+import com.spring.biz.member.MemberService;
 import com.spring.biz.member.MemberVO;
 import com.spring.biz.message.MessageRecieveVO;
 import com.spring.biz.message.MessageService;
@@ -59,18 +60,20 @@ public class AdminController {
 	private EventService eventService;
 	@Autowired
 	private EventImageService eventImageService;
-	
+	@Autowired
+	private MemberService memberService;
 	private static final String PREFIX_URL = "/views/img/upload/";
 	private static final String SAVE_PATH = "C:/MyStudy/GIT/gukbong/LastProject/src/main/webapp/views/img/upload/";
 	private static final String SERVER_SAVE_PATH = "C:/MyStudy/GIT/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/LastProject/views/img/upload/";
 	
 	
 	@RequestMapping(value="/Admin.do")
-	public String AdminMain(HttpServletRequest request, Model model, HttpSession session) {
+	public String AdminMain(HttpServletRequest request, MemberVO vo, Model model, HttpSession session) throws Exception {
 		System.out.println("AdminController의 사이트 조회수 누적 메소드");
-		
+		MemberVO vo2 = memberService.loginMember(vo, session);
 		AdminCntVO adminCnt = adminService.adminCnt();
 		
+		session.setAttribute("member", vo2);
 		model.addAttribute("adminCnt", adminCnt);
 		
 		return "redirect:/views/admin/testAdmin.jsp";
