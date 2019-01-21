@@ -9,43 +9,13 @@
    <meta name="author" content="Kodinger">
    <meta name="viewport" content="width=device-width,initial-scale=1">
    <title>회원가입</title>
-   <link rel="stylesheet" type="text/css" href="views/bootstrapModal/css/bootstrap.min.css">
-   <link rel="stylesheet" type="text/css" href="views/cssModal/my-login.css">
+   <link rel="stylesheet" type="text/css" href="/views/bootstrapModal/css/bootstrap.min.css">
+   <link rel="stylesheet" type="text/css" href="/views/cssModal/my-login.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">   
    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script>
-function getIpCountry() {
-	$.get("http://ipinfo.io", function(response){
-		var lv_ip = response.ip;
-		var lv_country = response.country;
-		
-		var userAgent = navigator.userAgent.toLowerCase();
-		var lv_browser = "";
-		
-		if(userAgent.match('chrome')){
-			lv_browser = "크롬"
-		} else if(navigator.appName == 'Netscape' && userAgent.search('trident') != -1) {
-			lv_browser = "IE"
-		} else if(userAgent.match('Firefox')) {
-			lv_browser = "파이어폭스"
-		} else if(userAgent.match('safari')) {
-			lv_browser = "사파리"
-		} else if(userAgent.match('opera')) {
-			lv_browser = "오페라"
-		} else {
-			lv_browser = "기타"
-		}
-		
-		var newHref = "../logVisit.do?lv_ip=" + lv_ip + "&lv_country=" + lv_country + "&lv_browser=" + lv_browser;
-		
-		$("#main").attr("href", newHref);
-		
-	}, "jsonp");
-}
-</script>
 
 </head>
-<body onload="getIpCountry()">
+<body>
 	<h2>ㅎㅇ</h2>
 	<hr>
 
