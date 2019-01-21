@@ -77,17 +77,19 @@ public class AdminController {
 	
 	
 	@RequestMapping(value="/Admin.do")
-	public String AdminMain(HttpServletRequest request, HostImageVO hostimagevo, MemberVO membervo, ProfileVO profilevo,Model model, HttpSession session) throws Exception {
+	public String AdminMain(HttpServletRequest request, MessageRecieveVO receivevo, HostImageVO hostimagevo, MemberVO membervo, ProfileVO profilevo,Model model, HttpSession session) throws Exception {
 		System.out.println("AdminController의 사이트 조회수 누적 메소드");
 		MemberVO membervo2 = memberService.loginMember(membervo, session);
 		AdminCntVO adminCnt = adminService.adminCnt();
 		profilevo.setM_id(membervo.getM_id());
 		ProfileVO profilevo2 = profileService.getProfile2(profilevo, session);
 		HostImageVO hostimagevo2 = hostImageService.getHostImage(hostimagevo);
-		
+		receivevo.setReceive_receiver(membervo.getM_id());
+		MessageRecieveVO receivevo2 = messageService.getReceiveMessage2(receivevo, session);
 		session.setAttribute("profile", profilevo2);
 		session.setAttribute("member", membervo2);
 		session.setAttribute("hostImg", hostimagevo2);
+		session.setAttribute("messageInfo", receivevo2);
 		model.addAttribute("adminCnt", adminCnt);
 		
 		return "redirect:/views/admin/testAdmin.jsp";

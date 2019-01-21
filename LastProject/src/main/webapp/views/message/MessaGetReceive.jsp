@@ -256,7 +256,7 @@ $(function(){
 			</div>
 		</li>
 	
-		<li class="menu-has-children"><img src="${getProfileImageRoute.p_route }" style="width: 45px; height: 45px;" class="rounded-circle" id="navProfileImg"></a>
+		<li class="menu-has-children"><img src="${profile.p_route }" style="width: 45px; height: 45px;" class="rounded-circle" id="navProfileImg"></a>
           <ul>                                      
             <li><a  href="../../myProfile.do" >마이 프로필</a></li> 
             <li><a href="../../logoutMember.do">로그아웃</a></li>            
@@ -318,6 +318,18 @@ $(function(){
 									</td>
 								</tr>
 								<tr style="font-size: 0.9em;">
+									<th width="130">희망 입실일</th>
+									<td colspan="2">
+										${message.receive_startdate }
+									</td>
+								</tr>
+								<tr style="font-size: 0.9em;">
+									<th width="130">희망 퇴실일</th>
+									<td colspan="2">
+										${message.receive_enddate }
+									</td>
+								</tr>
+								<tr style="font-size: 0.9em;">
 									<th>보낸사람</th>
 									<td>${message.receive_sender}</td>							
 									<td style="text-align: right;"><fmt:formatDate value="${message.receive_regdate }" pattern="yyyy-MM-dd HH:mm:ss"/> </td>
@@ -330,10 +342,9 @@ $(function(){
 								</tr>
 								  
 								<tr>
-								<%-- 	<td colspan="3" style="text-align: right; font-size: 0.9em;">
-										<a href="deleteReceiveMessage.do?receive_idx=${message.receive_idx }">쪽지삭제</a>
-									</td> --%>
-									<td colspan="3" style="text-align: right;"><input type="button" value="쪽지삭제" class="btn btn-outline-secondary" onclick="location.href='deleteReceiveMessage.do?receive_idx=${message.receive_idx }'"></td>
+									<td colspan="3" style="text-align: right;">
+									<input type="button" value="목록으로" class="btn btn-outline-secondary " onclick="location.href='getReceiveMessageList.do'">
+									<input type="button" value="쪽지삭제" class="btn btn-outline-secondary" onclick="location.href='deleteReceiveMessage.do?receive_idx=${message.receive_idx }'"></td>
 								</tr>
 							</table>
 							</form>

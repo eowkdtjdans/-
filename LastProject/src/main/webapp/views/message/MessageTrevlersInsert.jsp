@@ -20,10 +20,10 @@
       <script><%@include file="/views/headerScript.jsp"%></script>
    
    
-   <link rel="stylesheet" href="views/datepicker/public/theme/css/t-datepicker.min.css">
-   <link rel="stylesheet" href="views/datepicker/public/theme/css/themes/t-datepicker-teal.css">
-   <!-- blue, bluegrey, cyan, green, lime, main, orange, purple, teal, yellow -->
-   
+  
+<link rel="stylesheet" href="/views/datepicker/public/theme/css/t-datepicker.min.css">
+<link rel="stylesheet" href="/views/datepicker/public/theme/css/themes/t-datepicker-teal.css">
+<script src="/views/datepicker/public/theme/js/t-datepicker.min.js"></script>
    <!-- iCheck for checkboxes and radio inputs -->
    <link rel="stylesheet" href="/views/admin/plugins/iCheck/all.css">
    
@@ -48,50 +48,32 @@ function fillInAddress() { //lat 와 lng 값을 넘겨줄 input 태그에 값 �
    document.getElementById("lng").value=place.geometry.location.lng();
 }
 
-/* picker만 생성 */
-$(document).ready(function(){
-   $('.t-datepicker').tDatePicker({
-     autoClose:true,
-     durationArrowTop:200,
-     formatDate:'yyyy-mm-dd',
-     startDate:document.getElementById("year").value + "-01-01",
-     limitPrevMonth:0,
-     limitNextMonth:12,
-     limitDateRanges:60,
-     numCalendar:1,
-     titleMonthsLimitShow:12,
-     dateRangesHover: false
-   }).on('eventClickDay',function(e, dataDate){
-      var getDateInput = $('.t-datepicker').tDatePicker('getDateInput');
-      document.getElementById("m_birthday").value = getDateInput;
-   })
-});
 
-function yearChange() {
-   $('.t-datepicker').tDatePicker({
-     autoClose:false,
-     durationArrowTop:200,
-     formatDate:'yyyy-mm-dd',
-     startDate:document.getElementById("year").value + "-01-01",
-     limitPrevMonth:0,
-     limitNextMonth:12,
-     limitDateRanges:60,
-     numCalendar:1,
-     titleMonthsLimitShow:12,
-     dateRangesHover: false
-   }).on('eventClickDay',function(e, dataDate){
-      var getDateInput = $('.t-datepicker').tDatePicker('getDateInput');
-      document.getElementById("m_birthday").value = getDateInput;
-   })
-}
-
-$('.t-datepicker').tDatePicker({
-}).on('clickDateCI',function(e, dateCI) {
-   var getDateInput = $('.t-datepicker').tDatePicker('getDateInput');
-   document.getElementById("m_birthday").value = getDateInput;
-}) 
-
-
+ $(document).ready(function(){
+	   $('.t-datepicker').tDatePicker({
+	     autoClose:true,
+	     durationArrowTop:200,
+	     limitDateRanges:61,
+	     numCalendar:2,
+	     titleCheckIn:'입실날짜',
+	     titleCheckOut:'퇴실날짜',
+	     titleDateRange:'일',
+	     titleDateRanges:'일',
+	     titleToday:'오늘',
+	     titleDays:['월','화','수','목','금','토','일'],
+	     titleMonths:['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+	     toDayShowTitle:true,
+	     dateRangesShowTitle:true,
+	     dateRangesHover:true,
+	     toDayHighlighted:true,
+	     dateDisabled:[false]
+	   }).on('eventClickDay',function(e, dataDate){
+	     var getDateInput = $('.t-datepicker').tDatePicker('getDateInputs');
+	      document.getElementById("h_startdate").value = getDateInput[0];
+	      document.getElementById("h_enddate").value = getDateInput[1];
+	   });
+	   
+	});
 
 
 
@@ -248,7 +230,6 @@ select {
 </script>
 
 
-</script>
 </head>
 <body onload="noticeMessage()"> 
 
@@ -313,7 +294,7 @@ select {
          </div>
       </li>
    
-      <li class="menu-has-children"><img src="${getProfileImageRoute.p_route }" style="width: 45px; height: 45px;" class="rounded-circle" id="navProfileImg"></a>
+      <li class="menu-has-children"><img src="${profile.p_route }" style="width: 45px; height: 45px;" class="rounded-circle" id="navProfileImg"></a>
           <ul>                                      
             <li><a  href="../../myProfile.do" >마이 프로필</a></li> 
             <li><a href="../../logoutMember.do">로그아웃</a></li>            
@@ -347,6 +328,19 @@ select {
                         <input id="m_id" type="hidden" class="form-control" name="m_id" value="${member.m_id }">   
                         <input id="message_sender" name="message_sender" type="hidden" class="form-control" value="${member.m_id }">   
                         <input id="message_receiver" name="message_receiver" type="hidden" class="form-control" value="${message_receiver }">   
+                        
+                         <div class="form-group">
+                                <label for="h_startdate" class="col-4 col-form-label">입실/퇴실 날짜</label> 
+                              <div class="col-8">
+                              	 <div class="t-datepicker">
+			                          <div class="t-check-in"></div>
+			                          <div class="t-check-out"></div>
+	                        	</div>
+                       		</div>
+                                <input id="h_startdate" type="hidden" class="form-control" name="h_startdate" required data-eye> 
+                                <input id="h_enddate" type="hidden" class="form-control" name="h_enddate" required data-eye> 
+                            </div>
+                        
                         <div class="form-group">
                            <label for="message_title" style="text-align : center;">제목</label>
                            <textarea rows="1" cols="10" id="message_title" name="message_title" class="form-control"></textarea>

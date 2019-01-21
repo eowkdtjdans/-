@@ -256,7 +256,7 @@ $(function(){
 			</div>
 		</li>
 	
-		<li class="menu-has-children"><img src="${getProfileImageRoute.p_route }" style="width: 45px; height: 45px;" class="rounded-circle" id="navProfileImg"></a>
+		<li class="menu-has-children"><img src="${profile.p_route }" style="width: 45px; height: 45px;" class="rounded-circle" id="navProfileImg"></a>
           <ul>                                      
             <li><a  href="../../myProfile.do" >마이 프로필</a></li> 
             <li><a href="../../logoutMember.do">로그아웃</a></li>            
@@ -306,35 +306,81 @@ $(function(){
 			    	<tr>
 			    		<td colspan="3" style="font-size: 1.2em;"><img src="views/img/messageImg.png" style="width: 60px; height: 60px;"><strong> 받은 쪽지목록</strong></td>			    		
 			    	</tr>
-			    	<c:forEach var="messageList" items="${messageList }">
-						<tr>
-							<td style="width: 35%">
-								<img src="${messageList.p_route}" alt="" class="rounded-circle" style="width:50px; height:50px;"/> &nbsp;
-								<a href="getReceiveMessage.do?receive_idx=${messageList.receive_idx }">
-									${messageList.receive_sender }
-								</a>
-							</td> 
-							
-							<c:if test="${messageList.receive_read eq 0 }">
-							
-							<td style="width: 35%; padding-top: 21px;" >
-								<a href="getReceiveMessage.do?receive_idx=${messageList.receive_idx }">
-									${messageList.receive_title } (안읽음)
-								</a>
-							</td>
-							</c:if>
-							
-							<c:if test="${messageList.receive_read eq 1 }">
-							
-							<td style="width: 35%; padding-top: 21px;" >
-								<a href="getReceiveMessage.do?receive_idx=${messageList.receive_idx }">
-									${messageList.receive_title }
-								</a>
-							</td>
-							</c:if>
-							<td style="width: 30%; padding-top: 21px;"><fmt:formatDate value="${messageList.receive_regdate }" pattern="yyyy-MM-dd HH:mm:ss"/> </td>
-						</tr>
-						</c:forEach>
+			    		
+			    		<c:if test="${member.m_id eq 'admin' }">
+						
+						</c:if>
+			    	
+			    	
+						
+<c:choose>
+  <c:when test="${member.m_id eq 'admin' }">
+  	<c:forEach var="getAdminReceiveMessageList2" items="${getAdminReceiveMessageList2 }">
+	<tr>
+		<td style="width: 35%">
+			<a href="getReceiveMessage.do?receive_idx=${getAdminReceiveMessageList2.receive_idx }">
+				${getAdminReceiveMessageList2.receive_sender }
+			</a>
+		</td> 
+		
+		<c:if test="${getAdminReceiveMessageList2.receive_read eq 0 }">
+		
+		<td style="width: 35%; padding-top: 21px;" >
+			<a href="getReceiveMessage.do?receive_idx=${getAdminReceiveMessageList2.receive_idx }">
+				${getAdminReceiveMessageList2.receive_title } (안읽음)
+			</a>
+		</td>
+		</c:if>
+		
+		<c:if test="${getAdminReceiveMessageList2.receive_read eq 1 }">
+		
+		<td style="width: 35%; padding-top: 21px;" >
+			<a href="getReceiveMessage.do?receive_idx=${getAdminReceiveMessageList2.receive_idx }">
+				${getAdminReceiveMessageList2.receive_title }
+			</a>
+		</td>
+		</c:if>
+		<td style="width: 30%; padding-top: 21px;"><fmt:formatDate value="${messageList.receive_regdate }" pattern="yyyy-MM-dd HH:mm:ss"/> </td>
+		<td style="width: 30%; padding-top: 21px;"><fmt:formatDate value="${messageList.receive_startdate }" pattern="yyyy-MM-dd"/> </td>
+		<td style="width: 30%; padding-top: 21px;"><fmt:formatDate value="${messageList.receive_enddate }" pattern="yyyy-MM-dd"/> </td>
+	</tr>
+	</c:forEach>
+  </c:when>
+  <c:otherwise>
+  <c:forEach var="messageList" items="${messageList }">
+		<tr>
+			<td style="width: 35%">
+                      <img src="${messageList.p_route}" alt="" class="rounded-circle" style="width:50px; height:50px;"/> &nbsp;
+                      <a href="getReceiveMessage.do?receive_idx=${messageList.receive_idx }">
+                         ${messageList.receive_sender }
+                      </a>
+                   </td> 
+					
+			<c:if test="${messageList.receive_read eq 0 }">
+			
+			<td style="width: 35%; padding-top: 21px;" >
+				<a href="getReceiveMessage.do?receive_idx=${messageList.receive_idx }">
+					${messageList.receive_title } (안읽음)
+				</a>
+			</td>
+			</c:if>
+			
+			<c:if test="${messageList.receive_read eq 1 }">
+			
+			<td style="width: 35%; padding-top: 21px;" >
+				<a href="getReceiveMessage.do?receive_idx=${messageList.receive_idx }">
+					${messageList.receive_title }
+				</a>
+			</td>
+			</c:if>
+			<td style="width: 30%; padding-top: 21px;"><fmt:formatDate value="${messageList.receive_regdate }" pattern="yyyy-MM-dd HH:mm:ss"/> </td>
+			<td>${messageList.receive_startdate }</td>
+			<td>${messageList.receive_enddate }</td>
+		</tr>
+		</c:forEach>
+  </c:otherwise>
+</c:choose>   
+						
 			    </table>
 		    </div>
 	    </div>
