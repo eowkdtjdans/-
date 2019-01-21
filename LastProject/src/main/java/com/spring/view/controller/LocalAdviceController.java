@@ -226,6 +226,7 @@ public class LocalAdviceController {
       
       LocalAdviceVO getLocalAdvice = localAdviceService.getLocalAdvice(vo);
       ProfileImageVO getProfileImage = localAdviceService.getProfileImage(pvo);
+      System.out.println("getLocalAdvice : " + getLocalAdvice);
       
       model.addAttribute("getLocalAdvice", getLocalAdvice);
       model.addAttribute("getProfileImage", getProfileImage);

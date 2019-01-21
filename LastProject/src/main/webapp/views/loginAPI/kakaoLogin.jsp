@@ -14,7 +14,7 @@
 
 
 
-<body>
+<body onload="noticeMessage()">
 
 <a id="kakao-login-btn"></a>
 

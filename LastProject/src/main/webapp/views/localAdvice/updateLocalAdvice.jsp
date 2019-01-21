@@ -50,7 +50,7 @@
 	a{
 		color:#5e7e9b;
 	}
-	#profileImage { width: 80px; height: 80px;} 
+	#profileImage { width: 60px; height: 60px;} 
 	td{
 		padding-right: 30px;
 	}
@@ -129,7 +129,6 @@ select {
 
 <script>
 	function updatego(frm){
-		alert("../updateLocalAdvice.do 요청하는 스크립트");
 		frm.action="../updateLocalAdvice.do";
 		frm.submit();
 	}
@@ -257,49 +256,50 @@ select {
   <!--==========================
       About Us Section
     ============================-->    
-<section id="about">
-<div class="container">
-	<div class="row from-group">	
-			<%-- <div>${getLocalAdvice.l_idx }</div>	
-			<div>${getLocalAdvice.m_id}</div>
-			<div>${getLocalAdvice.l_subject }</div>
-			<div>${getLocalAdvice.l_content }</div>
-			<div>${getLocalAdvice.l_date }</div>
-			<div>${getLocalAdvice.l_upvote }</div>
-			<div>${getLocalAdvice.l_reviewcount }</div> --%>
 
+<div class="container">
+<br>
+<img src="views/img/star.jpg" style="width: 40px; height: 40px;"><span style="font-size: 1.2em; font-weight: bold;">현지정보 문의 게시판 - 게시글 수정</span>
+		
 		<div id="tableDiv">
 		<form name="frm" method="post">
-			<table>				
-				<tr>
-					<td><img src="${getLocalAdvice.getP_route() }" class="rounded-circle"  id="profileImage" onerror='this.src="../views/img/people/fuckyou.jpg"'></td>
+		  
+			<table>		 		
+				<tr> 
+					<td rowspan="2" style="text-align: center; width: 10%;"><img src="${getLocalAdvice.getP_route() }" class="rounded-circle"  id="profileImage" onerror='this.src="../views/img/people/fuckyou.jpg"'></td>
 					<td><textarea class="form-control" rows="1" cols="90" name="l_subject">${getLocalAdvice.l_subject }</textarea></td>
-					<td>					
+				<%-- 	<td>					
 						<c:if test="${getLocalAdvice.m_id eq member.m_id }"> 
 							<input type="button" class="btn btn-outline-secondary" value="수정완료" onclick="updatego(this.form)">
 							<input type="hidden" name="l_idx" value="${getLocalAdvice.l_idx }">
 						</c:if>
-					</td>
+					    </td> --%>
 				</tr>
 				<tr>
-					<td colspan="3">
+					<td colspan="3">${getLocalAdvice.m_id }&emsp;&emsp; ${getLocalAdvice.l_date }</td>
+				</tr>
+				 
+				<tr>
+				<br>
+					<td colspan="3">          
+					<br>
 						<textarea class="form-control" rows="10" cols="150" name="l_content">${getLocalAdvice.l_content }</textarea>
 					</td>
 				</tr>
+				<tr>
+					<td colspan="3" style="text-align: right;">					
+						<c:if test="${getLocalAdvice.m_id eq member.m_id }"> 
+							<input type="button" class="btn btn-outline-secondary" value="수정완료" onclick="updatego(this.form)">
+							<input type="hidden" name="l_idx" value="${getLocalAdvice.l_idx }">
+						</c:if>
+					</td>	 
+				</tr>
 			</table>			
 		</form>
-		</div>	
-				
-		
-		
-		<form>
-			<table>
-				
-			</table>
-		</form>
-	</div>
+		</div>						
 </div>	   
-</section><!-- #about -->
+<!-- #about -->
+
  <!--==========================
     Footer
   ============================-->

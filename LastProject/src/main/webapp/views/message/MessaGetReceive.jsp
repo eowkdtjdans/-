@@ -110,6 +110,9 @@ select {
 	height: 20px;
 	color: red;
 } */
+a{
+		color: #4B89DC;  
+	}
 </style>
 
 
@@ -293,12 +296,8 @@ $(function(){
               <a href="../../myPost.do?m_id=${member.m_id }&cPage=1" class="list-group-item list-group-item-action">내 글</a>
               <a href="../../myPost2.do?m_id=${member.m_id }&cPage=1" class="list-group-item list-group-item-action">내 댓글</a>
               <a href="../../loginRecordList.do?ll_id=${member.m_id }&cPage=1" class="list-group-item list-group-item-action">로그인 기록</a>
-              <a href="../../DeleteMember.do?m_id=${member.m_id }" class="list-group-item list-group-item-action">회원탈퇴</a>
-              
-
-              
-            </div> 
-            
+              <a href="../../DeleteMember.do?m_id=${member.m_id }" class="list-group-item list-group-item-action">회원탈퇴</a>           
+            </div>             
 		</div>
 		
 <div class="col-md-9">

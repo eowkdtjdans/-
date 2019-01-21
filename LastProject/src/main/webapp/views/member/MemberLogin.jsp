@@ -44,7 +44,7 @@
 				if (data.cnt > 0) {
 					$.ajax({
 						type : "GET",
-						url : "../logLogin.do?ll_id="+ll_id+"&ll_ip="+ll_ip+"&ll_country="+ll_country+"&ll_device="+ll_device+"&ll_result=로그인성공",
+						url : "../logLogin.do?ll_id="+ll_id+"&ll_ip="+ll_ip+"&ll_country="+ll_country+"&ll_device="+ll_device+"&ll_result=성공",
 						success : function(){
 							if (frm.m_id.value =="admin" && frm.m_pwd.value == "admin") {
 								frm.action = "../../Admin.do";
@@ -59,7 +59,7 @@
 				else {
 					$.ajax({
 						type : "GET",
-						url : "../logLogin.do?ll_id="+ll_id+"&ll_ip="+ll_ip+"&ll_country="+ll_country+"&ll_device="+ll_device+"&ll_result=로그인실패",
+						url : "../logLogin.do?ll_id="+ll_id+"&ll_ip="+ll_ip+"&ll_country="+ll_country+"&ll_device="+ll_device+"&ll_result=실패",
 						success : function(){
 							alert("아이디 또는 비밀번호가 일치하지않습니다. 다시 입력해주세요.");
 							

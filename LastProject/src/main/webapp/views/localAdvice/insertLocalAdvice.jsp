@@ -266,19 +266,20 @@
   <!--==========================
       About Us Section
     ============================-->    
-<section id="about">
+
 <div class="container">
-	<div class="row from-group">	
+<br>
+<img src="views/img/star.jpg" style="width: 40px; height: 40px;"><span style="font-size: 1.2em; font-weight: bold;">현지정보 문의 게시판 - 게시글 작성</span>
 		<form name="frm" method="post">			
-			<table class="table">
-				<h2><strong>Write LocalAdvice</strong></h2>
+<br>  
+			<table class="table">				
 				<tr>
-					<td>SUBJECT</td>
-					<td><textarea class="form-control" rows="1" cols="150" name="l_subject" title="제목"></textarea></td>
+					<td style="width: 10%; text-align: center;">제목</td>    
+					<td style="width: 90%;"><textarea class="form-control" rows="1" cols="150" name="l_subject" title="제목"></textarea></td>
 				</tr>
 				<tr>
-					<td>CONTENT</td>
-					<td><textarea class="form-control" rows="15" cols="150" name="l_content" title="내용"></textarea></td>	
+					<td style="width: 10%; text-align: center;">내용</td>
+					<td style="width: 90%;"><textarea class="form-control" rows="14" cols="150" name="l_content" title="내용"></textarea></td>	
 				</tr>
 				<tr>
 				  	<td class="text-muted" colspan="2">
@@ -290,10 +291,8 @@
 						<input type="button" value="저장" class="btn btn-outline-secondary"
 							onclick="sendData(this.form)">					
 						<input type="reset" value="다시작성" class="btn btn-outline-secondary">
-						<input type="button" value="목록으로" class="btn btn-outline-secondary"
-							onclick="list_go()">
+						
 						<input type="hidden" name="searchCondition" value="${searchCondition }">
-						${searchCondition }, ${key }, ${member.m_address}, ${firstLat}, ${firstLng}
 						<input type="hidden" name="searchKeyword" value="${key }" >
 						<input type="hidden" name="m_address" value="${member.m_address}">
 						<input type="hidden" name="lat" value="${firstLat}">
@@ -304,9 +303,8 @@
 		</form>
 		
 		
-	</div>
 </div>	   
-</section><!-- #about -->
+<!-- #about -->
 
 
  <!--==========================
