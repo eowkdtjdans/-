@@ -11,6 +11,8 @@ public class MessageVO {
 	private String message_content;
 	private String message_read;
 	private Date message_regdate;
+	private Date message_startdate;
+	private Date message_enddate;
 	public int getMessage_idx() {
 		return message_idx;
 	}
@@ -53,16 +55,25 @@ public class MessageVO {
 	public void setMessage_regdate(Date message_regdate) {
 		this.message_regdate = message_regdate;
 	}
+	public Date getMessage_startdate() {
+		return message_startdate;
+	}
+	public void setMessage_startdate(Date message_startdate) {
+		this.message_startdate = message_startdate;
+	}
+	public Date getMessage_enddate() {
+		return message_enddate;
+	}
+	public void setMessage_enddate(Date message_enddate) {
+		this.message_enddate = message_enddate;
+	}
 	@Override
 	public String toString() {
 		return "MessageVO [message_idx=" + message_idx + ", message_sender=" + message_sender + ", message_receiver="
 				+ message_receiver + ", message_title=" + message_title + ", message_content=" + message_content
-				+ ", message_read=" + message_read + ", message_regdate=" + message_regdate + "]";
+				+ ", message_read=" + message_read + ", message_regdate=" + message_regdate + ", message_startdate="
+				+ message_startdate + ", message_enddate=" + message_enddate + "]";
 	}
-	
-	
-	
-	
 	
 	
 	

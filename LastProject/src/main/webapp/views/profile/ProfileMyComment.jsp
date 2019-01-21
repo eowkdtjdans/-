@@ -339,7 +339,7 @@ $(function(){
             <a href="/getEventList.do?cPage=1&searchCondition=find_event&firstLat=&firstLng=&key=">${myPostList.c_type }</a>
          </td>
       </c:if>
-      
+       
       <c:if test="${myPostList.c_type eq '현지정보 문의 게시판' }">
          <td style="text-align :center;">
             <a href="getLocalAdviceList2.do?cPage=1&firstLat=&firstLng=&key=&searchCondition=find_advice">${myPostList.c_type }</a>

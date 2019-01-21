@@ -113,6 +113,10 @@ public class MemberDAO {
 		mybatis.update("PwdUpdate", vo);
 	}
 
+	public int MemberModifyPhoneCheckJson(MemberVO vo) {
+		return mybatis.selectOne("MemberModifyPhoneCheckJson", vo);
+	}
+
 
 
 	

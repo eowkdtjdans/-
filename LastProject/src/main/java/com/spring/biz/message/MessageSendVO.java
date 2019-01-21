@@ -9,7 +9,7 @@ public class MessageSendVO {
 	send_title,
 	p_route,
 	send_content;
-	private Date send_regdate;
+	private Date send_regdate, send_startdate, send_enddate;
 	public int getSend_idx() {
 		return send_idx;
 	}
@@ -58,13 +58,27 @@ public class MessageSendVO {
 	public void setSend_regdate(Date send_regdate) {
 		this.send_regdate = send_regdate;
 	}
+	public Date getSend_startdate() {
+		return send_startdate;
+	}
+	public void setSend_startdate(Date send_startdate) {
+		this.send_startdate = send_startdate;
+	}
+	public Date getSend_enddate() {
+		return send_enddate;
+	}
+	public void setSend_enddate(Date send_enddate) {
+		this.send_enddate = send_enddate;
+	}
 	@Override
 	public String toString() {
 		return "MessageSendVO [send_idx=" + send_idx + ", send_read=" + send_read + ", send_sender=" + send_sender
 				+ ", send_receiver=" + send_receiver + ", send_title=" + send_title + ", p_route=" + p_route
-				+ ", send_content=" + send_content + ", send_regdate=" + send_regdate + "]";
+				+ ", send_content=" + send_content + ", send_regdate=" + send_regdate + ", send_startdate="
+				+ send_startdate + ", send_enddate=" + send_enddate + "]";
 	}
 
+	
 	
 	
 	

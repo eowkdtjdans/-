@@ -172,8 +172,40 @@ $(function(){
          
          
       });    
+         
+         $.get("http://ipinfo.io", function(response){
+ 			var lv_ip = response.ip;
+ 			var lv_country = response.country;
+ 			
+ 			var userAgent = navigator.userAgent.toLowerCase();
+ 			var lv_browser = "";
+ 			
+ 			if(userAgent.match('chrome')){
+ 				lv_browser = "크롬"
+ 			} else if(navigator.appName == 'Netscape' && userAgent.search('trident') != -1) {
+ 				lv_browser = "IE"
+ 			} else if(userAgent.match('Firefox')) {
+ 				lv_browser = "파이어폭스"
+ 			} else if(userAgent.match('safari')) {
+ 				lv_browser = "사파리"
+ 			} else if(userAgent.match('opera')) {
+ 				lv_browser = "오페라"
+ 			} else {
+ 				lv_browser = "기타"
+ 			}
+ 			
+ 			$.ajax({
+ 		         async : true,
+ 		         type : "GET",
+ 		         data:"lv_ip=" + lv_ip+"&lv_country=" + lv_country + "&lv_browser=" + lv_browser,
+ 		         url : "/logVisit.do",
+ 		         success : function(data) {
+ 		         }
+ 		      });   
+ 			
+ 		}, "jsonp");
    }
-
+   
 
 </script>    
  
@@ -341,11 +373,11 @@ $(function(){
           <div class="col-md-4 wow fadeInUp" data-wow-delay="0.1s">
             <div class="about-col">
               <div class="img">
-                <img src="views/img/gukbong2.jpg" alt="" class="img-fluid">
+                <img src="views/img/gukbong2.jpg" alt="" class="img-fluid" style="height:235px">
                 <div class="icon"><i class="ion-ios-list-outline"></i></div>
               </div>
               <h2 class="title"><a href="#">Join Events</a></h2>
-              <p>
+              <p style="height: 90px;">
                	 다른 도시 또는 귀하의 도시에서 여행자를 만나세요! 항상 새로움을 느낄 수 있습니다.
               </p>
             </div>
@@ -396,7 +428,7 @@ $(function(){
 	<c:forEach var="list" items="${selectRegionAsia }">
           <div class="col-lg-4 col-md-6 portfolio-item filter-asia wow fadeInUp">
             <div class="portfolio-wrap">             
-                <a href="../getEvent.do?e_idx=${list.e_idx }"><img src="${list.e_img }" class="img-fluid" alt=""></a>
+                <a href="../getEvent.do?e_idx=${list.e_idx }"><img src="${list.e_img }" class="img-fluid" alt="" style="height: 230px; width: 400px;"></a>
               
               <div class="portfolio-info">
                 <h4><a href="../getEvent.do?e_idx=${list.e_idx }">${list.e_name }</a></h4>
@@ -410,7 +442,7 @@ $(function(){
 	<c:forEach var="list" items="${selectRegionEurope }">
           <div class="col-lg-4 col-md-6 portfolio-item filter-europe wow fadeInUp" data-wow-delay="0.1s">
             <div class="portfolio-wrap">
-                <a href="../getEvent.do?e_idx=${list.e_idx }"><img src="${list.e_img }" class="img-fluid" alt=""></a>
+                <a href="../getEvent.do?e_idx=${list.e_idx }"><img src="${list.e_img }" class="img-fluid" alt="" style="height: 230px; width: 400px;"></a>
 
               <div class="portfolio-info">
                 <h4><a href="../getEvent.do?e_idx=${list.e_idx }">${list.e_name }</a></h4>
@@ -424,7 +456,7 @@ $(function(){
 	<c:forEach var="list" items="${selectRegionOceania }">
           <div class="col-lg-4 col-md-6 portfolio-item filter-oceania wow fadeInUp" data-wow-delay="0.2s">
             <div class="portfolio-wrap">
-                <a href="../getEvent.do?e_idx=${list.e_idx }"><img src="${list.e_img }" class="img-fluid" alt=""></a>
+                <a href="../getEvent.do?e_idx=${list.e_idx }"><img src="${list.e_img }" class="img-fluid" alt="" style="height: 230px; width: 400px;"></a>
 
               <div class="portfolio-info">
                 <h4><a href="../getEvent.do?e_idx=${list.e_idx }">${list.e_name }</a></h4>
@@ -439,7 +471,7 @@ $(function(){
 	<c:forEach var="list" items="${selectRegionNorthAmerica }">
           <div class="col-lg-4 col-md-6 portfolio-item filter-northAmerica wow fadeInUp">
             <div class="portfolio-wrap">
-                <a href="../getEvent.do?e_idx=${list.e_idx }"><img src="${list.e_img }" class="img-fluid" alt=""></a>
+                <a href="../getEvent.do?e_idx=${list.e_idx }"><img src="${list.e_img }" class="img-fluid" alt="" style="height: 230px; width: 400px;"></a>
 
               <div class="portfolio-info">
                 <h4><a href="../getEvent.do?e_idx=${list.e_idx }">${list.e_name }</a></h4>
@@ -453,7 +485,7 @@ $(function(){
 	<c:forEach var="list" items="${selectRegionSouthAmerica }">
           <div class="col-lg-4 col-md-6 portfolio-item filter-southAmerica wow fadeInUp" data-wow-delay="0.1s">
             <div class="portfolio-wrap">
-                <a href="../getEvent.do?e_idx=${list.e_idx }"><img src="${list.e_img }" class="img-fluid" alt=""></a>
+                <a href="../getEvent.do?e_idx=${list.e_idx }"><img src="${list.e_img }" class="img-fluid" alt="" style="height: 230px; width: 400px;"></a>
 
               <div class="portfolio-info">
                 <h4><a href="../getEvent.do?e_idx=${list.e_idx }">${list.e_name }</a></h4>
@@ -488,7 +520,7 @@ $(function(){
 
           <div class="col-md-12 box wow bounceInUp" data-wow-duration="1.4s">
             <div class="icon"><img src="/views/img/why.png" style="width: 70px; height: 70px;"></div>
-            <h4 class="title"><a href="">Why do Couch Surfing</a></h4>
+            <h4 class="title"><a>Why do Couch Surfing</a></h4>
             <p class="description">개인적인 이유들이 있을테지만 가장 큰 장점은
 			여행자와 호스트가 서로의 생활에 깊숙히 관여하게 됨으로써			
 			여행지에 대한 이해도를 넓히고 서로의 문화를 느낄 수			
@@ -496,7 +528,7 @@ $(function(){
           </div>
           <div class="col-md-12 box wow bounceInUp" data-wow-duration="1.4s">
             <div class="icon">&emsp;<img src="/views/img/problem.png" style="width: 40px; height: 40px;">&nbsp;&nbsp;&nbsp;</div>
-            <h4 class="title"><a href="">Couch Surfing Notice</a></h4>
+            <h4 class="title"><a>Couch Surfing Notice</a></h4>
             <p class="description">&nbsp;많은 사람들이 단순히 호스트를 구하는데에만 너무 집중하는 것 같습니다.
 			가장 중요한 것은 카우치 서핑에 대한 서로의 이해도가 높아야한다는 점입니다.
 			카우치 서핑을 구하는 사람의 입장에서 얘기 하자면 카우치 서핑은 무료 호텔이 아닙니다.
@@ -505,7 +537,7 @@ $(function(){
           </div>
           <div class="col-md-12 box wow bounceInUp" data-wow-duration="1.4s"> 
             <div class="icon">&nbsp;&nbsp;  <img src="/views/img/tip.png" style="width: 45px; height: 45px;"></i></div>
-            <h4 class="title"><a href="">&nbsp;Couch Surfing Tip</a></h4>
+            <h4 class="title"><a>&nbsp;Couch Surfing Tip</a></h4>
             <p class="description">&nbsp;카우치 서핑을 하면서 호스트가 무언가 불편한 요구를 할 수 있습니다.
 			강제로 청소를 시킨다던지 심하면 성적인 발언까지 하는 경우입니다.
 			그런 상황에 직면했을 때 가장 중요한 것은 자신이 생각했을때 불편한 생각이
@@ -602,8 +634,8 @@ $(function(){
 			</div>
 			
 			
-			<div class="form-group m-0">
-				<button type="button" class="btn btn-default" onclick="sendMessage(this.form)">
+			<div class="form-group m-0" style="text-align: right;">
+				<button type="button" class="btn btn-outline-secondary" onclick="sendMessage(this.form)">
 					쪽지 보내기
 				</button>
 			</div>

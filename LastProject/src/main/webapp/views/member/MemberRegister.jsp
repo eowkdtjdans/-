@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<link rel="stylesheet" href="/views/admin/plugins/iCheck/all.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
    <meta charset="utf-8">
    <meta name="author" content="Kodinger">
@@ -22,6 +23,9 @@
    <link rel="stylesheet" href="views/datepicker/public/theme/css/t-datepicker.min.css">
    <link rel="stylesheet" href="views/datepicker/public/theme/css/themes/t-datepicker-teal.css">
    <!-- blue, bluegrey, cyan, green, lime, main, orange, purple, teal, yellow -->
+   
+   <!-- iCheck for checkboxes and radio inputs -->
+   <link rel="stylesheet" href="/views/admin/plugins/iCheck/all.css">
    
    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
    <script src="views/datepicker/public/theme/js/t-datepicker.min.js"></script>
@@ -268,6 +272,14 @@ function noticeMessage() {
 
 <script src="https://maps.googleapis.com/maps/api/js?v=3&sensor=false&libraries=places&callback=initAutocomplete&key=AIzaSyAfB2qQnvAuU2YFFqi8hrPWfjJNyxl5kWc" async defer></script>
 
+<script>
+$(function(){
+	$('input[type="radio"].minimal').iCheck({
+		radioClass : 'iradio_minimal-blue'
+	});
+	
+})
+</script>
 
 <style>
  body{
@@ -466,14 +478,17 @@ select {
             <button type="button" class="btn btn-outline-secondary btn-block" onclick="phoneCheck(this.form)" >핸드폰 중복확인</button>
          </div>
          
+         <div class="form-group" style="margin-bottom: 0px;">
+         	<label for="radio">성별</label>
+         </div>
+         
          <div class="form-group" style="text-algin : center; margin : 0 auto">
             <div class="btn-group" data-toggle="buttons">
             <label class="btn btn-default active"> 
-            <input type="radio" name="m_gender" autocomplete="off" value="남자" checked/>남자
+            <input type="radio" name="m_gender" class="minimal" autocomplete="off" value="남자" checked/>남자
             </label>
-               
             <label class="btn btn-default">
-            <input type="radio" name="m_gender" autocomplete="off" value="여자"/>여자
+            <input type="radio" name="m_gender" class="minimal" autocomplete="off" value="여자"/>여자
             </label>
             </div>
          </div>
@@ -519,5 +534,7 @@ select {
 </div>
 <br><br>
  <%@include file="/views/footer.jsp"%>
+ <!-- iCheck 1.0.1 -->
+<script src="/views/admin/plugins/iCheck/icheck.min.js"></script>
 </body>
 </html>

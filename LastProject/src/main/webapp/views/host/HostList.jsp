@@ -139,6 +139,27 @@
       border-radius: 30px; 
       padding: .3em .3em;
    }
+   
+   #inTable tr td {
+		border: none;
+	}
+   
+   #cardContent {
+    display: inline-block;
+    width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    
+    white-space: normal;
+    line-height: 1.2;
+    height: 3.6em;
+    text-align: center;
+    word-wrap: break-word;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+	}
 </style>
 <script src="https://maps.googleapis.com/maps/api/js?v=3&sensor=false&libraries=places&callback=initAutocomplete&key=AIzaSyAfB2qQnvAuU2YFFqi8hrPWfjJNyxl5kWc" async defer></script>
 <SCRIPT LANGUAGE="JavaScript">
@@ -294,7 +315,6 @@ function sendMessage(m_id){
 function insertHost(frm) {
     
     var str = $("#form").serialize();
-    alert(str);
      $.ajax({
       async : true,
       type : "POST",
@@ -320,16 +340,6 @@ function deleteHost(m_id) {
          } else{
             return false;
          }
-   
-}
-
-function cardOver(m_id) {
-   
-   
-   
-   
-   
-   
    
 }
 
@@ -393,6 +403,13 @@ $(function(){
       })
       
    })
+
+$(document).on("click", "#insertHostBtn", function(){
+	if("${member.m_id}" == null || "${member.m_id}" == "") {
+		alert("로그인이 필요한 서비스입니다.");
+		location.href="/loginMember.do";
+	}
+});
 
 function noticeMessage() {
 var noticeMessage = $("#noticeMessage").serialize();
@@ -538,14 +555,16 @@ var receive_receiver =$("#receive_receiver").val();
             <c:otherwise>
             <c:forEach var="list" items="${hostList}">
             <input type="hidden" name="m_id" value="${list.m_id }" id="m_id" />
-               <span class="card" style="width:200px; height: 500px; margin : auto; text-align: center;" onmouseover="cardOver('${list.m_id}')">
-                <img class="card-img-top" src="${list.p_route}" alt="Card image" style="width:200px; height: 200px;">
+               <span class="card" style="width:221px; height: 460px; margin : auto; text-align: center;">
+                <img class="card-img-top" src="${list.p_route}" alt="Card image" style="width:100%; height: 210px;">
                 <span class="card-body">
                   <h6 class="card-title">${list.m_id}</h6>
                   <hr />
-                  <p class="card-text">${list.m_address}</p>
+                  <div id="cardContent">
+                  	<p class="card-text">${list.m_address}</p>
+                  </div>
                   <hr />
-                  <button type="button" class="btn btn-light" data-toggle="modal" data-target="#myModal${list.m_id }">Open modal</button>
+                  <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#myModal${list.m_id }">호스트 상세보기</button>
                 </span>
              </span>
             </c:forEach>
@@ -632,33 +651,60 @@ var receive_receiver =$("#receive_receiver").val();
            </div>
            
            <!-- Modal body -->
-           <div class="modal-body">
+           <div class="modal-body" style="padding-top: 0px;">
+             <table class="table" id="inTable">
+          	   <tr class="text-center">
+          		  <td rowspan="8" width="40%;"><img class="rounded" style="width: 200px; height: 200px; margin-top: 50px;" src="${list.p_route}"></td>
+          	   </tr>
+          	   <tr class="text-center">
+          		  <td width="20%;" style="vertical-align: middle;">최대 방문인원</td>
+          		  <td width="80%;">${list.h_maximumguest}명</td>
+          	   </tr>
+          	   <tr class="text-center">
+          		  <td style="vertical-align: middle;">선호성별</td>
+          		  <td>${list.h_gender}</td>
+          	   </tr>
+          	   <tr class="text-center">
+          		  <td style="vertical-align: middle;">흡연여부</td>
+          		  <td>${list.h_smoke}</td>
+          	   </tr>
+          	   <tr class="text-center">
+          		  <td style="vertical-align: middle;">반려동물</td>
+          		  <td>${list.h_haspet}</td>
+          	   </tr>
+          	   <tr class="text-center">
+          		  <td style="vertical-align: middle;">자녀여부</td>
+          		  <td>${list.h_haschild}</td>
+          	   </tr>
+          	   <tr class="text-center">
+          		  <td style="vertical-align: middle;">입실날짜</td>
+          		  <td>${list.h_startdate}</td>
+          	   </tr>
+          	   <tr class="text-center">
+          		  <td style="vertical-align: middle;">퇴실날짜</td>
+          		  <td>${list.h_enddate}</td>
+          	   </tr>
+             </table>
              <table class="table">
-                <tr class="text-center">
-                   <td><img class="rounded" style="width: 300px; height: 300px; margin: auto;" src="${list.p_route }"></td>
-                   <td>최대 방문인원<br><br>선호성별<br><br>흡연여부<br><br>반려동물<br><br>자녀여부<br><br>입실날짜<br><br>퇴실날짜</td>
-                   <td>${list.h_maximumguest} 명<br><br>${list.h_gender}<br><br>${list.h_smoke}<br><br>${list.h_haspet}<br><br>${list.h_haschild}<br><br>${list.h_startdate}<br><br>${list.h_enddate}</td>
+                <tr class="text-center" style="width: 40%;">
+                  <td width="30%;" style="text-align: center; vertical-align: middle;">숙소 형태</td>
+                  <td colspan="2">${list.h_roomtype}</td>
                 </tr>
                 <tr class="text-center">
-                   <td>숙소 형태</td>
-                   <td colspan="2">${list.h_roomtype}</td>
+                  <td style="text-align: center; vertical-align: middle;">위치</td>
+                  <td colspan="2">${list.m_address}</td>
                 </tr>
                 <tr class="text-center">
-                   <td>위치</td>
-                   <td colspan="2">${list.m_address}</td>
+                  <td style="text-align: center; vertical-align: middle;">지켜야할 규칙</td>
+                  <td colspan="2">${list.h_rule}</td>
                 </tr>
-                <tr class="text-center">
-                   <td>지켜야할 규칙</td>
-                   <td colspan="2">${list.h_rule}</td>
-                </tr>
-                
              </table>
            </div>
    
            <!-- Modal footer -->
            <div class="modal-footer">
            <form name="frm">                                                           <!-- onclick="../insertMessage.do?message_receiver=${list.m_id}" -->
-             <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" onclick='sendMessage("${list.m_id}")'>Send Message</button>
+             <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" onclick='sendMessage("${list.m_id}")'>숙박요청</button>
            </form>   
              <c:if test="${list.m_id eq member.m_id}">
                <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" onclick='deleteHost("${list.m_id}")'>등록해제</button>
