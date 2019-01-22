@@ -33,7 +33,7 @@
 <script>
 var idck = 0;
 var phoneck= 0;
-
+var pwdck= 0;
     function phoneCheck(frm) {
       var phonecheck = 0;
       var m_phone = $('#m_phone').val();
@@ -73,6 +73,24 @@ var phoneck= 0;
               }
           });
     };
+    
+    function pwdCheck(frm) {
+    	var pwd = frm.m_pwd.value;
+    	var pwd2 = frm.m_pwd2.value;
+    	if (frm.m_pwd.value != frm.m_pwd2.value) {
+    		$("#pwdCheckInput").html("<p style='color:red;'>비밀번호 불일치</p>");
+    		pwdck = 1;
+    		return false;
+    		
+    	} else if (frm.m_pwd.value.length<8 || frm.m_pwd.value.length>16 || frm.m_pwd2.value.length<8 || frm.m_pwd2.value.length>16) {
+            alert("비밀번호를 8~16자리로 설정해주세요.");
+            frm.m_pwd.value = ""; 
+            frm.m_pwd2.value = ""; 
+          frm.m_pwd.focus();
+       } else {
+    		$("#pwdCheckInput").html("<p style='color:green;'>비밀번호 일치</p>");
+    	}
+    }
 /* *******************************************************************************
 *************************************************************************************/ 
  function idCheck(frm) {
@@ -128,19 +146,14 @@ function register(frm) {
         } if(phoneck==0) {
                alert("핸드폰 중복체크를 해주세요");
                return false;
+        } if(pwdck==0) {
+        	alert("비밀번호가 일치하지 않습니다");
+        	return false;
         } else if (frm.m_pwd.value == "" || frm.m_pwd.value == null) {
          alert("비밀번호를 기입하세요.");
          frm.m_pwd.value = ""; 
          frm.m_pwd.focus();
-        } else if (frm.m_pwd.value.length<8 || frm.m_pwd.value.length>16) {
-           alert("비밀번호를 8~16자리로 설정해주세요.");
-           frm.m_pwd.value = ""; 
-         frm.m_pwd.focus();
-      } /* else if (frm.m_name.value == "" || frm.m_name.value == null) {
-         alert("성함을 기입하세요.");
-         frm.m_name.value = ""; 
-         frm.m_name.focus();
-      } */ else if (nameCheck.test(name)==false || frm.m_name.value =="") {
+        } else if (nameCheck.test(name)==false || frm.m_name.value =="") {
          alert("성함은 한글 또는 영어로 작성해주세요.");
          frm.m_name.value = ""; 
          frm.m_name.focus();
@@ -460,8 +473,14 @@ select {
          </div>
                   
          <div class="form-group">
-            <label for="password">비밀번호</label>
-            <input id="m_pwd" type="password" class="form-control" name="m_pwd">
+            <label for="password" id="pwdCheck">비밀번호</label>
+            <p id="pwdCheckInput"></p>
+            <input id="m_pwd" type="password" class="form-control" name="m_pwd" onkeyup="pwdCheck(this.form)">
+         </div>
+         
+           <div class="form-group">
+            <label for="password" id="pwdCheck2">비밀번호 확인</label>
+            <input id="m_pwd2" type="password" class="form-control" name="m_pwd2" onkeyup="pwdCheck(this.form)">
          </div>
          
          <div class="form-group">
