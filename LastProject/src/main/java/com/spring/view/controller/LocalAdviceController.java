@@ -139,8 +139,8 @@ public class LocalAdviceController {
    //, method=RequestMethod.GET
    @RequestMapping(value="/writeLocalAdvice.do")
    public String moveWriteLocalAdvice() {
-     // return "/views/localAdvice/insertLocalAdvice.jsp";	   
-	   return "views/test2.jsp";
+     return "/views/localAdvice/insertLocalAdvice.jsp";	   
+	  // return "views/test2.jsp";
    }
    
    

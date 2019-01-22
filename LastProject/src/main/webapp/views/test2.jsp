@@ -9,6 +9,9 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-lite.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-lite.js"></script>
+  
+  
+  
   </head>
   <body>
   <div class="container">  
@@ -23,8 +26,8 @@
                </div>
                
                <div class="form-group">
-                  <label for="password"></label>
-                <input type="text" class="form-control" id="l_content"name="l_content">
+                  <label></label>
+               	<input type="text"  id="l_content"/>
                </div>
                
            
@@ -46,6 +49,8 @@
  
         <script>
                	function sendData(frm) {
+               		alert(frm.l_subject.value);
+               		alert(frm.l_content.value);
                		frm.action = "../insertLocalAdvice.do";
                		frm.submit();
                	}
