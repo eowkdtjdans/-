@@ -7,10 +7,11 @@
 <mapper namespace="eventDAO">
 	
 	<select id="getEventList" resultType="event" parameterType="Map">
-		SELECT R_NUM, E_IDX, E_ADDRESS, E_NAME, E_CONTENT, E_STARTDATE, E_ENDDATE, E_UPVOTE, E_REVIEWCOUNT, LAT, LNG, E_REGION, E_TAG, E_COUNT, E_DATE 
-    		FROM (SELECT ROWNUM R_NUM, E.*FROM (SELECT EVENT.* FROM EVENT)E) 
+	SELECT R_NUM, E_IDX, E_ADDRESS, E_NAME, E_CONTENT, E_STARTDATE, E_ENDDATE, E_UPVOTE, E_REVIEWCOUNT, LAT, LNG, E_REGION, E_TAG, E_COUNT, E_DATE 
+    		FROM (SELECT ROWNUM R_NUM, E.*FROM (SELECT EVENT.* FROM EVENT ORDER BY E_DATE DESC)E) 
         	WHERE UPPER(E_ADDRESS) LIKE '%' || UPPER(#{key}) || '%' 
         	AND (R_NUM BETWEEN #{begin} AND #{end}) AND E_ENDDATE >= TO_CHAR(SYSDATE, 'YYYY-MM-DD')
+        	ORDER BY E_DATE DESC
 	</select>
 	
 	<select id="countEvent" parameterType="String" resultType="int">
