@@ -13,10 +13,10 @@
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <meta content="" name="keywords">
   <meta content="" name="description">
- 
+     
   <!-- Favicons -->
-  <link href="/views/img/favicon.png" rel="icon">
-  <link href="/views/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="/views/img/happy.png" rel="icon">
+  <link href="/views/img/happy.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
@@ -536,7 +536,7 @@ table .noline {
                   <fmt:formatDate value="${getEvent.e_startdate }" pattern="yyyy-MM-dd" var="date"/>
                   <tr>
                      <%-- <td>관리자&emsp;&emsp;${startdate} ~ ${enddate}</td> --%>
-                     <td>관리자 &emsp;&emsp; ${date}</td>
+                     <td><img src="/views/img/administrator.png" style="width: 40px; height: 40px;">관리자 &emsp;&emsp; ${date}</td>
                   </tr>
                   <tr>
                   	 <td>
@@ -567,10 +567,8 @@ table .noline {
 		  	  		  </c:if>
 					  </c:forEach>
 			  	  	  <br>
-					  <!-- <button type="button" class="btn btn-outline-secondary" onclick="imagemodal()">사진 더보기</button> -->
-					  <c:if test="${list ne null}">
-					  <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#myModal">사진 더보기</button>
-					  </c:if>
+					  <!-- <button type="button" class="btn btn-outline-secondary" onclick="imagemodal()">사진 더보기</button> -->					  
+					  <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#myModal">사진 더보기</button>					  
 					  
 			      </div>
 			      
@@ -738,7 +736,7 @@ table .noline {
   <!-- Template Main Javascript File -->
   <script src="/views/js/main.js"></script>
   
-   
+    
 
    </body> 
 </html>

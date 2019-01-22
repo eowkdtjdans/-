@@ -12,9 +12,8 @@
  
 
   <!-- Favicons -->
-  <link href="views/img/favicon.png" rel="icon">
-  <link href="views/img/apple-touch-icon.png" rel="apple-touch-icon">
-
+  <link href="views/img/happy.png" rel="icon">
+  <link href="views/img/happy.png" rel="apple-touch-icon">
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
@@ -186,16 +185,19 @@ $(function(){
          url : "../../MemberDeleteJson.do",
          success : function(data) {
             if (data.cnt >= 1) {
+            	 if(confirm("회원탈퇴를 하시겠습니까?")){
                alert("회원탈퇴가 완료되었습니다.");
                frm.action = "../../DeleteMember.do";
                 frm.submit();   
                 return false;
+            	 }
             } else {
+            	
                alert("기존에 등록된 핸드폰번호가 일치하지않습니다. 다시 확인해주세요.");
                frm.m_phone.value = "";
                frm.modifyM_phone.value = "";
                frm.m_phone.focus();
-            }
+           }
          }
       })
       
@@ -338,11 +340,12 @@ $(function(){
 		    <div class="card">
 		        <div class="card-body">
 		            <div class="row">
-		                <div class="col-md-12">
-		                    <h4 class="card-title" style="text-align : center;">회원 탈퇴</h4>
+		                <div class="col-md-12"> 
+		                    <img src="views/img/memberOut.png" style="width: 50px; height: 50px;"> <strong style="font-size: 1.2em;">회원탈퇴</strong>
                      <form onsubmit="return false;"method="POST" class="my-login-validation" id="DeleteMember">
+                     <br>
                      <label for="id">아이디</label>
-                           <input readonly="readonly" id="m_id" type="text" class="form-control" name="m_id" value="${member.m_id }" required autofocus>
+                           <input readonly="readonly" id="m_id" type="text" class="form-control" name="m_id" value="${member.m_id }" required autofocus><br>
                         <div class="form-group">
                            <label for="password">비밀번호</label>
                            <input onkeypress="enterkey()"id="m_pwd" type="password" class="form-control" name="m_pwd" required data-eye>
@@ -355,7 +358,7 @@ $(function(){
 
                         
                         <div class="form-group m-0">
-                           <button type="submit" id="deleteBtn"class="btn btn-primary btn-block" onclick="DeleteMember(this.form)">
+                           <button type="submit" id="deleteBtn"class="btn btn-outline-secondary btn-block" onclick="DeleteMember(this.form)">
                               회원 정보 삭제
                            </button>
                         </div>

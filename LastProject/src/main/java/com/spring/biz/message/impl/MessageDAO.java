@@ -65,6 +65,16 @@ public class MessageDAO {
 	public List<MessageRecieveVO> getAdminReceiveMessageList(MessageRecieveVO vo) {
 		return mybatis.selectList("getAdminReceiveMessageList", vo);
 	}
+	public void rejectOffer(MessageRecieveVO vo) {
+		 mybatis.update("rejectOffer", vo);
+	}
+	public void acceptOffer(MessageRecieveVO vo) {
+		 mybatis.update("acceptOffer", vo); 
+	}
+	public void insertMessageAdmin(MessageVO vo) {
+		mybatis.insert("insertAdminMessage", vo);
+		
+	}
 
 	
 }

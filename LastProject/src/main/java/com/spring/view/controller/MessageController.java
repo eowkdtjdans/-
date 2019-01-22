@@ -31,9 +31,20 @@ public class MessageController {
    public MessageController() {
       System.out.println("===== 메세지 컨트롤러 시작");
    }
-   
-   
-   
+	   @RequestMapping(value="/acceptOffer.do") 
+   public String acceptOffer(MessageRecieveVO vo, HttpSession session, @RequestParam("receive_idx") int receive_idx) {
+	   vo.setReceive_idx(receive_idx);
+	   messageService.acceptOffer(vo);
+	   return "/getReceiveMessageList.do";
+	   
+   }
+   @RequestMapping(value="/rejectOffer.do") 
+   public String rejectOffer(MessageRecieveVO vo, HttpSession session, @RequestParam("receive_idx") int receive_idx) {
+	   vo.setReceive_idx(receive_idx);
+	   messageService.rejectOffer(vo);
+	   return "/getReceiveMessageList.do";
+	   
+   }
    
       @RequestMapping(value="/noticeMessageJson.do", method=RequestMethod.POST)
        @ResponseBody
@@ -175,8 +186,7 @@ public class MessageController {
          vo.setMessage_receiver(message_receiver);
          vo.setMessage_title(message_title);
          vo.setMessage_content(message_content);
-         
-         messageService.insertMessage(vo);
+         messageService.insertMessageAdmin(vo);
          
          System.out.println(message_sender);
          System.out.println(message_receiver);

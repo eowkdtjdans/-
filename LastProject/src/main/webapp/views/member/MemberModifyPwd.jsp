@@ -39,12 +39,15 @@
 						frm.pwdModify.focus();
 						return false;
 				   }  else {
+					  if(confirm("비밀번호를 변경하시겠습니까?")){
+
 					    alert("변경이 완료되었습니다.");
 						frm.action = "../../ModifyPwdMember.do";
 					    frm.submit();    
 					    return false;
 				   }
-			}
+				   }
+				   }
 		})
 		
 	};
@@ -57,10 +60,9 @@
 </script>
 	 
 
-  <!-- Favicons -->
-  <link href="views/img/favicon.png" rel="icon">
-  <link href="views/img/apple-touch-icon.png" rel="apple-touch-icon">
-
+   <!-- Favicons -->
+  <link href="views/img/happy.png" rel="icon">
+  <link href="views/img/happy.png" rel="apple-touch-icon">
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">

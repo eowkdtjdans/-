@@ -6,6 +6,13 @@
 <!-- mapper 태그의 namespace 속성 필수 작성  -->  
 <mapper namespace="messageDAO">
 
+	<update id="rejectOffer" parameterType="messageReceive">
+		UPDATE MESSAGE_RECEIVE SET RECEIVE_ACCEPT = 1 WHERE RECEIVE_IDX = #{receive_idx}
+	</update>
+
+	<update id="acceptOffer" parameterType="messageReceive">
+		UPDATE MESSAGE_RECEIVE SET RECEIVE_ACCEPT = 2 WHERE RECEIVE_IDX = #{receive_idx}
+	</update>
    <insert id="insertMessage" parameterType="message">
      INSERT INTO MESSAGE (
         MESSAGE_IDX, 
@@ -16,7 +23,8 @@
         MESSAGE_REGDATE,
         MESSAGE_READ, 
         MESSAGE_STARTDATE, 
-        MESSAGE_ENDDATE)
+        MESSAGE_ENDDATE,
+        MESSAGE_ACCEPT)
       VALUES (MESSAGE_SEND_SEQ.NEXTVAL,
           #{message_sender},
           #{message_receiver}, 
@@ -25,13 +33,37 @@
           SYSDATE, 
           0,
          #{message_startdate},
-         #{message_enddate}
+         #{message_enddate},
+         0
+         )
+   </insert>
+   
+    <insert id="insertAdminMessage" parameterType="message">
+     INSERT INTO MESSAGE (
+        MESSAGE_IDX, 
+        MESSAGE_SENDER,
+        MESSAGE_RECEIVER, 
+        MESSAGE_TITLE,
+        MESSAGE_CONTENT, 
+        MESSAGE_REGDATE,
+        MESSAGE_READ, 
+        MESSAGE_STARTDATE, 
+        MESSAGE_ENDDATE,
+        MESSAGE_ACCEPT)
+      VALUES (MESSAGE_SEND_SEQ.NEXTVAL,
+          #{message_sender},
+          #{message_receiver}, 
+          #{message_title}, 
+          #{message_content},
+          SYSDATE, 
+          0,
+          SYSDATE,
+          SYSDATE,
+         0
          )
    </insert>
    
    <select id="getSendMessageList" resultType="messageSend">
-      <!-- SELECT * FROM MESSAGE_SEND WHERE SEND_SENDER = #{send_sender}
-      ORDER BY SEND_IDX DESC  -->
          SELECT SEND.*, PI.P_ROUTE
         FROM MESSAGE_SEND SEND, PROFILE_IMAGE PI
         WHERE SEND.SEND_RECEIVER = PI.M_ID

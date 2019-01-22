@@ -1,7 +1,6 @@
 package com.spring.biz.message;
 
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -49,6 +48,17 @@ public interface MessageService {
 
 
 	List<MessageRecieveVO> getAdminReceiveMessageList(MessageRecieveVO vo);
+
+
+	void rejectOffer(MessageRecieveVO vo);
+
+
+	void acceptOffer(MessageRecieveVO vo);
+
+
+	void insertMessageAdmin(MessageVO vo);
+
+
 
 
 

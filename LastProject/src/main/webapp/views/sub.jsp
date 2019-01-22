@@ -12,8 +12,8 @@
  
 
   <!-- Favicons -->
-   <link href="views/img/favicon.png" rel="icon">
-  <link href="views/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="views/img/happy.png" rel="icon">
+  <link href="views/img/happy.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
@@ -283,8 +283,8 @@ $(function(){
 		<li class="menu-has-children"><img src="${profile.p_route }" style="width: 45px; height: 45px;" class="rounded-circle" id="navProfileImg"></a>
           <ul>                                      
             <li><a  href="../../myProfile.do" >마이 프로필</a></li> 
-            <c:if test="${member.m_id eq admin }">
-            	<li><a href="/Admin.do">관리자 페이지</a></li>
+            <c:if test="${member.m_id eq 'admin' }">
+            	<li><a href="/views/admin/testAdmin.jsp">관리자 페이지</a></li>
             </c:if>
             <li><a href="../../logoutMember.do">로그아웃</a></li>            
           </ul> 
