@@ -13,9 +13,8 @@
  
 
   <!-- Favicons -->
-  <link href="views/img/favicon.png" rel="icon">
-  <link href="views/img/apple-touch-icon.png" rel="apple-touch-icon">
-
+  <link href="views/img/happy.png" rel="icon">
+  <link href="views/img/happy.png" rel="apple-touch-icon">
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
@@ -166,7 +165,6 @@ $(function(){
          success : function(data) {
             if (data.cnt > 0) {
                $("#noticeMessageCount").append(data.cnt);
-               $("#noticeMessageCount2").append(data.cnt);
                setInteval(function() {
                   noticeMessage()
                }, 3000);
@@ -341,8 +339,6 @@ $(function(){
 		</td>
 		</c:if>
 		<td style="width: 30%; padding-top: 21px;"><fmt:formatDate value="${messageList.receive_regdate }" pattern="yyyy-MM-dd HH:mm:ss"/> </td>
-		<td style="width: 30%; padding-top: 21px;"><fmt:formatDate value="${messageList.receive_startdate }" pattern="yyyy-MM-dd"/> </td>
-		<td style="width: 30%; padding-top: 21px;"><fmt:formatDate value="${messageList.receive_enddate }" pattern="yyyy-MM-dd"/> </td>
 	</tr>
 	</c:forEach>
   </c:when>
@@ -399,4 +395,4 @@ $(function(){
 </div>
 <%@include file="/views/footer.jsp"%>
 </body>
-</html>
+</html> 

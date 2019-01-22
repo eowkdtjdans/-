@@ -13,9 +13,8 @@
   
   <%@include file="/views/headerScript.jsp"%>
   <!-- Favicons -->
-  <link href="/views/img/favicon.png" rel="icon">
-  <link href="/views/img/apple-touch-icon.png" rel="apple-touch-icon">
-
+  <link href="views/img/happy.png" rel="icon">
+  <link href="views/img/happy.png" rel="apple-touch-icon">
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
@@ -383,9 +382,6 @@ function uploadHost(hostFrm) {
       </div>
    </div>
 </div>
-<script src="js/jquery.min.js"></script>
-<script src="bootstrap/js/bootstrap.min.js"></script>
-<script src="js/my-login.js"></script>
    
    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 </body>

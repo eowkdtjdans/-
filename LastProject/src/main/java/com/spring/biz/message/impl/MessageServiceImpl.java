@@ -1,7 +1,6 @@
 package com.spring.biz.message.impl;
 
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -98,6 +97,16 @@ public class MessageServiceImpl implements MessageService {
 	@Override
 	public List<MessageRecieveVO> getAdminReceiveMessageList(MessageRecieveVO vo) {
 		return messageDAO.getAdminReceiveMessageList(vo);
+	}
+
+	@Override
+	public void rejectOffer(MessageRecieveVO vo) {
+		 messageDAO.rejectOffer(vo);
+	}
+
+	@Override
+	public void acceptOffer(MessageRecieveVO vo) {
+		messageDAO.acceptOffer(vo);
 	}
 
 

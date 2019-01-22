@@ -12,9 +12,8 @@
  
 
   <!-- Favicons -->
-  <link href="views/img/favicon.png" rel="icon">
-  <link href="views/img/apple-touch-icon.png" rel="apple-touch-icon">
-
+  <link href="views/img/happy.png" rel="icon">
+  <link href="views/img/happy.png" rel="apple-touch-icon">
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
@@ -186,16 +185,19 @@ $(function(){
          url : "../../MemberDeleteJson.do",
          success : function(data) {
             if (data.cnt >= 1) {
+            	 if(confirm("회원탈퇴를 하시겠습니까?")){
                alert("회원탈퇴가 완료되었습니다.");
                frm.action = "../../DeleteMember.do";
                 frm.submit();   
                 return false;
+            	 }
             } else {
+            	
                alert("기존에 등록된 핸드폰번호가 일치하지않습니다. 다시 확인해주세요.");
                frm.m_phone.value = "";
                frm.modifyM_phone.value = "";
                frm.m_phone.focus();
-            }
+           }
          }
       })
       

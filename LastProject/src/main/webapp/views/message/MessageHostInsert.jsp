@@ -251,7 +251,7 @@ select {
             <td id="td1">             
                <select id="condition" name="searchCondition">         
                   <option value="find_travler">여행자검색
-                  <option value="find_host">호스트검색
+                  <option value="find_host" selected="selected">호스트검색
                   <option value="find_event">이벤트검색
                   <option value="find_advice">현지정보검색
                </select>
@@ -330,37 +330,38 @@ select {
                         <input id="message_sender" name="message_sender" type="hidden" class="form-control" value="${member.m_id }">   
                         <input id="message_receiver" name="message_receiver" type="hidden" class="form-control" value="${message_receiver }">   
                         
-                        <div class="form-group">
-                                 <label for="h_startdate">입실/퇴실 날짜</label> 
-                            
-                              	 <div class="t-datepicker">
-			                          <div class="t-check-in"></div>
-			                          <div class="t-check-out"></div>
-	                        	</div>
-                       		
-                                <input id="h_startdate" type="hidden" class="form-control" name="h_startdate" required data-eye> 
-                                <input id="h_enddate" type="hidden" class="form-control" name="h_enddate" required data-eye> 
-                        </div>
                         
-                        <br>
                         <div class="form-group">
-                           <label for="message_title">제목</label>
+                           <label for="message_title" style="text-align : center;">제목</label>
                            <textarea rows="1" cols="10" id="message_title" name="message_title" class="form-control"></textarea>
                         </div>
                         
                         <div class="form-group">
-                           <label for="message_content">내용</label>
+                           <label for="message_content" style="text-align : center">내용</label>
                            <textarea rows="5" cols="10" id="message_content" name="message_content"  class="form-control"></textarea>
                         </div>
                         
                         
+                         <div class="form-group">
+                                <label for="h_startdate" class="col-4 col-form-label">입실/퇴실 날짜</label> 
+                              <div class="col-8" >
+                              	 <div class="t-datepicker">
+			                          <div class="t-check-in"></div>
+			                          <div class="t-check-out"></div>
+	                        	</div>
+                       		</div>
+                                <input id="h_startdate" type="hidden" class="form-control" name="h_startdate" required data-eye> 
+                                <input id="h_enddate" type="hidden" class="form-control" name="h_enddate" required data-eye> 
+                            </div>
+
+						<br />                        
                         <div class="form-group m-0">
                            <button type="button" class="btn btn-outline-secondary btn-block" onclick="insertMessage(this.form)">
                               쪽지 보내기
                            </button>
                         </div>
                         
-                     </form>
+                     </form> 
    </div>
    <div class="col-md-3"></div> 
    </div>

@@ -3,7 +3,13 @@ package com.spring.biz.message;
 import java.util.Date;
 
 public class MessageSendVO {
-	private int send_idx, send_read;
+	private int send_idx, send_read, send_accept;
+	public int getSend_accept() {
+		return send_accept;
+	}
+	public void setSend_accept(int send_accept) {
+		this.send_accept = send_accept;
+	}
 	private String send_sender,
 	send_receiver,
 	send_title,

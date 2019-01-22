@@ -236,7 +236,7 @@ public class MemberController {
 		vo.setM_phone(m_phone);
 		memberService.DeleteMember(vo);	
 		session.invalidate();
-		return "redirect:/sub2.do";
+		return "redirect:/sub2.do"; 
 	}
 	@RequestMapping(value="ModifyAddressMember.do", method=RequestMethod.POST) 
 	public String ModifyAddressMember(MemberVO vo, @RequestParam("m_id") String m_id, @RequestParam("m_address") String m_address, 

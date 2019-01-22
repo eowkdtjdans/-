@@ -4,12 +4,13 @@ import java.util.Date;
 
 public class MessageVO {
 	
-	private int message_idx;
+	private int message_idx, message_accept;
+	
 	private String message_sender;
 	private String message_receiver;
 	private String message_title;
 	private String message_content;
-	private String message_read;
+	private int message_read;
 	private Date message_regdate;
 	private Date message_startdate;
 	private Date message_enddate;
@@ -43,10 +44,11 @@ public class MessageVO {
 	public void setMessage_content(String message_content) {
 		this.message_content = message_content;
 	}
-	public String getMessage_read() {
+	
+	public int getMessage_read() {
 		return message_read;
 	}
-	public void setMessage_read(String message_read) {
+	public void setMessage_read(int message_read) {
 		this.message_read = message_read;
 	}
 	public Date getMessage_regdate() {
@@ -66,6 +68,12 @@ public class MessageVO {
 	}
 	public void setMessage_enddate(Date message_enddate) {
 		this.message_enddate = message_enddate;
+	}
+	public int getMessage_accept() {
+		return message_accept;
+	}
+	public void setMessage_accept(int message_accept) {
+		this.message_accept = message_accept;
 	}
 	
 	

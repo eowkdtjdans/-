@@ -12,9 +12,8 @@
  
  
   <!-- Favicons -->
-  <link href="views/img/favicon.png" rel="icon">
-  <link href="views/img/apple-touch-icon.png" rel="apple-touch-icon">
-
+  <link href="views/img/happy.png" rel="icon">
+  <link href="views/img/happy.png" rel="apple-touch-icon">
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
@@ -203,11 +202,13 @@ function fillInAddress() { //lat 와 lng 값을 넘겨줄 input 태그에 값 �
          frm.m_address.value = ""; 
          frm.m_address.focus();
         } else {
+       	 if(confirm("주소를 변경하시겠습니까?")){	
          alert("입력하신 주소로 변경이 되었습니다.");
          frm.action = "../../ModifyAddressMember.do";
          frm.submit();   
          return false;
         }
+       }
    };
       
 </script>

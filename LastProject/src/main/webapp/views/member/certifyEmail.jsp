@@ -20,6 +20,7 @@
 		var certifyCode = frm.certifyCode.value;
 		var emailCheck = "${emailCheck}";
 		if (emailCheck == certifyCode) {
+			alert("인증이 완료되었습니다.");
 		frm.action = "../../certifyCodeUpdate.do";
 		frm.submit();
 		} else {
