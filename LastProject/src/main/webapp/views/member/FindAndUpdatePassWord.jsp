@@ -43,9 +43,12 @@
 			return false;
 	   }
 		else if (findPwdEmailCheck == certifyCode && m_pwd == m_pwd2) {
+			if(confirm("입력하신 비밀번호로 변경하시겠습니까?")) {
+				
 			alert("비밀번호가 변경되었습니다.");
 		frm.action = "../../PwdUpdate.do";
 		frm.submit();
+			}
 		} else {
 			alert("인증번호 또는 비밀번호가 일치하지않습니다.");
 			frm.certifyCode.value = "";
