@@ -37,4 +37,8 @@ public interface AdminService {
 	List<LocalAdviceVO> localAdviceAdminList();
 	List<LVChartVO> logVisitChart();
 	List<LVChartVO> logVisitChartMonth();
+	List<LVChartVO> logVisitChartYear();
+	List<ChartJSVO> browserChart();
+	List<ChartJSVO> genderChart();
+	List<ChartJSVO> registChart();
 }

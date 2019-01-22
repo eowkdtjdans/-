@@ -163,6 +163,7 @@ $(function(){
 	
 	
 	$(document).on("change",".userFile",function(){
+		console.log(localStorage.imgFileCnt);
 		var imgFile = $("#e_img"+localStorage.imgFileCnt).val();
 		var imgFileLength = $("#e_img"+localStorage.imgFileCnt).val().length;
 		var imgFileExtendArray = imgFile.split('.');
@@ -222,14 +223,14 @@ function file_remove(id, cnt) {
 }
 
 function exists_file_remove(id, main) {
-	   localStorage.totSize =  (localStorage.totSize * 1 - document.getElementById("size" + main).childNodes[0].nodeValue);
-	   document.getElementById(id).remove();
-	   
-	   
-	   $("#e_img"+localStorage.imgFileCnt).parent().remove();
-	   localStorage.imgFileCnt = (localStorage.imgFileCnt * 1 - 1);
-	   $("<div class='custom-file'><input type='file' class='custom-file-input userFile' id='e_img"+localStorage.imgFileCnt+"'><label id='file-label' class='custom-file-label' for='e_img"+localStorage.imgFileCnt+"'>이미지 업로드</label></div>").insertAfter("#fileAfter");
-	}
+	localStorage.totSize =  (localStorage.totSize * 1 - document.getElementById("size" + main).childNodes[0].nodeValue);
+	document.getElementById(id).remove();
+	
+	
+	$("#e_img"+localStorage.imgFileCnt).parent().remove();
+	localStorage.imgFileCnt = (localStorage.imgFileCnt * 1 - 1);
+	$("<div class='custom-file'><input type='file' class='custom-file-input userFile' id='e_img"+localStorage.imgFileCnt+"'><label id='file-label' class='custom-file-label' for='e_img"+localStorage.imgFileCnt+"'>이미지 업로드</label></div>").insertAfter("#fileAfter");
+}
 
 $(document).ready(function(){
 	$("#e_region option").each(function(){
@@ -684,7 +685,7 @@ function readURL(input, id) {
 <script src="/views/admin/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="/views/admin/dist/js/demo.js"></script>
-
+ 
 <script src="/views/datepicker/public/theme/js/t-datepicker.min.js"></script>
 </body>
 </html>

@@ -163,6 +163,7 @@ public class EventController {
 	    int count = eventService.goodEvent(Integer.parseInt(e_idx));
 	    Map<Object, Object> map = new HashMap<Object, Object>();
 	    map.put("count", count);
+	    System.out.println("count : " + count);
 	    System.out.println("마지막부분");
 	    return map;
     }
@@ -177,6 +178,7 @@ public class EventController {
 	    int count = eventService.badEvent(Integer.parseInt(e_idx));
 	    Map<Object, Object> map = new HashMap<Object, Object>();
 	    map.put("count", count);
+	    System.out.println("count : " + count);
 	    System.out.println("마지막부분");
 	    return map;
     }
