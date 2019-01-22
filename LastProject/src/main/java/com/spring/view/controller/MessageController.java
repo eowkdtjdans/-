@@ -186,8 +186,7 @@ public class MessageController {
          vo.setMessage_receiver(message_receiver);
          vo.setMessage_title(message_title);
          vo.setMessage_content(message_content);
-         
-         messageService.insertMessage(vo);
+         messageService.insertMessageAdmin(vo);
          
          System.out.println(message_sender);
          System.out.println(message_receiver);

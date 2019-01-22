@@ -23,6 +23,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.spring.biz.admin.AdminCntVO;
 import com.spring.biz.admin.AdminService;
+import com.spring.biz.admin.ChartJSVO;
 import com.spring.biz.admin.LVChartVO;
 import com.spring.biz.admin.UserAdminCommentVO;
 import com.spring.biz.admin.UserAdminPostVO;
@@ -184,7 +185,7 @@ public class AdminController {
     		, @RequestParam("message_title") String message_title, 
     		@RequestParam("message_content") String message_content) throws Exception {
     	
-    		email.setSubject(message_title);
+    		email.setSubject("[국봉월드] 문의 답변메일입니다.");
     		email.setReceiver(message_receiver);
     		email.setContent(message_content);
     		emailSender.SendEmail(email);
@@ -736,7 +737,42 @@ public class AdminController {
 		List<LVChartVO> list = null;
 		
 		list = adminService.logVisitChartMonth();
-		System.out.println(list);
+		
+		return list;
+	}
+	@RequestMapping(value="/logVisitChartYear.do", method=RequestMethod.POST)
+	@ResponseBody
+	public List<LVChartVO> logVisitChartYear() {
+		List<LVChartVO> list = null;
+		
+		list = adminService.logVisitChartYear();
+		
+		return list;
+	}
+	@RequestMapping(value="/browserChart.do", method=RequestMethod.POST)
+	@ResponseBody
+	public List<ChartJSVO> browserChart() {
+		List<ChartJSVO> list = null;
+		
+		list = adminService.browserChart();
+		
+		return list;
+	}
+	@RequestMapping(value="/genderChart.do", method=RequestMethod.POST)
+	@ResponseBody
+	public List<ChartJSVO> genderChart() {
+		List<ChartJSVO> list = null;
+		
+		list = adminService.genderChart();
+		
+		return list;
+	}
+	@RequestMapping(value="/registChart.do", method=RequestMethod.POST)
+	@ResponseBody
+	public List<ChartJSVO> registChart() {
+		List<ChartJSVO> list = null;
+		
+		list = adminService.registChart();
 		
 		return list;
 	}

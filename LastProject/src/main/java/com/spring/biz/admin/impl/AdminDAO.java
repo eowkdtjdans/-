@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.spring.biz.admin.AdminCntVO;
+import com.spring.biz.admin.ChartJSVO;
 import com.spring.biz.admin.LVChartVO;
 import com.spring.biz.admin.UserAdminCommentVO;
 import com.spring.biz.admin.UserAdminPostVO;
@@ -124,6 +125,22 @@ public class AdminDAO {
 
 	public List<LVChartVO> logVisitChartMonth() {
 		return mybatis.selectList("logVisitChartMonth");
+	}
+
+	public List<LVChartVO> logVisitChartYear() {
+		return mybatis.selectList("logVisitChartYear");
+	}
+
+	public List<ChartJSVO> browserChart() {
+		return mybatis.selectList("browserChart");
+	}
+
+	public List<ChartJSVO> genderChart() {
+		return mybatis.selectList("genderChart");
+	}
+
+	public List<ChartJSVO> registChart() {
+		return mybatis.selectList("registChart");
 	}
 
 }
