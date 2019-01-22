@@ -3,7 +3,9 @@ package com.spring.biz.message;
 import java.util.Date;
 
 public class MessageRecieveVO {
-	private int receive_idx, receive_read;
+	private int receive_idx, receive_read, receive_accept;
+
+
 	private String receive_sender,
 	receive_receiver,
 	receive_title,
@@ -12,6 +14,17 @@ public class MessageRecieveVO {
 
 	private Date receive_regdate,
 	receive_startdate, receive_enddate;
+
+	
+	
+	
+	public int getReceive_accept() {
+		return receive_accept;
+	}
+
+	public void setReceive_accept(int receive_accept) {
+		this.receive_accept = receive_accept;
+	}
 
 	public int getReceive_idx() {
 		return receive_idx;

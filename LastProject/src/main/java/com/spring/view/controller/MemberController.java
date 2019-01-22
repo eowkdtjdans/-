@@ -236,7 +236,7 @@ public class MemberController {
 		vo.setM_phone(m_phone);
 		memberService.DeleteMember(vo);	
 		session.invalidate();
-		return "redirect:/myProfile.do";
+		return "redirect:/sub2.do"; 
 	}
 	@RequestMapping(value="ModifyAddressMember.do", method=RequestMethod.POST) 
 	public String ModifyAddressMember(MemberVO vo, @RequestParam("m_id") String m_id, @RequestParam("m_address") String m_address, 
@@ -423,7 +423,7 @@ public class MemberController {
 	@RequestMapping(value="DeleteMember.do", method=RequestMethod.GET)
 	public String DeleteMember(MemberVO vo) {
 		System.out.println("회원탈퇴 GET ====");
-		return "redirect:/sub2.do";
+		return "views/member/MemberDelete.jsp";
 	}
 	@RequestMapping(value="ModifyAddressMember.do", method=RequestMethod.GET)
 	public String ModifyAddressMember(MemberVO vo) {

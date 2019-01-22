@@ -186,16 +186,19 @@ $(function(){
          url : "../../MemberDeleteJson.do",
          success : function(data) {
             if (data.cnt >= 1) {
+            	 if(confirm("회원탈퇴를 하시겠습니까?")){
                alert("회원탈퇴가 완료되었습니다.");
                frm.action = "../../DeleteMember.do";
                 frm.submit();   
                 return false;
+            	 }
             } else {
+            	
                alert("기존에 등록된 핸드폰번호가 일치하지않습니다. 다시 확인해주세요.");
                frm.m_phone.value = "";
                frm.modifyM_phone.value = "";
                frm.m_phone.focus();
-            }
+           }
          }
       })
       

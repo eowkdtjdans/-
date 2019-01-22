@@ -152,9 +152,11 @@ select {
 					   				frm.m_phone.focus();
 					   				return false;
 					   			} else {
+					   			 if(confirm("핸드폰번호를 변경하시겠습니까?")){
 					   			  alert("변경이 완료되었습니다.");
 									frm.action = "../../ModifyPhoneMember.do";
 								    frm.submit();    
+					   			}
 					   			}
 					   		}
 					   

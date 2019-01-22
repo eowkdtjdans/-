@@ -320,13 +320,13 @@ $(function(){
 								<tr style="font-size: 0.9em;">
 									<th width="130">희망 입실일</th>
 									<td colspan="2">
-										${message.receive_startdate }
+										<fmt:formatDate value="${message.receive_startdate }" pattern="yyyy-MM-dd"/>
 									</td>
 								</tr>
 								<tr style="font-size: 0.9em;">
 									<th width="130">희망 퇴실일</th>
 									<td colspan="2">
-										${message.receive_enddate }
+										<fmt:formatDate value="${message.receive_enddate }" pattern="yyyy-MM-dd"/>
 									</td>
 								</tr>
 								<tr style="font-size: 0.9em;">
@@ -334,12 +334,41 @@ $(function(){
 									<td>${message.receive_sender}</td>							
 									<td style="text-align: right;"><fmt:formatDate value="${message.receive_regdate }" pattern="yyyy-MM-dd HH:mm:ss"/> </td>
 								</tr>
+							
 								<tr style="font-size: 0.9em;">
 									<th>내용</th>
 									<td style="height : 300px;" colspan="2">
 										${message.receive_content}
 									</td>
+								</tr>	
+								<c:if test="${message.receive_accept eq 0 }">
+								<tr style="font-size: 0.9em;">
+									<th width="130">수용여부</th>
+									<td colspan="2">
+									 <input type="button" value="수용합니다." class="btn btn-outline-secondary " onclick="location.href='acceptOffer.do?receive_idx=${message.receive_idx}'">
+									 <input type="button" value="거절합니다." class="btn btn-outline-secondary " onclick="location.href='rejectOffer.do?receive_idx=${message.receive_idx}'">
+									</td>
 								</tr>
+								</c:if>
+								
+								<c:if test="${message.receive_accept eq 1 }">
+								<tr style="font-size: 0.9em;">
+									<th width="130">수용여부</th>
+									<td colspan="2">
+										<p>거절한 오퍼입니다.</p>
+									</td>
+								</tr>
+								</c:if>
+								
+								<c:if test="${message.receive_accept eq 2 }">
+								<tr style="font-size: 0.9em;">
+									<th width="130">수용여부</th>
+									<td colspan="2">
+										<p>성사된 오퍼입니다.</p>
+									</td>
+								</tr>
+								</c:if>
+								
 								  
 								<tr>
 									<td colspan="3" style="text-align: right;">

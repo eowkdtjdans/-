@@ -166,14 +166,13 @@ $(function(){
          success : function(data) {
             if (data.cnt > 0) {
                $("#noticeMessageCount").append(data.cnt);
-               $("#noticeMessageCount2").append(data.cnt);
                setInteval(function() {
                   noticeMessage()
                }, 3000);
        
             }
          }
-         
+          
          
       });    
    }
@@ -341,8 +340,6 @@ $(function(){
 		</td>
 		</c:if>
 		<td style="width: 30%; padding-top: 21px;"><fmt:formatDate value="${messageList.receive_regdate }" pattern="yyyy-MM-dd HH:mm:ss"/> </td>
-		<td style="width: 30%; padding-top: 21px;"><fmt:formatDate value="${messageList.receive_startdate }" pattern="yyyy-MM-dd"/> </td>
-		<td style="width: 30%; padding-top: 21px;"><fmt:formatDate value="${messageList.receive_enddate }" pattern="yyyy-MM-dd"/> </td>
 	</tr>
 	</c:forEach>
   </c:when>
@@ -374,8 +371,6 @@ $(function(){
 			</td>
 			</c:if>
 			<td style="width: 30%; padding-top: 21px;"><fmt:formatDate value="${messageList.receive_regdate }" pattern="yyyy-MM-dd HH:mm:ss"/> </td>
-			<td>${messageList.receive_startdate }</td>
-			<td>${messageList.receive_enddate }</td>
 		</tr>
 		</c:forEach>
   </c:otherwise>

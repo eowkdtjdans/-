@@ -203,11 +203,13 @@ function fillInAddress() { //lat 와 lng 값을 넘겨줄 input 태그에 값 �
          frm.m_address.value = ""; 
          frm.m_address.focus();
         } else {
+       	 if(confirm("주소를 변경하시겠습니까?")){	
          alert("입력하신 주소로 변경이 되었습니다.");
          frm.action = "../../ModifyAddressMember.do";
          frm.submit();   
          return false;
         }
+       }
    };
       
 </script>

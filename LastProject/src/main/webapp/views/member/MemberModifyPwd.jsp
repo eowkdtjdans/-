@@ -39,12 +39,15 @@
 						frm.pwdModify.focus();
 						return false;
 				   }  else {
+					  if(confirm("비밀번호를 변경하시겠습니까?")){
+
 					    alert("변경이 완료되었습니다.");
 						frm.action = "../../ModifyPwdMember.do";
 					    frm.submit();    
 					    return false;
 				   }
-			}
+				   }
+				   }
 		})
 		
 	};
