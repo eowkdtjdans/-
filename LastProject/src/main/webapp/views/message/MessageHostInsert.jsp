@@ -330,26 +330,26 @@ select {
                         <input id="message_sender" name="message_sender" type="hidden" class="form-control" value="${member.m_id }">   
                         <input id="message_receiver" name="message_receiver" type="hidden" class="form-control" value="${message_receiver }">   
                         
-                         <div class="form-group">
-                                <label for="h_startdate" class="col-4 col-form-label">입실/퇴실 날짜</label> 
-                              <div class="col-8">
+                        <div class="form-group">
+                                 <label for="h_startdate">입실/퇴실 날짜</label> 
+                            
                               	 <div class="t-datepicker">
 			                          <div class="t-check-in"></div>
 			                          <div class="t-check-out"></div>
 	                        	</div>
-                       		</div>
+                       		
                                 <input id="h_startdate" type="hidden" class="form-control" name="h_startdate" required data-eye> 
                                 <input id="h_enddate" type="hidden" class="form-control" name="h_enddate" required data-eye> 
-                            </div>
+                        </div>
                         
-                        
+                        <br>
                         <div class="form-group">
-                           <label for="message_title" style="text-align : center;">제목</label>
+                           <label for="message_title">제목</label>
                            <textarea rows="1" cols="10" id="message_title" name="message_title" class="form-control"></textarea>
                         </div>
                         
                         <div class="form-group">
-                           <label for="message_content" style="text-align : center">내용</label>
+                           <label for="message_content">내용</label>
                            <textarea rows="5" cols="10" id="message_content" name="message_content"  class="form-control"></textarea>
                         </div>
                         

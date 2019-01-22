@@ -536,7 +536,7 @@ table .noline {
                   <fmt:formatDate value="${getEvent.e_startdate }" pattern="yyyy-MM-dd" var="date"/>
                   <tr>
                      <%-- <td>관리자&emsp;&emsp;${startdate} ~ ${enddate}</td> --%>
-                     <td>관리자 &emsp;&emsp; ${date}</td>
+                     <td><img src="/views/img/administrator.png" style="width: 40px; height: 40px;">관리자 &emsp;&emsp; ${date}</td>
                   </tr>
                   <tr>
                   	 <td>
@@ -568,9 +568,9 @@ table .noline {
 					  </c:forEach>
 			  	  	  <br>
 					  <!-- <button type="button" class="btn btn-outline-secondary" onclick="imagemodal()">사진 더보기</button> -->
-					  <c:if test="${list ne null}">
+					  
 					  <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#myModal">사진 더보기</button>
-					  </c:if>
+					  
 					  
 			      </div>
 			      

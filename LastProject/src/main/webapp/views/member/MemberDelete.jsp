@@ -338,11 +338,12 @@ $(function(){
 		    <div class="card">
 		        <div class="card-body">
 		            <div class="row">
-		                <div class="col-md-12">
-		                    <h4 class="card-title" style="text-align : center;">회원 탈퇴</h4>
+		                <div class="col-md-12"> 
+		                    <img src="views/img/memberOut.png" style="width: 50px; height: 50px;"> <strong style="font-size: 1.2em;">회원탈퇴</strong>
                      <form onsubmit="return false;"method="POST" class="my-login-validation" id="DeleteMember">
+                     <br>
                      <label for="id">아이디</label>
-                           <input readonly="readonly" id="m_id" type="text" class="form-control" name="m_id" value="${member.m_id }" required autofocus>
+                           <input readonly="readonly" id="m_id" type="text" class="form-control" name="m_id" value="${member.m_id }" required autofocus><br>
                         <div class="form-group">
                            <label for="password">비밀번호</label>
                            <input onkeypress="enterkey()"id="m_pwd" type="password" class="form-control" name="m_pwd" required data-eye>
@@ -355,7 +356,7 @@ $(function(){
 
                         
                         <div class="form-group m-0">
-                           <button type="submit" id="deleteBtn"class="btn btn-primary btn-block" onclick="DeleteMember(this.form)">
+                           <button type="submit" id="deleteBtn"class="btn btn-outline-secondary btn-block" onclick="DeleteMember(this.form)">
                               회원 정보 삭제
                            </button>
                         </div>
