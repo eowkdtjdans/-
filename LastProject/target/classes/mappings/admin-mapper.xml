@@ -76,9 +76,9 @@
         	WHERE E_ENDDATE >= TO_CHAR(SYSDATE, 'YYYY-MM-DD')
 	</select>
 	
-	<insert id="insertEvent" parameterType="event">
-		INSERT INTO EVENT (E_IDX, E_NAME, E_CONTENT, E_ADDRESS, E_STARTDATE, E_ENDDATE, LAT, LNG, E_REGION, E_TAG, E_DATE)
-		VALUES (EVENT_SEQ.NEXTVAL, #{e_name}, #{e_content}, #{e_address}, #{e_startdate}, #{e_enddate}, #{lat}, #{lng}, #{e_region}, #{e_tag}, SYSDATE)
+	<insert id="insertEvent" parameterType="event"> 
+		INSERT INTO EVENT (E_IDX, E_NAME, E_CONTENT, E_ADDRESS, E_STARTDATE, E_ENDDATE, LAT, LNG, E_REGION, E_TAG, E_DATE, E_UPVOTE, E_REVIEWCOUNT, E_COUNT)
+		VALUES (EVENT_SEQ.NEXTVAL, #{e_name}, #{e_content}, #{e_address}, #{e_startdate}, #{e_enddate}, #{lat}, #{lng}, #{e_region}, #{e_tag}, SYSDATE, 0, 0, 0)
 	</insert>
 	
 	<insert id="insertEventImg" parameterType="Map">

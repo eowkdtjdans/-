@@ -317,31 +317,23 @@ function sendMessage(m_id){
 							<table class="table">							
 								<tr style="font-size: 0.9em;">
 									<th width="130">제목</th>
-									<td colspan="2">
+									<td colspan="3">
 										${message.receive_title }
 									</td>
-								</tr>
+								</tr>								
 								<tr style="font-size: 0.9em;">
-									<th width="130">희망 입실일</th>
-									<td colspan="2">
-										<fmt:formatDate value="${message.receive_startdate }" pattern="yyyy-MM-dd"/>
-									</td>
-								</tr>
-								<tr style="font-size: 0.9em;">
-									<th width="130">희망 퇴실일</th>
-									<td colspan="2">
-										<fmt:formatDate value="${message.receive_enddate }" pattern="yyyy-MM-dd"/>
-									</td>
-								</tr>
-								<tr style="font-size: 0.9em;">
-									<th>보낸사람</th>
+									<th>보낸사람</th>  
 									<td>${message.receive_sender}</td>							
 									<td style="text-align: right;"><fmt:formatDate value="${message.receive_regdate }" pattern="yyyy-MM-dd HH:mm:ss"/> </td>
 								</tr>
-							
+								<tr style="font-size: 0.9em;">  
+									<th>희망 일자</th>								
+									<td colspan="3"><fmt:formatDate value="${message.receive_startdate }" pattern="yyyy-MM-dd"/> &emsp;~&emsp; <fmt:formatDate value="${message.receive_enddate }" pattern="yyyy-MM-dd"/></td>
+								</tr>
+
 								<tr style="font-size: 0.9em;">
 									<th>내용</th>
-									<td style="height : 300px;" colspan="2">
+									<td style="height : 250px;" colspan="2">
 										${message.receive_content}
 									</td>
 								</tr>	
