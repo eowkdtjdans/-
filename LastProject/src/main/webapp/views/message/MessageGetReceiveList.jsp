@@ -171,7 +171,7 @@ $(function(){
        
             }
          }
-          
+         
          
       });    
    }
@@ -342,37 +342,50 @@ $(function(){
 	</tr>
 	</c:forEach>
   </c:when>
+  
   <c:otherwise>
   <c:forEach var="messageList" items="${messageList }">
 		<tr>
-			<td style="width: 35%">
-                      <img src="${messageList.p_route}" alt="" class="rounded-circle" style="width:50px; height:50px;"/> &nbsp;
-                      <a href="getReceiveMessage.do?receive_idx=${messageList.receive_idx }">
-                         ${messageList.receive_sender }
-                      </a>
-                   </td> 
-					
 			<c:if test="${messageList.receive_read eq 0 }">
+			<td style="width: 35%">
+                <img src="${messageList.p_route}" alt="" class="rounded-circle" style="width:50px; height:50px;"/> &nbsp;
+                <a href="getReceiveMessage.do?receive_idx=${messageList.receive_idx }">
+                   ${messageList.receive_sender }
+                </a>
+            </td> 
+			</c:if>
 			
+			<c:if test="${messageList.receive_read eq 1 }">
+			<td style="width: 35%">
+                <img src="${messageList.p_route}" alt="" class="rounded-circle" style="width:45px; height:45px;"/> &nbsp;
+                <a href="getReceiveMessage.do?receive_idx=${messageList.receive_idx }" style="color:gray;">
+                   ${messageList.receive_sender }
+                </a>
+            </td> 
+			</c:if>
+					
+			<c:if test="${messageList.receive_read eq 0 }">			
 			<td style="width: 35%; padding-top: 21px;" >
 				<a href="getReceiveMessage.do?receive_idx=${messageList.receive_idx }">
-					${messageList.receive_title } (안읽음)
+					${messageList.receive_title } 
 				</a>
 			</td>
 			</c:if>
 			
-			<c:if test="${messageList.receive_read eq 1 }">
-			
+			<c:if test="${messageList.receive_read eq 1 }">			
 			<td style="width: 35%; padding-top: 21px;" >
-				<a href="getReceiveMessage.do?receive_idx=${messageList.receive_idx }">
+				<a href="getReceiveMessage.do?receive_idx=${messageList.receive_idx }" style="color:gray;">
 					${messageList.receive_title }
 				</a>
 			</td>
 			</c:if>
+			
 			<td style="width: 30%; padding-top: 21px;"><fmt:formatDate value="${messageList.receive_regdate }" pattern="yyyy-MM-dd HH:mm:ss"/> </td>
+
 		</tr>
 		</c:forEach>
   </c:otherwise>
+
 </c:choose>   
 						
 			    </table>
@@ -382,4 +395,4 @@ $(function(){
 </div>
 <%@include file="/views/footer.jsp"%>
 </body>
-</html>
+</html> 
