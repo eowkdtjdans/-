@@ -567,9 +567,7 @@ table .noline {
 					  </c:forEach>
 			  	  	  <br>
 					  <!-- <button type="button" class="btn btn-outline-secondary" onclick="imagemodal()">사진 더보기</button> -->
-					  <c:if test="${list ne null}">
 					  <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#myModal">사진 더보기</button>
-					  </c:if>
 					  
 			      </div>
 			      
