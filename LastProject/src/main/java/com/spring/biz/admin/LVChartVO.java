@@ -2,8 +2,8 @@ package com.spring.biz.admin;
 
 
 public class LVChartVO {
-	private String lv_date, lv_date_mon;
-	private int value, mon_value;
+	private String lv_date, lv_date_mon, lv_date_year;
+	private int value, mon_value, year_value;
 	
 	public String getLv_date() {
 		return lv_date;
@@ -29,10 +29,17 @@ public class LVChartVO {
 	public void setMon_value(int mon_value) {
 		this.mon_value = mon_value;
 	}
-	@Override
-	public String toString() {
-		return "LVChartVO [lv_date=" + lv_date + ", lv_date_mon=" + lv_date_mon + ", value=" + value + ", mon_value="
-				+ mon_value + "]";
+	public String getLv_date_year() {
+		return lv_date_year;
+	}
+	public void setLv_date_year(String lv_date_year) {
+		this.lv_date_year = lv_date_year;
+	}
+	public int getYear_value() {
+		return year_value;
+	}
+	public void setYear_value(int year_value) {
+		this.year_value = year_value;
 	}
 	
 }
