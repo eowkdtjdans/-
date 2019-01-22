@@ -184,7 +184,7 @@ public class AdminController {
     		, @RequestParam("message_title") String message_title, 
     		@RequestParam("message_content") String message_content) throws Exception {
     	
-    		email.setSubject(message_title);
+    		email.setSubject("[국봉월드] 문의 답변메일입니다.");
     		email.setReceiver(message_receiver);
     		email.setContent(message_content);
     		emailSender.SendEmail(email);

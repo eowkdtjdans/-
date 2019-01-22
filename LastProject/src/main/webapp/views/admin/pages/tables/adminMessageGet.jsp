@@ -707,13 +707,10 @@ $(function(){
 			<form method="POST" class="my-login-validation" id="form">
 			<input id="message_receiver" name="message_receiver" type="hidden" class="form-control" value="${adminMessage.receive_sender}">	
 			
+			<input type="hidden" id="message_title" name="message_title" />
 			
 			<div class="form-group">
-				<textarea rows="1" cols="10" id="message_title" name="message_title" class="form-control" placeholder="제목을 입력하세요."></textarea>
-			</div>
-			
-			<div class="form-group">
-				<textarea rows="5" cols="10" id="message_content" name="message_content" placeholder="문의내용을 입력하세요." class="form-control"></textarea>
+				<textarea rows="5" cols="10" id="message_content" name="message_content" placeholder="답변을 입력하세요." class="form-control"></textarea>
 			</div>
 			
 			
@@ -733,13 +730,10 @@ $(function(){
     function sendMessage(frm) {
 
     	var message_receiver = frm.message_receiver.value;
-    	alert(message_receiver);
     	
     	var message_title = frm.message_title.value;
-    	alert(message_title);
     	
     	var message_content = frm.message_content.value;
-    	alert(message_content);
     	
     	frm.action = "/adminSendEmail.do";
     	frm.submit();

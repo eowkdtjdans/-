@@ -109,6 +109,11 @@ public class MessageServiceImpl implements MessageService {
 		messageDAO.acceptOffer(vo);
 	}
 
+	@Override
+	public void insertMessageAdmin(MessageVO vo) {
+		messageDAO.insertMessageAdmin(vo);
+	}
+
 
 
 	

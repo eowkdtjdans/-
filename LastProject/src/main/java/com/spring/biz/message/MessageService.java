@@ -56,6 +56,9 @@ public interface MessageService {
 	void acceptOffer(MessageRecieveVO vo);
 
 
+	void insertMessageAdmin(MessageVO vo);
+
+
 
 
 
