@@ -9,7 +9,7 @@
    <meta charset="utf-8">
    <meta name="author" content="Kodinger">
    <meta name="viewport" content="width=device-width,initial-scale=1">
-   <title>쪽지</title>
+   <title>쪽지 보내기</title>
    <link rel="stylesheet" type="text/css" href="views/bootstrapModal/css/bootstrap.min.css">
    
    <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -324,7 +324,7 @@ select {
    <div class="row">
    <div class="col-md-3"></div> 
    <div class="col-md-6">
-      <h4 style="text-align : center;">쪽지</h4>      
+      <img src="views/img/messageImg.png" style="width: 60px; height: 60px;"> <strong style="font-size: 1.2em;"> 쪽지 보내기</strong>       
       <form method="POST" class="my-login-validation" id="form">
                         <input id="m_id" type="hidden" class="form-control" name="m_id" value="${member.m_id }">   
                         <input id="message_sender" name="message_sender" type="hidden" class="form-control" value="${member.m_id }">   
@@ -355,7 +355,7 @@ select {
                         
                         
                         <div class="form-group m-0">
-                           <button type="button" class="btn btn-secondary btn-block" onclick="insertMessage(this.form)">
+                           <button type="button" class="btn btn-outline-secondary btn-block" onclick="insertMessage(this.form)">
                               쪽지 보내기
                            </button>
                         </div>

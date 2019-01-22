@@ -137,7 +137,7 @@ select {
   margin: auto;
   display: block;
   width: 80%;
-  max-width: 700px;
+  max-width: 600px;
 }
 
 /* Caption of Modal Image */
@@ -544,12 +544,13 @@ function test(p_route, m_id) {
               <div class="card-body">
                   <div class="row">
                       <div class="col-md-12">
-                          <img src="views/img/post.png" style="width: 60px; height: 60px;"> <strong style="font-size: 1.2em;"> 내 프로필 이미지</strong>
+                          <img src="views/img/camera2.png" style="width: 80px; height: 60px;"> <strong style="font-size: 1.2em;">내 프로필 이미지</strong>
                           <hr>
                       </div>
                   </div>
 
-
+ <div class="text-muted"> &nbsp;대표이미지 등록시 아래 이미지를 클릭해주세요</div>
+ <br>     
  <c:forEach var="profileImageList" items="${profileImageList}"> 
     <span style="width:250px; height:300px; padding-left: 8px;" onclick="test('${profileImageList.p_route}', '${profileImageList.m_id}')">   
        <img id="${profileImageList.p_route}" class="myImg" src="${profileImageList.p_route}" style="width:250px; height:250px; margin-bottom: 12px;">
@@ -561,9 +562,9 @@ function test(p_route, m_id) {
 <div id="myModal" class="modal">
   <span class="close">&times;</span>
   <img class="modal-content" id="img01">
-   <div style="text-align : center; margin-top: 10px;">
-        <button class="btn btn-outline-secondary" onclick="updateMainProfileImage(this.form)">대표이미지 등록</button>
-        <button class="btn btn-outline-secondary" onclick="deleteImage(this.form)">이미지 삭제</button>
+   <div style="text-align : center;">
+        <button class="btn btn-outline-secondary" onclick="updateMainProfileImage(this.form)"><strong>대표이미지 등록</strong></button>
+        <button class="btn btn-outline-secondary" onclick="deleteImage(this.form)"><strong>이미지 삭제</strong></button>
         <div>
          <input id="m_id" type="hidden" class="form-control" name="m_id">
          <input id="p_route" type="hidden" class="form-control" name="p_route"> 
@@ -575,7 +576,7 @@ function test(p_route, m_id) {
 </form>
 
 </div>
-</div>
+</div> 
 </div>
 </div> 
 </div>

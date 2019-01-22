@@ -295,7 +295,7 @@ function uploadHost(hostFrm) {
               <div class="card-body">
                   <div class="row">
                       <div class="col-md-12">
-                          <h4>이미지 업로드</h4>
+                          <img src="/views/img/camera2.png" style="width: 80px; height: 60px;"> <strong style="font-size: 1.2em;">이미지 업로드</strong>
                           <hr>
                       </div>
                   </div>
@@ -305,9 +305,9 @@ function uploadHost(hostFrm) {
                              
                              
                               <div class="form-group row">
-                                <label for="profile_img" class="col-4 col-form-label">프로필 이미지 업로드</label> 
+                                <label for="profile_img" class="col-4 col-form-label text-center">프로필 이미지 업로드</label> 
                                 <div class="col-8">
-                                   <button type="button" class="btn btn-primary btn-block" id="profileModal" >ADD PROFILE IMG+</button>
+                                   <button type="button" class="btn btn-outline-secondary btn-block" id="profileModal" >ADD PROFILE IMG+</button>
                                 </div>
                               </div>
                               
@@ -341,9 +341,9 @@ function uploadHost(hostFrm) {
                      </form>
                             
                             <div class="form-group row">
-                                  <label for="home_img"  class="col-4 col-form-label">호스트 이미지 업로드</label>
+                                  <label for="home_img"  class="col-4 col-form-label text-center">호스트 이미지 업로드</label>
                                 <div class="col-8">
-                                   <button type="button" class="btn btn-primary btn-block" id="hostModal" >ADD HOST IMG+</button>
+                                   <button type="button" class="btn btn-outline-secondary btn-block" id="hostModal" >ADD HOST IMG+</button>
                                 </div>
                               </div>
                             

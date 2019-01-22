@@ -148,6 +148,11 @@ $(function(){
    })
    
 })
+
+
+function sendMessage(m_id){
+   location.href="/insertHostMessage.do?message_receiver="+m_id;
+}
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?v=3&sensor=false&libraries=places&callback=initAutocomplete&key=AIzaSyAfB2qQnvAuU2YFFqi8hrPWfjJNyxl5kWc" async defer></script>
  
@@ -367,12 +372,12 @@ $(function(){
 										<p>성사된 오퍼입니다.</p>
 									</td>
 								</tr>
-								</c:if>
-								
+								</c:if> 
 								  
 								<tr>
 									<td colspan="3" style="text-align: right;">
 									<input type="button" value="목록으로" class="btn btn-outline-secondary " onclick="location.href='getReceiveMessageList.do'">
+									<input type="button" value="쪽지 보내기" class="btn btn-outline-secondary" onclick='sendMessage("${message.receive_sender}")'>
 									<input type="button" value="쪽지삭제" class="btn btn-outline-secondary" onclick="location.href='deleteReceiveMessage.do?receive_idx=${message.receive_idx }'"></td>
 								</tr>
 							</table>

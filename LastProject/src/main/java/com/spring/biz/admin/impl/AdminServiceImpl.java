@@ -143,4 +143,9 @@ public class AdminServiceImpl implements AdminService {
 		return adminDAO.localAdviceAdminList();
 	}
 
+	@Override
+	public List<LVChartVO> logVisitChartMonth() {
+		return adminDAO.logVisitChartMonth();
+	}
+
 }
