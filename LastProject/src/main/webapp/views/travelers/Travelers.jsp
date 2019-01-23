@@ -423,7 +423,7 @@ function noticeMessage() {
       <div class="container">
       	 <br>
          <img src="views/img/star.jpg" style="width: 40px; height: 40px;"><span style="font-size: 1.2em; font-weight: bold;">여행자 검색 게시판</span>         
-         <h6>요청하신 키워드에 관한 게시글 수 : ${countTravelers }</h6>
+         <h6><strong>요청하신 키워드에 관한 게시글 수 : ${countTravelers }</strong></h6>
          
          
          
@@ -434,7 +434,7 @@ function noticeMessage() {
          <c:choose>
             <c:when test="${empty travelersList}">
                   <tr>
-                     <td>요청하신 도시의 정보가 존재하지 않습니다.</td>
+                     <td><strong>요청하신 도시의 정보가 존재하지 않습니다.</strong></td>
                   </tr>
             </c:when>                    
             <c:otherwise>
@@ -444,13 +444,13 @@ function noticeMessage() {
                <span class="card" style="width:221px; height: 460px; margin : auto; text-align: center;">
                 <img class="card-img-top" src="${list.p_route}" alt="Card image" style="width:100%; height: 210px;">
                 <span class="card-body">
-                  <h6 class="card-title">${list.m_id}</h6>
+                  <h6 class="card-title"><strong>${list.m_id}</strong></h6>
                   <hr />
                   <div id="cardContent">
-                  	<p class="card-text">${list.t_country}</p>
+                  	<p class="card-text"><strong>${list.t_country}</strong></p>
                   </div>
                   <hr>
-                  <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#myModal${list.m_id }">여행자 상세보기</button>
+                  <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#myModal${list.m_id }"><strong>여행자 상세보기</strong></button>
                 </span> 
              </span>
             </c:forEach>
@@ -556,7 +556,7 @@ function noticeMessage() {
       
         <!-- Modal Header -->
         <div class="modal-header">
-          <h4 class="modal-title">&nbsp;&nbsp;${list.m_id } 님의 Traveler profile</h4>
+          <h4 class="modal-title">&nbsp;&nbsp;<strong>${list.m_id } 님의 Traveler profile</strong></h4>
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         
@@ -567,45 +567,45 @@ function noticeMessage() {
           		<td rowspan="8" width="40%;"><img class="rounded" style="width: 200px; height: 200px; margin-top: 50px;" src="${list.p_route }"></td>
           	</tr>
           	<tr class="text-center">
-          		<td width="20%;" style="vertical-align: middle;">여행 목적지</td>
+          		<td width="20%;" style="vertical-align: middle;"><strong>여행 목적지</strong></td>
           		<td width="80%;">${list.t_country}</td>
           	</tr>
           	<tr class="text-center">
-          		<td style="vertical-align: middle;">입실일자</td>
+          		<td style="vertical-align: middle;"><strong>입실일자</strong></td>
           		<td>${list.t_startdate}</td>
           	</tr>
           	<tr class="text-center">
-          		<td style="vertical-align: middle;">퇴실일자</td>
+          		<td style="vertical-align: middle;"><strong>퇴실일자</strong></td>
           		<td>${list.t_enddate}</td>
           	</tr>
           	<tr class="text-center">
-          		<td style="vertical-align: middle;">방문인원</td>
+          		<td style="vertical-align: middle;"><strong>방문인원</strong></td>
           		<td>${list.t_visits}명</td>
           	</tr>
           	<tr class="text-center">
-          		<td style="vertical-align: middle;">취미</td>
+          		<td style="vertical-align: middle;"><strong>취미</strong></td>
           		<td>${list.p_hobby }</td>
           	</tr>
           	<tr class="text-center">
-          		<td style="vertical-align: middle;">직업</td>
+          		<td style="vertical-align: middle;"><strong>직업</strong></td>
           		<td>${list.p_job}</td>
           	</tr>
           	<tr class="text-center">
-          		<td style="vertical-align: middle;">사용언어</td>
+          		<td style="vertical-align: middle;"><strong>사용언어</strong></td>
           		<td>${list.p_language}</td>
           	</tr>
           </table>
           <table class="table">
              <tr class="text-center" style="width: 40%;">
-                <td width="30%;" style="text-align: center; vertical-align: middle;">사이트 방문목적</td>
+                <td width="30%;" style="text-align: center; vertical-align: middle;"><strong>사이트 방문목적</strong></td>
                 <td colspan="2">${list.p_purpose }</td>
              </tr>
              <tr class="text-center">
-                <td style="text-align: center; vertical-align: middle;">자기소개</td>
+                <td style="text-align: center; vertical-align: middle;"><strong>자기소개</strong></td>
                 <td colspan="2">${list.p_aboutme }</td>
              </tr>
              <tr class="text-center">
-                <td style="text-align: center; vertical-align: middle;">방문동기</td>
+                <td style="text-align: center; vertical-align: middle;"><strong>방문동기</strong></td>
                 <td colspan="2">${list.t_motive }</td>
              </tr>
           </table>
@@ -614,10 +614,10 @@ function noticeMessage() {
         <!-- Modal footer -->
         <div class="modal-footer">
         <form name="frm">                                                           <!-- onclick="../insertMessage.do?message_receiver=${list.m_id}" -->
-          <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" onclick='sendMessage("${list.m_id}")'>숙박제의</button>
+          <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" onclick='sendMessage("${list.m_id}")'><strong>숙박제의</strong></button>
         </form>   
         <c:if test="${list.m_id eq member.m_id}">
-          <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" onclick='deleteTravelers("${list.m_id}")'>등록해제</button>
+          <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" onclick='deleteTravelers("${list.m_id}")'><strong>등록해제</strong></button>
         </c:if>
         </div>
         

@@ -302,7 +302,6 @@ function checkAJax() {
       url : '../../checkMemberJson.do',
       
          success : function(data) {
-          alert(data.cnt);
           if (data.cnt == 1) {
             alert("사이트 이용 시 로그인을 해야 가능합니다.");
             location.href = "../../loginMember.do";

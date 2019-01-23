@@ -339,7 +339,7 @@ $(function(){
 			</tr>
 			<c:forEach var="logLoginList" items="${logLoginList }">
 			<tr>
-				<td style="text-align :center;">${logLoginList.ll_result }</td>
+				<td style="text-align :center;"><strong>${logLoginList.ll_result }</strong></td>
 				<td style="text-align :center;">${logLoginList.ll_ip }</td>
 				<td style="text-align :center; font-size : 0.8em;">${logLoginList.ll_device }</td>
 				<td><fmt:formatDate value="${logLoginList.ll_date }" pattern="yyyy-MM-dd HH:mm:ss"/> </td>
