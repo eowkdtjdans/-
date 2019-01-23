@@ -265,9 +265,9 @@ $(document).ready(function(){
        url : "/checkTravelersJson.do",
        success : function(data) {
           if (data.cnt != 0) {
-        	  $("#insertTravelersBtn").text('여행객 수정');
+        	  $("#insertTravelersBtn").html('<strong>여행객 수정<strong>');
            } else {
-        	   $("#insertTravelersBtn").text('여행객 등록');
+        	   $("#insertTravelersBtn").html('<strong>여행객 등록</strong>');
            }
        } 
     });
@@ -503,8 +503,8 @@ function noticeMessage() {
                      <a href="../getLocalAdviceList2.do?cPage=${pvo.endPage + 1 }">▶</a>
                   </li>
                </c:otherwise>
-            </c:choose>
-               <li><button type="button" id="insertTravelersBtn" class="btn btn-outline-secondary" data-toggle="modal" data-target="#insertModal">여행객 등록</button></li>
+            </c:choose> 
+               <li><button type="button" id="insertTravelersBtn" class="btn btn-outline-secondary" data-toggle="modal" data-target="#insertModal"><strong>여행객 등록</strong></button></li>
                      
             </ol>
          </td>
@@ -691,8 +691,8 @@ function noticeMessage() {
                               
                        <div class="modal-footer">
                            <div class="form-group m-0">
-                        <button type="button" class="btn btn-outline-secondary" onclick="insertTravelers(this.form)">완료</button>
-                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-outline-secondary" onclick="insertTravelers(this.form)"><strong>완료</strong></button>
+                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal"><strong>Close</strong></button>
                       </div>
                     </div>
                      </form>

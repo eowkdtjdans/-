@@ -377,9 +377,9 @@ $(document).ready(function(){
        url : "/checkHostJson.do",
        success : function(data) {
           if (data.cnt != 0) {
-             $("#insertHostBtn").text('호스트 수정');
+             $("#insertHostBtn").html('<strong>호스트 수정</strong>');
            } else {
-              $("#insertHostBtn").text('호스트 등록');
+              $("#insertHostBtn").text('<strong>호스트 등록</strong>');
            }
        } 
     }); 
@@ -620,7 +620,7 @@ var receive_receiver =$("#receive_receiver").val();
                </c:otherwise>
             </c:choose>
                <li style="text-align:right;">
-                  <button type="button" id="insertHostBtn" class="btn btn-outline-secondary" data-toggle="modal" data-target="#insertHost" onclick="login_chk()">호스트 등록</button>
+                  <button type="button" id="insertHostBtn" class="btn btn-outline-secondary" data-toggle="modal" data-target="#insertHost" onclick="login_chk()"><strong>호스트 등록</strong></button>
                </li>
             </ol>
          </td>
@@ -872,10 +872,7 @@ var receive_receiver =$("#receive_receiver").val();
 </div>
 <!--Modal: Login with Avatar Form-->
 
-<div class="text-center">
-  <a href="" class="btn btn-default btn-rounded" data-toggle="modal" data-target="#modalLoginAvatar">Launch
-    Modal Login with Avatar</a>
-</div>
+
 
 <%@include file="/views/footer.jsp"%>
 <%@include file="/views/footerScript.jsp"%>

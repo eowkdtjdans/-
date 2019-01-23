@@ -37,6 +37,16 @@
   
   
   
+  
+  
+  <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic+Coding:400,700&amp;subset=korean" rel="stylesheet">
+  
+  
+  
+  
+  
+  
+  
 <style>
    body{
       padding-top: 75px; 
@@ -44,7 +54,7 @@
    
    .scrollto {    
      font-family: 'Kalam', cursive;
-     padding-top: 8px;
+     padding-top: 8px;    
    }
    .border-none {
         margin-left: 490px;
@@ -108,6 +118,11 @@ select {
 /* .hr{
 	height: 20px;
 	color: red;
+} */
+
+/* .fontGodic{
+	font-family: 'Nanum Gothic Coding', monospace;
+	font-weight: bold;
 } */
 </style>
 
@@ -311,8 +326,8 @@ $(function(){
 <section id="about">
       <div class="container">
         <header class="section-header">        
-          <h3>Couch Surfing</h3>
-          <p>카우치 서핑(Couch Surfing)은 잠을 잘수 있는 쇼파를 의미하는 카우치(Couch)와 파도를 타다는 서핑(Surfing)의 합성어로 숙박 혹은 가이드까지 받을 수 있는, 여행자들을 위한 비영리 커뮤니티 입니다.</p>
+          <h3 class="fontGodic">Couch Surfing</h3>
+          <p class="fontGodic">카우치 서핑(Couch Surfing)은 잠을 잘수 있는 쇼파를 의미하는 카우치(Couch)와 파도를 타다는 서핑(Surfing)의 합성어로 숙박 혹은 가이드까지 받을 수 있는, 여행자들을 위한 비영리 커뮤니티 입니다.</p>
         </header>
        
         <div class="row about-cols">
