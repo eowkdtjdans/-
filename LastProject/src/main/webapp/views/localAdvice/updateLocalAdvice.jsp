@@ -35,6 +35,12 @@
 
   <script src="http://code.jquery.com/jquery-latest.min.js"></script>
   <script src="https://maps.googleapis.com/maps/api/js?v=3&sensor=false&libraries=places&callback=initAutocomplete&key=AIzaSyAfB2qQnvAuU2YFFqi8hrPWfjJNyxl5kWc" async defer></script>
+  
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-lite.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-lite.js"></script>
+  
+  
   <!-- =======================================================
     Theme Name: BizPage
     Theme URL: https://bootstrapmade.com/bizpage-bootstrap-business-template/
@@ -263,32 +269,38 @@ select {
       <div id="tableDiv">
       <form name="frm" method="post">
         
-         <table>             
+         <table class="table"> 
+         	<br>            
             <tr> 
-               <td rowspan="2" style="text-align: center; width: 10%;"><img src="${getLocalAdvice.getP_route() }" class="rounded-circle"  id="profileImage" onerror='this.src="../views/img/people/fuckyou.jpg"'></td>
-               <td><textarea class="form-control" rows="1" cols="90" name="l_subject">${getLocalAdvice.l_subject }</textarea></td>
-            <%--    <td>               
-                  <c:if test="${getLocalAdvice.m_id eq member.m_id }"> 
-                     <input type="button" class="btn btn-outline-secondary" value="수정완료" onclick="updatego(this.form)">
-                     <input type="hidden" name="l_idx" value="${getLocalAdvice.l_idx }">
-                  </c:if>
-                   </td> --%>
+               <%-- <td colspan="2" style="text-align: center; width: 10%;"><img src="${getLocalAdvice.getP_route() }" class="rounded-circle"  id="profileImage" onerror='this.src="../views/img/people/fuckyou.jpg"'></td> --%>
+               <td style="width: 10%; text-align: center;"><strong>제목</strong></td>
+               <td colspan="2" style="width: 90%"><textarea class="form-control" rows="1" cols="150" name="l_subject">${getLocalAdvice.l_subject }</textarea></td>
             </tr>
+            
             <tr>
-               <td colspan="3">${getLocalAdvice.m_id }&emsp;&emsp; ${getLocalAdvice.l_date }</td>
-            </tr>
-             
-            <tr>
-            <br>
-               <td colspan="3">          
-               <br>
-                  <textarea class="form-control" rows="10" cols="150" name="l_content">${getLocalAdvice.l_content }</textarea>
+            	<td style="width: 10%; text-align: center;"><strong>내용</strong></td>         
+               <td colspan="2" style="width: 90%">          
+                  <textarea class="form-control" rows="14" cols="150" name="l_content" id="summernote">${getLocalAdvice.l_content }</textarea>
+               
+                <script>
+			      $('#summernote').summernote({
+			        tabsize: 2,
+			        height: 400 
+			      });
+			    </script>   
+               
                </td>
             </tr>
+            
             <tr>
-               <td colspan="3" style="text-align: right;">               
+               <td class="text-muted" colspan="3">               
+                  저작권 등 다른 사람의 권리를 침해하거나 명예를 훼손하는 게시글은 이용약관 및 관련법률에 의해 제재를 받으실 수 있습니다.
+               </td>             
+            </tr> 
+            <tr>
+               <td colspan="3" style="text-align: left;">               
                   <c:if test="${getLocalAdvice.m_id eq member.m_id }"> 
-                     <input type="button" class="btn btn-outline-secondary" value="수정완료" onclick="updatego(this.form)">
+                     <button type="button" class="btn btn-outline-secondary" onclick="updatego(this.form)"><strong>수정완료</strong></button>
                      <input type="hidden" name="l_idx" value="${getLocalAdvice.l_idx }">
                   </c:if>
                </td>    
@@ -299,6 +311,7 @@ select {
 </div>      
 <!-- #about -->
 
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
  <!--==========================
     Footer
   ============================-->

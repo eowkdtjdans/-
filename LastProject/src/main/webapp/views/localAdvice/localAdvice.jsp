@@ -36,6 +36,7 @@
   <script src="http://code.jquery.com/jquery-latest.min.js"></script>
   <script src="https://maps.googleapis.com/maps/api/js?v=3&sensor=false&libraries=places&callback=initAutocomplete&key=AIzaSyAfB2qQnvAuU2YFFqi8hrPWfjJNyxl5kWc" async defer></script>
 
+
   <!-- =======================================================
     Theme Name: BizPage
     Theme URL: https://bootstrapmade.com/bizpage-bootstrap-business-template/
@@ -302,7 +303,7 @@
       <div class="container">
       <br>
          <img src="views/img/star.jpg" style="width: 40px; height: 40px;"><span style="font-size: 1.2em; font-weight: bold;">현지정보 문의 게시판</span>
-         <h6>요청하신 키워드에 관한 게시글 수 : ${countLocalAdvice }</h6>
+         <h6><strong>요청하신 키워드에 관한 게시글 수 : ${countLocalAdvice }</strong></h6>
 
          <form method="post" name="frm">
          <table class="table">
@@ -322,8 +323,8 @@
                      <a href="../getLocalAdvice.do?l_idx=${list.l_idx }&m_id=${list.m_id}&cPage=1">${list.l_subject }</a>&nbsp;&nbsp;<span id="detcnt">[${list.lc_cnt}]</span> &emsp;<span id="date">${list.l_date }</span>
                      <br>${list.m_id }
                   </th>
-                  <td style="width:15%; font-size: 0.95em;"> &nbsp;&nbsp;&nbsp;&nbsp; <a id="good" href="#" ><img src="views/img/good.png" style="width: 20px; height: 20px;">  좋아요 ${list.l_upvote }</a> &nbsp;&nbsp;&nbsp;&nbsp; </td>
-                  <td style="width:15%; font-size: 0.95em;"><img src="views/img/lookup.PNG" style="width: 20px; height: 20px;"> ${list.l_reviewcount }</td>
+                  <td style="width:15%; font-size: 0.95em;"> &nbsp;&nbsp;&nbsp;&nbsp; <a id="good" href="#" ><img src="views/img/good.png" style="width: 20px; height: 20px;"><strong> ${list.l_upvote }</strong></a> &nbsp;&nbsp;&nbsp;&nbsp; </td>
+                  <td style="width:15%; font-size: 0.95em;"><img src="views/img/lookup.PNG" style="width: 20px; height: 20px;"> <strong>${list.l_reviewcount }</strong></td>
                </tr>
             </c:forEach>
             </c:otherwise>           
@@ -378,7 +379,7 @@
             </c:choose>
             </ol>
          </td>
-         <td><a href="../writeLocalAdvice.do" class="btn btn-outline-secondary">게시글 작성</a></td>
+         <td><a href="../writeLocalAdvice.do" class="btn btn-outline-secondary"><strong>게시글 작성</strong></a></td>
       </tr>
          
          <!-- ---------------------------------------------------------------- -->
