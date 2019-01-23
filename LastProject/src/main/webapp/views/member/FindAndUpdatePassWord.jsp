@@ -14,7 +14,7 @@
    <meta content="" name="keywords">
 	<meta content="" name="description">
    <meta name="viewport" content="width=device-width,initial-scale=1">
-   <title>이메일 인증</title>
+   <title>Gukbong WorlD</title>
    <!-- <link rel="stylesheet" type="text/css" href="views/bootstrapModal/css/bootstrap.min.css">
    <link rel="stylesheet" type="text/css" href="views/cssModal/my-login.css"> -->
    
