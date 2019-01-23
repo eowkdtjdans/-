@@ -37,16 +37,6 @@
   
   
   
-  
-  
-  <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic+Coding:400,700&amp;subset=korean" rel="stylesheet">
-  
-  
-  
-  
-  
-  
-  
 <style>
    body{
       padding-top: 75px; 
@@ -54,7 +44,7 @@
    
    .scrollto {    
      font-family: 'Kalam', cursive;
-     padding-top: 8px;    
+     padding-top: 8px;
    }
    .border-none {
         margin-left: 490px;
@@ -118,11 +108,6 @@ select {
 /* .hr{
 	height: 20px;
 	color: red;
-} */
-
-/* .fontGodic{
-	font-family: 'Nanum Gothic Coding', monospace;
-	font-weight: bold;
 } */
 </style>
 
@@ -326,8 +311,8 @@ $(function(){
 <section id="about">
       <div class="container">
         <header class="section-header">        
-          <h3 class="fontGodic">Couch Surfing</h3>
-          <p class="fontGodic">카우치 서핑(Couch Surfing)은 잠을 잘수 있는 쇼파를 의미하는 카우치(Couch)와 파도를 타다는 서핑(Surfing)의 합성어로 숙박 혹은 가이드까지 받을 수 있는, 여행자들을 위한 비영리 커뮤니티 입니다.</p>
+          <h3>Gukbong WorlD</h3>
+          <p>카우치 서핑(Couch Surfing)은 잠을 잘수 있는 쇼파를 의미하는 카우치(Couch)와 파도를 타다는 서핑(Surfing)의 합성어로 숙박 혹은 가이드까지 받을 수 있는, 여행자들을 위한 비영리 커뮤니티 입니다.</p>
         </header>
        
         <div class="row about-cols">
@@ -338,9 +323,9 @@ $(function(){
                 <img src="views/img/gukbong1.jpg" alt="" class="img-fluid">
                 <div class="icon"><i class="ion-ios-speedometer-outline"></i></div>
               </div>
-              <h2 class="title"><a href="#">Find a Host</a></h2>
+              <h2 class="title"><a href="#">새친구를 찾아보세요!</a></h2>
               <p>
-                	호스트와 연계하고 CouchSurfing 플랫폼을 통해 숙박 여부를 확인하세요. 호스트와의 숙박은 무료입니다.
+                	<strong>호스트와 연계하고 GukbongWorlD 플랫폼을 통해 숙박 여부를 확인하세요. 호스트와의 숙박은 무료입니다.</strong>
               </p>
             </div>
           </div>
@@ -351,9 +336,9 @@ $(function(){
                 <img src="views/img/gukbong2.jpg" alt="" class="img-fluid" style="height:235px">
                 <div class="icon"><i class="ion-ios-list-outline"></i></div>
               </div>
-              <h2 class="title"><a href="#">Join Events</a></h2>
+              <h2 class="title"><a href="#">현지 문화를 느껴보세요!</a></h2>
               <p style="height: 90px;">
-               	 다른 도시 또는 귀하의 도시에서 여행자를 만나세요! 항상 새로움을 느낄 수 있습니다.
+               	 <strong>다른 도시 또는 귀하의 도시에서 여행자를 만나세요! 항상 새로움을 느낄 수 있습니다.</strong>
               </p>
             </div>
           </div>
@@ -388,12 +373,12 @@ $(function(){
         <div class="row">
           <div class="col-lg-12">
             <ul id="portfolio-flters">
-              <li data-filter="*" class="filter-active">All</li>
-              <li data-filter=".filter-asia" onclick="asia()">아시아</li>
-              <li data-filter=".filter-europe">유럽</li>
-              <li data-filter=".filter-oceania">오세아니아</li>
-              <li data-filter=".filter-northAmerica">북아메리카</li>
-              <li data-filter=".filter-southAmerica">남아메리카</li>
+              <li data-filter="*" class="filter-active"><strong>All</strong></li>
+              <li data-filter=".filter-asia" onclick="asia()"><strong>아시아</strong></li>
+              <li data-filter=".filter-europe"><strong>유럽</strong></li>
+              <li data-filter=".filter-oceania"><strong>오세아니아</strong></li>
+              <li data-filter=".filter-northAmerica"><strong>북아메리카</strong></li>
+              <li data-filter=".filter-southAmerica"><strong>남아메리카</strong></li>
             </ul>
           </div>
         </div>
@@ -484,11 +469,11 @@ $(function(){
 
         <header class="section-header wow fadeInUp">
           <h3><img src="/views/img/saysomething.png" style="width: 60px; height: 60px;">&nbsp;Say something</h3>
-          <p>카우치 서핑에 대한 안좋은 뉴스를 본 분들도 있을 것입니다.
+          <p><strong>카우치 서핑에 대한 안좋은 뉴스를 본 분들도 있을 것입니다.
 			하지만 정말 극소수의 일이고 너무 걱정이 되는 사람은 하지 않는 편이 좋다고 생각합니다.
 			혹시 모를 상황에 대비해 미리 내가 어떻게 처신할지 
 			생각해 놓는 것도 좋은 방법입니다. 단편적인 일들로 
-			카우치 서핑에 대해 안좋은 인식을 갖지 않았으면 좋겠습니다.</p>
+			카우치 서핑에 대해 안좋은 인식을 갖지 않았으면 좋겠습니다.</strong></p>
         </header>
 
         <div class="row">
@@ -496,27 +481,27 @@ $(function(){
           <div class="col-md-12 box wow bounceInUp" data-wow-duration="1.4s">
             <div class="icon"><img src="/views/img/why.png" style="width: 70px; height: 70px;"></div>
             <h4 class="title"><a>Why do Couch Surfing</a></h4>
-            <p class="description">개인적인 이유들이 있을테지만 가장 큰 장점은
+            <p class="description"><strong>개인적인 이유들이 있을테지만 가장 큰 장점은
 			여행자와 호스트가 서로의 생활에 깊숙히 관여하게 됨으로써			
 			여행지에 대한 이해도를 넓히고 서로의 문화를 느낄 수			
-			있게 되는 점입니다.</p>
+			있게 되는 점입니다.</strong></p>
           </div>
           <div class="col-md-12 box wow bounceInUp" data-wow-duration="1.4s">
             <div class="icon">&emsp;<img src="/views/img/problem.png" style="width: 40px; height: 40px;">&nbsp;&nbsp;&nbsp;</div>
             <h4 class="title"><a>Couch Surfing Notice</a></h4>
-            <p class="description">&nbsp;많은 사람들이 단순히 호스트를 구하는데에만 너무 집중하는 것 같습니다.
+            <p class="description">&nbsp;<strong>많은 사람들이 단순히 호스트를 구하는데에만 너무 집중하는 것 같습니다.
 			가장 중요한 것은 카우치 서핑에 대한 서로의 이해도가 높아야한다는 점입니다.
 			카우치 서핑을 구하는 사람의 입장에서 얘기 하자면 카우치 서핑은 무료 호텔이 아닙니다.
 			혼자있고 싶다면, 그리고 단순히 잠자리만을 위한다면 절대로 하지 않아야 합니다.
-			여행을 즐기며 문화나 그들의 이야기를 나누는 소통의 자세가 필요합니다.</p>
+			여행을 즐기며 문화나 그들의 이야기를 나누는 소통의 자세가 필요합니다.</strong></p>
           </div>
           <div class="col-md-12 box wow bounceInUp" data-wow-duration="1.4s"> 
             <div class="icon">&nbsp;&nbsp;  <img src="/views/img/tip.png" style="width: 45px; height: 45px;"></i></div>
             <h4 class="title"><a>&nbsp;Couch Surfing Tip</a></h4>
-            <p class="description">&nbsp;카우치 서핑을 하면서 호스트가 무언가 불편한 요구를 할 수 있습니다.
+            <p class="description">&nbsp;<strong>카우치 서핑을 하면서 호스트가 무언가 불편한 요구를 할 수 있습니다.
 			강제로 청소를 시킨다던지 심하면 성적인 발언까지 하는 경우입니다.
 			그런 상황에 직면했을 때 가장 중요한 것은 자신이 생각했을때 불편한 생각이
-			든다면 정확하게 싫다는 표현을 하는 것입니다.
+			든다면 정확하게 싫다는 표현을 하는 것입니다.</strong>
             </p>
           </div>
       
@@ -539,7 +524,7 @@ $(function(){
 
         <div class="section-header">
           <h3>관리자에게 문의</h3>
-          <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque</p>
+          <p><strong>관리자에게 사이트에 대한 문의를 보내주세요!</strong></p>
         </div>
 
         <div class="row contact-info">
@@ -547,71 +532,51 @@ $(function(){
           <div class="col-md-4">
             <div class="contact-address">
               <i class="ion-ios-location-outline"></i>
-              <h3>주소</h3>
-              <address>서강대 비트캠프</address>
+              <h3><strong>주소</strong></h3>
+              <address style="font-size : 0.9em;"><strong>비트캠프 신촌센터</strong></address>
             </div>
           </div>
 
           <div class="col-md-4">
             <div class="contact-phone">
               <i class="ion-ios-telephone-outline"></i>
-              <h3>연락처</h3>
-              <p>+82 1039222459</p>
+              <h3><strong>연락처</strong></h3>
+              <p><strong>+82 1039222459</strong></p>
             </div>
           </div>
 
           <div class="col-md-4">
             <div class="contact-email">
               <i class="ion-ios-email-outline"></i>
-              <h3>이메일</h3>
-              <p>gukbongworld@gmail.com</p>
+              <h3><strong>이메일</strong></h3>
+              <p><strong>gukbongworld@gmail.com</strong></p>
             </div>
           </div>
 
         </div>
-
-        <div class="form">
-          <div id="sendmessage">Your message has been sent. Thank you!</div>
-          <div id="errormessage"></div>
-       <!--    <form action="" method="post" role="form" class="contactForm">
-               <div class="form-group">
-                <input type="email" class="form-control" name="m_id" id="m_id" placeholder="연락 받으실 이메일을 입력하세요."/>
-                <div class="validation"></div>
-              </div>
-			
-			
-            <div class="form-group">
-              <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
-              <div class="validation"></div>
-            </div>
-            <div class="form-group">
-              <textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
-              <div class="validation"></div>
-            </div>
-            <div class="text-center"><button type="submit">Send Message</button></div>
-          </form>
-        </div>
-
-      </div> -->
+       
       <form method="POST" class="my-login-validation" id="form">
 			<input id="m_id" type="hidden" class="form-control" name="m_id">	
 			<input id="message_receiver" name="message_receiver" type="hidden" class="form-control" value="admin">	
 			<div class="form-group">
+			<label><strong>Email</strong></label>
 				 <input type="email" class="form-control" name="message_sender" id=message_sender placeholder="연락 받으실 이메일을 입력하세요."/>
 			</div>
 			
 			<div class="form-group">
+				<label><strong>문의 제목</strong></label>
 				<textarea rows="1" cols="10" id="message_title" name="message_title" class="form-control" placeholder="제목을 입력하세요."></textarea>
 			</div>
 			
 			<div class="form-group">
+				<label><strong>문의 내용</strong></label>
 				<textarea rows="5" cols="10" id="message_content" name="message_content" placeholder="문의내용을 입력하세요." class="form-control"></textarea>
 			</div>
 			
 			
 			<div class="form-group m-0" style="text-align: right;">
 				<button type="button" class="btn btn-outline-secondary" onclick="sendMessage(this.form)">
-					쪽지 보내기
+					<strong>쪽지 보내기</strong>
 				</button>
 			</div>
 			
