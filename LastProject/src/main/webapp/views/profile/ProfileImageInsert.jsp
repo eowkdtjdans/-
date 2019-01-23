@@ -304,9 +304,9 @@ function uploadHost(hostFrm) {
                              
                              
                               <div class="form-group row">
-                                <label for="profile_img" class="col-4 col-form-label text-center">프로필 이미지 업로드</label> 
+                                <label for="profile_img" class="col-4 col-form-label text-center"><strong>프로필 이미지 업로드</strong></label> 
                                 <div class="col-8">
-                                   <button type="button" class="btn btn-outline-secondary btn-block" id="profileModal" >ADD PROFILE IMG+</button>
+                                   <button type="button" class="btn btn-outline-secondary btn-block" id="profileModal" ><strong>ADD PROFILE IMG+</strong></button>
                                 </div>
                               </div>
                               
@@ -329,8 +329,8 @@ function uploadHost(hostFrm) {
                                  </ul>
                               </div>
                               <div class="modal-footer">
-                                 <button type="button" class="btn btn-primary" id="profileImgBtn" disabled="disabled" onclick="uploadProfile(this.form)">업로드</button>
-                                 <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+                                 <button type="button" class="btn btn-primary" id="profileImgBtn" disabled="disabled" onclick="uploadProfile(this.form)"><strong>업로드</strong></button>
+                                 <button type="button" class="btn btn-default" data-dismiss="modal"><strong>닫기</strong></button>
                                  
                                  <input type="hidden" value="${member.m_id}" name="m_id">
                               </div>
@@ -340,9 +340,9 @@ function uploadHost(hostFrm) {
                      </form>
                             
                             <div class="form-group row">
-                                  <label for="home_img"  class="col-4 col-form-label text-center">호스트 이미지 업로드</label>
+                                  <label for="home_img"  class="col-4 col-form-label text-center"><strong>호스트 이미지 업로드</strong></label>
                                 <div class="col-8">
-                                   <button type="button" class="btn btn-outline-secondary btn-block" id="hostModal" >ADD HOST IMG+</button>
+                                   <button type="button" class="btn btn-outline-secondary btn-block" id="hostModal" ><strong>ADD HOST IMG+</strong></button>
                                 </div>
                               </div>
                             
@@ -365,8 +365,8 @@ function uploadHost(hostFrm) {
                                  </ul>
                               </div>
                               <div class="modal-footer">
-                                 <button type="button" class="btn btn-primary" id="hostImgBtn" disabled="disabled" onclick="uploadHost(this.form)">업로드</button>
-                                 <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+                                 <button type="button" class="btn btn-primary" id="hostImgBtn" disabled="disabled" onclick="uploadHost(this.form)"><strong>업로드</strong></button>
+                                 <button type="button" class="btn btn-default" data-dismiss="modal"><strong>닫기</strong></button>
                                  
                                  <input type="hidden" value="${member.m_id}" name="m_id">
                               </div>

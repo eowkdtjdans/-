@@ -424,7 +424,7 @@ select {
                              <input id="p_route" type="hidden" class="form-control" name="p_route" value="${profile.p_route }">
                              
                                <div class="form-group row">
-                                <label for="p_hobby" class="col-3 col-form-label">취미</label> 
+                                <label for="p_hobby" class="col-3 col-form-label"><strong>취미</strong></label> 
                                 <div class="col-9">
                                    <textarea rows="2" cols="10" id="p_hobby" name="p_hobby" class="form-control" >${profile.p_hobby }</textarea>
                                 </div>                             
@@ -432,7 +432,7 @@ select {
                               <hr>
                               
                               <div class="form-group row">
-                                <label for="p_language" class="col-3 col-form-label">사용가능한 언어</label> 
+                                <label for="p_language" class="col-3 col-form-label"><strong>사용가능한 언어</strong></label> 
                                 <div class="col-9">
                                    <textarea rows="2" cols="10" id="p_language" name="p_language" class="form-control">${profile.p_language }</textarea>
                                 </div>
@@ -440,7 +440,7 @@ select {
                            	  <hr>
                            
                               <div class="form-group row">
-                                <label for="p_job" class="col-3 col-form-label">직업</label> 
+                                <label for="p_job" class="col-3 col-form-label"><strong>직업</strong></label> 
                                 <div class="col-9">
                                    <textarea rows="2" cols="10" id="p_job" name="p_job" class="form-control">${profile.p_job }</textarea>
                                 </div>
@@ -448,7 +448,7 @@ select {
                               <hr>
                               
                               <div class="form-group row">
-                                <label for="p_visitcountry" class="col-3 col-form-label">방문했던 국가</label> 
+                                <label for="p_visitcountry" class="col-3 col-form-label"><strong>방문했던 국가</strong></label> 
                                 <div class="col-9">
                                    <textarea rows="2" cols="10" id="p_visitcountry" name="p_visitcountry" class="form-control">${profile.p_visitcountry }</textarea>
                                 </div>
@@ -456,7 +456,7 @@ select {
                               <hr>
                            
                               <div class="form-group row">
-                                <label for="p_aboutme" class="col-3 col-form-label">자기소개</label> 
+                                <label for="p_aboutme" class="col-3 col-form-label"><strong>자기소개</strong></label> 
                                 <div class="col-9">
                                    <textarea rows="4" cols="10" id="aboutme" name="p_aboutme" class="form-control">${profile.p_aboutme }</textarea>
                                 </div>
@@ -464,7 +464,7 @@ select {
                               <hr>
                            
                               <div class="form-group row">
-                                <label for="p_purpose" class="col-3 col-form-label">목적</label> 
+                                <label for="p_purpose" class="col-3 col-form-label"><strong>목적</strong></label> 
                                 <div class="col-9">
                                    <textarea rows="4" cols="10" id="p_purpose" name="p_purpose" class="form-control">${profile.p_purpose }</textarea>
                                 </div>
@@ -473,7 +473,7 @@ select {
                                                                                                            
                                <div class="form-group m-0">
                                    <button type="button" class="btn btn-outline-secondary btn-block" onclick="insertProfile(this.form)">
-                             	 프로필 수정
+                             	 <strong>프로필 수정</strong>
                            		   </button>
                                </div>
                             

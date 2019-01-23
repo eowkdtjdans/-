@@ -324,7 +324,7 @@ select {
    <div class="row">
    <div class="col-md-3"></div> 
    <div class="col-md-6">
-      <img src="views/img/messageImg.png" style="width: 60px; height: 60px;"> <strong style="font-size: 1.2em;"> 쪽지 보내기</strong>       
+      <img src="views/img/messageImg.png" style="width: 60px; height: 60px;"> <strong style="font-size: 1.2em;"> 쪽지 보내기 </strong>       
       <form method="POST" class="my-login-validation" id="form">
                         <input id="m_id" type="hidden" class="form-control" name="m_id" value="${member.m_id }">   
                         <input id="message_sender" name="message_sender" type="hidden" class="form-control" value="${member.m_id }">   
