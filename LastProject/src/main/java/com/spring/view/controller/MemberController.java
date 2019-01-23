@@ -238,6 +238,17 @@ public class MemberController {
 		session.invalidate();
 		return "redirect:/sub2.do"; 
 	}
+	@RequestMapping(value="DeleteMemberAdmin.do", method=RequestMethod.GET)
+	public String DeleteMemberAdmin(MemberVO vo,  @RequestParam("m_id") String m_id, @RequestParam("m_pwd") String m_pwd, @RequestParam("m_phone") String m_phone, HttpSession session) throws Exception {
+		System.out.println("=====회원탈퇴 시작=====");
+		System.out.println("modifyM_pwd : " + m_pwd);
+		vo.setM_id(m_id);
+		vo.setM_pwd(m_pwd);
+		vo.setM_phone(m_phone);
+		memberService.DeleteMember(vo);	
+		session.invalidate();
+		return "redirect:/userAdmin.do"; 
+	}
 	@RequestMapping(value="ModifyAddressMember.do", method=RequestMethod.POST) 
 	public String ModifyAddressMember(MemberVO vo, @RequestParam("m_id") String m_id, @RequestParam("m_address") String m_address, 
 			@RequestParam("lat") Double lat, @RequestParam("lng") Double lng, HttpSession session) throws Exception {

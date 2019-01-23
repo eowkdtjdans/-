@@ -21,7 +21,7 @@
 	</select>
 	
 	<select id="userAdminView" resultType="com.spring.biz.admin.UserAdminViewVO">
-		SELECT M.M_ID, M.M_NAME, M.M_PHONE, M.M_GENDER, M.M_BIRTHDAY, M.M_REGDATE, M.M_ADDRESS,
+		SELECT M.M_ID, M.M_PWD, M.M_NAME, M.M_PHONE, M.M_GENDER, M.M_BIRTHDAY, M.M_REGDATE, M.M_ADDRESS,
         P.P_HOBBY, P.P_LANGUAGE, P.P_JOB, P.P_ABOUTME, P.P_PURPOSE,P.P_VISITCOUNTRY, PI.P_ROUTE
 		FROM MEMBER M, PROFILE_IMAGE PI, PROFILE P
 		WHERE M.M_ID = PI.M_ID
@@ -261,11 +261,20 @@ FROM MEMBER
 WHERE M_GENDER = '여자'
 GROUP BY M_GENDER
 </select>
-<select id="registChart" resultType="com.spring.biz.admin.ChartJSVO">
+<select id="registChart" resultType="com.spring.biz.admin.BarChartJSVO">
+SELECT TO_CHAR(M_REGDATE, 'YYYY-MM') LABEL, COUNT(*) DATA
+FROM MEMBER
+WHERE TO_CHAR(M_REGDATE, 'YYYY-MM') >= TO_CHAR(SYSDATE-150, 'YYYY-MM')
+GROUP BY TO_CHAR(M_REGDATE, 'YYYY-MM')
+ORDER BY TO_CHAR(M_REGDATE, 'YYYY-MM')
 </select>
 
 <select id="localAdviceAdminList"  parameterType="Map" resultType="localadvice">
 SELECT * FROM LOCALADVICE
+</select>
+
+<select id="chartVisit"  resultType="com.spring.biz.admin.LogVisitVO">
+SELECT * FROM LOG_VISIT
 </select>
 
 </mapper>

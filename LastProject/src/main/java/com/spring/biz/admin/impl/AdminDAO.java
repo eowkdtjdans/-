@@ -8,8 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.spring.biz.admin.AdminCntVO;
+import com.spring.biz.admin.BarChartJSVO;
 import com.spring.biz.admin.ChartJSVO;
 import com.spring.biz.admin.LVChartVO;
+import com.spring.biz.admin.LogVisitVO;
 import com.spring.biz.admin.UserAdminCommentVO;
 import com.spring.biz.admin.UserAdminPostVO;
 import com.spring.biz.admin.UserAdminViewVO;
@@ -139,8 +141,12 @@ public class AdminDAO {
 		return mybatis.selectList("genderChart");
 	}
 
-	public List<ChartJSVO> registChart() {
+	public List<BarChartJSVO> registChart() {
 		return mybatis.selectList("registChart");
+	}
+
+	public List<LogVisitVO> chartVisit() {
+		return mybatis.selectList("chartVisit");
 	}
 
 }

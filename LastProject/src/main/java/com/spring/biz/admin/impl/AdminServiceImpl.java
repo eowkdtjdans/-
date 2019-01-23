@@ -8,8 +8,10 @@ import org.springframework.stereotype.Service;
 
 import com.spring.biz.admin.AdminCntVO;
 import com.spring.biz.admin.AdminService;
+import com.spring.biz.admin.BarChartJSVO;
 import com.spring.biz.admin.ChartJSVO;
 import com.spring.biz.admin.LVChartVO;
+import com.spring.biz.admin.LogVisitVO;
 import com.spring.biz.admin.UserAdminCommentVO;
 import com.spring.biz.admin.UserAdminPostVO;
 import com.spring.biz.admin.UserAdminViewVO;
@@ -165,8 +167,13 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public List<ChartJSVO> registChart() {
+	public List<BarChartJSVO> registChart() {
 		return adminDAO.registChart();
+	}
+
+	@Override
+	public List<LogVisitVO> chartVisit() {
+		return adminDAO.chartVisit();
 	}
 
 }

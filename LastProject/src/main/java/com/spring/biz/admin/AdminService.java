@@ -40,5 +40,6 @@ public interface AdminService {
 	List<LVChartVO> logVisitChartYear();
 	List<ChartJSVO> browserChart();
 	List<ChartJSVO> genderChart();
-	List<ChartJSVO> registChart();
+	List<BarChartJSVO> registChart();
+	List<LogVisitVO> chartVisit();
 }

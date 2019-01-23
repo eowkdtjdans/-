@@ -1,10 +1,10 @@
 package com.spring.biz.admin;
 
-import oracle.sql.DATE;
+import java.util.Date;
 
 public class LogVisitVO {
-	private String lv_ip, lv_country;
-	private DATE lv_date;
+	private String lv_ip, lv_country, lv_browser;
+	private Date lv_date;
 	
 	public String getLv_ip() {
 		return lv_ip;
@@ -18,15 +18,16 @@ public class LogVisitVO {
 	public void setLv_country(String lv_country) {
 		this.lv_country = lv_country;
 	}
-	public DATE getLv_date() {
+	public String getLv_browser() {
+		return lv_browser;
+	}
+	public void setLv_browser(String lv_browser) {
+		this.lv_browser = lv_browser;
+	}
+	public Date getLv_date() {
 		return lv_date;
 	}
-	public void setLv_date(DATE lv_date) {
+	public void setLv_date(Date lv_date) {
 		this.lv_date = lv_date;
-	}
-	
-	@Override
-	public String toString() {
-		return "LogVisitVO [lv_ip=" + lv_ip + ", lv_country=" + lv_country + ", lv_date=" + lv_date + "]";
 	}
 }
