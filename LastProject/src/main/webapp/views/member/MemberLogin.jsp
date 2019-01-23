@@ -5,7 +5,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>로그인</title>
+<title>Gukbong WorlD</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <meta content="" name="keywords">
@@ -201,30 +201,30 @@ a{
    <div class="row">  
          <div class="col-md-4"></div> 
          <div class="col-md-4">
-            <h4 style="text-align : center;">로그인</h4>
+            <h4 style="text-align : center;"><strong>로그인</strong></h4>
             <form onsubmit="return false"method="POST" id="form"  >
                <div class="form-group">
-                  <label for="email">아이디</label>
+                  <label for="email"><strong>아이디</strong></label>
                   <input type="email" class="form-control" name="m_id" onkeypress="enterkey()" required autofocus>
                </div>
                
                <div class="form-group">
-                  <label for="password">비밀번호</label>
+                  <label for="password"><strong>비밀번호</strong></label>
                   <input type="password" class="form-control" name="m_pwd" onkeypress="enterkey()" required data-eye>
                </div>
                
                	
                <div class="form-group">
                    <button type="submit" id="loginBtn" class="btn btn-outline-secondary btn-block" onclick="login(this.form)" >
-                     Login
+                     <strong>Login</strong>
                   </button> 
                </div>
             </form>
             
             <div class="text-muted" style="text-align: center; font-size: 0.95em;">
-	            <a href="../../findIdMember.do">아이디 찾기 | </a>
-	            <a href="../../findPwdMember.do">비밀번호 찾기 | </a>
-	            <a href="../../insertMember.do">회원가입</a>
+	            <a href="../../findIdMember.do"><strong>아이디 찾기</strong> | </a>
+	            <a href="../../findPwdMember.do"><strong>비밀번호 찾기</strong> | </a>
+	            <a href="../../insertMember.do"><strong>회원가입</strong></a>
             </div>
             
 			<div>

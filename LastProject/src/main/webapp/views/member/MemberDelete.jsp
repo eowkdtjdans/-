@@ -315,21 +315,21 @@ $(function(){
 	<div class="row">
 		<div class="col-md-3 ">
 		     <div class="list-group ">
-		      <a href="../../myProfile.do" class="list-group-item list-group-item-action ">My Profile 메인</a>
-              <a href="../../insertProfile.do" class="list-group-item list-group-item-action ">프로필 수정</a>
-              <a href="../../ModifyPhoneMember.do" class="list-group-item list-group-item-action ">핸드폰 변경</a>
-              <a href="../../ModifyPwdMember.do" class="list-group-item list-group-item-action ">비밀번호 변경</a>
-              <a href="../../ModifyAddressMember.do" class="list-group-item list-group-item-action ">주소 변경</a>
-              <a href="../../profileImageInsert.do" class="list-group-item list-group-item-action">이미지 업로드</a>
-              <a href="../../profileImageList.do?m_id=${member.m_id }" class="list-group-item list-group-item-action ">프로필 이미지 관리</a>
-              <a href="../../HostImageList.do?m_id=${member.m_id }" class="list-group-item list-group-item-action ">호스트 이미지 관리</a>
-              <a href="../../getReceiveMessageList.do" class="list-group-item list-group-item-action ">받은 쪽지함</a>
-              <a href="../../getSendMessageList.do" class="list-group-item list-group-item-action ">보낸 쪽지함</a>
-              <a href="../../myPost.do?m_id=${member.m_id }&cPage=1" class="list-group-item list-group-item-action">내 글</a>
-              <a href="../../myPost2.do?m_id=${member.m_id }&cPage=1" class="list-group-item list-group-item-action ">내 댓글</a>
-              <a href="../../loginRecordList.do?ll_id=${member.m_id }&cPage=1" class="list-group-item list-group-item-action ">로그인 기록</a>
-              <a href="../../DeleteMember.do?m_id=${member.m_id }" class="list-group-item list-group-item-action active">회원탈퇴</a>
-              
+		      <a href="../../myProfile.do" class="list-group-item list-group-item-action "><strong>My Profile 메인</strong></a>
+              <a href="../../insertProfile.do" class="list-group-item list-group-item-action "><strong>프로필 수정</strong></a>
+              <a href="../../ModifyPhoneMember.do" class="list-group-item list-group-item-action "><strong>핸드폰 변경</strong></a>
+              <a href="../../ModifyPwdMember.do" class="list-group-item list-group-item-action "><strong>비밀번호 변경</strong></a>
+              <a href="../../ModifyAddressMember.do" class="list-group-item list-group-item-action "><strong>주소 변경</strong></a>
+              <a href="../../profileImageInsert.do" class="list-group-item list-group-item-action"><strong>이미지 업로드</strong></a>
+              <a href="../../profileImageList.do?m_id=${member.m_id }" class="list-group-item list-group-item-action"><strong>프로필 이미지 관리</strong></a>
+              <a href="../../HostImageList.do?m_id=${member.m_id }" class="list-group-item list-group-item-action"><strong>호스트 이미지 관리</strong></a>
+              <a href="../../getReceiveMessageList.do" class="list-group-item list-group-item-action"><strong>받은 쪽지함</strong></a>
+              <a href="../../getSendMessageList.do" class="list-group-item list-group-item-action"><strong>보낸 쪽지함</strong></a>
+              <a href="../../myPost.do?m_id=${member.m_id }&cPage=1" class="list-group-item list-group-item-action"><strong>내 글</strong></a>
+              <a href="../../myPost2.do?m_id=${member.m_id }&cPage=1" class="list-group-item list-group-item-action"><strong>내 댓글</strong></a>
+              <a href="../../loginRecordList.do?ll_id=${member.m_id }&cPage=1" class="list-group-item list-group-item-action"><strong>로그인 기록</strong></a>
+              <a href="../../DeleteMember.do?m_id=${member.m_id }" class="list-group-item list-group-item-action active"><strong>회원탈퇴</strong></a>
+                        
 
               
             </div> 
@@ -344,22 +344,22 @@ $(function(){
 		                    <img src="views/img/memberOut.png" style="width: 50px; height: 50px;"> <strong style="font-size: 1.2em;">회원탈퇴</strong>
                      <form onsubmit="return false;"method="POST" class="my-login-validation" id="DeleteMember">
                      <br>
-                     <label for="id">아이디</label>
+                     <label for="id"><strong>아이디</strong></label>
                            <input readonly="readonly" id="m_id" type="text" class="form-control" name="m_id" value="${member.m_id }" required autofocus><br>
                         <div class="form-group">
-                           <label for="password">비밀번호</label>
+                           <label for="password"><strong>비밀번호</strong></label>
                            <input onkeypress="enterkey()"id="m_pwd" type="password" class="form-control" name="m_pwd" required data-eye>
                         </div>
                         
                         <div class="form-group">
-                           <label for="phone">핸드폰 번호</label>
+                           <label for="phone"><strong>핸드폰 번호</strong></label>
                            <input onkeypress="enterkey()"id="m_phone" type="text" class="form-control" name="m_phone" required autofocus>
                         </div>
 
                         
                         <div class="form-group m-0">
                            <button type="submit" id="deleteBtn"class="btn btn-outline-secondary btn-block" onclick="DeleteMember(this.form)">
-                              회원 정보 삭제
+                              <strong>회원 정보 삭제</strong>
                            </button>
                         </div>
                
