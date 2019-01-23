@@ -205,7 +205,7 @@
 						<div class="col-lg-3 col-6">
 							<!-- small box -->
 						<div class="info-box mb-3 bg-success">
-								<span class="info-box-icon"><i class="fa fa-heart-o"></i></span>
+								<span class="info-box-icon"><i class="fas fa-comments"></i></span>
 
 								<div class="info-box-content">
 									<span class="info-box-text">댓글 수</span> <span
@@ -219,8 +219,7 @@
 						<div class="col-lg-3 col-6">
 							<!-- small box -->
 							<div class="info-box mb-3 bg-danger">
-								<span class="info-box-icon"><i
-									class="fa fa-cloud-download"></i></span>
+								<span class="info-box-icon"><i class="fas fa-home"></i></span>
 
 								<div class="info-box-content">
 									<span class="info-box-text">유효 호스트 수(전체)</span> <span
@@ -233,8 +232,7 @@
 						<div class="col-lg-3 col-6">
 							<!-- small box -->
 							<div class="info-box mb-3 bg-danger">
-								<span class="info-box-icon"><i
-									class="fa fa-cloud-download"></i></span>
+								<span class="info-box-icon"><i class="fas fa-plane"></i></span>
 
 								<div class="info-box-content">
 									<span class="info-box-text">유효 여행자 수(전체)</span> <span

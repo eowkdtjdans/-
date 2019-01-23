@@ -454,11 +454,11 @@ var receive_receiver =$("#receive_receiver").val();
 	      		<tr>
 	      			<th><img src="/views/img/administrator.png" alt="Card image" style="width:30px; height: 30px; border-radius: 50%;"></th>
 	      			<th style="width: 40%">
-	      				<fmt:formatDate var="startdate" value="${list.e_startdate}" pattern="yyyy-MM-dd E요일"/>
-	      				<fmt:formatDate var="enddate" value="${list.e_enddate}" pattern="yyyy-MM-dd E요일"/>
+	      				<%-- <fmt:formatDate var="startdate" value="${list.e_startdate}" pattern="yyyy-MM-dd E요일"/>
+	      				<fmt:formatDate var="enddate" value="${list.e_enddate}" pattern="yyyy-MM-dd E요일"/> --%>
 	      				<a href="../getEvent.do?e_idx=${list.e_idx }">${list.e_name }</a>&nbsp;&nbsp;<span id="detcnt">[${list.e_count}]</span>
 	      			</th>
-	      			<td style="width:30%; text-align: center;"><div id="date">${startdate } ~ ${enddate }</div></td>
+	      			<td style="width:30%; text-align: center;"><div id="date">${list.e_date }</div></td>
 	      			<td style="width:15%"> &nbsp;&nbsp;&nbsp;&nbsp; <a id="good" href="#" ><img src="views/img/good.png" style="width: 20px; height: 20px;">  좋아요 ${list.e_upvote }</a> &nbsp;&nbsp;&nbsp;&nbsp; </td>
 	      			<td style="width:15%"><img src="views/img/lookup.PNG" style="width: 20px; height: 20px;"> ${list.e_reviewcount }</td>
 	      		</tr>

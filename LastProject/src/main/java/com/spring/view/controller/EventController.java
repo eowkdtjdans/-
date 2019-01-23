@@ -118,7 +118,7 @@ public class EventController {
 		map.put("key", key);
 		
 		List<EventVO> eventList = eventService.getEventList(map);
-		System.out.println("eventList");
+		System.out.println("eventList : " + eventList);
 		
 		model.addAttribute("eventList", eventList);
 		model.addAttribute("countEvent", countEvent);
