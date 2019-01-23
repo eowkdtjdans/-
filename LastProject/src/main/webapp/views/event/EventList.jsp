@@ -6,7 +6,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8"> 
-  <title>이벤트 게시판</title>
+  <title>Gukbong WorlD</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <meta content="" name="keywords">
