@@ -5,7 +5,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-   <title>아이디 찾기</title>
+   <title>Gukbong WorlD</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <meta content="" name="keywords">
@@ -189,27 +189,27 @@
          <div class="row">
             <div class="col-md-4"></div>             
                <div class="col-md-4">
-                     <h4 style="text-align : center;">아이디 찾기</h4>
+                     <h4 style="text-align : center;"><strong>아이디 찾기</strong></h4>
 	                     <form method="POST" onsubmit="return false;" class="my-login-validation" id="findId">
 	                    
 		                    <div class="form-group">
-								<label for="m_email">임시 이메일</label>
+								<label for="m_email"><strong>임시 이메일</strong></label>
 								<input id="m_id" onkeypress="enterkey()"type="email" class="form-control" name="m_id" placeholder="임시이메일을 입력하세요." required autofocus>
 							</div>
 	                        
 	                        <div class="form-group" >
-	                           <label for="m_name">성함</label>
+	                           <label for="m_name"><strong>성함</strong></label>
 	                           <input id="m_name" onkeypress="enterkey()"type="text" class="form-control" name="m_name" placeholder="이름을 입력하세요." required autofocus>
 	                        </div>
 	                        
 	                        <div class="form-group" >
-	                           <label for="m_phone">전화번호</label>
+	                           <label for="m_phone"><strong>전화번호</strong></label>
 	                           <input id="m_phone"onkeypress="enterkey()" type="text" class="form-control" name="m_phone" placeholder="전화번호를 입력하세요." required autofocus>
 	                        </div>
 	
 	                        <div class="form-group m-0">
 	                           <button type="submit" id="findBtn" class="btn btn-outline-secondary btn-block" onclick="findId(this.form)">
-	                            	  아이디 찾기
+	                            	  <strong>아이디 찾기</strong>
 	                           </button>
 	                        </div>
 	                     </form>             

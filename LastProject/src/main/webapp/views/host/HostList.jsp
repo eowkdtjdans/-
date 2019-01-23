@@ -307,9 +307,9 @@ function move() {
   map.panTo(moveTo);
 }
 
-function sendMessage(m_id){
+/* function sendMessage(m_id){
    location.href="/insertHostMessage.do?message_receiver="+m_id;
-}
+} */
 
 function insertHost(frm) {
     
@@ -705,8 +705,8 @@ var receive_receiver =$("#receive_receiver").val();
    
            <!-- Modal footer -->
            <div class="modal-footer">
-           <form name="frm">                                                           <!-- onclick="../insertMessage.do?message_receiver=${list.m_id}" -->
-             <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" onclick='sendMessage("${list.m_id}")'>숙박요청</button>
+           <form name="frm">         <!--sendMessage("${list.m_id}")'  -->                                                  <!-- onclick="../insertMessage.do?message_receiver=${list.m_id}" -->
+             <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" onclick="location.href='insertHostMessage.do?message_receiver=${list.m_id}'">숙박요청</button>
            </form>   
              <c:if test="${list.m_id eq member.m_id}">
                <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" onclick='deleteHost("${list.m_id}")'>등록해제</button>
