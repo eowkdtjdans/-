@@ -123,7 +123,7 @@ public class LocalAdviceController {
       map.put("key", key);
       
       List<LocalAdviceVO> localAdviceList = localAdviceService.getLocalAdviceList(map);
-      
+      System.out.println("localAdviceList : " + localAdviceList);
       model.addAttribute("localAdviceList", localAdviceList);
       model.addAttribute("countLocalAdvice", countLocalAdvice);
       model.addAttribute("pvo", p);
