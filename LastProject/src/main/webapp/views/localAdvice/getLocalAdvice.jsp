@@ -154,6 +154,11 @@ select {
 </style>
 
 <script>
+
+
+
+
+
    function login_chk(frm) {
       if ("${m_id}" == "") {
          alert("로그인이 필요한 서비스입니다.");
@@ -164,10 +169,16 @@ select {
             frm.lc_content2.focus();
             return false;
          } else {
+ /*        	 var str = frm.lc_content2.value;
+             alert("str : " + str);
+             var newstr = str.replace('^',&#94;);
+             alert("newstr : " + newstr); */
+        	 
             frm.action = "../insertLocalAdviceComment.do?l_idx=${getLocalAdvice.l_idx }&lc_content="+frm.lc_content2.value+"";
             frm.submit();
          }
       }
+      
    }
    
    function deleteLocalAdvice(l_idx){
@@ -232,6 +243,8 @@ select {
          $("#" + "${focus_idx}").attr("tabindex", -1).focus();
       <%session.removeAttribute("focus_idx");%>
    }
+      
+
 
    });
 

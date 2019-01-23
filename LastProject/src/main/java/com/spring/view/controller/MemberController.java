@@ -42,7 +42,8 @@ public class MemberController {
 	private Email email;
 	@Autowired
 	private EmailSender emailSender;
-	
+
+
 	public MemberController() {
 		System.out.println("=======멤버 컨트롤러 시작");
 	}

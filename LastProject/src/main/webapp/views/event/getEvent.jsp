@@ -536,7 +536,7 @@ table .noline {
                   <fmt:formatDate value="${getEvent.e_startdate }" pattern="yyyy-MM-dd" var="date"/>
                   <tr>
                      <%-- <td>관리자&emsp;&emsp;${startdate} ~ ${enddate}</td> --%>
-                     <td><img src="/views/img/administrator.png" style="width: 40px; height: 40px;">관리자 &emsp;&emsp; ${date}</td>
+                     <td><img src="/views/img/administrator.png" style="width: 40px; height: 40px;">관리자 &emsp;&emsp; <span class="text-muted">${getEvent.e_date}</span></td>
                   </tr>
                   <tr>
                   	 <td>

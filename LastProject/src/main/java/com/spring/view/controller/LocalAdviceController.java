@@ -123,7 +123,7 @@ public class LocalAdviceController {
       map.put("key", key);
       
       List<LocalAdviceVO> localAdviceList = localAdviceService.getLocalAdviceList(map);
-      
+      System.out.println("localAdviceList : " + localAdviceList);
       model.addAttribute("localAdviceList", localAdviceList);
       model.addAttribute("countLocalAdvice", countLocalAdvice);
       model.addAttribute("pvo", p);
@@ -139,7 +139,8 @@ public class LocalAdviceController {
    //, method=RequestMethod.GET
    @RequestMapping(value="/writeLocalAdvice.do")
    public String moveWriteLocalAdvice() {
-      return "/views/localAdvice/insertLocalAdvice.jsp";	   
+     return "/views/localAdvice/insertLocalAdvice.jsp";	   
+	  // return "views/test2.jsp";
    }
    
    

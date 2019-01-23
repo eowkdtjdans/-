@@ -54,30 +54,30 @@
         margin-top: -30px;
    }
    #header {
-        background-color:    white;
+        background-color: 	white;
    }
    #header.header-scrolled {
         background-color: white;
    }
-   
+    
    .nav-menu li a{
-      color: black;
-   }   
+   	color: black;
+   }	
    #mainLogo{
-      color: black;
-      position: absolute;
-      margin-left: 80px;
-      margin-top: -10px;
-      font-size: 2.15em;
+   	color: black;
+   	position: absolute;
+   	margin-left: 80px;
+   	margin-top: -10px;
+   	font-size: 2.15em;
    }
    #happy{
-      position: absolute;
-      margin-left: 20px;
-      margin-top: -20px;
+   	position: absolute;
+   	margin-left: 20px;
+   	margin-top: -20px;
    }
    #navProfileImg{
-      position: relative;
-      margin-top: -10px;
+   	position: relative;
+   	margin-top: -10px;
    }
    
 
@@ -92,26 +92,26 @@ select {
 }
 
 #autocomplete {
-   width: 50%; 
-   border: 1px solid #999; 
-   border-radius: 30px; 
-   padding: .3em .3em;
-   
+	width: 50%; 
+	border: 1px solid #999; 
+	border-radius: 30px; 
+	padding: .3em .3em;
+	
 }
 #advice{
-   width: 50%; 
-   border: 1px solid #999; 
-   border-radius: 30px; 
-   padding: .3em .3em;
+	width: 50%; 
+	border: 1px solid #999; 
+	border-radius: 30px; 
+	padding: .3em .3em;
 }
 
 /* .hr{
-   height: 20px;
-   color: red;
+	height: 20px;
+	color: red;
 } */
 a{
-      color: #4B89DC;  
-   }
+		color: #4B89DC;  
+	}
 </style>
 
 
@@ -147,6 +147,11 @@ $(function(){
    })
    
 })
+
+
+function sendMessage(m_id){
+   location.href="/insertHostMessage.do?message_receiver="+m_id;
+}
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?v=3&sensor=false&libraries=places&callback=initAutocomplete&key=AIzaSyAfB2qQnvAuU2YFFqi8hrPWfjJNyxl5kWc" async defer></script>
  
@@ -177,9 +182,7 @@ $(function(){
       });    
    }
 
-   function sendMessage(m_id){
-      location.href="/insertHostMessage.do?message_receiver="+m_id;
-   }
+
 </script>    
  
 </head>
@@ -231,49 +234,49 @@ $(function(){
 
          
 <nav id="nav-menu-container">
-   <ul class="nav-menu">
-   
-   <c:if test="${empty member.m_id}">
-      <li><a href="../../loginMember.do" >로그인</a></li>
-      <li><a  href="../../insertMember.do" >회원가입</a></li>
-      <li><a href="../../findIdMember.do">아이디찾기</a></li >
-       <li><a href="../../findPwdMember.do">비밀번호찾기</a></li>
-   </c:if>   
-   
-   <c:if test="${!empty member.m_id}">
-      <li>
-         <div>
-         <strong>
-         <span style="color: red;">W</span>
-         <span style="color: blue;">e</span>
-         <span style="color: darkviolet;">l</span>
-         <span style="color: #FFC100;">c</span>
-         <span style="color: green;">o</span>
-         <span style="color: orange;">m</span>
-         <span style="color: navy;">e</span>         
-         &nbsp;&nbsp;         
-         ${member.m_id } 님 
-         </strong>
-         </div>
-      </li>
-   
-      <li class="menu-has-children"><img src="${profile.p_route }" style="width: 45px; height: 45px;" class="rounded-circle" id="navProfileImg"></a>
+	<ul class="nav-menu">
+	
+	<c:if test="${empty member.m_id}">
+		<li><a href="../../loginMember.do" >로그인</a></li>
+		<li><a  href="../../insertMember.do" >회원가입</a></li>
+		<li><a href="../../findIdMember.do">아이디찾기</a></li >
+	    <li><a href="../../findPwdMember.do">비밀번호찾기</a></li>
+	</c:if>	
+	
+	<c:if test="${!empty member.m_id}">
+		<li>
+			<div>
+			<strong>
+			<span style="color: red;">W</span>
+			<span style="color: blue;">e</span>
+			<span style="color: darkviolet;">l</span>
+			<span style="color: #FFC100;">c</span>
+			<span style="color: green;">o</span>
+			<span style="color: orange;">m</span>
+			<span style="color: navy;">e</span>			
+			&nbsp;&nbsp;			
+			${member.m_id } 님 
+			</strong>
+			</div>
+		</li>
+	
+		<li class="menu-has-children"><img src="${profile.p_route }" style="width: 45px; height: 45px;" class="rounded-circle" id="navProfileImg"></a>
           <ul>                                      
             <li><a  href="../../myProfile.do" >마이 프로필</a></li> 
             <li><a href="../../logoutMember.do">로그아웃</a></li>            
           </ul> 
         </li>
                
-         <li>    
+   		<li>    
           <span class="fa-layers fa-fw">
            <a href="../../getReceiveMessageList.do">
           <i class="far fa-envelope fa-2x"></i>
           <span class="fa-layers-counter" style="color:red;" id="noticeMessageCount"></span>
           </a>
          </span>
-         </li>         
-   </c:if>
-   </ul> 
+     	 </li>         
+	</c:if>
+	</ul> 
 </nav>               
 <hr>
   </header><!-- #header -->
@@ -281,10 +284,10 @@ $(function(){
 
 <br>  
 <div class="container">
-   <div class="row">
-      <div class="col-md-3 ">
-           <div class="list-group ">
-            <a href="../../myProfile.do" class="list-group-item list-group-item-action ">My Profile 메인</a>
+	<div class="row">
+		<div class="col-md-3 ">
+		     <div class="list-group ">
+		      <a href="../../myProfile.do" class="list-group-item list-group-item-action ">My Profile 메인</a>
               <a href="../../insertProfile.do" class="list-group-item list-group-item-action ">프로필 수정</a>
               <a href="../../ModifyPhoneMember.do" class="list-group-item list-group-item-action ">핸드폰 변경</a>
               <a href="../../ModifyPwdMember.do" class="list-group-item list-group-item-action ">비밀번호 변경</a>
@@ -299,64 +302,92 @@ $(function(){
               <a href="../../loginRecordList.do?ll_id=${member.m_id }&cPage=1" class="list-group-item list-group-item-action">로그인 기록</a>
               <a href="../../DeleteMember.do?m_id=${member.m_id }" class="list-group-item list-group-item-action">회원탈퇴</a>           
             </div>             
-      </div>
-      
+		</div>
+		
 <div class="col-md-9">
-          <div class="card">
-              <div class="card-body">
-                  <div class="row">
-                      <div class="col-md-12" style="font-size: 1.2em">
-                          <img src="views/img/messageImg.png" style="width: 60px; height: 60px;"> <strong>받은 쪽지함</strong> 
+		    <div class="card">
+		        <div class="card-body">
+		            <div class="row">
+		                <div class="col-md-12" style="font-size: 1.2em">
+		                    <img src="views/img/messageImg.png" style="width: 60px; height: 60px;"> <strong>받은 쪽지함</strong> 
                
-                     <!-- 데이타 표시 -->
-                     <form>
-                     <input type="hidden" name="receive_idx" value="${message.receive_idx }">
-                     <table class="table">                     
-                        <tr style="font-size: 0.9em;">
-                           <th width="130">제목</th>
-                           <td colspan="2">
-                              ${message.receive_title }
-                           </td>
-                        </tr>
-                        <tr style="font-size: 0.9em;">
-                           <th width="130">희망 입실일</th>
-                           <td colspan="2">
-                              ${message.receive_startdate }
-                           </td>
-                        </tr>
-                        <tr style="font-size: 0.9em;">
-                           <th width="130">희망 퇴실일</th>
-                           <td colspan="2">
-                              ${message.receive_enddate }
-                           </td>
-                        </tr>
-                        <tr style="font-size: 0.9em;">
-                           <th>보낸사람</th>
-                           <td>${message.receive_sender}</td>                     
-                           <td style="text-align: right;"><fmt:formatDate value="${message.receive_regdate }" pattern="yyyy-MM-dd HH:mm:ss"/> </td>
-                        </tr>
-                        <tr style="font-size: 0.9em;">
-                           <th>내용</th>
-                           <td style="height : 300px;" colspan="2">
-                              ${message.receive_content}
-                           </td>
-                        </tr>
-                          
-                        <tr>
-                           <td colspan="3" style="text-align: right;">
-                           <input type="button" value="목록으로" class="btn btn-outline-secondary " onclick="location.href='getReceiveMessageList.do'">
-                           <input type="button" value="쪽지 보내기" class="btn btn-outline-secondary" onclick='sendMessage("${message.receive_sender}")'>
-                           <input type="button" value="쪽지삭제" class="btn btn-outline-secondary" onclick="location.href='deleteReceiveMessage.do?receive_idx=${message.receive_idx }'"></td>
-                        </tr>
-                     </table>
-                     </form>
-                      </div>
-                  </div>
-                </div>
-                
-         </div> 
-      </div>
-   </div> 
+							<!-- 데이타 표시 -->
+							<form>
+							<input type="hidden" name="receive_idx" value="${message.receive_idx }">
+							<table class="table">							
+								<tr style="font-size: 0.9em;">
+									<th width="130">제목</th>
+									<td colspan="3">
+										${message.receive_title }
+									</td>
+								</tr>								
+								<tr style="font-size: 0.9em;">
+									<th>보낸사람</th>  
+									<td>${message.receive_sender}</td>							
+									<td style="text-align: right;"><fmt:formatDate value="${message.receive_regdate }" pattern="yyyy-MM-dd HH:mm:ss"/> </td>
+								</tr>
+								<tr style="font-size: 0.9em;">  
+									<th>희망 일자</th>								
+									<td colspan="3"><fmt:formatDate value="${message.receive_startdate }" pattern="yyyy-MM-dd"/> &emsp;~&emsp; <fmt:formatDate value="${message.receive_enddate }" pattern="yyyy-MM-dd"/></td>
+								</tr>
+
+								<tr style="font-size: 0.9em;">
+									<th>내용</th>
+									<td style="height : 250px;" colspan="2">
+										${message.receive_content}
+									</td>
+								</tr>	
+								<c:if test="${message.receive_accept eq 0 }">
+								<tr style="font-size: 0.9em;">
+									<th width="130">수용여부</th>
+									<td colspan="2">
+									 <input type="button" value="수용합니다." class="btn btn-outline-secondary " onclick="location.href='acceptOffer.do?receive_idx=${message.receive_idx}'">
+									 <input type="button" value="거절합니다." class="btn btn-outline-secondary " onclick="location.href='rejectOffer.do?receive_idx=${message.receive_idx}'">
+									</td>
+								</tr>
+								</c:if>
+								
+								<c:if test="${message.receive_accept eq 1 }">
+								<tr style="font-size: 0.9em;">
+									<th width="130">수용여부</th>
+									<td colspan="2">
+										<p>거절한 오퍼입니다.</p>
+									</td>
+								</tr>
+								</c:if>
+								
+								<c:if test="${message.receive_accept eq 2 }">
+								<tr style="font-size: 0.9em;">
+									<th width="130">수용여부</th>
+									<td colspan="2">
+										<p>성사된 오퍼입니다.</p>
+									</td>
+								</tr>
+								</c:if> 
+								  
+								<tr>
+									<td colspan="3" style="text-align: right;">
+									<input type="button" value="목록으로" class="btn btn-outline-secondary " onclick="location.href='getReceiveMessageList.do'">
+									<input type="button" value="쪽지 보내기" class="btn btn-outline-secondary" onclick='sendMessage("${message.receive_sender}")'>
+									<input type="button" value="쪽지삭제" class="btn btn-outline-secondary" onclick="location.href='deleteReceiveMessage.do?receive_idx=${message.receive_idx }'"></td>
+								</tr>
+							</table>
+							</form>
+		                </div>
+		            </div>
+	             </div>
+	             
+	             
+	             
+	             
+	             
+	             
+
+					
+							
+			</div> 
+		</div>
+	</div> 
 </div><%@include file="/views/footer.jsp"%>
 </body>
 </html>

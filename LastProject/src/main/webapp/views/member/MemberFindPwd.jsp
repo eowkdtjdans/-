@@ -9,7 +9,7 @@
 	<meta content="" name="keywords">
 	<meta content="" name="description">
 	<meta name="viewport" content="width=device-width,initial-scale=1">
-	<title>비밀번호 찾기</title>
+  <title>Gukbong WorlD</title>
 	<link rel="stylesheet" type="text/css" href="views/bootstrapModal/css/bootstrap.min.css">
 	
 	
@@ -195,26 +195,26 @@
 			<div class="col-md-4"></div> 	
 			<div class="col-md-4">		
 
-				<h4 style="text-align: center;">비밀번호 찾기</h4>
+				<h4 style="text-align: center;"><strong>비밀번호 찾기</strong></h4>
 				<form method="POST" onsubmit="return false;"class="my-login-validation" id="form">
 					<div class="form-group">
-						<label for="m_email">아이디</label>
+						<label for="m_email"><strong>아이디</strong></label>
 						<input id="m_id" onkeypress="enterkey()"type="email" class="form-control" name="m_id" placeholder="아이디를 입력하세요." required autofocus>
 					</div>
 					
 					<div class="form-group">
-						<label for="m_name">성함</label>
+						<label for="m_name"><strong>성함</strong></label>
 						<input id="m_name" onkeypress="enterkey()"type="text" class="form-control" name="m_name" placeholder="이름을 입력하세요." required autofocus>
 					</div>
 					
 					<div class="form-group">
-						<label for="m_phone">전화번호</label>
+						<label for="m_phone"><strong>전화번호</strong></label>
 						<input id="m_phone" onkeypress="enterkey()"type="text" class="form-control" name="m_phone" placeholder="전화번호를 입력하세요." required autofocus>
 					</div>
 
 					<div class="form-group m-0">
 						<button type="submit" id="findBtn"class="btn btn-outline-secondary btn-block" onclick="findPwd(this.form)">
-							비밀번호 찾기
+							<strong>비밀번호 찾기</strong>
 						</button>
 					</div>										
 				</form>					

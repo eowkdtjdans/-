@@ -324,38 +324,44 @@ select {
    <div class="col-md-3"></div> 
    <div class="col-md-6">
       <img src="views/img/messageImg.png" style="width: 60px; height: 60px;"> <strong style="font-size: 1.2em;"> 쪽지 보내기</strong>   
+      
       <form method="POST" class="my-login-validation" id="form">
                         <input id="m_id" type="hidden" class="form-control" name="m_id" value="${member.m_id }">   
                         <input id="message_sender" name="message_sender" type="hidden" class="form-control" value="${member.m_id }">   
                         <input id="message_receiver" name="message_receiver" type="hidden" class="form-control" value="${message_receiver }">   
                         
                        
-                        
-                        <div class="form-group">
-                           <label for="message_title" style="text-align : center;">제목</label>
-                           <textarea rows="1" cols="10" id="message_title" name="message_title" class="form-control"></textarea>
-                        </div>
-                        
-                        <div class="form-group">
-                           <label for="message_content" style="text-align : center">내용</label>
-                           <textarea rows="5" cols="10" id="message_content" name="message_content"  class="form-control"></textarea>
-                        </div>
-                        
-                          <div class="form-group">
-                                <label for="h_startdate" class="col-4 col-form-label">입실/퇴실 날짜</label> 
-                              <div class="col-8">
+                       <div class="form-group">
+                                <label for="h_startdate"><strong>입실/퇴실 날짜</strong></label> 
+                              <div class="">
                               	 <div class="t-datepicker">
 			                          <div class="t-check-in"></div>
 			                          <div class="t-check-out"></div>
 	                        	</div>
+	                        	<br>
                        		</div>
                                 <input id="h_startdate" type="hidden" class="form-control" name="h_startdate" required data-eye> 
                                 <input id="h_enddate" type="hidden" class="form-control" name="h_enddate" required data-eye> 
                             </div>
+                       
+                       
+                       
+                        <br>
+                        <div class="form-group">
+                           <label for="message_title" style="text-align : center;"><strong>제목</strong></label>
+                           <textarea rows="1" cols="10" id="message_title" name="message_title" class="form-control"></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                           <label for="message_content" style="text-align : center"><strong>내용</strong></label>
+                           <textarea rows="5" cols="10" id="message_content" name="message_content"  class="form-control"></textarea>
+                        </div>
+                        
+                          
                         
                           <br />
                         <div class="form-group m-0">
-                           <button type="button" class="btn btn-secondary btn-block" onclick="insertMessage(this.form)">
+                           <button type="button" class="btn btn-outline-secondary btn-block" onclick="insertMessage(this.form)">
                               쪽지 보내기
                            </button>
                         </div>

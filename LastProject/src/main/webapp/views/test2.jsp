@@ -1,77 +1,67 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+ <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c"   uri="http://java.sun.com/jsp/jstl/core" %>
-
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html>
-<title>ABU TALHA</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<style>
-.card {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  max-width: 300px;
-  margin: auto;
-  text-align: center;
-  font-family: arial;
-}
-
-.title {
-  color: grey;
-  font-size: 18px;
-}
-
-.button {
-  border: none;
-  outline: 0;
-  display: inline-block;
-  padding: 8px;
-  color: white;
-  background-color: #3498DB;
-  text-align: center;
-  cursor: pointer;
-  width: 100%;
-  font-size: 18px;
-}
-
-a {
-  text-decoration: none;
-  font-size: 22px;
-  color: black;
-}
-
-button:hover, a:hover {
-  opacity: 0.7;
-}
-</style>
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-</head>
-
-<body>
-<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="myModal">
-  Launch demo modal
-</button>
-
-
-<!-- 모달-->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">        
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">모달 타이틀</h4>
-      </div>
-      <div class="modal-body">
-         여기가 모달의 바디 부분입니다. 
-         이 부분에 이제 원하시는 엘리먼트를 추가시키면 됩니다.
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-</body>
-</html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>bootstrap4</title>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-lite.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-lite.js"></script>
+  
+  
+  
+  </head>
+  <body>
+  <div class="container">  
+   <div class="row">  
+         <div class="col-md-4"></div> 
+         <div class="col-md-4">
+            <h4 style="text-align : center;">로그인</h4>
+            <form onsubmit="return false"method="POST" id="form"  >
+               <div class="form-group">
+                  <label for="localAdvice_title">제목</label>
+                  <input type="text" class="form-control" id="l_subject"name="l_subject">
+               </div>
+               
+               <div class="form-group">
+                  <label></label>
+               	<input type="text"  id="l_content"/>
+               </div>
+               
+           
+               	
+               <div class="form-group">
+                       <input type="button" value="저장" class="btn btn-outline-secondary"
+                     onclick="sendData(this.form)">               
+                  <input type="reset" value="다시작성" class="btn btn-outline-secondary">
+                  
+                  <input type="hidden" name="m_id" value="${member.m_id }">
+                  <input type="hidden" name="searchCondition" value="${searchCondition }">
+                  <input type="hidden" name="searchKeyword" value="${key }" >
+                  <input type="hidden" name="m_address" value="${member.m_address}">
+                  <input type="hidden" name="lat" value="${firstLat}">
+                  <input type="hidden" name="lng" value="${firstLng}">
+               </div>
+            </form>
+    </div></div></div>
+ 
+        <script>
+               	function sendData(frm) {
+               		alert(frm.l_subject.value);
+               		alert(frm.l_content.value);
+               		frm.action = "../insertLocalAdvice.do";
+               		frm.submit();
+               	}
+               </script>
+    
+    <script>
+      $('#l_content').summernote({
+        placeholder: 'Hello stand alone ui',
+        tabsize: 2,
+        height: 100
+      });
+    </script>
+  </body>
+  </html>

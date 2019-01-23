@@ -548,7 +548,7 @@ function readURL(input, id) {
 <script src="/views/admin/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="/views/admin/dist/js/demo.js"></script>
-
+ 
 <script src="/views/datepicker/public/theme/js/t-datepicker.min.js"></script>
 </body>
 </html>
