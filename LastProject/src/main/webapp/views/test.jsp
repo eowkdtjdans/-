@@ -40,6 +40,7 @@
 	<a href="/kakaoLogin.do">카카오</a>
 	<a href="/NaverRegister.do">네이버회원가입</a>
 	<a href="/NaverRegister.do">네이버회원가입</a>
+	<a href="/views/test2.jsp">테스트</a>
 	<p>세션 : [${m_id}] 앙기무리</p>
 	
 </body>
