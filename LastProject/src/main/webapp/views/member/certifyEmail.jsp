@@ -9,7 +9,7 @@
    <meta content="" name="keywords">
    <meta content="" name="description">
    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-   <title>이메일 인증</title>
+   <title>Gukbong WorlD</title>
    <link rel="stylesheet" type="text/css" href="views/bootstrapModal/css/bootstrap.min.css">
    
     <%@include file="/views/header.jsp"%>
@@ -203,14 +203,14 @@ select {
 <nav id="nav-menu-container">
 	<ul class="nav-menu">
 	
-	<c:if test="${empty member.m_id}">
+	<c:if test="${profile.p_route eq null}">
 		<li><a href="../../loginMember.do" >로그인</a></li>
 		<li><a  href="../../insertMember.do" >회원가입</a></li>
 		<li><a href="../../findIdMember.do">아이디찾기</a></li >
 	    <li><a href="../../findPwdMember.do">비밀번호찾기</a></li>
 	</c:if>	
 	
-	<c:if test="${!empty member.m_id}">
+	<c:if test="${!empty profile.p_route}">
 		<li>
 			<div>
 			<strong>
@@ -265,20 +265,20 @@ select {
          <div class="row">
              <div class="col-md-4"></div>
              	<div class="col-md-4">   
-                     <h4 style="text-align: center;">이메일 인증을 완료해주세요!</h4><br>
+                     <h4 style="text-align: center;"><strong>이메일 인증을 완료해주세요!</strong></h4><br>
                      <form method="POST" onsubmit="return false;" id="findId">
                     
 							<input id="m_id"  value="${member.m_id }" type="hidden" class="form-control" name="m_id">
                         
                         <div class="form-group" >
-                           <label for="certifyCode">인증번호</label>
+                           <label for="certifyCode"><strong>인증번호</strong></label>
                            <input id="certifyCode" onkeypress="enterkey()"type="text" class="form-control" name="certifyCode" placeholder="인증번호를 입력하세요." required autofocus>
                         </div>
                         
 
                         <div class="form-group m-0">
                            <button type="submit" id="findBtn" class="btn btn-outline-secondary btn-block" onclick="findId(this.form)">
-                             	확인
+                             	<strong>확인</strong>
                            </button>
                         </div>
                      </form>
