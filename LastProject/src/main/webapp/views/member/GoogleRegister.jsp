@@ -29,7 +29,7 @@
 
 <script>
 var phoneck= 0;
-
+var pwdck= 0;
     function phoneCheck(frm) {
       var phonecheck = 0;
       var m_phone = $('#m_phone').val();
@@ -82,6 +82,9 @@ function register(frm) {
         if(phoneck==0) {
                alert("핸드폰 중복체크를 해주세요");
                return false;
+        } if(pwdck==0) {
+        	alert("비밀번호가 일치하지 않습니다");
+        	return false;
         } else if (frm.m_pwd.value == "" || frm.m_pwd.value == null) {
          alert("비밀번호를 기입하세요.");
          frm.m_pwd.value = ""; 
@@ -110,6 +113,26 @@ function register(frm) {
     }
 
 };
+
+function pwdCheck(frm) {
+	var pwd = frm.m_pwd.value;
+	var pwd2 = frm.m_pwd2.value;
+	if (frm.m_pwd.value != frm.m_pwd2.value) {
+		$("#pwdCheckInput").html("<p style='color:red;'>비밀번호 불일치</p>");
+		pwdck = 1;
+		return false;
+		
+	} else if (frm.m_pwd.value.length<8 || frm.m_pwd.value.length>16 || frm.m_pwd2.value.length<8 || frm.m_pwd2.value.length>16) {
+        alert("비밀번호를 8~16자리로 설정해주세요.");
+        frm.m_pwd.value = ""; 
+        frm.m_pwd2.value = ""; 
+      frm.m_pwd.focus();
+      pwdCheck();
+   } else {
+		$("#pwdCheckInput").html("<p style='color:green;'>비밀번호 일치</p>");
+	}
+};
+
 </script>   
 <script>   
 var placeSearch, autocomplete;
@@ -390,44 +413,49 @@ select {
    <div class="row">
    <div class="col-md-3"></div> 
    <div class="col-md-6">
-      <h4 style="text-align : center;">회원가입</h4>      
+      <h4 style="text-align : center;"><strong>회원가입</strong></h4>      
       <form method="POST" id="form">
          <div class="form-group">
-                           <label for="text">아이디</label>
+                           <label for="text"><strong>아이디</strong></label>
                            <input readonly="readonly" value="${googleProfileEmail }" id="m_id" type="text" class="form-control" name="m_id">
                         </div>
 
                         <div class="form-group">
-                           <label for="password">비밀번호</label>
-                           <input id="m_pwd" type="password" class="form-control" name="m_pwd">
+                           <label for="password"><strong>비밀번호</strong></label>
+                           <input placeholder="비밀번호를 8~16자리로 설정해주세요." id="m_pwd" type="password" class="form-control" name="m_pwd">
                         </div>
-                  
+                  		
+                  		  <div class="form-group">
+				            <label for="password" id="pwdCheck2"><strong>비밀번호 확인</strong></label>
+				            <input placeholder="비밀번호를 8~16자리로 설정해주세요." id="m_pwd2" type="password" class="form-control" name="m_pwd2" onkeyup="pwdCheck(this.form)" placeholder="비밀번호를 8~16자리로 설정해주세요.">
+				         </div>
+                  		
                         <div class="form-group">
-                           <label for="name">성함</label>
+                           <label for="name"><strong>성함</strong></label>
                            <input id="m_name" value="${googleRealName }" type="text" class="form-control" name="m_name">
                         </div>
                   
                         <div class="form-group">
-                           <label for="text">핸드폰</label>
-                           <input id="m_phone" type="text" class="form-control" name="m_phone" required data-eye>
+                           <label for="text"><strong>핸드폰</strong></label>
+                           <input placeholder="ex) 01055754786" id="m_phone" type="text" class="form-control" name="m_phone" required data-eye>
                         </div>
                         
                         <div class="form-group m-0"> 
                            <button type="button" class="btn btn-default btn-block" onclick="phoneCheck(this.form)" >
-                              핸드폰 중복확인
+                           		   <strong>핸드폰 중복확인</strong>
                            </button>
                         </div>
                          <div class="form-group">
-                           <label for="text">성별</label>
+                           <label for="text"><strong>성별</strong></label>
                   		<c:if test="${googleProfileGender eq null}">
 							   <div class="form-group" style="text-algin : center; margin : 0 auto">
                               <div class="btn-group" data-toggle="buttons">
                                  <label class="btn btn-default active"> 
-                                    <input type="radio" name="m_gender" autocomplete="off" value="남자" checked/>남자
+                                    <input type="radio" name="m_gender" autocomplete="off" value="남자" checked/><strong>남자</strong>
                                  </label>
                                  
                                  <label class="btn btn-default">
-                                    <input type="radio" name="m_gender" autocomplete="off" value="여자"/>여자
+                                    <input type="radio" name="m_gender" autocomplete="off" value="여자"/><strong>여자</strong>
                                  </label>
                               </div>
                            </div>	                  			
@@ -438,7 +466,7 @@ select {
                         </div>
          
          <c:set var="yearStart" value="1969"/>
-         <label for="birthday">생년월일</label>
+         <label for="birthday"><strong>생년월일</strong></label>
          <select id="year" onchange="yearChange()">
          <c:forEach begin="1969" end="1999" step="1">
          <c:set var="yearStart" value="${yearStart + 1}"/>
@@ -457,7 +485,7 @@ select {
          </div>
          
          <div id="locationField" class="form-group">
-            <label for="address">주소</label>
+            <label for="address"><strong>주소</strong></label>
             <input id="autocompleteReg" type="text" class="form-control" name="m_address">
             <input class="field" id="latReg" type="hidden" class="form-control" name="lat"/>
             <input class="field" id="lngReg" type="hidden" class="form-control" name="lng"/>
@@ -469,7 +497,7 @@ select {
             <button type="button" class="btn btn-outline-secondary btn-block" onclick="register(this.form)">회원가입</button>
          </div>
          <div class="mt-4 text-center">
-            사이트 회원이십니까? <a href="../../loginMember.do">로그인</a>
+            사이트 회원이십니까? <a href="../../loginMember.do"><strong>로그인</strong></a>
          </div>
       </form>
    </div>
