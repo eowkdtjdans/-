@@ -87,7 +87,7 @@ var pwdck= 0;
             frm.m_pwd.value = ""; 
             frm.m_pwd2.value = ""; 
           frm.m_pwd.focus();
-          return false;
+          pwdCheck();
        } else {
     		$("#pwdCheckInput").html("<p style='color:green;'>비밀번호 일치</p>");
     	}

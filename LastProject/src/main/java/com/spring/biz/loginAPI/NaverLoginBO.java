@@ -23,7 +23,7 @@ public class NaverLoginBO {
     //state: 애플리케이션이 생성한 상태 토큰
     private final static String CLIENT_ID = "dAJzGcQlxlDLAEiCFuaH";       //네이버API Client ID
     private final static String CLIENT_SECRET = "w7ygokBOhG";                      
-    private final static String REDIRECT_URI = "http://localhost:8080/naverCallback.do";
+    private final static String REDIRECT_URI = "http://203.236.298.185:8080/naverCallback.do";
     private final static String SESSION_STATE = "oauth_state";
     /* 프로필 조회 API URL */
     private final static String PROFILE_API_URL = "https://openapi.naver.com/v1/nid/me";/// Api 종류 기본 !!
@@ -34,7 +34,7 @@ public class NaverLoginBO {
         /* 세션 유효성 검증을 위하여 난수를 생성 */
         String state = generateRandomString();
         /* 생성한 난수 값을 session에 저장 */
-        setSession(session,state);        
+        setSession(session,state);         
 
         /* Scribe에서 제공하는 인증 URL 생성 기능을 이용하여 네아로 인증 URL 생성 */
         OAuth20Service oauthService = new ServiceBuilder()                                                   

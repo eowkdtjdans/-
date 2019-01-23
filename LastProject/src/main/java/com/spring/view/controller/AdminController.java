@@ -23,8 +23,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.spring.biz.admin.AdminCntVO;
 import com.spring.biz.admin.AdminService;
+import com.spring.biz.admin.BarChartJSVO;
 import com.spring.biz.admin.ChartJSVO;
 import com.spring.biz.admin.LVChartVO;
+import com.spring.biz.admin.LogVisitVO;
 import com.spring.biz.admin.UserAdminCommentVO;
 import com.spring.biz.admin.UserAdminPostVO;
 import com.spring.biz.admin.UserAdminViewVO;
@@ -48,7 +50,7 @@ import com.spring.biz.profileImage.ProfileImageService;
 import com.spring.biz.profileImage.ProfileImageVO;
 
 @Controller
-@SessionAttributes({"userAdminList", "userAdminViewVO", "userAdminPostList", "userAdminCommentList", "userAdminImageSelect", "eventAdminList", "adminCnt", "userAdminImageSelect", "eventVO", "eventImageList"})
+@SessionAttributes({"userAdminList", "chartVisitList", "userAdminViewVO", "userAdminPostList", "userAdminCommentList", "userAdminImageSelect", "eventAdminList", "adminCnt", "userAdminImageSelect", "eventVO", "eventImageList"})
 public class AdminController {
 	@Autowired
 	private AdminService adminService;
@@ -769,11 +771,18 @@ public class AdminController {
 	}
 	@RequestMapping(value="/registChart.do", method=RequestMethod.POST)
 	@ResponseBody
-	public List<ChartJSVO> registChart() {
-		List<ChartJSVO> list = null;
+	public List<BarChartJSVO> registChart() {
+		List<BarChartJSVO> list = null;
 		
 		list = adminService.registChart();
 		
 		return list;
+	}
+	
+	@RequestMapping(value="/chartVisit.do")
+	public String chartVisit(HttpSession session) {
+		List<LogVisitVO> chartVisitList = adminService.chartVisit();
+		session.setAttribute("chartVisitList", chartVisitList);
+		return "redirect:/views/admin/pages/charts/chartVisit.jsp";
 	}
 }
