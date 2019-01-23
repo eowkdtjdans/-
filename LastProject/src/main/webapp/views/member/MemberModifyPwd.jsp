@@ -49,7 +49,10 @@
 
 							return false;
 						} else {
-					    	alert("변경할 비밀번호가 일치하지 않습니다");				   
+					    	alert("변경할 비밀번호가 일치하지 않습니다");	
+					    	 frm.pwdModify.value = "";
+		   					 frm.pwdModify2.value = "";
+		   					 frm.pwdModify.focus();
 							return false;
 						}
 				   }

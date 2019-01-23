@@ -148,13 +148,23 @@ select {
 					   				alert("변경하실 핸드폰번호가 중복됩니다.");
 					   				frm.m_phone.value = "";
 					   				frm.phoneModify.value = "";
+					   				frm.phoneModify2.value = "";
 					   				frm.m_phone.focus();
 					   				return false;
 					   			} else {
 					   			 if(confirm("핸드폰번호를 변경하시겠습니까?")){
+					   				 if(frm.phoneModify.value == frm.phoneModify2.value) {
 					   			  alert("변경이 완료되었습니다.");
 									frm.action = "../../ModifyPhoneMember.do";
 								    frm.submit();    
+					   				 return false;
+					   				 } else {
+					   					 alert("변경할 핸드폰 번호가 일치하지 않습니다.");
+					   					 frm.phoneModify.value = "";
+					   					 frm.phoneModify2.value = "";
+					   					 frm.phoneModify.focus();
+					   					 return false;
+					   				 }
 					   			}
 					   			}
 					   		}
@@ -389,6 +399,12 @@ $(function(){
                                <label for="phoneModify" class="col-3 col-form-label"><strong>변경할 핸드폰 번호</strong></label>
                                 <div class="col-9">
                                   	<input id="phoneModify" name="phoneModify" type="text" class="form-control" onkeypress="enterkey()">
+                                </div>
+                              </div>
+                              <div class="form-group row">
+                               <label for="phoneModify2" class="col-3 col-form-label"><strong>변경할 핸드폰 번호 확인</strong></label>
+                                <div class="col-9">
+                                  	<input id="phoneModify2" name="phoneModify2" type="text" class="form-control" onkeypress="enterkey()">
                                 </div>
                               </div>
                               
