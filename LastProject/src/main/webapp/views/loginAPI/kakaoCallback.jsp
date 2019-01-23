@@ -28,7 +28,6 @@
    <script src="views/datepicker/public/theme/js/t-datepicker.min.js"></script>
 
 <script>
-var idck = 0;
 var phoneck= 0;
 var pwdck= 0;
 function pwdCheck(frm) {
@@ -90,45 +89,6 @@ function pwdCheck(frm) {
     };
 /* *******************************************************************************
 *************************************************************************************/ 
- function idCheck(frm) {
-    var idcheck = 0;
-    var m_id = $('#m_id').val();
-    var email = document.getElementById("m_id").value;
-    var emailCheck = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
-   $.ajax({
-      async: true,
-      type : 'POST',
-      dataType : "json",
-      data : m_id,
-       contentType: "application/json; charset=UTF-8",  
-      url : '../../checkMemberJson.do',
-      
-         success : function(data) {
-            console.log("data.cnt : " + data.cnt);
-            if(emailCheck.test(email)==false || email == ""){
-               alert("이메일형식이 올바르지 않습니다.");
-                $("#m_id").focus();
-                    $("#m_id").val("");
-               return false;
-            } else if (data.cnt >= 1) {
-                   alert("아이디가 존재합니다. 다른 아이디를 입력해주세요.");
-                   $("#m_id").focus();
-                   $("#m_id").val("");
-                   idck = 0;
-                   return false;
-                } else if (data.cnt == 0) {
-                  alert("사용가능한 아이디입니다.");
-                  //아이디가 중복하지 않으면  idck = 1 
-                  idck = 1;
-                 return false;
-             }
-           },
-           error : function(error) {
-               alert("아이디를 입력하세요");
-           
-           }
-       });
-}; 
 /* *******************************************************************************
 *************************************************************************************/  
 
@@ -137,10 +97,6 @@ function register(frm) {
    var name = frm.m_name.value;
 
    if(confirm("회원가입을 하시겠습니까?")){
-      if(idck==0){
-            alert('아이디 중복체크를 해주세요');
-            return false;
-        } if(phoneck==0) {
                alert("핸드폰 중복체크를 해주세요");
                return false;
         } if(pwdck==0) {
@@ -175,7 +131,6 @@ function register(frm) {
         frm.action = "../../insertMember.do"; //로그인 작업 처리
       frm.submit(); 
         }
-    }
 
 };
 </script>   
@@ -478,14 +433,10 @@ $(document).ready(function() {
             <label for="text"><strong>아이디</strong></label>
             <input id="m_id" type="text" class="form-control" name="m_id" readonly="readonly">
          </div>
-         
-         <div class="form-group">
-            <button type="button" class="btn btn-outline-secondary btn-block" onclick="idCheck(this.form)" ><strong>아이디 중복확인</strong></button>
-         </div>
                   
          <div class="form-group">
             <label for="password"><strong>비밀번호</strong></label>
-            <input id="m_pwd" type="password" class="form-control" name="m_pwd">
+            <input id="m_pwd" type="password" class="form-control" name="m_pwd" placeholder="비밀번호를 8~16자리로 설정해주세요.">
          </div>
          
          <div class="form-group">
@@ -500,7 +451,7 @@ $(document).ready(function() {
          
          <div class="form-group">
             <label for="text"><strong>핸드폰</strong></label>
-            <input id="m_phone" type="text" class="form-control" name="m_phone" required data-eye>
+            <input placeholder="ex) 01055754786" id="m_phone" type="text" class="form-control" name="m_phone" required data-eye>
          </div>
          
          <div class="form-group"> 
