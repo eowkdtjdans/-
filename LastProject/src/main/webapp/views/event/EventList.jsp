@@ -409,7 +409,10 @@ var receive_receiver =$("#receive_receiver").val();
 	
 		<li class="menu-has-children"><img src="${getProfileImageRoute.p_route }" style="width: 45px; height: 45px;" class="rounded-circle" id="navProfileImg"></a>
           <ul>                                      
-            <li><a  href="../../myProfile.do" >마이 프로필</a></li> 
+            <li><a  href="../../myProfile.do" >마이 프로필</a></li>
+            <c:if test="${member.m_id eq 'admin' }">
+            	<li><a href="/views/admin/testAdmin.jsp">관리자 페이지</a></li>
+            </c:if> 
             <li><a href="../../logoutMember.do">로그아웃</a></li>            
           </ul> 
         </li>
