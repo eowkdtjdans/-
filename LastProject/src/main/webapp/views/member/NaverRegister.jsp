@@ -64,7 +64,6 @@ function pwdCheck(frm) {
          url : '../../checkPhoneJson.do',
          
             success : function(data) {
-              console.log("data.cnt : " + data.cnt);
                if(phoneCheck.test(phone)==false || phone == ""){
                   alert("핸드폰번호를 제대로 기입하세요.");
                    $("#m_phone").focus();
