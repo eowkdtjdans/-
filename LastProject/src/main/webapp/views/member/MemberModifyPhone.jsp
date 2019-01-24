@@ -389,6 +389,7 @@ $(function(){
 		                <div class="col-md-12">
 		                    <form onsubmit="return false;" method="POST" class="my-login-validation" id="ModifyPhoneForm">
 		                    	<input id="m_id" type="hidden" class="form-control" name="m_id" value="${member.m_id }">
+		                    	<input id="m_name" type="hidden" class="form-control" name="m_name" value="${member.m_name }">
                               <div class="form-group row">
                                 <label for="m_phone" class="col-3 col-form-label"><strong>기존 핸드폰 번호</strong></label> 
                                 <div class="col-9">
