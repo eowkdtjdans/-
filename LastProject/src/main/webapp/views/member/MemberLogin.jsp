@@ -246,7 +246,7 @@ a{
 				</a>
 				
 				<a href="/googleLogin.do">
-				<img src="/views/img/icon/googleLogo.png" alt=""  style=" width:230px; height:50px;"/></a>
+				<img src="/views/img/icon/googleLogo.png" alt=""  style=" width:222px; height:50px;"/></a>
 				
             </div>
             
