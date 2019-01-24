@@ -44,6 +44,12 @@
 <script src="https://maps.googleapis.com/maps/api/js?v=3&sensor=false&libraries=places&callback=initAutocomplete&key=AIzaSyAfB2qQnvAuU2YFFqi8hrPWfjJNyxl5kWc" async defer></script>
 
 
+<!-- 나눔고딕코딩 폰트-->
+  <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic+Coding:400,700&amp;subset=korean" rel="stylesheet">
+
+
+
+
 <style>
 body {
    padding-top: 75px;
@@ -199,6 +205,12 @@ table .noline {
       -webkit-line-clamp: 7;
       -webkit-box-orient: vertical;
 	}
+
+#e_content{
+font-family: 'Nanum Gothic Coding', monospace;
+} 
+
+
 
 
 </style>
