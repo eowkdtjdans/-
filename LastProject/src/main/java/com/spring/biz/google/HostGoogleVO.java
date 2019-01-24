@@ -10,7 +10,7 @@ public class HostGoogleVO {
 	
 	private String cont;
 	
-	private String icon = "/views/img/markerImg-blue.png";
+	private String icon = "/views/img/markerImg-event.png";
 	
 	public String getM_id() {
 		return m_id;

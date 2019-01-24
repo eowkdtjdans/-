@@ -314,7 +314,7 @@ $(function(){
                               <img class="profile-user-img img-fluid img-circle"
                                  src="${userAdminViewVO.p_route}"
                                  alt="User profile picture"
-                                 onerror='this.src="/views/img/people/fuckyou.jpg"' style="width:300px; height: 100px;">
+                                 onerror='this.src="/views/img/people/fuckyou.jpg"' style="width:300px; height: 200px;">
                            </div>
 
                            <h3 class="profile-username text-center">${userAdminViewVO.m_id}</h3>
