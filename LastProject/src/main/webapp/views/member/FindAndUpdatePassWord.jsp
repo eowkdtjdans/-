@@ -217,7 +217,7 @@
                     
                       <div class="form-group" >
                        <label for="m_pwd">변경할 비밀번호</label>
-                       <input id="m_pwd" onkeypress="enterkey()"type="password" class="form-control" name="m_pwd" placeholder="비밀번호를 입력하세요." required autofocus>
+                       <input id="m_pwd" onkeypress="enterkey()"type="password" class="form-control" name="m_pwd" placeholder="비밀번호를 8~16자리로 설정해주세요." required autofocus>
                     </div>
                     
                     
