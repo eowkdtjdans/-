@@ -48,7 +48,6 @@ var pwdck= 0;
          url : '../../checkPhoneJson.do',
          
             success : function(data) {
-              console.log("data.cnt : " + data.cnt);
                if(phoneCheck.test(phone)==false || phone == ""){
                   alert("핸드폰번호를 제대로 기입하세요.");
                    $("#m_phone").focus();
@@ -108,7 +107,6 @@ var pwdck= 0;
       url : '../../checkMemberJson.do',
       
          success : function(data) {
-            console.log("data.cnt : " + data.cnt);
             if(emailCheck.test(email)==false || email == ""){
                alert("이메일형식이 올바르지 않습니다.");
                 $("#m_id").focus();
