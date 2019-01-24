@@ -140,8 +140,8 @@
    }
    
    #inTable tr td {
-		border: none;
-	}
+      border: none;
+   }
    
    #cardContent {
     display: inline-block;
@@ -158,7 +158,7 @@
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
-	}
+   }
 </style>
 <script src="https://maps.googleapis.com/maps/api/js?v=3&sensor=false&libraries=places&callback=initAutocomplete&key=AIzaSyAfB2qQnvAuU2YFFqi8hrPWfjJNyxl5kWc" async defer></script>
 <SCRIPT LANGUAGE="JavaScript">
@@ -404,10 +404,10 @@ $(function(){
    })
 
 $(document).on("click", "#insertHostBtn", function(){
-	if("${member.m_id}" == null || "${member.m_id}" == "") {
-		alert("로그인이 필요한 서비스입니다.");
-		location.href="/loginMember.do";
-	}
+   if("${member.m_id}" == null || "${member.m_id}" == "") {
+      alert("로그인이 필요한 서비스입니다.");
+      location.href="/loginMember.do";
+   }
 });
 
 function noticeMessage() {
@@ -492,7 +492,7 @@ var receive_receiver =$("#receive_receiver").val();
        <li><a href="../../findPwdMember.do">비밀번호찾기</a></li>
    </c:if>   
    
-	<c:if test="${!empty profile.p_route}">
+   <c:if test="${!empty profile.p_route}">
       <li>
          <div>
          <strong>
@@ -537,7 +537,7 @@ var receive_receiver =$("#receive_receiver").val();
     <!-- <img src="views/img/star.jpg" style="width: 40px; height: 40px;"><span style="font-size: 1.2em; font-weight: bold;">현지정보 문의 게시판</span> -->  
 <section>
       <div class="container"> 
-      	 <br>           
+          <br>           
          <img src="views/img/star.jpg" style="width: 40px; height: 40px;"><span style="font-size: 1.2em; font-weight: bold;"><strong>호스트 검색 게시판</strong></span>
       
          <h6><strong>요청하신 키워드에 관한 게시글 수 : ${countHost }</strong></h6>
@@ -562,7 +562,7 @@ var receive_receiver =$("#receive_receiver").val();
                   <h6 class="card-title" style="font-size : 0.8em;"><strong>${list.m_id}</strong></h6>
                   <hr />
                   <div id="cardContent">
-                  	<h6><strong>${list.m_address}</strong></h6>
+                     <h6><strong>${list.m_address}</strong></h6>
                   </div>
                   <hr />
                   <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#myModal${list.m_id }"><strong>호스트 상세보기</strong></button>
@@ -655,37 +655,37 @@ var receive_receiver =$("#receive_receiver").val();
            <!-- Modal body -->
            <div class="modal-body" style="padding-top: 0px;">
              <table class="table" id="inTable">
-          	   <tr class="text-center">
-          		  <td rowspan="8" width="40%;"><img class="rounded" style="width: 200px; height: 200px; margin-top: 50px;" src="${list.p_route}"></td>
-          	   </tr>
-          	   <tr class="text-center">
-          		  <td width="20%;" style="vertical-align: middle;"><strong>최대 방문인원</strong></td>
-          		  <td width="80%;">${list.h_maximumguest}명</td>
-          	   </tr>
-          	   <tr class="text-center">
-          		  <td style="vertical-align: middle;"><strong>선호성별</strong></td>
-          		  <td>${list.h_gender}</td>
-          	   </tr>
-          	   <tr class="text-center">
-          		  <td style="vertical-align: middle;"><strong>흡연여부</strong></td>
-          		  <td>${list.h_smoke}</td>
-          	   </tr>
-          	   <tr class="text-center">
-          		  <td style="vertical-align: middle;"><strong>반려동물</strong></td>
-          		  <td>${list.h_haspet}</td>
-          	   </tr>
-          	   <tr class="text-center">
-          		  <td style="vertical-align: middle;"><strong>자녀여부</strong></td>
-          		  <td>${list.h_haschild}</td>
-          	   </tr>
-          	   <tr class="text-center">
-          		  <td style="vertical-align: middle;"><strong>입실날짜</strong></td>
-          		  <td>${list.h_startdate}</td>
-          	   </tr>
-          	   <tr class="text-center">
-          		  <td style="vertical-align: middle;"><strong>퇴실날짜</strong></td>
-          		  <td>${list.h_enddate}</td>
-          	   </tr>
+                <tr class="text-center">
+                  <td rowspan="8" width="40%;"><img class="rounded" style="width: 200px; height: 200px; margin-top: 50px;" src="${list.p_route}"></td>
+                </tr>
+                <tr class="text-center">
+                  <td width="20%;" style="vertical-align: middle;"><strong>최대 방문인원</strong></td>
+                  <td width="80%;">${list.h_maximumguest}명</td>
+                </tr>
+                <tr class="text-center">
+                  <td style="vertical-align: middle;"><strong>선호성별</strong></td>
+                  <td>${list.h_gender}</td>
+                </tr>
+                <tr class="text-center">
+                  <td style="vertical-align: middle;"><strong>흡연여부</strong></td>
+                  <td>${list.h_smoke}</td>
+                </tr>
+                <tr class="text-center">
+                  <td style="vertical-align: middle;"><strong>반려동물</strong></td>
+                  <td>${list.h_haspet}</td>
+                </tr>
+                <tr class="text-center">
+                  <td style="vertical-align: middle;"><strong>자녀여부</strong></td>
+                  <td>${list.h_haschild}</td>
+                </tr>
+                <tr class="text-center">
+                  <td style="vertical-align: middle;"><strong>입실날짜</strong></td>
+                  <td>${list.h_startdate}</td>
+                </tr>
+                <tr class="text-center">
+                  <td style="vertical-align: middle;"><strong>퇴실날짜</strong></td>
+                  <td>${list.h_enddate}</td>
+                </tr>
              </table>
              <table class="table">
                 <tr class="text-center" style="width: 40%;">
@@ -726,7 +726,7 @@ var receive_receiver =$("#receive_receiver").val();
       
         <!-- Modal Header -->
         <div class="modal-header">
-          <h4 class="modal-title">호스트 등록</h4>
+          <h4 class="modal-title"><strong>호스트 등록</strong></h4>
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         
@@ -738,7 +738,7 @@ var receive_receiver =$("#receive_receiver").val();
                     <input id="m_id" type="hidden" class="form-control" name="m_id" value="${member.m_id }">
                     
                     <div class="form-group row">
-                         <label for="h_startdate" class="col-4 col-form-label">입실/퇴실 날짜</label> 
+                         <label for="h_startdate" class="col-4 col-form-label"><strong>입실/퇴실 날짜</strong></label> 
                          <div class="col-8">
                            <div class="t-datepicker">
                              <div class="t-check-in"></div>
@@ -750,7 +750,7 @@ var receive_receiver =$("#receive_receiver").val();
                        </div>
                     
                       <div class="form-group row">
-                       <label for="h_maximumguest" class="col-4 col-form-label">최대 투숙객</label> 
+                       <label for="h_maximumguest" class="col-4 col-form-label"><strong>최대 투숙객</strong></label> 
                        <div class="col-8">
                          <select class="form-control" id="h_maximumguest" name="h_maximumguest">
                             <option selected="selected">1</option>
@@ -763,17 +763,19 @@ var receive_receiver =$("#receive_receiver").val();
                       </div>
                               
                       <div class="form-group row">
-                        <label for="h_gender" class="col-4 col-form-label">선호 성별</label> 
+                        <label for="h_gender" class="col-4 col-form-label"><strong>선호 성별</strong></label> 
                           <div class="col-8">
                            <select class="form-control" id="h_gender" name="h_gender">
-                              <option selected="selected">남자</option>
+                           	
+                              <option selected="selected">성별무관</option>
+                              <option>남자</option>
                               <option>여자</option>
                            </select>
                           </div>
                       </div>
                            
                       <div class="form-group row">
-                        <label for="h_smoke" class="col-4 col-form-label">흡연 가능 여부</label> 
+                        <label for="h_smoke" class="col-4 col-form-label"><strong>흡연 가능 여부</strong></label> 
                         <div class="col-8">
                             <select class="form-control" id="h_smoke" name="h_smoke">
                                <option selected="selected">X</option>
@@ -783,7 +785,7 @@ var receive_receiver =$("#receive_receiver").val();
                        </div>
                        
                        <div class="form-group row">
-                         <label for="h_haspet" class="col-4 col-form-label">펫 유무</label> 
+                         <label for="h_haspet" class="col-4 col-form-label"><strong>펫 유무</strong></label> 
                          <div class="col-8">
                          <select class="form-control" id="h_haspet" name="h_haspet">
                              <option selected="selected">X</option>
@@ -793,7 +795,7 @@ var receive_receiver =$("#receive_receiver").val();
                        </div>
                         
                        <div class="form-group row">
-                         <label for="h_haschild" class="col-4 col-form-label">자녀 유무</label> 
+                         <label for="h_haschild" class="col-4 col-form-label"><strong>자녀 유무</strong></label> 
                          <div class="col-8">
                            <select class="form-control" id="h_haschild" name="h_haschild">
                              <option selected="selected">X</option>
@@ -803,7 +805,7 @@ var receive_receiver =$("#receive_receiver").val();
                        </div>
                            
                        <div class="form-group row">
-                         <label for="h_roomtype" class="col-4 col-form-label">방 종류</label> 
+                         <label for="h_roomtype" class="col-4 col-form-label"><strong>방 종류</strong></label> 
                          <div class="col-8">
                            <select class="form-control" id="h_roomtype" name="h_roomtype">
                              <option selected="selected">싱글 베드</option>
@@ -815,7 +817,7 @@ var receive_receiver =$("#receive_receiver").val();
                        </div>
                         
                        <div class="form-group row">
-                         <label for="h_rule" class="col-4 col-form-label">숙소 이용시 주의사항</label> 
+                         <label for="h_rule" class="col-4 col-form-label"><strong>숙소 이용시 주의사항</strong></label> 
                          <div class="col-8">
                             <textarea rows="5" cols="10" id="h_rule" name="h_rule" class="form-control"></textarea>
                          </div>
@@ -824,8 +826,8 @@ var receive_receiver =$("#receive_receiver").val();
                               
                        <div class="modal-footer">
                            <div class="form-group m-0">
-                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" onclick="insertHost(this.form)">완료</button>
-                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" onclick="insertHost(this.form)"><strong>완료</strong></button>
+                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal"><strong>Close</strong></button>
                       </div>
                     </div>
                      </form>

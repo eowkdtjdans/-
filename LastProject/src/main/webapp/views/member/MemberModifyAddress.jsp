@@ -349,7 +349,7 @@ function fillInAddress() { //lat 와 lng 값을 넘겨줄 input 태그에 값 �
                           
                           <form method="POST" class="my-login-validation" id="ModifyPhoneForm">
                              <input id="m_id" type="hidden" class="form-control" name="m_id" value="${member.m_id }">
-                             
+                             <input id="m_name" type="hidden" class="form-control" name="m_name" value="${member.m_name }">
                                 <div id="locationField" class="form-group">
                                  <label for="address"><strong>변경할 주소를 입력하세요.</strong></label>
                                  <input id="autocomplete" type="text" class="form-control" name="m_address">

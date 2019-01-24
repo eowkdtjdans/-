@@ -208,28 +208,33 @@ public class MemberController {
 	
 	//비밀번호 변경
 	@RequestMapping(value="ModifyPwdMember.do", method=RequestMethod.POST)
-	public String ModifyMemberPwdPost(MemberVO vo, @RequestParam("pwdModify") String pwdModify, @RequestParam("m_id") String m_id, HttpSession session) throws Exception {
+	public String ModifyMemberPwdPost(MemberVO vo, @RequestParam("pwdModify") String pwdModify, @RequestParam("m_id") String m_id, 
+			@RequestParam("m_name") String m_name, HttpSession session) throws Exception {
 		System.out.println("=====비밀번호 변경 시작=====");
 		System.out.println("pwdModify : " + pwdModify);
 		vo.setM_pwd(pwdModify);
 		vo.setM_id(m_id);
+		vo.setM_name(m_name);
 		memberService.ModifyPwd(vo);	
 		session.setAttribute("member", vo);
 		return "redirect:/myProfile.do";
 	}
 	//핸드폰 번호 변경
 	@RequestMapping(value="ModifyPhoneMember.do", method=RequestMethod.POST)
-	public String ModifyMemberPhonePost(MemberVO vo, @RequestParam("phoneModify") String phoneModify, @RequestParam("m_id") String m_id, HttpSession session) throws Exception {
+	public String ModifyMemberPhonePost(MemberVO vo, @RequestParam("phoneModify") String phoneModify, @RequestParam("m_id") String m_id,
+			@RequestParam("m_name") String m_name, HttpSession session) throws Exception {
 		System.out.println("=====핸드폰번호 변경 시작=====");
 		System.out.println("phoneModify : " + phoneModify);
 		vo.setM_id(m_id);
 		vo.setM_phone(phoneModify);
+		vo.setM_name(m_name);
 		memberService.ModifyPhone(vo);	
 		session.setAttribute("member", vo);
 		return "redirect:/myProfile.do";
 	}
 	@RequestMapping(value="DeleteMember.do", method=RequestMethod.POST)
-	public String DeleteMember(MemberVO vo,  @RequestParam("m_id") String m_id, @RequestParam("m_pwd") String m_pwd, @RequestParam("m_phone") String m_phone, HttpSession session) throws Exception {
+	public String DeleteMember(MemberVO vo,  @RequestParam("m_id") String m_id, @RequestParam("m_pwd") String m_pwd,
+			@RequestParam("m_phone") String m_phone, HttpSession session) throws Exception {
 		System.out.println("=====회원탈퇴 시작=====");
 		System.out.println("modifyM_pwd : " + m_pwd);
 		vo.setM_id(m_id);
@@ -252,12 +257,14 @@ public class MemberController {
 	}
 	@RequestMapping(value="ModifyAddressMember.do", method=RequestMethod.POST) 
 	public String ModifyAddressMember(MemberVO vo, @RequestParam("m_id") String m_id, @RequestParam("m_address") String m_address, 
-			@RequestParam("lat") Double lat, @RequestParam("lng") Double lng, HttpSession session) throws Exception {
+			@RequestParam("lat") Double lat, @RequestParam("lng") Double lng, HttpSession session,
+			@RequestParam("m_name") String m_name) throws Exception {
 		System.out.println("=====주소 변경 시작=====");
 		vo.setM_id(m_id);
 		vo.setM_address(m_address);
 		vo.setLat(lat);
 		vo.setLng(lng);
+		vo.setM_id(m_id);
 		System.out.println(m_id);
 		System.out.println(m_address);
 		System.out.println(lat);

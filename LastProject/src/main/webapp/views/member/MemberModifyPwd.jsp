@@ -371,6 +371,7 @@ $(function(){
 		                <div class="col-md-12">
 		                    <form method="POST" onsubmit="return false;"class="my-login-validation" id="ModifyPwd">
 		                    	<input id="m_id" type="hidden" class="form-control" name="m_id" value="${member.m_id }">
+		                    	<input id="m_name" type="hidden" class="form-control" name="m_name" value="${member.m_name }">
                               <div class="form-group row">
                                 <label for="m_pwd" class="col-3 col-form-label"><strong>기존 비밀번호</strong></label> 
                                 <div class="col-9">
