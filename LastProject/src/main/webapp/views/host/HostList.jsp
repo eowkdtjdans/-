@@ -249,7 +249,7 @@ function viewMarker() {
                      draggable: false,
                      html: markerList[i].cont,
                      label: {
-                           text: markerList[i].m_name, // $100,000
+                           text: markerList[i].m_id, // $100,000
                            color: 'black',
                            fontWeight: 'bold'
                        },

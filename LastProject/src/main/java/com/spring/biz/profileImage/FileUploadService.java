@@ -65,9 +65,9 @@ public class FileUploadService {
 		fos.write(data);
 		fos.close();
 		
-		/*FileOutputStream fos2 = new FileOutputStream(SERVER_SAVE_PATH + "/" + saveFileName);
+		FileOutputStream fos2 = new FileOutputStream(SERVER_SAVE_PATH + "/" + saveFileName);
 		fos2.write(data);
-		fos2.close();*/
+		fos2.close();
 		
 		return result;
 	}

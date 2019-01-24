@@ -672,7 +672,6 @@ $(function(){
     <script>
     function sendMessage(frm) {
     	 var email = frm.message_sender.value;
-    	 alert(email);
     	 var emailCheck = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
 
     	 if(emailCheck.test(email)==false || email == ""){

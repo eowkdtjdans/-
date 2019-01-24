@@ -26,5 +26,4 @@ public interface ProfileImageService {
 	
 	ProfileImageVO getProfileImageRoute(String m_id);
 
-	
 }
