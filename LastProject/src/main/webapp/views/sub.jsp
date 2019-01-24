@@ -338,7 +338,7 @@ $(function(){
             <div class="carousel-container">
               <div class="carousel-content">
                 <h2>Find Traveler</h2>
-                <p>The host can search for travelers.</p>
+                <p>호스트는 여행자를 찾을 수 있습니다.</p><!-- The host can search for travelers. -->
               </div>    
             </div> 
           </div>
@@ -347,7 +347,7 @@ $(function(){
             <div class="carousel-container">
               <div class="carousel-content">
                 <h2>Find Host</h2>
-                <p>The travelers can search for host</p>
+                <p>여행자는 호스트를 찾을 수 있습니다.</p><!-- The travelers can search for host -->
               </div>
             </div>
           </div>
@@ -356,7 +356,7 @@ $(function(){
             <div class="carousel-container">
               <div class="carousel-content">
                 <h2>Find Event</h2>
-                <p>Travelers can search the event destination</p>
+                <p>여행자는 이벤트지역을 찾을 수 있습니다.</p><!-- Travelers can search the event destination -->
               </div>
             </div>
           </div>
@@ -365,7 +365,7 @@ $(function(){
             <div class="carousel-container">
               <div class="carousel-content">
                 <h2>Find LocalAdvice</h2>
-                <p>Travelers can find localadvice</p>
+                <p>여행자는 여행지의 현지정보를 찾을 수 있습니다.</p><!-- Travelers can find localadvice -->
               </div>
             </div>
           </div>
@@ -607,7 +607,7 @@ $(function(){
       <div class="container">
 
         <div class="section-header">
-          <h3>관리자에게 문의</h3>
+          <h3>Message to Administrator</h3>
           <p><strong>관리자에게 사이트에 대한 문의를 보내주세요!</strong></p>
         </div>
 

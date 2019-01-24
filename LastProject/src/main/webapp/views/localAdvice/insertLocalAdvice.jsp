@@ -291,9 +291,10 @@
 			      $('#summernote').summernote({
 			        placeholder: '내용을 입력해주세요.',
 			        tabsize: 2,
-			        height: 400 
+			        height: 400                  
 			      });
-			    </script>   
+		      
+			   </script>   
             </tr>
             
             <tr>
@@ -306,7 +307,7 @@
             <tr>
                <td colspan="2">               
                   <button type="button" class="btn btn-outline-secondary" onclick="sendData(this.form)">
-                  	<strong>저장2</strong>
+                  	<strong>저장</strong>
                   </button>                                                                         
                   <button type="reset" class="btn btn-outline-secondary">
                   	<strong>다시작성</strong>

@@ -379,7 +379,9 @@
             </c:choose>
             </ol>
          </td>
-         <td><a href="../writeLocalAdvice.do" class="btn btn-outline-secondary"><strong>게시글 작성</strong></a></td>
+         <c:if test="${!empty profile.p_route}">
+        	 <td><a href="../writeLocalAdvice.do" class="btn btn-outline-secondary"><strong>게시글 작성</strong></a></td>
+         </c:if>	 
       </tr>
          
          <!-- ---------------------------------------------------------------- -->
