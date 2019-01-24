@@ -556,7 +556,7 @@ function noticeMessage() {
       
         <!-- Modal Header -->
         <div class="modal-header">
-          <h4 class="modal-title">&nbsp;&nbsp;<strong>${list.m_id } 님의 Traveler profile</strong></h4>
+          <h4 class="modal-title">&nbsp;&nbsp;<img src="views/img/profileIcon123.png" style="width: 50px; height: 50px;"> &nbsp;<strong>${list.m_id } 님의 Traveler profile</strong></h4>
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         
