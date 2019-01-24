@@ -121,14 +121,8 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value="/logLogin.do", method=RequestMethod.GET)
-	public String LogLogin(HttpServletRequest request) {
+	public String LogLogin(HttpServletRequest request, @RequestParam("ll_id") String ll_id, @RequestParam("ll_ip") String ll_ip, @RequestParam("ll_country") String ll_country, @RequestParam("ll_device") String ll_device, @RequestParam("ll_result") String ll_result) {
 		System.out.println("AdminController의 로그인 로그 메소드");
-		
-		String ll_id = request.getParameter("ll_id");
-		String ll_ip = request.getParameter("ll_ip");
-		String ll_country = request.getParameter("ll_country");
-		String ll_device = request.getParameter("ll_device");
-		String ll_result = request.getParameter("ll_result");
 		
 		Map<String, String> llMap = new HashMap<String, String>();
 		llMap.put("ll_id", ll_id);
@@ -136,7 +130,6 @@ public class AdminController {
 		llMap.put("ll_country", ll_country);
 		llMap.put("ll_device", ll_device);
 		llMap.put("ll_result", ll_result);
-		
 		
 		adminService.logLogin(llMap);
 		

@@ -165,7 +165,6 @@
 						<div class="card">
 							<div class="card-header">
 								<h3 class="card-title">문의목록</h3>
-								<div style="text-align: right;"><button type="button" class="btn btn-outline-secondary" onclick="location.href='/insertEvent.do'">이벤트등록</button></div>
 							</div>
 							<!-- /.card-header -->
 							<div class="card-body">

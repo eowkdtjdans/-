@@ -176,7 +176,6 @@ $(function(){
    function DeleteMember(frm) {
    
        var str = $("#DeleteMember").serialize();
-       alert("str : " + str);
       $.ajax({
          async : true,
          type : "POST",
