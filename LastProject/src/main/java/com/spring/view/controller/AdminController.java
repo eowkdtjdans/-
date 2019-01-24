@@ -171,7 +171,7 @@ public class AdminController {
 		session.setAttribute("adminMessage", messageService.getReceiveMessage(vo));
 		vo.setReceive_idx(receive_idx);
 		messageService.readRecieveMessage(vo);
-			
+
 		return "redirect:/views/admin/pages/tables/adminMessageGet.jsp";
 	}
 	

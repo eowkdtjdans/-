@@ -647,7 +647,7 @@ function noticeMessage() {
             <div class="col-md-12">
               <form method="POST" id="form">
                     <div class="form-group row">
-                         <label for="h_rule" class="col-4 col-form-label">여행 목적지</label>
+                         <label for="h_rule" class="col-4 col-form-label"><strong>여행 목적지</strong></label>
                          <div class="col-8" id="locationField">
                          	<input id="autocomplete2" type="text" class="form-control" name="t_country">
                          	<input class="field" id="lat2" type="hidden" class="form-control" name="lat"/>
@@ -657,7 +657,7 @@ function noticeMessage() {
                     
                     <input id="m_id" type="hidden" class="form-control" name="m_id" value="${member.m_id }">
                     <div class="form-group row">
-                         <label for="h_startdate" class="col-4 col-form-label">입실/퇴실 날짜</label> 
+                         <label for="h_startdate" class="col-4 col-form-label"><strong>입실/퇴실 날짜</strong></label> 
                          <div class="col-8">
                            <div class="t-datepicker">
 							  <div class="t-check-in"></div>
@@ -669,7 +669,7 @@ function noticeMessage() {
                        </div>
                     
                       <div class="form-group row">
-                       <label for="h_maximumguest" class="col-4 col-form-label">방문자 수</label> 
+                       <label for="h_maximumguest" class="col-4 col-form-label"><strong>방문자 수</strong></label> 
                        <div class="col-8">
                          <select class="form-control" id="t_visits" name="t_visits">
                             <option selected="selected">1</option>
@@ -682,7 +682,7 @@ function noticeMessage() {
                       </div>
                                           
                        <div class="form-group row">
-                         <label for="h_rule" class="col-4 col-form-label">여행동기</label> 
+                         <label for="h_rule" class="col-4 col-form-label"><strong>여행동기</strong></label> 
                          <div class="col-8">
                             <textarea rows="5" cols="10" id="t_motive" name="t_motive" class="form-control"></textarea>
                          </div>

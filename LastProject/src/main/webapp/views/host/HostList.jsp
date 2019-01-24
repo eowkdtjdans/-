@@ -379,7 +379,7 @@ $(document).ready(function(){
           if (data.cnt != 0) {
              $("#insertHostBtn").html('<strong>호스트 수정</strong>');
            } else {
-              $("#insertHostBtn").text('<strong>호스트 등록</strong>');
+              $("#insertHostBtn").html('<strong>호스트 등록</strong>');
            }
        } 
     }); 
