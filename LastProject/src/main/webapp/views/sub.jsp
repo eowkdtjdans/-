@@ -34,8 +34,14 @@
   
   <script src="http://code.jquery.com/jquery-latest.min.js"></script>
   
+  <!-- 나눔고딕코딩 폰트-->
+  <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic+Coding:400,700&amp;subset=korean" rel="stylesheet">
   
+  <!-- 두현 -->
+  <link href="https://fonts.googleapis.com/css?family=Do+Hyeon&amp;subset=korean" rel="stylesheet">
   
+  <!-- 주아 -->
+  <link href="https://fonts.googleapis.com/css?family=Jua" rel="stylesheet">
   
 <style>
    body{
@@ -105,10 +111,21 @@ select {
 	padding: .3em .3em;
 }
 
-/* .hr{
-	height: 20px;
-	color: red;
-} */
+
+.font{
+/* 	font-family: 'Jua', sans-serif;
+	font-size: 1.2em; */     
+	 
+	font-weight: bold;
+} 
+
+
+
+
+.carousel-inner img {
+      width: 100%;
+      height: 100%;
+  }
 </style>
 
 
@@ -307,12 +324,78 @@ $(function(){
 
    <!--==========================
       About Us Section
-    ============================-->    
+    ============================-->   
+
+<section id="intro">
+    <div class="intro-container">
+      <div id="introCarousel" class="carousel  slide carousel-fade" data-ride="carousel">
+
+        <ol class="carousel-indicators"></ol>
+
+        <div class="carousel-inner">
+
+          <div class="carousel-item active" style="background-image: url('views/img/bg3.jpg');">
+            <div class="carousel-container">
+              <div class="carousel-content">
+                <h2>Find Traveler</h2>
+                <p>The host can search for travelers.</p>
+              </div>    
+            </div> 
+          </div>
+
+          <div class="carousel-item" style="background-image: url('views/img/bg1.jpg');">
+            <div class="carousel-container">
+              <div class="carousel-content">
+                <h2>Find Host</h2>
+                <p>The travelers can search for host</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="carousel-item" style="background-image: url('views/img/bg.jpg');">
+            <div class="carousel-container">
+              <div class="carousel-content">
+                <h2>Find Event</h2>
+                <p>Travelers can search the event destination</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="carousel-item" style="background-image: url('views/img/bg2.jpg');">
+            <div class="carousel-container">
+              <div class="carousel-content">
+                <h2>Find LocalAdvice</h2>
+                <p>Travelers can find localadvice</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <a class="carousel-control-prev" href="#introCarousel" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon ion-chevron-left" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+
+        <a class="carousel-control-next" href="#introCarousel" role="button" data-slide="next">
+          <span class="carousel-control-next-icon ion-chevron-right" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+  
+  
+
+    
+    
+     
 <section id="about">
       <div class="container">
         <header class="section-header">        
-          <h3>Gukbong WorlD</h3>
-          <p>카우치 서핑(Couch Surfing)은 잠을 잘수 있는 쇼파를 의미하는 카우치(Couch)와 파도를 타다는 서핑(Surfing)의 합성어로 숙박 혹은 가이드까지 받을 수 있는, 여행자들을 위한 비영리 커뮤니티 입니다.</p>
+          <h3 class="font">Gukbong WorlD</h3>
+           <p class="font">카우치 서핑(Couch Surfing)은 잠을 잘수 있는 쇼파를 의미하는 카우치(Couch)와 파도를 타다는 서핑(Surfing)의 합성어로 숙박 혹은 가이드까지 받을 수 있는, 여행자들을 위한 비영리 커뮤니티 입니다.</p>
         </header>
        
         <div class="row about-cols">
@@ -323,7 +406,7 @@ $(function(){
                 <img src="views/img/gukbong1.jpg" alt="" class="img-fluid">
                 <div class="icon"><i class="ion-ios-speedometer-outline"></i></div>
               </div>
-              <h2 class="title"><a href="#">새친구를 찾아보세요!</a></h2>
+              <h2 class="title"><a href="#">Link</a></h2>
               <p>
                 	<strong>호스트와 연계하고 GukbongWorlD 플랫폼을 통해 숙박 여부를 확인하세요. 호스트와의 숙박은 무료입니다.</strong>
               </p>
@@ -336,7 +419,7 @@ $(function(){
                 <img src="views/img/gukbong2.jpg" alt="" class="img-fluid" style="height:235px">
                 <div class="icon"><i class="ion-ios-list-outline"></i></div>
               </div>
-              <h2 class="title"><a href="#">현지 문화를 느껴보세요!</a></h2>
+              <h2 class="title"><a href="#">Culture</a></h2>
               <p style="height: 90px;">
                	 <strong>다른 도시 또는 귀하의 도시에서 여행자를 만나세요! 항상 새로움을 느낄 수 있습니다.</strong>
               </p>
@@ -349,13 +432,14 @@ $(function(){
                 <img src="views/img/gukbong3.jpg" alt="" class="img-fluid">
                 <div class="icon"><i class="ion-ios-eye-outline"></i></div>
               </div>
-              <h2 class="title"><a href="#">Discover Amazing People</a></h2>
+              <h2 class="title"><a href="#">Share</a></h2>
               <p>
-              	호스트들은 그들의 집을 열고 그들의 삶을 공유합니다. 호스트와 함께하여 새로운 문화를 느껴보세요.
+              	<strong>호스트들은 그들의 집을 열고 그들의 삶을 공유합니다. 호스트와 함께하여 새로운 문화를 느껴보세요.</strong>
               </p>
             </div>
           </div>
    </div>
+          
       </div>
     </section><!-- #about -->
 
