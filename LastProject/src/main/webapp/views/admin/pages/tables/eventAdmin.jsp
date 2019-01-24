@@ -12,7 +12,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- Font Awesome -->
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">ss">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 <!-- Ionicons -->
 <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 <!-- DataTables -->
@@ -87,8 +87,8 @@
 				<nav class="mt-2">
 					<ul class="nav nav-pills nav-sidebar flex-column"
 						data-widget="treeview" role="menu" data-accordion="false">
-						<li class="nav-item has-treeview menu-open">
-							<a href="/Admin.do?m_id=admin&m_pwd=admin" class="nav-link active"><i class="fas fa-home"></i>
+						<li class="nav-item has-treeview">
+							<a href="/Admin.do?m_id=admin&m_pwd=admin" class="nav-link"><i class="fas fa-home"></i>
 								<p>메인화면</p>
 							</a>
 						</li>
@@ -98,7 +98,7 @@
 							</a>
 						</li>
 						<li class="nav-item has-treeview">
-							<a href="/eventAdmin.do" class="nav-link"><i class="fas fa-calendar-check"></i>
+							<a href="/eventAdmin.do" class="nav-link active"><i class="fas fa-calendar-check"></i>
 								<p>이벤트 관리</p>
 							</a>
 						</li>

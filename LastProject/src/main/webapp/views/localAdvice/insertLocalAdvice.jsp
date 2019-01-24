@@ -288,12 +288,12 @@
                <td style="width: 10%; text-align: center;"><strong>내용</strong></td>
                <td style="width: 90%;"><textarea class="form-control" rows="14" cols="150" name="l_content" title="내용" id="summernote"></textarea></td>
                <script>
-			      $('#summernote').summernote({
-			        placeholder: '내용을 입력해주세요.',
-			        tabsize: 2,
-			        height: 400 
-			      });
-			    </script>   
+               $('#summernote').summernote({
+                   placeholder: '내용을 입력해주세요.',
+                   tabsize: 2,
+                   height: 400                  
+                 });
+			   </script>   
             </tr>
             
             <tr>
@@ -306,7 +306,7 @@
             <tr>
                <td colspan="2">               
                   <button type="button" class="btn btn-outline-secondary" onclick="sendData(this.form)">
-                  	<strong>저장2</strong>
+                  	<strong>저장</strong>
                   </button>                                                                         
                   <button type="reset" class="btn btn-outline-secondary">
                   	<strong>다시작성</strong>

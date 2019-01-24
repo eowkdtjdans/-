@@ -66,5 +66,4 @@ public class ProfileImageServiceImpl implements ProfileImageService{
 		return profileImageDAO.getProfileImageRoute(m_id);
 	}
 
-
 }
