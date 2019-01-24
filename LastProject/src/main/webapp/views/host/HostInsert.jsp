@@ -83,7 +83,7 @@ $(document).ready(function(){
               <div class="card-body">
                   <div class="row">
                       <div class="col-md-12">
-                          <h4>호스트 등록</h4>
+                          <h4><strong>호스트 등록</strong></h4>
                           <hr>
                       </div>
                   </div>
@@ -95,7 +95,7 @@ $(document).ready(function(){
                              <input id="m_id" type="hidden" class="form-control" name="m_id" value="${member.m_id }">
                              
                                <div class="form-group row">
-                                <label for="h_maximumguest" class="col-4 col-form-label">최대 투숙객</label> 
+                                <label for="h_maximumguest" class="col-4 col-form-label"><strong>최대 투숙객</strong></label> 
                                 <div class="col-8">
                                    <select class="form-control" id="h_maximumguest" name="h_maximumguest">
                                   <option selected="selected">1</option>
@@ -108,17 +108,18 @@ $(document).ready(function(){
                               </div>
                               
                               <div class="form-group row">
-                                <label for="h_gender" class="col-4 col-form-label">선호 성별</label> 
+                                <label for="h_gender" class="col-4 col-form-label"><strong>선호 성별</strong></label> 
                                 <div class="col-8">
                                    <select class="form-control" id="h_gender" name="h_gender">
-                                 	 <option selected="selected">남자</option>
+                                 	 <option selected="selected">성별무관</option>
+                                 	 <option>남자</option>
                               		 <option>여자</option>
                           </select>
                                 </div>
                               </div>
                            
                               <div class="form-group row">
-                                <label for="h_smoke" class="col-4 col-form-label">흡연 가능 여부</label> 
+                                <label for="h_smoke" class="col-4 col-form-label"><strong>흡연 가능 여부</strong></label> 
                                 <div class="col-8">
                                     <select class="form-control" id="h_smoke" name="h_smoke">
                                		 <option selected="selected">X</option>
@@ -128,7 +129,7 @@ $(document).ready(function(){
                               </div>
                            
                               <div class="form-group row">
-                                <label for="h_roomtype" class="col-4 col-form-label">방 종류</label> 
+                                <label for="h_roomtype" class="col-4 col-form-label"><strong>방 종류</strong></label> 
                                 <div class="col-8">
                                     <select class="form-control" id="h_roomtype" name="h_roomtype">
 		                               <option selected="selected">싱글 베드</option>
@@ -140,14 +141,14 @@ $(document).ready(function(){
                               </div>
                         
                               <div class="form-group row">
-                                <label for="h_rule" class="col-4 col-form-label">숙소 이용시 주의사항</label> 
+                                <label for="h_rule" class="col-4 col-form-label"><strong>숙소 이용시 주의사항</strong></label> 
                                 <div class="col-8">
                                    <textarea rows="5" cols="10" id="h_rule" name="h_rule" class="form-control"></textarea>
                                 </div>
                               </div>
                         
                               <div class="form-group row">
-                                <label for="h_startdate" class="col-4 col-form-label">입실/퇴실 날짜</label> 
+                                <label for="h_startdate" class="col-4 col-form-label"><strong>입실/퇴실 날짜</strong></label> 
                               <div class="col-8">
                                <div class="t-datepicker">
 	                          <div class="t-check-in"></div>
@@ -160,7 +161,7 @@ $(document).ready(function(){
                               </div>
                               
                               <div class="form-group row">
-                                <label for="h_haspet" class="col-4 col-form-label">펫 유무</label> 
+                                <label for="h_haspet" class="col-4 col-form-label"><strong>펫 유무</strong></label> 
                                 <div class="col-8">
                                     <select class="form-control" id="h_haspet" name="h_haspet">
                                        
@@ -171,7 +172,7 @@ $(document).ready(function(){
                               </div>
                         
                               <div class="form-group row">
-                                <label for="h_haschild" class="col-4 col-form-label">자녀 유무</label> 
+                                <label for="h_haschild" class="col-4 col-form-label"><strong>자녀 유무</strong></label> 
                                 <div class="col-8">
                                     <select class="form-control" id="h_haschild" name="h_haschild">
 	                               	      <option selected="selected">X</option>
@@ -182,7 +183,7 @@ $(document).ready(function(){
                               
                                <div class="form-group m-0">
                                    <button type="button" class="btn btn-primary btn-block" onclick="insertHost(this.form)" >
-                              호스트등록
+                              <strong>호스트등록</strong>
                            </button>
                               </div>
                             
