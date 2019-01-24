@@ -354,9 +354,8 @@ public class LocalAdviceController {
 		localAdviceCommentService.deleteLocalAdviceCommentAll(vo);
 		localAdviceService.deleteLocalAdvice(vo);
 		
-		return "redirect:/getLocalAdviceList2.do?cPage=1&firstLat=&firstLng=&key=&searchCondition=find_advice";
+		return "redirect:/getLocalAdviceList2.do?cPage=1&firstLat=&firstLng=&key=''&searchCondition=find_advice";
 	}
-
 	
 	//좋아요기능(+)
 	@RequestMapping(value="/goodJson.do" ,method=RequestMethod.POST)

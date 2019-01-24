@@ -39,7 +39,7 @@ public class ProfileController {
 	//=======================================
 	//마이 프로필
 	@RequestMapping(value="myProfile.do", method=RequestMethod.GET)
-		public String myProfile(ProfileVO vo, HttpSession session) {
+		public String myProfile(ProfileVO vo, HttpSession session) {		
 		session.getAttribute("profile");
 		return "views/profile/getProfile.jsp";
 	}

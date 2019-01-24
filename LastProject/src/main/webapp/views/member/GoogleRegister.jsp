@@ -30,6 +30,25 @@
 <script>
 var phoneck= 0;
 var pwdck= 0;
+function pwdCheck(frm) {
+	var pwd = frm.m_pwd.value;
+	var pwd2 = frm.m_pwd2.value;
+	if (frm.m_pwd.value != frm.m_pwd2.value) {
+		$("#pwdCheckInput").html("<p style='color:red;'>비밀번호 불일치</p>");
+		pwdck = 1;
+		return false;
+		
+	} else if (frm.m_pwd.value.length<8 || frm.m_pwd.value.length>16 || frm.m_pwd2.value.length<8 || frm.m_pwd2.value.length>16) {
+        alert("비밀번호를 8~16자리로 설정해주세요.");
+        frm.m_pwd.value = ""; 
+        frm.m_pwd2.value = ""; 
+      frm.m_pwd.focus();
+      pwdCheck();
+   } else {
+		$("#pwdCheckInput").html("<p style='color:green;'>비밀번호 일치</p>");
+	}
+}
+
     function phoneCheck(frm) {
       var phonecheck = 0;
       var m_phone = $('#m_phone').val();
@@ -118,7 +137,7 @@ function pwdCheck(frm) {
 	var pwd = frm.m_pwd.value;
 	var pwd2 = frm.m_pwd2.value;
 	if (frm.m_pwd.value != frm.m_pwd2.value) {
-		$("#pwdCheckInput").html("<p style='color:red;'>비밀번호 불일치</p>");
+		$("#m_pwd2").html("<p style='color:red;'>비밀번호 불일치</p>");
 		pwdck = 1;
 		return false;
 		
@@ -422,13 +441,14 @@ select {
 
                         <div class="form-group">
                            <label for="password"><strong>비밀번호</strong></label>
+                           <p id="pwdCheckInput"></p>
                            <input placeholder="비밀번호를 8~16자리로 설정해주세요." id="m_pwd" type="password" class="form-control" name="m_pwd">
                         </div>
                   		
-                  		  <div class="form-group">
-				            <label for="password" id="pwdCheck2"><strong>비밀번호 확인</strong></label>
-				            <input placeholder="비밀번호를 8~16자리로 설정해주세요." id="m_pwd2" type="password" class="form-control" name="m_pwd2" onkeyup="pwdCheck(this.form)" placeholder="비밀번호를 8~16자리로 설정해주세요.">
-				         </div>
+                  		 <div class="form-group">
+            <label for="password" id="pwdCheck2"><strong>비밀번호 확인</strong></label>
+            <input id="m_pwd2" type="password" class="form-control" name="m_pwd2" onkeyup="pwdCheck(this.form)" placeholder="비밀번호를 8~16자리로 설정해주세요.">
+         </div>
                   		
                         <div class="form-group">
                            <label for="name"><strong>성함</strong></label>
