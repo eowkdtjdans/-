@@ -3,10 +3,16 @@ package com.spring.biz.admin;
 import java.util.Date;
 
 public class UserAdminViewVO {
-	private String m_id, m_name, m_phone, m_gender, m_birthday, m_address, p_route, p_hobby, p_language, p_job, p_aboutme;
+	private String m_id, m_pwd, m_name, m_phone, m_gender, m_birthday, m_address, p_route, p_hobby, p_language, p_job, p_aboutme;
 	private String p_purpose, p_visitcountry;
 	private Date m_regdate;
 	
+	public String getM_pwd() {
+		return m_pwd;
+	}
+	public void setM_pwd(String m_pwd) {
+		this.m_pwd = m_pwd;
+	}
 	public String getM_id() {
 		return m_id;
 	}

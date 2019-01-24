@@ -145,14 +145,14 @@ a{
 <nav id="nav-menu-container">
 	<ul class="nav-menu">
 	
-	<c:if test="${empty member.m_id}">
+	<c:if test="${profile.p_route eq null}">
 		<li><a href="../../loginMember.do" >로그인</a></li>
 		<li><a  href="../../insertMember.do" >회원가입</a></li>
 		<li><a href="../../findIdMember.do">아이디찾기</a></li >
 	    <li><a href="../../findPwdMember.do">비밀번호찾기</a></li>
 	</c:if>	
 	
-	<c:if test="${!empty member.m_id}">
+	<c:if test="${!empty profile.p_route}">
 		<li>
 			<div>
 			<strong>
@@ -302,7 +302,6 @@ function checkAJax() {
       url : '../../checkMemberJson.do',
       
          success : function(data) {
-          alert(data.cnt);
           if (data.cnt == 1) {
             alert("사이트 이용 시 로그인을 해야 가능합니다.");
             location.href = "../../loginMember.do";

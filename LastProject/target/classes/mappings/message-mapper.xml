@@ -68,7 +68,7 @@
         FROM MESSAGE_SEND SEND, PROFILE_IMAGE PI
         WHERE SEND.SEND_RECEIVER = PI.M_ID
         AND SEND.SEND_SENDER = #{send_sender}
-        AND PI.P_MAIN = 1 
+        AND PI.P_MAIN = 1 ORDER BY SEND.SEND_REGDATE DESC
    </select>
    
    <select id="getReceiveMessageList" resultType="messageReceive" parameterType="messageReceive">

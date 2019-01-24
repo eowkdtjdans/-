@@ -5,7 +5,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8"> 
-  <title>호스트 찾기</title>
+  <title>Gukbong WorlD</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <meta content="" name="keywords">
@@ -377,9 +377,9 @@ $(document).ready(function(){
        url : "/checkHostJson.do",
        success : function(data) {
           if (data.cnt != 0) {
-             $("#insertHostBtn").text('호스트 수정');
+             $("#insertHostBtn").html('<strong>호스트 수정</strong>');
            } else {
-              $("#insertHostBtn").text('호스트 등록');
+              $("#insertHostBtn").text('<strong>호스트 등록</strong>');
            }
        } 
     }); 
@@ -485,14 +485,14 @@ var receive_receiver =$("#receive_receiver").val();
    
 <nav id="nav-menu-container">
    <ul class="nav-menu">
-      <c:if test="${empty member.m_id}">
+   <c:if test="${profile.p_route eq null}">
       <li><a href="../../loginMember.do" >로그인</a></li>
       <li><a  href="../../insertMember.do" >회원가입</a></li>
       <li><a href="../../findIdMember.do">아이디찾기</a></li >
        <li><a href="../../findPwdMember.do">비밀번호찾기</a></li>
    </c:if>   
    
-   <c:if test="${!empty member.m_id}">
+	<c:if test="${!empty profile.p_route}">
       <li>
          <div>
          <strong>
@@ -538,9 +538,9 @@ var receive_receiver =$("#receive_receiver").val();
 <section>
       <div class="container"> 
       	 <br>           
-         <img src="views/img/star.jpg" style="width: 40px; height: 40px;"><span style="font-size: 1.2em; font-weight: bold;">호스트 검색 게시판</span>
+         <img src="views/img/star.jpg" style="width: 40px; height: 40px;"><span style="font-size: 1.2em; font-weight: bold;"><strong>호스트 검색 게시판</strong></span>
       
-         <h6>요청하신 키워드에 관한 게시글 수 : ${countHost }</h6>
+         <h6><strong>요청하신 키워드에 관한 게시글 수 : ${countHost }</strong></h6>
          
          <div id="map" style="width:760px;height:400px;margin-top:20px; margin:auto;"></div>
          
@@ -550,7 +550,7 @@ var receive_receiver =$("#receive_receiver").val();
          <c:choose>
             <c:when test="${empty hostList}">
                   <tr>
-                     <td>요청하신 도시의 정보가 존재하지 않습니다.</td>
+                     <td><strong>요청하신 도시의 정보가 존재하지 않습니다.</strong></td>
                   </tr>
             </c:when>                    
             <c:otherwise>
@@ -559,13 +559,13 @@ var receive_receiver =$("#receive_receiver").val();
                <span class="card" style="width:221px; height: 460px; margin : auto; text-align: center;">
                 <img class="card-img-top" src="${list.p_route}" alt="Card image" style="width:100%; height: 210px;">
                 <span class="card-body">
-                  <h6 class="card-title">${list.m_id}</h6>
+                  <h6 class="card-title" style="font-size : 0.8em;"><strong>${list.m_id}</strong></h6>
                   <hr />
                   <div id="cardContent">
-                  	<p class="card-text">${list.m_address}</p>
+                  	<h6><strong>${list.m_address}</strong></h6>
                   </div>
                   <hr />
-                  <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#myModal${list.m_id }">호스트 상세보기</button>
+                  <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#myModal${list.m_id }"><strong>호스트 상세보기</strong></button>
                 </span>
              </span>
             </c:forEach>
@@ -620,7 +620,7 @@ var receive_receiver =$("#receive_receiver").val();
                </c:otherwise>
             </c:choose>
                <li style="text-align:right;">
-                  <button type="button" id="insertHostBtn" class="btn btn-outline-secondary" data-toggle="modal" data-target="#insertHost" onclick="login_chk()">호스트 등록</button>
+                  <button type="button" id="insertHostBtn" class="btn btn-outline-secondary" data-toggle="modal" data-target="#insertHost" onclick="login_chk()"><strong>호스트 등록</strong></button>
                </li>
             </ol>
          </td>
@@ -648,7 +648,7 @@ var receive_receiver =$("#receive_receiver").val();
          
            <!-- Modal Header -->
            <div class="modal-header">
-             <h4 class="modal-title">&nbsp;&nbsp;${list.m_id } 님의 Host profile</h4>
+             <h4 class="modal-title">&nbsp;&nbsp;<strong>${list.m_id } 님의 Host profile</strong></h4>
              <button type="button" class="close" data-dismiss="modal">&times;</button>
            </div>
            
@@ -659,45 +659,45 @@ var receive_receiver =$("#receive_receiver").val();
           		  <td rowspan="8" width="40%;"><img class="rounded" style="width: 200px; height: 200px; margin-top: 50px;" src="${list.p_route}"></td>
           	   </tr>
           	   <tr class="text-center">
-          		  <td width="20%;" style="vertical-align: middle;">최대 방문인원</td>
+          		  <td width="20%;" style="vertical-align: middle;"><strong>최대 방문인원</strong></td>
           		  <td width="80%;">${list.h_maximumguest}명</td>
           	   </tr>
           	   <tr class="text-center">
-          		  <td style="vertical-align: middle;">선호성별</td>
+          		  <td style="vertical-align: middle;"><strong>선호성별</strong></td>
           		  <td>${list.h_gender}</td>
           	   </tr>
           	   <tr class="text-center">
-          		  <td style="vertical-align: middle;">흡연여부</td>
+          		  <td style="vertical-align: middle;"><strong>흡연여부</strong></td>
           		  <td>${list.h_smoke}</td>
           	   </tr>
           	   <tr class="text-center">
-          		  <td style="vertical-align: middle;">반려동물</td>
+          		  <td style="vertical-align: middle;"><strong>반려동물</strong></td>
           		  <td>${list.h_haspet}</td>
           	   </tr>
           	   <tr class="text-center">
-          		  <td style="vertical-align: middle;">자녀여부</td>
+          		  <td style="vertical-align: middle;"><strong>자녀여부</strong></td>
           		  <td>${list.h_haschild}</td>
           	   </tr>
           	   <tr class="text-center">
-          		  <td style="vertical-align: middle;">입실날짜</td>
+          		  <td style="vertical-align: middle;"><strong>입실날짜</strong></td>
           		  <td>${list.h_startdate}</td>
           	   </tr>
           	   <tr class="text-center">
-          		  <td style="vertical-align: middle;">퇴실날짜</td>
+          		  <td style="vertical-align: middle;"><strong>퇴실날짜</strong></td>
           		  <td>${list.h_enddate}</td>
           	   </tr>
              </table>
              <table class="table">
                 <tr class="text-center" style="width: 40%;">
-                  <td width="30%;" style="text-align: center; vertical-align: middle;">숙소 형태</td>
+                  <td width="30%;" style="text-align: center; vertical-align: middle;"><strong>숙소 형태</strong></td>
                   <td colspan="2">${list.h_roomtype}</td>
                 </tr>
                 <tr class="text-center">
-                  <td style="text-align: center; vertical-align: middle;">위치</td>
+                  <td style="text-align: center; vertical-align: middle;"><strong>위치</strong></td>
                   <td colspan="2">${list.m_address}</td>
                 </tr>
                 <tr class="text-center">
-                  <td style="text-align: center; vertical-align: middle;">지켜야할 규칙</td>
+                  <td style="text-align: center; vertical-align: middle;"><strong>지켜야할 규칙</strong></td>
                   <td colspan="2">${list.h_rule}</td>
                 </tr>
              </table>
@@ -706,10 +706,10 @@ var receive_receiver =$("#receive_receiver").val();
            <!-- Modal footer -->
            <div class="modal-footer">
            <form name="frm">         <!--sendMessage("${list.m_id}")'  -->                                                  <!-- onclick="../insertMessage.do?message_receiver=${list.m_id}" -->
-             <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" onclick="location.href='insertHostMessage.do?message_receiver=${list.m_id}'">숙박요청</button>
+             <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" onclick="location.href='insertHostMessage.do?message_receiver=${list.m_id}'"><strong>숙박요청</strong></button>
            </form>   
              <c:if test="${list.m_id eq member.m_id}">
-               <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" onclick='deleteHost("${list.m_id}")'>등록해제</button>
+               <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" onclick='deleteHost("${list.m_id}")'><strong>등록해제</strong></button>
              </c:if>
            </div>
            
@@ -872,10 +872,7 @@ var receive_receiver =$("#receive_receiver").val();
 </div>
 <!--Modal: Login with Avatar Form-->
 
-<div class="text-center">
-  <a href="" class="btn btn-default btn-rounded" data-toggle="modal" data-target="#modalLoginAvatar">Launch
-    Modal Login with Avatar</a>
-</div>
+
 
 <%@include file="/views/footer.jsp"%>
 <%@include file="/views/footerScript.jsp"%>

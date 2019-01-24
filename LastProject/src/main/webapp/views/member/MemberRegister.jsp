@@ -87,7 +87,7 @@ var pwdck= 0;
             frm.m_pwd.value = ""; 
             frm.m_pwd2.value = ""; 
           frm.m_pwd.focus();
-          return false;
+          pwdCheck();
        } else {
     		$("#pwdCheckInput").html("<p style='color:green;'>비밀번호 일치</p>");
     	}
@@ -466,7 +466,7 @@ select {
       <form method="POST" id="form">
          <div class="form-group">
             <label for="text"><strong>아이디</strong></label>
-            <input id="m_id" type="text" class="form-control" name="m_id">
+            <input id="m_id" type="text" class="form-control" name="m_id" placeholder="이메일을 입력해주세요.">
          </div>
          
          <div class="form-group">
@@ -476,12 +476,12 @@ select {
          <div class="form-group">
             <label for="password" id="pwdCheck"><strong>비밀번호</strong></label>
             <p id="pwdCheckInput"></p>
-            <input id="m_pwd" type="password" class="form-control" name="m_pwd" onkeyup="pwdCheck(this.form)">
+            <input id="m_pwd" type="password" class="form-control" name="m_pwd" onkeyup="pwdCheck(this.form)" placeholder="비밀번호를 8~16자리로 설정해주세요.">
          </div>
          
            <div class="form-group">
             <label for="password" id="pwdCheck2"><strong>비밀번호 확인</strong></label>
-            <input id="m_pwd2" type="password" class="form-control" name="m_pwd2" onkeyup="pwdCheck(this.form)">
+            <input id="m_pwd2" type="password" class="form-control" name="m_pwd2" onkeyup="pwdCheck(this.form)" placeholder="비밀번호를 8~16자리로 설정해주세요.">
          </div>
          
          <div class="form-group">
@@ -491,7 +491,7 @@ select {
          
          <div class="form-group">
             <label for="text"><strong>핸드폰</strong></label>
-            <input id="m_phone" type="text" class="form-control" name="m_phone" required data-eye>
+            <input id="m_phone" type="text" class="form-control" name="m_phone" placeholder="ex) 01055754786" required data-eye>
          </div>
          
          <div class="form-group"> 

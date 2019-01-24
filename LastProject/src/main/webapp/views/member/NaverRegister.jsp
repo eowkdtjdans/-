@@ -29,6 +29,26 @@
 
 <script>
 var phoneck= 0;
+var pwdck = 1;
+
+function pwdCheck(frm) {
+	var pwd = frm.m_pwd.value;
+	var pwd2 = frm.m_pwd2.value;
+	if (frm.m_pwd.value != frm.m_pwd2.value) {
+		$("#pwdCheckInput").html("<p style='color:red;'>비밀번호 불일치</p>");
+		pwdck = 1;
+		return false;
+		
+	} else if (frm.m_pwd.value.length<8 || frm.m_pwd.value.length>16 || frm.m_pwd2.value.length<8 || frm.m_pwd2.value.length>16) {
+        alert("비밀번호를 8~16자리로 설정해주세요.");
+        frm.m_pwd.value = ""; 
+        frm.m_pwd2.value = ""; 
+      frm.m_pwd.focus();
+      pwdCheck();
+   } else {
+		$("#pwdCheckInput").html("<p style='color:green;'>비밀번호 일치</p>");
+	}
+}
 
     function phoneCheck(frm) {
       var phonecheck = 0;
@@ -83,6 +103,9 @@ function register(frm) {
      if(phoneck==0) {
                alert("핸드폰 중복체크를 해주세요");
                return false;
+        } if(pwdck==0) {
+        	alert("비밀번호가 일치하지 않습니다");
+        	return false;
         } else if (frm.m_pwd.value == "" || frm.m_pwd.value == null) {
          alert("비밀번호를 기입하세요.");
          frm.m_pwd.value = ""; 
@@ -407,39 +430,44 @@ $(document).ready(function() {
    <div class="row">
    <div class="col-md-3"></div> 
    <div class="col-md-6">
-      <h4 style="text-align : center;">회원가입</h4>      
+      <h4 style="text-align : center;"><strong>회원가입</strong></h4>      
       <form method="POST" id="form">
          <div class="form-group">
-            <label for="text">아이디</label>
+            <label for="text"><strong>아이디</strong></label>
             <input id="m_id" type="text" class="form-control" name="m_id" readonly="readonly">
          </div>
          
          <div class="form-group">
-            <label for="password">비밀번호</label>
+            <label for="password"><strong>비밀번호</strong></label>
             <input id="m_pwd" type="password" class="form-control" name="m_pwd">
          </div>
          
+          <div class="form-group">
+            <label for="password" id="pwdCheck2"><strong>비밀번호 확인</strong></label>
+            <input id="m_pwd2" type="password" class="form-control" name="m_pwd2" onkeyup="pwdCheck(this.form)" placeholder="비밀번호를 8~16자리로 설정해주세요.">
+         </div>
+         
          <div class="form-group">
-            <label for="name">성함</label>
+            <label for="name"><strong>성함</strong></label>
             <input id="m_name" type="text" class="form-control" name="m_name" readonly="readonly">
          </div>
          
          <div class="form-group">
-            <label for="text">핸드폰</label>
+            <label for="text"><strong>핸드폰</strong></label>
             <input id="m_phone" type="text" class="form-control" name="m_phone" required data-eye>
          </div>
          
          <div class="form-group"> 
-            <button type="button" class="btn btn-outline-secondary btn-block" onclick="phoneCheck(this.form)" >핸드폰 중복확인</button>
+            <button type="button" class="btn btn-outline-secondary btn-block" onclick="phoneCheck(this.form)" ><strong>핸드폰 중복확인</strong></button>
          </div>
          
         <div class="form-group">
-            <label for="text">성별</label>
+            <label for="text"><strong>성별</strong></label>
             <input id="m_gender" readonly="readonly" type="text" class="form-control" name="m_gender" required data-eye>
          </div>
          
          <c:set var="yearStart" value="1969"/>
-         <label for="birthday">생년월일</label>
+         <label for="birthday"><strong>생년월일</strong></label>
          <select id="year" onchange="yearChange()">
          <c:forEach begin="1969" end="1999" step="1">
          <c:set var="yearStart" value="${yearStart + 1}"/>
@@ -458,7 +486,7 @@ $(document).ready(function() {
          </div>
          
          <div id="locationField" class="form-group">
-            <label for="address">주소</label>
+            <label for="address"><strong>주소</strong></label>
             <input id="autocompleteReg" type="text" class="form-control" name="m_address">
             <input class="field" id="latReg" type="hidden" class="form-control" name="lat"/>
             <input class="field" id="lngReg" type="hidden" class="form-control" name="lng"/>
@@ -467,10 +495,10 @@ $(document).ready(function() {
    
          
          <div class="form-group m-0">
-            <button type="button" class="btn btn-outline-secondary btn-block" onclick="register(this.form)">회원가입</button>
+            <button type="button" class="btn btn-outline-secondary btn-block" onclick="register(this.form)"><strong>회원가입</strong></button>
          </div>
          <div class="mt-4 text-center">
-            사이트 회원이십니까? <a href="../../loginMember.do">로그인</a>
+            <strong>사이트 회원이십니까?</strong> <a href="../../loginMember.do"><strong>로그인</strong></a>
          </div>
       </form>
    </div>

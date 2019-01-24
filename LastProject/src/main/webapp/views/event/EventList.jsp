@@ -6,7 +6,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8"> 
-  <title>이벤트 게시판</title>
+  <title>Gukbong WorlD</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <meta content="" name="keywords">
@@ -432,12 +432,11 @@ var receive_receiver =$("#receive_receiver").val();
    <!--==========================
       About Us Section
     ============================--> 
-    <!-- <img src="views/img/star.jpg" style="width: 40px; height: 40px;"><span style="font-size: 1.2em; font-weight: bold;">현지정보 문의 게시판</span> -->   
 <section>
       <div class="container">
       	<br>   
       	<img src="views/img/star.jpg" style="width: 40px; height: 40px;"><span style="font-size: 1.2em; font-weight: bold;">이벤트 검색 게시판</span>
-      	<h6>요청하신 키워드에 관한 게시글 수 : ${countEvent }</h6>
+      	<h6><strong>요청하신 키워드에 관한 게시글 수 : ${countEvent }</strong></h6>
       	
       	<div id="map" style="width:760px;height:400px;margin-top:20px;margin:auto;"></div>
       	<br>
@@ -446,7 +445,7 @@ var receive_receiver =$("#receive_receiver").val();
       	<c:choose>
 	      	<c:when test="${empty eventList}">
 	      			<tr>
-	      				<td>요청하신 도시의 정보가 존재하지 않습니다.</td>
+	      				<td><strong>요청하신 도시의 정보가 존재하지 않습니다.</strong></td>
 	      			</tr>
 	      	</c:when>                    
 	      	<c:otherwise>
@@ -456,11 +455,11 @@ var receive_receiver =$("#receive_receiver").val();
 	      			<th style="width: 40%">
 	      				<%-- <fmt:formatDate var="startdate" value="${list.e_startdate}" pattern="yyyy-MM-dd E요일"/>
 	      				<fmt:formatDate var="enddate" value="${list.e_enddate}" pattern="yyyy-MM-dd E요일"/> --%>
-	      				<a href="../getEvent.do?e_idx=${list.e_idx }">${list.e_name }</a>&nbsp;&nbsp;<span id="detcnt">[${list.e_count}]</span>
+	      				<a href="../getEvent.do?e_idx=${list.e_idx }"><strong>${list.e_name }</strong></a>&nbsp;&nbsp;<span id="detcnt">[${list.e_count}]</span>
 	      			</th>
 	      			<td style="width:30%; text-align: center;"><div id="date">${list.e_date }</div></td>
-	      			<td style="width:15%"> &nbsp;&nbsp;&nbsp;&nbsp; <a id="good" href="#" ><img src="views/img/good.png" style="width: 20px; height: 20px;">  좋아요 ${list.e_upvote }</a> &nbsp;&nbsp;&nbsp;&nbsp; </td>
-	      			<td style="width:15%"><img src="views/img/lookup.PNG" style="width: 20px; height: 20px;"> ${list.e_reviewcount }</td>
+	      			<td style="width:15%"> &nbsp;&nbsp;&nbsp;&nbsp; <a id="good" href="#" ><img src="views/img/good.png" style="width: 20px; height: 20px;">  <strong> ${list.e_upvote }</strong></a> &nbsp;&nbsp;&nbsp;&nbsp; </td>
+	      			<td style="width:15%"><img src="views/img/lookup.PNG" style="width: 20px; height: 20px;"> <strong>${list.e_reviewcount }</strong></td>
 	      		</tr>
       		</c:forEach>
       		</c:otherwise>     		

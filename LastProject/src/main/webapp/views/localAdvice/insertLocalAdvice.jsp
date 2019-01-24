@@ -7,7 +7,7 @@
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <meta charset="utf-8"> 
-  <title>현지정보 문의 게시글 작성</title>
+  <title>Gukbong WorlD</title>
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <meta content="" name="keywords">
   <meta content="" name="description">
@@ -34,6 +34,15 @@
 
   <script src="http://code.jquery.com/jquery-latest.min.js"></script>
   <script src="https://maps.googleapis.com/maps/api/js?v=3&sensor=false&libraries=places&callback=initAutocomplete&key=AIzaSyAfB2qQnvAuU2YFFqi8hrPWfjJNyxl5kWc" async defer></script>
+
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-lite.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-lite.js"></script>
+
+
+
 
   <!-- =======================================================
     Theme Name: BizPage
@@ -272,24 +281,37 @@
 <br>  
          <table class="table">            
             <tr>
-               <td style="width: 10%; text-align: center;">제목</td>    
+               <td style="width: 10%; text-align: center;"><strong>제목</strong></td>    
                <td style="width: 90%;"><textarea class="form-control" rows="1" cols="150" name="l_subject" title="제목"></textarea></td>
             </tr>
             <tr>
-               <td style="width: 10%; text-align: center;">내용</td>
-               <td style="width: 90%;"><textarea class="form-control" rows="14" cols="150" name="l_content" title="내용"></textarea></td>   
+               <td style="width: 10%; text-align: center;"><strong>내용</strong></td>
+               <td style="width: 90%;"><textarea class="form-control" rows="14" cols="150" name="l_content" title="내용" id="summernote"></textarea></td>
+               <script>
+			      $('#summernote').summernote({
+			        placeholder: '내용을 입력해주세요.',
+			        tabsize: 2,
+			        height: 400 
+			      });
+			    </script>   
             </tr>
+            
             <tr>
-                 <td class="text-muted" colspan="2">
+               <td class="text-muted" colspan="2">
+             
                   저작권 등 다른 사람의 권리를 침해하거나 명예를 훼손하는 게시글은 이용약관 및 관련법률에 의해 제재를 받으실 수 있습니다.
+                
                </td>             
             </tr> 
             <tr>
                <td colspan="2">               
-                  <input type="button" value="저장" class="btn btn-outline-secondary"
-                     onclick="sendData(this.form)">               
-                  <input type="reset" value="다시작성" class="btn btn-outline-secondary">
-                  
+                  <button type="button" class="btn btn-outline-secondary" onclick="sendData(this.form)">
+                  	<strong>저장2</strong>
+                  </button>                                                                         
+                  <button type="reset" class="btn btn-outline-secondary">
+                  	<strong>다시작성</strong>
+                  </button>
+                      
                   <input type="hidden" name="searchCondition" value="${searchCondition }">
                   <input type="hidden" name="searchKeyword" value="${key }" >
                   <input type="hidden" name="m_address" value="${member.m_address}">

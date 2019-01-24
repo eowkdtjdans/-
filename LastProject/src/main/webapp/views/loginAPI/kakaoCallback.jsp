@@ -28,9 +28,26 @@
    <script src="views/datepicker/public/theme/js/t-datepicker.min.js"></script>
 
 <script>
-var idck = 0;
 var phoneck= 0;
-
+var pwdck= 0;
+function pwdCheck(frm) {
+	var pwd = frm.m_pwd.value;
+	var pwd2 = frm.m_pwd2.value;
+	if (frm.m_pwd.value != frm.m_pwd2.value) {
+		$("#pwdCheckInput").html("<p style='color:red;'>비밀번호 불일치</p>");
+		pwdck = 1;
+		return false;
+		
+	} else if (frm.m_pwd.value.length<8 || frm.m_pwd.value.length>16 || frm.m_pwd2.value.length<8 || frm.m_pwd2.value.length>16) {
+        alert("비밀번호를 8~16자리로 설정해주세요.");
+        frm.m_pwd.value = ""; 
+        frm.m_pwd2.value = ""; 
+      frm.m_pwd.focus();
+      pwdCheck();
+   } else {
+		$("#pwdCheckInput").html("<p style='color:green;'>비밀번호 일치</p>");
+	}
+}
     function phoneCheck(frm) {
       var phonecheck = 0;
       var m_phone = $('#m_phone').val();
@@ -72,45 +89,6 @@ var phoneck= 0;
     };
 /* *******************************************************************************
 *************************************************************************************/ 
- function idCheck(frm) {
-    var idcheck = 0;
-    var m_id = $('#m_id').val();
-    var email = document.getElementById("m_id").value;
-    var emailCheck = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
-   $.ajax({
-      async: true,
-      type : 'POST',
-      dataType : "json",
-      data : m_id,
-       contentType: "application/json; charset=UTF-8",  
-      url : '../../checkMemberJson.do',
-      
-         success : function(data) {
-            console.log("data.cnt : " + data.cnt);
-            if(emailCheck.test(email)==false || email == ""){
-               alert("이메일형식이 올바르지 않습니다.");
-                $("#m_id").focus();
-                    $("#m_id").val("");
-               return false;
-            } else if (data.cnt >= 1) {
-                   alert("아이디가 존재합니다. 다른 아이디를 입력해주세요.");
-                   $("#m_id").focus();
-                   $("#m_id").val("");
-                   idck = 0;
-                   return false;
-                } else if (data.cnt == 0) {
-                  alert("사용가능한 아이디입니다.");
-                  //아이디가 중복하지 않으면  idck = 1 
-                  idck = 1;
-                 return false;
-             }
-           },
-           error : function(error) {
-               alert("아이디를 입력하세요");
-           
-           }
-       });
-}; 
 /* *******************************************************************************
 *************************************************************************************/  
 
@@ -119,13 +97,12 @@ function register(frm) {
    var name = frm.m_name.value;
 
    if(confirm("회원가입을 하시겠습니까?")){
-      if(idck==0){
-            alert('아이디 중복체크를 해주세요');
-            return false;
-        } if(phoneck==0) {
                alert("핸드폰 중복체크를 해주세요");
                return false;
-        } else if (frm.m_pwd.value == "" || frm.m_pwd.value == null) {
+        } if(pwdck==0) {
+        	alert("비밀번호가 일치하지 않습니다");
+        	return false;
+        }else if (frm.m_pwd.value == "" || frm.m_pwd.value == null) {
          alert("비밀번호를 기입하세요.");
          frm.m_pwd.value = ""; 
          frm.m_pwd.focus();
@@ -154,7 +131,6 @@ function register(frm) {
         frm.action = "../../insertMember.do"; //로그인 작업 처리
       frm.submit(); 
         }
-    }
 
 };
 </script>   
@@ -451,50 +427,51 @@ $(document).ready(function() {
    <div class="row">
    <div class="col-md-3"></div> 
    <div class="col-md-6">
-      <h4 style="text-align : center;">회원가입</h4>      
+      <h4 style="text-align : center;"><strong>회원가입</strong></h4>      
       <form method="POST" id="form">
          <div class="form-group">
-            <label for="text">아이디</label>
+            <label for="text"><strong>아이디</strong></label>
             <input id="m_id" type="text" class="form-control" name="m_id" readonly="readonly">
-         </div>
-         
-         <div class="form-group">
-            <button type="button" class="btn btn-outline-secondary btn-block" onclick="idCheck(this.form)" >아이디 중복확인</button>
          </div>
                   
          <div class="form-group">
-            <label for="password">비밀번호</label>
-            <input id="m_pwd" type="password" class="form-control" name="m_pwd">
+            <label for="password"><strong>비밀번호</strong></label>
+            <input id="m_pwd" type="password" class="form-control" name="m_pwd" placeholder="비밀번호를 8~16자리로 설정해주세요.">
          </div>
          
          <div class="form-group">
-            <label for="name">성함</label>
+            <label for="password" id="pwdCheck2"><strong>비밀번호 확인</strong></label>
+            <input id="m_pwd2" type="password" class="form-control" name="m_pwd2" onkeyup="pwdCheck(this.form)" placeholder="비밀번호를 8~16자리로 설정해주세요.">
+         </div>
+         
+         <div class="form-group">
+            <label for="name"><strong>성함</strong></label>
             <input id="m_name" type="text" class="form-control" name="m_name">
          </div>
          
          <div class="form-group">
-            <label for="text">핸드폰</label>
-            <input id="m_phone" type="text" class="form-control" name="m_phone" required data-eye>
+            <label for="text"><strong>핸드폰</strong></label>
+            <input placeholder="ex) 01055754786" id="m_phone" type="text" class="form-control" name="m_phone" required data-eye>
          </div>
          
          <div class="form-group"> 
-            <button type="button" class="btn btn-outline-secondary btn-block" onclick="phoneCheck(this.form)" >핸드폰 중복확인</button>
+            <button type="button" class="btn btn-outline-secondary btn-block" onclick="phoneCheck(this.form)" ><strong>핸드폰 중복확인</strong></button>
          </div>
          
          <div class="form-group" style="text-algin : center; margin : 0 auto">
             <div class="btn-group" data-toggle="buttons">
             <label class="btn btn-default active"> 
-            <input type="radio" name="m_gender" autocomplete="off" value="남자" checked/>남자
+            <input type="radio" name="m_gender" autocomplete="off" value="남자" checked/><strong>남자</strong>
             </label>
                
             <label class="btn btn-default">
-            <input type="radio" name="m_gender" autocomplete="off" value="여자"/>여자
+            <input type="radio" name="m_gender" autocomplete="off" value="여자"/><strong>여자</strong>
             </label>
             </div>
          </div>
          
          <c:set var="yearStart" value="1969"/>
-         <label for="birthday">생년월일</label>
+         <label for="birthday"><strong>생년월일</strong></label>
          <select id="year" onchange="yearChange()">
          <c:forEach begin="1969" end="1999" step="1">
          <c:set var="yearStart" value="${yearStart + 1}"/>
@@ -513,7 +490,7 @@ $(document).ready(function() {
          </div>
          
          <div id="locationField" class="form-group">
-            <label for="address">주소</label>
+            <label for="address"><strong>주소</strong></label>
             <input id="autocompleteReg" type="text" class="form-control" name="m_address">
             <input class="field" id="latReg" type="hidden" class="form-control" name="lat"/>
             <input class="field" id="lngReg" type="hidden" class="form-control" name="lng"/>
@@ -522,10 +499,10 @@ $(document).ready(function() {
    
          
          <div class="form-group m-0">
-            <button type="button" class="btn btn-outline-secondary btn-block" onclick="register(this.form)">회원가입</button>
+            <button type="button" class="btn btn-outline-secondary btn-block" onclick="register(this.form)"><strong>회원가입</strong></button>
          </div>
          <div class="mt-4 text-center">
-            사이트 회원이십니까? <a href="../../loginMember.do">로그인</a>
+            <strong>사이트 회원이십니까?</strong> <a href="../../loginMember.do"><strong>로그인</strong></a>
          </div>
       </form>
    </div>

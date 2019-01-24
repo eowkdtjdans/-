@@ -8,7 +8,7 @@
 <head>
  
 <meta charset="utf-8"> 
-  <title>이벤트 게시판 상세보기</title>
+  <title>Gukbong WorlD</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <meta content="" name="keywords">
@@ -536,7 +536,7 @@ table .noline {
                   <fmt:formatDate value="${getEvent.e_startdate }" pattern="yyyy-MM-dd" var="date"/>
                   <tr>
                      <%-- <td>관리자&emsp;&emsp;${startdate} ~ ${enddate}</td> --%>
-                     <td><img src="/views/img/administrator.png" style="width: 40px; height: 40px;">관리자 &emsp;&emsp; <span class="text-muted">${getEvent.e_date}</span></td>
+                     <td><img src="/views/img/administrator.png" style="width: 40px; height: 40px;"><strong>관리자</strong> &emsp;&emsp; <span class="text-muted">${getEvent.e_date}</span></td>
                   </tr>
                   <tr>
                   	 <td>
@@ -568,7 +568,7 @@ table .noline {
 					  </c:forEach>
 			  	  	  <br>
 					  <!-- <button type="button" class="btn btn-outline-secondary" onclick="imagemodal()">사진 더보기</button> -->					  
-					  <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#myModal">사진 더보기</button>					  
+					  <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#myModal"><strong>사진 더보기</strong></button>					  
 					  
 			      </div>
 			      
@@ -582,19 +582,19 @@ table .noline {
 			      <br>
 			      <table class="table" id="smalltable">
 			      	<tr>
-			      		<td>시작일</td>
+			      		<td><strong>시작일</strong></td>
 			      		<td>${startdate }</td>
 			      	</tr>
 			      	<tr>
-			      		<td>종료일</td>
+			      		<td><strong>종료일</strong></td>
 			      		<td>${enddate }</td>
 			      	</tr>
 			      	<tr>
-			      		<td>태그</td>
+			      		<td><strong>태그</strong></td>
 			      		<td>${getEvent.e_tag }</td>
 			      	</tr>
 			      	<tr>
-			      		<td>주소</td>
+			      		<td><strong>주소</strong></td>
 			      		<td>${getEvent.e_address }</td>
 			      	</tr>			      	
 			      </table>
@@ -617,9 +617,9 @@ table .noline {
                                 <c:if test="${list.m_id eq member.m_id}">
                                    <!-- 조건에 로그인한아이디와 프로필의 m_id가 같으면 -->
                                    <button type="button" class="btn btn-outline-secondary" id="btn1${list.ec_idx}"  
-                                      onclick="update_button('${list.ec_idx}','${list.ec_content }')">수정</button>
+                                      onclick="update_button('${list.ec_idx}','${list.ec_content }')"><strong>수정</strong></button>
                                    <button type="button" class="btn btn-outline-secondary" id="btn2${list.ec_idx}"   
-                                      onclick="delete_button('${list.ec_idx}','${getEvent.e_idx }')">삭제</button>                                                
+                                      onclick="delete_button('${list.ec_idx}','${getEvent.e_idx }')"><strong>삭제</strong></button>                                                
                                 </c:if>
                                 
                                 <div id="${list.ec_idx}">
@@ -638,8 +638,8 @@ table .noline {
                <p>
                   <textarea name="ec_content" rows="3" cols="134" id="textareadet"></textarea>
                   <input type="hidden" id="e_idx" name="e_idx" value="${getEvent.e_idx }">
-                  <input class="btn btn-outline-secondary" type="button"
-                     value="댓글등록" onclick="login_chk(this.form)">
+                  <button class="btn btn-outline-secondary" type="button"
+                      onclick="login_chk(this.form)"><strong>댓글등록</strong></button>
                </p>
             </form>		
          </div>

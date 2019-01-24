@@ -386,20 +386,21 @@ select {
    <div class="row">
       <div class="col-md-3 ">
            <div class="list-group ">
-           <a href="../../myProfile.do" class="list-group-item list-group-item-action ">My Profile 메인</a>
-              <a href="../../insertProfile.do" class="list-group-item list-group-item-action active">프로필 수정</a>
-              <a href="../../ModifyPhoneMember.do" class="list-group-item list-group-item-action">핸드폰 변경</a>
-              <a href="../../ModifyPwdMember.do" class="list-group-item list-group-item-action">비밀번호 변경</a>
-              <a href="../../ModifyAddressMember.do" class="list-group-item list-group-item-action">주소 변경</a>
-              <a href="../../profileImageInsert.do" class="list-group-item list-group-item-action">이미지 업로드</a>
-              <a href="../../profileImageList.do?m_id=${member.m_id }" class="list-group-item list-group-item-action">프로필 이미지 관리</a>
-              <a href="../../HostImageList.do?m_id=${member.m_id }" class="list-group-item list-group-item-action">호스트 이미지 관리</a>
-              <a href="../../getReceiveMessageList.do" class="list-group-item list-group-item-action">받은 쪽지함</a>
-              <a href="../../getSendMessageList.do" class="list-group-item list-group-item-action">보낸 쪽지함</a>
-              <a href="../../myPost.do?m_id=${member.m_id }&cPage=1" class="list-group-item list-group-item-action">내 글</a>
-              <a href="../../myPost2.do?m_id=${member.m_id }&cPage=1" class="list-group-item list-group-item-action">내 댓글</a>
-              <a href="../../loginRecordList.do?ll_id=${member.m_id }&cPage=1" class="list-group-item list-group-item-action">로그인 기록</a>
-              <a href="../../DeleteMember.do?m_id=${member.m_id }" class="list-group-item list-group-item-action">회원탈퇴</a>     
+                  <a href="../../myProfile.do" class="list-group-item list-group-item-action "><strong>My Profile 메인</strong></a>
+              <a href="../../insertProfile.do" class="list-group-item list-group-item-action active"><strong>프로필 수정</strong></a>
+              <a href="../../ModifyPhoneMember.do" class="list-group-item list-group-item-action "><strong>핸드폰 변경</strong></a>
+              <a href="../../ModifyPwdMember.do" class="list-group-item list-group-item-action "><strong>비밀번호 변경</strong></a>
+              <a href="../../ModifyAddressMember.do" class="list-group-item list-group-item-action "><strong>주소 변경</strong></a>
+              <a href="../../profileImageInsert.do" class="list-group-item list-group-item-action"><strong>이미지 업로드</strong></a>
+              <a href="../../profileImageList.do?m_id=${member.m_id }" class="list-group-item list-group-item-action"><strong>프로필 이미지 관리</strong></a>
+              <a href="../../HostImageList.do?m_id=${member.m_id }" class="list-group-item list-group-item-action"><strong>호스트 이미지 관리</strong></a>
+              <a href="../../getReceiveMessageList.do" class="list-group-item list-group-item-action"><strong>받은 쪽지함</strong></a>
+              <a href="../../getSendMessageList.do" class="list-group-item list-group-item-action"><strong>보낸 쪽지함</strong></a>
+              <a href="../../myPost.do?m_id=${member.m_id }&cPage=1" class="list-group-item list-group-item-action"><strong>내 글</strong></a>
+              <a href="../../myPost2.do?m_id=${member.m_id }&cPage=1" class="list-group-item list-group-item-action"><strong>내 댓글</strong></a>
+              <a href="../../loginRecordList.do?ll_id=${member.m_id }&cPage=1" class="list-group-item list-group-item-action"><strong>로그인 기록</strong></a>
+              <a href="../../DeleteMember.do?m_id=${member.m_id }" class="list-group-item list-group-item-action"><strong>회원탈퇴</strong></a>
+                     
             </div>             
       </div>
       
@@ -424,7 +425,7 @@ select {
                              <input id="p_route" type="hidden" class="form-control" name="p_route" value="${profile.p_route }">
                              
                                <div class="form-group row">
-                                <label for="p_hobby" class="col-3 col-form-label">취미</label> 
+                                <label for="p_hobby" class="col-3 col-form-label"><strong>취미</strong></label> 
                                 <div class="col-9">
                                    <textarea rows="2" cols="10" id="p_hobby" name="p_hobby" class="form-control" >${profile.p_hobby }</textarea>
                                 </div>                             
@@ -432,7 +433,7 @@ select {
                               <hr>
                               
                               <div class="form-group row">
-                                <label for="p_language" class="col-3 col-form-label">사용가능한 언어</label> 
+                                <label for="p_language" class="col-3 col-form-label"><strong>사용가능한 언어</strong></label> 
                                 <div class="col-9">
                                    <textarea rows="2" cols="10" id="p_language" name="p_language" class="form-control">${profile.p_language }</textarea>
                                 </div>
@@ -440,7 +441,7 @@ select {
                            	  <hr>
                            
                               <div class="form-group row">
-                                <label for="p_job" class="col-3 col-form-label">직업</label> 
+                                <label for="p_job" class="col-3 col-form-label"><strong>직업</strong></label> 
                                 <div class="col-9">
                                    <textarea rows="2" cols="10" id="p_job" name="p_job" class="form-control">${profile.p_job }</textarea>
                                 </div>
@@ -448,7 +449,7 @@ select {
                               <hr>
                               
                               <div class="form-group row">
-                                <label for="p_visitcountry" class="col-3 col-form-label">방문했던 국가</label> 
+                                <label for="p_visitcountry" class="col-3 col-form-label"><strong>방문했던 국가</strong></label> 
                                 <div class="col-9">
                                    <textarea rows="2" cols="10" id="p_visitcountry" name="p_visitcountry" class="form-control">${profile.p_visitcountry }</textarea>
                                 </div>
@@ -456,7 +457,7 @@ select {
                               <hr>
                            
                               <div class="form-group row">
-                                <label for="p_aboutme" class="col-3 col-form-label">자기소개</label> 
+                                <label for="p_aboutme" class="col-3 col-form-label"><strong>자기소개</strong></label> 
                                 <div class="col-9">
                                    <textarea rows="4" cols="10" id="aboutme" name="p_aboutme" class="form-control">${profile.p_aboutme }</textarea>
                                 </div>
@@ -464,7 +465,7 @@ select {
                               <hr>
                            
                               <div class="form-group row">
-                                <label for="p_purpose" class="col-3 col-form-label">목적</label> 
+                                <label for="p_purpose" class="col-3 col-form-label"><strong>목적</strong></label> 
                                 <div class="col-9">
                                    <textarea rows="4" cols="10" id="p_purpose" name="p_purpose" class="form-control">${profile.p_purpose }</textarea>
                                 </div>
@@ -473,7 +474,7 @@ select {
                                                                                                            
                                <div class="form-group m-0">
                                    <button type="button" class="btn btn-outline-secondary btn-block" onclick="insertProfile(this.form)">
-                             	 프로필 수정
+                             	 <strong>프로필 수정</strong>
                            		   </button>
                                </div>
                             

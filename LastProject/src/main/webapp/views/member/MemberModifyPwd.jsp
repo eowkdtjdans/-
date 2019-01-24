@@ -5,7 +5,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8"> 
-    <title>Gukbong WorlD</title>
+  <title>Gukbong WorlD</title>
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <meta content="" name="keywords">
   <meta content="" name="description"> 
@@ -31,20 +31,30 @@
 				   } else if(frm.pwdModify.value == "" || frm.m_pwd.value == null){
 					   alert("변경할 비밀번호를 기입하세요.");
 						frm.pwdModify.value="";
+						frm.pwdModify2.value="";
 						frm.pwdModify.focus();
 						return false; 
 				   } else if (frm.pwdModify.value.length<8 || frm.pwdModify.value.length>16) {
 						alert("비밀번호를 8~16자리로 설정해주세요.");
 			        	frm.pwdModify.value = ""; 
+			        	frm.pwdModify2.value = ""; 
 						frm.pwdModify.focus();
 						return false;
 				   }  else {
 					  if(confirm("비밀번호를 변경하시겠습니까?")){
+						if(frm.pwdModify.value == frm.pwdModify2.value) {
+							alert("변경이 완료되었습니다.");
+							frm.action = "../../ModifyPwdMember.do";
+						    frm.submit();    
 
-					    alert("변경이 완료되었습니다.");
-						frm.action = "../../ModifyPwdMember.do";
-					    frm.submit();    
-					    return false;
+							return false;
+						} else {
+					    	alert("변경할 비밀번호가 일치하지 않습니다");	
+					    	 frm.pwdModify.value = "";
+		   					 frm.pwdModify2.value = "";
+		   					 frm.pwdModify.focus();
+							return false;
+						}
 				   }
 				   }
 				   }
@@ -371,6 +381,13 @@ $(function(){
                                <label for="pwdModify" class="col-3 col-form-label"><strong>변경할 비밀번호</strong></label>
                                 <div class="col-9">
                                   	<input onkeypress="enterkey()"id="pwdModify" name="pwdModify" type="password" class="form-control" >
+                                </div>
+                              </div>
+                              
+                               <div class="form-group row">
+                               <label for="pwdModify2" class="col-3 col-form-label"><strong>변경할 비밀번호 확인</strong></label>
+                                <div class="col-9">
+                                  	<input onkeypress="enterkey()"id="pwdModify2" name="pwdModify2" type="password" class="form-control" >
                                 </div>
                               </div>
                                
